@@ -1,6 +1,0 @@
-D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\Territories.DAL2\obj\Debug\ResolveAssemblyReference.cache
-D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\Territories.DAL2\bin\Debug\Territories.DAL.dll.config
-D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\Territories.DAL2\bin\Debug\Territories.DAL.dll
-D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\Territories.DAL2\bin\Debug\Territories.DAL.pdb
-D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\Territories.DAL2\obj\Debug\Territories.DAL.dll
-D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\Territories.DAL2\obj\Debug\Territories.DAL.pdb
