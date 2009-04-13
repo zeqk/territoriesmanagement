@@ -12,14 +12,14 @@ using Territories.DAL.Server;
 
 namespace Territories.GUI
 {
-    public partial class frmDepartments : Form
-    {       
+    public partial class frmCities : Form
+    {        
 
-        private Departments server = new Departments();
+        private Cities server = new Cities();
 
         private bool isDirty;
 
-        public frmDepartments()
+        public frmCities()
         {
             
             InitializeComponent();
@@ -27,11 +27,14 @@ namespace Territories.GUI
 
         private void frmDepartments_Load(object sender, EventArgs e)
         {
-            schName.SetProperties("Department.Name", "Filter department name", "name");
+            schName.SetProperties("City.Name", "Filter city name", "name");
 
             this.LoadResults("");
             ConfigDgvResults();
 
+            var departments = this.server.GetDepartments();
+            cmbDepartment.DataSource = departments;
+            cmbFilterDepartment.DataSource = departments;
 
             this.ClearForm();
             this.New();
@@ -58,15 +61,16 @@ namespace Territories.GUI
             dgvResults.MultiSelect = false;
 
             dgvResults.RowHeadersVisible = false;
-            dgvResults.Columns["IdDepartment"].Visible = false;
+            dgvResults.Columns["IdCity"].Visible = false;
 
-            dgvResults.Columns["Name"].HeaderText = "Department";
-            dgvResults.Columns["Cities"].Visible = false;
+            dgvResults.Columns["Name"].HeaderText = "City";
+            dgvResults.Columns["Publishers"].Visible = false;
+            dgvResults.Columns["Directions"].Visible = false;
 
             dgvResults.Columns.Add("blank", "");
             dgvResults.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            dgvResults.Columns["IdDepartment"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgvResults.Columns["IdCity"].SortMode = DataGridViewColumnSortMode.NotSortable;
             
             dgvResults.Columns["Name"].SortMode = DataGridViewColumnSortMode.Automatic;                                 
 
@@ -79,20 +83,21 @@ namespace Territories.GUI
             this.Dispose();
         }        
 
-        private void ObjectToForm(Department dep)
+        private void ObjectToForm(City city)
         {
-            lblId.Text = dep.IdDepartment.ToString();
-            txtName.Text = dep.Name;
-            this.LoadRelations(dep.Cities.ToList<City>());
+            lblId.Text = city.IdCity.ToString();
+            txtName.Text = city.Name;
+            this.LoadRelations(city.Directions.ToList<Direction>(),city.Publishers.ToList<Publisher>());
 
         }
 
-        private Department FormToObject()
+        private City FormToObject()
         {
-            var dep = new Department();
-            dep.IdDepartment = Int32.Parse(lblId.Text);
-            dep.Name = txtName.Text;
-            return dep;
+            var city = new City();
+            city.IdCity = Int32.Parse(lblId.Text);
+            city.Name = txtName.Text;
+            //city.Department =
+            return city;
         }
 
 
@@ -100,10 +105,10 @@ namespace Territories.GUI
         {            
                 if (dgvResults.SelectedRows.Count != 0)
                 {
-                    var dep = this.server.NewObject();
-                    dep.IdDepartment = (Int32)dgvResults.SelectedRows[0].Cells["IdDepartment"].Value;
-                    dep.Name = dgvResults.SelectedRows[0].Cells["Name"].Value.ToString();
-                    this.ObjectToForm(dep);
+                    var city = this.server.NewObject();
+                    city.IdCity = (Int32)dgvResults.SelectedRows[0].Cells["IdDepartment"].Value;
+                    city.Name = dgvResults.SelectedRows[0].Cells["Name"].Value.ToString();
+                    this.ObjectToForm(city);
                     this.isDirty = false;
                 }            
             
@@ -114,6 +119,7 @@ namespace Territories.GUI
             dgvResults.ClearSelection();
             txtName.Clear();
             lblId.Text = "";
+            cmbDepartment.SelectedItem = null;
             txtName.Focus();
             this.isDirty = false;
         }
@@ -142,8 +148,8 @@ namespace Territories.GUI
                 ClearForm();
                 try
                 {
-                    var dep = this.server.NewObject();
-                    this.ObjectToForm(dep);
+                    var city = this.server.NewObject();
+                    this.ObjectToForm(city);
                     this.isDirty = false;
                 }
                 catch (Exception ex)
@@ -161,14 +167,14 @@ namespace Territories.GUI
 
         private void Update()
         {
-            var dep = this.FormToObject();
+            var city = this.FormToObject();
 
             try
             {
-                if (dep.IdDepartment == 0)
-                    this.server.Insert(dep);
+                if (city.IdCity == 0)
+                    this.server.Insert(city);
                 else
-                    this.server.Update(dep);
+                    this.server.Update(city);
 
                 this.LoadResults("");
             }
@@ -180,10 +186,10 @@ namespace Territories.GUI
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            var dep = this.FormToObject();
+            var city = this.FormToObject();
             try
             {
-                this.server.Delete(dep);
+                this.server.Delete(city);
             }
             catch (Exception ex)
             {
@@ -240,19 +246,19 @@ namespace Territories.GUI
 
         }
 
-        private void LoadRelations(List<City> cities)
+        private void LoadRelations(List<Direction> directions,List<Publisher> publishers)
         {
-            dgvCities.DataSource = cities;
+            //dgvDirections.DataSource = directions;
 
-            dgvCities.RowHeadersVisible = false;
+            //dgvDirections.RowHeadersVisible = false;
 
-            dgvCities.Columns["IdCity"].Visible = false;
-            dgvCities.Columns["Department"].Visible = false;
-            dgvCities.Columns["Directions"].Visible = false;
-            dgvCities.Columns["Publishers"].Visible = false;
+            //dgvDirections.Columns["IdDirection"].Visible = false;
+            //dgvDirections.Columns["Department"].Visible = false;
+            //dgvDirections.Columns["Directions"].Visible = false;
+            //dgvDirections.Columns["Publishers"].Visible = false;
 
-            dgvCities.Columns["Name"].HeaderText = "City";
-            dgvCities.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //dgvDirections.Columns["Name"].HeaderText = "City";
+            //dgvDirections.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             
             
         }

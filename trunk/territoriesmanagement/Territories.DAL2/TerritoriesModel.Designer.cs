@@ -21,7 +21,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_tours_territories", "Territories", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.DAL.Territory), "Tours", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.DAL.Tour))]
 
 // Original file name:
-// Generation date: 10/04/2009 06:09:03 p.m.
+// Generation date: 13/04/2009 15:41:57
 namespace Territories.DAL
 {
     
@@ -215,6 +215,13 @@ namespace Territories.DAL
         public global::System.Data.Objects.ObjectResult<Department> departments_GetAll()
         {
             return base.ExecuteFunction<Department>("departments_GetAll");
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.cities_GetAll in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<City> cities_GetAll()
+        {
+            return base.ExecuteFunction<City>("cities_GetAll");
         }
     }
     /// <summary>
