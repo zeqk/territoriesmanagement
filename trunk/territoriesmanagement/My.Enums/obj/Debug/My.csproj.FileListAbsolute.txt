@@ -1,5 +1,0 @@
-D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\My.Enums\bin\Debug\My.Enums.dll
-D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\My.Enums\bin\Debug\My.Enums.pdb
-D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\My.Enums\obj\Debug\ResolveAssemblyReference.cache
-D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\My.Enums\obj\Debug\My.Enums.dll
-D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\My.Enums\obj\Debug\My.Enums.pdb
