@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="Territories" Class="TerritoriesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;AttachDbFilename=&quot;C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\TerritoriesManagement\Territories.DB\Territories.mdf&quot;;Integrated Security=True;User Instance=True" SettingsObjectName="Territories.DAL.Properties.Settings" SettingsPropertyName="territoriesConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Cities" Member="Cities">
+    <Type Name="City">
+      <Column Name="IdCity" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IdDepartment" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="City_Direction" Member="Directions" ThisKey="IdCity" OtherKey="IdCity" Type="Direction" />
+      <Association Name="City_Publisher" Member="Publishers" ThisKey="IdCity" OtherKey="IdCity" Type="Publisher" />
+      <Association Name="Department_City" Member="Department" ThisKey="IdDepartment" OtherKey="IdDepartment" Type="Department" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Tours" Member="Tours">
+    <Type Name="Tour">
+      <Column Name="IdTerritory" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="BeginDate" Type="System.DateTime" DbType="SmallDateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="SmallDateTime" CanBeNull="true" />
+      <Column Name="TourNumber" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdPublisher" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Publisher_Tour" Member="Publisher" ThisKey="IdPublisher" OtherKey="IdPublisher" Type="Publisher" IsForeignKey="true" />
+      <Association Name="Territory_Tour" Member="Territory" ThisKey="IdTerritory" OtherKey="IdTerritory" Type="Territory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Departments" Member="Departments">
+    <Type Name="Department">
+      <Column Name="IdDepartment" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Department_City" Member="Cities" ThisKey="IdDepartment" OtherKey="IdDepartment" Type="City" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Directions" Member="Directions">
+    <Type Name="Direction">
+      <Column Name="IdDirection" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="StreetAndNumber" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Corner1" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Corner2" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Phone1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Phone2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Map1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Map2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="GeoPosition" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="IdTerritory" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdCity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="City_Direction" Member="City" ThisKey="IdCity" OtherKey="IdCity" Type="City" IsForeignKey="true" />
+      <Association Name="Territory_Direction" Member="Territory" ThisKey="IdTerritory" OtherKey="IdTerritory" Type="Territory" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Groups" Member="Groups">
+    <Type Name="Group">
+      <Column Name="IdGroup" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Captain" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Auxiliar" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Group_Publisher" Member="Publishers" ThisKey="IdGroup" OtherKey="IdGroup" Type="Publisher" />
+      <Association Name="Group_Territory" Member="Territories" ThisKey="IdGroup" OtherKey="IdGroup" Type="Territory" />
+      <Association Name="Publisher_Group" Member="Publisher" ThisKey="Captain" OtherKey="IdPublisher" Type="Publisher" IsForeignKey="true" />
+      <Association Name="Publisher_Group1" Member="Publisher1" ThisKey="Auxiliar" OtherKey="IdPublisher" Type="Publisher" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Publishers" Member="Publishers">
+    <Type Name="Publisher">
+      <Column Name="IdPublisher" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Direction" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="IdCity" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IdGroup" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone1" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Phone2" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Zip" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Publisher_Tour" Member="Tours" ThisKey="IdPublisher" OtherKey="IdPublisher" Type="Tour" />
+      <Association Name="Publisher_Group" Member="Groups" ThisKey="IdPublisher" OtherKey="Captain" Type="Group" />
+      <Association Name="Publisher_Group1" Member="Groups1" ThisKey="IdPublisher" OtherKey="Auxiliar" Type="Group" />
+      <Association Name="City_Publisher" Member="City" ThisKey="IdCity" OtherKey="IdCity" Type="City" IsForeignKey="true" />
+      <Association Name="Group_Publisher" Member="Group" ThisKey="IdGroup" OtherKey="IdGroup" Type="Group" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Territories" Member="Territories">
+    <Type Name="Territory">
+      <Column Name="IdTerritory" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Map" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="IdGroup" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Territory_Tour" Member="Tours" ThisKey="IdTerritory" OtherKey="IdTerritory" Type="Tour" />
+      <Association Name="Territory_Direction" Member="Directions" ThisKey="IdTerritory" OtherKey="IdTerritory" Type="Direction" />
+      <Association Name="Group_Territory" Member="Group" ThisKey="IdGroup" OtherKey="IdGroup" Type="Group" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Function Name="dbo.cities_Add" Method="cities_Add">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="name" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="department" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cities_UpdateById" Method="cities_UpdateById">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="name" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="department" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cities_DeleteById" Method="cities_DeleteById">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <Parameter Name="idDepartment" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cities_GetAll" Method="cities_GetAll">
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.cities_GetById" Method="cities_GetById">
+    <Parameter Name="id" Type="System.Int32" DbType="Int" />
+    <ElementType Name="cities_GetByIdResult">
+      <Column Name="IdCity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IdDepartment" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.cities_GetByIdDepartment" Method="cities_GetByIdDepartment">
+    <Parameter Name="department" Type="System.Int32" DbType="Int" />
+    <ElementType Name="cities_GetByIdDepartmentResult">
+      <Column Name="IdCity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="IdDepartment" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+</Database>
