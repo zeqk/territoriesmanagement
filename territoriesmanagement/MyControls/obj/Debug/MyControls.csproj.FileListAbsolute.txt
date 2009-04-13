@@ -1,7 +1,0 @@
-C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\TerritoriesManagement\MyControls\bin\Debug\MyControls.dll
-C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\TerritoriesManagement\MyControls\bin\Debug\MyControls.pdb
-C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\TerritoriesManagement\MyControls\obj\Debug\ResolveAssemblyReference.cache
-C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\TerritoriesManagement\MyControls\obj\Debug\MyControls.Search.resources
-C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\TerritoriesManagement\MyControls\obj\Debug\MyControls.csproj.GenerateResource.Cache
-C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\TerritoriesManagement\MyControls\obj\Debug\MyControls.dll
-C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\TerritoriesManagement\MyControls\obj\Debug\MyControls.pdb
