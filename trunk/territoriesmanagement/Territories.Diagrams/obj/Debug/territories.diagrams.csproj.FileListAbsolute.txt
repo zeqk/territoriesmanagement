@@ -1,2 +1,0 @@
-C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\TerritoriesManagement\territories.diagrams\obj\Debug\ResolveAssemblyReference.cache
-D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\territories.diagrams\obj\Debug\ResolveAssemblyReference.cache
