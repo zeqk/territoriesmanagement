@@ -1,0 +1,8 @@
+D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\TestConsole\obj\Debug\ResolveAssemblyReference.cache
+D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\TestConsole\bin\Debug\TestConsole.exe
+D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\TestConsole\bin\Debug\TestConsole.pdb
+D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\TestConsole\bin\Debug\Territories.DAL.dll
+D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\TestConsole\bin\Debug\Territories.DAL.pdb
+D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\TestConsole\obj\Debug\TestConsole.exe
+D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\TestConsole\obj\Debug\TestConsole.pdb
+D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\TestConsole\bin\Debug\TestConsole.exe.config

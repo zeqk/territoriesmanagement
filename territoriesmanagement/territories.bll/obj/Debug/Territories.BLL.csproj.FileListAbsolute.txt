@@ -1,0 +1,21 @@
+D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\obj\Debug\ResolveAssemblyReference.cache
+D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\bin\Debug\Territories.BLL.dll
+D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\bin\Debug\Territories.BLL.pdb
+D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\bin\Debug\Dynamic.dll
+D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\bin\Debug\Territories.DAL.dll
+D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\bin\Debug\Dynamic.pdb
+D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\bin\Debug\Territories.DAL.pdb
+D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\obj\Debug\Territories.BLL.dll
+D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\obj\Debug\Territories.BLL.pdb
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\obj\Debug\ResolveAssemblyReference.cache
+D:\MSOCache\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\bin\Debug\Territories.BLL.dll
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\bin\Debug\Territories.BLL.pdb
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\bin\Debug\Territories.DAL2.dll
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\bin\Debug\Territories.DAL2.pdb
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\obj\Debug\Territories.BLL.dll
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\obj\Debug\Territories.BLL.pdb
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\bin\Debug\Territories.BLL.dll.config
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\bin\Debug\Territories.DAL.dll
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\bin\Debug\Territories.DAL.pdb
+D:\Documentos\zeqk\Visual Studio 2008\Projects\TerritoriesManagement\territories.bll\bin\Debug\Territories.BLL.dll.config
