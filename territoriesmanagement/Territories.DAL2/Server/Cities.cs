@@ -11,33 +11,33 @@ using Territories.DAL;
           
 namespace Territories.DAL.Server
 {                
-    public class Departments : IGenerics<Department>
+    public class Cities : IGenerics<City>
     {
         private TerritoriesDataContext _dm;
 
 
         #region Constructors
-        public Departments()        
+        public Cities()        
         {
             _dm = new TerritoriesDataContext(); 
         }
 
-        public Departments(TerritoriesDataContext dm)
+        public Cities(TerritoriesDataContext dm)
         {
             _dm = dm;
 
         }
         #endregion
 
-        #region IGenericServer<Department> Members
+        #region IGenericServer<City> Members
 
-        public Department Insert(Department v)
+        public City Insert(City v)
         {
             try
             {
                 if (this.IsValid(v))
                 {
-                    _dm.AddToDepartments(v);
+                    _dm.AddToCities(v);
                     _dm.SaveChanges();                    
                 }
 
@@ -51,13 +51,13 @@ namespace Territories.DAL.Server
             }
         }
 
-        public Department Update(Department v)
+        public City Update(City v)
         {
             try
             {
                 if (this.IsValid(v))
                 {                    
-                    _dm.ApplyPropertyChanges("Departments", v);
+                    _dm.ApplyPropertyChanges("Cities", v);
                     _dm.SaveChanges();
                 }
                 return v;
@@ -70,7 +70,7 @@ namespace Territories.DAL.Server
             }
         }
 
-        public void Delete(Department v)
+        public void Delete(City v)
         {
             try                
             {
@@ -84,11 +84,11 @@ namespace Territories.DAL.Server
             }
         }
 
-        public Department Load(int id)
+        public City Load(int id)
         {
             try
             {
-                return _dm.Departments.ElementAt<Department>(id);
+                return _dm.Cities.ElementAt<City>(id);
             }
             catch (Exception e)
             {
@@ -97,22 +97,19 @@ namespace Territories.DAL.Server
             }
         }
 
-        public ObjectResult<Department> Search(string query, params ObjectParameter[] parameters)
+        public ObjectResult<City> Search(string query, params ObjectParameter[] parameters)
         {
             
             try
             {
                 if (query == null || query == "")
-                    return _dm.departments_GetAll();
+                    return _dm.cities_GetAll();
                 else
                 {
-                    query = "SELECT VALUE Department FROM TerritoriesDataContext.Departments AS Department WHERE " + query;
-                    return _dm.CreateQuery<Department>(query, parameters).Execute(MergeOption.AppendOnly);
+                    query = "SELECT VALUE City FROM TerritoriesDataContext.Cities AS City WHERE " + query;
+                    return _dm.CreateQuery<City>(query, parameters).Execute(MergeOption.AppendOnly);
 
                 }
-                
-                
-                
                
             }
             catch (Exception e)
@@ -122,49 +119,55 @@ namespace Territories.DAL.Server
             }
         }
 
-        public bool IsValid(Department v)
+        public bool IsValid(City v)
         {
             if (v.Name == "" || v.Name == null)
             {
-                throw new Exception("The department name is invalid. Correct and retrieve.");
+                throw new Exception("The city name is invalid. Correct and retrieve.");
             }
             if (nameExist(v))
             {
-                throw new Exception("The department already exist. Correct and retrieve.");
+                throw new Exception("The city already exist. Correct and retrieve.");
             }
 
 
             return true;
         }
 
-        public Department NewObject()
+        public City NewObject()
         {
-            Department rv = new Department();
-            rv.IdDepartment = 0;
+            City rv = new City();
+            rv.IdCity = 0;
             rv.Name = "";
+            rv.Department = null;
             //rv.Cities = new EntitySet<City>();
             return rv;
 
         }
 
-        public ObjectResult<Department> All()
+        public ObjectResult<City> All()
         {
             return this.Search("");
         }
 
         #endregion
 
-        private bool nameExist(Department v)
+        private bool nameExist(City v)
         {
 
             ObjectParameter[] parameters = { new ObjectParameter("Name", v.Name) };
 
-            ObjectResult<Department> results = _dm.CreateQuery<Department>("Name = '{0}'", parameters).Execute(MergeOption.AppendOnly);
+            ObjectResult<City> results = _dm.CreateQuery<City>("Name = '{0}'", parameters).Execute(MergeOption.AppendOnly);
 
-            if (results.Count<Department>()>0)
+            if (results.Count<City>()>0)
                 return true;
             else
                 return false;
+        }
+
+        public ObjectResult<Department> GetDepartments()
+        {
+            return _dm.departments_GetAll();
         }
 
 

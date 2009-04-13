@@ -67,6 +67,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Server\Cities.cs" />
     <Compile Include="Server\Departments.cs" />
     <Compile Include="Server\IGenerics.cs" />
     <Compile Include="TerritoriesModel.Designer.cs">
