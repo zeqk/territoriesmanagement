@@ -32,10 +32,14 @@ namespace Territories.GUI
             this.LoadResults("");
             ConfigDgvResults();
 
-            var departments = this.server.GetDepartments();
-            cmbDepartment.DataSource = departments;
-            cmbFilterDepartment.DataSource = departments;
+            
+            cmbDepartment.DataSource = this.server.GetDepartments();
+            cmbDepartment.DisplayMember = "Name";
+            cmbDepartment.SelectedItem = null;
 
+            cmbFilterDepartment.DataSource = this.server.GetDepartments();
+            cmbFilterDepartment.DisplayMember = "Name";
+            cmbFilterDepartment.SelectedItem = null;
             this.ClearForm();
             this.New();
             
@@ -87,6 +91,8 @@ namespace Territories.GUI
         {
             lblId.Text = city.IdCity.ToString();
             txtName.Text = city.Name;
+            cmbDepartment.SelectedItem = city.Department;            
+
             this.LoadRelations(city.Directions.ToList<Direction>(),city.Publishers.ToList<Publisher>());
 
         }
@@ -96,7 +102,7 @@ namespace Territories.GUI
             var city = new City();
             city.IdCity = Int32.Parse(lblId.Text);
             city.Name = txtName.Text;
-            //city.Department =
+            city.Department =(Department) cmbDepartment.SelectedItem;
             return city;
         }
 
@@ -145,7 +151,7 @@ namespace Territories.GUI
                 }
             if (yes)
             {
-                ClearForm();
+                this.ClearForm();
                 try
                 {
                     var city = this.server.NewObject();
@@ -261,6 +267,11 @@ namespace Territories.GUI
             //dgvDirections.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             
             
+        }
+
+        private void cmbFilterDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
 
         

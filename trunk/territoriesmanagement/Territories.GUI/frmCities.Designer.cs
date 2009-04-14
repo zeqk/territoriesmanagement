@@ -202,6 +202,7 @@
             this.cmbFilterDepartment.Name = "cmbFilterDepartment";
             this.cmbFilterDepartment.Size = new System.Drawing.Size(325, 21);
             this.cmbFilterDepartment.TabIndex = 15;
+            this.cmbFilterDepartment.SelectedIndexChanged += new System.EventHandler(this.cmbFilterDepartment_SelectedIndexChanged);
             // 
             // lblResult
             // 
@@ -330,7 +331,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(760, 471);
+            this.ClientSize = new System.Drawing.Size(760, 443);
             this.Controls.Add(this.tabPanel);
             this.Controls.Add(this.grdSearch);
             this.Controls.Add(this.grpObject);

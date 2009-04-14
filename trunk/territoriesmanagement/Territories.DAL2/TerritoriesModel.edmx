@@ -251,7 +251,7 @@
         </Association>
         <Function Name="cities_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="name" Type="nvarchar" Mode="In" />
-          <Parameter Name="idDepartment" Type="int" Mode="In" />
+          <Parameter Name="idDeparment" Type="int" Mode="In" />
         </Function>
         <Function Name="cities_DeleteAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="cities_DeleteById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -574,7 +574,7 @@
               <ModificationFunctionMapping>
                 <InsertFunction FunctionName="TerritoriesModel.Store.cities_Add">
                   <AssociationEnd AssociationSet="FK_cities_departments" From="Cities" To="Departments">
-                    <ScalarProperty Name="IdDepartment" ParameterName="idDepartment" /></AssociationEnd>
+                    <ScalarProperty Name="IdDepartment" ParameterName="idDeparment" /></AssociationEnd>
                   <ScalarProperty Name="Name" ParameterName="name" />
                   <ResultBinding Name="IdCity" ColumnName="id" /></InsertFunction>
                 <UpdateFunction FunctionName="TerritoriesModel.Store.cities_UpdateById">
