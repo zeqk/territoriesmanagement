@@ -157,9 +157,11 @@ namespace Territories.DAL.Server
 
             ObjectParameter[] parameters = { new ObjectParameter("Name", v.Name) };
 
-            ObjectResult<City> results = _dm.CreateQuery<City>("Name = '{0}'", parameters).Execute(MergeOption.AppendOnly);
+            var results = from c in _dm.Cities
+                        where c.Name == v.Name
+                        select c.Name;           
 
-            if (results.Count<City>()>0)
+            if (results.Count<string>()>0)
                 return true;
             else
                 return false;

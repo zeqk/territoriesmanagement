@@ -156,12 +156,11 @@ namespace Territories.DAL.Server
 
         private bool nameExist(Department v)
         {
+            var results = from d in _dm.Departments
+                          where d.Name == v.Name
+                          select d.Name;
 
-            ObjectParameter[] parameters = { new ObjectParameter("Name", v.Name) };
-
-            ObjectResult<Department> results = _dm.CreateQuery<Department>("Name = '{0}'", parameters).Execute(MergeOption.AppendOnly);
-
-            if (results.Count<Department>()>0)
+            if (results.Count<string>()>0)
                 return true;
             else
                 return false;

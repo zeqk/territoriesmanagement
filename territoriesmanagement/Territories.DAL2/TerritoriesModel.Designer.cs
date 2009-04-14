@@ -21,7 +21,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_tours_territories", "Territories", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.DAL.Territory), "Tours", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.DAL.Tour))]
 
 // Original file name:
-// Generation date: 13/04/2009 15:41:57
+// Generation date: 13/04/2009 11:39:19 p.m.
 namespace Territories.DAL
 {
     
