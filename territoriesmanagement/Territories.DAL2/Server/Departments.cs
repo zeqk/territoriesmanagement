@@ -57,11 +57,6 @@ namespace Territories.DAL.Server
             {
                 if (this.IsValid(v))
                 {
-                    var results = from d in _dm.Departments
-                                  where d.IdDepartment == v.IdDepartment
-                                  select d;
-                    Department dep = results.First<Department>();
-                    dep.Name = v.Name;
                     _dm.ApplyPropertyChanges("Departments", v);
                     _dm.SaveChanges();
                 }
@@ -102,24 +97,20 @@ namespace Territories.DAL.Server
             }
         }
 
-        public IQueryable Search(string strQuery, params ObjectParameter[] parameters)
+        public ObjectResult<Department> Search(string strQuery, params ObjectParameter[] parameters)
         {
             
             try
             {
                 if (strQuery == null || strQuery == "")
-                {
-                    var results = from d in _dm.Departments
-                                  select new { IdDepartment = d.IdDepartment, Name = d.Name };
-                    return results.AsQueryable();
+                {                    
+                    return _dm.Departments.Execute(MergeOption.AppendOnly);
                 }
                 else
                 {
                     strQuery = "SELECT VALUE Department FROM TerritoriesDataContext.Departments AS Department WHERE " + strQuery;
-                    var query = _dm.CreateQuery<Department>(strQuery, parameters).Execute(MergeOption.AppendOnly);
-                    var results = from d in query.ToList<Department>()
-                                  select new { IdDepartment = d.IdDepartment, Name = d.Name };
-                    return results.AsQueryable();
+                    return  _dm.CreateQuery<Department>(strQuery, parameters).Execute(MergeOption.AppendOnly);
+                    
                 }
                 
                 
@@ -158,7 +149,7 @@ namespace Territories.DAL.Server
 
         }
 
-        public IQueryable All()
+        public ObjectResult<Department> All()
         {
             return this.Search("");
         }

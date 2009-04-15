@@ -98,6 +98,7 @@ namespace Territories.GUI
 
         private void dgvResults_SelectionChanged(object sender, EventArgs e)
         {            
+                
                 if (dgvResults.SelectedRows.Count != 0)
                 {
                     var dep = this.server.NewObject();

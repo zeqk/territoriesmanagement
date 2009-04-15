@@ -11,7 +11,7 @@ using Territories.DAL;
           
 namespace Territories.DAL.Server
 {                
-    public class Cities 
+    public class Cities : IGenerics<City>
     {
         private TerritoriesDataContext _dm;
 
@@ -56,7 +56,7 @@ namespace Territories.DAL.Server
             try
             {
                 if (this.IsValid(v))
-                {   
+                {
                     _dm.ApplyPropertyChanges("Cities", v);
                     _dm.SaveChanges();
                 }
