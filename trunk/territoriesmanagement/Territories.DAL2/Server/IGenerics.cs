@@ -12,9 +12,9 @@ namespace Territories.DAL.Server
         T Update(T v);
         void Delete(T v);
         T Load(int id);
-        IQueryable Search(string query, params ObjectParameter[] parameters);
+        ObjectResult<T> Search(string query, params ObjectParameter[] parameters);
         T NewObject();
-        IQueryable All();
+        ObjectResult<T> All();
         
     }
 }

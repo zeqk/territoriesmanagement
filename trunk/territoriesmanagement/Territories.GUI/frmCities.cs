@@ -61,6 +61,7 @@ namespace Territories.GUI
 
         }
 
+        
         private void ConfigDgvResults()
         {            
             
@@ -76,6 +77,9 @@ namespace Territories.GUI
             dgvResults.Columns["Directions"].Visible = false;
 
             dgvResults.Columns["Department"].Visible = false;
+
+            dgvResults.Columns.Add("DepName", "Department");            
+            
                         
             dgvResults.Columns.Add("blank", "");
             dgvResults.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -114,16 +118,15 @@ namespace Territories.GUI
 
 
         private void dgvResults_SelectionChanged(object sender, EventArgs e)
-        {            
-                if (dgvResults.SelectedRows.Count != 0)
-                {
-                    var city = this.server.NewObject();
-                    city.IdCity = (Int32)dgvResults.SelectedRows[0].Cells["IdCity"].Value;
-                    city.Name = dgvResults.SelectedRows[0].Cells["Name"].Value.ToString();
-                    city.Department = (Department) cmbDepartment.SelectedItem;
-                    this.ObjectToForm(city);
-                    this.isDirty = false;
-                }            
+        {
+            if (dgvResults.SelectedRows.Count != 0)
+            {
+                var city = (City)source[dgvResults.SelectedRows[0].Index];
+                this.ObjectToForm(city);
+                this.isDirty = false;
+            }
+            else
+                this.ObjectToForm(this.server.NewObject());
             
         }
 
@@ -276,13 +279,11 @@ namespace Territories.GUI
             
         }
 
-        private void dgvResults_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        private void dgvResults_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
         {
             var city = (City)source[e.RowIndex];
-            dgvResults.Rows[e.RowIndex].Cells[colDepName.Index].ReadOnly = false;
-            dgvResults.Rows[e.RowIndex].Cells[colDepName.Index].ValueType = typeof(string);
-            dgvResults.Rows[e.RowIndex].Cells[colDepName.Index].Value = "hola";
-            
+            dgvResults.Rows[e.RowIndex].Cells["DepName"].ReadOnly = false;
+            dgvResults.Rows[e.RowIndex].Cells["DepName"].Value = city.Department.Name;
         }
 
         
