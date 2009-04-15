@@ -11,7 +11,7 @@ using Territories.DAL;
           
 namespace Territories.DAL.Server
 {                
-    public class Cities : IGenerics<City>
+    public class Cities 
     {
         private TerritoriesDataContext _dm;
 
@@ -56,7 +56,7 @@ namespace Territories.DAL.Server
             try
             {
                 if (this.IsValid(v))
-                {                    
+                {   
                     _dm.ApplyPropertyChanges("Cities", v);
                     _dm.SaveChanges();
                 }
@@ -97,18 +97,21 @@ namespace Territories.DAL.Server
             }
         }
 
-        public ObjectResult<City> Search(string query, params ObjectParameter[] parameters)
+        public ObjectResult<City> Search (string query, params ObjectParameter[] parameters)
         {
             
             try
             {
                 if (query == null || query == "")
-                    return _dm.cities_GetAll();
+                {
+                    var results = _dm.Cities.Include("Department").Execute(MergeOption.AppendOnly);                  
+                    return results;                    
+                }
                 else
                 {
-                    query = "SELECT VALUE City FROM TerritoriesDataContext.Cities AS City WHERE " + query;
-                    return _dm.CreateQuery<City>(query, parameters).Execute(MergeOption.AppendOnly);
-
+                    query = "SELECT VALUE City AS Department FROM TerritoriesDataContext.Cities AS City WHERE " + query;
+                    return _dm.CreateQuery<City>(query, parameters).Include("Department").Execute(MergeOption.AppendOnly);
+                    
                 }
                
             }

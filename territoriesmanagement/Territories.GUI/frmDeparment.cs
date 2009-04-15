@@ -61,13 +61,13 @@ namespace Territories.GUI
             dgvResults.Columns["IdDepartment"].Visible = false;
 
             dgvResults.Columns["Name"].HeaderText = "Department";
-            dgvResults.Columns["Cities"].Visible = false;
+            
 
             dgvResults.Columns.Add("blank", "");
             dgvResults.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dgvResults.Columns["IdDepartment"].SortMode = DataGridViewColumnSortMode.NotSortable;
-            
+
             dgvResults.Columns["Name"].SortMode = DataGridViewColumnSortMode.Automatic;                                 
 
         }        
@@ -171,6 +171,7 @@ namespace Territories.GUI
                     this.server.Update(dep);
 
                 this.LoadResults("");
+                this.ClearForm();
             }
             catch (Exception ex)
             {

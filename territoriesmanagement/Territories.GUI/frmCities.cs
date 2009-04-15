@@ -19,9 +19,10 @@ namespace Territories.GUI
 
         private bool isDirty;
 
+        private BindingSource source = new BindingSource();
+
         public frmCities()
-        {
-            
+        {            
             InitializeComponent();
         }
 
@@ -48,7 +49,9 @@ namespace Territories.GUI
         {
             try
             {
-                dgvResults.DataSource = this.server.Search(query);
+                source.DataSource = this.server.Search(query);
+                dgvResults.DataSource = source;
+
             }
             catch (Exception ex)
             {                
@@ -68,9 +71,12 @@ namespace Territories.GUI
             dgvResults.Columns["IdCity"].Visible = false;
 
             dgvResults.Columns["Name"].HeaderText = "City";
+
             dgvResults.Columns["Publishers"].Visible = false;
             dgvResults.Columns["Directions"].Visible = false;
 
+            dgvResults.Columns["Department"].Visible = false;
+                        
             dgvResults.Columns.Add("blank", "");
             dgvResults.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
@@ -84,7 +90,7 @@ namespace Territories.GUI
 
         private void Close_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            this.Dispose();            
         }        
 
         private void ObjectToForm(City city)
@@ -112,8 +118,9 @@ namespace Territories.GUI
                 if (dgvResults.SelectedRows.Count != 0)
                 {
                     var city = this.server.NewObject();
-                    city.IdCity = (Int32)dgvResults.SelectedRows[0].Cells["IdDepartment"].Value;
+                    city.IdCity = (Int32)dgvResults.SelectedRows[0].Cells["IdCity"].Value;
                     city.Name = dgvResults.SelectedRows[0].Cells["Name"].Value.ToString();
+                    city.Department = (Department) cmbDepartment.SelectedItem;
                     this.ObjectToForm(city);
                     this.isDirty = false;
                 }            
@@ -269,9 +276,13 @@ namespace Territories.GUI
             
         }
 
-        private void cmbFilterDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        private void dgvResults_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-
+            var city = (City)source[e.RowIndex];
+            dgvResults.Rows[e.RowIndex].Cells[colDepName.Index].ReadOnly = false;
+            dgvResults.Rows[e.RowIndex].Cells[colDepName.Index].ValueType = typeof(string);
+            dgvResults.Rows[e.RowIndex].Cells[colDepName.Index].Value = "hola";
+            
         }
 
         
