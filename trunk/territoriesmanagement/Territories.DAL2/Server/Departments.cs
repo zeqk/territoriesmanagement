@@ -56,7 +56,12 @@ namespace Territories.DAL.Server
             try
             {
                 if (this.IsValid(v))
-                {                    
+                {
+                    var results = from d in _dm.Departments
+                                  where d.IdDepartment == v.IdDepartment
+                                  select d;
+                    Department dep = results.First<Department>();
+                    dep.Name = v.Name;
                     _dm.ApplyPropertyChanges("Departments", v);
                     _dm.SaveChanges();
                 }
@@ -97,18 +102,24 @@ namespace Territories.DAL.Server
             }
         }
 
-        public ObjectResult<Department> Search(string query, params ObjectParameter[] parameters)
+        public IQueryable Search(string strQuery, params ObjectParameter[] parameters)
         {
             
             try
             {
-                if (query == null || query == "")
-                    return _dm.departments_GetAll();
+                if (strQuery == null || strQuery == "")
+                {
+                    var results = from d in _dm.Departments
+                                  select new { IdDepartment = d.IdDepartment, Name = d.Name };
+                    return results.AsQueryable();
+                }
                 else
                 {
-                    query = "SELECT VALUE Department FROM TerritoriesDataContext.Departments AS Department WHERE " + query;
-                    return _dm.CreateQuery<Department>(query, parameters).Execute(MergeOption.AppendOnly);
-
+                    strQuery = "SELECT VALUE Department FROM TerritoriesDataContext.Departments AS Department WHERE " + strQuery;
+                    var query = _dm.CreateQuery<Department>(strQuery, parameters).Execute(MergeOption.AppendOnly);
+                    var results = from d in query.ToList<Department>()
+                                  select new { IdDepartment = d.IdDepartment, Name = d.Name };
+                    return results.AsQueryable();
                 }
                 
                 
@@ -147,7 +158,7 @@ namespace Territories.DAL.Server
 
         }
 
-        public ObjectResult<Department> All()
+        public IQueryable All()
         {
             return this.Search("");
         }

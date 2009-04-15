@@ -53,6 +53,7 @@
             this.dgvDirections = new System.Windows.Forms.DataGridView();
             this.tabPublishers = new System.Windows.Forms.TabPage();
             this.dgvPublishers = new System.Windows.Forms.DataGridView();
+            this.colDepName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpObject.SuspendLayout();
             this.grdSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
@@ -202,7 +203,6 @@
             this.cmbFilterDepartment.Name = "cmbFilterDepartment";
             this.cmbFilterDepartment.Size = new System.Drawing.Size(325, 21);
             this.cmbFilterDepartment.TabIndex = 15;
-            this.cmbFilterDepartment.SelectedIndexChanged += new System.EventHandler(this.cmbFilterDepartment_SelectedIndexChanged);
             // 
             // lblResult
             // 
@@ -251,13 +251,15 @@
             this.dgvResults.AllowUserToAddRows = false;
             this.dgvResults.AllowUserToDeleteRows = false;
             this.dgvResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvResults.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colDepName});
             this.dgvResults.Location = new System.Drawing.Point(19, 121);
             this.dgvResults.Name = "dgvResults";
-            this.dgvResults.ReadOnly = true;
             this.dgvResults.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvResults.Size = new System.Drawing.Size(325, 296);
             this.dgvResults.TabIndex = 5;
             this.dgvResults.VirtualMode = true;
+            this.dgvResults.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvResults_RowsAdded);
             this.dgvResults.SelectionChanged += new System.EventHandler(this.dgvResults_SelectionChanged);
             // 
             // btnFilter
@@ -327,6 +329,12 @@
             this.dgvPublishers.Size = new System.Drawing.Size(348, 232);
             this.dgvPublishers.TabIndex = 1;
             // 
+            // colDepName
+            // 
+            this.colDepName.HeaderText = "Department";
+            this.colDepName.Name = "colDepName";
+            this.colDepName.ReadOnly = true;
+            // 
             // frmCities
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -378,5 +386,6 @@
         private System.Windows.Forms.Label lblFilterDepartment;
         private System.Windows.Forms.ComboBox cmbFilterDepartment;
         private System.Windows.Forms.DataGridView dgvPublishers;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDepName;
     }
 }

@@ -22,7 +22,7 @@ namespace TestConsole
 
             foreach (var dep in deps)
             {
-                Console.WriteLine(dep.IdDepartment);
+                //Console.WriteLine(dep.IdDepartment);
             }
 
             Console.ReadKey();
