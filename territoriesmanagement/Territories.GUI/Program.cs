@@ -15,7 +15,7 @@ namespace Territories.GUI
         {        
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmCities());
+            Application.Run(new frmMain());
         }
     }
 }

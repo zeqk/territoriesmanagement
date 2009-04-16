@@ -14,7 +14,7 @@ namespace Territories.GUI
 {
     public partial class frmCities : Form
     {        
-
+        
         private Cities server = new Cities();
 
         private bool isDirty;
@@ -24,6 +24,7 @@ namespace Territories.GUI
         public frmCities()
         {            
             InitializeComponent();
+            
         }
 
         private void frmDepartments_Load(object sender, EventArgs e)
