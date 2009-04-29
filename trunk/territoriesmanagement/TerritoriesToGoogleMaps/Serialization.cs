@@ -20,7 +20,7 @@ namespace TerritoriesToGoogleMaps
         static public Double MiddleLat;
         static public Double MiddleLng;
 
-        static public void WriteMarks()
+        static public void WriteMarks(string pathIn, string pathOut)
         {         
             
             StreamWriter sw = new StreamWriter(path, true, Encoding.UTF8,512);
@@ -29,7 +29,7 @@ namespace TerritoriesToGoogleMaps
                 xw.Formatting = Formatting.Indented;
                 xw.QuoteChar = char.Parse("'");
                 xw.WriteStartElement("markers");
-                DataTable dt = ReadTerritoriesFile();
+                DataTable dt = ReadTerritoriesFile(pathIn);
                 int llenos = 0;
                 int vacios = 0;
                 foreach (DataRow row in dt.Rows)
@@ -64,9 +64,12 @@ namespace TerritoriesToGoogleMaps
            
         }
 
-        static public  DataTable ReadTerritoriesFile()
+        static public  DataTable ReadTerritoriesFile(string pathIn)
         {
-            string stringConnection = @"Provider=Microsoft.Jet.Oledb.4.0;Data Source=D:\TERRITORIO.xls;Extended Properties=""Excel 8.0;HDR=Yes;IMEX=1""";
+
+            string stringConnection = @"Provider=Microsoft.Jet.Oledb.4.0;Data Source=";
+            stringConnection = stringConnection + pathIn;
+            stringConnection = stringConnection + @";Extended Properties=""Excel 8.0;HDR=Yes;IMEX=1""";
             OleDbConnection connection = new OleDbConnection(stringConnection);            
             
             string strCommand = "SELECT  ID, DIRECCION, GEOPOSITION FROM [territorios$]";
