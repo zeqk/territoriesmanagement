@@ -56,7 +56,9 @@ namespace Territories.DAL.Server
             try
             {
                 if (this.IsValid(v))
-                {
+                {                
+                    _dm.Detach(v);
+                    //_dm.AttachTo("Cities", v);
                     _dm.ApplyPropertyChanges("Cities", v);
                     _dm.SaveChanges();
                 }
@@ -161,7 +163,7 @@ namespace Territories.DAL.Server
             ObjectParameter[] parameters = { new ObjectParameter("Name", v.Name) };
 
             var results = from c in _dm.Cities
-                        where c.Name == v.Name
+                        where c.Name == v.Name && c.IdCity != v.IdCity
                         select c.Name;           
 
             if (results.Count<string>()>0)

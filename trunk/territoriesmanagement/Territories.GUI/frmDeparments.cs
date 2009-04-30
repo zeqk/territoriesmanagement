@@ -19,6 +19,8 @@ namespace Territories.GUI
 
         private bool isDirty;
 
+        private BindingSource source = new BindingSource();
+
         public frmDepartments()
         {
             
@@ -41,7 +43,8 @@ namespace Territories.GUI
         {
             try
             {
-                dgvResults.DataSource = this.server.Search(query);
+                source.DataSource = this.server.Search(query);
+                dgvResults.DataSource  = source;
             }
             catch (Exception ex)
             {                
@@ -83,8 +86,6 @@ namespace Territories.GUI
         {
             lblId.Text = dep.IdDepartment.ToString();
             txtName.Text = dep.Name;
-            this.LoadRelations(dep.Cities.ToList<City>());
-
         }
 
         private Department FormToObject()
@@ -101,9 +102,7 @@ namespace Territories.GUI
                 
                 if (dgvResults.SelectedRows.Count != 0)
                 {
-                    var dep = this.server.NewObject();
-                    dep.IdDepartment = (Int32)dgvResults.SelectedRows[0].Cells["IdDepartment"].Value;
-                    dep.Name = dgvResults.SelectedRows[0].Cells["Name"].Value.ToString();
+                    var dep = (Department)source[dgvResults.SelectedRows[0].Index];
                     this.ObjectToForm(dep);
                     this.isDirty = false;
                 }            
@@ -234,7 +233,10 @@ namespace Territories.GUI
             else
             {
                 if (lblId.Text != "0")
+                {
                     this.tabPanel.Visible = true;
+
+                }
                 else
                     MessageBox.Show("You must selecet any department");
             }
@@ -254,8 +256,7 @@ namespace Territories.GUI
             dgvCities.Columns["Publishers"].Visible = false;
 
             dgvCities.Columns["Name"].HeaderText = "City";
-            dgvCities.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            
+            dgvCities.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;            
             
         }
 

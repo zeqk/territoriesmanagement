@@ -19,13 +19,12 @@ namespace Territories.DAL.Server
         #region Constructors
         public Departments()        
         {
-            _dm = new TerritoriesDataContext(); 
+            _dm = new TerritoriesDataContext();            
         }
 
         public Departments(TerritoriesDataContext dm)
         {
             _dm = dm;
-
         }
         #endregion
 
@@ -57,6 +56,7 @@ namespace Territories.DAL.Server
             {
                 if (this.IsValid(v))
                 {
+                    _dm.Detach(v);
                     _dm.ApplyPropertyChanges("Departments", v);
                     _dm.SaveChanges();
                 }
@@ -159,7 +159,7 @@ namespace Territories.DAL.Server
         private bool nameExist(Department v)
         {
             var results = from d in _dm.Departments
-                          where d.Name == v.Name
+                          where d.Name == v.Name && d.IdDepartment != v.IdDepartment
                           select d.Name;
 
             if (results.Count<string>()>0)

@@ -49,8 +49,8 @@ namespace Territories.GUI
         private void LoadResults(string query)
         {
             try
-            {
-                source.DataSource = this.server.Search(query);
+            {                
+                source.DataSource = this.server.Search(query);                
                 dgvResults.DataSource = source;
 
             }
@@ -111,6 +111,10 @@ namespace Territories.GUI
         private City FormToObject()
         {
             var city = new City();
+            if (lblId.Text!="0")
+            {
+                city = (City)source[dgvResults.SelectedRows[0].Index];
+            }
             city.IdCity = Int32.Parse(lblId.Text);
             city.Name = txtName.Text;
             city.Department =(Department) cmbDepartment.SelectedItem;
