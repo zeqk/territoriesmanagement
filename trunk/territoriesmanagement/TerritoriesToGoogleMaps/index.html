@@ -19,7 +19,8 @@
     <script type="text/javascript"> 
     //<![CDATA[ 
  //ABQIAAAAX-5aoaGoVlbQL8KKRbiYdxQDX2Z6MpMxFSn60jaI4rUjnX-ajxQtORm6l89v4Hkb-SdoXaBrxd8Vfg
-    if (GBrowserIsCompatible()) { 
+    if (GBrowserIsCompatible()) 
+	{ 
  
       // display the loading message 
       var om = new OverlayMessage(document.getElementById('map'));      
@@ -29,18 +30,15 @@
       var n=0;
  
       var icon = new GIcon();
-      icon.image = "http://sites.google.com/site/archivoslomas/_/rsrc/1238292083545/Home/legend.png";
-      //icon.shadow = "http://labs.google.com/ridefinder/images/mm_20_shadow.png";
-      icon.iconSize = new GSize(12, 12);
-      //icon.shadowSize = new GSize(22, 20);
+      icon.image = "http://sites.google.com/site/archivoslomas/_/rsrc/1238292083545/Home/legend.png";      
+      icon.iconSize = new GSize(12, 12);      
       icon.iconAnchor = new GPoint(12, 12);
       icon.infoWindowAnchor = new GPoint(5, 1); 
  
-      function createMarker(point,name,html,icon) {
+      function createMarker(point,name,html,icon) 
+	  {
         var marker = new GMarker(point, {icon:icon});
-        GEvent.addListener(marker, "click", function() {
-          marker.openInfoWindowHtml(html);
-        });
+        GEvent.addListener(marker, "click", function() {marker.openInfoWindowHtml(html);});
         return marker;
       }
  
@@ -48,14 +46,16 @@
  
  
       // read the markers from the XML
-      GDownloadUrl("direcciones.xml", function (doc) {
+      GDownloadUrl("direcciones.xml", function (doc) 
+	  {
         var gmarkers = [];     
         var xmlDoc = GXml.parse(doc);
-		debugger;
+		
         var markers = xmlDoc.documentElement.getElementsByTagName("marker");
  
-        debugger;  
-        for (var i = 0; i < markers.length; i++) {
+          
+        for (var i = 0; i < markers.length; i++) 
+		{
           // obtain the attribues of each marker
           var lat = parseFloat(markers[i].getAttribute("lat"));
           var lng = parseFloat(markers[i].getAttribute("lng"));
@@ -68,13 +68,21 @@
              gmarkers.push(marker);
           
         }
- 
+		var points = xmlDoc.documentElement.getElementsByTagName("centerPoint");
+		
+		var centerLat = parseFloat(points[0].getAttribute("lat"));
+		var centerLng = parseFloat(points[0].getAttribute("lng"));
+		var point = new GLatLng(centerLat,centerLng);
+		var marker = createMarker(point,"PUNTO CENTRAL","PUNTO CENTRAL",icon);
+		gmarkers.push(marker);
+		
         // Display the map, with some controls and set the initial location 
  
         var map = new GMap2(document.getElementById("map"));
         map.addControl(new GLargeMapControl());
         map.addControl(new GMapTypeControl());
-        map.setCenter(new GLatLng(-34.742210,-58.376499), 11, G_NORMAL_MAP);
+		map.addControl(new GScaleControl());
+        map.setCenter(new GLatLng(centerLat,centerLng), 11, G_NORMAL_MAP);
         var mm = new GMarkerManager(map, {borderPadding:1});
  
         mm.addMarkers(gmarkers,0,17);
@@ -84,7 +92,8 @@
     }
  
     // display a warning if the browser was not compatible
-    else {
+    else 
+	{
       alert("Sorry, the Google Maps API is not compatible with this browser");
     }
   

@@ -37,14 +37,14 @@
             this.btnSelectExcelSource = new System.Windows.Forms.Button();
             this.sfdXmlDestiny = new System.Windows.Forms.SaveFileDialog();
             this.grpMiddlePoint = new System.Windows.Forms.GroupBox();
-            this.txtXmlSource = new System.Windows.Forms.TextBox();
-            this.btnSelectXmlSource = new System.Windows.Forms.Button();
             this.lblLongitude = new System.Windows.Forms.Label();
             this.lblLatitude = new System.Windows.Forms.Label();
             this.txtLongitude = new System.Windows.Forms.TextBox();
             this.txtLatitude = new System.Windows.Forms.TextBox();
             this.btnCalculeMiddlePoint = new System.Windows.Forms.Button();
             this.ofdXmlSource = new System.Windows.Forms.OpenFileDialog();
+            this.btnSelectXmlSource = new System.Windows.Forms.Button();
+            this.txtXmlSource = new System.Windows.Forms.TextBox();
             this.grpExcelToXml.SuspendLayout();
             this.grpMiddlePoint.SuspendLayout();
             this.SuspendLayout();
@@ -131,28 +131,10 @@
             this.grpMiddlePoint.Controls.Add(this.btnCalculeMiddlePoint);
             this.grpMiddlePoint.Location = new System.Drawing.Point(12, 191);
             this.grpMiddlePoint.Name = "grpMiddlePoint";
-            this.grpMiddlePoint.Size = new System.Drawing.Size(429, 195);
+            this.grpMiddlePoint.Size = new System.Drawing.Size(429, 204);
             this.grpMiddlePoint.TabIndex = 1;
             this.grpMiddlePoint.TabStop = false;
             this.grpMiddlePoint.Text = "Middle Point";
-            // 
-            // txtXmlSource
-            // 
-            this.txtXmlSource.Location = new System.Drawing.Point(6, 34);
-            this.txtXmlSource.Name = "txtXmlSource";
-            this.txtXmlSource.ReadOnly = true;
-            this.txtXmlSource.Size = new System.Drawing.Size(303, 20);
-            this.txtXmlSource.TabIndex = 8;
-            // 
-            // btnSelectXmlSource
-            // 
-            this.btnSelectXmlSource.Location = new System.Drawing.Point(325, 24);
-            this.btnSelectXmlSource.Name = "btnSelectXmlSource";
-            this.btnSelectXmlSource.Size = new System.Drawing.Size(91, 38);
-            this.btnSelectXmlSource.TabIndex = 7;
-            this.btnSelectXmlSource.Text = "Select XML source";
-            this.btnSelectXmlSource.UseVisualStyleBackColor = true;
-            this.btnSelectXmlSource.Click += new System.EventHandler(this.btnSelectXmlSource_Click);
             // 
             // lblLongitude
             // 
@@ -201,11 +183,29 @@
             this.ofdXmlSource.Filter = "excel files (*.xls)|*.xls";
             this.ofdXmlSource.InitialDirectory = "C:\\\\";
             // 
+            // btnSelectXmlSource
+            // 
+            this.btnSelectXmlSource.Location = new System.Drawing.Point(325, 24);
+            this.btnSelectXmlSource.Name = "btnSelectXmlSource";
+            this.btnSelectXmlSource.Size = new System.Drawing.Size(91, 38);
+            this.btnSelectXmlSource.TabIndex = 7;
+            this.btnSelectXmlSource.Text = "Select XML source";
+            this.btnSelectXmlSource.UseVisualStyleBackColor = true;
+            this.btnSelectXmlSource.Click += new System.EventHandler(this.btnSelectXmlSource_Click);
+            // 
+            // txtXmlSource
+            // 
+            this.txtXmlSource.Location = new System.Drawing.Point(6, 34);
+            this.txtXmlSource.Name = "txtXmlSource";
+            this.txtXmlSource.ReadOnly = true;
+            this.txtXmlSource.Size = new System.Drawing.Size(303, 20);
+            this.txtXmlSource.TabIndex = 8;
+            // 
             // frmToGoogleMaps
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(450, 416);
+            this.ClientSize = new System.Drawing.Size(450, 407);
             this.Controls.Add(this.grpMiddlePoint);
             this.Controls.Add(this.grpExcelToXml);
             this.Name = "frmToGoogleMaps";
@@ -235,9 +235,9 @@
         private System.Windows.Forms.Label lblLatitude;
         private System.Windows.Forms.TextBox txtLongitude;
         private System.Windows.Forms.TextBox txtLatitude;
+        private System.Windows.Forms.OpenFileDialog ofdXmlSource;
         private System.Windows.Forms.TextBox txtXmlSource;
         private System.Windows.Forms.Button btnSelectXmlSource;
-        private System.Windows.Forms.OpenFileDialog ofdXmlSource;
 
 
     }

@@ -49,11 +49,7 @@ namespace TerritoriesToGoogleMaps
 
         private void btnCalculeMiddlePoint_Click(object sender, EventArgs e)
         {
-            double lat = 0;
-            double lon = 0;
-            Functions.CalculateMiddlePoint(ref lat, ref lon);
-            txtLatitude.Text = lat.ToString(new CultureInfo("en-US"));
-            txtLongitude.Text = lon.ToString(new CultureInfo("en-US"));
+            
 
         }
 
