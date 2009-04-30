@@ -6,13 +6,13 @@ using System.Xml;
 using System.IO;
 using System.Data.OleDb;
 using System.Data;
+using System.Globalization;
 
 namespace TerritoriesToGoogleMaps
 {
     
-    class Serialization
+    class Functions
     {
-        public const string path = @"D:\direcciones.xml";
 
         static private List<Double> lats =new List<Double>();
         static private List<Double> lngs =  new List<Double>();
@@ -21,9 +21,9 @@ namespace TerritoriesToGoogleMaps
         static public Double MiddleLng;
 
         static public void WriteMarks(string pathIn, string pathOut)
-        {         
-            
-            StreamWriter sw = new StreamWriter(path, true, Encoding.UTF8,512);
+        {
+
+            StreamWriter sw = new StreamWriter(pathOut, true, Encoding.UTF8, 512);
             using(XmlTextWriter xw = new XmlTextWriter(sw))
 	        {
                 xw.Formatting = Formatting.Indented;
@@ -32,6 +32,10 @@ namespace TerritoriesToGoogleMaps
                 DataTable dt = ReadTerritoriesFile(pathIn);
                 int llenos = 0;
                 int vacios = 0;
+
+
+                CultureInfo culture = new CultureInfo("en-US");
+                
                 foreach (DataRow row in dt.Rows)
                 {
                     if (row["GEOPOSITION"].ToString() != null && row["GEOPOSITION"].ToString() != "")
@@ -43,11 +47,9 @@ namespace TerritoriesToGoogleMaps
                         char[] delimiters = { ' ', '/' };
                         string[] position = row["GEOPOSITION"].ToString().Split(delimiters);
                         xw.WriteAttributeString("lat", position[0]);
-                        lats.Add(Double.Parse(position[0]));
+                        lats.Add(Double.Parse(position[0],culture));
                         xw.WriteAttributeString("lng", position[1]);
-                        lngs.Add(Double.Parse(position[1]));
-                        
-                        
+                        lngs.Add(Double.Parse(position[1],culture));
 
                         xw.WriteAttributeString("id", row["ID"].ToString());
                         xw.WriteEndElement();
@@ -58,9 +60,7 @@ namespace TerritoriesToGoogleMaps
 
                 }
                 xw.WriteEndElement();
-                string hola = sw.ToString();
 	        }
-            CalculateMiddlePoint();
            
         }
 
@@ -86,15 +86,15 @@ namespace TerritoriesToGoogleMaps
 
         }
 
-        static public void CalculateMiddlePoint()
+        static public void CalculateMiddlePoint(ref double lat, ref double lon)
         {
             double latDistance = lats.Max() - lats.Min();
             double auxLat = latDistance / 2;
-            MiddleLat = lats.Min() + auxLat;
+            lat = lats.Min() + auxLat;
 
             double lngDistance = lngs.Max() - lngs.Min();
             double auxLng = lngDistance / 2;
-            MiddleLng = lats.Min() + auxLng;
+            lon = lngs.Min() + auxLng;
                 
 
         }
