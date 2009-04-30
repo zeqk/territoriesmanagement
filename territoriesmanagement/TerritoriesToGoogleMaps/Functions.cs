@@ -22,17 +22,16 @@ namespace TerritoriesToGoogleMaps
 
         static public void WriteMarks(string pathIn, string pathOut)
         {
-
+            string centerPointFile;
             StreamWriter sw = new StreamWriter(pathOut, true, Encoding.UTF8, 512);
             using(XmlTextWriter xw = new XmlTextWriter(sw))
 	        {
                 xw.Formatting = Formatting.Indented;
                 xw.QuoteChar = char.Parse("'");
-                xw.WriteStartElement("markers");
+                xw.WriteStartElement("markers");//open MARKERS
                 DataTable dt = ReadTerritoriesFile(pathIn);
                 int llenos = 0;
                 int vacios = 0;
-
 
                 CultureInfo culture = new CultureInfo("en-US");
                 
@@ -40,26 +39,40 @@ namespace TerritoriesToGoogleMaps
                 {
                     if (row["GEOPOSITION"].ToString() != null && row["GEOPOSITION"].ToString() != "")
                     {
-                        xw.WriteStartElement("marker");
+                        xw.WriteStartElement("marker");//open MARKER
 
                         xw.WriteAttributeString("direccion", row["DIRECCION"].ToString());
 
                         char[] delimiters = { ' ', '/' };
                         string[] position = row["GEOPOSITION"].ToString().Split(delimiters);
+
                         xw.WriteAttributeString("lat", position[0]);
                         lats.Add(Double.Parse(position[0],culture));
                         xw.WriteAttributeString("lng", position[1]);
                         lngs.Add(Double.Parse(position[1],culture));
 
                         xw.WriteAttributeString("id", row["ID"].ToString());
-                        xw.WriteEndElement();
+                        //xw.WriteAttributeString("type", "direction");
+
+                        xw.WriteEndElement();//close MARKER
                         llenos = llenos + 1;
                     }
                     else
                         vacios = vacios + 1;
 
                 }
+                double lat = 0;
+                double lng = 0;
+                CalculateMiddlePoint(ref lat, ref lng);
+
+                xw.WriteStartElement("centerPoint");               
+                xw.WriteAttributeString("lat",lat.ToString(new CultureInfo("en-US")));
+                xw.WriteAttributeString("lng", lng.ToString(new CultureInfo("en-US")));
                 xw.WriteEndElement();
+
+                xw.WriteEndElement(); //close MARKERS
+
+                
 	        }
            
         }
