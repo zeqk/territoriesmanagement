@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Globalization;
 using System.Windows.Forms;
 
 namespace TerritoriesToGoogleMaps
@@ -19,32 +20,51 @@ namespace TerritoriesToGoogleMaps
             InitializeComponent();
         }
 
-        private void btnOpenFile_Click(object sender, EventArgs e)
-        {
-            ofdTerritoriesSheet.ShowDialog();
-        }
-
         private void ofdTerritoriesSheet_FileOk(object sender, CancelEventArgs e)
         {
 
-            fileIn = Path.GetFullPath(ofdTerritoriesSheet.FileName);
-            txtPath.Text = fileIn;
+            txtExcelSource.Text = Path.GetFullPath(ofdExcelSource.FileName);
         }
 
         private void btnSelectDestiny_Click(object sender, EventArgs e)
         {
-            sfdXml.ShowDialog();
+            sfdXmlDestiny.ShowDialog();
         }
 
         private void btnConvertToXml_Click(object sender, EventArgs e)
         {
-            Serialization.WriteMarks(fileIn, fileOut);
+            Functions.WriteMarks(txtExcelSource.Text, txtXmlDestiny.Text);
+            MessageBox.Show("Xml generado exitosamente");
         }
 
         private void sfdXml_FileOk(object sender, CancelEventArgs e)
         {
-            fileOut = Path.GetFullPath(sfdXml.FileName);
-            txtPathOut.Text = fileOut;
+            txtXmlDestiny.Text = Path.GetFullPath(sfdXmlDestiny.FileName);
+        }
+
+        private void frmToGoogleMaps_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCalculeMiddlePoint_Click(object sender, EventArgs e)
+        {
+            double lat = 0;
+            double lon = 0;
+            Functions.CalculateMiddlePoint(ref lat, ref lon);
+            txtLatitude.Text = lat.ToString(new CultureInfo("en-US"));
+            txtLongitude.Text = lon.ToString(new CultureInfo("en-US"));
+
+        }
+
+        private void btnSelectExcelSource_Click(object sender, EventArgs e)
+        {
+            ofdExcelSource.ShowDialog();
+        }
+
+        private void btnSelectXmlSource_Click(object sender, EventArgs e)
+        {
+            txtXmlSource.Text = Path.GetFullPath(ofdXmlSource.FileName);
         }
     }
 }
