@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.EntityClient;
 using System.Data.EntityModel;
 using System.Data.Objects;
 using System.Linq;
 using System.Text;
-using Territories.DAL;
+using Territories.Model;
 
 
-          
-namespace Territories.DAL.Server
+namespace Territories.BLL
 {                
     public class Cities : IGenerics<City>
     {
@@ -22,9 +22,9 @@ namespace Territories.DAL.Server
             _dm = new TerritoriesDataContext(); 
         }
 
-        public Cities(TerritoriesDataContext dm)
+        public Cities(EntityConnection conection)
         {
-            _dm = dm;
+            _dm = new TerritoriesDataContext(conection);
 
         }
         #endregion
