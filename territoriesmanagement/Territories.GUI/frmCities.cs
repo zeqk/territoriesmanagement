@@ -7,8 +7,8 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Territories.DAL;
-using Territories.DAL.Server;
+using Territories.Model;
+using Territories.BLL;
 
 namespace Territories.GUI
 {

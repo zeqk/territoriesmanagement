@@ -1,30 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.EntityClient;
 using System.Data.EntityModel;
 using System.Data.Objects;
 using System.Linq;
 using System.Text;
+using Territories.Model;
 using Territories.DAL;
-
-
           
-namespace Territories.DAL.Server
-{                
-    public class Departments : IGenerics<Department>
+namespace Territories.BLL
+{
+    public class Departments : IDataBridge<Department>
     {
         private TerritoriesDataContext _dm;
+        private CommandExecutor _dal;
 
 
         #region Constructors
         public Departments()        
         {
-            _dm = new TerritoriesDataContext();            
+            _dm = new TerritoriesDataContext();
+            _dal = new CommandExecutor();
         }
 
-        public Departments(TerritoriesDataContext dm)
+        public Departments(EntityConnection conection)
         {
-            _dm = dm;
+            _dm = new TerritoriesDataContext(conection);
+            _dal = new CommandExecutor();
         }
         #endregion
 
@@ -37,7 +40,7 @@ namespace Territories.DAL.Server
                 if (this.IsValid(v))
                 {
                     _dm.AddToDepartments(v);
-                    _dm.SaveChanges();                    
+                    _dal.SaveChanges(_dm);                    
                 }
 
                 return v;
@@ -70,12 +73,12 @@ namespace Territories.DAL.Server
             }
         }
 
-        public void Delete(Department v)
+        public void Delete(Department v) //TODO
         {
             try                
             {
                 _dm.DeleteObject(v);
-                _dm.SaveChanges();
+                _dal.SaveChanges(_dm);
             }
             catch (Exception e)
             {
@@ -88,34 +91,35 @@ namespace Territories.DAL.Server
         {
             try
             {
-                return _dm.Departments.ElementAt<Department>(id);
+                var deps = from dep in _dm.Departments
+                           select dep;
+                return _dal.ExecuteFirstOrDefault<Department>(deps);
             }
             catch (Exception e)
             {
-
                 throw e;
             }
         }
 
-        public ObjectResult<Department> Search(string strQuery, params ObjectParameter[] parameters)
-        {
-            
+        public List<KeyListItem> Search(string strQuery, params ObjectParameter[] parameters) 
+        {            
             try
             {
                 if (strQuery == null || strQuery == "")
-                {                    
-                    return _dm.Departments.Execute(MergeOption.AppendOnly);
+                {
+                    var deps = from dep in _dm.Departments
+                               select new KeyListItem { Id = dep.IdDepartment, Name = dep.Name };
+                    return _dal.ExecuteList<KeyListItem>(deps);
                 }
-                else
+                else //TODO
                 {
                     strQuery = "SELECT VALUE Department FROM TerritoriesDataContext.Departments AS Department WHERE " + strQuery;
-                    return  _dm.CreateQuery<Department>(strQuery, parameters).Execute(MergeOption.AppendOnly);
+                    ObjectQuery<Department> query = _dm.CreateQuery<Department>(strQuery, parameters);
+                    var deps = from dep in _dal.ExecuteList<Department>(query)
+                               select new KeyListItem { Id = dep.IdDepartment, Name = dep.Name };
+                    return deps.ToList<KeyListItem>();                         
                     
                 }
-                
-                
-                
-               
             }
             catch (Exception e)
             {
@@ -149,12 +153,13 @@ namespace Territories.DAL.Server
 
         }
 
-        public ObjectResult<Department> All()
+        public List<KeyListItem> All()
         {
             return this.Search("");
         }
 
         #endregion
+
 
         private bool nameExist(Department v)
         {

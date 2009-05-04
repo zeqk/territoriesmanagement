@@ -4,17 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Data.Objects;
 
-namespace Territories.DAL.Server
+namespace Territories.BLL
 {
-    public interface IGenerics<T>
+    public interface IDataBridge<T>
     {
         T Insert(T v);
         T Update(T v);
         void Delete(T v);
         T Load(int id);
-        ObjectResult<T> Search(string query, params ObjectParameter[] parameters);
+        List<KeyListItem> Search(string query, params ObjectParameter[] parameters);
         T NewObject();
-        ObjectResult<T> All();
+        List<KeyListItem> All();
         
     }
 }
