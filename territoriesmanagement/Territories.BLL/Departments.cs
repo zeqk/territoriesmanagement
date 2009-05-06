@@ -22,6 +22,7 @@ namespace Territories.BLL
         {
             _dm = new TerritoriesDataContext();
             _dal = new CommandExecutor();
+            PreCompileQueries();
         }
 
         public Departments(EntityConnection conection)
@@ -59,7 +60,6 @@ namespace Territories.BLL
             {
                 if (this.IsValid(v))
                 {
-                    _dm.Detach(v);
                     _dm.ApplyPropertyChanges("Departments", v);
                     _dm.SaveChanges();
                 }
@@ -77,6 +77,7 @@ namespace Territories.BLL
         {
             try                
             {
+                //_dm.Attach(v);
                 _dm.DeleteObject(v);
                 _dal.SaveChanges(_dm);
             }
@@ -91,9 +92,9 @@ namespace Territories.BLL
         {
             try
             {
-                var deps = from dep in _dm.Departments
-                           select dep;
-                return _dal.ExecuteFirstOrDefault<Department>(deps);
+                _dm.Departments.MergeOption = MergeOption.AppendOnly;
+                Department results = _dal.ExecuteFirstOrDefault<Department>(_compiledLoadDepartment(_dm, id));
+                return results;
             }
             catch (Exception e)
             {
@@ -111,7 +112,7 @@ namespace Territories.BLL
                                select new KeyListItem { Id = dep.IdDepartment, Name = dep.Name };
                     return _dal.ExecuteList<KeyListItem>(deps);
                 }
-                else //TODO
+                else
                 {
                     strQuery = "SELECT VALUE Department FROM TerritoriesDataContext.Departments AS Department WHERE " + strQuery;
                     ObjectQuery<Department> query = _dm.CreateQuery<Department>(strQuery, parameters);
@@ -173,7 +174,29 @@ namespace Territories.BLL
                 return false;
         }
 
+        private Func<TerritoriesDataContext, int, IQueryable<Department>> _compiledLoadDepartment;
 
-        
+        private Func<TerritoriesDataContext, IQueryable<KeyListItem>> _compiledAllDepartments;
+
+        private void PreCompileQueries()
+        {
+            _compiledLoadDepartment = CompiledQuery.Compile
+                (
+                    (TerritoriesDataContext db,int id) => from dep in db.Departments
+                                                          where dep.IdDepartment == id
+                                                          select dep
+                                                          
+                );
+            _compiledAllDepartments = CompiledQuery.Compile
+                (
+                    (TerritoriesDataContext db) => from dep in db.Departments
+                                                           select new KeyListItem 
+                                                           { 
+                                                               Id = dep.IdDepartment, 
+                                                               Name = dep.Name 
+                                                           }
+                );
+
+        }
     }
 }

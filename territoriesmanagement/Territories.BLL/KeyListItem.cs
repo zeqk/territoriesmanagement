@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Territories.BLL
 {
-    class KeyListItem
+    public class KeyListItem
     {
         private int _id;
 
