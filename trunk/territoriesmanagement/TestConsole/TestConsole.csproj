@@ -52,9 +52,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Territories.DAL2\Territories.DAL.csproj">
-      <Project>{3409B4FF-453D-4AE4-B1A6-BC0F9BD1C7C7}</Project>
-      <Name>Territories.DAL</Name>
+    <ProjectReference Include="..\territories.bll\Territories.BLL.csproj">
+      <Project>{2AF8144A-682F-4B8E-A3CF-4FD77816AD78}</Project>
+      <Name>Territories.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Territories.Model\Territories.Model.csproj">
+      <Project>{E227CF22-352C-4A32-BEC8-ABD6202B79C3}</Project>
+      <Name>Territories.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -88,12 +88,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmCities.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmCities.Designer.cs">
-      <DependentUpon>frmCities.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Configuration.cs" />
     <Compile Include="frmDeparments.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,9 +103,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmCities.resx">
-      <DependentUpon>frmCities.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmDeparments.resx">
       <DependentUpon>frmDeparments.cs</DependentUpon>
     </EmbeddedResource>

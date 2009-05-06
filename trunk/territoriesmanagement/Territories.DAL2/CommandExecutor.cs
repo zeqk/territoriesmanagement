@@ -9,6 +9,7 @@ namespace Territories.DAL
 {
     public class CommandExecutor
     {
+        #region ExecuteFirstOrDefault methods
         public T ExecuteFirstOrDefault<T>(ObjectQuery<T> objectQuery)
         {
             try
@@ -33,6 +34,7 @@ namespace Territories.DAL
                 throw ex;
             }
         }
+        #endregion
 
         public List<T> ExecuteList<T>(ObjectQuery<T> objectQuery)
         {
