@@ -34,21 +34,20 @@ namespace Territories.BLL
 
     #region Constructors   
 
-        private DataBridge dataBridgeObject;
+        private DataBridge<T> dataBridgeObject;
 
         public BussinesLayer() 
         {
             string entityName = typeof(T).Name;
             try
             {
-                dataBridgeObject = (DataBridge) Activator.CreateInstance(Type.GetType(entityName), _connection);
+                dataBridgeObject = (DataBridge<T>) Activator.CreateInstance(Type.GetType(entityName), _connection);
             }
             catch (Exception ex)
             {
                 
                 throw ex;
             }
-
         }
 
         public IDataBridge<T> GetObject()

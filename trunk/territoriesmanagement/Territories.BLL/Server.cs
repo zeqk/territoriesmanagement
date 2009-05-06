@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
-using Territories.DAL;
+using Territories.Model;
 //TODO: cuando salga c# 4.0 se va a poder usar, porq no pemirte acceder a las propiedades del objeto de tipo var
 //hay q usar el tipo dynamic
 namespace Territories.BLL

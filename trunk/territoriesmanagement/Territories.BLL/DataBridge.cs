@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Territories.BLL
 {
-    class DataBridge : IDataBridge<T>
+    class DataBridge<T> : IDataBridge<T>
     {
         #region IDataBridge<T> Members
 
