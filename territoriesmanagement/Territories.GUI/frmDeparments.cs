@@ -17,6 +17,8 @@ namespace Territories.GUI
 
         private Departments server = new Departments();
 
+        private Department _department;
+
         private bool isDirty;
 
         private BindingSource source = new BindingSource();
@@ -44,7 +46,9 @@ namespace Territories.GUI
             try
             {
                 source.DataSource = this.server.Search(query);
+                source.Sort = "Name";//no funciona
                 dgvResults.DataSource  = source;
+                
             }
             catch (Exception ex)
             {                
@@ -58,10 +62,10 @@ namespace Territories.GUI
         {            
             
             dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvResults.MultiSelect = false;
+            dgvResults.MultiSelect = false;           
 
             dgvResults.RowHeadersVisible = false;
-            dgvResults.Columns["IdDepartment"].Visible = false;
+            dgvResults.Columns["Id"].Visible = false;
 
             dgvResults.Columns["Name"].HeaderText = "Department";
             
@@ -69,9 +73,9 @@ namespace Territories.GUI
             dgvResults.Columns.Add("blank", "");
             dgvResults.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            dgvResults.Columns["IdDepartment"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgvResults.Columns["Id"].SortMode = DataGridViewColumnSortMode.NotSortable;
 
-            dgvResults.Columns["Name"].SortMode = DataGridViewColumnSortMode.Automatic;                                 
+            dgvResults.Columns["Name"].SortMode = DataGridViewColumnSortMode.Automatic;
 
         }        
 
@@ -84,16 +88,15 @@ namespace Territories.GUI
 
         private void ObjectToForm(Department dep)
         {
-            lblId.Text = dep.IdDepartment.ToString();
-            txtName.Text = dep.Name;
+            _department = dep;
+            lblId.Text = _department.IdDepartment.ToString();
+            txtName.Text = _department.Name;
         }
 
         private Department FormToObject()
-        {
-            var dep = new Department();
-            dep.IdDepartment = Int32.Parse(lblId.Text);
-            dep.Name = txtName.Text;
-            return dep;
+        {            
+            _department.Name = txtName.Text;
+            return _department;
         }
 
 
@@ -102,7 +105,7 @@ namespace Territories.GUI
                 
                 if (dgvResults.SelectedRows.Count != 0)
                 {
-                    var dep = (Department)source[dgvResults.SelectedRows[0].Index];
+                    var dep = this.server.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
                     this.ObjectToForm(dep);
                     this.isDirty = false;
                 }            
@@ -185,6 +188,8 @@ namespace Territories.GUI
             try
             {
                 this.server.Delete(dep);
+                this.LoadResults("");
+                this.ClearForm();
             }
             catch (Exception ex)
             {
@@ -256,8 +261,8 @@ namespace Territories.GUI
             dgvCities.Columns["Publishers"].Visible = false;
 
             dgvCities.Columns["Name"].HeaderText = "City";
-            dgvCities.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;            
-            
+            dgvCities.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
         }
 
         

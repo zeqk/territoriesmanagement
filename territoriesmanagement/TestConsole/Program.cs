@@ -4,8 +4,8 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Data.Entity;
-using Territories.DAL.Server;
-using Territories.DAL;
+using Territories.BLL;
+using Territories.Model;
 //using Territories.BLL;
 
 namespace TestConsole

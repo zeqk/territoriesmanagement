@@ -41,7 +41,7 @@
             this.mnuGeneral});
             this.mnuMain.Location = new System.Drawing.Point(0, 0);
             this.mnuMain.Name = "mnuMain";
-            this.mnuMain.Size = new System.Drawing.Size(677, 24);
+            this.mnuMain.Size = new System.Drawing.Size(845, 24);
             this.mnuMain.TabIndex = 1;
             this.mnuMain.Text = "menuStrip1";
             // 
@@ -57,14 +57,14 @@
             // mnuDepartments
             // 
             this.mnuDepartments.Name = "mnuDepartments";
-            this.mnuDepartments.Size = new System.Drawing.Size(152, 22);
+            this.mnuDepartments.Size = new System.Drawing.Size(136, 22);
             this.mnuDepartments.Text = "Departments";
             this.mnuDepartments.Click += new System.EventHandler(this.mnuDepartments_Click);
             // 
             // mnuCities
             // 
             this.mnuCities.Name = "mnuCities";
-            this.mnuCities.Size = new System.Drawing.Size(152, 22);
+            this.mnuCities.Size = new System.Drawing.Size(136, 22);
             this.mnuCities.Text = "Cities";
             this.mnuCities.Click += new System.EventHandler(this.mnuCities_Click);
             // 
@@ -72,7 +72,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(677, 366);
+            this.ClientSize = new System.Drawing.Size(845, 571);
             this.Controls.Add(this.mnuMain);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.mnuMain;
