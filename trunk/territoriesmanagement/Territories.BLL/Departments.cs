@@ -108,15 +108,15 @@ namespace Territories.BLL
             {
                 if (strQuery == null || strQuery == "")
                 {
-                    var deps = from dep in _dm.Departments
-                               select new KeyListItem { Id = dep.IdDepartment, Name = dep.Name };
-                    return _dal.ExecuteList<KeyListItem>(deps);
+                    var results = _dal.ExecuteList<KeyListItem>(_compiledAllDepartments(_dm));
+                    return results;
                 }
                 else
                 {
                     strQuery = "SELECT VALUE Department FROM TerritoriesDataContext.Departments AS Department WHERE " + strQuery;
                     ObjectQuery<Department> query = _dm.CreateQuery<Department>(strQuery, parameters);
                     var deps = from dep in _dal.ExecuteList<Department>(query)
+                               orderby dep.Name
                                select new KeyListItem { Id = dep.IdDepartment, Name = dep.Name };
                     return deps.ToList<KeyListItem>();                         
                     
@@ -164,11 +164,9 @@ namespace Territories.BLL
 
         private bool nameExist(Department v)
         {
-            var results = from d in _dm.Departments
-                          where d.Name == v.Name && d.IdDepartment != v.IdDepartment
-                          select d.Name;
+            var results = _dal.ExecuteList<Department>(_compiledSameDepartment(_dm,v));
 
-            if (results.Count<string>()>0)
+            if (results.Count > 0)
                 return true;
             else
                 return false;
@@ -178,11 +176,13 @@ namespace Territories.BLL
 
         private Func<TerritoriesDataContext, IQueryable<KeyListItem>> _compiledAllDepartments;
 
+        private Func<TerritoriesDataContext, Department, IQueryable<Department>> _compiledSameDepartment;
+
         private void PreCompileQueries()
         {
             _compiledLoadDepartment = CompiledQuery.Compile
                 (
-                    (TerritoriesDataContext db,int id) => from dep in db.Departments
+                    (TerritoriesDataContext db,int id) => from dep in db.Departments.Include("Cities")
                                                           where dep.IdDepartment == id
                                                           select dep
                                                           
@@ -190,11 +190,20 @@ namespace Territories.BLL
             _compiledAllDepartments = CompiledQuery.Compile
                 (
                     (TerritoriesDataContext db) => from dep in db.Departments
-                                                           select new KeyListItem 
-                                                           { 
-                                                               Id = dep.IdDepartment, 
-                                                               Name = dep.Name 
-                                                           }
+                                                   orderby dep.Name
+                                                   select new KeyListItem 
+                                                   { 
+                                                        Id = dep.IdDepartment, 
+                                                        Name = dep.Name
+                                                   }
+                );
+
+            _compiledSameDepartment = CompiledQuery.Compile
+                (
+                    (TerritoriesDataContext db, Department v ) => from dep in db.Departments
+                                                                  where dep.Name == v.Name && dep.IdDepartment!=v.IdDepartment
+                                                                  select dep
+                                                   
                 );
 
         }
