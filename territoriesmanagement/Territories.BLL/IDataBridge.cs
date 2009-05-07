@@ -15,6 +15,7 @@ namespace Territories.BLL
         List<KeyListItem> Search(string query, params ObjectParameter[] parameters);
         T NewObject();
         List<KeyListItem> All();
+        void SaveChanges();
         
     }
 }
