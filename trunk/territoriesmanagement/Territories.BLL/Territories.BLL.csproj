@@ -51,7 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Cities.cs.bak" />
+    <Compile Include="Cities.cs" />
     <Compile Include="BussinesLayer.cs" />
     <Compile Include="DataBridge.cs" />
     <Compile Include="Departments.cs" />

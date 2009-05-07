@@ -12,13 +12,18 @@ namespace Territories.DAL
         #region ExecuteFirstOrDefault methods
         public T ExecuteFirstOrDefault<T>(ObjectQuery<T> objectQuery)
         {
+            return ExecuteFirstOrDefault<T>(objectQuery, MergeOption.AppendOnly);
+        }
+
+        public T ExecuteFirstOrDefault<T>(ObjectQuery<T> objectQuery,MergeOption merge)
+        {
             try
             {
-                objectQuery.MergeOption = MergeOption.AppendOnly;
+                objectQuery.MergeOption = merge;
                 return objectQuery.FirstOrDefault();
             }
             catch (Exception ex)
-            {                
+            {
                 throw ex;
             }
         }
@@ -38,28 +43,27 @@ namespace Territories.DAL
 
         public List<T> ExecuteList<T>(ObjectQuery<T> objectQuery)
         {
-            try
-            {
-                objectQuery.MergeOption = MergeOption.AppendOnly;
-                return objectQuery.ToList();
-            }
-            catch (Exception ex)
-            {                
-                throw ex;
-            }
 
+            return ExecuteList<T>(objectQuery, MergeOption.AppendOnly);
         }
 
-        public List<T> ExecuteList<T>(IQueryable<T> L2Query)
+        public List<T> ExecuteList<T>(ObjectQuery<T> objectQuery, MergeOption merge)
         {
             try
             {
-                return L2Query.ToList();
+                objectQuery.MergeOption = merge;
+                return objectQuery.ToList();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+        public List<T> ExecuteList<T>(IQueryable<T> L2Query,MergeOption merge)
+        {
+            ObjectQuery<T> objectQuery = Convert.ChangeType(L2Query, typeof(ObjectQuery<T>));
+            return ExecuteList<T>(objectQuery, merge);
 
         }
 

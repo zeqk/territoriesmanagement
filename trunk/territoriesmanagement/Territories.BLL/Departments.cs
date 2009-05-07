@@ -16,6 +16,12 @@ namespace Territories.BLL
         private TerritoriesDataContext _dm;
         private CommandExecutor _dal;
 
+        private Func<TerritoriesDataContext, int,IQueryable<Department>> _compiledLoadDepartment;
+
+        private Func<TerritoriesDataContext, IQueryable<KeyListItem>> _compiledAllDepartments;
+
+        private Func<TerritoriesDataContext, Department, IQueryable<Department>> _compiledSameDepartment;
+
 
         #region Constructors
         public Departments()        
@@ -29,6 +35,7 @@ namespace Territories.BLL
         {
             _dm = new TerritoriesDataContext(conection);
             _dal = new CommandExecutor();
+            PreCompileQueries();
         }
         #endregion
 
@@ -40,8 +47,7 @@ namespace Territories.BLL
             {
                 if (this.IsValid(v))
                 {
-                    _dm.AddToDepartments(v);
-                    _dal.SaveChanges(_dm);                    
+                    _dm.AddToDepartments(v);                
                 }
 
                 return v;
@@ -61,7 +67,6 @@ namespace Territories.BLL
                 if (this.IsValid(v))
                 {
                     _dm.ApplyPropertyChanges("Departments", v);
-                    _dm.SaveChanges();
                 }
                 return v;
                 
@@ -77,9 +82,7 @@ namespace Territories.BLL
         {
             try                
             {
-                //_dm.Attach(v);
                 _dm.DeleteObject(v);
-                _dal.SaveChanges(_dm);
             }
             catch (Exception e)
             {
@@ -92,9 +95,8 @@ namespace Territories.BLL
         {
             try
             {
-                _dm.Departments.MergeOption = MergeOption.AppendOnly;
-                Department results = _dal.ExecuteFirstOrDefault<Department>(_compiledLoadDepartment(_dm, id));
-                return results;
+                Department rv = _dal.ExecuteFirstOrDefault<Department>(_compiledLoadDepartment(_dm,id));
+                return rv;
             }
             catch (Exception e)
             {
@@ -108,17 +110,20 @@ namespace Territories.BLL
             {
                 if (strQuery == null || strQuery == "")
                 {
-                    var results = _dal.ExecuteList<KeyListItem>(_compiledAllDepartments(_dm));
-                    return results;
+                    var queryResults = _dal.ExecuteList<KeyListItem>(_compiledAllDepartments(_dm),MergeOption.PreserveChanges);
+                    var results = from dep in queryResults
+                                  select new KeyListItem { Id = dep.Id, Name = dep.Name };
+                    return results.ToList<KeyListItem>();
                 }
                 else
                 {
                     strQuery = "SELECT VALUE Department FROM TerritoriesDataContext.Departments AS Department WHERE " + strQuery;
                     ObjectQuery<Department> query = _dm.CreateQuery<Department>(strQuery, parameters);
-                    var deps = from dep in _dal.ExecuteList<Department>(query)
+                    query.MergeOption = MergeOption.PreserveChanges;
+                    var results = from dep in _dal.ExecuteList<Department>(query)
                                orderby dep.Name
                                select new KeyListItem { Id = dep.IdDepartment, Name = dep.Name };
-                    return deps.ToList<KeyListItem>();                         
+                    return results.ToList<KeyListItem>();                         
                     
                 }
             }
@@ -147,8 +152,8 @@ namespace Territories.BLL
         public Department NewObject()
         {
             Department rv = new Department();
-            rv.IdDepartment = 0;
-            rv.Name = "";
+            //rv.IdDepartment = 0;
+            //rv.Name = "";
             //rv.Cities = new EntitySet<City>();
             return rv;
 
@@ -159,12 +164,25 @@ namespace Territories.BLL
             return this.Search("");
         }
 
+        public void SaveChanges()
+        {
+            try
+            {
+                _dal.SaveChanges(_dm);
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
+        }
+
         #endregion
 
 
         private bool nameExist(Department v)
         {
-            var results = _dal.ExecuteList<Department>(_compiledSameDepartment(_dm,v));
+            var results = _dal.ExecuteList<Department>(_compiledSameDepartment(_dm,v),MergeOption.PreserveChanges);
 
             if (results.Count > 0)
                 return true;
@@ -172,38 +190,28 @@ namespace Territories.BLL
                 return false;
         }
 
-        private Func<TerritoriesDataContext, int, IQueryable<Department>> _compiledLoadDepartment;
-
-        private Func<TerritoriesDataContext, IQueryable<KeyListItem>> _compiledAllDepartments;
-
-        private Func<TerritoriesDataContext, Department, IQueryable<Department>> _compiledSameDepartment;
-
         private void PreCompileQueries()
         {
             _compiledLoadDepartment = CompiledQuery.Compile
                 (
-                    (TerritoriesDataContext db,int id) => from dep in db.Departments.Include("Cities")
-                                                          where dep.IdDepartment == id
-                                                          select dep
-                                                          
+                    (TerritoriesDataContext dm, int id) => from dep in dm.Departments.Include("Cities")
+                                                           where dep.IdDepartment == id
+                                                           select dep
+
                 );
             _compiledAllDepartments = CompiledQuery.Compile
                 (
-                    (TerritoriesDataContext db) => from dep in db.Departments
+                    (TerritoriesDataContext dm) => from dep in dm.Departments
                                                    orderby dep.Name
-                                                   select new KeyListItem 
-                                                   { 
-                                                        Id = dep.IdDepartment, 
-                                                        Name = dep.Name
-                                                   }
+                                                   select dep
                 );
 
             _compiledSameDepartment = CompiledQuery.Compile
                 (
-                    (TerritoriesDataContext db, Department v ) => from dep in db.Departments
-                                                                  where dep.Name == v.Name && dep.IdDepartment!=v.IdDepartment
-                                                                  select dep
-                                                   
+                    (TerritoriesDataContext dm, Department v) => from dep in dm.Departments
+                                                                 where dep.Name == v.Name && dep.IdDepartment != v.IdDepartment
+                                                                 select dep
+
                 );
 
         }

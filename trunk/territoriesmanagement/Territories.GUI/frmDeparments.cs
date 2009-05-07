@@ -37,8 +37,7 @@ namespace Territories.GUI
             ConfigDgvResults();
 
 
-            this.ClearForm();
-            this.New();
+            
             
         }
         private void LoadResults(string query)
@@ -85,21 +84,7 @@ namespace Territories.GUI
         private void Close_Click(object sender, EventArgs e)
         {
             this.Dispose();
-        }        
-
-        private void ObjectToForm(Department dep)
-        {
-            _department = dep;
-            lblId.Text = _department.IdDepartment.ToString();
-            txtName.Text = _department.Name;
-        }
-
-        private Department FormToObject()
-        {            
-            _department.Name = txtName.Text;
-            return _department;
-        }
-
+        } 
 
         private void dgvResults_SelectionChanged(object sender, EventArgs e)
         {            
@@ -113,11 +98,22 @@ namespace Territories.GUI
             
         }
 
+        private Department FormToOject()
+        {
+            return (Department)this.bsDepartment.DataSource;
+        }
+
+        private void ObjectToForm(Department dep)
+        {
+            this.bsDepartment.DataSource = dep;
+            this.bsCities.DataSource = dep.Cities;
+        }
+
         private void ClearForm()
         {
             dgvResults.ClearSelection();
-            txtName.Clear();
-            lblId.Text = "";
+            var dep = this.server.NewObject();
+            this.ObjectToForm(dep);
             txtName.Focus();
             this.isDirty = false;
         }
@@ -165,7 +161,7 @@ namespace Territories.GUI
 
         private void Update()
         {
-            var dep = this.FormToObject();
+            var dep = this.FormToOject();
 
             try
             {
@@ -175,7 +171,7 @@ namespace Territories.GUI
                     this.server.Update(dep);
 
                 this.LoadResults("");
-                this.ClearForm();
+                //this.ClearForm();
             }
             catch (Exception ex)
             {
@@ -185,7 +181,7 @@ namespace Territories.GUI
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            var dep = this.FormToObject();
+            var dep = this.FormToOject();
             try
             {
                 this.server.Delete(dep);
@@ -241,6 +237,7 @@ namespace Territories.GUI
                 if (lblId.Text != "0")
                 {
                     this.tabPanel.Visible = true;
+                     
 
                 }
                 else
@@ -274,6 +271,20 @@ namespace Territories.GUI
         private void dgvResults_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void frmDepartments_Shown(object sender, EventArgs e)
+        {
+            this.New();
+        }
+
+        private void frmDepartments_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            if (MessageBox.Show("Desea guardar los cambios efectuados?", "Mensaje", MessageBoxButtons.OKCancel)==DialogResult.OK)
+            {
+                this.server.SaveChanges();
+            }
         }
 
         

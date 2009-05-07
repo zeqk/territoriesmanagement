@@ -7,6 +7,7 @@ namespace Territories.BLL
 {
     class DataBridge<T> : IDataBridge<T>
     {
+
         #region IDataBridge<T> Members
 
         public T Insert(T v)
@@ -40,6 +41,11 @@ namespace Territories.BLL
         }
 
         public List<KeyListItem> All()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SaveChanges()
         {
             throw new NotImplementedException();
         }
