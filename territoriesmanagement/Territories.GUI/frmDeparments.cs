@@ -68,6 +68,7 @@ namespace Territories.GUI
             dgvResults.Columns["Id"].Visible = false;
 
             dgvResults.Columns["Name"].HeaderText = "Department";
+            dgvResults.Columns["Name"].Width = 200;
             
 
             dgvResults.Columns.Add("blank", "");
@@ -262,6 +263,16 @@ namespace Territories.GUI
 
             dgvCities.Columns["Name"].HeaderText = "City";
             dgvCities.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+        }
+
+        private void dgvCities_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dgvResults_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
         }
 

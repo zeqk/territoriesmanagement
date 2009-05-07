@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDepartments));
             this.grpObject = new System.Windows.Forms.GroupBox();
             this.lblId = new System.Windows.Forms.Label();
@@ -47,12 +48,15 @@
             this.tabPanel = new System.Windows.Forms.TabControl();
             this.tabCities = new System.Windows.Forms.TabPage();
             this.dgvCities = new System.Windows.Forms.DataGridView();
+            this.bsDepartment = new System.Windows.Forms.BindingSource(this.components);
+            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpObject.SuspendLayout();
             this.grdSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
             this.tabPanel.SuspendLayout();
             this.tabCities.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCities)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDepartment)).BeginInit();
             this.SuspendLayout();
             // 
             // grpObject
@@ -136,6 +140,7 @@
             // 
             // txtName
             // 
+            this.txtName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDepartment, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtName.Location = new System.Drawing.Point(22, 32);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(318, 20);
@@ -212,6 +217,7 @@
             this.dgvResults.TabIndex = 5;
             this.dgvResults.VirtualMode = true;
             this.dgvResults.SelectionChanged += new System.EventHandler(this.dgvResults_SelectionChanged);
+            this.dgvResults.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvResults_CellContentClick);
             // 
             // btnFilter
             // 
@@ -249,12 +255,26 @@
             this.dgvCities.AllowUserToAddRows = false;
             this.dgvCities.AllowUserToDeleteRows = false;
             this.dgvCities.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCities.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colName});
+            this.dgvCities.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.bsDepartment, "Cities", true, System.Windows.Forms.DataSourceUpdateMode.Never));
             this.dgvCities.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvCities.Location = new System.Drawing.Point(3, 3);
             this.dgvCities.Name = "dgvCities";
             this.dgvCities.ReadOnly = true;
             this.dgvCities.Size = new System.Drawing.Size(348, 212);
             this.dgvCities.TabIndex = 0;
+            this.dgvCities.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCities_CellContentClick);
+            // 
+            // bsDepartment
+            // 
+            this.bsDepartment.DataSource = typeof(Territories.Model.Department);
+            // 
+            // colName
+            // 
+            this.colName.HeaderText = "Name";
+            this.colName.Name = "colName";
+            this.colName.ReadOnly = true;
             // 
             // frmDepartments
             // 
@@ -275,6 +295,7 @@
             this.tabPanel.ResumeLayout(false);
             this.tabCities.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCities)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDepartment)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -299,5 +320,7 @@
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Label lblResult;
         private System.Windows.Forms.Label lblFiltered;
+        private System.Windows.Forms.BindingSource bsDepartment;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colName;
     }
 }
