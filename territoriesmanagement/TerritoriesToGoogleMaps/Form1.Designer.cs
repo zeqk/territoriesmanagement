@@ -36,17 +36,16 @@
             this.txtExcelSource = new System.Windows.Forms.TextBox();
             this.btnSelectExcelSource = new System.Windows.Forms.Button();
             this.sfdXmlDestiny = new System.Windows.Forms.SaveFileDialog();
-            this.grpMiddlePoint = new System.Windows.Forms.GroupBox();
-            this.lblLongitude = new System.Windows.Forms.Label();
-            this.lblLatitude = new System.Windows.Forms.Label();
-            this.txtLongitude = new System.Windows.Forms.TextBox();
-            this.txtLatitude = new System.Windows.Forms.TextBox();
-            this.btnCalculeMiddlePoint = new System.Windows.Forms.Button();
-            this.ofdXmlSource = new System.Windows.Forms.OpenFileDialog();
-            this.btnSelectXmlSource = new System.Windows.Forms.Button();
-            this.txtXmlSource = new System.Windows.Forms.TextBox();
+            this.grpGoogleMapsToExcel = new System.Windows.Forms.GroupBox();
+            this.txtXlsDestiny = new System.Windows.Forms.TextBox();
+            this.btnSelectXlsDestiny = new System.Windows.Forms.Button();
+            this.btnUpdateXls = new System.Windows.Forms.Button();
+            this.txtGMSource = new System.Windows.Forms.TextBox();
+            this.btnSelectGMSource = new System.Windows.Forms.Button();
+            this.odfGMSource = new System.Windows.Forms.OpenFileDialog();
+            this.ofdXlsDestiny = new System.Windows.Forms.OpenFileDialog();
             this.grpExcelToXml.SuspendLayout();
-            this.grpMiddlePoint.SuspendLayout();
+            this.grpGoogleMapsToExcel.SuspendLayout();
             this.SuspendLayout();
             // 
             // ofdExcelSource
@@ -120,101 +119,93 @@
             this.sfdXmlDestiny.Filter = "xml files (*.xml)|*.xml";
             this.sfdXmlDestiny.FileOk += new System.ComponentModel.CancelEventHandler(this.sfdXml_FileOk);
             // 
-            // grpMiddlePoint
+            // grpGoogleMapsToExcel
             // 
-            this.grpMiddlePoint.Controls.Add(this.txtXmlSource);
-            this.grpMiddlePoint.Controls.Add(this.btnSelectXmlSource);
-            this.grpMiddlePoint.Controls.Add(this.lblLongitude);
-            this.grpMiddlePoint.Controls.Add(this.lblLatitude);
-            this.grpMiddlePoint.Controls.Add(this.txtLongitude);
-            this.grpMiddlePoint.Controls.Add(this.txtLatitude);
-            this.grpMiddlePoint.Controls.Add(this.btnCalculeMiddlePoint);
-            this.grpMiddlePoint.Location = new System.Drawing.Point(12, 191);
-            this.grpMiddlePoint.Name = "grpMiddlePoint";
-            this.grpMiddlePoint.Size = new System.Drawing.Size(429, 204);
-            this.grpMiddlePoint.TabIndex = 1;
-            this.grpMiddlePoint.TabStop = false;
-            this.grpMiddlePoint.Text = "Middle Point";
+            this.grpGoogleMapsToExcel.Controls.Add(this.txtXlsDestiny);
+            this.grpGoogleMapsToExcel.Controls.Add(this.btnSelectXlsDestiny);
+            this.grpGoogleMapsToExcel.Controls.Add(this.btnUpdateXls);
+            this.grpGoogleMapsToExcel.Controls.Add(this.txtGMSource);
+            this.grpGoogleMapsToExcel.Controls.Add(this.btnSelectGMSource);
+            this.grpGoogleMapsToExcel.Location = new System.Drawing.Point(12, 191);
+            this.grpGoogleMapsToExcel.Name = "grpGoogleMapsToExcel";
+            this.grpGoogleMapsToExcel.Size = new System.Drawing.Size(429, 204);
+            this.grpGoogleMapsToExcel.TabIndex = 1;
+            this.grpGoogleMapsToExcel.TabStop = false;
+            this.grpGoogleMapsToExcel.Text = "Google Maps to Excel";
+            this.grpGoogleMapsToExcel.Enter += new System.EventHandler(this.grpGoogleMapsToExcel_Enter);
             // 
-            // lblLongitude
+            // txtXlsDestiny
             // 
-            this.lblLongitude.AutoSize = true;
-            this.lblLongitude.Location = new System.Drawing.Point(225, 153);
-            this.lblLongitude.Name = "lblLongitude";
-            this.lblLongitude.Size = new System.Drawing.Size(54, 13);
-            this.lblLongitude.TabIndex = 6;
-            this.lblLongitude.Text = "Longitude";
+            this.txtXlsDestiny.Location = new System.Drawing.Point(9, 89);
+            this.txtXlsDestiny.Name = "txtXlsDestiny";
+            this.txtXlsDestiny.ReadOnly = true;
+            this.txtXlsDestiny.Size = new System.Drawing.Size(303, 20);
+            this.txtXlsDestiny.TabIndex = 9;
             // 
-            // lblLatitude
+            // btnSelectXlsDestiny
             // 
-            this.lblLatitude.AutoSize = true;
-            this.lblLatitude.Location = new System.Drawing.Point(80, 153);
-            this.lblLatitude.Name = "lblLatitude";
-            this.lblLatitude.Size = new System.Drawing.Size(45, 13);
-            this.lblLatitude.TabIndex = 5;
-            this.lblLatitude.Text = "Latitude";
+            this.btnSelectXlsDestiny.Location = new System.Drawing.Point(328, 86);
+            this.btnSelectXlsDestiny.Name = "btnSelectXlsDestiny";
+            this.btnSelectXlsDestiny.Size = new System.Drawing.Size(91, 24);
+            this.btnSelectXlsDestiny.TabIndex = 8;
+            this.btnSelectXlsDestiny.Text = "Select destiny";
+            this.btnSelectXlsDestiny.UseVisualStyleBackColor = true;
+            this.btnSelectXlsDestiny.Click += new System.EventHandler(this.btnSelectXlsDestiny_Click);
             // 
-            // txtLongitude
+            // btnUpdateXls
             // 
-            this.txtLongitude.Location = new System.Drawing.Point(228, 169);
-            this.txtLongitude.Name = "txtLongitude";
-            this.txtLongitude.Size = new System.Drawing.Size(127, 20);
-            this.txtLongitude.TabIndex = 4;
+            this.btnUpdateXls.Location = new System.Drawing.Point(83, 125);
+            this.btnUpdateXls.Name = "btnUpdateXls";
+            this.btnUpdateXls.Size = new System.Drawing.Size(270, 35);
+            this.btnUpdateXls.TabIndex = 7;
+            this.btnUpdateXls.Text = "Update Excel File";
+            this.btnUpdateXls.UseVisualStyleBackColor = true;
+            this.btnUpdateXls.Click += new System.EventHandler(this.btnUpdateXls_Click);
             // 
-            // txtLatitude
+            // txtGMSource
             // 
-            this.txtLatitude.Location = new System.Drawing.Point(80, 169);
-            this.txtLatitude.Name = "txtLatitude";
-            this.txtLatitude.Size = new System.Drawing.Size(127, 20);
-            this.txtLatitude.TabIndex = 3;
+            this.txtGMSource.Location = new System.Drawing.Point(9, 48);
+            this.txtGMSource.Name = "txtGMSource";
+            this.txtGMSource.ReadOnly = true;
+            this.txtGMSource.Size = new System.Drawing.Size(303, 20);
+            this.txtGMSource.TabIndex = 6;
             // 
-            // btnCalculeMiddlePoint
+            // btnSelectGMSource
             // 
-            this.btnCalculeMiddlePoint.Location = new System.Drawing.Point(149, 101);
-            this.btnCalculeMiddlePoint.Name = "btnCalculeMiddlePoint";
-            this.btnCalculeMiddlePoint.Size = new System.Drawing.Size(137, 38);
-            this.btnCalculeMiddlePoint.TabIndex = 2;
-            this.btnCalculeMiddlePoint.Text = "Calcule Middle Point";
-            this.btnCalculeMiddlePoint.UseVisualStyleBackColor = true;
-            this.btnCalculeMiddlePoint.Click += new System.EventHandler(this.btnCalculeMiddlePoint_Click);
+            this.btnSelectGMSource.Location = new System.Drawing.Point(328, 45);
+            this.btnSelectGMSource.Name = "btnSelectGMSource";
+            this.btnSelectGMSource.Size = new System.Drawing.Size(91, 24);
+            this.btnSelectGMSource.TabIndex = 5;
+            this.btnSelectGMSource.Text = "Select source";
+            this.btnSelectGMSource.UseVisualStyleBackColor = true;
+            this.btnSelectGMSource.Click += new System.EventHandler(this.btnSelectGMSource_Click);
             // 
-            // ofdXmlSource
+            // odfGMSource
             // 
-            this.ofdXmlSource.Filter = "excel files (*.xls)|*.xls";
-            this.ofdXmlSource.InitialDirectory = "C:\\\\";
+            this.odfGMSource.Filter = "xml files (*.xml)|*.xml";
+            this.odfGMSource.InitialDirectory = "C:\\\\";
+            this.odfGMSource.FileOk += new System.ComponentModel.CancelEventHandler(this.odfGMSource_FileOk);
             // 
-            // btnSelectXmlSource
+            // ofdXlsDestiny
             // 
-            this.btnSelectXmlSource.Location = new System.Drawing.Point(325, 24);
-            this.btnSelectXmlSource.Name = "btnSelectXmlSource";
-            this.btnSelectXmlSource.Size = new System.Drawing.Size(91, 38);
-            this.btnSelectXmlSource.TabIndex = 7;
-            this.btnSelectXmlSource.Text = "Select XML source";
-            this.btnSelectXmlSource.UseVisualStyleBackColor = true;
-            this.btnSelectXmlSource.Click += new System.EventHandler(this.btnSelectXmlSource_Click);
-            // 
-            // txtXmlSource
-            // 
-            this.txtXmlSource.Location = new System.Drawing.Point(6, 34);
-            this.txtXmlSource.Name = "txtXmlSource";
-            this.txtXmlSource.ReadOnly = true;
-            this.txtXmlSource.Size = new System.Drawing.Size(303, 20);
-            this.txtXmlSource.TabIndex = 8;
+            this.ofdXlsDestiny.Filter = "excel files (*.xls)|*.xls";
+            this.ofdXlsDestiny.InitialDirectory = "C:\\\\";
+            this.ofdXlsDestiny.FileOk += new System.ComponentModel.CancelEventHandler(this.opfXlsDestiny_FileOk);
             // 
             // frmToGoogleMaps
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(450, 407);
-            this.Controls.Add(this.grpMiddlePoint);
+            this.Controls.Add(this.grpGoogleMapsToExcel);
             this.Controls.Add(this.grpExcelToXml);
             this.Name = "frmToGoogleMaps";
             this.Text = "Territories to GoogleMaps";
             this.Load += new System.EventHandler(this.frmToGoogleMaps_Load);
             this.grpExcelToXml.ResumeLayout(false);
             this.grpExcelToXml.PerformLayout();
-            this.grpMiddlePoint.ResumeLayout(false);
-            this.grpMiddlePoint.PerformLayout();
+            this.grpGoogleMapsToExcel.ResumeLayout(false);
+            this.grpGoogleMapsToExcel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -229,15 +220,14 @@
         private System.Windows.Forms.TextBox txtXmlDestiny;
         private System.Windows.Forms.Button btnSelectDestiny;
         private System.Windows.Forms.SaveFileDialog sfdXmlDestiny;
-        private System.Windows.Forms.GroupBox grpMiddlePoint;
-        private System.Windows.Forms.Button btnCalculeMiddlePoint;
-        private System.Windows.Forms.Label lblLongitude;
-        private System.Windows.Forms.Label lblLatitude;
-        private System.Windows.Forms.TextBox txtLongitude;
-        private System.Windows.Forms.TextBox txtLatitude;
-        private System.Windows.Forms.OpenFileDialog ofdXmlSource;
-        private System.Windows.Forms.TextBox txtXmlSource;
-        private System.Windows.Forms.Button btnSelectXmlSource;
+        private System.Windows.Forms.GroupBox grpGoogleMapsToExcel;
+        private System.Windows.Forms.TextBox txtXlsDestiny;
+        private System.Windows.Forms.Button btnSelectXlsDestiny;
+        private System.Windows.Forms.Button btnUpdateXls;
+        private System.Windows.Forms.TextBox txtGMSource;
+        private System.Windows.Forms.Button btnSelectGMSource;
+        private System.Windows.Forms.OpenFileDialog odfGMSource;
+        private System.Windows.Forms.OpenFileDialog ofdXlsDestiny;
 
 
     }

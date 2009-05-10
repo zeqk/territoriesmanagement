@@ -13,8 +13,7 @@ namespace TerritoriesToGoogleMaps
 {
     public partial class frmToGoogleMaps : Form
     {
-        string fileIn;
-        string fileOut;
+       
         public frmToGoogleMaps()
         {
             InitializeComponent();
@@ -33,8 +32,15 @@ namespace TerritoriesToGoogleMaps
 
         private void btnConvertToXml_Click(object sender, EventArgs e)
         {
-            Functions.WriteMarks(txtExcelSource.Text, txtXmlDestiny.Text);
-            MessageBox.Show("Xml generado exitosamente");
+            if (txtExcelSource.Text == "" || txtXmlDestiny.Text == "")
+            {
+                MessageBox.Show("Select source and destiny files");
+            }
+            else
+            {
+                Functions.WriteMarks(txtExcelSource.Text, txtXmlDestiny.Text);
+                MessageBox.Show("Xml generado exitosamente");
+            }
         }
 
         private void sfdXml_FileOk(object sender, CancelEventArgs e)
@@ -47,9 +53,17 @@ namespace TerritoriesToGoogleMaps
 
         }
 
-        private void btnCalculeMiddlePoint_Click(object sender, EventArgs e)
+        private void btnUpdateXls_Click(object sender, EventArgs e)
         {
-            
+            if (txtGMSource.Text == "" || txtXlsDestiny.Text == "")
+            {
+                MessageBox.Show("Select source and destiny files");
+            }
+            else
+            {
+                Functions.UpdateGeoposition(txtGMSource.Text, txtXlsDestiny.Text);
+                MessageBox.Show("Xls file updated successfully");
+            }
 
         }
 
@@ -58,9 +72,34 @@ namespace TerritoriesToGoogleMaps
             ofdExcelSource.ShowDialog();
         }
 
-        private void btnSelectXmlSource_Click(object sender, EventArgs e)
+        private void btnSelectGMSource_Click(object sender, EventArgs e)
         {
-            txtXmlSource.Text = Path.GetFullPath(ofdXmlSource.FileName);
+            odfGMSource.ShowDialog();
+        }
+
+        private void grpGoogleMapsToExcel_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSelectXlsDestiny_Click(object sender, EventArgs e)
+        {
+            ofdXlsDestiny.ShowDialog();
+        }
+
+        private void odfGMSource_FileOk(object sender, CancelEventArgs e)
+        {
+            txtGMSource.Text = Path.GetFullPath(odfGMSource.FileName);
+        }
+
+        private void sfdXlsDestiny_FileOk(object sender, CancelEventArgs e)
+        {
+            txtXlsDestiny.Text = Path.GetFullPath(sfdXmlDestiny.FileName);
+        }
+
+        private void opfXlsDestiny_FileOk(object sender, CancelEventArgs e)
+        {
+            txtXlsDestiny.Text = Path.GetFullPath(ofdXlsDestiny.FileName);
         }
     }
 }
