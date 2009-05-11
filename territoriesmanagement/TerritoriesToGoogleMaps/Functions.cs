@@ -27,44 +27,53 @@ namespace TerritoriesToGoogleMaps
             table.Columns.Add(new DataColumn("geoposition", typeof(string)));
             table.Columns.Add(new DataColumn("id", typeof(int)));
 
+            StreamReader sr = new StreamReader(pathIn);
+            XmlTextReader xr = new XmlTextReader(sr);
+
             XmlDocument rssDoc = new XmlDocument();
-            rssDoc.LoadXml(pathIn);
-
-            for (int i = 0; i < rssDoc.ChildNodes.Count; i++)
-            {
-                
-            }
-
 
             try
             {
-                StreamReader sr = new StreamReader(pathIn);
-                using (XmlTextReader xr = new XmlTextReader(sr))
+                rssDoc.Load(xr);
+                for (int i = 0; i < rssDoc.ChildNodes.Count; i++)
                 {
-                    
-                    while (xr.Read())
+                    if (rssDoc.ChildNodes[i].Name == "rss")
                     {
-                        DataRow row = table.NewRow();
-                        row["geoposition"] = xr.GetAttribute("georss:point");
+                        XmlNode nodeRss = rssDoc.ChildNodes[i];
+                        for (int j = 0; j < nodeRss.ChildNodes.Count; j++)
+                        {
+                            if (nodeRss.ChildNodes[j].Name == "channel")
+                            {
+                                XmlNode nodeChannel = nodeRss.ChildNodes[j];
+                                for (int k = 0; k < nodeChannel.ChildNodes.Count; k++)
+                                {
+                                    if (nodeChannel.ChildNodes[k].Name == "item")
+                                    {
+                                        XmlNode nodeItem = nodeChannel.ChildNodes[k];
+                                        DataRow row = table.NewRow();
 
-                        char[] delimiters = { '<', '>' };
-                        string[] description = xr.GetAttribute("description").Split(delimiters);
+                                        char[] delimiters = { '<', '>'};
+                                        string[] description = nodeItem["description"].InnerText.Split(delimiters);
+                                        int id;
+                                        if (int.TryParse(description[2].ToString(), out id))
+                                            row["id"] = id;
+                                        string geopos = nodeItem["georss:point"].InnerText.Remove(0, 7);
+                                        geopos = geopos.Remove(21, 5);
+                                        row["geoposition"] = geopos;
 
-                        int id;
-                        if (int.TryParse(description[3].ToString(), out id))
-                            row["id"] = id;
-                        else
-                            row["id"] = 0;
-
-                        table.Rows.Add(row);
+                                        table.Rows.Add(row);
+                                    }
+                                }
+                            }
+                        }
                     }
+
                 }
             }
             catch (Exception ex)
-            {
+            {                
                 throw ex;
-            }
-
+            } 
 
             return table;
         }
@@ -74,14 +83,14 @@ namespace TerritoriesToGoogleMaps
         {
             string conStr = @"Provider=Microsoft.Jet.Oledb.4.0;Data Source=";
             conStr = conStr + pathOut;
-            conStr = conStr + @";Extended Properties=""Excel 8.0;HDR=Yes;IMEX=1""";
+            conStr = conStr + @";Extended Properties=""Excel 8.0;HDR=Yes""";
             OleDbConnection connection = new OleDbConnection(conStr);
             
-            OleDbCommand cmdSelect = new OleDbCommand("SELECT  ID, GEOPOSITION FROM [territorios$]", connection);
+            OleDbCommand cmdSelect = new OleDbCommand("SELECT  * FROM [territorios$]", connection);
 
             
-            OleDbCommand cmdUpdate = new OleDbCommand("INSERT INTO [territorios$](ID,GEOPOSITION) VALUES(@id,@geoposition)",connection);
-            cmdUpdate.Parameters.Add("@id", OleDbType.Integer, 10, "ID");
+            OleDbCommand cmdUpdate = new OleDbCommand("UPDATE [territorios$] SET GEOPOSITION=@geoposition",connection);
+            cmdUpdate.Parameters.Add("@id", OleDbType.Integer, 0, "ID");
             cmdUpdate.Parameters.Add("@geoposition", OleDbType.VarChar, 22, "GEOPOSITION");
 
             DataSet ds = new DataSet();
@@ -89,19 +98,28 @@ namespace TerritoriesToGoogleMaps
             da.SelectCommand = cmdSelect;
             da.UpdateCommand = cmdUpdate;
 
+            DataRow fila = geopositionTable.NewRow();
             try
             {
+                
                 da.Fill(ds);
+                int count1 = ds.Tables[0].Rows.Count;
+                int count2 = geopositionTable.Rows.Count;
 
                 foreach (DataRow auxRow in geopositionTable.Rows)
                 {
-                    ds.Tables[0].Select("ID = " + auxRow["ID"])[0]["GEOPOSITION"] = auxRow["GEOPOSITION"].ToString();
+                    fila = auxRow;
+                    string geopos = auxRow["GEOPOSITION"].ToString();
+                    ds.Tables[0].Select("ID = " + auxRow["ID"])[0]["GEOPOSITION"] = geopos;
                 }
-                da.Update(ds);
+                ds.Tables[0].WriteXml(pathOut+".xml");
             }
             catch (Exception ex)
-            {                
-                throw ex;
+            {
+                if (ex.Message=="Index was outside the bounds of the array.")
+                    throw new Exception("El Id " + fila["ID"].ToString() + " existe en Google Maps pero no existe en la planilla de Excel", ex);
+                else
+                    throw ex;
             }            
             
         }

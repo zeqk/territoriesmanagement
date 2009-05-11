@@ -61,8 +61,15 @@ namespace TerritoriesToGoogleMaps
             }
             else
             {
-                Functions.UpdateGeoposition(txtGMSource.Text, txtXlsDestiny.Text);
-                MessageBox.Show("Xls file updated successfully");
+                try
+                {                    
+                    Functions.UpdateGeoposition(txtGMSource.Text, txtXlsDestiny.Text);
+                    MessageBox.Show("Xls file updated successfully");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
 
         }
