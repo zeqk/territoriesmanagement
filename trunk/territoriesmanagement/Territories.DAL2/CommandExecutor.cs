@@ -10,10 +10,7 @@ namespace Territories.DAL
     public class CommandExecutor
     {
         #region ExecuteFirstOrDefault methods
-        public T ExecuteFirstOrDefault<T>(ObjectQuery<T> objectQuery)
-        {
-            return ExecuteFirstOrDefault<T>(objectQuery, MergeOption.AppendOnly);
-        }
+        
 
         public T ExecuteFirstOrDefault<T>(ObjectQuery<T> objectQuery,MergeOption merge)
         {
@@ -28,24 +25,25 @@ namespace Territories.DAL
             }
         }
 
+        public T ExecuteFirstOrDefault<T>(ObjectQuery<T> objectQuery)
+        {
+            return ExecuteFirstOrDefault<T>(objectQuery, MergeOption.AppendOnly);
+        }
+
+        public T ExecuteFirstOrDefault<T>(IQueryable<T> L2Query,MergeOption merge)
+        {
+            ObjectQuery<T> objectQuery = (ObjectQuery<T>)L2Query;
+            return ExecuteFirstOrDefault<T>(objectQuery, merge);
+        }
+
         public T ExecuteFirstOrDefault<T>(IQueryable<T> L2Query)
         {
-            try
-            {
-                return L2Query.FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            ObjectQuery<T> objectQuery = (ObjectQuery<T>)L2Query;
+            return ExecuteFirstOrDefault<T>(objectQuery, MergeOption.AppendOnly);
         }
         #endregion
 
-        public List<T> ExecuteList<T>(ObjectQuery<T> objectQuery)
-        {
-
-            return ExecuteList<T>(objectQuery, MergeOption.AppendOnly);
-        }
+        #region ExecuteList methos
 
         public List<T> ExecuteList<T>(ObjectQuery<T> objectQuery, MergeOption merge)
         {
@@ -60,12 +58,23 @@ namespace Territories.DAL
             }
         }
 
+        public List<T> ExecuteList<T>(ObjectQuery<T> objectQuery)
+        {
+            return ExecuteList<T>(objectQuery, MergeOption.AppendOnly);
+        }
+
         public List<T> ExecuteList<T>(IQueryable<T> L2Query,MergeOption merge)
         {
-            ObjectQuery<T> objectQuery = Convert.ChangeType(L2Query, typeof(ObjectQuery<T>));
+            ObjectQuery<T> objectQuery = (ObjectQuery<T>)L2Query;
             return ExecuteList<T>(objectQuery, merge);
-
         }
+
+        public List<T> ExecuteList<T>(IQueryable<T> L2Query)
+        {
+            ObjectQuery<T> objectQuery = (ObjectQuery<T>)L2Query;
+            return ExecuteList<T>(objectQuery, MergeOption.AppendOnly);
+        }
+        #endregion
 
         public void SaveChanges(ObjectContext context)
         {

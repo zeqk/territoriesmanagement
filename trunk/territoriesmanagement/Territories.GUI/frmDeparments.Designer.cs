@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDepartments));
             this.grpObject = new System.Windows.Forms.GroupBox();
             this.lblId = new System.Windows.Forms.Label();
+            this.bsDepartment = new System.Windows.Forms.BindingSource(this.components);
             this.btnRelations = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
@@ -48,16 +49,13 @@
             this.tabPanel = new System.Windows.Forms.TabControl();
             this.tabCities = new System.Windows.Forms.TabPage();
             this.dgvCities = new System.Windows.Forms.DataGridView();
-            this.bsCities = new System.Windows.Forms.BindingSource(this.components);
-            this.bsDepartment = new System.Windows.Forms.BindingSource(this.components);
             this.grpObject.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDepartment)).BeginInit();
             this.grdSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
             this.tabPanel.SuspendLayout();
             this.tabCities.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCities)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCities)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDepartment)).BeginInit();
             this.SuspendLayout();
             // 
             // grpObject
@@ -84,6 +82,10 @@
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(0, 13);
             this.lblId.TabIndex = 11;
+            // 
+            // bsDepartment
+            // 
+            this.bsDepartment.DataSource = typeof(Territories.Model.Department);
             // 
             // btnRelations
             // 
@@ -144,6 +146,7 @@
             // 
             this.txtName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDepartment, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtName.Location = new System.Drawing.Point(22, 32);
+            this.txtName.MaxLength = 80;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(318, 20);
             this.txtName.TabIndex = 5;
@@ -239,7 +242,6 @@
             this.tabPanel.SelectedIndex = 0;
             this.tabPanel.Size = new System.Drawing.Size(362, 244);
             this.tabPanel.TabIndex = 12;
-            this.tabPanel.Visible = false;
             // 
             // tabCities
             // 
@@ -257,23 +259,11 @@
             this.dgvCities.AllowUserToAddRows = false;
             this.dgvCities.AllowUserToDeleteRows = false;
             this.dgvCities.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCities.DataBindings.Add(new System.Windows.Forms.Binding("Tag", this.bsDepartment, "Cities", true, System.Windows.Forms.DataSourceUpdateMode.Never));
-            this.dgvCities.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCities.Location = new System.Drawing.Point(3, 3);
+            this.dgvCities.Location = new System.Drawing.Point(3, 6);
             this.dgvCities.Name = "dgvCities";
             this.dgvCities.ReadOnly = true;
-            this.dgvCities.Size = new System.Drawing.Size(348, 212);
+            this.dgvCities.Size = new System.Drawing.Size(350, 209);
             this.dgvCities.TabIndex = 0;
-            this.dgvCities.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCities_CellContentClick);
-            // 
-            // bsCities
-            // 
-            this.bsCities.DataMember = "Cities";
-            this.bsCities.DataSource = this.bsDepartment;
-            // 
-            // bsDepartment
-            // 
-            this.bsDepartment.DataSource = typeof(Territories.Model.Department);
             // 
             // frmDepartments
             // 
@@ -290,14 +280,13 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDepartments_FormClosing);
             this.grpObject.ResumeLayout(false);
             this.grpObject.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDepartment)).EndInit();
             this.grdSearch.ResumeLayout(false);
             this.grdSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).EndInit();
             this.tabPanel.ResumeLayout(false);
             this.tabCities.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCities)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCities)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDepartment)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -318,11 +307,10 @@
         private My.Controls.Search schName;
         private System.Windows.Forms.TabControl tabPanel;
         private System.Windows.Forms.TabPage tabCities;
-        private System.Windows.Forms.DataGridView dgvCities;
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Label lblResult;
         private System.Windows.Forms.Label lblFiltered;
         private System.Windows.Forms.BindingSource bsDepartment;
-        private System.Windows.Forms.BindingSource bsCities;
+        private System.Windows.Forms.DataGridView dgvCities;
     }
 }

@@ -21,8 +21,6 @@ namespace Territories.GUI
 
         private bool isDirty;
 
-        private BindingSource source = new BindingSource();
-
         public frmDepartments()
         {
             
@@ -44,10 +42,7 @@ namespace Territories.GUI
         {
             try
             {
-                source.DataSource = this.server.Search(query);
-                source.Sort = "Name";//no funciona
-                dgvResults.DataSource  = source;
-                
+                dgvResults.DataSource = this.server.Search(query);                
             }
             catch (Exception ex)
             {                
@@ -106,7 +101,6 @@ namespace Territories.GUI
         private void ObjectToForm(Department dep)
         {
             this.bsDepartment.DataSource = dep;
-            this.bsCities.DataSource = dep.Cities;
         }
 
         private void ClearForm()
@@ -166,12 +160,14 @@ namespace Territories.GUI
             try
             {
                 if (dep.IdDepartment == 0)
+                {
+                    
                     this.server.Insert(dep);
+                }
                 else
                     this.server.Update(dep);
 
                 this.LoadResults("");
-                //this.ClearForm();
             }
             catch (Exception ex)
             {
@@ -237,29 +233,21 @@ namespace Territories.GUI
                 if (lblId.Text != "0")
                 {
                     this.tabPanel.Visible = true;
-                     
+                    this.LoadRelations((Department)this.bsDepartment.DataSource);
 
                 }
                 else
-                    MessageBox.Show("You must selecet any department");
+                    MessageBox.Show("You must select any department");
             }
                 
 
         }
 
-        private void LoadRelations(List<City> cities)
+        private void LoadRelations(Department v)
         {
-            dgvCities.DataSource = cities;
+            dgvCities.DataSource = this.server.GetRelations(v.IdDepartment)[0];
 
-            dgvCities.RowHeadersVisible = false;
-
-            dgvCities.Columns["IdCity"].Visible = false;
-            dgvCities.Columns["Department"].Visible = false;
-            dgvCities.Columns["Directions"].Visible = false;
-            dgvCities.Columns["Publishers"].Visible = false;
-
-            dgvCities.Columns["Name"].HeaderText = "City";
-            dgvCities.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //dgvCities.RowHeadersVisible = false;
 
         }
 
@@ -281,10 +269,10 @@ namespace Territories.GUI
         private void frmDepartments_FormClosing(object sender, FormClosingEventArgs e)
         {
 
-            if (MessageBox.Show("Desea guardar los cambios efectuados?", "Mensaje", MessageBoxButtons.OKCancel)==DialogResult.OK)
-            {
-                this.server.SaveChanges();
-            }
+            //if (MessageBox.Show("Desea guardar los cambios efectuados?", "Mensaje", MessageBoxButtons.OKCancel)==DialogResult.OK)
+            //{
+            //    this.server.SaveChanges();
+            //}
         }
 
         
