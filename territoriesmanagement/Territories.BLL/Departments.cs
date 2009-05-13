@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.ComponentModel;
+using System.Data;
 using System.Data.EntityClient;
 using System.Data.EntityModel;
 using System.Data.Objects;
@@ -18,10 +21,11 @@ namespace Territories.BLL
 
         private Func<TerritoriesDataContext, int,IQueryable<Department>> _compiledLoadDepartment;
 
-        private Func<TerritoriesDataContext, IQueryable<KeyListItem>> _compiledAllDepartments;
+        private Func<TerritoriesDataContext, IOrderedQueryable<Department>> _compiledAllDepartments;
 
         private Func<TerritoriesDataContext, Department, IQueryable<Department>> _compiledSameDepartment;
 
+        private Func<TerritoriesDataContext, int, IOrderedQueryable<City>> _compiledCitiesByDepartment;
 
         #region Constructors
         public Departments()        
@@ -47,7 +51,9 @@ namespace Territories.BLL
             {
                 if (this.IsValid(v))
                 {
-                    _dm.AddToDepartments(v);                
+                    _dm.AddToDepartments(v);
+                    this.SaveChanges();//TODO
+                    
                 }
 
                 return v;
@@ -67,6 +73,7 @@ namespace Territories.BLL
                 if (this.IsValid(v))
                 {
                     _dm.ApplyPropertyChanges("Departments", v);
+                    this.SaveChanges();//TODO
                 }
                 return v;
                 
@@ -78,11 +85,12 @@ namespace Territories.BLL
             }
         }
 
-        public void Delete(Department v) //TODO
+        public void Delete(Department v)
         {
             try                
             {
                 _dm.DeleteObject(v);
+                this.SaveChanges();//TODO
             }
             catch (Exception e)
             {
@@ -95,7 +103,7 @@ namespace Territories.BLL
         {
             try
             {
-                Department rv = _dal.ExecuteFirstOrDefault<Department>(_compiledLoadDepartment(_dm,id));
+                Department rv = _dal.ExecuteFirstOrDefault<Department>(_compiledLoadDepartment(_dm,id),MergeOption.PreserveChanges);
                 return rv;
             }
             catch (Exception e)
@@ -110,16 +118,15 @@ namespace Territories.BLL
             {
                 if (strQuery == null || strQuery == "")
                 {
-                    var queryResults = _dal.ExecuteList<KeyListItem>(_compiledAllDepartments(_dm),MergeOption.PreserveChanges);
+                    var queryResults = _dal.ExecuteList<Department>(_compiledAllDepartments(_dm));
                     var results = from dep in queryResults
-                                  select new KeyListItem { Id = dep.Id, Name = dep.Name };
+                                  select new KeyListItem { Id = dep.IdDepartment, Name = dep.Name };
                     return results.ToList<KeyListItem>();
                 }
                 else
                 {
                     strQuery = "SELECT VALUE Department FROM TerritoriesDataContext.Departments AS Department WHERE " + strQuery;
-                    ObjectQuery<Department> query = _dm.CreateQuery<Department>(strQuery, parameters);
-                    query.MergeOption = MergeOption.PreserveChanges;
+                    ObjectQuery<Department> query = _dm.CreateQuery<Department>(strQuery, parameters);                    
                     var results = from dep in _dal.ExecuteList<Department>(query)
                                orderby dep.Name
                                select new KeyListItem { Id = dep.IdDepartment, Name = dep.Name };
@@ -180,6 +187,23 @@ namespace Territories.BLL
         #endregion
 
 
+        public IList GetRelations(int id)
+        {
+            try
+            {
+                IList rv = new ArrayList();
+                var queryResults = _dal.ExecuteList<City>(_compiledCitiesByDepartment(_dm,id));
+                var cities = from city in queryResults
+                              select new KeyListItem { Id = city.IdCity, Name = city.Name };
+                rv.Add(cities);
+                return rv;  
+            }
+            catch (Exception ex)
+            {                
+                throw ex;
+            }
+        }
+
         private bool nameExist(Department v)
         {
             var results = _dal.ExecuteList<Department>(_compiledSameDepartment(_dm,v),MergeOption.PreserveChanges);
@@ -194,14 +218,14 @@ namespace Territories.BLL
         {
             _compiledLoadDepartment = CompiledQuery.Compile
                 (
-                    (TerritoriesDataContext dm, int id) => from dep in dm.Departments.Include("Cities")
+                    (TerritoriesDataContext dm, int id) => from dep in dm.Departments
                                                            where dep.IdDepartment == id
                                                            select dep
 
                 );
             _compiledAllDepartments = CompiledQuery.Compile
                 (
-                    (TerritoriesDataContext dm) => from dep in dm.Departments
+                     (TerritoriesDataContext dm) => from dep in dm.Departments
                                                    orderby dep.Name
                                                    select dep
                 );
@@ -212,6 +236,14 @@ namespace Territories.BLL
                                                                  where dep.Name == v.Name && dep.IdDepartment != v.IdDepartment
                                                                  select dep
 
+                );
+
+            _compiledCitiesByDepartment = CompiledQuery.Compile
+                (
+                    (TerritoriesDataContext dm, int idDep) => from city in dm.Cities
+                                                              where city.Department.IdDepartment == idDep
+                                                              orderby city.Name
+                                                              select city
                 );
 
         }

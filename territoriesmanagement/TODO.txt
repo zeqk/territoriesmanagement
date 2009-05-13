@@ -1,0 +1,5 @@
+TODO:
+maxLenght del search 
+saveChanges al cerrar el formulario y no cada vez que se edita una entidad
+usar los stored procedures
+hacer que se vea la lista de cuidades
