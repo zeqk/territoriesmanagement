@@ -45,17 +45,15 @@
             this.schName = new My.Controls.Search();
             this.btnClearFilter = new System.Windows.Forms.Button();
             this.dgvResults = new System.Windows.Forms.DataGridView();
+            this.dgvCities = new System.Windows.Forms.DataGridView();
             this.btnFilter = new System.Windows.Forms.Button();
             this.tabPanel = new System.Windows.Forms.TabControl();
             this.tabCities = new System.Windows.Forms.TabPage();
-            this.dgvCities = new System.Windows.Forms.DataGridView();
             this.grpObject.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsDepartment)).BeginInit();
             this.grdSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
-            this.tabPanel.SuspendLayout();
-            this.tabCities.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCities)).BeginInit();
+            this.tabPanel.SuspendLayout();            
             this.SuspendLayout();
             // 
             // grpObject
@@ -217,7 +215,8 @@
             this.dgvResults.Location = new System.Drawing.Point(19, 88);
             this.dgvResults.Name = "dgvResults";
             this.dgvResults.ReadOnly = true;
-            this.dgvResults.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvResults.RowHeadersVisible = false;
+            this.dgvResults.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvResults.Size = new System.Drawing.Size(325, 267);
             this.dgvResults.TabIndex = 5;
             this.dgvResults.VirtualMode = true;
@@ -242,6 +241,7 @@
             this.tabPanel.SelectedIndex = 0;
             this.tabPanel.Size = new System.Drawing.Size(362, 244);
             this.tabPanel.TabIndex = 12;
+            this.tabPanel.Visible = false;
             // 
             // tabCities
             // 
@@ -259,11 +259,14 @@
             this.dgvCities.AllowUserToAddRows = false;
             this.dgvCities.AllowUserToDeleteRows = false;
             this.dgvCities.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCities.Location = new System.Drawing.Point(3, 6);
+            this.dgvCities.Location = new System.Drawing.Point(6, 6);
+            this.dgvCities.MultiSelect = false;
             this.dgvCities.Name = "dgvCities";
             this.dgvCities.ReadOnly = true;
-            this.dgvCities.Size = new System.Drawing.Size(350, 209);
-            this.dgvCities.TabIndex = 0;
+            this.dgvCities.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCities.Size = new System.Drawing.Size(342, 206);
+            this.dgvCities.TabIndex = 6;
+            this.dgvCities.VirtualMode = true;
             // 
             // frmDepartments
             // 
@@ -311,6 +314,6 @@
         private System.Windows.Forms.Label lblResult;
         private System.Windows.Forms.Label lblFiltered;
         private System.Windows.Forms.BindingSource bsDepartment;
-        private System.Windows.Forms.DataGridView dgvCities;
+        protected System.Windows.Forms.DataGridView dgvCities;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.EntityClient;
@@ -12,13 +13,9 @@ using Territories.DAL;
 
 namespace Territories.BLL
 {                
-    public class Cities : IDataBridge<City>
+    public class Cities //: IDataBridge<City>
     {
         private TerritoriesDataContext _dm;
-        private CommandExecutor _dal;
-
-        private Func<TerritoriesDataContext, int, IQueryable<City>> _compiledLoadCity;
-        private Func<TerritoriesDataContext, IQueryable<KeyListItem>> _compiledAllCities;
         private Func<TerritoriesDataContext, City, IQueryable<City>> _compiledSameCity;
 
         #region Constructors
@@ -38,13 +35,24 @@ namespace Territories.BLL
 
         #region IGenericServer<City> Members
 
+        public City Save(City v)
+        {
+            City rv;
+            if (v.IdCity == 0)
+                rv=this.Insert(v);
+            else
+                rv = this.Update(v);
+            return rv;
+        }
+
         public City Insert(City v)
         {
             try
             {
                 if (this.IsValid(v))
                 {
-                    _dm.AddToCities(v);                                     
+                    _dm.AddToCities(v);
+                    _dm.SaveChanges();                 
                 }
 
                 return v;
@@ -62,6 +70,7 @@ namespace Territories.BLL
                 if (this.IsValid(v))
                 {
                     _dm.ApplyPropertyChanges("Cities", v);
+                    _dm.SaveChanges();
                 }
                 return v;
                 
@@ -78,6 +87,7 @@ namespace Territories.BLL
             try                
             {
                 _dm.DeleteObject(v);
+                _dm.SaveChanges();
             }
             catch (Exception e)
             {
@@ -90,7 +100,7 @@ namespace Territories.BLL
         {
             try
             {
-                City rv = _dal.ExecuteFirstOrDefault<City>(_compiledLoadCity(_dm,id));
+                City rv = _dm.cities_GetById(id).FirstOrDefault();
                 return rv;
             }
             catch (Exception e)
@@ -99,31 +109,30 @@ namespace Territories.BLL
             }
         }
 
-        public List<KeyListItem> Search (string strQuery, params ObjectParameter[] parameters)
+        public IList Search (string strQuery, params ObjectParameter[] parameters)
         {
             
             try
             {
                 if (strQuery == null || strQuery == "")
                 {
-                    var results = _dal.ExecuteList<KeyListItem>(_compiledAllCities(_dm),MergeOption.PreserveChanges);
-                    return results;                    
+                    var objectResults = _dm.cities_GetAll();
+                    var results = from city in objectResults
+                                  select new { Id = city.IdCity, Name = city.Name };
+                    return results.ToList(); ;                    
                 }
                 else
                 {
                     strQuery = "SELECT VALUE City AS Department FROM TerritoriesDataContext.Cities AS City WHERE " + strQuery;
-                    ObjectQuery<City> query = _dm.CreateQuery<City>(strQuery, parameters);
-                    var results = from city in _dal.ExecuteList<City>(query)
+                    var query = _dm.CreateQuery<City>(strQuery, parameters);
+                    var results = from city in query.Execute(MergeOption.AppendOnly)
                                  orderby city.Name
-                                 select new KeyListItem { Id = city.IdCity, Name = city.Name };
-                    return results.ToList<KeyListItem>();
-                    
-                }
-               
+                                 select new { Id = city.IdCity, Name = city.Name };
+                    return results.ToList();                    
+                }               
             }
             catch (Exception e)
             {
-
                 throw e;
             }
         }
@@ -154,7 +163,7 @@ namespace Territories.BLL
 
         }
 
-        public List<KeyListItem> All()
+        public IList All()
         {
             return this.Search("");
         }
@@ -163,7 +172,7 @@ namespace Territories.BLL
         {
             try
             {
-                _dal.SaveChanges(_dm);
+                _dm.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -174,12 +183,38 @@ namespace Territories.BLL
 
         #endregion
 
+        public IDictionary LoadRelations(int )
+        {
+            try
+            {
+                IDictionary rv = new Hashtable();
+                var queryResults1 = _dm.directions_GetAll();
+                var directions = from dir in queryResults1
+                             orderby dir.StreetAndNumber
+                             select new { Id = dir.IdDirection, Name = dir.StreetAndNumber };
+
+                var queryResults2 = _dm.Publishers.Execute(MergeOption.AppendOnly);
+                var publishers = from pub in queryResults2
+                                 orderby pub.Name
+                                 select new { Id = pub.IdPublisher, Name = pub.Name };
+
+                rv.Add("Directions", directions.ToList());
+                rv.Add("Publishers",publishers.ToList());
+                
+                return rv;               
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         private bool nameExist(City v)
         {
 
             ObjectParameter[] parameters = { new ObjectParameter("Name", v.Name) };
 
-            var results = _dal.ExecuteList<City>(_compiledSameCity(_dm,v),MergeOption.PreserveChanges);          
+            var results = _compiledSameCity(_dm, v).ToList();
 
             if (results.Count>0)
                 return true;
@@ -187,28 +222,25 @@ namespace Territories.BLL
                 return false;
         }
 
-        public ObjectResult<Department> GetDepartments()
+        public IList GetDepartments()
         {
-            return _dm.departments_GetAll();
+            try
+            {                
+                var objectResults = _dm.departments_GetAll();
+                var departments = from dep in objectResults
+                                  orderby dep.Name
+                                  select new { Id = dep.IdDepartment, Name = dep.Name };
+                return departments.ToList();
+            }
+            catch (Exception ex)
+            {                
+                throw ex;
+            }                   
         }
 
 
         private void PreCompileQueries()
         {
-            this._compiledLoadCity = CompiledQuery.Compile
-                (
-                    (TerritoriesDataContext dm,int id) => from city in _dm.Cities.Include("Directions").Include("Publishers")
-                                where city.IdCity == id
-                                select city
-
-                );
-            this._compiledAllCities = CompiledQuery.Compile
-                (
-                    (TerritoriesDataContext dm) => from city in _dm.Cities
-                          orderby city.Name
-                          select new KeyListItem { Id = city.IdCity, Name = city.Name }
-                );
-
             this._compiledSameCity = CompiledQuery.Compile
                 (
                     (TerritoriesDataContext dm,City v) => from city in _dm.Cities
@@ -216,7 +248,6 @@ namespace Territories.BLL
                                 select city
 
                 );
-
         }
     }
 }

@@ -51,8 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cities.cs" />
     <Compile Include="BussinesLayer.cs" />
+    <Compile Include="Cities.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="QueryExecutor.cs" />
     <Compile Include="DataBridge.cs" />
     <Compile Include="Departments.cs" />
     <Compile Include="IDataBridge.cs" />
@@ -66,10 +69,6 @@
     <Compile Include="Server.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Territories.DAL2\Territories.DAL.csproj">
-      <Project>{3409B4FF-453D-4AE4-B1A6-BC0F9BD1C7C7}</Project>
-      <Name>Territories.DAL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Territories.Model\Territories.Model.csproj">
       <Project>{E227CF22-352C-4A32-BEC8-ABD6202B79C3}</Project>
       <Name>Territories.Model</Name>

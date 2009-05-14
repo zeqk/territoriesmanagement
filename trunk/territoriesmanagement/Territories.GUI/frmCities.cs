@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Objects;
@@ -13,46 +14,35 @@ using Territories.BLL;
 namespace Territories.GUI
 {
     public partial class frmCities : Form
-    {        
-        
-        private Cities server = new Cities();
+    {
+
+        private Cities bll = new Cities();
 
         private bool isDirty;
 
-        private BindingSource source = new BindingSource();
-
         public frmCities()
-        {            
-            InitializeComponent();
+        {
             
+            InitializeComponent();
         }
 
-        private void frmDepartments_Load(object sender, EventArgs e)
+        private void frmCities_Load(object sender, EventArgs e)
         {
             schName.SetProperties("City.Name", "Filter city name", "name");
-
+            ConfigGrids();
             this.LoadResults("");
-            ConfigDgvResults();
+            
+
 
             
-            cmbDepartment.DataSource = this.server.GetDepartments();
-            cmbDepartment.DisplayMember = "Name";
-            cmbDepartment.SelectedItem = null;
-
-            cmbFilterDepartment.DataSource = this.server.GetDepartments();
-            cmbFilterDepartment.DisplayMember = "Name";
-            cmbFilterDepartment.SelectedItem = null;
-            this.ClearForm();
-            this.New();
             
         }
         private void LoadResults(string query)
         {
             try
-            {                
-                source.DataSource = this.server.Search(query);                
-                dgvResults.DataSource = source;
-
+            {
+                dgvResults.DataSource = this.bll.Search(query);
+                
             }
             catch (Exception ex)
             {                
@@ -62,32 +52,47 @@ namespace Territories.GUI
 
         }
 
-        
-        private void ConfigDgvResults()
-        {            
-            
+        private void ConfigGrids()
+        {
+
+            dgvResults.Columns.Add("Id", "Id");          
+            dgvResults.Columns.Add("Name","City");
+            dgvResults.Columns.Add("blank","");
+
+            dgvResults.Columns["Id"].Visible = false;
+            dgvResults.Columns["Id"].DataPropertyName = "Id";
+            dgvResults.Columns["Name"].Width =250;
+            dgvResults.Columns["Name"].DataPropertyName = "Name";
+            dgvResults.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
             dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvResults.MultiSelect = false;
 
-            dgvResults.RowHeadersVisible = false;
-            dgvResults.Columns["IdCity"].Visible = false;
+            dgvDirections.Columns.Add("Id", "Id");
+            dgvDirections.Columns.Add("Name", "Direction");
+            dgvDirections.Columns.Add("blank", "");
 
-            dgvResults.Columns["Name"].HeaderText = "City";
-
-            dgvResults.Columns["Publishers"].Visible = false;
-            dgvResults.Columns["Directions"].Visible = false;
-
-            dgvResults.Columns["Department"].Visible = false;
-
-            dgvResults.Columns.Add("DepName", "Department");            
+            dgvDirections.Columns["Id"].Visible = false;
+            dgvDirections.Columns["Id"].DataPropertyName = "Id";
+            dgvDirections.Columns["Name"].Width = 200;
+            dgvDirections.Columns["Name"].DataPropertyName = "Name";
+            dgvDirections.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             
-                        
-            dgvResults.Columns.Add("blank", "");
-            dgvResults.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvDirections.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvDirections.MultiSelect = false;
 
-            dgvResults.Columns["IdCity"].SortMode = DataGridViewColumnSortMode.NotSortable;
-            
-            dgvResults.Columns["Name"].SortMode = DataGridViewColumnSortMode.Automatic;                                 
+            dgvPublishers.Columns.Add("Id", "Id");
+            dgvPublishers.Columns.Add("Name", "City");
+            dgvPublishers.Columns.Add("blank", "");
+
+            dgvPublishers.Columns["Id"].Visible = false;
+            dgvPublishers.Columns["Id"].DataPropertyName = "Id";
+            dgvPublishers.Columns["Name"].Width = 200;
+            dgvPublishers.Columns["Name"].DataPropertyName = "Name";
+            dgvPublishers.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            dgvPublishers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvPublishers.MultiSelect = false;
 
         }        
 
@@ -95,52 +100,39 @@ namespace Territories.GUI
 
         private void Close_Click(object sender, EventArgs e)
         {
-            this.Dispose();            
-        }        
-
-        private void ObjectToForm(City city)
-        {
-            lblId.Text = city.IdCity.ToString();
-            txtName.Text = city.Name;
-            cmbDepartment.SelectedItem = city.Department;            
-
-            this.LoadRelations(city.Directions.ToList<Direction>(),city.Publishers.ToList<Publisher>());
-
-        }
-
-        private City FormToObject()
-        {
-            var city = new City();
-            if (lblId.Text!="0")
-            {
-                city = (City)source[dgvResults.SelectedRows[0].Index];
-            }
-            city.IdCity = Int32.Parse(lblId.Text);
-            city.Name = txtName.Text;
-            city.Department =(Department) cmbDepartment.SelectedItem;
-            return city;
-        }
-
+            this.Dispose();
+        } 
 
         private void dgvResults_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgvResults.SelectedRows.Count != 0)
-            {
-                var city = (City)source[dgvResults.SelectedRows[0].Index];
-                this.ObjectToForm(city);
-                this.isDirty = false;
-            }
-            else
-                this.ObjectToForm(this.server.NewObject());
+        {            
+                
+                if (dgvResults.SelectedRows.Count != 0)
+                {
+                    var v = this.bll.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
+                    this.ObjectToForm(v);
+                    if (tabPanel.Visible)
+                        this.LoadRelations(v);
+
+                    this.isDirty = false;
+                }            
             
+        }
+
+        private City FormToOject()
+        {
+            return (City)this.bsCity.DataSource;
+        }
+
+        private void ObjectToForm(City v)
+        {
+            this.bsCity.DataSource = v;
         }
 
         private void ClearForm()
         {
             dgvResults.ClearSelection();
-            txtName.Clear();
-            lblId.Text = "";
-            cmbDepartment.SelectedItem = null;
+            var v = this.bll.NewObject();
+            this.ObjectToForm(v);
             txtName.Focus();
             this.isDirty = false;
         }
@@ -166,11 +158,11 @@ namespace Territories.GUI
                 }
             if (yes)
             {
-                this.ClearForm();
+                ClearForm();
                 try
                 {
-                    var city = this.server.NewObject();
-                    this.ObjectToForm(city);
+                    var v = this.bll.NewObject();
+                    this.ObjectToForm(v);
                     this.isDirty = false;
                 }
                 catch (Exception ex)
@@ -181,22 +173,19 @@ namespace Territories.GUI
             }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            this.Update();
+            this.Save();
         }
 
-        private void Update()
+        private void Save()
         {
-            var city = this.FormToObject();
+            var v = this.FormToOject();
 
             try
             {
-                if (city.IdCity == 0)
-                    this.server.Insert(city);
-                else
-                    this.server.Update(city);
-
+                this.bll.Save(v);
+                 
                 this.LoadResults("");
             }
             catch (Exception ex)
@@ -207,10 +196,12 @@ namespace Territories.GUI
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            var city = this.FormToObject();
+            var v = this.FormToOject();
             try
             {
-                this.server.Delete(city);
+                this.bll.Delete(v);
+                this.LoadResults("");
+                this.ClearForm();
             }
             catch (Exception ex)
             {
@@ -230,7 +221,7 @@ namespace Territories.GUI
                 this.schName.MakeQuery();
                 ObjectParameter[]  parameters ={ this.schName.Parameter};
 
-                this.dgvResults.DataSource = this.server.Search(this.schName.Query, parameters);
+                this.dgvResults.DataSource = this.bll.Search(this.schName.Query, parameters);
 
                 lblFiltered.Visible = true;
 
@@ -259,36 +250,54 @@ namespace Territories.GUI
             else
             {
                 if (lblId.Text != "0")
+                {
                     this.tabPanel.Visible = true;
+                    this.LoadRelations((City)this.bsCity.DataSource);
+
+                }
                 else
-                    MessageBox.Show("You must selecet any department");
+                    MessageBox.Show("You must select any city");
             }
                 
 
         }
 
-        private void LoadRelations(List<Direction> directions,List<Publisher> publishers)
+        private void LoadRelations(City v)
         {
-            //dgvDirections.DataSource = directions;
+            dgvDirections.DataSource = this.bll.LoadRelations(v.IdCity)["Cities"];
+            dgvDirections.Refresh();
 
-            //dgvDirections.RowHeadersVisible = false;
+            dgvDirections.RowHeadersVisible = false;
 
-            //dgvDirections.Columns["IdDirection"].Visible = false;
-            //dgvDirections.Columns["Department"].Visible = false;
-            //dgvDirections.Columns["Directions"].Visible = false;
-            //dgvDirections.Columns["Publishers"].Visible = false;
+            dgvPublishers.DataSource = this.bll.LoadRelations(v.IdCity)["Publishers"];
+            dgvPublishers.Refresh();
 
-            //dgvDirections.Columns["Name"].HeaderText = "City";
-            //dgvDirections.Columns["Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            
-            
+            dgvPublishers.RowHeadersVisible = false;
+
         }
 
-        private void dgvResults_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        private void frmDepartments_Shown(object sender, EventArgs e)
         {
-            var city = (City)source[e.RowIndex];
-            dgvResults.Rows[e.RowIndex].Cells["DepName"].ReadOnly = false;
-            dgvResults.Rows[e.RowIndex].Cells["DepName"].Value = city.Department.Name;
+            this.New();
+        }
+
+        private void frmDepartments_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+            //if (MessageBox.Show("Desea guardar los cambios efectuados?", "Mensaje", MessageBoxButtons.OKCancel)==DialogResult.OK)
+            //{
+            //    this.server.SaveChanges();
+            //}
+        }
+
+        private void dgvResults_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void frmCities_Load_1(object sender, EventArgs e)
+        {
+
         }
 
         

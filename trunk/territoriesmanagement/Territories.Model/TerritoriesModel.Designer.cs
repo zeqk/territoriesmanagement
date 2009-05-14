@@ -21,7 +21,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_tours_territories", "Territories", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.Territory), "Tours", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Tour))]
 
 // Original file name:
-// Generation date: 04/05/2009 11:38:56
+// Generation date: 14/05/2009 16:18:42
 namespace Territories.Model
 {
     
@@ -222,6 +222,61 @@ namespace Territories.Model
         public global::System.Data.Objects.ObjectResult<City> cities_GetAll()
         {
             return base.ExecuteFunction<City>("cities_GetAll");
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.departments_GetById in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<Department> departments_GetById(global::System.Nullable<int> id)
+        {
+            global::System.Data.Objects.ObjectParameter idParameter;
+            if (id.HasValue)
+            {
+                idParameter = new global::System.Data.Objects.ObjectParameter("id", id);
+            }
+            else
+            {
+                idParameter = new global::System.Data.Objects.ObjectParameter("id", typeof(int));
+            }
+            return base.ExecuteFunction<Department>("departments_GetById", idParameter);
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.cities_GetByIdDepartment in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<City> cities_GetByIdDepartment(global::System.Nullable<int> idDepartment)
+        {
+            global::System.Data.Objects.ObjectParameter idDepartmentParameter;
+            if (idDepartment.HasValue)
+            {
+                idDepartmentParameter = new global::System.Data.Objects.ObjectParameter("idDepartment", idDepartment);
+            }
+            else
+            {
+                idDepartmentParameter = new global::System.Data.Objects.ObjectParameter("idDepartment", typeof(int));
+            }
+            return base.ExecuteFunction<City>("cities_GetByIdDepartment", idDepartmentParameter);
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.cities_GetById in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<City> cities_GetById(global::System.Nullable<int> id)
+        {
+            global::System.Data.Objects.ObjectParameter idParameter;
+            if (id.HasValue)
+            {
+                idParameter = new global::System.Data.Objects.ObjectParameter("id", id);
+            }
+            else
+            {
+                idParameter = new global::System.Data.Objects.ObjectParameter("id", typeof(int));
+            }
+            return base.ExecuteFunction<City>("cities_GetById", idParameter);
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.directions_GetAll in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<Direction> directions_GetAll()
+        {
+            return base.ExecuteFunction<Direction>("directions_GetAll");
         }
     }
     /// <summary>
