@@ -61,11 +61,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="ClassDiagram1.cd" />
     <EntityDeploy Include="TerritoriesModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TerritoriesModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Class Extenders\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

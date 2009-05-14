@@ -16,29 +16,20 @@ namespace Territories.BLL
 {
     public class Departments : IDataBridge<Department>
     {
-        private TerritoriesDataContext _dm;
-        private CommandExecutor _dal;
-
-        private Func<TerritoriesDataContext, int,IQueryable<Department>> _compiledLoadDepartment;
-
-        private Func<TerritoriesDataContext, IOrderedQueryable<Department>> _compiledAllDepartments;
+        private TerritoriesDataContext _dm;      
 
         private Func<TerritoriesDataContext, Department, IQueryable<Department>> _compiledSameDepartment;
-
-        private Func<TerritoriesDataContext, int, IOrderedQueryable<City>> _compiledCitiesByDepartment;
 
         #region Constructors
         public Departments()        
         {
             _dm = new TerritoriesDataContext();
-            _dal = new CommandExecutor();
             PreCompileQueries();
         }
 
         public Departments(EntityConnection conection)
         {
             _dm = new TerritoriesDataContext(conection);
-            _dal = new CommandExecutor();
             PreCompileQueries();
         }
         #endregion
@@ -52,8 +43,7 @@ namespace Territories.BLL
                 if (this.IsValid(v))
                 {
                     _dm.AddToDepartments(v);
-                    this.SaveChanges();//TODO
-                    
+                    _dm.SaveChanges();                    
                 }
 
                 return v;
@@ -73,7 +63,7 @@ namespace Territories.BLL
                 if (this.IsValid(v))
                 {
                     _dm.ApplyPropertyChanges("Departments", v);
-                    this.SaveChanges();//TODO
+                    _dm.SaveChanges();
                 }
                 return v;
                 
@@ -90,7 +80,7 @@ namespace Territories.BLL
             try                
             {
                 _dm.DeleteObject(v);
-                this.SaveChanges();//TODO
+                _dm.SaveChanges();
             }
             catch (Exception e)
             {
@@ -103,7 +93,7 @@ namespace Territories.BLL
         {
             try
             {
-                Department rv = _dal.ExecuteFirstOrDefault<Department>(_compiledLoadDepartment(_dm,id),MergeOption.PreserveChanges);
+                Department rv = _dm.departments_GetById(id).FirstOrDefault();
                 return rv;
             }
             catch (Exception e)
@@ -118,16 +108,16 @@ namespace Territories.BLL
             {
                 if (strQuery == null || strQuery == "")
                 {
-                    var queryResults = _dal.ExecuteList<Department>(_compiledAllDepartments(_dm));
-                    var results = from dep in queryResults
+                    var objectResults = _dm.departments_GetAll();
+                    var results = from dep in objectResults
                                   select new KeyListItem { Id = dep.IdDepartment, Name = dep.Name };
                     return results.ToList<KeyListItem>();
                 }
                 else
                 {
                     strQuery = "SELECT VALUE Department FROM TerritoriesDataContext.Departments AS Department WHERE " + strQuery;
-                    ObjectQuery<Department> query = _dm.CreateQuery<Department>(strQuery, parameters);                    
-                    var results = from dep in _dal.ExecuteList<Department>(query)
+                    ObjectQuery<Department> query = _dm.CreateQuery<Department>(strQuery, parameters);
+                    var results = from dep in QueryExecutor.ExecuteList<Department>(query)
                                orderby dep.Name
                                select new KeyListItem { Id = dep.IdDepartment, Name = dep.Name };
                     return results.ToList<KeyListItem>();                         
@@ -175,7 +165,7 @@ namespace Territories.BLL
         {
             try
             {
-                _dal.SaveChanges(_dm);
+                _dm.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -187,16 +177,18 @@ namespace Territories.BLL
         #endregion
 
 
-        public IList GetRelations(int id)
+        public IDictionary LoadRelations(int id)
         {
             try
             {
-                IList rv = new ArrayList();
-                var queryResults = _dal.ExecuteList<City>(_compiledCitiesByDepartment(_dm,id));
+                IDictionary rv = new Hashtable();
+                var queryResults = _dm.cities_GetByIdDepartment(id);
                 var cities = from city in queryResults
-                              select new KeyListItem { Id = city.IdCity, Name = city.Name };
-                rv.Add(cities);
-                return rv;  
+                             orderby city.Name
+                             select new KeyListItem { Id = city.IdCity, Name = city.Name };
+                rv.Add("Cities", cities.ToList());
+
+                return rv;
             }
             catch (Exception ex)
             {                
@@ -206,7 +198,7 @@ namespace Territories.BLL
 
         private bool nameExist(Department v)
         {
-            var results = _dal.ExecuteList<Department>(_compiledSameDepartment(_dm,v),MergeOption.PreserveChanges);
+            var results = QueryExecutor.ExecuteList<Department>(_compiledSameDepartment(_dm, v), MergeOption.PreserveChanges);
 
             if (results.Count > 0)
                 return true;
@@ -216,19 +208,6 @@ namespace Territories.BLL
 
         private void PreCompileQueries()
         {
-            _compiledLoadDepartment = CompiledQuery.Compile
-                (
-                    (TerritoriesDataContext dm, int id) => from dep in dm.Departments
-                                                           where dep.IdDepartment == id
-                                                           select dep
-
-                );
-            _compiledAllDepartments = CompiledQuery.Compile
-                (
-                     (TerritoriesDataContext dm) => from dep in dm.Departments
-                                                   orderby dep.Name
-                                                   select dep
-                );
 
             _compiledSameDepartment = CompiledQuery.Compile
                 (
@@ -237,15 +216,6 @@ namespace Territories.BLL
                                                                  select dep
 
                 );
-
-            _compiledCitiesByDepartment = CompiledQuery.Compile
-                (
-                    (TerritoriesDataContext dm, int idDep) => from city in dm.Cities
-                                                              where city.Department.IdDepartment == idDep
-                                                              orderby city.Name
-                                                              select city
-                );
-
         }
     }
 }

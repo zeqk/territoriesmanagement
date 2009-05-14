@@ -262,6 +262,12 @@
         <Function Name="cities_GetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
+        <Function Name="cities_GetByIdDepartment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idDepartment" Type="int" Mode="In" />
+        </Function>
+        <Function Name="cities_ResetId" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="newId" Type="int" Mode="In" />
+        </Function>
         <Function Name="cities_UpdateById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="name" Type="nvarchar" Mode="In" />
@@ -422,7 +428,14 @@
             <End Role="Tours" EntitySet="Tours" />
           </AssociationSet>
           <FunctionImport Name="departments_GetAll" EntitySet="Departments" ReturnType="Collection(TerritoriesModel.Department)" />
-          <FunctionImport Name="cities_GetAll" EntitySet="Cities" ReturnType="Collection(TerritoriesModel.City)" /></EntityContainer>
+          <FunctionImport Name="cities_GetAll" EntitySet="Cities" ReturnType="Collection(TerritoriesModel.City)" />
+          <FunctionImport Name="departments_GetById" EntitySet="Departments" ReturnType="Collection(TerritoriesModel.Department)">
+            <Parameter Name="id" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="cities_GetByIdDepartment" EntitySet="Cities" ReturnType="Collection(TerritoriesModel.City)">
+            <Parameter Name="idDepartment" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="cities_GetById" EntitySet="Cities" ReturnType="Collection(TerritoriesModel.City)">
+            <Parameter Name="id" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="directions_GetAll" EntitySet="Directions" ReturnType="Collection(TerritoriesModel.Direction)" /></EntityContainer>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="IdCity" />
@@ -745,7 +758,11 @@
             </EndProperty>
           </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="departments_GetAll" FunctionName="TerritoriesModel.Store.departments_GetAll" />
-          <FunctionImportMapping FunctionImportName="cities_GetAll" FunctionName="TerritoriesModel.Store.cities_GetAll" /></EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="cities_GetAll" FunctionName="TerritoriesModel.Store.cities_GetAll" />
+          <FunctionImportMapping FunctionImportName="departments_GetById" FunctionName="TerritoriesModel.Store.departments_GetById" />
+          <FunctionImportMapping FunctionImportName="cities_GetByIdDepartment" FunctionName="TerritoriesModel.Store.cities_GetByIdDepartment" />
+          <FunctionImportMapping FunctionImportName="cities_GetById" FunctionName="TerritoriesModel.Store.cities_GetById" />
+          <FunctionImportMapping FunctionImportName="directions_GetAll" FunctionName="TerritoriesModel.Store.directions_GetAll" /></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

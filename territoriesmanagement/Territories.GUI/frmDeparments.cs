@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Objects;
@@ -17,8 +18,6 @@ namespace Territories.GUI
 
         private Departments server = new Departments();
 
-        private Department _department;
-
         private bool isDirty;
 
         public frmDepartments()
@@ -30,9 +29,9 @@ namespace Territories.GUI
         private void frmDepartments_Load(object sender, EventArgs e)
         {
             schName.SetProperties("Department.Name", "Filter department name", "name");
-
+            ConfigGrids();
             this.LoadResults("");
-            ConfigDgvResults();
+            
 
 
             
@@ -42,7 +41,8 @@ namespace Territories.GUI
         {
             try
             {
-                dgvResults.DataSource = this.server.Search(query);                
+                dgvResults.DataSource = this.server.Search(query);
+                
             }
             catch (Exception ex)
             {                
@@ -52,25 +52,34 @@ namespace Territories.GUI
 
         }
 
-        private void ConfigDgvResults()
-        {            
-            
-            dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvResults.MultiSelect = false;           
+        private void ConfigGrids()
+        {
 
-            dgvResults.RowHeadersVisible = false;
+            dgvResults.Columns.Add("Id", "Id");          
+            dgvResults.Columns.Add("Name","Department");
+            dgvResults.Columns.Add("blank","");
+
             dgvResults.Columns["Id"].Visible = false;
-
-            dgvResults.Columns["Name"].HeaderText = "Department";
-            dgvResults.Columns["Name"].Width = 200;
-            
-
-            dgvResults.Columns.Add("blank", "");
+            dgvResults.Columns["Id"].DataPropertyName = "Id";
+            dgvResults.Columns["Name"].Width =250;
+            dgvResults.Columns["Name"].DataPropertyName = "Name";
             dgvResults.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            dgvResults.Columns["Id"].SortMode = DataGridViewColumnSortMode.NotSortable;
+            dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvResults.MultiSelect = false;
 
-            dgvResults.Columns["Name"].SortMode = DataGridViewColumnSortMode.Automatic;
+            dgvDirections.Columns.Add("Id", "Id");
+            dgvDirections.Columns.Add("Name", "City");
+            dgvDirections.Columns.Add("blank", "");
+
+            dgvDirections.Columns["Id"].Visible = false;
+            dgvDirections.Columns["Id"].DataPropertyName = "Id";
+            dgvDirections.Columns["Name"].Width = 200;
+            dgvDirections.Columns["Name"].DataPropertyName = "Name";
+            dgvDirections.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            
+            dgvDirections.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvDirections.MultiSelect = false;
 
         }        
 
@@ -88,6 +97,9 @@ namespace Territories.GUI
                 {
                     var dep = this.server.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
                     this.ObjectToForm(dep);
+                    if (tabPanel.Visible)
+                        this.LoadRelations(dep);
+
                     this.isDirty = false;
                 }            
             
@@ -245,19 +257,10 @@ namespace Territories.GUI
 
         private void LoadRelations(Department v)
         {
-            dgvCities.DataSource = this.server.GetRelations(v.IdDepartment)[0];
+            dgvDirections.DataSource = this.server.LoadRelations(v.IdDepartment)["Cities"];
+            dgvDirections.Refresh();
 
-            //dgvCities.RowHeadersVisible = false;
-
-        }
-
-        private void dgvCities_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void dgvResults_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+            dgvDirections.RowHeadersVisible = false;
 
         }
 
@@ -273,6 +276,11 @@ namespace Territories.GUI
             //{
             //    this.server.SaveChanges();
             //}
+        }
+
+        private void dgvResults_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
 
         
