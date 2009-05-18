@@ -128,6 +128,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="App.Config" />
+    <None Include="Properties\DataSources\Territories.Model.City.datasource" />
     <None Include="Properties\DataSources\Territories.Model.Department.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

@@ -26,7 +26,9 @@ namespace Territories.GUI
 
         private void mnuCities_Click(object sender, EventArgs e)
         {
-            
+            frmCities myForm = new frmCities();
+            myForm.MdiParent = this;
+            myForm.Show();
         }
     }
 }

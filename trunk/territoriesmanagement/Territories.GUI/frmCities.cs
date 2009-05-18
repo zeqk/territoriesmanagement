@@ -16,7 +16,7 @@ namespace Territories.GUI
     public partial class frmCities : Form
     {
 
-        private Cities bll = new Cities();
+        private Cities server = new Cities();
 
         private bool isDirty;
 
@@ -30,18 +30,25 @@ namespace Territories.GUI
         {
             schName.SetProperties("City.Name", "Filter city name", "name");
             ConfigGrids();
-            this.LoadResults("");
-            
 
+            this.cboDepartment.DataSource = this.server.GetDepartments();                     
+            this.cboDepartment.DisplayMember = "Name";
+            this.cboDepartment.ValueMember = "Id";
+            this.cboDepartment.SelectedItem = null;
 
-            
-            
+            this.cboFilterDepartment.DataSource = this.server.GetDepartments();
+            this.cboFilterDepartment.DisplayMember = "Name";
+            this.cboFilterDepartment.ValueMember = "Id";
+            this.cboFilterDepartment.SelectedItem = null;
+
+            this.LoadResults("");  
         }
+
         private void LoadResults(string query)
         {
             try
             {
-                dgvResults.DataSource = this.bll.Search(query);
+                dgvResults.DataSource = this.server.Search(query);
                 
             }
             catch (Exception ex)
@@ -108,7 +115,7 @@ namespace Territories.GUI
                 
                 if (dgvResults.SelectedRows.Count != 0)
                 {
-                    var v = this.bll.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
+                    var v = this.server.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
                     this.ObjectToForm(v);
                     if (tabPanel.Visible)
                         this.LoadRelations(v);
@@ -120,18 +127,28 @@ namespace Territories.GUI
 
         private City FormToOject()
         {
-            return (City)this.bsCity.DataSource;
+            //return (City)this.bsCity.DataSource;
+            var city = new City();
+            city.IdCity = int.Parse(lblId.Text);
+            city.Name = txtName.Text;
+            city.Department = new Department();
+            city.Department.IdDepartment = (int)cboDepartment.SelectedValue;
+            return city;
         }
 
         private void ObjectToForm(City v)
         {
             this.bsCity.DataSource = v;
+            if (v.Department != null)
+                this.cboDepartment.SelectedValue = v.Department.IdDepartment;
+            else
+                this.cboDepartment.SelectedItem = null;
         }
 
         private void ClearForm()
         {
             dgvResults.ClearSelection();
-            var v = this.bll.NewObject();
+            var v = this.server.NewObject();
             this.ObjectToForm(v);
             txtName.Focus();
             this.isDirty = false;
@@ -161,7 +178,7 @@ namespace Territories.GUI
                 ClearForm();
                 try
                 {
-                    var v = this.bll.NewObject();
+                    var v = this.server.NewObject();
                     this.ObjectToForm(v);
                     this.isDirty = false;
                 }
@@ -184,7 +201,7 @@ namespace Territories.GUI
 
             try
             {
-                this.bll.Save(v);
+                this.server.Save(v);
                  
                 this.LoadResults("");
             }
@@ -199,7 +216,7 @@ namespace Territories.GUI
             var v = this.FormToOject();
             try
             {
-                this.bll.Delete(v);
+                this.server.Delete(v);
                 this.LoadResults("");
                 this.ClearForm();
             }
@@ -221,7 +238,7 @@ namespace Territories.GUI
                 this.schName.MakeQuery();
                 ObjectParameter[]  parameters ={ this.schName.Parameter};
 
-                this.dgvResults.DataSource = this.bll.Search(this.schName.Query, parameters);
+                this.dgvResults.DataSource = this.server.Search(this.schName.Query, parameters);
 
                 lblFiltered.Visible = true;
 
@@ -264,12 +281,12 @@ namespace Territories.GUI
 
         private void LoadRelations(City v)
         {
-            dgvDirections.DataSource = this.bll.LoadRelations(v.IdCity)["Cities"];
+            dgvDirections.DataSource = this.server.LoadRelations(v.IdCity)["Cities"];
             dgvDirections.Refresh();
 
             dgvDirections.RowHeadersVisible = false;
 
-            dgvPublishers.DataSource = this.bll.LoadRelations(v.IdCity)["Publishers"];
+            dgvPublishers.DataSource = this.server.LoadRelations(v.IdCity)["Publishers"];
             dgvPublishers.Refresh();
 
             dgvPublishers.RowHeadersVisible = false;
@@ -295,9 +312,9 @@ namespace Territories.GUI
 
         }
 
-        private void frmCities_Load_1(object sender, EventArgs e)
+        private void frmCities_Shown(object sender, EventArgs e)
         {
-
+            this.New();
         }
 
         
