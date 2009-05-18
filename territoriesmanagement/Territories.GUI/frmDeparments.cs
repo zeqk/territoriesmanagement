@@ -30,11 +30,7 @@ namespace Territories.GUI
         {
             schName.SetProperties("Department.Name", "Filter department name", "name");
             ConfigGrids();
-            this.LoadResults("");
-            
-
-
-            
+            this.LoadResults("");  
             
         }
         private void LoadResults(string query)
@@ -68,18 +64,18 @@ namespace Territories.GUI
             dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvResults.MultiSelect = false;
 
-            dgvDirections.Columns.Add("Id", "Id");
-            dgvDirections.Columns.Add("Name", "City");
-            dgvDirections.Columns.Add("blank", "");
+            dgvCities.Columns.Add("Id", "Id");
+            dgvCities.Columns.Add("Name", "City");
+            dgvCities.Columns.Add("blank", "");
 
-            dgvDirections.Columns["Id"].Visible = false;
-            dgvDirections.Columns["Id"].DataPropertyName = "Id";
-            dgvDirections.Columns["Name"].Width = 200;
-            dgvDirections.Columns["Name"].DataPropertyName = "Name";
-            dgvDirections.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            
-            dgvDirections.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvDirections.MultiSelect = false;
+            dgvCities.Columns["Id"].Visible = false;
+            dgvCities.Columns["Id"].DataPropertyName = "Id";
+            dgvCities.Columns["Name"].Width = 200;
+            dgvCities.Columns["Name"].DataPropertyName = "Name";
+            dgvCities.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            dgvCities.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCities.MultiSelect = false;
 
         }        
 
@@ -118,8 +114,8 @@ namespace Territories.GUI
         private void ClearForm()
         {
             dgvResults.ClearSelection();
-            var dep = this.server.NewObject();
-            this.ObjectToForm(dep);
+            var v = this.server.NewObject();
+            this.ObjectToForm(v);
             txtName.Focus();
             this.isDirty = false;
         }
@@ -257,10 +253,10 @@ namespace Territories.GUI
 
         private void LoadRelations(Department v)
         {
-            dgvDirections.DataSource = this.server.LoadRelations(v.IdDepartment)["Cities"];
-            dgvDirections.Refresh();
+            dgvCities.DataSource = this.server.LoadRelations(v.IdDepartment)["Cities"];
+            dgvCities.Refresh();
 
-            dgvDirections.RowHeadersVisible = false;
+            dgvCities.RowHeadersVisible = false;
 
         }
 

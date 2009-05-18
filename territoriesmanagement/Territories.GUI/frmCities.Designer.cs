@@ -32,9 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCities));
             this.grpObject = new System.Windows.Forms.GroupBox();
             this.lblDepartment = new System.Windows.Forms.Label();
-            this.cmbDepartment = new System.Windows.Forms.ComboBox();
+            this.cboDepartment = new System.Windows.Forms.ComboBox();
             this.lblId = new System.Windows.Forms.Label();
-            this.bsCity = new System.Windows.Forms.BindingSource(this.components);
             this.btnRelations = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -43,7 +42,7 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.grdSearch = new System.Windows.Forms.GroupBox();
             this.lblFilterDepartment = new System.Windows.Forms.Label();
-            this.cmbFilterDepartment = new System.Windows.Forms.ComboBox();
+            this.cboFilterDepartment = new System.Windows.Forms.ComboBox();
             this.lblResult = new System.Windows.Forms.Label();
             this.lblFiltered = new System.Windows.Forms.Label();
             this.schName = new My.Controls.Search();
@@ -55,8 +54,8 @@
             this.dgvDirections = new System.Windows.Forms.DataGridView();
             this.tabPublishers = new System.Windows.Forms.TabPage();
             this.dgvPublishers = new System.Windows.Forms.DataGridView();
+            this.bsCity = new System.Windows.Forms.BindingSource(this.components);
             this.grpObject.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCity)).BeginInit();
             this.grdSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
             this.tabPanel.SuspendLayout();
@@ -64,12 +63,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDirections)).BeginInit();
             this.tabPublishers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPublishers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCity)).BeginInit();
             this.SuspendLayout();
             // 
             // grpObject
             // 
             this.grpObject.Controls.Add(this.lblDepartment);
-            this.grpObject.Controls.Add(this.cmbDepartment);
+            this.grpObject.Controls.Add(this.cboDepartment);
             this.grpObject.Controls.Add(this.lblId);
             this.grpObject.Controls.Add(this.btnRelations);
             this.grpObject.Controls.Add(this.btnDelete);
@@ -93,26 +93,22 @@
             this.lblDepartment.TabIndex = 13;
             this.lblDepartment.Text = "Department";
             // 
-            // cmbDepartment
+            // cboDepartment
             // 
-            this.cmbDepartment.FormattingEnabled = true;
-            this.cmbDepartment.Location = new System.Drawing.Point(22, 79);
-            this.cmbDepartment.Name = "cmbDepartment";
-            this.cmbDepartment.Size = new System.Drawing.Size(325, 21);
-            this.cmbDepartment.TabIndex = 12;
+            this.cboDepartment.FormattingEnabled = true;
+            this.cboDepartment.Location = new System.Drawing.Point(22, 79);
+            this.cboDepartment.Name = "cboDepartment";
+            this.cboDepartment.Size = new System.Drawing.Size(325, 21);
+            this.cboDepartment.TabIndex = 12;
             // 
             // lblId
             // 
             this.lblId.AutoSize = true;
-            this.lblId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCity, "IdDepartment", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N0"));
+            this.lblId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCity, "IdCity", true));
             this.lblId.Location = new System.Drawing.Point(321, 3);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(0, 13);
             this.lblId.TabIndex = 11;
-            // 
-            // bsCity
-            // 
-            this.bsCity.DataSource = typeof(Territories.Model.Department);
             // 
             // btnRelations
             // 
@@ -171,7 +167,7 @@
             // 
             // txtName
             // 
-            this.txtName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCity, "Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.txtName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsCity, "Name", true));
             this.txtName.Location = new System.Drawing.Point(22, 32);
             this.txtName.MaxLength = 80;
             this.txtName.Name = "txtName";
@@ -182,7 +178,7 @@
             // grdSearch
             // 
             this.grdSearch.Controls.Add(this.lblFilterDepartment);
-            this.grdSearch.Controls.Add(this.cmbFilterDepartment);
+            this.grdSearch.Controls.Add(this.cboFilterDepartment);
             this.grdSearch.Controls.Add(this.lblResult);
             this.grdSearch.Controls.Add(this.lblFiltered);
             this.grdSearch.Controls.Add(this.schName);
@@ -205,13 +201,13 @@
             this.lblFilterDepartment.TabIndex = 16;
             this.lblFilterDepartment.Text = "Department";
             // 
-            // cmbFilterDepartment
+            // cboFilterDepartment
             // 
-            this.cmbFilterDepartment.FormattingEnabled = true;
-            this.cmbFilterDepartment.Location = new System.Drawing.Point(19, 79);
-            this.cmbFilterDepartment.Name = "cmbFilterDepartment";
-            this.cmbFilterDepartment.Size = new System.Drawing.Size(325, 21);
-            this.cmbFilterDepartment.TabIndex = 15;
+            this.cboFilterDepartment.FormattingEnabled = true;
+            this.cboFilterDepartment.Location = new System.Drawing.Point(19, 79);
+            this.cboFilterDepartment.Name = "cboFilterDepartment";
+            this.cboFilterDepartment.Size = new System.Drawing.Size(325, 21);
+            this.cboFilterDepartment.TabIndex = 15;
             // 
             // lblResult
             // 
@@ -342,6 +338,10 @@
             this.dgvPublishers.TabIndex = 7;
             this.dgvPublishers.VirtualMode = true;
             // 
+            // bsCity
+            // 
+            this.bsCity.DataSource = typeof(Territories.Model.City);
+            // 
             // frmCities
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -352,10 +352,10 @@
             this.Controls.Add(this.grpObject);
             this.Name = "frmCities";
             this.Text = "Cities";
-            this.Load += new System.EventHandler(this.frmCities_Load_1);
+            this.Load += new System.EventHandler(this.frmCities_Load);
+            this.Shown += new System.EventHandler(this.frmCities_Shown);
             this.grpObject.ResumeLayout(false);
             this.grpObject.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCity)).EndInit();
             this.grdSearch.ResumeLayout(false);
             this.grdSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).EndInit();
@@ -364,6 +364,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDirections)).EndInit();
             this.tabPublishers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPublishers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCity)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -387,13 +388,13 @@
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Label lblResult;
         private System.Windows.Forms.Label lblFiltered;
-        private System.Windows.Forms.BindingSource bsCity;
         protected System.Windows.Forms.DataGridView dgvDirections;
         private System.Windows.Forms.TabPage tabPublishers;
         protected System.Windows.Forms.DataGridView dgvPublishers;
         private System.Windows.Forms.Label lblDepartment;
-        private System.Windows.Forms.ComboBox cmbDepartment;
+        private System.Windows.Forms.ComboBox cboDepartment;
         private System.Windows.Forms.Label lblFilterDepartment;
-        private System.Windows.Forms.ComboBox cmbFilterDepartment;
+        private System.Windows.Forms.ComboBox cboFilterDepartment;
+        private System.Windows.Forms.BindingSource bsCity;
     }
 }

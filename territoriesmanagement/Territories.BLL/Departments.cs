@@ -182,7 +182,7 @@ namespace Territories.BLL
             try
             {
                 IDictionary rv = new Hashtable();
-                var queryResults = _dm.cities_GetByIdDepartment(id);
+                var queryResults = _dm.cities_GetByDepartment(id);
                 var cities = from city in queryResults
                              orderby city.Name
                              select new KeyListItem { Id = city.IdCity, Name = city.Name };

@@ -1,5 +1,6 @@
 TODO:
-maxLenght del search 
-saveChanges al cerrar el formulario y no cada vez que se edita una entidad
-usar los stored procedures
-hacer que se vea la lista de cuidades
++ que se guarden los cambios en las propiedades de navegación
++ maxLenght del search 
++ saveChanges al cerrar el formulario y no cada vez que se edita una entidad
+- usar los stored procedures
++ hacer que se vea la lista de cuidades
