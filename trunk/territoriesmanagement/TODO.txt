@@ -1,5 +1,6 @@
 TODO:
 + que se guarden los cambios en las propiedades de navegación
++ que se muestren las entidades anidadas
 + maxLenght del search 
 + saveChanges al cerrar el formulario y no cada vez que se edita una entidad
 - usar los stored procedures
