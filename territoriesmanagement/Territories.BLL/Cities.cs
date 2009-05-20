@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
 using System.Data.EntityClient;
 using System.Data.EntityModel;
 using System.Data.Objects;
+using System.Data.Objects.DataClasses;
 using System.Linq;
 using System.Text;
 using Territories.Model;
@@ -38,8 +40,7 @@ namespace Territories.BLL
 
         public City Save(City v)
         {
-            City rv;
-            v.DepartmentReference.Load();
+            City rv;            
             if (v.IdCity == 0)
                 rv = this.Insert(v);
             else
@@ -71,9 +72,22 @@ namespace Territories.BLL
             {
                 if (this.IsValid(v))
                 {
-                    _dm.ApplyPropertyChanges("Cities", v);
+
+                    //v.EntityKey = _dm.CreateEntityKey("Cities", v);
+                    //_dm.Attach(v);
+
+                    var dep = _dm.departments_GetById(v.Department.IdDepartment).FirstOrDefault();
+                    //v.DepartmentReference.Attach(dep);
+                    v.Department = dep;
+                    //v.DepartmentReference.Load();
+                    //_dm.ApplyPropertyChanges("Cities", v);
+
+                    _dm.Attach(v);
+
+                    //_dm.UpdateTo("Cities", v);
+                    
                     _dm.SaveChanges();
-                }
+                } 
                 return v;
                 
             }
@@ -104,7 +118,7 @@ namespace Territories.BLL
             {                
                 //City rv = this._compileLoadCity(_dm, id).FirstOrDefault();
                 City rv = _dm.cities_GetById(id).FirstOrDefault();
-                rv.DepartmentReference.Load();
+                rv.DepartmentReference.Load();                
                 return rv;
             }
             catch (Exception e)
@@ -242,6 +256,17 @@ namespace Territories.BLL
             }                   
         }
 
+        public Department GetDepartmentById(int id)
+        {
+            try 
+	        {
+                return _dm.departments_GetById(id).FirstOrDefault(); ;
+	        }
+	        catch (Exception ex)
+	        {        		
+		        throw ex;
+	        }
+        }
 
         private void PreCompileQueries()
         {

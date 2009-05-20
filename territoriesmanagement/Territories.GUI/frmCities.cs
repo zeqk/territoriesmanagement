@@ -127,10 +127,10 @@ namespace Territories.GUI
 
         private City FormToOject()
         {
-            //return (City)this.bsCity.DataSource;
-            var city = new City();
-            city.IdCity = int.Parse(lblId.Text);
-            city.Name = txtName.Text;
+            City city = (City)this.bsCity.DataSource;
+            //var city = new City();
+            //city.IdCity = int.Parse(lblId.Text);
+            //city.Name = txtName.Text;
             city.Department = new Department();
             city.Department.IdDepartment = (int)cboDepartment.SelectedValue;
             return city;
