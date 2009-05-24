@@ -55,7 +55,7 @@ namespace TerritoriesToGoogleMaps
 
         private void btnUpdateXls_Click(object sender, EventArgs e)
         {
-            if (txtGMSource.Text == "" || txtXlsDestiny.Text == "")
+            if (txtRssSource.Text == "" || txtXlsSource.Text == "")
             {
                 MessageBox.Show("Select source and destiny files");
             }
@@ -63,7 +63,7 @@ namespace TerritoriesToGoogleMaps
             {
                 try
                 {                    
-                    Functions.UpdateGeoposition(txtGMSource.Text, txtXlsDestiny.Text);
+                    Functions.UpdateGeoposition(txtRssSource.Text, txtXlsSource.Text);
                     MessageBox.Show("Xls file updated successfully");
                 }
                 catch (Exception ex)
@@ -79,34 +79,36 @@ namespace TerritoriesToGoogleMaps
             ofdExcelSource.ShowDialog();
         }
 
-        private void btnSelectGMSource_Click(object sender, EventArgs e)
-        {
-            odfGMSource.ShowDialog();
-        }
+        
 
         private void grpGoogleMapsToExcel_Enter(object sender, EventArgs e)
         {
 
         }
 
-        private void btnSelectXlsDestiny_Click(object sender, EventArgs e)
-        {
-            ofdXlsDestiny.ShowDialog();
-        }
-
         private void odfGMSource_FileOk(object sender, CancelEventArgs e)
         {
-            txtGMSource.Text = Path.GetFullPath(odfGMSource.FileName);
+            txtRssSource.Text = Path.GetFullPath(odfRssSource.FileName);
         }
 
         private void sfdXlsDestiny_FileOk(object sender, CancelEventArgs e)
         {
-            txtXlsDestiny.Text = Path.GetFullPath(sfdXmlDestiny.FileName);
+            txtXlsSource.Text = Path.GetFullPath(sfdXmlDestiny.FileName);
         }
 
         private void opfXlsDestiny_FileOk(object sender, CancelEventArgs e)
         {
-            txtXlsDestiny.Text = Path.GetFullPath(ofdXlsDestiny.FileName);
+            txtXlsSource.Text = Path.GetFullPath(ofdXlsSource.FileName);
+        }
+
+        private void btnSelectRssSource_Click(object sender, EventArgs e)
+        {
+            odfRssSource.ShowDialog();
+        }
+
+        private void btnSelectXlsSource_Click(object sender, EventArgs e)
+        {
+            ofdXlsSource.ShowDialog();
         }
     }
 }
