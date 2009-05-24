@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Xml;
 using System.IO;
 using System.Data.OleDb;
@@ -24,33 +22,65 @@ namespace TerritoriesToGoogleMaps
         static public Double MiddleLng;
 
 
-        public static IList ReadMarks(string pathIn)
-        {
-            List<IGeoRssItem> items;
+        public static DataTable ReadMarks(string pathIn)
+        {            
+            DataTable table = new DataTable();
+            table.Columns.Add(new DataColumn("geoposition", typeof(string)));
+            table.Columns.Add(new DataColumn("id", typeof(int)));          
+
+            StreamReader sr = new StreamReader(pathIn);
+            XmlTextReader xr = new XmlTextReader(sr);
+
+            XmlDocument rssDoc = new XmlDocument();
+
             try
             {
-                GeoRssFeed feed = new GeoRssFeed(pathIn);
-                GeoRssChannel channel = feed.MainChannel;
-                items = channel.Items;
+                rssDoc.Load(xr);
+                for (int i = 0; i < rssDoc.ChildNodes.Count; i++)
+                {
+                    if (rssDoc.ChildNodes[i].Name == "rss")
+                    {
+                        XmlNode nodeRss = rssDoc.ChildNodes[i];
+                        for (int j = 0; j < nodeRss.ChildNodes.Count; j++)
+                        {
+                            if (nodeRss.ChildNodes[j].Name == "channel")
+                            {
+                                XmlNode nodeChannel = nodeRss.ChildNodes[j];
+                                for (int k = 0; k < nodeChannel.ChildNodes.Count; k++)
+                                {
+                                    if (nodeChannel.ChildNodes[k].Name == "item")
+                                    {
+                                        XmlNode nodeItem = nodeChannel.ChildNodes[k];
+                                        DataRow row = table.NewRow();
+
+                                        char[] delimiters = { '<', '>' };
+                                        string[] description = nodeItem["description"].InnerText.Split(delimiters);
+                                        int id;
+                                        if (int.TryParse(description[2].ToString(), out id))
+                                            row["id"] = id;
+                                        string geopos = nodeItem["georss:point"].InnerText.Remove(0, 7);
+                                        geopos = geopos.Remove(21, 5);
+                                        row["geoposition"] = geopos;
+
+                                        table.Rows.Add(row);
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
             }
             catch (Exception ex)
             {
                 throw ex;
             } 
 
-            return items;
-        }
-
-        static private int ExtractId(string html)
-        {
-            html = Regex.Replace(html, "<br>", "\n");
-            html = Regex.Replace(html, @"<(.|\n)*?>", " ");
-            string[] arrayDesc = html.Split('\n');
-            return int.Parse(arrayDesc[0]);
+            return table;
         }
 
 
-        public static void WriteTerritoriesFiles(string pathOut,List<IGeoRssItem> geoItems)
+        public static void WriteTerritoriesFiles(string pathOut,DataTable geopositionTable)
         {
             string conStr = @"Provider=Microsoft.Jet.Oledb.4.0;Data Source=";
             conStr = conStr + pathOut;
@@ -69,25 +99,26 @@ namespace TerritoriesToGoogleMaps
             da.SelectCommand = cmdSelect;
             da.UpdateCommand = cmdUpdate;
 
-            int id = 0;
+            DataRow fila = geopositionTable.NewRow();
             try
             {
                 
                 da.Fill(ds);
                 int count1 = ds.Tables[0].Rows.Count;
-                int count2 = geoItems.Count;
+                int count2 = geopositionTable.Rows.Count;
 
-                foreach (var item in geoItems)
+                foreach (DataRow auxRow in geopositionTable.Rows)
                 {
-                    id = ExtractId(item.Description);
-                    ds.Tables[0].Select("ID = " + id)[0]["GEOPOSITION"] = ((GeoRssPoint)item).Coordinates.ToString();
+                    fila = auxRow;
+                    string geopos = auxRow["GEOPOSITION"].ToString();
+                    ds.Tables[0].Select("ID = " + auxRow["ID"])[0]["GEOPOSITION"] = geopos;
                 }
                 ds.Tables[0].WriteXml(pathOut+".xml");
             }
             catch (Exception ex)
             {
                 if (ex.Message=="Index was outside the bounds of the array.")
-                    throw new Exception("El ID" + id + " existe en Google Maps pero no existe en la planilla de Excel", ex);
+                    throw new Exception("El Id " + fila["ID"].ToString() + " existe en Google Maps pero no existe en la planilla de Excel", ex);
                 else
                     throw ex;
             }            
@@ -192,36 +223,6 @@ namespace TerritoriesToGoogleMaps
             lon = lngs.Min() + auxLng;
                 
 
-        }
-
-        /*http://cs.crisfervil.com/blogs/crisfervil/archive/2007/08/29/datatable-to-excel.aspx*/
-        private static string SerializeDT(DataTable dt)
-        {
-            const string FIELDSEPARATOR = "\t";
-            const string ROWSEPARATOR = "\n";
-            StringBuilder output = new StringBuilder();
-
-            // Escribir encabezados
-            foreach (DataColumn dc in dt.Columns)
-            {
-                output.Append(dc.ColumnName);
-                output.Append(FIELDSEPARATOR);
-            }
-            output.Append(ROWSEPARATOR);
-
-            // Escribir datos
-            foreach (DataRow item in dt.Rows)
-            {
-                foreach (object value in item.ItemArray)
-                {
-                    output.Append(value.ToString());
-                    output.Append(FIELDSEPARATOR);
-                }
-                // Escribir una línea de registro
-                output.Append(ROWSEPARATOR);
-            }
-            // Valor de retorno
-            return output.ToString();
         }
         
     }

@@ -8,7 +8,7 @@
     <script src="http://www.acme.com/javascript/OverlayMessage.js" type="text/javascript"></script> 
   </head> 
   <body onunload="GUnload()"> 
-    <div id="map" style="width: 800px; height: 700px"></div>
+    <div id="map" style="width: 2000px; height: 2000px"></div>
  
     <noscript><b>JavaScript must be enabled in order for you to use Google Maps.</b> 
       However, it seems JavaScript is either disabled or not supported by your browser. 
@@ -74,7 +74,7 @@
 		var centerLng = parseFloat(points[0].getAttribute("lng"));
 		var point = new GLatLng(centerLat,centerLng);
 		var marker = createMarker(point,"PUNTO CENTRAL","PUNTO CENTRAL",icon);
-		gmarkers.push(marker);
+		//gmarkers.push(marker);
 		
         // Display the map, with some controls and set the initial location 
  
@@ -82,7 +82,10 @@
         map.addControl(new GLargeMapControl());
         map.addControl(new GMapTypeControl());
 		map.addControl(new GScaleControl());
-        map.setCenter(new GLatLng(centerLat,centerLng), 11, G_NORMAL_MAP);
+        map.setCenter(new GLatLng(centerLat,centerLng), 11);//, G_NORMAL_MAP);
+		
+      map.addMapType(G_SATELLITE_3D_MAP);
+      map.addControl(new GHierarchicalMapTypeControl());
         var mm = new GMarkerManager(map, {borderPadding:1});
  
         mm.addMarkers(gmarkers,0,17);

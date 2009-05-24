@@ -37,13 +37,15 @@
             this.btnSelectExcelSource = new System.Windows.Forms.Button();
             this.sfdXmlDestiny = new System.Windows.Forms.SaveFileDialog();
             this.grpGoogleMapsToExcel = new System.Windows.Forms.GroupBox();
-            this.txtXlsDestiny = new System.Windows.Forms.TextBox();
-            this.btnSelectXlsDestiny = new System.Windows.Forms.Button();
+            this.txtXlsSource = new System.Windows.Forms.TextBox();
+            this.btnSelectXlsSource = new System.Windows.Forms.Button();
             this.btnUpdateXls = new System.Windows.Forms.Button();
-            this.txtGMSource = new System.Windows.Forms.TextBox();
-            this.btnSelectGMSource = new System.Windows.Forms.Button();
-            this.odfGMSource = new System.Windows.Forms.OpenFileDialog();
-            this.ofdXlsDestiny = new System.Windows.Forms.OpenFileDialog();
+            this.txtRssSource = new System.Windows.Forms.TextBox();
+            this.btnSelectRssSource = new System.Windows.Forms.Button();
+            this.odfRssSource = new System.Windows.Forms.OpenFileDialog();
+            this.ofdXlsSource = new System.Windows.Forms.OpenFileDialog();
+            this.lblRssSource = new System.Windows.Forms.Label();
+            this.lblXlsSource = new System.Windows.Forms.Label();
             this.grpExcelToXml.SuspendLayout();
             this.grpGoogleMapsToExcel.SuspendLayout();
             this.SuspendLayout();
@@ -121,40 +123,42 @@
             // 
             // grpGoogleMapsToExcel
             // 
-            this.grpGoogleMapsToExcel.Controls.Add(this.txtXlsDestiny);
-            this.grpGoogleMapsToExcel.Controls.Add(this.btnSelectXlsDestiny);
+            this.grpGoogleMapsToExcel.Controls.Add(this.lblXlsSource);
+            this.grpGoogleMapsToExcel.Controls.Add(this.lblRssSource);
+            this.grpGoogleMapsToExcel.Controls.Add(this.txtXlsSource);
+            this.grpGoogleMapsToExcel.Controls.Add(this.btnSelectXlsSource);
             this.grpGoogleMapsToExcel.Controls.Add(this.btnUpdateXls);
-            this.grpGoogleMapsToExcel.Controls.Add(this.txtGMSource);
-            this.grpGoogleMapsToExcel.Controls.Add(this.btnSelectGMSource);
+            this.grpGoogleMapsToExcel.Controls.Add(this.txtRssSource);
+            this.grpGoogleMapsToExcel.Controls.Add(this.btnSelectRssSource);
             this.grpGoogleMapsToExcel.Location = new System.Drawing.Point(12, 191);
             this.grpGoogleMapsToExcel.Name = "grpGoogleMapsToExcel";
-            this.grpGoogleMapsToExcel.Size = new System.Drawing.Size(429, 204);
+            this.grpGoogleMapsToExcel.Size = new System.Drawing.Size(517, 214);
             this.grpGoogleMapsToExcel.TabIndex = 1;
             this.grpGoogleMapsToExcel.TabStop = false;
             this.grpGoogleMapsToExcel.Text = "Google Maps to Excel";
             this.grpGoogleMapsToExcel.Enter += new System.EventHandler(this.grpGoogleMapsToExcel_Enter);
             // 
-            // txtXlsDestiny
+            // txtXlsSource
             // 
-            this.txtXlsDestiny.Location = new System.Drawing.Point(9, 89);
-            this.txtXlsDestiny.Name = "txtXlsDestiny";
-            this.txtXlsDestiny.ReadOnly = true;
-            this.txtXlsDestiny.Size = new System.Drawing.Size(303, 20);
-            this.txtXlsDestiny.TabIndex = 9;
+            this.txtXlsSource.Location = new System.Drawing.Point(9, 88);
+            this.txtXlsSource.Name = "txtXlsSource";
+            this.txtXlsSource.ReadOnly = true;
+            this.txtXlsSource.Size = new System.Drawing.Size(369, 20);
+            this.txtXlsSource.TabIndex = 9;
             // 
-            // btnSelectXlsDestiny
+            // btnSelectXlsSource
             // 
-            this.btnSelectXlsDestiny.Location = new System.Drawing.Point(328, 86);
-            this.btnSelectXlsDestiny.Name = "btnSelectXlsDestiny";
-            this.btnSelectXlsDestiny.Size = new System.Drawing.Size(91, 24);
-            this.btnSelectXlsDestiny.TabIndex = 8;
-            this.btnSelectXlsDestiny.Text = "Select destiny";
-            this.btnSelectXlsDestiny.UseVisualStyleBackColor = true;
-            this.btnSelectXlsDestiny.Click += new System.EventHandler(this.btnSelectXlsDestiny_Click);
+            this.btnSelectXlsSource.Location = new System.Drawing.Point(384, 85);
+            this.btnSelectXlsSource.Name = "btnSelectXlsSource";
+            this.btnSelectXlsSource.Size = new System.Drawing.Size(118, 24);
+            this.btnSelectXlsSource.TabIndex = 8;
+            this.btnSelectXlsSource.Text = "Open";
+            this.btnSelectXlsSource.UseVisualStyleBackColor = true;
+            this.btnSelectXlsSource.Click += new System.EventHandler(this.btnSelectXlsSource_Click);
             // 
             // btnUpdateXls
             // 
-            this.btnUpdateXls.Location = new System.Drawing.Point(83, 125);
+            this.btnUpdateXls.Location = new System.Drawing.Point(80, 163);
             this.btnUpdateXls.Name = "btnUpdateXls";
             this.btnUpdateXls.Size = new System.Drawing.Size(270, 35);
             this.btnUpdateXls.TabIndex = 7;
@@ -162,41 +166,59 @@
             this.btnUpdateXls.UseVisualStyleBackColor = true;
             this.btnUpdateXls.Click += new System.EventHandler(this.btnUpdateXls_Click);
             // 
-            // txtGMSource
+            // txtRssSource
             // 
-            this.txtGMSource.Location = new System.Drawing.Point(9, 48);
-            this.txtGMSource.Name = "txtGMSource";
-            this.txtGMSource.ReadOnly = true;
-            this.txtGMSource.Size = new System.Drawing.Size(303, 20);
-            this.txtGMSource.TabIndex = 6;
+            this.txtRssSource.Location = new System.Drawing.Point(9, 48);
+            this.txtRssSource.Name = "txtRssSource";
+            this.txtRssSource.ReadOnly = true;
+            this.txtRssSource.Size = new System.Drawing.Size(369, 20);
+            this.txtRssSource.TabIndex = 6;
             // 
-            // btnSelectGMSource
+            // btnSelectRssSource
             // 
-            this.btnSelectGMSource.Location = new System.Drawing.Point(328, 45);
-            this.btnSelectGMSource.Name = "btnSelectGMSource";
-            this.btnSelectGMSource.Size = new System.Drawing.Size(91, 24);
-            this.btnSelectGMSource.TabIndex = 5;
-            this.btnSelectGMSource.Text = "Select source";
-            this.btnSelectGMSource.UseVisualStyleBackColor = true;
-            this.btnSelectGMSource.Click += new System.EventHandler(this.btnSelectGMSource_Click);
+            this.btnSelectRssSource.Location = new System.Drawing.Point(384, 45);
+            this.btnSelectRssSource.Name = "btnSelectRssSource";
+            this.btnSelectRssSource.Size = new System.Drawing.Size(118, 24);
+            this.btnSelectRssSource.TabIndex = 5;
+            this.btnSelectRssSource.Text = "Open";
+            this.btnSelectRssSource.UseVisualStyleBackColor = true;
+            this.btnSelectRssSource.Click += new System.EventHandler(this.btnSelectRssSource_Click);
             // 
-            // odfGMSource
+            // odfRssSource
             // 
-            this.odfGMSource.Filter = "xml files (*.xml)|*.xml";
-            this.odfGMSource.InitialDirectory = "C:\\\\";
-            this.odfGMSource.FileOk += new System.ComponentModel.CancelEventHandler(this.odfGMSource_FileOk);
+            this.odfRssSource.Filter = "xml files (*.xml)|*.xml";
+            this.odfRssSource.InitialDirectory = "C:\\\\";
+            this.odfRssSource.FileOk += new System.ComponentModel.CancelEventHandler(this.odfGMSource_FileOk);
             // 
-            // ofdXlsDestiny
+            // ofdXlsSource
             // 
-            this.ofdXlsDestiny.Filter = "excel files (*.xls)|*.xls";
-            this.ofdXlsDestiny.InitialDirectory = "C:\\\\";
-            this.ofdXlsDestiny.FileOk += new System.ComponentModel.CancelEventHandler(this.opfXlsDestiny_FileOk);
+            this.ofdXlsSource.Filter = "excel files (*.xls)|*.xls";
+            this.ofdXlsSource.InitialDirectory = "C:\\\\";
+            this.ofdXlsSource.FileOk += new System.ComponentModel.CancelEventHandler(this.opfXlsDestiny_FileOk);
+            // 
+            // lblRssSource
+            // 
+            this.lblRssSource.AutoSize = true;
+            this.lblRssSource.Location = new System.Drawing.Point(6, 32);
+            this.lblRssSource.Name = "lblRssSource";
+            this.lblRssSource.Size = new System.Drawing.Size(100, 13);
+            this.lblRssSource.TabIndex = 10;
+            this.lblRssSource.Text = "GeoRSS file source";
+            // 
+            // lblXlsSource
+            // 
+            this.lblXlsSource.AutoSize = true;
+            this.lblXlsSource.Location = new System.Drawing.Point(6, 72);
+            this.lblXlsSource.Name = "lblXlsSource";
+            this.lblXlsSource.Size = new System.Drawing.Size(84, 13);
+            this.lblXlsSource.TabIndex = 11;
+            this.lblXlsSource.Text = "Excel file source";
             // 
             // frmToGoogleMaps
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(450, 407);
+            this.ClientSize = new System.Drawing.Size(541, 498);
             this.Controls.Add(this.grpGoogleMapsToExcel);
             this.Controls.Add(this.grpExcelToXml);
             this.Name = "frmToGoogleMaps";
@@ -221,13 +243,15 @@
         private System.Windows.Forms.Button btnSelectDestiny;
         private System.Windows.Forms.SaveFileDialog sfdXmlDestiny;
         private System.Windows.Forms.GroupBox grpGoogleMapsToExcel;
-        private System.Windows.Forms.TextBox txtXlsDestiny;
-        private System.Windows.Forms.Button btnSelectXlsDestiny;
+        private System.Windows.Forms.TextBox txtXlsSource;
+        private System.Windows.Forms.Button btnSelectXlsSource;
         private System.Windows.Forms.Button btnUpdateXls;
-        private System.Windows.Forms.TextBox txtGMSource;
-        private System.Windows.Forms.Button btnSelectGMSource;
-        private System.Windows.Forms.OpenFileDialog odfGMSource;
-        private System.Windows.Forms.OpenFileDialog ofdXlsDestiny;
+        private System.Windows.Forms.TextBox txtRssSource;
+        private System.Windows.Forms.Button btnSelectRssSource;
+        private System.Windows.Forms.OpenFileDialog odfRssSource;
+        private System.Windows.Forms.OpenFileDialog ofdXlsSource;
+        private System.Windows.Forms.Label lblXlsSource;
+        private System.Windows.Forms.Label lblRssSource;
 
 
     }
