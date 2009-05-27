@@ -34,6 +34,7 @@
             this.lblDepartment = new System.Windows.Forms.Label();
             this.cboDepartment = new System.Windows.Forms.ComboBox();
             this.lblId = new System.Windows.Forms.Label();
+            this.bsCity = new System.Windows.Forms.BindingSource(this.components);
             this.btnRelations = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -54,8 +55,8 @@
             this.dgvDirections = new System.Windows.Forms.DataGridView();
             this.tabPublishers = new System.Windows.Forms.TabPage();
             this.dgvPublishers = new System.Windows.Forms.DataGridView();
-            this.bsCity = new System.Windows.Forms.BindingSource(this.components);
             this.grpObject.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCity)).BeginInit();
             this.grdSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
             this.tabPanel.SuspendLayout();
@@ -63,7 +64,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDirections)).BeginInit();
             this.tabPublishers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPublishers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCity)).BeginInit();
             this.SuspendLayout();
             // 
             // grpObject
@@ -109,6 +109,10 @@
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(0, 13);
             this.lblId.TabIndex = 11;
+            // 
+            // bsCity
+            // 
+            this.bsCity.DataSource = typeof(Territories.Model.City);
             // 
             // btnRelations
             // 
@@ -338,10 +342,6 @@
             this.dgvPublishers.TabIndex = 7;
             this.dgvPublishers.VirtualMode = true;
             // 
-            // bsCity
-            // 
-            this.bsCity.DataSource = typeof(Territories.Model.City);
-            // 
             // frmCities
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -356,6 +356,7 @@
             this.Shown += new System.EventHandler(this.frmCities_Shown);
             this.grpObject.ResumeLayout(false);
             this.grpObject.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsCity)).EndInit();
             this.grdSearch.ResumeLayout(false);
             this.grdSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).EndInit();
@@ -364,7 +365,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDirections)).EndInit();
             this.tabPublishers.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPublishers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsCity)).EndInit();
             this.ResumeLayout(false);
 
         }

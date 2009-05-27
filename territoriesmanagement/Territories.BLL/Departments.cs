@@ -36,11 +36,21 @@ namespace Territories.BLL
 
         #region IGenericServer<Department> Members
 
+        public Department Save(Department v)
+        {
+            Department rv;
+            if (v.IdDepartment == 0)
+                rv = Insert(v);
+            else
+                rv = Update(v);
+            return rv;
+        }
+
         public Department Insert(Department v)
         {
             try
             {
-                if (this.IsValid(v))
+                if (IsValid(v))
                 {
                     _dm.AddToDepartments(v);
                     _dm.SaveChanges();                    
@@ -50,9 +60,7 @@ namespace Territories.BLL
             }
             catch (Exception e)
             {
-
                 throw e;
-
             }
         }
 
@@ -70,7 +78,6 @@ namespace Territories.BLL
             }
             catch (Exception e)
             {
-
                 throw e;
             }
         }
@@ -84,7 +91,6 @@ namespace Territories.BLL
             }
             catch (Exception e)
             {
-
                 throw e;
             }
         }
@@ -93,6 +99,7 @@ namespace Territories.BLL
         {
             try
             {
+                _dm.Departments.MergeOption = MergeOption.NoTracking;
                 Department rv = _dm.departments_GetById(id).FirstOrDefault();
                 return rv;
             }
@@ -102,31 +109,25 @@ namespace Territories.BLL
             }
         }
 
-        public List<KeyListItem> Search(string strQuery, params ObjectParameter[] parameters) 
+        public IList Search(string strCriteria, params ObjectParameter[] parameters) 
         {            
             try
             {
-                if (strQuery == null || strQuery == "")
-                {
-                    var objectResults = _dm.departments_GetAll();
-                    var results = from dep in objectResults
-                                  select new KeyListItem { Id = dep.IdDepartment, Name = dep.Name };
-                    return results.ToList<KeyListItem>();
-                }
-                else
-                {
-                    strQuery = "SELECT VALUE Department FROM TerritoriesDataContext.Departments AS Department WHERE " + strQuery;
-                    ObjectQuery<Department> query = _dm.CreateQuery<Department>(strQuery, parameters);
-                    var results = from dep in QueryExecutor.ExecuteList<Department>(query)
-                               orderby dep.Name
-                               select new KeyListItem { Id = dep.IdDepartment, Name = dep.Name };
-                    return results.ToList<KeyListItem>();                         
-                    
-                }
+                ObjectResult<Department> objectResults;
+                string strQuery = "SELECT VALUE Department FROM TerritoriesDataContext.Departments AS Department";
+
+                if (strCriteria != "")
+                    strQuery = strQuery + " WHERE " + strCriteria;
+
+                var query = _dm.CreateQuery<Department>(strQuery, parameters);
+                    objectResults = query.Execute(MergeOption.AppendOnly);
+                var results = from dep in objectResults
+                              orderby dep.Name
+                              select new { Id = dep.IdDepartment, Name = dep.Name };
+                return results.ToList(); 
             }
             catch (Exception e)
             {
-
                 throw e;
             }
         }
@@ -137,7 +138,7 @@ namespace Territories.BLL
             {
                 throw new Exception("The department name is invalid. Correct and retrieve.");
             }
-            if (nameExist(v))
+            if (NameExist(v))
             {
                 throw new Exception("The department already exist. Correct and retrieve.");
             }
@@ -156,11 +157,6 @@ namespace Territories.BLL
 
         }
 
-        public List<KeyListItem> All()
-        {
-            return this.Search("");
-        }
-
         public void SaveChanges()
         {
             try
@@ -168,8 +164,7 @@ namespace Territories.BLL
                 _dm.SaveChanges();
             }
             catch (Exception ex)
-            {
-                
+            {                
                 throw ex;
             }
         }
@@ -185,7 +180,7 @@ namespace Territories.BLL
                 var queryResults = _dm.cities_GetByDepartment(id);
                 var cities = from city in queryResults
                              orderby city.Name
-                             select new KeyListItem { Id = city.IdCity, Name = city.Name };
+                             select new { Id = city.IdCity, Name = city.Name };
                 rv.Add("Cities", cities.ToList());
 
                 return rv;
@@ -196,10 +191,10 @@ namespace Territories.BLL
             }
         }
 
-        private bool nameExist(Department v)
+        private bool NameExist(Department v)
         {
-            var results = QueryExecutor.ExecuteList<Department>(_compiledSameDepartment(_dm, v), MergeOption.PreserveChanges);
-
+            ObjectParameter[] parameters = { new ObjectParameter("Name", v.Name) };
+            var results = _compiledSameDepartment(_dm, v).ToList();
             if (results.Count > 0)
                 return true;
             else

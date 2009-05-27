@@ -11,26 +11,67 @@ namespace Territories.Model
 {
     public partial class TerritoriesDataContext
     {
-        public void UpdateTo(string entitySetName, EntityObject o)
+        public void Update(EntityObject objectDetached)
         {
-            EntityKey key = this.CreateEntityKey(entitySetName, o);
-            Object originalItem;
-
-            if (this.TryGetObjectByKey(key, out originalItem))
+            if (objectDetached.EntityState == EntityState.Detached)
             {
-                this.ApplyPropertyChanges(key.EntitySetName, o);
-
-                foreach (var entityrelationship in ((IEntityWithRelationships)originalItem).RelationshipManager.GetAllRelatedEnds())
+                object currentEntityInDb = null;
+                if (this.TryGetObjectByKey(objectDetached.EntityKey, out currentEntityInDb))
                 {
-                    var oldRef = entityrelationship as EntityReference;
-
-                    if (oldRef != null)
-                    {
-                        var newRef = ((IEntityWithRelationships)o).RelationshipManager.GetRelatedEnd(oldRef.RelationshipName, oldRef.TargetRoleName) as EntityReference;
-                        oldRef = newRef;
-                    }
+                    this.ApplyPropertyChanges(objectDetached.EntityKey.EntitySetName, objectDetached);
+                    //(CDLTLL)Apply property changes to all referenced entities in context
+                    this.ApplyReferencePropertyChanges((IEntityWithRelationships)objectDetached,
+                                                                                        (IEntityWithRelationships)currentEntityInDb); //Custom extensor method
+                }
+                else
+                {
+                    throw new ObjectNotFoundException();
                 }
             }
-        }  
+        }
+
+        public void ApplyReferencePropertyChanges(IEntityWithRelationships newEntity,
+            IEntityWithRelationships oldEntity)
+        {
+            foreach (var relatedEnd in oldEntity.RelationshipManager.GetAllRelatedEnds())
+            {
+                var oldRef = relatedEnd as EntityReference;
+                if (oldRef != null)
+                {
+                    
+                    // this related end is a reference not a collection
+                    var newRef = newEntity.RelationshipManager.GetRelatedEnd(oldRef.RelationshipName, oldRef.TargetRoleName) as EntityReference;
+
+                    oldRef.EntityKey = newRef.EntityKey;
+                }
+            }
+        }
+
+
+        public void SetAllModified<T>(T entity) where T : IEntityWithKey
+        {
+
+            var stateEntry = this.ObjectStateManager.GetObjectStateEntry(entity.EntityKey);
+
+            var propertyNameList = stateEntry.CurrentValues.DataRecordInfo.FieldMetadata.Select(pn => pn.FieldType.Name);
+
+            foreach (var propName in propertyNameList)
+            {
+
+                stateEntry.SetModifiedProperty(propName);
+
+            }
+
+        }
+
+        public void DetachByKey(EntityKey key)
+        {
+            Object entity;
+            if (this.TryGetObjectByKey(key,out entity))
+            {
+                this.Detach(entity);
+            }
+            
+        }
     }
 }
