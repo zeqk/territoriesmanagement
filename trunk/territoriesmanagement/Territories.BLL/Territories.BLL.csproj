@@ -51,12 +51,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BussinesLayer.cs" />
     <Compile Include="Cities.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="QueryExecutor.cs" />
-    <Compile Include="DataBridge.cs" />
     <Compile Include="Departments.cs" />
     <Compile Include="IDataBridge.cs" />
     <Compile Include="KeyListItem.cs" />

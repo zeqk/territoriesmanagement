@@ -15,11 +15,13 @@ using Territories.DAL;
 
 namespace Territories.BLL
 {                
-    public class Cities //: IDataBridge<City>
+    public class Cities : IDataBridge<City>
     {
         private TerritoriesDataContext _dm;
         private Func<TerritoriesDataContext, City, IQueryable<City>> _compiledSameCity;
         private Func<TerritoriesDataContext, int, IQueryable<City>> _compileLoadCity;
+        private Func<TerritoriesDataContext, IQueryable<City>> _compileGetAllCities;
+
 
         #region Constructors
         public Cities()        
@@ -52,8 +54,9 @@ namespace Territories.BLL
         {
             try
             {
-                if (this.IsValid(v))
+                if (IsValid(v))
                 {
+                    v.Department = _dm.departments_GetById(v.Department.IdDepartment).FirstOrDefault();
                     _dm.AddToCities(v);
                     _dm.SaveChanges();                 
                 }
@@ -72,20 +75,16 @@ namespace Territories.BLL
             {
                 if (this.IsValid(v))
                 {
+                    int idDepartment = v.Department.IdDepartment;
 
-                    //v.EntityKey = _dm.CreateEntityKey("Cities", v);
-                    //_dm.Attach(v);
+                    _dm.ApplyPropertyChanges("Cities", v);
 
-                    var dep = _dm.departments_GetById(v.Department.IdDepartment).FirstOrDefault();
-                    //v.DepartmentReference.Attach(dep);
-                    v.Department = dep;
-                    //v.DepartmentReference.Load();
-                    //_dm.ApplyPropertyChanges("Cities", v);
-
-                    _dm.Attach(v);
-
-                    //_dm.UpdateTo("Cities", v);
-                    
+                    //set navigation property
+                    _dm.Cities.MergeOption = MergeOption.AppendOnly;
+                    City c = _compileLoadCity(_dm, v.IdCity).FirstOrDefault();                    
+                    //City c = _dm.cities_GetById(v.IdCity).First();
+                    c.Department = _dm.departments_GetById(idDepartment).FirstOrDefault(); ;
+                    //
                     _dm.SaveChanges();
                 } 
                 return v;
@@ -93,7 +92,6 @@ namespace Territories.BLL
             }
             catch (Exception e)
             {
-
                 throw e;
             }
         }
@@ -107,7 +105,6 @@ namespace Territories.BLL
             }
             catch (Exception e)
             {
-
                 throw e;
             }
         }
@@ -115,10 +112,15 @@ namespace Territories.BLL
         public City Load(int id)
         {
             try
-            {                
-                //City rv = this._compileLoadCity(_dm, id).FirstOrDefault();
-                City rv = _dm.cities_GetById(id).FirstOrDefault();
-                rv.DepartmentReference.Load();                
+            {
+                _dm.Cities.MergeOption = MergeOption.NoTracking;
+                City rv = this._compileLoadCity(_dm, id).FirstOrDefault();
+
+                //City rv = _dm.cities_GetById(id).FirstOrDefault();
+                //rv.DepartmentReference.Load();
+
+                //_dm.DetachByKey(rv.EntityKey);
+                
                 return rv;
             }
             catch (Exception e)
@@ -127,27 +129,23 @@ namespace Territories.BLL
             }
         }
 
-        public IList Search (string strQuery, params ObjectParameter[] parameters)
+        public IList Search (string strCriteria, params ObjectParameter[] parameters)
         {
             
             try
             {
-                if (strQuery == null || strQuery == "")
-                {
-                    var objectResults = _dm.cities_GetAll();
-                    var results = from city in objectResults
-                                  select new KeyListItem { Id = city.IdCity, Name = city.Name };
-                    return results.ToList() ;                    
-                }
-                else
-                {
-                    strQuery = "SELECT VALUE City AS Department FROM TerritoriesDataContext.Cities AS City WHERE " + strQuery;
-                    var query = _dm.CreateQuery<City>(strQuery, parameters);
-                    var results = from city in query.Execute(MergeOption.AppendOnly)
-                                 //orderby city.Name
-                                 select new { Id = city.IdCity, Name = city.Name };
-                    return results.ToList();                    
-                }               
+                ObjectResult<City> objectResults;
+                string strQuery = "SELECT VALUE City FROM TerritoriesDataContext.Cities AS City";
+
+                if (strCriteria != "")
+                    strQuery = strQuery + " WHERE " + strCriteria;
+
+                var query = _dm.CreateQuery<City>(strQuery, parameters);
+                    objectResults = query.Execute(MergeOption.AppendOnly);
+                var results = from city in objectResults
+                              orderby city.Name,city.Department.Name
+                              select new { Id = city.IdCity, Name = city.Name, DepartmentName = city.Department.Name };
+                return results.ToList();
             }
             catch (Exception e)
             {
@@ -161,7 +159,7 @@ namespace Territories.BLL
             {
                 throw new Exception("The city name is invalid. Correct and retrieve.");
             }
-            if (nameExist(v))
+            if (NameExist(v))
             {
                 throw new Exception("The city already exist. Correct and retrieve.");
             }
@@ -179,11 +177,6 @@ namespace Territories.BLL
             //rv.Cities = new EntitySet<City>();
             return rv;
 
-        }
-
-        public IList All()
-        {
-            return this.Search("");
         }
 
         public void SaveChanges()
@@ -227,7 +220,7 @@ namespace Territories.BLL
             }
         }
 
-        private bool nameExist(City v)
+        private bool NameExist(City v)
         {
 
             ObjectParameter[] parameters = { new ObjectParameter("Name", v.Name) };
@@ -273,17 +266,24 @@ namespace Territories.BLL
             this._compiledSameCity = CompiledQuery.Compile
                 (
                     (TerritoriesDataContext dm,City v) => from city in _dm.Cities
-                                where city.Name == v.Name && city.IdCity != v.IdCity
+                                where city.Name == v.Name && city.IdCity == v.IdCity
                                 select city
 
                 );
 
             this._compileLoadCity = CompiledQuery.Compile
                 (
-                    (TerritoriesDataContext dm,int id) => from city in _dm.Cities.Include("Department")
+                    (TerritoriesDataContext dm, int id) => from city in dm.Cities.Include("Department")
                                                            where city.IdCity == id
                                                            select city
                 );
+
+            this._compileGetAllCities = CompiledQuery.Compile
+                (
+                    (TerritoriesDataContext dm) => dm.Cities.Include("Department").AsQueryable()
+                );
+
+            
         }
     }
 }

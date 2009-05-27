@@ -163,6 +163,11 @@ namespace My.Controls
                 }
             }
         }
+
+        public void Clear()
+        {
+            txtValue.Text = "";
+        }
 #endregion
     }
 }
