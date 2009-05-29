@@ -9,7 +9,7 @@ namespace Territories.BLL
     public interface IDataBridge<T>
     {
         T Save(T v);
-        void Delete(T v);
+        void Delete(int id);
         T Load(int id);
         IList Search(string query, params ObjectParameter[] parameters);
         T NewObject();       
