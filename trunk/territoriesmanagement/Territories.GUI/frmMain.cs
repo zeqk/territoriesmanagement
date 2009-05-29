@@ -18,17 +18,30 @@ namespace Territories.GUI
 
         private void mnuDepartments_Click(object sender, EventArgs e)
         {
-            frmDepartments myForm = new frmDepartments();
-            myForm.MdiParent = this;
-            myForm.Show();
-                
+            try
+            {                
+                frmDepartments myForm = new frmDepartments();
+                myForm.MdiParent = this;
+                myForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }                
         }
 
         private void mnuCities_Click(object sender, EventArgs e)
         {
-            frmCities myForm = new frmCities();
-            myForm.MdiParent = this;
-            myForm.Show();
+            try
+            {
+                frmCities myForm = new frmCities();
+                myForm.MdiParent = this;
+                myForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

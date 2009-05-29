@@ -42,11 +42,12 @@
             this.lblName = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.grdSearch = new System.Windows.Forms.GroupBox();
+            this.lblFilterName = new System.Windows.Forms.Label();
+            this.schName = new My.Controls.Search();
             this.lblFilterDepartment = new System.Windows.Forms.Label();
             this.cboFilterDepartment = new System.Windows.Forms.ComboBox();
             this.lblResult = new System.Windows.Forms.Label();
             this.lblFiltered = new System.Windows.Forms.Label();
-            this.schName = new My.Controls.Search();
             this.btnClearFilter = new System.Windows.Forms.Button();
             this.dgvResults = new System.Windows.Forms.DataGridView();
             this.btnFilter = new System.Windows.Forms.Button();
@@ -181,11 +182,12 @@
             // 
             // grdSearch
             // 
+            this.grdSearch.Controls.Add(this.lblFilterName);
+            this.grdSearch.Controls.Add(this.schName);
             this.grdSearch.Controls.Add(this.lblFilterDepartment);
             this.grdSearch.Controls.Add(this.cboFilterDepartment);
             this.grdSearch.Controls.Add(this.lblResult);
             this.grdSearch.Controls.Add(this.lblFiltered);
-            this.grdSearch.Controls.Add(this.schName);
             this.grdSearch.Controls.Add(this.btnClearFilter);
             this.grdSearch.Controls.Add(this.dgvResults);
             this.grdSearch.Controls.Add(this.btnFilter);
@@ -196,14 +198,36 @@
             this.grdSearch.TabStop = false;
             this.grdSearch.Text = "Search";
             // 
+            // lblFilterName
+            // 
+            this.lblFilterName.AutoSize = true;
+            this.lblFilterName.Location = new System.Drawing.Point(16, 16);
+            this.lblFilterName.Name = "lblFilterName";
+            this.lblFilterName.Size = new System.Drawing.Size(92, 13);
+            this.lblFilterName.TabIndex = 18;
+            this.lblFilterName.Text = "Filter for city name";
+            // 
+            // schName
+            // 
+            this.schName.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.schName.Column = null;
+            this.schName.Criteria = My.Enumerators.Criterias.EqualTo;
+            this.schName.Location = new System.Drawing.Point(19, 32);
+            this.schName.Name = "schName";
+            this.schName.Parameter = null;
+            this.schName.Query = null;
+            this.schName.Size = new System.Drawing.Size(238, 22);
+            this.schName.TabIndex = 17;
+            this.schName.VariableName = null;
+            // 
             // lblFilterDepartment
             // 
             this.lblFilterDepartment.AutoSize = true;
             this.lblFilterDepartment.Location = new System.Drawing.Point(16, 63);
             this.lblFilterDepartment.Name = "lblFilterDepartment";
-            this.lblFilterDepartment.Size = new System.Drawing.Size(62, 13);
+            this.lblFilterDepartment.Size = new System.Drawing.Size(100, 13);
             this.lblFilterDepartment.TabIndex = 16;
-            this.lblFilterDepartment.Text = "Department";
+            this.lblFilterDepartment.Text = "Filter for department";
             // 
             // cboFilterDepartment
             // 
@@ -232,19 +256,6 @@
             this.lblFiltered.TabIndex = 12;
             this.lblFiltered.Text = "Filtered";
             // 
-            // schName
-            // 
-            this.schName.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.schName.Column = null;
-            this.schName.Criteria = My.Enumerators.Criterias.EqualTo;
-            this.schName.Location = new System.Drawing.Point(19, 16);
-            this.schName.Name = "schName";
-            this.schName.Parameter = null;
-            this.schName.Query = null;
-            this.schName.Size = new System.Drawing.Size(241, 42);
-            this.schName.TabIndex = 14;
-            this.schName.VariableName = null;
-            // 
             // btnClearFilter
             // 
             this.btnClearFilter.Image = ((System.Drawing.Image)(resources.GetObject("btnClearFilter.Image")));
@@ -269,7 +280,6 @@
             this.dgvResults.TabIndex = 5;
             this.dgvResults.VirtualMode = true;
             this.dgvResults.SelectionChanged += new System.EventHandler(this.dgvResults_SelectionChanged);
-            this.dgvResults.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvResults_CellContentClick);
             // 
             // btnFilter
             // 
@@ -354,6 +364,7 @@
             this.Text = "Cities";
             this.Load += new System.EventHandler(this.frmCities_Load);
             this.Shown += new System.EventHandler(this.frmCities_Shown);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmCities_FormClosed);
             this.grpObject.ResumeLayout(false);
             this.grpObject.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsCity)).EndInit();
@@ -382,7 +393,6 @@
         private System.Windows.Forms.Button btnClearFilter;
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.Button btnRelations;
-        private My.Controls.Search schName;
         private System.Windows.Forms.TabControl tabPanel;
         private System.Windows.Forms.TabPage tabDirections;
         private System.Windows.Forms.Label lblId;
@@ -396,5 +406,7 @@
         private System.Windows.Forms.Label lblFilterDepartment;
         private System.Windows.Forms.ComboBox cboFilterDepartment;
         private System.Windows.Forms.BindingSource bsCity;
+        private My.Controls.Search schName;
+        private System.Windows.Forms.Label lblFilterName;
     }
 }

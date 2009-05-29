@@ -50,11 +50,14 @@ namespace Territories.BLL
         {
             try
             {
-                if (IsValid(v))
+                string invalidMessage = "";
+                if (IsValid(v, ref invalidMessage))
                 {
                     _dm.AddToDepartments(v);
-                    _dm.SaveChanges();                    
+                    _dm.SaveChanges();
                 }
+                else
+                    throw new Exception(invalidMessage);
 
                 return v;
             }
@@ -68,13 +71,16 @@ namespace Territories.BLL
         {
             try
             {
-                if (this.IsValid(v))
+                string invalidMessage = "";
+                if (this.IsValid(v, ref invalidMessage))
                 {
                     _dm.ApplyPropertyChanges("Departments", v);
                     _dm.SaveChanges();
                 }
-                return v;
-                
+                else
+                    throw new Exception(invalidMessage);
+
+                return v;                
             }
             catch (Exception e)
             {
@@ -82,11 +88,12 @@ namespace Territories.BLL
             }
         }
 
-        public void Delete(Department v)
+        public void Delete(int id)
         {
             try                
             {
-                _dm.DeleteObject(v);
+                Department dep = _dm.departments_GetById(id).First();
+                _dm.DeleteObject(dep);
                 _dm.SaveChanges();
             }
             catch (Exception e)
@@ -132,19 +139,22 @@ namespace Territories.BLL
             }
         }
 
-        public bool IsValid(Department v)
+        public bool IsValid(Department v, ref string message)
         {
+            bool rv = true;
             if (v.Name == "" || v.Name == null)
             {
-                throw new Exception("The department name is invalid. Correct and retrieve.");
+                message += "The department name is invalid. Correct and retrieve.";
+                rv = false;
             }
-            if (NameExist(v))
+            if (Exist(v))
             {
-                throw new Exception("The department already exist. Correct and retrieve.");
+                if (!rv)
+                    message += "\n";
+                message += "The department already exist. Correct and retrieve.";
+                rv = false;
             }
-
-
-            return true;
+            return rv;
         }
 
         public Department NewObject()
@@ -191,7 +201,7 @@ namespace Territories.BLL
             }
         }
 
-        private bool NameExist(Department v)
+        private bool Exist(Department v)
         {
             ObjectParameter[] parameters = { new ObjectParameter("Name", v.Name) };
             var results = _compiledSameDepartment(_dm, v).ToList();

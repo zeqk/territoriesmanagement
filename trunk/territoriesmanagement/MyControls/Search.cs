@@ -41,15 +41,6 @@ namespace My.Controls
         #region Properties
 
         /// <summary>
-        /// Get/Set for control text
-        /// </summary>
-        public string Text
-        {
-            get { return lblCriteria.Text; }
-            set { lblCriteria.Text = value; }
-        }
-
-        /// <summary>
         /// Get/Set for column
         /// </summary>
         public string Column
@@ -112,10 +103,9 @@ namespace My.Controls
         /// </summary>
         /// <param name="column">string column name for the query</param>
         /// <param name="text">string control name</param>
-        public void SetProperties(string column, string text,string variableName)
+        public void SetProperties(string column,string variableName)
         {
             this._column = column;
-            this.lblCriteria.Text = text;
             this._variableName = variableName;
             _parameter = new ObjectParameter(variableName, typeof(string)); 
         }

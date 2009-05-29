@@ -14,21 +14,25 @@ using Territories.BLL;
 namespace Territories.GUI
 {
     public partial class frmDepartments : Form
-    {       
+    {
+        static private bool _opened = false;
 
         private Departments server = new Departments();
 
-        private bool isDirty;
+        private bool _isDirty;
 
         public frmDepartments()
         {
-            
+            if (_opened)
+                throw new Exception("The window is already opened.");
+            else
+                _opened = true;   
             InitializeComponent();
         }
 
         private void frmDepartments_Load(object sender, EventArgs e)
         {
-            schName.SetProperties("Department.Name", "Filter department name", "name");
+            schName.SetProperties("Department.Name","name");
             ConfigGrids();
             this.LoadResults("");  
             
@@ -91,7 +95,7 @@ namespace Territories.GUI
                     if (tabPanel.Visible)
                         LoadRelations(v);
 
-                    this.isDirty = false;
+                    this._isDirty = false;
                 } 
         }
 
@@ -111,12 +115,12 @@ namespace Territories.GUI
             var v = this.server.NewObject();
             ObjectToForm(v);
             txtName.Focus();
-            this.isDirty = false;
+            this._isDirty = false;
         }
 
         private void txtName_TextChanged(object sender, EventArgs e)
         {
-            this.isDirty = true;
+            this._isDirty = true;
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -127,7 +131,7 @@ namespace Territories.GUI
         private void New()
         {
             bool yes = true;
-            if (isDirty)
+            if (_isDirty)
                 if (MessageBox.Show("Desea continuar?", "Mensaje", MessageBoxButtons.YesNo) == DialogResult.No)
                 {
                     yes = false;
@@ -140,7 +144,7 @@ namespace Territories.GUI
                 {
                     var v = this.server.NewObject();
                     ObjectToForm(v);
-                    this.isDirty = false;
+                    this._isDirty = false;
                 }
                 catch (Exception ex)
                 {
@@ -188,7 +192,7 @@ namespace Territories.GUI
             var v = FormToOject();
             try
             {
-                this.server.Delete(v);
+                this.server.Delete(v.IdDepartment);
                 LoadResults("");
                 ClearForm();
             }
@@ -241,12 +245,17 @@ namespace Territories.GUI
         private void btnRelations_Click(object sender, EventArgs e)
         {
             if (tabPanel.Visible == true)
+            {
                 tabPanel.Visible = false;
+                btnRelations.Text = "View relations";
+            }
             else
             {
                 if (lblId.Text != "0")
                 {
                     tabPanel.Visible = true;
+                    btnRelations.Text = "Hide relations";
+
                     LoadRelations((Department)bsDepartment.DataSource);
                 }
                 else
@@ -267,19 +276,11 @@ namespace Territories.GUI
         {
             New();
         }
+        
 
-        private void frmDepartments_FormClosing(object sender, FormClosingEventArgs e)
+        private void frmDepartments_FormClosed(object sender, FormClosedEventArgs e)
         {
-
-            //if (MessageBox.Show("Desea guardar los cambios efectuados?", "Mensaje", MessageBoxButtons.OKCancel)==DialogResult.OK)
-            //{
-            //    this.server.SaveChanges();
-            //}        
-        }
-
-        private void dgvResults_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
+            _opened = false;
         }
 
         

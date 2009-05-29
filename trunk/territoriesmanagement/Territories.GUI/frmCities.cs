@@ -15,20 +15,23 @@ namespace Territories.GUI
 {
     public partial class frmCities : Form
     {
-
+        static private bool _opened = false;
         private Cities server = new Cities();
 
-        private bool isDirty;
+        private bool _isDirty;
 
         public frmCities()
-        {
-            
+        {            
+            if (_opened)
+                throw new Exception("The window is already opened.");
+            else
+                _opened = true;
             InitializeComponent();
         }
 
         private void frmCities_Load(object sender, EventArgs e)
         {
-            schName.SetProperties("City.Name", "Filter city name", "name");
+            schName.SetProperties("City.Name", "name");
             ConfigGrids();
 
             this.cboDepartment.DataSource = this.server.GetDepartments();                     
@@ -90,7 +93,7 @@ namespace Territories.GUI
             dgvDirections.MultiSelect = false;
 
             dgvPublishers.Columns.Add("Id", "Id");
-            dgvPublishers.Columns.Add("Name", "City");
+            dgvPublishers.Columns.Add("Name", "Publisher");
             dgvPublishers.Columns.Add("blank", "");
 
             dgvPublishers.Columns["Id"].Visible = false;
@@ -118,7 +121,7 @@ namespace Territories.GUI
                     if (tabPanel.Visible)
                         LoadRelations(v);
 
-                    this.isDirty = false;
+                    this._isDirty = false;
                 }  
         }
 
@@ -145,12 +148,12 @@ namespace Territories.GUI
             var v = this.server.NewObject();
             ObjectToForm(v);
             txtName.Focus();
-            this.isDirty = false;
+            this._isDirty = false;
         }
 
         private void txtName_TextChanged(object sender, EventArgs e)
         {
-            this.isDirty = true;
+            this._isDirty = true;
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -161,7 +164,7 @@ namespace Territories.GUI
         private void New()
         {
             bool yes = true;
-            if (isDirty)
+            if (_isDirty)
                 if (MessageBox.Show("Desea continuar?", "Mensaje", MessageBoxButtons.YesNo) == DialogResult.No)
                 {
                     yes = false;
@@ -174,7 +177,7 @@ namespace Territories.GUI
                 {
                     var v = this.server.NewObject();
                     ObjectToForm(v);
-                    this.isDirty = false;
+                    this._isDirty = false;
                 }
                 catch (Exception ex)
                 {
@@ -215,7 +218,7 @@ namespace Territories.GUI
             var v = FormToOject();
             try
             {
-                this.server.Delete(v);
+                this.server.Delete(v.IdCity);
                 LoadResults("");
                 ClearForm();
             }
@@ -282,12 +285,17 @@ namespace Territories.GUI
         private void btnRelations_Click(object sender, EventArgs e)
         {
             if (tabPanel.Visible == true)
+            {
                 tabPanel.Visible = false;
+                btnRelations.Text = "View relations";
+            }
             else
             {
                 if (lblId.Text != "0")
                 {
                     tabPanel.Visible = true;
+                    btnRelations.Text = "Hide relations";
+
                     LoadRelations((City)bsCity.DataSource);
                 }
                 else
@@ -297,34 +305,16 @@ namespace Territories.GUI
 
         private void LoadRelations(City v)
         {
-            dgvDirections.DataSource = this.server.LoadRelations(v.IdCity)["Cities"];
+            IDictionary relations = this.server.LoadRelations(v.IdCity);
+            dgvDirections.DataSource = relations["Cities"];
             dgvDirections.Refresh();
 
             dgvDirections.RowHeadersVisible = false;
 
-            dgvPublishers.DataSource = this.server.LoadRelations(v.IdCity)["Publishers"];
+            dgvPublishers.DataSource = relations["Publishers"];
             dgvPublishers.Refresh();
 
             dgvPublishers.RowHeadersVisible = false;
-
-        }
-
-        private void frmDepartments_Shown(object sender, EventArgs e)
-        {
-            New();
-        }
-
-        private void frmDepartments_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
-            //if (MessageBox.Show("Desea guardar los cambios efectuados?", "Mensaje", MessageBoxButtons.OKCancel)==DialogResult.OK)
-            //{
-            //    this.server.SaveChanges();
-            //}
-        }
-
-        private void dgvResults_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
         }
 
@@ -342,6 +332,11 @@ namespace Territories.GUI
                 rv = false;
 
             return rv;
+        }
+
+        private void frmCities_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _opened = false;
         }
 
         
