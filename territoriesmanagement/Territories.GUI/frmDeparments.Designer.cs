@@ -200,15 +200,15 @@
             // schName
             // 
             this.schName.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.schName.Column = null;
+            this.schName.Columns = null;
             this.schName.Criteria = My.Enumerators.Criterias.EqualTo;
             this.schName.Location = new System.Drawing.Point(19, 32);
             this.schName.Name = "schName";
-            this.schName.Parameter = null;
+            this.schName.Parameters = null;
             this.schName.Query = null;
             this.schName.Size = new System.Drawing.Size(238, 22);
             this.schName.TabIndex = 14;
-            this.schName.VariableName = null;
+            this.schName.VariableNames = null;
             // 
             // btnClearFilter
             // 

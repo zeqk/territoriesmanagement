@@ -31,20 +31,22 @@ namespace Territories.GUI
 
         private void frmCities_Load(object sender, EventArgs e)
         {
-            schName.SetProperties("City.Name", "name");
+            string[] columns = {"City.Name"};
+            string[] variables = {"name"};
+            schName.SetProperties(columns,variables);
             ConfigGrids();
 
-            this.cboDepartment.DataSource = this.server.GetDepartments();                     
-            this.cboDepartment.DisplayMember = "Name";
-            this.cboDepartment.ValueMember = "Id";
-            this.cboDepartment.SelectedItem = null;
+            cboDepartment.DataSource = this.server.GetDepartments();                     
+            cboDepartment.DisplayMember = "Name";
+            cboDepartment.ValueMember = "Id";
+            cboDepartment.SelectedItem = null;
 
-            this.cboFilterDepartment.DataSource = this.server.GetDepartments();
-            this.cboFilterDepartment.DisplayMember = "Name";
-            this.cboFilterDepartment.ValueMember = "Id";
-            this.cboFilterDepartment.SelectedItem = null;
+            cboFilterDepartment.DataSource = this.server.GetDepartments();
+            cboFilterDepartment.DisplayMember = "Name";
+            cboFilterDepartment.ValueMember = "Id";
+            cboFilterDepartment.SelectedItem = null;
 
-            this.LoadResults("");  
+            LoadResults("");  
         }
 
         private void LoadResults(string query)
@@ -105,12 +107,7 @@ namespace Territories.GUI
             dgvPublishers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPublishers.MultiSelect = false;
 
-        }   
-
-        private void Close_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
-        } 
+        }
 
         private void dgvResults_SelectionChanged(object sender, EventArgs e)
         {       
@@ -242,10 +239,13 @@ namespace Territories.GUI
                 List<ObjectParameter> parameters =  new List<ObjectParameter>();
                 string strQuery = "";
 
-                if (schName.Parameter.Value.ToString() != "")
+                if (!schName.IsClean())
                 {
                     strQuery = schName.Query;
-                    parameters.Add(schName.Parameter);
+                    schName.Parameters.ForEach(delegate(ObjectParameter param)
+                    {
+                        parameters.Add(param);
+                    });
                 }
 
                 if (cboFilterDepartment.SelectedValue != null)

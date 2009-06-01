@@ -32,13 +32,15 @@
             this.mnuGeneral = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuDepartments = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCities = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDirections = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuMain.SuspendLayout();
             this.SuspendLayout();
             // 
             // mnuMain
             // 
             this.mnuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuGeneral});
+            this.mnuGeneral,
+            this.mnuDirections});
             this.mnuMain.Location = new System.Drawing.Point(0, 0);
             this.mnuMain.Name = "mnuMain";
             this.mnuMain.Size = new System.Drawing.Size(845, 24);
@@ -57,16 +59,23 @@
             // mnuDepartments
             // 
             this.mnuDepartments.Name = "mnuDepartments";
-            this.mnuDepartments.Size = new System.Drawing.Size(136, 22);
+            this.mnuDepartments.Size = new System.Drawing.Size(152, 22);
             this.mnuDepartments.Text = "Departments";
             this.mnuDepartments.Click += new System.EventHandler(this.mnuDepartments_Click);
             // 
             // mnuCities
             // 
             this.mnuCities.Name = "mnuCities";
-            this.mnuCities.Size = new System.Drawing.Size(136, 22);
+            this.mnuCities.Size = new System.Drawing.Size(152, 22);
             this.mnuCities.Text = "Cities";
             this.mnuCities.Click += new System.EventHandler(this.mnuCities_Click);
+            // 
+            // mnuDirections
+            // 
+            this.mnuDirections.Name = "mnuDirections";
+            this.mnuDirections.Size = new System.Drawing.Size(66, 20);
+            this.mnuDirections.Text = "Directions";
+            this.mnuDirections.Click += new System.EventHandler(this.mnuDirections_Click);
             // 
             // frmMain
             // 
@@ -91,5 +100,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnuGeneral;
         private System.Windows.Forms.ToolStripMenuItem mnuDepartments;
         private System.Windows.Forms.ToolStripMenuItem mnuCities;
+        private System.Windows.Forms.ToolStripMenuItem mnuDirections;
     }
 }

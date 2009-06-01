@@ -43,5 +43,19 @@ namespace Territories.GUI
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void mnuDirections_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmDirections myForm = new frmDirections();
+                myForm.MdiParent = this;
+                myForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

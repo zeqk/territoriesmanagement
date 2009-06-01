@@ -32,7 +32,9 @@ namespace Territories.GUI
 
         private void frmDepartments_Load(object sender, EventArgs e)
         {
-            schName.SetProperties("Department.Name","name");
+            string[] columns = { "Department.Name" };
+            string[] variables = { "name" };
+            schName.SetProperties(columns,variables);
             ConfigGrids();
             this.LoadResults("");  
             
@@ -215,10 +217,10 @@ namespace Territories.GUI
                 List<ObjectParameter> parameters = new List<ObjectParameter>();
                 string strQuery ="";
 
-                if (schName.Parameter.Value.ToString() != "")
+                if (!schName.IsClean())
                 {
                     strQuery = schName.Query;
-                    parameters.Add(schName.Parameter);
+                    parameters = schName.Parameters;
                 }
 
                 dgvResults.DataSource = this.server.Search(strQuery, parameters.ToArray<ObjectParameter>());
