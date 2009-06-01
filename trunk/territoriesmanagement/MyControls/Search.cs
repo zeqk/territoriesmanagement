@@ -17,12 +17,12 @@ namespace My.Controls
         /// <summary>
         /// Holder for column
         /// </summary>
-        private string _column;      
+        private string[] _columns;      
 
         /// <summary>
         /// Holder for parameter
         /// </summary>
-        private ObjectParameter _parameter;
+        private List<ObjectParameter> _parameters;
 
         /// <summary>
         /// Holder for query
@@ -32,7 +32,7 @@ namespace My.Controls
         /// <summary>
         /// Holder for variable name
         /// </summary>
-        private string _variableName;
+        private string[] _variableNames;
 	
 	
 
@@ -43,10 +43,10 @@ namespace My.Controls
         /// <summary>
         /// Get/Set for column
         /// </summary>
-        public string Column
+        public string[] Columns
         {
-            get { return _column; }
-            set { _column = value; }
+            get { return _columns; }
+            set { _columns = value; }
         }
 
         /// <summary>
@@ -61,10 +61,10 @@ namespace My.Controls
         /// <summary>
         /// Get/Set for parameter
         /// </summary>
-        public ObjectParameter Parameter
+        public List<ObjectParameter> Parameters
         {
-            get { return _parameter; }
-            set { _parameter = value; }
+            get { return _parameters; }
+            set { _parameters = value; }
         }
 
         /// <summary>
@@ -79,10 +79,10 @@ namespace My.Controls
         /// <summary>
         /// Get/Set for variable name
         /// </summary>
-        public string VariableName
+        public string[] VariableNames
         {
-            get { return _variableName; }
-            set { _variableName = value; }
+            get { return _variableNames; }
+            set { _variableNames = value; }
         }
         #endregion
 
@@ -103,11 +103,17 @@ namespace My.Controls
         /// </summary>
         /// <param name="column">string column name for the query</param>
         /// <param name="text">string control name</param>
-        public void SetProperties(string column,string variableName)
+        public void SetProperties(string[] columns,string[] variableNames)
         {
-            this._column = column;
-            this._variableName = variableName;
-            _parameter = new ObjectParameter(variableName, typeof(string)); 
+            this._columns = columns;
+            this._variableNames = variableNames;
+            _parameters = new List<ObjectParameter>();
+            for (int i = 0; i < variableNames.Length; i++)
+            {
+                _parameters.Add(new ObjectParameter(variableNames[i], typeof(string)));
+            }
+            
+            
         }
 
         private void Search_Load(object sender, EventArgs e)
@@ -123,30 +129,56 @@ namespace My.Controls
         }
 
         public void MakeQuery()
-        {
-            if (_parameter != null)
+        {            
+            if (_parameters.Count>0)
             {
+                _query = "";
                 switch (Criteria)
                 {
                     case Enumerators.Criterias.EqualTo:
-                        _parameter.Value = txtValue.Text.ToString();
-                        _query = Column + "= @"+_variableName;
+                        for (int i = 0; i < _variableNames.Length; i++)
+                        {
+                            if (i > 0)
+                                _query += " OR ";
+                            _parameters[i].Value = txtValue.Text.ToString();
+                            _query += _columns[i]+ "= @" + _variableNames[i];
+                        }                        
                         break;
                     case Enumerators.Criterias.NotEqualTo:
-                        _parameter.Value = txtValue.Text.ToString();
-                        _query = Column + " <> @" + _variableName;
+                        for (int i = 0; i < _variableNames.Length; i++)
+                        {
+                            if (i > 0)
+                                _query += " OR ";
+                            _parameters[i].Value = txtValue.Text.ToString();
+                            _query += _columns[i] + " <> @" + _variableNames[i];
+                        };
                         break;
                     case Enumerators.Criterias.StartsWith:
-                        _parameter.Value = txtValue.Text.ToString() + "%";
-                        _query = Column + " LIKE @" + _variableName;
+                        for (int i = 0; i < _variableNames.Length; i++)
+                        {
+                            if (i > 0)
+                                _query += " OR ";
+                            _parameters[i].Value = txtValue.Text.ToString() + "%";
+                            _query += _columns[i] + " LIKE @" + _variableNames[i];
+                        };
                         break;
                     case Enumerators.Criterias.EndsWith:
-                        _parameter.Value = "%" + txtValue.Text.ToString();
-                        _query = Column + " LIKE @" + _variableName;
+                        for (int i = 0; i < _variableNames.Length; i++)
+                        {
+                            if (i > 0)
+                                _query += " OR ";
+                            _parameters[i].Value = "%" +  txtValue.Text.ToString();
+                            _query += _columns[i] + " LIKE @" + _variableNames[i];
+                        };
                         break;
                     case Enumerators.Criterias.Contains:
-                        _parameter.Value = "%" + txtValue.Text.ToString() + "%";
-                        _query = Column + " LIKE @" + _variableName;
+                        for (int i = 0; i < _variableNames.Length; i++)
+                        {
+                            if (i > 0)
+                                _query += " OR ";
+                            _parameters[i].Value = "%" + txtValue.Text.ToString() + "%";
+                            _query += _columns[i] + " LIKE @" + _variableNames[i];
+                        };
                         break;
                     default:
                         break;
@@ -157,6 +189,14 @@ namespace My.Controls
         public void Clear()
         {
             txtValue.Text = "";
+        }
+
+        public bool IsClean()
+        {
+            bool rv = false;
+            if (string.IsNullOrEmpty(txtValue.Text))
+                rv = true;
+            return rv;
         }
 #endregion
     }

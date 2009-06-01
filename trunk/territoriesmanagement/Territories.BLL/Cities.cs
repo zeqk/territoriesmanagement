@@ -43,27 +43,28 @@ namespace Territories.BLL
 
         public City Save(City v)
         {
-            City rv;            
-            if (v.IdCity == 0)
-                rv = this.Insert(v);
+            
+            string invalidMessage = "";
+            if (IsValid(v, ref invalidMessage))
+            {
+                City rv; 
+                if (v.IdCity == 0)
+                    rv = this.Insert(v);
+                else
+                    rv = this.Update(v);
+                return rv;
+            }
             else
-                rv = this.Update(v);
-            return rv;
+                throw new Exception(invalidMessage);     
         }
 
         public City Insert(City v)
         {
             try
             {
-                string invalidMesagge = "";
-                if (IsValid(v, ref invalidMesagge))
-                {
-                    v.Department = _dm.departments_GetById(v.Department.IdDepartment).FirstOrDefault();
-                    _dm.AddToCities(v);
-                    _dm.SaveChanges();
-                }
-                else
-                    throw new Exception(invalidMesagge);
+                v.Department = _dm.departments_GetById(v.Department.IdDepartment).FirstOrDefault();
+                _dm.AddToCities(v);
+                _dm.SaveChanges();
 
                 return v;
             }
@@ -77,23 +78,17 @@ namespace Territories.BLL
         {
             try
             {
-                string invalidMessage = "";
-                if (this.IsValid(v, ref invalidMessage))
-                {
-                    int idDepartment = v.Department.IdDepartment;
+                int idDepartment = v.Department.IdDepartment;
 
-                    _dm.ApplyPropertyChanges("Cities", v);
+                _dm.ApplyPropertyChanges("Cities", v);
 
-                    //set navigation property
-                    _dm.Cities.MergeOption = MergeOption.AppendOnly;
-                    City c = _compileLoadCity(_dm, v.IdCity).FirstOrDefault();
-                    //City c = _dm.cities_GetById(v.IdCity).First();
-                    c.Department = _dm.departments_GetById(idDepartment).FirstOrDefault(); ;
-                    //
-                    _dm.SaveChanges();
-                }
-                else
-                    throw new Exception(invalidMessage);
+                //set navigation property
+                _dm.Cities.MergeOption = MergeOption.AppendOnly;
+                City c = _compileLoadCity(_dm, v.IdCity).FirstOrDefault();
+                //City c = _dm.cities_GetById(v.IdCity).First();
+                c.Department = _dm.departments_GetById(idDepartment).FirstOrDefault(); ;
+                //
+                _dm.SaveChanges();
 
                 return v;
                 
@@ -160,25 +155,7 @@ namespace Territories.BLL
             {
                 throw e;
             }
-        }
-
-        public bool IsValid(City v,ref string message)
-        {
-            bool rv = true;
-            if (v.Name == "" || v.Name == null)
-            {
-                message += "The city name is invalid. Correct and retrieve.";
-                rv = false;
-            }
-            if (Exist(v))
-            {
-                if (!rv)
-                    message += "\n";
-                message += "\nThe city already exist. Correct and retrieve.";
-                rv = false;
-            }
-            return rv;
-        }
+        }        
 
         public City NewObject()
         {
@@ -201,6 +178,31 @@ namespace Territories.BLL
         }
 
         #endregion
+
+        public bool IsValid(City v, ref string message)
+        {
+            bool rv = true;
+            if (v.Name == "" || v.Name == null)
+            {
+                message += "Enter city name.";
+                rv = false;
+            }
+            if (Exist(v))
+            {
+                if (!rv)
+                    message += "\n";
+                message += "The city already exist. Correct and retrieve.";
+                rv = false;
+            }
+            if (v.Department == null || v.Department.IdDepartment==0)
+            {
+                if (!rv)
+                    message += "\n";
+                message += "Select any department.";
+                rv = false;
+            }
+            return rv;
+        }
 
         public IDictionary LoadRelations(int id)
         {
@@ -250,7 +252,7 @@ namespace Territories.BLL
             {                
                 var objectResults = _dm.departments_GetAll();
                 var results = from dep in objectResults
-                                  //orderby dep.Name
+                                  orderby dep.Name
                                   select new {Id = dep.IdDepartment, Name = dep.Name };
                 return results.ToList();
             }

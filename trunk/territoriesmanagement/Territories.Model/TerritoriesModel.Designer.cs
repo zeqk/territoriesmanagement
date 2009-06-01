@@ -25,7 +25,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "TerritoriesGeopositions", "GeoPositions", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.GeoPositions), "Territory", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Territory))]
 
 // Original file name:
-// Generation date: 18/05/2009 12:23:40
+// Generation date: 01/06/2009 14:57:01
 namespace Territories.Model
 {
     
@@ -335,6 +335,29 @@ namespace Territories.Model
                 idCityParameter = new global::System.Data.Objects.ObjectParameter("idCity", typeof(int));
             }
             return base.ExecuteFunction<Publisher>("publishers_GetByCity", idCityParameter);
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.territories_GetById in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<Territory> territories_GetById(global::System.Nullable<int> id)
+        {
+            global::System.Data.Objects.ObjectParameter idParameter;
+            if (id.HasValue)
+            {
+                idParameter = new global::System.Data.Objects.ObjectParameter("id", id);
+            }
+            else
+            {
+                idParameter = new global::System.Data.Objects.ObjectParameter("id", typeof(int));
+            }
+            return base.ExecuteFunction<Territory>("territories_GetById", idParameter);
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.territories_GetAll in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<Territory> territories_GetAll()
+        {
+            return base.ExecuteFunction<Territory>("territories_GetAll");
         }
     }
     /// <summary>
@@ -1471,11 +1494,13 @@ namespace Territories.Model
         /// </summary>
         /// <param name="idTerritory">Initial value of IdTerritory.</param>
         /// <param name="name">Initial value of Name.</param>
-        public static Territory CreateTerritory(int idTerritory, string name)
+        /// <param name="number">Initial value of Number.</param>
+        public static Territory CreateTerritory(int idTerritory, string name, int number)
         {
             Territory territory = new Territory();
             territory.IdTerritory = idTerritory;
             territory.Name = name;
+            territory.Number = number;
             return territory;
         }
         /// <summary>
@@ -1524,6 +1549,29 @@ namespace Territories.Model
         private string _Name;
         partial void OnNameChanging(string value);
         partial void OnNameChanged();
+        /// <summary>
+        /// There are no comments for Property Number in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public int Number
+        {
+            get
+            {
+                return this._Number;
+            }
+            set
+            {
+                this.OnNumberChanging(value);
+                this.ReportPropertyChanging("Number");
+                this._Number = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("Number");
+                this.OnNumberChanged();
+            }
+        }
+        private int _Number;
+        partial void OnNumberChanging(int value);
+        partial void OnNumberChanged();
         /// <summary>
         /// There are no comments for Directions in the schema.
         /// </summary>

@@ -29,35 +29,37 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.chkCorners = new System.Windows.Forms.CheckBox();
+            this.schStreet = new My.Controls.Search();
+            this.lblTerritory = new System.Windows.Forms.Label();
+            this.schCorners = new My.Controls.Search();
+            this.cboTerritory = new System.Windows.Forms.ComboBox();
+            this.lblStreet = new System.Windows.Forms.Label();
+            this.lblCity = new System.Windows.Forms.Label();
+            this.lblCorners = new System.Windows.Forms.Label();
+            this.lblDepartment = new System.Windows.Forms.Label();
+            this.cboCity = new System.Windows.Forms.ComboBox();
+            this.cboDepartment = new System.Windows.Forms.ComboBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.lblFiltered = new System.Windows.Forms.Label();
+            this.lblResults = new System.Windows.Forms.Label();
             this.dgvResults = new System.Windows.Forms.DataGridView();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
-            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.search1 = new My.Controls.Search();
-            this.label5 = new System.Windows.Forms.Label();
-            this.search2 = new My.Controls.Search();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -69,14 +71,152 @@
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.splitContainer3);
+            this.splitContainer1.Panel1.Controls.Add(this.btnClear);
+            this.splitContainer1.Panel1.Controls.Add(this.btnSearch);
+            this.splitContainer1.Panel1.Controls.Add(this.chkCorners);
+            this.splitContainer1.Panel1.Controls.Add(this.schStreet);
+            this.splitContainer1.Panel1.Controls.Add(this.lblTerritory);
+            this.splitContainer1.Panel1.Controls.Add(this.schCorners);
+            this.splitContainer1.Panel1.Controls.Add(this.cboTerritory);
+            this.splitContainer1.Panel1.Controls.Add(this.lblStreet);
+            this.splitContainer1.Panel1.Controls.Add(this.lblCity);
+            this.splitContainer1.Panel1.Controls.Add(this.lblCorners);
+            this.splitContainer1.Panel1.Controls.Add(this.lblDepartment);
+            this.splitContainer1.Panel1.Controls.Add(this.cboCity);
+            this.splitContainer1.Panel1.Controls.Add(this.cboDepartment);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(822, 723);
-            this.splitContainer1.SplitterDistance = 220;
+            this.splitContainer1.Size = new System.Drawing.Size(822, 638);
+            this.splitContainer1.SplitterDistance = 213;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(527, 86);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(81, 37);
+            this.btnClear.TabIndex = 40;
+            this.btnClear.Text = "Clear";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(634, 72);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(96, 64);
+            this.btnSearch.TabIndex = 39;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // chkCorners
+            // 
+            this.chkCorners.AutoSize = true;
+            this.chkCorners.Location = new System.Drawing.Point(197, 11);
+            this.chkCorners.Name = "chkCorners";
+            this.chkCorners.Size = new System.Drawing.Size(68, 17);
+            this.chkCorners.TabIndex = 38;
+            this.chkCorners.Text = "So corns";
+            this.chkCorners.UseVisualStyleBackColor = true;
+            // 
+            // schStreet
+            // 
+            this.schStreet.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.schStreet.Columns = null;
+            this.schStreet.Criteria = My.Enumerators.Criterias.EqualTo;
+            this.schStreet.Location = new System.Drawing.Point(12, 31);
+            this.schStreet.Name = "schStreet";
+            this.schStreet.Parameters = null;
+            this.schStreet.Query = null;
+            this.schStreet.Size = new System.Drawing.Size(380, 22);
+            this.schStreet.TabIndex = 28;
+            this.schStreet.VariableNames = null;
+            // 
+            // lblTerritory
+            // 
+            this.lblTerritory.AutoSize = true;
+            this.lblTerritory.Location = new System.Drawing.Point(12, 142);
+            this.lblTerritory.Name = "lblTerritory";
+            this.lblTerritory.Size = new System.Drawing.Size(45, 13);
+            this.lblTerritory.TabIndex = 37;
+            this.lblTerritory.Text = "Territory";
+            // 
+            // schCorners
+            // 
+            this.schCorners.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.schCorners.Columns = null;
+            this.schCorners.Criteria = My.Enumerators.Criterias.EqualTo;
+            this.schCorners.Location = new System.Drawing.Point(415, 31);
+            this.schCorners.Name = "schCorners";
+            this.schCorners.Parameters = null;
+            this.schCorners.Query = null;
+            this.schCorners.Size = new System.Drawing.Size(380, 22);
+            this.schCorners.TabIndex = 29;
+            this.schCorners.VariableNames = null;
+            // 
+            // cboTerritory
+            // 
+            this.cboTerritory.FormattingEnabled = true;
+            this.cboTerritory.Location = new System.Drawing.Point(12, 156);
+            this.cboTerritory.Name = "cboTerritory";
+            this.cboTerritory.Size = new System.Drawing.Size(380, 21);
+            this.cboTerritory.TabIndex = 36;
+            this.cboTerritory.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
+            // 
+            // lblStreet
+            // 
+            this.lblStreet.AutoSize = true;
+            this.lblStreet.Location = new System.Drawing.Point(12, 15);
+            this.lblStreet.Name = "lblStreet";
+            this.lblStreet.Size = new System.Drawing.Size(94, 13);
+            this.lblStreet.TabIndex = 30;
+            this.lblStreet.Text = "Street and number";
+            // 
+            // lblCity
+            // 
+            this.lblCity.AutoSize = true;
+            this.lblCity.Location = new System.Drawing.Point(12, 96);
+            this.lblCity.Name = "lblCity";
+            this.lblCity.Size = new System.Drawing.Size(24, 13);
+            this.lblCity.TabIndex = 35;
+            this.lblCity.Text = "City";
+            // 
+            // lblCorners
+            // 
+            this.lblCorners.AutoSize = true;
+            this.lblCorners.Location = new System.Drawing.Point(412, 15);
+            this.lblCorners.Name = "lblCorners";
+            this.lblCorners.Size = new System.Drawing.Size(43, 13);
+            this.lblCorners.TabIndex = 31;
+            this.lblCorners.Text = "Corners";
+            // 
+            // lblDepartment
+            // 
+            this.lblDepartment.AutoSize = true;
+            this.lblDepartment.Location = new System.Drawing.Point(12, 56);
+            this.lblDepartment.Name = "lblDepartment";
+            this.lblDepartment.Size = new System.Drawing.Size(62, 13);
+            this.lblDepartment.TabIndex = 34;
+            this.lblDepartment.Text = "Department";
+            // 
+            // cboCity
+            // 
+            this.cboCity.FormattingEnabled = true;
+            this.cboCity.Location = new System.Drawing.Point(12, 112);
+            this.cboCity.Name = "cboCity";
+            this.cboCity.Size = new System.Drawing.Size(380, 21);
+            this.cboCity.TabIndex = 32;
+            // 
+            // cboDepartment
+            // 
+            this.cboDepartment.FormattingEnabled = true;
+            this.cboDepartment.Location = new System.Drawing.Point(12, 72);
+            this.cboDepartment.Name = "cboDepartment";
+            this.cboDepartment.Size = new System.Drawing.Size(380, 21);
+            this.cboDepartment.TabIndex = 33;
             // 
             // splitContainer2
             // 
@@ -86,16 +226,54 @@
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.dgvResults);
+            this.splitContainer2.Panel1.Controls.Add(this.splitContainer3);
             // 
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.btnDelete);
             this.splitContainer2.Panel2.Controls.Add(this.btnEdit);
             this.splitContainer2.Panel2.Controls.Add(this.btnNew);
-            this.splitContainer2.Size = new System.Drawing.Size(822, 499);
-            this.splitContainer2.SplitterDistance = 688;
+            this.splitContainer2.Size = new System.Drawing.Size(822, 421);
+            this.splitContainer2.SplitterDistance = 748;
             this.splitContainer2.TabIndex = 0;
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.lblFiltered);
+            this.splitContainer3.Panel1.Controls.Add(this.lblResults);
+            this.splitContainer3.Panel1MinSize = 15;
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.dgvResults);
+            this.splitContainer3.Size = new System.Drawing.Size(748, 421);
+            this.splitContainer3.SplitterDistance = 15;
+            this.splitContainer3.TabIndex = 0;
+            // 
+            // lblFiltered
+            // 
+            this.lblFiltered.AutoSize = true;
+            this.lblFiltered.Location = new System.Drawing.Point(684, 0);
+            this.lblFiltered.Name = "lblFiltered";
+            this.lblFiltered.Size = new System.Drawing.Size(41, 13);
+            this.lblFiltered.TabIndex = 1;
+            this.lblFiltered.Text = "Filtered";
+            // 
+            // lblResults
+            // 
+            this.lblResults.AutoSize = true;
+            this.lblResults.Location = new System.Drawing.Point(3, 0);
+            this.lblResults.Name = "lblResults";
+            this.lblResults.Size = new System.Drawing.Size(42, 13);
+            this.lblResults.TabIndex = 0;
+            this.lblResults.Text = "Results";
             // 
             // dgvResults
             // 
@@ -103,208 +281,60 @@
             this.dgvResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvResults.Location = new System.Drawing.Point(0, 0);
             this.dgvResults.Name = "dgvResults";
-            this.dgvResults.Size = new System.Drawing.Size(688, 499);
-            this.dgvResults.TabIndex = 0;
+            this.dgvResults.Size = new System.Drawing.Size(748, 402);
+            this.dgvResults.TabIndex = 1;
             // 
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(32, 71);
+            this.btnDelete.Location = new System.Drawing.Point(12, 122);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(84, 28);
+            this.btnDelete.Size = new System.Drawing.Size(47, 47);
             this.btnDelete.TabIndex = 2;
-            this.btnDelete.Text = "Delete";
+            this.btnDelete.Text = "D";
             this.btnDelete.UseVisualStyleBackColor = true;
             // 
             // btnEdit
             // 
             this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.Location = new System.Drawing.Point(32, 37);
+            this.btnEdit.Location = new System.Drawing.Point(11, 69);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(84, 28);
+            this.btnEdit.Size = new System.Drawing.Size(47, 47);
             this.btnEdit.TabIndex = 1;
-            this.btnEdit.Text = "Edit";
+            this.btnEdit.Text = "E";
             this.btnEdit.UseVisualStyleBackColor = true;
             // 
             // btnNew
             // 
             this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNew.Location = new System.Drawing.Point(32, 3);
+            this.btnNew.Location = new System.Drawing.Point(12, 16);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(84, 28);
+            this.btnNew.Size = new System.Drawing.Size(47, 47);
             this.btnNew.TabIndex = 0;
-            this.btnNew.Text = "New";
+            this.btnNew.Text = "N";
             this.btnNew.UseVisualStyleBackColor = true;
-            // 
-            // splitContainer3
-            // 
-            this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer3.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer3.Name = "splitContainer3";
-            // 
-            // splitContainer3.Panel1
-            // 
-            this.splitContainer3.Panel1.Controls.Add(this.label6);
-            this.splitContainer3.Panel1.Controls.Add(this.search1);
-            this.splitContainer3.Panel1.Controls.Add(this.label5);
-            this.splitContainer3.Panel1.Controls.Add(this.search2);
-            this.splitContainer3.Panel1.Controls.Add(this.comboBox3);
-            this.splitContainer3.Panel1.Controls.Add(this.label1);
-            this.splitContainer3.Panel1.Controls.Add(this.label4);
-            this.splitContainer3.Panel1.Controls.Add(this.label2);
-            this.splitContainer3.Panel1.Controls.Add(this.label3);
-            this.splitContainer3.Panel1.Controls.Add(this.comboBox1);
-            this.splitContainer3.Panel1.Controls.Add(this.comboBox2);
-            // 
-            // splitContainer3.Panel2
-            // 
-            this.splitContainer3.Panel2.Controls.Add(this.button2);
-            this.splitContainer3.Panel2.Controls.Add(this.button1);
-            this.splitContainer3.Size = new System.Drawing.Size(822, 220);
-            this.splitContainer3.SplitterDistance = 477;
-            this.splitContainer3.TabIndex = 0;
-            // 
-            // search1
-            // 
-            this.search1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.search1.Column = null;
-            this.search1.Criteria = My.Enumerators.Criterias.EqualTo;
-            this.search1.Location = new System.Drawing.Point(26, 24);
-            this.search1.Name = "search1";
-            this.search1.Parameter = null;
-            this.search1.Query = null;
-            this.search1.Size = new System.Drawing.Size(403, 22);
-            this.search1.TabIndex = 12;
-            this.search1.VariableName = null;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(26, 161);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(45, 13);
-            this.label5.TabIndex = 21;
-            this.label5.Text = "Territory";
-            // 
-            // search2
-            // 
-            this.search2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.search2.Column = null;
-            this.search2.Criteria = My.Enumerators.Criterias.EqualTo;
-            this.search2.Location = new System.Drawing.Point(26, 62);
-            this.search2.Name = "search2";
-            this.search2.Parameter = null;
-            this.search2.Query = null;
-            this.search2.Size = new System.Drawing.Size(403, 22);
-            this.search2.TabIndex = 13;
-            this.search2.VariableName = null;
-            // 
-            // comboBox3
-            // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(26, 175);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(403, 21);
-            this.comboBox3.TabIndex = 20;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 13);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "Street and number";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(26, 124);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(24, 13);
-            this.label4.TabIndex = 19;
-            this.label4.Text = "City";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(26, 49);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 13);
-            this.label2.TabIndex = 15;
-            this.label2.Text = "Corn";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(26, 87);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(62, 13);
-            this.label3.TabIndex = 18;
-            this.label3.Text = "Department";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(26, 137);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(403, 21);
-            this.comboBox1.TabIndex = 16;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(26, 100);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(403, 21);
-            this.comboBox2.TabIndex = 17;
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(82, 92);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(96, 37);
-            this.button2.TabIndex = 25;
-            this.button2.Text = "Clear";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(82, 16);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 64);
-            this.button1.TabIndex = 24;
-            this.button1.Text = "Search";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 207);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(37, 13);
-            this.label6.TabIndex = 22;
-            this.label6.Text = "Result";
             // 
             // frmDirections
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(822, 723);
+            this.ClientSize = new System.Drawing.Size(822, 638);
             this.Controls.Add(this.splitContainer1);
             this.Name = "frmDirections";
             this.Text = "Departments";
+            this.Load += new System.EventHandler(this.frmDirections_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             this.splitContainer1.ResumeLayout(false);
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel2.ResumeLayout(false);
             this.splitContainer2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).EndInit();
             this.splitContainer3.Panel1.ResumeLayout(false);
             this.splitContainer3.Panel1.PerformLayout();
             this.splitContainer3.Panel2.ResumeLayout(false);
             this.splitContainer3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -313,24 +343,26 @@
 
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.DataGridView dgvResults;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnNew;
+        private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.CheckBox chkCorners;
+        private My.Controls.Search schStreet;
+        private System.Windows.Forms.Label lblTerritory;
+        private My.Controls.Search schCorners;
+        private System.Windows.Forms.ComboBox cboTerritory;
+        private System.Windows.Forms.Label lblStreet;
+        private System.Windows.Forms.Label lblCity;
+        private System.Windows.Forms.Label lblCorners;
+        private System.Windows.Forms.Label lblDepartment;
+        private System.Windows.Forms.ComboBox cboCity;
+        private System.Windows.Forms.ComboBox cboDepartment;
         private System.Windows.Forms.SplitContainer splitContainer3;
-        private System.Windows.Forms.Label label6;
-        private My.Controls.Search search1;
-        private System.Windows.Forms.Label label5;
-        private My.Controls.Search search2;
-        private System.Windows.Forms.ComboBox comboBox3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblResults;
+        private System.Windows.Forms.DataGridView dgvResults;
+        private System.Windows.Forms.Label lblFiltered;
 
 
     }

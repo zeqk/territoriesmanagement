@@ -54,6 +54,7 @@
     <Compile Include="Cities.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Directions.cs" />
     <Compile Include="QueryExecutor.cs" />
     <Compile Include="Departments.cs" />
     <Compile Include="IDataBridge.cs" />
