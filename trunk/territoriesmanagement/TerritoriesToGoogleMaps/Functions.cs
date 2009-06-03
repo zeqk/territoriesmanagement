@@ -9,6 +9,8 @@ using System.IO;
 using System.Data.OleDb;
 using System.Data;
 using System.Globalization;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Json;
 using GeoRSSLibrary;
 
 namespace TerritoriesToGoogleMaps
@@ -24,9 +26,9 @@ namespace TerritoriesToGoogleMaps
         static public Double MiddleLng;
 
 
-        public static IList ReadMarks(string pathIn)
+        public static List<GeoRssItem> ReadMarks(string pathIn)
         {
-            List<IGeoRssItem> items;
+            List<GeoRssItem> items;
             try
             {
                 GeoRssFeed feed = new GeoRssFeed(pathIn);
@@ -50,7 +52,7 @@ namespace TerritoriesToGoogleMaps
         }
 
 
-        public static void WriteTerritoriesFiles(string pathOut,List<IGeoRssItem> geoItems)
+        public static void WriteTerritoriesFiles(string pathOut, List<GeoRssItem> geoItems)
         {
             string conStr = @"Provider=Microsoft.Jet.Oledb.4.0;Data Source=";
             conStr = conStr + pathOut;
@@ -79,10 +81,13 @@ namespace TerritoriesToGoogleMaps
 
                 foreach (var item in geoItems)
                 {
-                    id = ExtractId(item.Description);
-                    ds.Tables[0].Select("ID = " + id)[0]["GEOPOSITION"] = ((GeoRssPoint)item).Coordinates.ToString();
+                    if (item.Type == GeoRssItemType.Point)
+                    {                        
+                        id = ExtractId(item.Description);
+                        ds.Tables[0].Select("ID = " + id)[0]["GEOPOSITION"] = ((GeoRssItem)item).Coordinates.First().ToString();
+                    }
                 }
-                ds.Tables[0].WriteXml(pathOut+".xml");
+                ds.Tables[0].WriteXml(pathOut + ".xml");                                
             }
             catch (Exception ex)
             {
@@ -96,12 +101,12 @@ namespace TerritoriesToGoogleMaps
 
         public static void UpdateGeoposition(string xmlFile, string xlsFile)
         {
-            DataTable geopositionTable = ReadMarks(xmlFile);
-            WriteTerritoriesFiles(xlsFile, geopositionTable);
+            List<GeoRssItem> geopositions = ReadMarks(xmlFile);
+            WriteTerritoriesFiles(xlsFile, geopositions);
         }
 
 
-        static public void WriteMarks(string pathIn, string pathOut)
+        static public void WriteXml(string pathIn, string pathOut)
         {
             StreamWriter sw = new StreamWriter(pathOut, false, Encoding.UTF8, 512);
             using(XmlTextWriter xw = new XmlTextWriter(sw))
@@ -156,6 +161,12 @@ namespace TerritoriesToGoogleMaps
            
         }
 
+        static public void WriteJson(string pathIn, string pathOut)
+        {
+            DataContractJsonSerializer s = new DataContractJsonSerializer(typeof(string));
+            
+        }
+
 
         
 
@@ -194,35 +205,7 @@ namespace TerritoriesToGoogleMaps
 
         }
 
-        /*http://cs.crisfervil.com/blogs/crisfervil/archive/2007/08/29/datatable-to-excel.aspx*/
-        private static string SerializeDT(DataTable dt)
-        {
-            const string FIELDSEPARATOR = "\t";
-            const string ROWSEPARATOR = "\n";
-            StringBuilder output = new StringBuilder();
-
-            // Escribir encabezados
-            foreach (DataColumn dc in dt.Columns)
-            {
-                output.Append(dc.ColumnName);
-                output.Append(FIELDSEPARATOR);
-            }
-            output.Append(ROWSEPARATOR);
-
-            // Escribir datos
-            foreach (DataRow item in dt.Rows)
-            {
-                foreach (object value in item.ItemArray)
-                {
-                    output.Append(value.ToString());
-                    output.Append(FIELDSEPARATOR);
-                }
-                // Escribir una línea de registro
-                output.Append(ROWSEPARATOR);
-            }
-            // Valor de retorno
-            return output.ToString();
-        }
+       
         
     }
 }

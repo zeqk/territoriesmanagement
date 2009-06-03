@@ -134,9 +134,10 @@
           <Property Name="IdTerritory" Type="int" />
           <Property Name="Map1" Type="nvarchar" MaxLength="15" />
           <Property Name="Map2" Type="nvarchar" MaxLength="15" />
+          <Property Name="Number" Type="nvarchar" MaxLength="50" />
           <Property Name="Phone1" Type="nvarchar" MaxLength="15" />
           <Property Name="Phone2" Type="nvarchar" MaxLength="15" />
-          <Property Name="StreetAndNumber" Type="nvarchar" Nullable="false" MaxLength="80" />
+          <Property Name="Street" Type="nvarchar" Nullable="false" MaxLength="80" />
         </EntityType>
         <EntityType Name="DirectionsGeopositions">
           <Key>
@@ -467,6 +468,7 @@
         </Function>
         <Function Name="directions_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="street" Type="nvarchar" Mode="In" />
+          <Parameter Name="number" Type="nvarchar" Mode="In" />
           <Parameter Name="corner1" Type="nvarchar" Mode="In" />
           <Parameter Name="corner2" Type="nvarchar" Mode="In" />
           <Parameter Name="phone1" Type="nvarchar" Mode="In" />
@@ -493,6 +495,7 @@
         <Function Name="directions_UpdateById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="street" Type="nvarchar" Mode="In" />
+          <Parameter Name="number" Type="nvarchar" Mode="In" />
           <Parameter Name="corner1" Type="nvarchar" Mode="In" />
           <Parameter Name="corner2" Type="nvarchar" Mode="In" />
           <Parameter Name="phone1" Type="nvarchar" Mode="In" />
@@ -660,7 +663,6 @@
             <PropertyRef Name="IdDirection" />
           </Key>
           <Property Name="IdDirection" Type="Int32" Nullable="false" />
-          <Property Name="StreetAndNumber" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Corner1" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Corner2" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Phone1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
@@ -670,7 +672,9 @@
           <Property Name="Map2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="City" Relationship="TerritoriesModel.FK_directions_cities" FromRole="Directions" ToRole="Cities" />
           <NavigationProperty Name="Territory" Relationship="TerritoriesModel.FK_directions_territories" FromRole="Directions" ToRole="Territories" />
-          <NavigationProperty Name="GeoPositions" Relationship="TerritoriesModel.DirectionsGeopositions" FromRole="Direction" ToRole="GeoPositions" /></EntityType>
+          <NavigationProperty Name="GeoPosition" Relationship="TerritoriesModel.DirectionsGeopositions" FromRole="Direction" ToRole="GeoPositions" />
+          <Property Name="Number" Type="String" Nullable="true" />
+          <Property Name="Street" Type="String" Nullable="false" /></EntityType>
         <EntityType Name="Group">
           <Key>
             <PropertyRef Name="IdGroup" />
@@ -837,8 +841,9 @@
           <EntitySetMapping Name="Directions">
             <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.Direction)">
               <MappingFragment StoreEntitySet="Directions">
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="IdDirection" ColumnName="IdDirection" />
-                <ScalarProperty Name="StreetAndNumber" ColumnName="StreetAndNumber" />
                 <ScalarProperty Name="Corner1" ColumnName="Corner1" />
                 <ScalarProperty Name="Corner2" ColumnName="Corner2" />
                 <ScalarProperty Name="Phone1" ColumnName="Phone1" />
@@ -851,11 +856,12 @@
             <EntityTypeMapping TypeName="TerritoriesModel.Direction">
               <ModificationFunctionMapping>
                 <InsertFunction FunctionName="TerritoriesModel.Store.directions_Add">
+                  <ScalarProperty Name="Number" ParameterName="number" />
+                  <ScalarProperty Name="Street" ParameterName="street" />
                   <AssociationEnd AssociationSet="FK_directions_cities" From="Directions" To="Cities">
                     <ScalarProperty Name="IdCity" ParameterName="idCity" /></AssociationEnd>
                   <AssociationEnd AssociationSet="FK_directions_territories" From="Directions" To="Territories">
                     <ScalarProperty Name="IdTerritory" ParameterName="idTerritory" /></AssociationEnd>
-                  <ScalarProperty Name="StreetAndNumber" ParameterName="street" />
                   <ScalarProperty Name="Map2" ParameterName="map2" />
                   <ScalarProperty Name="Map1" ParameterName="map1" />
                   <ScalarProperty Name="Description" ParameterName="description" />
@@ -865,11 +871,12 @@
                   <ScalarProperty Name="Corner1" ParameterName="corner1" />
                   <ResultBinding Name="IdDirection" ColumnName="id" /></InsertFunction>
                 <UpdateFunction FunctionName="TerritoriesModel.Store.directions_UpdateById">
+                  <ScalarProperty Name="Number" ParameterName="number" Version="Current" />
+                  <ScalarProperty Name="Street" ParameterName="street" Version="Current" />
                   <AssociationEnd AssociationSet="FK_directions_cities" From="Directions" To="Cities">
                     <ScalarProperty Name="IdCity" ParameterName="idCity" Version="Current" /></AssociationEnd>
                   <AssociationEnd AssociationSet="FK_directions_territories" From="Directions" To="Territories">
                     <ScalarProperty Name="IdTerritory" ParameterName="idTerritory" Version="Current" /></AssociationEnd>
-                  <ScalarProperty Name="StreetAndNumber" ParameterName="street" Version="Current" />
                   <ScalarProperty Name="IdDirection" ParameterName="id" Version="Original" />
                   <ScalarProperty Name="Map2" ParameterName="map2" Version="Current" />
                   <ScalarProperty Name="Map1" ParameterName="map1" Version="Current" />
@@ -1066,7 +1073,7 @@
       <Diagram Name="TerritoriesModel" ZoomLevel="86">
         <EntityTypeShape EntityType="TerritoriesModel.City" Width="1.5" PointX="2.25" PointY="6.75" Height="1.9210009765624996" IsExpanded="true" />
         <EntityTypeShape EntityType="TerritoriesModel.Department" Width="1.5" PointX="3.25" PointY="9.5" Height="1.5923063151041657" IsExpanded="true" />
-        <EntityTypeShape EntityType="TerritoriesModel.Direction" Width="1.5" PointX="3.5" PointY="2.5" Height="2.9070849609374996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TerritoriesModel.Direction" Width="1.5" PointX="3.5" PointY="2.5" Height="3.0714322916666656" IsExpanded="true" />
         <EntityTypeShape EntityType="TerritoriesModel.Group" Width="1.5" PointX="10.5" PointY="1.875" Height="1.9210009765624996" IsExpanded="true" />
         <EntityTypeShape EntityType="TerritoriesModel.Publisher" Width="1.5" PointX="10.75" PointY="4.5" Height="2.9070849609374996" IsExpanded="true" />
         <EntityTypeShape EntityType="TerritoriesModel.Territory" Width="1.5" PointX="5.875" PointY="1.5" Height="1.9210009765625" IsExpanded="true" />
@@ -1076,15 +1083,15 @@
           <ConnectorPoint PointX="3.5" PointY="8.6710009765625" /></AssociationConnector>
         <AssociationConnector Association="TerritoriesModel.FK_directions_cities" ManuallyRouted="false">
           <ConnectorPoint PointX="3.015623625" PointY="6.75" />
-          <ConnectorPoint PointX="3.015623625" PointY="4.2920105655081517" />
-          <ConnectorPoint PointX="3.5" PointY="4.2920105655081517" /></AssociationConnector>
+          <ConnectorPoint PointX="3.015623625" PointY="4.3749483840927432" />
+          <ConnectorPoint PointX="3.5" PointY="4.3749483840927432" /></AssociationConnector>
         <AssociationConnector Association="TerritoriesModel.FK_publishers_cities" ManuallyRouted="false">
           <ConnectorPoint PointX="3.75" PointY="7.07854248046875" />
           <ConnectorPoint PointX="10.75" PointY="7.07854248046875" />
           </AssociationConnector>
         <AssociationConnector Association="TerritoriesModel.FK_directions_territories" ManuallyRouted="false">
-          <ConnectorPoint PointX="5.875" PointY="2.96050048828125" />
-          <ConnectorPoint PointX="5" PointY="2.96050048828125" />
+          <ConnectorPoint PointX="5.875" PointY="3.0426741536458337" />
+          <ConnectorPoint PointX="5" PointY="3.0426741536458337" />
           </AssociationConnector>
         <AssociationConnector Association="TerritoriesModel.FK_groups_publisherCaptain" ManuallyRouted="false">
           <ConnectorPoint PointX="11.375" PointY="4.5" />
