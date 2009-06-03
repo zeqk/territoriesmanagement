@@ -38,7 +38,7 @@ namespace TerritoriesToGoogleMaps
             }
             else
             {
-                Functions.WriteMarks(txtExcelSource.Text, txtXmlDestiny.Text);
+                Functions.WriteXml(txtExcelSource.Text, txtXmlDestiny.Text);
                 MessageBox.Show("Xml generado exitosamente");
             }
         }

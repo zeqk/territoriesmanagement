@@ -25,7 +25,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "TerritoriesGeopositions", "GeoPositions", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.GeoPositions), "Territory", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Territory))]
 
 // Original file name:
-// Generation date: 01/06/2009 14:57:01
+// Generation date: 02/06/2009 12:51:04 a.m.
 namespace Territories.Model
 {
     
@@ -657,12 +657,12 @@ namespace Territories.Model
         /// Create a new Direction object.
         /// </summary>
         /// <param name="idDirection">Initial value of IdDirection.</param>
-        /// <param name="streetAndNumber">Initial value of StreetAndNumber.</param>
-        public static Direction CreateDirection(int idDirection, string streetAndNumber)
+        /// <param name="street">Initial value of Street.</param>
+        public static Direction CreateDirection(int idDirection, string street)
         {
             Direction direction = new Direction();
             direction.IdDirection = idDirection;
-            direction.StreetAndNumber = streetAndNumber;
+            direction.Street = street;
             return direction;
         }
         /// <summary>
@@ -688,29 +688,6 @@ namespace Territories.Model
         private int _IdDirection;
         partial void OnIdDirectionChanging(int value);
         partial void OnIdDirectionChanged();
-        /// <summary>
-        /// There are no comments for Property StreetAndNumber in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string StreetAndNumber
-        {
-            get
-            {
-                return this._StreetAndNumber;
-            }
-            set
-            {
-                this.OnStreetAndNumberChanging(value);
-                this.ReportPropertyChanging("StreetAndNumber");
-                this._StreetAndNumber = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("StreetAndNumber");
-                this.OnStreetAndNumberChanged();
-            }
-        }
-        private string _StreetAndNumber;
-        partial void OnStreetAndNumberChanging(string value);
-        partial void OnStreetAndNumberChanged();
         /// <summary>
         /// There are no comments for Property Corner1 in the schema.
         /// </summary>
@@ -873,6 +850,52 @@ namespace Territories.Model
         partial void OnMap2Changing(string value);
         partial void OnMap2Changed();
         /// <summary>
+        /// There are no comments for Property Number in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Number
+        {
+            get
+            {
+                return this._Number;
+            }
+            set
+            {
+                this.OnNumberChanging(value);
+                this.ReportPropertyChanging("Number");
+                this._Number = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Number");
+                this.OnNumberChanged();
+            }
+        }
+        private string _Number;
+        partial void OnNumberChanging(string value);
+        partial void OnNumberChanged();
+        /// <summary>
+        /// There are no comments for Property Street in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Street
+        {
+            get
+            {
+                return this._Street;
+            }
+            set
+            {
+                this.OnStreetChanging(value);
+                this.ReportPropertyChanging("Street");
+                this._Street = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Street");
+                this.OnStreetChanged();
+            }
+        }
+        private string _Street;
+        partial void OnStreetChanging(string value);
+        partial void OnStreetChanged();
+        /// <summary>
         /// There are no comments for City in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_directions_cities", "Cities")]
@@ -947,13 +970,13 @@ namespace Territories.Model
             }
         }
         /// <summary>
-        /// There are no comments for GeoPositions in the schema.
+        /// There are no comments for GeoPosition in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "DirectionsGeopositions", "GeoPositions")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<GeoPositions> GeoPositions
+        public global::System.Data.Objects.DataClasses.EntityCollection<GeoPositions> GeoPosition
         {
             get
             {

@@ -34,11 +34,9 @@
             this.chkCorners = new System.Windows.Forms.CheckBox();
             this.schStreet = new My.Controls.Search();
             this.lblTerritory = new System.Windows.Forms.Label();
-            this.schCorners = new My.Controls.Search();
             this.cboTerritory = new System.Windows.Forms.ComboBox();
             this.lblStreet = new System.Windows.Forms.Label();
             this.lblCity = new System.Windows.Forms.Label();
-            this.lblCorners = new System.Windows.Forms.Label();
             this.lblDepartment = new System.Windows.Forms.Label();
             this.cboCity = new System.Windows.Forms.ComboBox();
             this.cboDepartment = new System.Windows.Forms.ComboBox();
@@ -76,11 +74,9 @@
             this.splitContainer1.Panel1.Controls.Add(this.chkCorners);
             this.splitContainer1.Panel1.Controls.Add(this.schStreet);
             this.splitContainer1.Panel1.Controls.Add(this.lblTerritory);
-            this.splitContainer1.Panel1.Controls.Add(this.schCorners);
             this.splitContainer1.Panel1.Controls.Add(this.cboTerritory);
             this.splitContainer1.Panel1.Controls.Add(this.lblStreet);
             this.splitContainer1.Panel1.Controls.Add(this.lblCity);
-            this.splitContainer1.Panel1.Controls.Add(this.lblCorners);
             this.splitContainer1.Panel1.Controls.Add(this.lblDepartment);
             this.splitContainer1.Panel1.Controls.Add(this.cboCity);
             this.splitContainer1.Panel1.Controls.Add(this.cboDepartment);
@@ -88,15 +84,15 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.splitContainer2);
-            this.splitContainer1.Size = new System.Drawing.Size(822, 638);
-            this.splitContainer1.SplitterDistance = 213;
+            this.splitContainer1.Size = new System.Drawing.Size(1019, 571);
+            this.splitContainer1.SplitterDistance = 112;
             this.splitContainer1.TabIndex = 0;
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(527, 86);
+            this.btnClear.Location = new System.Drawing.Point(894, 63);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(81, 37);
+            this.btnClear.Size = new System.Drawing.Size(96, 37);
             this.btnClear.TabIndex = 40;
             this.btnClear.Text = "Clear";
             this.btnClear.UseVisualStyleBackColor = true;
@@ -104,9 +100,9 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(634, 72);
+            this.btnSearch.Location = new System.Drawing.Point(894, 8);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(96, 64);
+            this.btnSearch.Size = new System.Drawing.Size(96, 45);
             this.btnSearch.TabIndex = 39;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -115,7 +111,7 @@
             // chkCorners
             // 
             this.chkCorners.AutoSize = true;
-            this.chkCorners.Location = new System.Drawing.Point(197, 11);
+            this.chkCorners.Location = new System.Drawing.Point(334, 14);
             this.chkCorners.Name = "chkCorners";
             this.chkCorners.Size = new System.Drawing.Size(68, 17);
             this.chkCorners.TabIndex = 38;
@@ -131,38 +127,25 @@
             this.schStreet.Name = "schStreet";
             this.schStreet.Parameters = null;
             this.schStreet.Query = null;
-            this.schStreet.Size = new System.Drawing.Size(380, 22);
+            this.schStreet.Size = new System.Drawing.Size(390, 22);
             this.schStreet.TabIndex = 28;
             this.schStreet.VariableNames = null;
             // 
             // lblTerritory
             // 
             this.lblTerritory.AutoSize = true;
-            this.lblTerritory.Location = new System.Drawing.Point(12, 142);
+            this.lblTerritory.Location = new System.Drawing.Point(426, 16);
             this.lblTerritory.Name = "lblTerritory";
             this.lblTerritory.Size = new System.Drawing.Size(45, 13);
             this.lblTerritory.TabIndex = 37;
             this.lblTerritory.Text = "Territory";
             // 
-            // schCorners
-            // 
-            this.schCorners.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.schCorners.Columns = null;
-            this.schCorners.Criteria = My.Enumerators.Criterias.EqualTo;
-            this.schCorners.Location = new System.Drawing.Point(415, 31);
-            this.schCorners.Name = "schCorners";
-            this.schCorners.Parameters = null;
-            this.schCorners.Query = null;
-            this.schCorners.Size = new System.Drawing.Size(380, 22);
-            this.schCorners.TabIndex = 29;
-            this.schCorners.VariableNames = null;
-            // 
             // cboTerritory
             // 
             this.cboTerritory.FormattingEnabled = true;
-            this.cboTerritory.Location = new System.Drawing.Point(12, 156);
+            this.cboTerritory.Location = new System.Drawing.Point(429, 31);
             this.cboTerritory.Name = "cboTerritory";
-            this.cboTerritory.Size = new System.Drawing.Size(380, 21);
+            this.cboTerritory.Size = new System.Drawing.Size(390, 21);
             this.cboTerritory.TabIndex = 36;
             this.cboTerritory.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
@@ -178,20 +161,11 @@
             // lblCity
             // 
             this.lblCity.AutoSize = true;
-            this.lblCity.Location = new System.Drawing.Point(12, 96);
+            this.lblCity.Location = new System.Drawing.Point(429, 58);
             this.lblCity.Name = "lblCity";
             this.lblCity.Size = new System.Drawing.Size(24, 13);
             this.lblCity.TabIndex = 35;
             this.lblCity.Text = "City";
-            // 
-            // lblCorners
-            // 
-            this.lblCorners.AutoSize = true;
-            this.lblCorners.Location = new System.Drawing.Point(412, 15);
-            this.lblCorners.Name = "lblCorners";
-            this.lblCorners.Size = new System.Drawing.Size(43, 13);
-            this.lblCorners.TabIndex = 31;
-            this.lblCorners.Text = "Corners";
             // 
             // lblDepartment
             // 
@@ -205,9 +179,9 @@
             // cboCity
             // 
             this.cboCity.FormattingEnabled = true;
-            this.cboCity.Location = new System.Drawing.Point(12, 112);
+            this.cboCity.Location = new System.Drawing.Point(429, 72);
             this.cboCity.Name = "cboCity";
-            this.cboCity.Size = new System.Drawing.Size(380, 21);
+            this.cboCity.Size = new System.Drawing.Size(390, 21);
             this.cboCity.TabIndex = 32;
             // 
             // cboDepartment
@@ -215,7 +189,7 @@
             this.cboDepartment.FormattingEnabled = true;
             this.cboDepartment.Location = new System.Drawing.Point(12, 72);
             this.cboDepartment.Name = "cboDepartment";
-            this.cboDepartment.Size = new System.Drawing.Size(380, 21);
+            this.cboDepartment.Size = new System.Drawing.Size(390, 21);
             this.cboDepartment.TabIndex = 33;
             // 
             // splitContainer2
@@ -233,8 +207,8 @@
             this.splitContainer2.Panel2.Controls.Add(this.btnDelete);
             this.splitContainer2.Panel2.Controls.Add(this.btnEdit);
             this.splitContainer2.Panel2.Controls.Add(this.btnNew);
-            this.splitContainer2.Size = new System.Drawing.Size(822, 421);
-            this.splitContainer2.SplitterDistance = 748;
+            this.splitContainer2.Size = new System.Drawing.Size(1019, 455);
+            this.splitContainer2.SplitterDistance = 954;
             this.splitContainer2.TabIndex = 0;
             // 
             // splitContainer3
@@ -253,8 +227,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.dgvResults);
-            this.splitContainer3.Size = new System.Drawing.Size(748, 421);
-            this.splitContainer3.SplitterDistance = 15;
+            this.splitContainer3.Size = new System.Drawing.Size(954, 455);
+            this.splitContainer3.SplitterDistance = 16;
             this.splitContainer3.TabIndex = 0;
             // 
             // lblFiltered
@@ -281,13 +255,13 @@
             this.dgvResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvResults.Location = new System.Drawing.Point(0, 0);
             this.dgvResults.Name = "dgvResults";
-            this.dgvResults.Size = new System.Drawing.Size(748, 402);
+            this.dgvResults.Size = new System.Drawing.Size(954, 435);
             this.dgvResults.TabIndex = 1;
             // 
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(12, 122);
+            this.btnDelete.Location = new System.Drawing.Point(7, 122);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(47, 47);
             this.btnDelete.TabIndex = 2;
@@ -297,7 +271,7 @@
             // btnEdit
             // 
             this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.Location = new System.Drawing.Point(11, 69);
+            this.btnEdit.Location = new System.Drawing.Point(6, 69);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(47, 47);
             this.btnEdit.TabIndex = 1;
@@ -307,7 +281,7 @@
             // btnNew
             // 
             this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNew.Location = new System.Drawing.Point(12, 16);
+            this.btnNew.Location = new System.Drawing.Point(7, 16);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(47, 47);
             this.btnNew.TabIndex = 0;
@@ -318,7 +292,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(822, 638);
+            this.ClientSize = new System.Drawing.Size(1019, 571);
             this.Controls.Add(this.splitContainer1);
             this.Name = "frmDirections";
             this.Text = "Departments";
@@ -351,11 +325,9 @@
         private System.Windows.Forms.CheckBox chkCorners;
         private My.Controls.Search schStreet;
         private System.Windows.Forms.Label lblTerritory;
-        private My.Controls.Search schCorners;
         private System.Windows.Forms.ComboBox cboTerritory;
         private System.Windows.Forms.Label lblStreet;
         private System.Windows.Forms.Label lblCity;
-        private System.Windows.Forms.Label lblCorners;
         private System.Windows.Forms.Label lblDepartment;
         private System.Windows.Forms.ComboBox cboCity;
         private System.Windows.Forms.ComboBox cboDepartment;
