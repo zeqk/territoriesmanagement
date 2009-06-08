@@ -38,11 +38,7 @@ namespace Territories.GUI
         {
             string[] columns1 = { "StreetAndNumber" };
             string[] variables1 = { "street" };
-            schStreet.SetProperties(columns1, variables1);
-
-            string[] columns2 = { "Corn1", "Corn2" };
-            string[] variables2 = { "corn1", "corn2" };
-            schCorners.SetProperties(columns2, variables2);
+            schStreet.SetProperties(columns1, variables1);            
 
             cboDepartment.DataSource = this._server.GetDepartments();
             cboDepartment.DisplayMember = "Name";
@@ -117,7 +113,6 @@ namespace Territories.GUI
         private void btnClear_Click(object sender, EventArgs e)
         {
             schStreet.Clear();
-            schCorners.Clear();
             cboDepartment.SelectedItem = null;
             cboTerritory.SelectedItem = null;
             LoadResults("");
@@ -176,6 +171,21 @@ namespace Territories.GUI
             {                
                 throw ex;
             }  
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            using (frmDirection myForm = new frmDirection(_server))
+            {
+                var dir = _server.NewObject();
+                myForm.Direction = dir;
+
+                myForm.ShowDialog();
+                if (myForm.DialogResult== DialogResult.OK)
+                {
+                    var a = 1;
+                }
+            }
         }
     }
 }

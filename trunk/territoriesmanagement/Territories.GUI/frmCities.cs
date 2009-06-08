@@ -21,7 +21,7 @@ namespace Territories.GUI
         private bool _isDirty;
 
         public frmCities()
-        {            
+        {
             if (_opened)
                 throw new Exception("The window is already opened.");
             else
@@ -31,12 +31,12 @@ namespace Territories.GUI
 
         private void frmCities_Load(object sender, EventArgs e)
         {
-            string[] columns = {"City.Name"};
-            string[] variables = {"name"};
-            schName.SetProperties(columns,variables);
+            string[] columns = { "City.Name" };
+            string[] variables = { "name" };
+            schName.SetProperties(columns, variables);
             ConfigGrids();
 
-            cboDepartment.DataSource = this.server.GetDepartments();                     
+            cboDepartment.DataSource = this.server.GetDepartments();
             cboDepartment.DisplayMember = "Name";
             cboDepartment.ValueMember = "Id";
             cboDepartment.SelectedItem = null;
@@ -46,17 +46,17 @@ namespace Territories.GUI
             cboFilterDepartment.ValueMember = "Id";
             cboFilterDepartment.SelectedItem = null;
 
-            LoadResults("");  
+            LoadResults("");
         }
 
         private void LoadResults(string query)
         {
             try
             {
-                dgvResults.DataSource = this.server.Search(query);                
+                dgvResults.DataSource = this.server.Search(query);
             }
             catch (Exception ex)
-            {                
+            {
                 MessageBox.Show(ex.Message, "Error");
             }
             lblFiltered.Visible = false;
@@ -65,14 +65,14 @@ namespace Territories.GUI
         private void ConfigGrids()
         {
 
-            dgvResults.Columns.Add("Id", "Id");          
-            dgvResults.Columns.Add("Name","City");
+            dgvResults.Columns.Add("Id", "Id");
+            dgvResults.Columns.Add("Name", "City");
             dgvResults.Columns.Add("DepartmentName", "Department");
-            dgvResults.Columns.Add("blank","");
+            dgvResults.Columns.Add("blank", "");
 
             dgvResults.Columns["Id"].Visible = false;
             dgvResults.Columns["Id"].DataPropertyName = "Id";
-            dgvResults.Columns["Name"].Width =150;
+            dgvResults.Columns["Name"].Width = 150;
             dgvResults.Columns["Name"].DataPropertyName = "Name";
             dgvResults.Columns["DepartmentName"].Width = 100;
             dgvResults.Columns["DepartmentName"].DataPropertyName = "DepartmentName";
@@ -90,7 +90,7 @@ namespace Territories.GUI
             dgvDirections.Columns["Name"].Width = 200;
             dgvDirections.Columns["Name"].DataPropertyName = "Name";
             dgvDirections.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            
+
             dgvDirections.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvDirections.MultiSelect = false;
 
@@ -110,23 +110,23 @@ namespace Territories.GUI
         }
 
         private void dgvResults_SelectionChanged(object sender, EventArgs e)
-        {       
-                if (dgvResults.SelectedRows.Count != 0)
-                {
-                    var v = server.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
-                    ObjectToForm(v);
-                    if (tabPanel.Visible)
-                        LoadRelations(v);
+        {
+            if (dgvResults.SelectedRows.Count != 0)
+            {
+                var v = server.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
+                ObjectToForm(v);
+                if (tabPanel.Visible)
+                    LoadRelations(v);
 
-                    this._isDirty = false;
-                }  
+                this._isDirty = false;
+            }
         }
 
         private City FormToOject()
         {
             City rv = (City)this.bsCity.DataSource;
             rv.Department = new Department();
-            rv.Department.IdDepartment = (int)cboDepartment.SelectedValue;      
+            rv.Department.IdDepartment = (int)cboDepartment.SelectedValue;
             return rv;
         }
 
@@ -207,7 +207,7 @@ namespace Territories.GUI
             }
             else
                 MessageBox.Show("The data is incomplete");
-            
+
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -236,7 +236,7 @@ namespace Territories.GUI
             {
                 schName.MakeQuery();
 
-                List<ObjectParameter> parameters =  new List<ObjectParameter>();
+                List<ObjectParameter> parameters = new List<ObjectParameter>();
                 string strQuery = "";
 
                 if (!schName.IsClean())
@@ -266,11 +266,11 @@ namespace Territories.GUI
                 ClearForm();
             }
             catch (Exception ex)
-            {                
+            {
                 MessageBox.Show(ex.Message, "Error");
             }
-            
-            
+
+
         }
 
         private void btnClearFilter_Click(object sender, EventArgs e)
@@ -300,7 +300,7 @@ namespace Territories.GUI
                 }
                 else
                     MessageBox.Show("You must select any city");
-            }   
+            }
         }
 
         private void LoadRelations(City v)
@@ -339,6 +339,6 @@ namespace Territories.GUI
             _opened = false;
         }
 
-        
+
     }
 }

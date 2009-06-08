@@ -215,8 +215,8 @@ namespace Territories.BLL
                 city.Publishers.Load();
 
                 var directions = from dir in city.Directions
-                                 orderby dir.StreetAndNumber
-                                 select new { Id = dir.IdDirection, Name = dir.StreetAndNumber };
+                                 orderby dir.Street, dir.Number
+                                 select new { Id = dir.IdDirection, Name = dir.Street + dir.Number };
 
                 var publishers = from pub in city.Publishers
                                  orderby pub.Name
