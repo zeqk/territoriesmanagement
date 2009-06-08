@@ -131,7 +131,7 @@ namespace Territories.BLL
                 var query = _dm.CreateQuery<Direction>(strQuery, parameters);
                 objectResults = query.Execute(MergeOption.AppendOnly);
                 var results = from d in objectResults
-                              orderby d.StreetAndNumber, d.City.Name
+                              orderby d.Street, d.Number, d.City.Name
                               select new
                               {
                                   Id = d.IdDirection,
@@ -139,7 +139,7 @@ namespace Territories.BLL
                                   CityName = d.City.Name,
                                   TerritoryNumber = d.Territory.Number,
                                   TerritoryName = d.Territory.Name,
-                                  Street = d.StreetAndNumber,
+                                  Direction = d.Street + d.Number,
                                   Corner1 = d.Corner1,
                                   Corner2 = d.Corner2,
                                   Description = d.Description
@@ -164,7 +164,7 @@ namespace Territories.BLL
         private bool IsValid(Direction v, ref string message)
         {
             bool rv = true;
-            if (string.IsNullOrEmpty(v.StreetAndNumber))
+            if (string.IsNullOrEmpty(v.Street))
             {
                 message += "Enter the street and the number.";
                 rv = false;

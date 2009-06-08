@@ -19,13 +19,13 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_territories_groups", "Groups", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.Group), "Territories", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Territory))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_tours_publishers", "Publishers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Territories.Model.Publisher), "Tours", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Tour))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_tours_territories", "Territories", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.Territory), "Tours", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Tour))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "CitiesGeopositions", "City", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.City), "GeoPositions", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.GeoPositions))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "DepartmentsGeopositions", "Department", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Department), "GeoPositions", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.GeoPositions))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "DirectionsGeopositions", "Direction", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Direction), "GeoPositions", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.GeoPositions))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "TerritoriesGeopositions", "GeoPositions", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.GeoPositions), "Territory", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Territory))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "CitiesGeopositions", "City", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.City), "GeoPositions", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.GeoPosition))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "DepartmentsGeopositions", "Department", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.Department), "GeoPositions", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.GeoPosition))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "DirectionsGeopositions", "Direction", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.Direction), "GeoPositions", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.GeoPosition))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "TerritoriesGeopositions", "GeoPositions", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.GeoPosition), "Territory", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.Territory))]
 
 // Original file name:
-// Generation date: 02/06/2009 12:51:04 a.m.
+// Generation date: 08/06/2009 17:43:11
 namespace Territories.Model
 {
     
@@ -167,18 +167,18 @@ namespace Territories.Model
         /// <summary>
         /// There are no comments for GeoPositions in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectQuery<GeoPositions> GeoPositions
+        public global::System.Data.Objects.ObjectQuery<GeoPosition> GeoPositions
         {
             get
             {
                 if ((this._GeoPositions == null))
                 {
-                    this._GeoPositions = base.CreateQuery<GeoPositions>("[GeoPositions]");
+                    this._GeoPositions = base.CreateQuery<GeoPosition>("[GeoPositions]");
                 }
                 return this._GeoPositions;
             }
         }
-        private global::System.Data.Objects.ObjectQuery<GeoPositions> _GeoPositions;
+        private global::System.Data.Objects.ObjectQuery<GeoPosition> _GeoPositions;
         /// <summary>
         /// There are no comments for Cities in the schema.
         /// </summary>
@@ -231,9 +231,9 @@ namespace Territories.Model
         /// <summary>
         /// There are no comments for GeoPositions in the schema.
         /// </summary>
-        public void AddToGeoPositions(GeoPositions geoPositions)
+        public void AddToGeoPositions(GeoPosition geoPosition)
         {
-            base.AddObject("GeoPositions", geoPositions);
+            base.AddObject("GeoPositions", geoPosition);
         }
         /// <summary>
         /// There are no comments for TerritoriesModel.departments_GetAll in the schema.
@@ -515,17 +515,17 @@ namespace Territories.Model
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<GeoPositions> GeoPositions
+        public global::System.Data.Objects.DataClasses.EntityCollection<GeoPosition> GeoPositions
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<GeoPositions>("TerritoriesModel.CitiesGeopositions", "GeoPositions");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<GeoPosition>("TerritoriesModel.CitiesGeopositions", "GeoPositions");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<GeoPositions>("TerritoriesModel.CitiesGeopositions", "GeoPositions", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<GeoPosition>("TerritoriesModel.CitiesGeopositions", "GeoPositions", value);
                 }
             }
         }
@@ -627,17 +627,17 @@ namespace Territories.Model
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<GeoPositions> GeoPositions
+        public global::System.Data.Objects.DataClasses.EntityCollection<GeoPosition> GeoPositions
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<GeoPositions>("TerritoriesModel.DepartmentsGeopositions", "GeoPositions");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<GeoPosition>("TerritoriesModel.DepartmentsGeopositions", "GeoPositions");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<GeoPositions>("TerritoriesModel.DepartmentsGeopositions", "GeoPositions", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<GeoPosition>("TerritoriesModel.DepartmentsGeopositions", "GeoPositions", value);
                 }
             }
         }
@@ -976,17 +976,33 @@ namespace Territories.Model
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<GeoPositions> GeoPosition
+        public GeoPosition GeoPosition
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<GeoPositions>("TerritoriesModel.DirectionsGeopositions", "GeoPositions");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<GeoPosition>("TerritoriesModel.DirectionsGeopositions", "GeoPositions").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<GeoPosition>("TerritoriesModel.DirectionsGeopositions", "GeoPositions").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for GeoPosition in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<GeoPosition> GeoPositionReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<GeoPosition>("TerritoriesModel.DirectionsGeopositions", "GeoPositions");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<GeoPositions>("TerritoriesModel.DirectionsGeopositions", "GeoPositions", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<GeoPosition>("TerritoriesModel.DirectionsGeopositions", "GeoPositions", value);
                 }
             }
         }
@@ -1681,17 +1697,17 @@ namespace Territories.Model
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<GeoPositions> GeoPositions
+        public global::System.Data.Objects.DataClasses.EntityCollection<GeoPosition> GeoPositions
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<GeoPositions>("TerritoriesModel.TerritoriesGeopositions", "GeoPositions");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<GeoPosition>("TerritoriesModel.TerritoriesGeopositions", "GeoPositions");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<GeoPositions>("TerritoriesModel.TerritoriesGeopositions", "GeoPositions", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<GeoPosition>("TerritoriesModel.TerritoriesGeopositions", "GeoPositions", value);
                 }
             }
         }
@@ -1890,31 +1906,31 @@ namespace Territories.Model
         }
     }
     /// <summary>
-    /// There are no comments for TerritoriesModel.GeoPositions in the schema.
+    /// There are no comments for TerritoriesModel.GeoPosition in the schema.
     /// </summary>
     /// <KeyProperties>
     /// IdGeoposition
     /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="TerritoriesModel", Name="GeoPositions")]
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="TerritoriesModel", Name="GeoPosition")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
     [global::System.Serializable()]
-    public partial class GeoPositions : global::System.Data.Objects.DataClasses.EntityObject
+    public partial class GeoPosition : global::System.Data.Objects.DataClasses.EntityObject
     {
         /// <summary>
-        /// Create a new GeoPositions object.
+        /// Create a new GeoPosition object.
         /// </summary>
         /// <param name="date">Initial value of Date.</param>
         /// <param name="idGeoposition">Initial value of IdGeoposition.</param>
         /// <param name="latitude">Initial value of Latitude.</param>
         /// <param name="longitude">Initial value of Longitude.</param>
-        public static GeoPositions CreateGeoPositions(global::System.DateTime date, long idGeoposition, long latitude, long longitude)
+        public static GeoPosition CreateGeoPosition(global::System.DateTime date, int idGeoposition, long latitude, long longitude)
         {
-            GeoPositions geoPositions = new GeoPositions();
-            geoPositions.Date = date;
-            geoPositions.IdGeoposition = idGeoposition;
-            geoPositions.Latitude = latitude;
-            geoPositions.Longitude = longitude;
-            return geoPositions;
+            GeoPosition geoPosition = new GeoPosition();
+            geoPosition.Date = date;
+            geoPosition.IdGeoposition = idGeoposition;
+            geoPosition.Latitude = latitude;
+            geoPosition.Longitude = longitude;
+            return geoPosition;
         }
         /// <summary>
         /// There are no comments for Property Date in the schema.
@@ -1944,7 +1960,7 @@ namespace Territories.Model
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public long IdGeoposition
+        public int IdGeoposition
         {
             get
             {
@@ -1959,8 +1975,8 @@ namespace Territories.Model
                 this.OnIdGeopositionChanged();
             }
         }
-        private long _IdGeoposition;
-        partial void OnIdGeopositionChanging(long value);
+        private int _IdGeoposition;
+        partial void OnIdGeopositionChanging(int value);
         partial void OnIdGeopositionChanged();
         /// <summary>
         /// There are no comments for Property Latitude in the schema.
@@ -2015,17 +2031,33 @@ namespace Territories.Model
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<City> Cities
+        public City Cities
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<City>("TerritoriesModel.CitiesGeopositions", "City");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.CitiesGeopositions", "City").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.CitiesGeopositions", "City").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for Cities in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<City> CitiesReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.CitiesGeopositions", "City");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<City>("TerritoriesModel.CitiesGeopositions", "City", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<City>("TerritoriesModel.CitiesGeopositions", "City", value);
                 }
             }
         }
@@ -2036,38 +2068,70 @@ namespace Territories.Model
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<Department> Departments
+        public Department Departments
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Department>("TerritoriesModel.DepartmentsGeopositions", "Department");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Department>("TerritoriesModel.DepartmentsGeopositions", "Department").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Department>("TerritoriesModel.DepartmentsGeopositions", "Department").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for Departments in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<Department> DepartmentsReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Department>("TerritoriesModel.DepartmentsGeopositions", "Department");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Department>("TerritoriesModel.DepartmentsGeopositions", "Department", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Department>("TerritoriesModel.DepartmentsGeopositions", "Department", value);
                 }
             }
         }
         /// <summary>
-        /// There are no comments for Directions in the schema.
+        /// There are no comments for Direction in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "DirectionsGeopositions", "Direction")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<Direction> Directions
+        public Direction Direction
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Direction>("TerritoriesModel.DirectionsGeopositions", "Direction");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Direction>("TerritoriesModel.DirectionsGeopositions", "Direction").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Direction>("TerritoriesModel.DirectionsGeopositions", "Direction").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for Direction in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<Direction> DirectionReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Direction>("TerritoriesModel.DirectionsGeopositions", "Direction");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Direction>("TerritoriesModel.DirectionsGeopositions", "Direction", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Direction>("TerritoriesModel.DirectionsGeopositions", "Direction", value);
                 }
             }
         }
@@ -2078,17 +2142,33 @@ namespace Territories.Model
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<Territory> Territories
+        public Territory Territories
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Territory>("TerritoriesModel.TerritoriesGeopositions", "Territory");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.TerritoriesGeopositions", "Territory").Value;
+            }
+            set
+            {
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.TerritoriesGeopositions", "Territory").Value = value;
+            }
+        }
+        /// <summary>
+        /// There are no comments for Territories in the schema.
+        /// </summary>
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public global::System.Data.Objects.DataClasses.EntityReference<Territory> TerritoriesReference
+        {
+            get
+            {
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.TerritoriesGeopositions", "Territory");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Territory>("TerritoriesModel.TerritoriesGeopositions", "Territory", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Territory>("TerritoriesModel.TerritoriesGeopositions", "Territory", value);
                 }
             }
         }
