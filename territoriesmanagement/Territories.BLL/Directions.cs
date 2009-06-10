@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 using System.Data.EntityClient;
 using System.Data.Objects;
 using Territories.Model;
@@ -53,11 +54,19 @@ namespace Territories.BLL
         public Direction Insert(Direction v)
         {
             try
-            {                
-                v.City = _dm.cities_GetById(v.City.IdCity).FirstOrDefault();
-                v.Territory = _dm.territories_GetById(v.Territory.IdTerritory).FirstOrDefault();
+            {
+                int idCity = v.City.IdCity;
+                int idTerritory = v.Territory.IdTerritory;
+
+                v.City = null;
+                v.Territory = null;
+
+                v.CityReference.EntityKey = new EntityKey("TerritoriesDataContext.Cities", "IdCity", idCity);                
+                v.TerritoryReference.EntityKey = new EntityKey("TerritoriesDataContext.Territories", "IdTerritory", idTerritory);                
+
                 _dm.AddToDirections(v);
                 _dm.SaveChanges();
+                
             }
             catch (Exception ex)
             {
@@ -125,13 +134,13 @@ namespace Territories.BLL
                 ObjectResult<Direction> objectResults;
                 string strQuery = "SELECT VALUE Direction FROM TerritoriesDataContext.Directions AS Direction";
 
-                if (string.IsNullOrEmpty(strCriteria))
-                    strCriteria += " WHERE " + strCriteria;
+                if (!string.IsNullOrEmpty(strCriteria))
+                    strQuery += " WHERE " + strCriteria;
 
-                var query = _dm.CreateQuery<Direction>(strQuery, parameters);
+                var query = _dm.CreateQuery<Direction>(strQuery, parameters).Include("City"); ;
                 objectResults = query.Execute(MergeOption.AppendOnly);
                 var results = from d in objectResults
-                              orderby d.Street, d.Number, d.City.Name
+                              //orderby d.Street, d.City.Name
                               select new
                               {
                                   Id = d.IdDirection,
@@ -139,7 +148,7 @@ namespace Territories.BLL
                                   CityName = d.City.Name,
                                   TerritoryNumber = d.Territory.Number,
                                   TerritoryName = d.Territory.Name,
-                                  Direction = d.Street + d.Number,
+                                  Direction = d.Street,
                                   Corner1 = d.Corner1,
                                   Corner2 = d.Corner2,
                                   Description = d.Description

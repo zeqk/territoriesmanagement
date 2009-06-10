@@ -34,10 +34,11 @@
             this.lblLon = new System.Windows.Forms.Label();
             this.lblLat = new System.Windows.Forms.Label();
             this.txtLon = new System.Windows.Forms.TextBox();
+            this.bsGeoposition = new System.Windows.Forms.BindingSource(this.components);
             this.txtLat = new System.Windows.Forms.TextBox();
             this.lblMap2 = new System.Windows.Forms.Label();
             this.txtMap2 = new System.Windows.Forms.TextBox();
-            this.bsDepartment = new System.Windows.Forms.BindingSource(this.components);
+            this.bsDirection = new System.Windows.Forms.BindingSource(this.components);
             this.lblMap1 = new System.Windows.Forms.Label();
             this.txtMap1 = new System.Windows.Forms.TextBox();
             this.lblDescription = new System.Windows.Forms.Label();
@@ -63,14 +64,16 @@
             this.txtCorner2 = new System.Windows.Forms.TextBox();
             this.txtCorner1 = new System.Windows.Forms.TextBox();
             this.txtNumber = new System.Windows.Forms.TextBox();
-            this.cboCities = new System.Windows.Forms.ComboBox();
+            this.cboCity = new System.Windows.Forms.ComboBox();
             this.cboDepartment = new System.Windows.Forms.ComboBox();
             this.txtStreet = new System.Windows.Forms.TextBox();
             this.txtField1 = new System.Windows.Forms.TextBox();
             this.lblField1 = new System.Windows.Forms.Label();
+            this.chkHaveGeo = new System.Windows.Forms.CheckBox();
             this.grpMaps.SuspendLayout();
             this.grpGeoLocation.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDepartment)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsGeoposition)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDirection)).BeginInit();
             this.grpPhones.SuspendLayout();
             this.grpUbication.SuspendLayout();
             this.SuspendLayout();
@@ -84,20 +87,21 @@
             this.grpMaps.Controls.Add(this.txtMap1);
             this.grpMaps.Location = new System.Drawing.Point(373, 12);
             this.grpMaps.Name = "grpMaps";
-            this.grpMaps.Size = new System.Drawing.Size(266, 255);
+            this.grpMaps.Size = new System.Drawing.Size(304, 255);
             this.grpMaps.TabIndex = 40;
             this.grpMaps.TabStop = false;
             this.grpMaps.Text = "Ubication";
             // 
             // grpGeoLocation
             // 
+            this.grpGeoLocation.Controls.Add(this.chkHaveGeo);
             this.grpGeoLocation.Controls.Add(this.lblLon);
             this.grpGeoLocation.Controls.Add(this.lblLat);
             this.grpGeoLocation.Controls.Add(this.txtLon);
             this.grpGeoLocation.Controls.Add(this.txtLat);
             this.grpGeoLocation.Location = new System.Drawing.Point(26, 113);
             this.grpGeoLocation.Name = "grpGeoLocation";
-            this.grpGeoLocation.Size = new System.Drawing.Size(220, 115);
+            this.grpGeoLocation.Size = new System.Drawing.Size(272, 115);
             this.grpGeoLocation.TabIndex = 4;
             this.grpGeoLocation.TabStop = false;
             this.grpGeoLocation.Text = "Geo location";
@@ -122,13 +126,20 @@
             // 
             // txtLon
             // 
+            this.txtLon.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsGeoposition, "Longitude", true));
             this.txtLon.Location = new System.Drawing.Point(23, 80);
             this.txtLon.Name = "txtLon";
             this.txtLon.Size = new System.Drawing.Size(176, 20);
             this.txtLon.TabIndex = 1;
             // 
+            // bsGeoposition
+            // 
+            this.bsGeoposition.DataSource = typeof(Territories.Model.GeoPosition);
+            this.bsGeoposition.CurrentItemChanged += new System.EventHandler(this.GeoPositionHaveChanges);
+            // 
             // txtLat
             // 
+            this.txtLat.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsGeoposition, "Latitude", true));
             this.txtLat.Location = new System.Drawing.Point(23, 40);
             this.txtLat.Name = "txtLat";
             this.txtLat.Size = new System.Drawing.Size(176, 20);
@@ -145,16 +156,16 @@
             // 
             // txtMap2
             // 
-            this.txtMap2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDepartment, "Map2", true));
+            this.txtMap2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDirection, "Map2", true));
             this.txtMap2.Location = new System.Drawing.Point(26, 81);
             this.txtMap2.Name = "txtMap2";
             this.txtMap2.Size = new System.Drawing.Size(220, 20);
             this.txtMap2.TabIndex = 2;
             // 
-            // bsDepartment
+            // bsDirection
             // 
-            this.bsDepartment.DataSource = typeof(Territories.Model.Direction);
-            this.bsDepartment.CurrentChanged += new System.EventHandler(this.bsDepartment_CurrentChanged);
+            this.bsDirection.DataSource = typeof(Territories.Model.Direction);
+            this.bsDirection.CurrentItemChanged += new System.EventHandler(this.HaveChanges);
             // 
             // lblMap1
             // 
@@ -167,7 +178,7 @@
             // 
             // txtMap1
             // 
-            this.txtMap1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDepartment, "Map1", true));
+            this.txtMap1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDirection, "Map1", true));
             this.txtMap1.Location = new System.Drawing.Point(26, 37);
             this.txtMap1.Name = "txtMap1";
             this.txtMap1.Size = new System.Drawing.Size(220, 20);
@@ -184,7 +195,7 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDepartment, "Description", true));
+            this.txtDescription.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDirection, "Description", true));
             this.txtDescription.Location = new System.Drawing.Point(29, 375);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
@@ -242,7 +253,7 @@
             // 
             // txtPhone2
             // 
-            this.txtPhone2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDepartment, "Phone2", true));
+            this.txtPhone2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDirection, "Phone2", true));
             this.txtPhone2.Location = new System.Drawing.Point(26, 83);
             this.txtPhone2.Name = "txtPhone2";
             this.txtPhone2.Size = new System.Drawing.Size(220, 20);
@@ -250,7 +261,7 @@
             // 
             // txtPhone1
             // 
-            this.txtPhone1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDepartment, "Phone1", true));
+            this.txtPhone1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDirection, "Phone1", true));
             this.txtPhone1.Location = new System.Drawing.Point(26, 39);
             this.txtPhone1.Name = "txtPhone1";
             this.txtPhone1.Size = new System.Drawing.Size(220, 20);
@@ -289,7 +300,7 @@
             this.grpUbication.Controls.Add(this.txtCorner2);
             this.grpUbication.Controls.Add(this.txtCorner1);
             this.grpUbication.Controls.Add(this.txtNumber);
-            this.grpUbication.Controls.Add(this.cboCities);
+            this.grpUbication.Controls.Add(this.cboCity);
             this.grpUbication.Controls.Add(this.cboDepartment);
             this.grpUbication.Controls.Add(this.txtStreet);
             this.grpUbication.Location = new System.Drawing.Point(12, 12);
@@ -310,12 +321,11 @@
             // 
             // txtHouseData
             // 
-            this.txtHouseData.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDepartment, "Number", true));
+            this.txtHouseData.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDirection, "Number", true));
             this.txtHouseData.Location = new System.Drawing.Point(137, 163);
             this.txtHouseData.Name = "txtHouseData";
             this.txtHouseData.Size = new System.Drawing.Size(197, 20);
             this.txtHouseData.TabIndex = 58;
-            this.txtHouseData.TextChanged += new System.EventHandler(this.HaveChanges);
             // 
             // lblNumber
             // 
@@ -373,42 +383,40 @@
             // 
             // txtCorner2
             // 
-            this.txtCorner2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDepartment, "Corner2", true));
+            this.txtCorner2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDirection, "Corner2", true));
             this.txtCorner2.Location = new System.Drawing.Point(18, 251);
             this.txtCorner2.Name = "txtCorner2";
             this.txtCorner2.Size = new System.Drawing.Size(316, 20);
             this.txtCorner2.TabIndex = 51;
-            this.txtCorner2.TextChanged += new System.EventHandler(this.HaveChanges);
             // 
             // txtCorner1
             // 
-            this.txtCorner1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDepartment, "Corner1", true));
+            this.txtCorner1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDirection, "Corner1", true));
             this.txtCorner1.Location = new System.Drawing.Point(18, 208);
             this.txtCorner1.Name = "txtCorner1";
             this.txtCorner1.Size = new System.Drawing.Size(316, 20);
             this.txtCorner1.TabIndex = 50;
-            this.txtCorner1.TextChanged += new System.EventHandler(this.HaveChanges);
             // 
             // txtNumber
             // 
-            this.txtNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDepartment, "Number", true));
+            this.txtNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDirection, "Number", true));
             this.txtNumber.Location = new System.Drawing.Point(18, 163);
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.Size = new System.Drawing.Size(100, 20);
             this.txtNumber.TabIndex = 49;
-            this.txtNumber.TextChanged += new System.EventHandler(this.HaveChanges);
             // 
-            // cboCities
+            // cboCity
             // 
-            this.cboCities.FormattingEnabled = true;
-            this.cboCities.Location = new System.Drawing.Point(18, 78);
-            this.cboCities.Name = "cboCities";
-            this.cboCities.Size = new System.Drawing.Size(316, 21);
-            this.cboCities.TabIndex = 48;
-            this.cboCities.SelectedIndexChanged += new System.EventHandler(this.HaveChanges);
+            this.cboCity.FormattingEnabled = true;
+            this.cboCity.Location = new System.Drawing.Point(18, 78);
+            this.cboCity.Name = "cboCity";
+            this.cboCity.Size = new System.Drawing.Size(316, 21);
+            this.cboCity.TabIndex = 48;
+            this.cboCity.SelectedIndexChanged += new System.EventHandler(this.HaveChanges);
             // 
             // cboDepartment
             // 
+            this.cboDepartment.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cboDepartment.FormattingEnabled = true;
             this.cboDepartment.Location = new System.Drawing.Point(18, 34);
             this.cboDepartment.Name = "cboDepartment";
@@ -418,16 +426,15 @@
             // 
             // txtStreet
             // 
-            this.txtStreet.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDepartment, "Street", true));
+            this.txtStreet.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDirection, "Street", true));
             this.txtStreet.Location = new System.Drawing.Point(18, 122);
             this.txtStreet.Name = "txtStreet";
             this.txtStreet.Size = new System.Drawing.Size(316, 20);
             this.txtStreet.TabIndex = 46;
-            this.txtStreet.TextChanged += new System.EventHandler(this.HaveChanges);
             // 
             // txtField1
             // 
-            this.txtField1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDepartment, "Description", true));
+            this.txtField1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDirection, "Description", true));
             this.txtField1.Location = new System.Drawing.Point(373, 428);
             this.txtField1.Multiline = true;
             this.txtField1.Name = "txtField1";
@@ -443,11 +450,22 @@
             this.lblField1.TabIndex = 46;
             this.lblField1.Text = "Field 1";
             // 
+            // chkHaveGeo
+            // 
+            this.chkHaveGeo.AutoSize = true;
+            this.chkHaveGeo.Location = new System.Drawing.Point(131, 17);
+            this.chkHaveGeo.Name = "chkHaveGeo";
+            this.chkHaveGeo.Size = new System.Drawing.Size(109, 17);
+            this.chkHaveGeo.TabIndex = 4;
+            this.chkHaveGeo.Text = "Have geoposition";
+            this.chkHaveGeo.UseVisualStyleBackColor = true;
+            this.chkHaveGeo.CheckedChanged += new System.EventHandler(this.chkHaveGeo_CheckedChanged);
+            // 
             // frmDirection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(662, 572);
+            this.ClientSize = new System.Drawing.Size(689, 572);
             this.Controls.Add(this.lblField1);
             this.Controls.Add(this.txtField1);
             this.Controls.Add(this.grpUbication);
@@ -461,11 +479,13 @@
             this.Controls.Add(this.cboTerritory);
             this.Name = "frmDirection";
             this.Text = "Direction";
+            this.Load += new System.EventHandler(this.frmDirection_Load);
             this.grpMaps.ResumeLayout(false);
             this.grpMaps.PerformLayout();
             this.grpGeoLocation.ResumeLayout(false);
             this.grpGeoLocation.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsDepartment)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsGeoposition)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsDirection)).EndInit();
             this.grpPhones.ResumeLayout(false);
             this.grpPhones.PerformLayout();
             this.grpUbication.ResumeLayout(false);
@@ -498,7 +518,7 @@
         private System.Windows.Forms.TextBox txtPhone1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.BindingSource bsDepartment;
+        private System.Windows.Forms.BindingSource bsDirection;
         private System.Windows.Forms.GroupBox grpUbication;
         private System.Windows.Forms.Label lblHouseData;
         private System.Windows.Forms.TextBox txtHouseData;
@@ -511,11 +531,13 @@
         private System.Windows.Forms.TextBox txtCorner2;
         private System.Windows.Forms.TextBox txtCorner1;
         private System.Windows.Forms.TextBox txtNumber;
-        private System.Windows.Forms.ComboBox cboCities;
+        private System.Windows.Forms.ComboBox cboCity;
         private System.Windows.Forms.ComboBox cboDepartment;
         private System.Windows.Forms.TextBox txtStreet;
         private System.Windows.Forms.TextBox txtField1;
         private System.Windows.Forms.Label lblField1;
+        private System.Windows.Forms.BindingSource bsGeoposition;
+        private System.Windows.Forms.CheckBox chkHaveGeo;
 
 
     }

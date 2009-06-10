@@ -17,64 +17,67 @@ namespace Territories.GUI
         private Directions _server;
         private bool _isDirty;
 
+        private bool _geoPositionIsModified;
+
+        
+	
+
         public Direction Direction
         {
             get 
             {
-                Direction rv = (Direction)bsDepartment.DataSource;
+                Direction rv = (Direction)bsDirection.DataSource;
 
                 rv.City = new City();
-                rv.City.IdCity = (int)cboCities.SelectedValue;
+                rv.City.IdCity = (int)cboCity.SelectedValue;
 
                 rv.Territory = new Territory();
                 rv.Territory.IdTerritory = (int)cboTerritory.SelectedValue;
 
-                GeoPosition geoPos = new GeoPosition();
-                geoPos.Date = DateTime.Now;
-
-                long lat = 0;
-                long lon = 0;
-                try
+                
+                if (_geoPositionIsModified)
                 {
-                    lat = long.Parse(txtLat.Text);
-                    lon = long.Parse(txtLon.Text);
+                    EntityCollection<GeoPosition> geopositions = new EntityCollection<GeoPosition>();
+                    if (chkHaveGeo.Checked)                        
+                        geopositions.Add((GeoPosition)bsGeoposition.DataSource);
+                    rv.GeoPositions = geopositions;
+                    
                 }
-                finally
-                {
-                    geoPos.Latitude = lat;
-                    geoPos.Longitude = lon;
-                }
-
-                rv.GeoPosition = geoPos;
-
-                return rv; 
+                return rv;
             }
             set 
             {   
-                bsDepartment.DataSource = value;
+                bsDirection.DataSource = value;
 
                 if (value.Territory != null)
                     cboTerritory.SelectedValue = value.Territory.IdTerritory;
                 else
-                    cboTerritory.SelectedValue = null;
+                    cboTerritory.SelectedItem = null;
 
                 if (value.City != null)
                 {
                     if (value.City.Department!=null)
                     {
                         cboDepartment.SelectedValue = value.City.Department.IdDepartment;
-                        cboCities.SelectedValue = value.City.IdCity;
+                        cboCity.SelectedValue = value.City.IdCity;
                     }
                     else
-                        cboDepartment.SelectedValue = null;
+                        cboDepartment.SelectedItem = null;
                 }
                 else
-                    cboDepartment.SelectedValue = null;
+                    cboDepartment.SelectedItem = null;
 
-                if (value.GeoPosition!=null)
+                if (value.GeoPositions.Count > 0)
                 {
-                    txtLat.Text = value.GeoPosition.Latitude.ToString();
-                    txtLon.Text = value.GeoPosition.Longitude.ToString();
+                    chkHaveGeo.Checked = true;                    
+                    bsGeoposition.DataSource = value.GeoPositions.First();
+                }
+                else
+                {
+                    chkHaveGeo.Checked = false;
+                    txtLat.Enabled = false;
+                    txtLon.Enabled = false;
+                    bsGeoposition.DataSource = new GeoPosition();
                 }
 
             }
@@ -85,23 +88,18 @@ namespace Territories.GUI
         {
             _server = server;
             InitializeComponent();
-            _isDirty = false;
+            ConfigureMenus();
         }
 
         public frmDirection()
         {
             _server = new Directions();
-            InitializeComponent();
-            _isDirty = false;
-        }
-
-        private void bsDepartment_CurrentChanged(object sender, EventArgs e)
-        {
-
+            InitializeComponent(); 
+            ConfigureMenus();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
-        {
+        {            
             this.DialogResult = DialogResult.OK;
         }
 
@@ -114,18 +112,63 @@ namespace Territories.GUI
         {
             if (((ComboBox)sender).SelectedValue != null)
             {
-                int idDepartment = (int)((ComboBox)sender).SelectedValue;
-                cboCities.DataSource = _server.GetCitiesByDepartment(idDepartment);
+                int idDepartment = (int)cboDepartment.SelectedValue;
+                cboCity.DataSource = _server.GetCitiesByDepartment(idDepartment);
+                cboCity.SelectedItem = null;
             }
             else
-                cboCities.DataSource = null;
+                cboCity.DataSource = null;
             
+        }
+
+        private void frmDirection_Load(object sender, EventArgs e)
+        {
+            _isDirty = false;
+            _geoPositionIsModified = false;
+        }
+
+        private void ConfigureMenus()
+        {
+            cboDepartment.DisplayMember = "Name";
+            cboDepartment.ValueMember = "Id";
+            cboDepartment.DataSource = _server.GetDepartments();            
+            cboDepartment.SelectedItem = null;
+
+            cboCity.DisplayMember = "Name";
+            cboCity.ValueMember = "Id";
+
+            cboTerritory.DisplayMember = "Name";
+            cboTerritory.ValueMember = "Id";
+            cboTerritory.DataSource = _server.GetTerritories();
+            cboTerritory.SelectedItem = null;
         }
 
         private void HaveChanges(object sender, EventArgs e)
         {
             _isDirty = true;
         }
+
+        private void GeoPositionHaveChanges(object sender, EventArgs e)
+        {
+            _geoPositionIsModified = true;
+            _isDirty = true;
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            txtLat.Clear();
+            txtLat.Enabled = false;
+            txtLon.Clear();
+            txtLon.Enabled = false;
+        }
+
+        private void chkHaveGeo_CheckedChanged(object sender, EventArgs e)
+        {
+            txtLat.Enabled = chkHaveGeo.Checked;
+            txtLon.Enabled = chkHaveGeo.Checked;
+        }
+
+        
         
     }
 }
