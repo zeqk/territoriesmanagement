@@ -36,7 +36,7 @@ namespace Territories.GUI
 
         private void frmDirections_Load(object sender, EventArgs e)
         {
-            string[] columns1 = { "StreetAndNumber" };
+            string[] columns1 = { "Direction.Street" };
             string[] variables1 = { "street" };
             schStreet.SetProperties(columns1, variables1);            
 
@@ -185,6 +185,10 @@ namespace Territories.GUI
                 {
                     var a = 1;
                 }
+
+                dir = myForm.Direction;
+
+                _server.Save(dir);
             }
         }
     }

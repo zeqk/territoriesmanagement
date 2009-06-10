@@ -153,6 +153,7 @@
     <None Include="Properties\DataSources\Territories.Model.City.datasource" />
     <None Include="Properties\DataSources\Territories.Model.Department.datasource" />
     <None Include="Properties\DataSources\Territories.Model.Direction.datasource" />
+    <None Include="Properties\DataSources\Territories.Model.GeoPosition.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
