@@ -20,9 +20,7 @@ namespace Territories.BLL
         private TerritoriesDataContext _dm;
         private Func<TerritoriesDataContext, City, IQueryable<City>> _compiledSameCity;
         private Func<TerritoriesDataContext, int, IQueryable<City>> _compileLoadCity;
-        private Func<TerritoriesDataContext, IQueryable<City>> _compileGetAllCities;
-
-        static private bool _opened = false;
+        private Func<TerritoriesDataContext, IQueryable<City>> _compileGetAllCities;        
 
         #region Constructors
         public Cities()        
@@ -166,19 +164,6 @@ namespace Territories.BLL
 
         }
 
-        public void SaveChanges()
-        {
-            try
-            {
-                _dm.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
-
         #endregion
 
         public bool IsValid(City v, ref string message)
@@ -218,7 +203,12 @@ namespace Territories.BLL
 
                 var directions = from dir in city.Directions
                                  orderby dir.Street, dir.Number
-                                 select new { Id = dir.IdDirection, Name = dir.Street + dir.Number };
+                                 select new 
+                                 { 
+                                     Id = dir.IdDirection, 
+                                     Direction = dir.Street + " " + dir.Number,
+                                     Corners = dir.Corner1
+                                 };
 
                 var publishers = from pub in city.Publishers
                                  orderby pub.Name
@@ -237,15 +227,14 @@ namespace Territories.BLL
 
         private bool Exist(City v)
         {
-
-            ObjectParameter[] parameters = { new ObjectParameter("Name", v.Name) };
-
+            bool rv;
             var results = _compiledSameCity(_dm, v).ToList();
 
             if (results.Count>0)
-                return true;
+                rv = true;
             else
-                return false;
+                rv = false;
+            return rv;
         }
 
         public IList GetDepartments()
@@ -280,8 +269,8 @@ namespace Territories.BLL
         {
             this._compiledSameCity = CompiledQuery.Compile
                 (
-                    (TerritoriesDataContext dm,City v) => from city in _dm.Cities
-                                where city.Name == v.Name && city.Department.IdDepartment == v.Department.IdDepartment
+                    (TerritoriesDataContext dm,City v) => from city in dm.Cities
+                                where city.Name == v.Name && city.Department.IdDepartment != v.Department.IdDepartment
                                 select city
 
                 );

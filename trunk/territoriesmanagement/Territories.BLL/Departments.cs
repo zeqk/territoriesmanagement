@@ -38,27 +38,26 @@ namespace Territories.BLL
 
         public Department Save(Department v)
         {
-            Department rv;
-            if (v.IdDepartment == 0)
-                rv = Insert(v);
+            string invalidMessage = "";
+            if (IsValid(v, ref invalidMessage))
+            {
+                Department rv;
+                if (v.IdDepartment == 0)
+                    rv = this.Insert(v);
+                else
+                    rv = this.Update(v);
+                return rv;
+            }
             else
-                rv = Update(v);
-            return rv;
+                throw new Exception(invalidMessage); 
         }
 
         public Department Insert(Department v)
         {
             try
             {
-                string invalidMessage = "";
-                if (IsValid(v, ref invalidMessage))
-                {
-                    _dm.AddToDepartments(v);
-                    _dm.SaveChanges();
-                }
-                else
-                    throw new Exception(invalidMessage);
-
+                _dm.AddToDepartments(v);
+                _dm.SaveChanges();
                 return v;
             }
             catch (Exception e)
@@ -71,14 +70,8 @@ namespace Territories.BLL
         {
             try
             {
-                string invalidMessage = "";
-                if (this.IsValid(v, ref invalidMessage))
-                {
-                    _dm.ApplyPropertyChanges("Departments", v);
-                    _dm.SaveChanges();
-                }
-                else
-                    throw new Exception(invalidMessage);
+                _dm.ApplyPropertyChanges("Departments", v);
+                _dm.SaveChanges();
 
                 return v;                
             }

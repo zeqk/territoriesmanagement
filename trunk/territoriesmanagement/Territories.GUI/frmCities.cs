@@ -82,13 +82,16 @@ namespace Territories.GUI
             dgvResults.MultiSelect = false;
 
             dgvDirections.Columns.Add("Id", "Id");
-            dgvDirections.Columns.Add("Name", "Direction");
+            dgvDirections.Columns.Add("Direction", "Direction");
+            dgvDirections.Columns.Add("Corners", "Between");
             dgvDirections.Columns.Add("blank", "");
 
             dgvDirections.Columns["Id"].Visible = false;
             dgvDirections.Columns["Id"].DataPropertyName = "Id";
-            dgvDirections.Columns["Name"].Width = 200;
-            dgvDirections.Columns["Name"].DataPropertyName = "Name";
+            dgvDirections.Columns["Direction"].Width = 200;
+            dgvDirections.Columns["Direction"].DataPropertyName = "Direction";
+            dgvDirections.Columns["Corners"].Width = 200;
+            dgvDirections.Columns["Corners"].DataPropertyName = "Corners";
             dgvDirections.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dgvDirections.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -261,9 +264,13 @@ namespace Territories.GUI
                     parameters.Add(depPar);
                 }
 
-                dgvResults.DataSource = this.server.Search(strQuery, parameters.ToArray<ObjectParameter>());
-
-                lblFiltered.Visible = true;
+                if (!string.IsNullOrEmpty(strQuery))
+                {
+                    dgvResults.DataSource = this.server.Search(strQuery, parameters.ToArray<ObjectParameter>());
+                    lblFiltered.Visible = true;
+                }
+                else
+                    MessageBox.Show("Debe llenar al menos 1 campo de búsqueda");
 
                 ClearForm();
             }
@@ -308,7 +315,7 @@ namespace Territories.GUI
         private void LoadRelations(City v)
         {
             IDictionary relations = this.server.LoadRelations(v.IdCity);
-            dgvDirections.DataSource = relations["Cities"];
+            dgvDirections.DataSource = relations["Directions"];
             dgvDirections.Refresh();
 
             dgvDirections.RowHeadersVisible = false;

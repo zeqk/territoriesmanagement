@@ -6,6 +6,7 @@ using System.Text;
 using System.Data;
 using System.Data.EntityClient;
 using System.Data.Objects;
+using System.Data.Objects.DataClasses;
 using Territories.Model;
 
 namespace Territories.BLL
@@ -88,28 +89,40 @@ namespace Territories.BLL
         {
             try
             {
+                //copio las propiedades de navegación
                 int idCity = v.City.IdCity;
                 int idTerritory = v.Territory.IdTerritory;
+                GeoPosition nGeoPos;
+                if (v.GeoPositions.Count > 0)
+                    nGeoPos = v.GeoPositions.First();
+                else
+                    nGeoPos = null;
+
+                v.GeoPositions.Clear();
+
+                //aplico las propiedades escalares
                 _dm.ApplyPropertyChanges("Directions", v);
 
+                //cargo el objecto original
                 _dm.Directions.MergeOption = MergeOption.AppendOnly;
                 Direction original = _compileLoadDirection(_dm, v.IdDirection).FirstOrDefault();
+                               
 
+                //aplico las propiedades de referencia
                 original.City = null;
                 original.Territory = null;
-
                 original.CityReference.EntityKey = new EntityKey("TerritoriesDataContext.Cities", "IdCity", idCity);
                 original.TerritoryReference.EntityKey = new EntityKey("TerritoriesDataContext.Territories", "IdTerritory", idTerritory);
 
+
+                //aplico los items
                 if (original.GeoPositions.Count>0)
                 {
                     GeoPosition orginalGeoPos = original.GeoPositions.First();
-                    if (v.GeoPositions.Count > 0)
+                    if (nGeoPos!=null)
                     {
-
-                        GeoPosition vGeoPos = v.GeoPositions.First();
-                        if (vGeoPos.Date != orginalGeoPos.Date)
-                            _dm.ApplyPropertyChanges("GeoPositions", vGeoPos);
+                        if (nGeoPos.Date != orginalGeoPos.Date)
+                            _dm.ApplyPropertyChanges("GeoPositions", nGeoPos);
 
                     }
                     else
@@ -119,19 +132,11 @@ namespace Territories.BLL
                     }
                 }
                 else
-                    if (v.GeoPositions.Count > 0)
+                    if (nGeoPos!=null)
                     {
-                        //GeoPosition geoPos = v.GeoPositions.First();
-                        GeoPosition geoPos = new GeoPosition();
-                        geoPos.Date = DateTime.Now;
-                        v.GeoPositions.Clear();
-                        original.GeoPositions.Clear();
-                        //_dm.AddToGeoPositions(geoPos);
-                        original.GeoPositions.Add(geoPos);
+                        _dm.AddToGeoPositions(nGeoPos);
+                        original.GeoPositions.Add(nGeoPos);
                     }
-
-                //d.City = _dm.cities_GetById(idCity).FirstOrDefault();
-                //d.Territory = _dm.territories_GetById(idTerritory).FirstOrDefault();
 
                 _dm.SaveChanges();
 
@@ -213,12 +218,25 @@ namespace Territories.BLL
 
         #endregion
 
+        public GeoPosition NewGeoPosition()
+        {
+            GeoPosition rv = new GeoPosition();
+            rv.IdGeoposition = 0;
+            return rv;
+        }
+
         private bool IsValid(Direction v, ref string message)
         {
             bool rv = true;
             if (string.IsNullOrEmpty(v.Street))
             {
-                message += "Enter the street and the number.";
+                message += "Enter the street.";
+                rv = false;
+            }
+
+            if (string.IsNullOrEmpty(v.Number) && string.IsNullOrEmpty(v.Corner1))
+            {
+                message += "Enter the number or the corner.";
                 rv = false;
             }
 

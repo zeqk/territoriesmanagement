@@ -48,7 +48,7 @@
   <ItemGroup>
     <Reference Include="GeoRSSLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\GeoRSSLibrary2\GeoRSSLibrary\bin\Debug\GeoRSSLibrary.dll</HintPath>
+      <HintPath>..\..\georsslibrary\GeoRSSLibrary\bin\Debug\GeoRSSLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />

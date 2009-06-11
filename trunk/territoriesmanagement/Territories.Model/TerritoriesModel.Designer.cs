@@ -25,7 +25,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "TerritoriesGeopositions", "GeoPositions", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.GeoPosition), "Territory", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Territory))]
 
 // Original file name:
-// Generation date: 10/06/2009 17:25:46
+// Generation date: 11/06/2009 11:00:18
 namespace Territories.Model
 {
     
