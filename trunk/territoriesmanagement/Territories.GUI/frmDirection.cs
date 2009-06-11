@@ -37,10 +37,14 @@ namespace Territories.GUI
                 
                 if (_geoPositionIsModified)
                 {
-                    EntityCollection<GeoPosition> geopositions = new EntityCollection<GeoPosition>();
-                    if (chkHaveGeo.Checked)                        
-                        geopositions.Add((GeoPosition)bsGeoposition.DataSource);
-                    rv.GeoPositions = geopositions;
+                    rv.GeoPositions.Clear();
+                    if (chkHaveGeo.Checked)
+                    {
+                        GeoPosition geoPos = (GeoPosition)bsGeoposition.DataSource;
+                        geoPos.Date = DateTime.Now;
+                        rv.GeoPositions.Add(geoPos);
+                    }
+                        
                     
                 }
                 return rv;
@@ -56,13 +60,8 @@ namespace Territories.GUI
 
                 if (value.City != null)
                 {
-                    if (value.City.Department!=null)
-                    {
-                        cboDepartment.SelectedValue = value.City.Department.IdDepartment;
-                        cboCity.SelectedValue = value.City.IdCity;
-                    }
-                    else
-                        cboDepartment.SelectedItem = null;
+                    cboDepartment.SelectedValue = value.City.Department.IdDepartment;
+                    cboCity.SelectedValue = value.City.IdCity;
                 }
                 else
                     cboDepartment.SelectedItem = null;
@@ -166,6 +165,8 @@ namespace Territories.GUI
         {
             txtLat.Enabled = chkHaveGeo.Checked;
             txtLon.Enabled = chkHaveGeo.Checked;
+            _geoPositionIsModified = true;
+            _isDirty = true;
         }
 
         

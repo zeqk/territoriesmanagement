@@ -16,46 +16,43 @@ namespace Territories.GUI
             InitializeComponent();
         }
 
-        private void mnuDepartments_Click(object sender, EventArgs e)
-        {
-            try
-            {                
-                frmDepartments myForm = new frmDepartments();
-                myForm.MdiParent = this;
-                myForm.Show();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }                
-        }
-
-        private void mnuCities_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                frmCities myForm = new frmCities();
-                myForm.MdiParent = this;
-                myForm.Show();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void mnuDirections_Click(object sender, EventArgs e)
+        private void btnDirections_Click(object sender, EventArgs e)
         {
             try
             {
                 frmDirections myForm = new frmDirections();
-                myForm.MdiParent = this;
                 myForm.Show();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnCities_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmCities myForm = new frmCities();
+                myForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void btnDepartments_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmDepartments myForm = new frmDepartments();
+                myForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            } 
         }
     }
 }
