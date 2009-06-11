@@ -62,7 +62,9 @@ namespace Territories.BLL
         {
             try
             {
-                v.Department = _dm.departments_GetById(v.Department.IdDepartment).FirstOrDefault();
+                int idDepartment = v.Department.IdDepartment;
+                v.Department = null;
+                v.DepartmentReference.EntityKey = new EntityKey("TerritoriesDataContext.Departments", "IdDepartment", idDepartment);
                 _dm.AddToCities(v);
                 _dm.SaveChanges();
 

@@ -167,9 +167,11 @@ namespace Territories.GUI
             {
                 try
                 {                    
-                    this.server.Save(v);
+                    v = this.server.Save(v);
 
                     LoadResults("");
+                    ClearForm();
+                    ObjectToForm(v);
                 }
                 catch (Exception ex)
                 {

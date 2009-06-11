@@ -62,7 +62,15 @@ namespace Territories.BLL
                 v.Territory = null;
 
                 v.CityReference.EntityKey = new EntityKey("TerritoriesDataContext.Cities", "IdCity", idCity);                
-                v.TerritoryReference.EntityKey = new EntityKey("TerritoriesDataContext.Territories", "IdTerritory", idTerritory);                
+                v.TerritoryReference.EntityKey = new EntityKey("TerritoriesDataContext.Territories", "IdTerritory", idTerritory);
+
+                if (v.GeoPositions.Count>0)
+                {
+                    GeoPosition geoPos = v.GeoPositions.First();
+                    v.GeoPositions.Clear();
+                    _dm.AddToGeoPositions(geoPos);
+                    v.GeoPositions.Add(geoPos);
+                }
 
                 _dm.AddToDirections(v);
                 _dm.SaveChanges();
@@ -81,13 +89,49 @@ namespace Territories.BLL
             try
             {
                 int idCity = v.City.IdCity;
-                int idTerr = v.Territory.IdTerritory;
+                int idTerritory = v.Territory.IdTerritory;
                 _dm.ApplyPropertyChanges("Directions", v);
 
                 _dm.Directions.MergeOption = MergeOption.AppendOnly;
-                Direction d = _compileLoadDirection(_dm, v.IdDirection).FirstOrDefault();
-                d.City = _dm.cities_GetById(idCity).FirstOrDefault();
-                d.Territory = _dm.territories_GetById(idTerr).FirstOrDefault();
+                Direction original = _compileLoadDirection(_dm, v.IdDirection).FirstOrDefault();
+
+                original.City = null;
+                original.Territory = null;
+
+                original.CityReference.EntityKey = new EntityKey("TerritoriesDataContext.Cities", "IdCity", idCity);
+                original.TerritoryReference.EntityKey = new EntityKey("TerritoriesDataContext.Territories", "IdTerritory", idTerritory);
+
+                if (original.GeoPositions.Count>0)
+                {
+                    GeoPosition orginalGeoPos = original.GeoPositions.First();
+                    if (v.GeoPositions.Count > 0)
+                    {
+
+                        GeoPosition vGeoPos = v.GeoPositions.First();
+                        if (vGeoPos.Date != orginalGeoPos.Date)
+                            _dm.ApplyPropertyChanges("GeoPositions", vGeoPos);
+
+                    }
+                    else
+                    {
+                        original.GeoPositions.Clear();
+                        _dm.DeleteObject(orginalGeoPos);
+                    }
+                }
+                else
+                    if (v.GeoPositions.Count > 0)
+                    {
+                        //GeoPosition geoPos = v.GeoPositions.First();
+                        GeoPosition geoPos = new GeoPosition();
+                        geoPos.Date = DateTime.Now;
+                        v.GeoPositions.Clear();
+                        original.GeoPositions.Clear();
+                        //_dm.AddToGeoPositions(geoPos);
+                        original.GeoPositions.Add(geoPos);
+                    }
+
+                //d.City = _dm.cities_GetById(idCity).FirstOrDefault();
+                //d.Territory = _dm.territories_GetById(idTerritory).FirstOrDefault();
 
                 _dm.SaveChanges();
 
@@ -140,15 +184,14 @@ namespace Territories.BLL
                 var query = _dm.CreateQuery<Direction>(strQuery, parameters).Include("City"); ;
                 objectResults = query.Execute(MergeOption.AppendOnly);
                 var results = from d in objectResults
-                              //orderby d.Street, d.City.Name
+                              orderby d.Street, d.City.Name
                               select new
                               {
                                   Id = d.IdDirection,
                                   DepartmentName = d.City.Department.Name,
                                   CityName = d.City.Name,
-                                  TerritoryNumber = d.Territory.Number,
-                                  TerritoryName = d.Territory.Name,
-                                  Direction = d.Street,
+                                  Territory = d.Territory.Number+ " - " + d.Territory.Name,
+                                  Direction = d.Street + " " + d.Number,
                                   Corner1 = d.Corner1,
                                   Corner2 = d.Corner2,
                                   Description = d.Description
@@ -238,7 +281,7 @@ namespace Territories.BLL
                 var objectResults = _dm.territories_GetAll();
                 var results = from t in objectResults
                               orderby t.Name
-                              select new { Id = t.IdTerritory, Name = t.Name };
+                              select new { Id = t.IdTerritory, Name = t.Number + " - " + t.Name };
                 return results.ToList();
             }
             catch (Exception ex)
@@ -252,7 +295,10 @@ namespace Territories.BLL
 
             this._compileLoadDirection = CompiledQuery.Compile
                 (
-                    (TerritoriesDataContext dm, int id) => from d in dm.Directions.Include("City").Include("Territory")
+                    (TerritoriesDataContext dm, int id) => from d in dm.Directions
+                                                               .Include("City.Department")
+                                                               .Include("Territory")
+                                                               .Include("GeoPositions")
                                                            where d.IdDirection == id
                                                            select d
                 );

@@ -28,78 +28,72 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.mnuMain = new System.Windows.Forms.MenuStrip();
-            this.mnuGeneral = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDepartments = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuCities = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuDirections = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnuMain.SuspendLayout();
+            this.btnDirections = new System.Windows.Forms.Button();
+            this.btnCities = new System.Windows.Forms.Button();
+            this.btnDepartments = new System.Windows.Forms.Button();
+            this.bntTerritories = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // mnuMain
+            // btnDirections
             // 
-            this.mnuMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuGeneral,
-            this.mnuDirections});
-            this.mnuMain.Location = new System.Drawing.Point(0, 0);
-            this.mnuMain.Name = "mnuMain";
-            this.mnuMain.Size = new System.Drawing.Size(845, 24);
-            this.mnuMain.TabIndex = 1;
-            this.mnuMain.Text = "menuStrip1";
+            this.btnDirections.Location = new System.Drawing.Point(115, 106);
+            this.btnDirections.Name = "btnDirections";
+            this.btnDirections.Size = new System.Drawing.Size(175, 64);
+            this.btnDirections.TabIndex = 0;
+            this.btnDirections.Text = "Directions";
+            this.btnDirections.UseVisualStyleBackColor = true;
+            this.btnDirections.Click += new System.EventHandler(this.btnDirections_Click);
             // 
-            // mnuGeneral
+            // btnCities
             // 
-            this.mnuGeneral.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnuDepartments,
-            this.mnuCities});
-            this.mnuGeneral.Name = "mnuGeneral";
-            this.mnuGeneral.Size = new System.Drawing.Size(81, 20);
-            this.mnuGeneral.Text = "General data";
+            this.btnCities.Location = new System.Drawing.Point(387, 54);
+            this.btnCities.Name = "btnCities";
+            this.btnCities.Size = new System.Drawing.Size(138, 46);
+            this.btnCities.TabIndex = 1;
+            this.btnCities.Text = "Cities";
+            this.btnCities.UseVisualStyleBackColor = true;
+            this.btnCities.Click += new System.EventHandler(this.btnCities_Click);
             // 
-            // mnuDepartments
+            // btnDepartments
             // 
-            this.mnuDepartments.Name = "mnuDepartments";
-            this.mnuDepartments.Size = new System.Drawing.Size(152, 22);
-            this.mnuDepartments.Text = "Departments";
-            this.mnuDepartments.Click += new System.EventHandler(this.mnuDepartments_Click);
+            this.btnDepartments.Location = new System.Drawing.Point(387, 106);
+            this.btnDepartments.Name = "btnDepartments";
+            this.btnDepartments.Size = new System.Drawing.Size(138, 46);
+            this.btnDepartments.TabIndex = 2;
+            this.btnDepartments.Text = "Departments";
+            this.btnDepartments.UseVisualStyleBackColor = true;
+            this.btnDepartments.Click += new System.EventHandler(this.btnDepartments_Click);
             // 
-            // mnuCities
+            // bntTerritories
             // 
-            this.mnuCities.Name = "mnuCities";
-            this.mnuCities.Size = new System.Drawing.Size(152, 22);
-            this.mnuCities.Text = "Cities";
-            this.mnuCities.Click += new System.EventHandler(this.mnuCities_Click);
-            // 
-            // mnuDirections
-            // 
-            this.mnuDirections.Name = "mnuDirections";
-            this.mnuDirections.Size = new System.Drawing.Size(66, 20);
-            this.mnuDirections.Text = "Directions";
-            this.mnuDirections.Click += new System.EventHandler(this.mnuDirections_Click);
+            this.bntTerritories.Location = new System.Drawing.Point(387, 158);
+            this.bntTerritories.Name = "bntTerritories";
+            this.bntTerritories.Size = new System.Drawing.Size(138, 46);
+            this.bntTerritories.TabIndex = 3;
+            this.bntTerritories.Text = "Territories";
+            this.bntTerritories.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(845, 571);
-            this.Controls.Add(this.mnuMain);
-            this.IsMdiContainer = true;
-            this.MainMenuStrip = this.mnuMain;
+            this.ClientSize = new System.Drawing.Size(811, 290);
+            this.Controls.Add(this.bntTerritories);
+            this.Controls.Add(this.btnDepartments);
+            this.Controls.Add(this.btnCities);
+            this.Controls.Add(this.btnDirections);
             this.Name = "frmMain";
             this.Text = "Main";
-            this.mnuMain.ResumeLayout(false);
-            this.mnuMain.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip mnuMain;
-        private System.Windows.Forms.ToolStripMenuItem mnuGeneral;
-        private System.Windows.Forms.ToolStripMenuItem mnuDepartments;
-        private System.Windows.Forms.ToolStripMenuItem mnuCities;
-        private System.Windows.Forms.ToolStripMenuItem mnuDirections;
+        private System.Windows.Forms.Button btnDirections;
+        private System.Windows.Forms.Button btnCities;
+        private System.Windows.Forms.Button btnDepartments;
+        private System.Windows.Forms.Button bntTerritories;
+
     }
 }
