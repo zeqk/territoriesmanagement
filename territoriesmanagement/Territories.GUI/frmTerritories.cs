@@ -13,40 +13,40 @@ using Territories.BLL;
 
 namespace Territories.GUI
 {
-    public partial class frmDepartments : Form
+    public partial class frmTerritories : Form
     {
         static private bool _opened = false;
-
-        private Departments server = new Departments();
+        private BLL.Territories server = new BLL.Territories();
 
         private bool _isDirty;
 
-        public frmDepartments()
+        public frmTerritories()
         {
             if (_opened)
                 throw new Exception("The window is already opened.");
             else
-                _opened = true;   
+                _opened = true;
             InitializeComponent();
         }
 
-        private void frmDepartments_Load(object sender, EventArgs e)
+        private void frmTerritories_Load(object sender, EventArgs e)
         {
-            string[] columns = { "Department.Name" };
-            string[] variables = { "name" };
-            schName.SetProperties(columns,variables);
+            string[] columns = { "Territory.Name","Territory.Number" };
+            string[] variables = { "name","number" };
+            schName.SetProperties(columns, variables);
             ConfigGrids();
-            this.LoadResults("");  
-            
+
+            LoadResults("");
         }
+
         private void LoadResults(string query)
         {
             try
             {
-                dgvResults.DataSource = this.server.Search(query);                
+                dgvResults.DataSource = this.server.Search(query);
             }
             catch (Exception ex)
-            {                
+            {
                 MessageBox.Show(ex.Message, "Error");
             }
             lblFiltered.Visible = false;
@@ -55,60 +55,78 @@ namespace Territories.GUI
         private void ConfigGrids()
         {
 
-            dgvResults.Columns.Add("Id", "Id");          
-            dgvResults.Columns.Add("Name","Department");
-            dgvResults.Columns.Add("blank","");
+            dgvResults.Columns.Add("Id", "Id");
+            dgvResults.Columns.Add("Number", "Number");
+            dgvResults.Columns.Add("Name", "Territory");
+            dgvResults.Columns.Add("blank", "");
 
             dgvResults.Columns["Id"].Visible = false;
             dgvResults.Columns["Id"].DataPropertyName = "Id";
-            dgvResults.Columns["Name"].Width =250;
+            dgvResults.Columns["Name"].Width = 150;
             dgvResults.Columns["Name"].DataPropertyName = "Name";
+            dgvResults.Columns["Number"].Width = 100;
+            dgvResults.Columns["Number"].DataPropertyName = "Number";
             dgvResults.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvResults.MultiSelect = false;
 
-            dgvCities.Columns.Add("Id", "Id");
-            dgvCities.Columns.Add("Name", "City");            
-            dgvCities.Columns.Add("blank", "");
+            dgvDirections.Columns.Add("Id", "Id");
+            dgvDirections.Columns.Add("Name", "Direction");
+            dgvDirections.Columns.Add("blank", "");
 
-            dgvCities.Columns["Id"].Visible = false;
-            dgvCities.Columns["Id"].DataPropertyName = "Id";
-            dgvCities.Columns["Name"].Width = 200;
-            dgvCities.Columns["Name"].DataPropertyName = "Name";
-            dgvCities.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvDirections.Columns["Id"].Visible = false;
+            dgvDirections.Columns["Id"].DataPropertyName = "Id";
+            dgvDirections.Columns["Name"].Width = 200;
+            dgvDirections.Columns["Name"].DataPropertyName = "Name";
+            dgvDirections.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            dgvCities.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCities.MultiSelect = false;
+            dgvDirections.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvDirections.MultiSelect = false;
 
-        } 
+            dgvTours.Columns.Add("Id", "Id");
+            dgvTours.Columns.Add("Number", "Tour Nº");
+            dgvTours.Columns.Add("BeginDate", "Begin");
+            dgvTours.Columns.Add("EndDate", "End");
+            dgvTours.Columns.Add("blank", "");
 
-        private void Close_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
-        } 
+            dgvTours.Columns["Id"].Visible = false;
+            dgvTours.Columns["Id"].DataPropertyName = "Id";
+            dgvTours.Columns["Number"].Width = 100;
+            dgvTours.Columns["Number"].DataPropertyName = "Number";
+            dgvTours.Columns["BeginDate"].Width = 150;
+            dgvTours.Columns["BeginDate"].DataPropertyName = "BeginDate";
+            dgvTours.Columns["EndDate"].Width = 150;
+            dgvTours.Columns["EndDate"].DataPropertyName = "EndDate";
+            dgvTours.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            dgvTours.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvTours.MultiSelect = false;
+
+        }
 
         private void dgvResults_SelectionChanged(object sender, EventArgs e)
-        {         
-                if (dgvResults.SelectedRows.Count != 0)
-                {
-                    var v = server.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
-                    ObjectToForm(v);
-                    if (tabPanel.Visible)
-                        LoadRelations(v);
+        {
+            if (dgvResults.SelectedRows.Count != 0)
+            {
+                var v = server.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
+                ObjectToForm(v);
+                if (tabPanel.Visible)
+                    LoadRelations(v);
 
-                    this._isDirty = false;
-                } 
+                this._isDirty = false;
+            }
         }
 
-        private Department FormToOject()
+        private Territory FormToOject()
         {
-            return (Department)this.bsDepartment.DataSource;
+            Territory rv = (Territory)this.bsTerritory.DataSource;
+            return rv;
         }
 
-        private void ObjectToForm(Department dep)
+        private void ObjectToForm(Territory v)
         {
-            this.bsDepartment.DataSource = dep;
+            this.bsTerritory.DataSource = v;
         }
 
         private void ClearForm()
@@ -155,19 +173,20 @@ namespace Territories.GUI
             }
         }
 
-        private void btnUpdate_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
-            this.Update();
+            this.Save();
         }
 
-        private void Update()
+        private void Save()
         {
-            var v = this.FormToOject();
             if (IsComplete())
             {
+                var v = this.FormToOject();
+
                 try
-                {                    
-                    v = this.server.Save(v);
+                {
+                    v =this.server.Save(v);
 
                     LoadResults("");
                     ClearForm();
@@ -178,17 +197,9 @@ namespace Territories.GUI
                     MessageBox.Show(ex.Message, "Error");
                 }
             }
-
             else
-                MessageBox.Show("The data is incomplete");            
-        }
+                MessageBox.Show("The data is incomplete");
 
-        private bool IsComplete()
-        {
-            bool rv = true;
-            if (txtName.Text == "")
-                rv = false;
-            return rv;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -196,7 +207,7 @@ namespace Territories.GUI
             var v = FormToOject();
             try
             {
-                this.server.Delete(v.IdDepartment);
+                this.server.Delete(v.IdTerritory);
                 LoadResults("");
                 ClearForm();
             }
@@ -216,13 +227,17 @@ namespace Territories.GUI
             try
             {
                 schName.MakeQuery();
+
                 List<ObjectParameter> parameters = new List<ObjectParameter>();
-                string strQuery ="";
+                string strQuery = "";
 
                 if (!schName.IsClean())
                 {
                     strQuery = schName.Query;
-                    parameters = schName.Parameters;
+                    schName.Parameters.ForEach(delegate(ObjectParameter param)
+                    {
+                        parameters.Add(param);
+                    });
                 }
 
                 if (!string.IsNullOrEmpty(strQuery))
@@ -236,15 +251,16 @@ namespace Territories.GUI
                 ClearForm();
             }
             catch (Exception ex)
-            {                
+            {
                 MessageBox.Show(ex.Message, "Error");
             }
-            
-            
+
+
         }
 
         private void btnClearFilter_Click(object sender, EventArgs e)
-        {
+        {            
+            schName.Clear();
             LoadResults("");
             lblFiltered.Visible = false;
             ClearForm();
@@ -264,33 +280,49 @@ namespace Territories.GUI
                     tabPanel.Visible = true;
                     btnRelations.Text = "Hide relations";
 
-                    LoadRelations((Department)bsDepartment.DataSource);
+                    LoadRelations((Territory)bsTerritory.DataSource);
                 }
                 else
-                    MessageBox.Show("You must select any department");
+                    MessageBox.Show("You must select any city");
             }
         }
 
-        private void LoadRelations(Department v)
+        private void LoadRelations(Territory v)
         {
-            dgvCities.DataSource = this.server.LoadRelations(v.IdDepartment)["Cities"];
-            dgvCities.Refresh();
+            IDictionary relations = this.server.LoadRelations(v.IdTerritory);
+            dgvDirections.DataSource = relations["Directions"];
+            dgvDirections.Refresh();
 
-            dgvCities.RowHeadersVisible = false;
+            dgvDirections.RowHeadersVisible = false;
+
+            dgvTours.DataSource = relations["Tours"];
+            dgvTours.Refresh();
+
+            dgvTours.RowHeadersVisible = false;
 
         }
 
-        private void frmDepartments_Shown(object sender, EventArgs e)
+        private void frmTerritories_Shown(object sender, EventArgs e)
         {
             New();
         }
-        
 
-        private void frmDepartments_FormClosed(object sender, FormClosedEventArgs e)
+        private bool IsComplete()
+        {
+            bool rv = true;
+            if (string.IsNullOrEmpty(txtName.Text))
+                rv = false;
+            if (string.IsNullOrEmpty(txtNumber.Text))
+                rv = false;
+
+            return rv;
+        }
+
+        private void frmTerritories_FormClosed(object sender, FormClosedEventArgs e)
         {
             _opened = false;
         }
 
-        
+
     }
 }

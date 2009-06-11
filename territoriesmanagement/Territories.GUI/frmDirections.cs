@@ -24,21 +24,9 @@ namespace Territories.GUI
 
         }
 
-        private void search2_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void frmDirections_Load(object sender, EventArgs e)
         {
-            string[] columns1 = { "Direction.Street" };
-            string[] variables1 = { "street" };
-            schStreet.SetProperties(columns1, variables1);
+            chkStreet.Checked = true;
 
             ConfigGrids();
 
@@ -110,7 +98,7 @@ namespace Territories.GUI
 
         }
 
-        private void btnClear_Click(object sender, EventArgs e)
+        private void btnAll_Click(object sender, EventArgs e)
         {
             schStreet.Clear();
             cboDepartment.SelectedItem = null;
@@ -151,6 +139,17 @@ namespace Territories.GUI
 
                     parameters.Add(cityPar);
                 }
+                else
+                    if (cboDepartment.SelectedValue!=null)
+                    {
+                        if (parameters.Count > 0)
+                            strQuery += " AND ";
+
+                        strQuery += "Direction.City.Department.IdDepartment = @IdDepartment";
+                        ObjectParameter depPar = new ObjectParameter("IdDepartment", (int)cboDepartment.SelectedValue);
+
+                        parameters.Add(depPar);
+                    }
 
                 if (cboTerritory.SelectedValue != null)
                 {
@@ -162,10 +161,15 @@ namespace Territories.GUI
 
                     parameters.Add(terrPar);
                 }
+                if (!string.IsNullOrEmpty(strQuery))
+                {
+                    dgvResults.DataSource = this._server.Search(strQuery, parameters.ToArray<ObjectParameter>());
+                    lblFiltered.Visible = true;
+                }
+                else
+                    MessageBox.Show("Debe llenar al menos 1 campo de búsqueda");
 
-                dgvResults.DataSource = this._server.Search(strQuery, parameters.ToArray<ObjectParameter>());
-
-                lblFiltered.Visible = true;
+                
             }
             catch (Exception ex)
             {                
@@ -221,12 +225,45 @@ namespace Territories.GUI
                     {
                         MessageBox.Show(ex.Message);
                     }
-
-
                 }
             }
             else
                 MessageBox.Show("Select any direction");
+        }
+
+        private void fields_CheckedChanged(object sender, EventArgs e)
+        {
+            List<string> columns = new List<string>();
+            List<string> variables = new List<string>();
+
+            if (chkStreet.Checked)
+            {
+                columns.Add("Direction.Street");
+                variables.Add("street");
+            }
+
+            if (chkCorners.Checked)
+            {
+                columns.Add("Direction.Corner1");
+                variables.Add("corner1");
+                columns.Add("Direction.Corner2");
+                variables.Add("corner2");
+            }
+
+            if (chkDescription.Checked)
+            {
+                columns.Add("Direction.Description");
+                variables.Add("desc");
+            }
+            if (columns.Count>0)
+            {
+                schStreet.SetProperties(columns.ToArray(), variables.ToArray());
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar al menos 1 campo donde buscar");
+                ((CheckBox)sender).Checked = true;
+            }
         }
     }
 }

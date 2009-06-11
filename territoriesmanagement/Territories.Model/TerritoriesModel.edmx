@@ -152,7 +152,7 @@
             <PropertyRef Name="IdGeoposition" />
           </Key>
           <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="IdGeoposition" Type="int" Nullable="false" />
+          <Property Name="IdGeoposition" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Latitude" Type="bigint" Nullable="false" />
           <Property Name="Longitude" Type="bigint" Nullable="false" />
         </EntityType>
@@ -1039,7 +1039,21 @@
                 <ScalarProperty Name="Longitude" ColumnName="Longitude" />
                 <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="IdGeoposition" ColumnName="IdGeoposition" />
-                <ScalarProperty Name="Date" ColumnName="Date" /></MappingFragment></EntityTypeMapping></EntitySetMapping>
+                <ScalarProperty Name="Date" ColumnName="Date" /></MappingFragment></EntityTypeMapping>
+            <EntityTypeMapping TypeName="TerritoriesModel.GeoPosition">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="TerritoriesModel.Store.geoPositions_Add">
+                  <ScalarProperty Name="Longitude" ParameterName="lon" />
+                  <ScalarProperty Name="Latitude" ParameterName="lat" />
+                  <ScalarProperty Name="Date" ParameterName="date" />
+                  <ResultBinding Name="IdGeoposition" ColumnName="id" /></InsertFunction>
+                <UpdateFunction FunctionName="TerritoriesModel.Store.geopositions_UpdateById">
+                  <ScalarProperty Name="Longitude" ParameterName="lon" Version="Current" />
+                  <ScalarProperty Name="Latitude" ParameterName="lat" Version="Current" />
+                  <ScalarProperty Name="IdGeoposition" ParameterName="id" Version="Original" />
+                  <ScalarProperty Name="Date" ParameterName="date" Version="Current" /></UpdateFunction>
+                <DeleteFunction FunctionName="TerritoriesModel.Store.geoPositions_DeleteById" >
+                  <ScalarProperty Name="IdGeoposition" ParameterName="id" /></DeleteFunction></ModificationFunctionMapping></EntityTypeMapping></EntitySetMapping>
           <AssociationSetMapping Name="CitiesGeopositions" TypeName="TerritoriesModel.CitiesGeopositions" StoreEntitySet="CitiesGeopositions">
             <EndProperty Name="GeoPositions">
               <ScalarProperty Name="IdGeoposition" ColumnName="IdGeoposition" /></EndProperty>

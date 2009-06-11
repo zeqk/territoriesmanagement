@@ -76,7 +76,7 @@ namespace Territories.GUI
                     chkHaveGeo.Checked = false;
                     txtLat.Enabled = false;
                     txtLon.Enabled = false;
-                    bsGeoposition.DataSource = new GeoPosition();
+                    bsGeoposition.DataSource = _server.NewGeoPosition();
                 }
 
             }
