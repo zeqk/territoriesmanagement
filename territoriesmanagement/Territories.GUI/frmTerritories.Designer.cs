@@ -322,7 +322,6 @@
             this.lblNumber.Size = new System.Drawing.Size(44, 13);
             this.lblNumber.TabIndex = 22;
             this.lblNumber.Text = "Number";
-            this.lblNumber.Click += new System.EventHandler(this.lblNumber_Click);
             // 
             // txtNumber
             // 

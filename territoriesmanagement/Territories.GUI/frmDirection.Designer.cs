@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.grpMaps = new System.Windows.Forms.GroupBox();
             this.grpGeoLocation = new System.Windows.Forms.GroupBox();
+            this.chkHaveGeo = new System.Windows.Forms.CheckBox();
             this.lblLon = new System.Windows.Forms.Label();
             this.lblLat = new System.Windows.Forms.Label();
             this.txtLon = new System.Windows.Forms.TextBox();
@@ -69,7 +70,6 @@
             this.txtStreet = new System.Windows.Forms.TextBox();
             this.txtField1 = new System.Windows.Forms.TextBox();
             this.lblField1 = new System.Windows.Forms.Label();
-            this.chkHaveGeo = new System.Windows.Forms.CheckBox();
             this.grpMaps.SuspendLayout();
             this.grpGeoLocation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsGeoposition)).BeginInit();
@@ -101,10 +101,21 @@
             this.grpGeoLocation.Controls.Add(this.txtLat);
             this.grpGeoLocation.Location = new System.Drawing.Point(26, 113);
             this.grpGeoLocation.Name = "grpGeoLocation";
-            this.grpGeoLocation.Size = new System.Drawing.Size(272, 115);
+            this.grpGeoLocation.Size = new System.Drawing.Size(253, 115);
             this.grpGeoLocation.TabIndex = 4;
             this.grpGeoLocation.TabStop = false;
             this.grpGeoLocation.Text = "Geo location";
+            // 
+            // chkHaveGeo
+            // 
+            this.chkHaveGeo.AutoSize = true;
+            this.chkHaveGeo.Location = new System.Drawing.Point(131, 17);
+            this.chkHaveGeo.Name = "chkHaveGeo";
+            this.chkHaveGeo.Size = new System.Drawing.Size(109, 17);
+            this.chkHaveGeo.TabIndex = 4;
+            this.chkHaveGeo.Text = "Have geoposition";
+            this.chkHaveGeo.UseVisualStyleBackColor = true;
+            this.chkHaveGeo.CheckedChanged += new System.EventHandler(this.chkHaveGeo_CheckedChanged);
             // 
             // lblLon
             // 
@@ -228,7 +239,7 @@
             this.grpPhones.Controls.Add(this.txtPhone1);
             this.grpPhones.Location = new System.Drawing.Point(373, 273);
             this.grpPhones.Name = "grpPhones";
-            this.grpPhones.Size = new System.Drawing.Size(266, 124);
+            this.grpPhones.Size = new System.Drawing.Size(304, 124);
             this.grpPhones.TabIndex = 41;
             this.grpPhones.TabStop = false;
             this.grpPhones.Text = "Phones";
@@ -256,7 +267,7 @@
             this.txtPhone2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDirection, "Phone2", true));
             this.txtPhone2.Location = new System.Drawing.Point(26, 83);
             this.txtPhone2.Name = "txtPhone2";
-            this.txtPhone2.Size = new System.Drawing.Size(220, 20);
+            this.txtPhone2.Size = new System.Drawing.Size(253, 20);
             this.txtPhone2.TabIndex = 1;
             // 
             // txtPhone1
@@ -264,7 +275,7 @@
             this.txtPhone1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDirection, "Phone1", true));
             this.txtPhone1.Location = new System.Drawing.Point(26, 39);
             this.txtPhone1.Name = "txtPhone1";
-            this.txtPhone1.Size = new System.Drawing.Size(220, 20);
+            this.txtPhone1.Size = new System.Drawing.Size(253, 20);
             this.txtPhone1.TabIndex = 0;
             // 
             // btnSave
@@ -435,31 +446,20 @@
             // txtField1
             // 
             this.txtField1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsDirection, "Description", true));
-            this.txtField1.Location = new System.Drawing.Point(373, 428);
+            this.txtField1.Location = new System.Drawing.Point(399, 428);
             this.txtField1.Multiline = true;
             this.txtField1.Name = "txtField1";
-            this.txtField1.Size = new System.Drawing.Size(266, 43);
+            this.txtField1.Size = new System.Drawing.Size(253, 43);
             this.txtField1.TabIndex = 45;
             // 
             // lblField1
             // 
             this.lblField1.AutoSize = true;
-            this.lblField1.Location = new System.Drawing.Point(370, 412);
+            this.lblField1.Location = new System.Drawing.Point(396, 412);
             this.lblField1.Name = "lblField1";
             this.lblField1.Size = new System.Drawing.Size(38, 13);
             this.lblField1.TabIndex = 46;
             this.lblField1.Text = "Field 1";
-            // 
-            // chkHaveGeo
-            // 
-            this.chkHaveGeo.AutoSize = true;
-            this.chkHaveGeo.Location = new System.Drawing.Point(131, 17);
-            this.chkHaveGeo.Name = "chkHaveGeo";
-            this.chkHaveGeo.Size = new System.Drawing.Size(109, 17);
-            this.chkHaveGeo.TabIndex = 4;
-            this.chkHaveGeo.Text = "Have geoposition";
-            this.chkHaveGeo.UseVisualStyleBackColor = true;
-            this.chkHaveGeo.CheckedChanged += new System.EventHandler(this.chkHaveGeo_CheckedChanged);
             // 
             // frmDirection
             // 
