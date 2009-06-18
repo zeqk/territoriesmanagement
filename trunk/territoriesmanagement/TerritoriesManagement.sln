@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerritoriesToGoogleMaps", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Territories.Model", "Territories.Model\Territories.Model.csproj", "{E227CF22-352C-4A32-BEC8-ABD6202B79C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Territories.Externals", "Territories.Externals\Territories.Externals.csproj", "{C3463B37-FFE8-42B4-8FF0-153E63BC06B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,10 @@ Global
 		{E227CF22-352C-4A32-BEC8-ABD6202B79C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E227CF22-352C-4A32-BEC8-ABD6202B79C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E227CF22-352C-4A32-BEC8-ABD6202B79C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3463B37-FFE8-42B4-8FF0-153E63BC06B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3463B37-FFE8-42B4-8FF0-153E63BC06B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3463B37-FFE8-42B4-8FF0-153E63BC06B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3463B37-FFE8-42B4-8FF0-153E63BC06B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
