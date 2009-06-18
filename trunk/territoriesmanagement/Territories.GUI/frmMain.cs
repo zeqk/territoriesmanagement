@@ -54,5 +54,18 @@ namespace Territories.GUI
                 MessageBox.Show(ex.Message);
             } 
         }
+
+        private void bntTerritories_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmTerritories myForm = new frmTerritories();
+                myForm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

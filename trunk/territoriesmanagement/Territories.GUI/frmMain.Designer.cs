@@ -72,6 +72,7 @@
             this.bntTerritories.TabIndex = 3;
             this.bntTerritories.Text = "Territories";
             this.bntTerritories.UseVisualStyleBackColor = true;
+            this.bntTerritories.Click += new System.EventHandler(this.bntTerritories_Click);
             // 
             // frmMain
             // 
