@@ -96,6 +96,7 @@
             // 
             // cboDepartment
             // 
+            this.cboDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDepartment.FormattingEnabled = true;
             this.cboDepartment.Location = new System.Drawing.Point(22, 79);
             this.cboDepartment.Name = "cboDepartment";
@@ -231,6 +232,7 @@
             // 
             // cboFilterDepartment
             // 
+            this.cboFilterDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboFilterDepartment.FormattingEnabled = true;
             this.cboFilterDepartment.Location = new System.Drawing.Point(19, 79);
             this.cboFilterDepartment.Name = "cboFilterDepartment";
