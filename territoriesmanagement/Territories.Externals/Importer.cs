@@ -5,11 +5,17 @@ using System.Text;
 using System.Data.OleDb;
 using System.Data;
 using System.Data.Objects.DataClasses;
+using Territories.Model;
 
 namespace Territories.Externals
 {
-    class Imports
+    class Importer
     {
+
+        public void FromExcel(string path, string sheetName,TerritoriesDataContext dm,string entitySet)
+        {
+            
+        }
 
         private void DataTableToModel<T>(DataTable dt,EntityCollection<T> entitySet, string[] properties)
         {
@@ -19,11 +25,11 @@ namespace Territories.Externals
 
 
 
-        private DataTable ReadTerritoriesFile(string pathIn,string sheetName)
+        private DataTable ReadTerritoriesFile(string path,string sheetName)
         {
 
             string stringConnection = @"Provider=Microsoft.Jet.Oledb.4.0;Data Source=";
-            stringConnection = stringConnection + pathIn;
+            stringConnection = stringConnection + path;
             stringConnection = stringConnection + @";Extended Properties=""Excel 8.0;HDR=Yes;IMEX=1""";
             OleDbConnection connection = new OleDbConnection(stringConnection);
 
@@ -40,5 +46,8 @@ namespace Territories.Externals
             return dt;
 
         }
+
+
+        
     }
 }

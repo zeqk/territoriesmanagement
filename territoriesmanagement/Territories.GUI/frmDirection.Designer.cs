@@ -224,6 +224,7 @@
             // 
             // cboTerritory
             // 
+            this.cboTerritory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTerritory.FormattingEnabled = true;
             this.cboTerritory.Location = new System.Drawing.Point(29, 331);
             this.cboTerritory.Name = "cboTerritory";
@@ -418,6 +419,7 @@
             // 
             // cboCity
             // 
+            this.cboCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCity.FormattingEnabled = true;
             this.cboCity.Location = new System.Drawing.Point(18, 78);
             this.cboCity.Name = "cboCity";
@@ -427,6 +429,7 @@
             // 
             // cboDepartment
             // 
+            this.cboDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDepartment.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cboDepartment.FormattingEnabled = true;
             this.cboDepartment.Location = new System.Drawing.Point(18, 34);

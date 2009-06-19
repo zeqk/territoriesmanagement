@@ -56,6 +56,7 @@
             // cmbCriteria
             // 
             this.cmbCriteria.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cmbCriteria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCriteria.FormattingEnabled = true;
             this.cmbCriteria.Location = new System.Drawing.Point(0, 0);
             this.cmbCriteria.Name = "cmbCriteria";
