@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Territories.Externals")]
+[assembly: AssemblyTitle("Territories.Interop")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("RinoxSoft")]
-[assembly: AssemblyProduct("Territories.Externals")]
-[assembly: AssemblyCopyright("Copyright © RinoxSoft 2009")]
+[assembly: AssemblyCompany("xx")]
+[assembly: AssemblyProduct("Territories.Interop")]
+[assembly: AssemblyCopyright("Copyright © xx 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("b323d421-a346-4c2a-b426-9a8f656b816b")]
+[assembly: Guid("f7f53a18-b3b9-4e9e-ad53-0f5bf55b14bd")]
 
 // Version information for an assembly consists of the following four values:
 //

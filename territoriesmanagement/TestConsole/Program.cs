@@ -14,17 +14,10 @@ namespace TestConsole
     {
         static void Main(string[] args)
         {
-            Departments db = new Departments();
-            var dep1 = db.NewObject();
-            dep1.Name = "prueba1";
-            var dep2 = db.Insert(dep1);
-            var deps = db.All();
-
-            foreach (var dep in deps)
-            {
-                //Console.WriteLine(dep.IdDepartment);
-            }
-
+            string[] array = { "linea 1", "linea 2" };
+            Console.WriteLine(array.ToString());
+            IDictionary dic = new Hashtable();
+            dic.Add("larala", 1);
             Console.ReadKey();
 
         }

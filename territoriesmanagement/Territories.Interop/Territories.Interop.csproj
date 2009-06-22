@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{C3463B37-FFE8-42B4-8FF0-153E63BC06B6}</ProjectGuid>
+    <ProjectGuid>{CAFDABDC-8EC2-4CB4-B36D-731F110AC278}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Territories.Externals</RootNamespace>
-    <AssemblyName>Territories.Externals</AssemblyName>
+    <RootNamespace>Territories.Interop</RootNamespace>
+    <AssemblyName>Territories.Interop</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -48,8 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ExcelSheet.cs" />
-    <Compile Include="Importer.cs" />
+    <Compile Include="ExcelImporter.cs" />
+    <Compile Include="ExcelImporterConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
