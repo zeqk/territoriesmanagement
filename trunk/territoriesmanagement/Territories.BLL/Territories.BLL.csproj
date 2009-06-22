@@ -55,6 +55,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Directions.cs" />
+    <Compile Include="Interoperability.cs" />
     <Compile Include="QueryExecutor.cs" />
     <Compile Include="Departments.cs" />
     <Compile Include="IDataBridge.cs" />
@@ -68,6 +69,10 @@
     <Compile Include="Territories.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Territories.Interop\Territories.Interop.csproj">
+      <Project>{CAFDABDC-8EC2-4CB4-B36D-731F110AC278}</Project>
+      <Name>Territories.Interop</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Territories.Model\Territories.Model.csproj">
       <Project>{E227CF22-352C-4A32-BEC8-ABD6202B79C3}</Project>
       <Name>Territories.Model</Name>
