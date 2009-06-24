@@ -14,8 +14,8 @@ namespace Territories.BLL
     public class Directions : IDataBridge<Direction>
     {
         private TerritoriesDataContext _dm;
-        private Func<TerritoriesDataContext, int, IQueryable<Direction>> _compileLoadDirection;
-        private Func<TerritoriesDataContext, IQueryable<Direction>> _compileGetAllDirections;
+        private Func<TerritoriesDataContext, int, IQueryable<Direction>> _compiledLoadDirection;
+        private Func<TerritoriesDataContext, IQueryable<Direction>> _compiledGetAllDirections;
 
         #region Contructors
         public Directions()
@@ -105,7 +105,7 @@ namespace Territories.BLL
 
                 //cargo el objecto original
                 _dm.Directions.MergeOption = MergeOption.AppendOnly;
-                Direction original = _compileLoadDirection(_dm, v.IdDirection).FirstOrDefault();
+                Direction original = _compiledLoadDirection(_dm, v.IdDirection).FirstOrDefault();
                                
 
                 //aplico las propiedades de referencia
@@ -121,7 +121,7 @@ namespace Territories.BLL
                     GeoPosition orginalGeoPos = original.GeoPositions.First();
                     if (nGeoPos!=null)
                     {
-                        if (nGeoPos.Date != orginalGeoPos.Date)
+                        if (DateTime.Compare(nGeoPos.Date,orginalGeoPos.Date)>0)
                             _dm.ApplyPropertyChanges("GeoPositions", nGeoPos);
 
                     }
@@ -167,7 +167,7 @@ namespace Territories.BLL
             try
             {
                 _dm.Directions.MergeOption = MergeOption.NoTracking;
-                Direction rv = _compileLoadDirection(_dm, id).First();
+                Direction rv = _compiledLoadDirection(_dm, id).First();
                 return rv;
             }
             catch (Exception ex)
@@ -311,7 +311,7 @@ namespace Territories.BLL
         private void PreCompileQueries()
         {
 
-            this._compileLoadDirection = CompiledQuery.Compile
+            this._compiledLoadDirection = CompiledQuery.Compile
                 (
                     (TerritoriesDataContext dm, int id) => from d in dm.Directions
                                                                .Include("City.Department")
@@ -321,7 +321,7 @@ namespace Territories.BLL
                                                            select d
                 );
 
-            this._compileGetAllDirections = CompiledQuery.Compile
+            this._compiledGetAllDirections = CompiledQuery.Compile
                 (
                     (TerritoriesDataContext dm) => dm.Directions.Include("City").Include("Territory").AsQueryable()
                 );

@@ -32,6 +32,7 @@
             this.btnCities = new System.Windows.Forms.Button();
             this.btnDepartments = new System.Windows.Forms.Button();
             this.bntTerritories = new System.Windows.Forms.Button();
+            this.btnInterop = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnDirections
@@ -74,11 +75,22 @@
             this.bntTerritories.UseVisualStyleBackColor = true;
             this.bntTerritories.Click += new System.EventHandler(this.bntTerritories_Click);
             // 
+            // btnInterop
+            // 
+            this.btnInterop.Location = new System.Drawing.Point(573, 106);
+            this.btnInterop.Name = "btnInterop";
+            this.btnInterop.Size = new System.Drawing.Size(138, 46);
+            this.btnInterop.TabIndex = 4;
+            this.btnInterop.Text = "Interoperability";
+            this.btnInterop.UseVisualStyleBackColor = true;
+            this.btnInterop.Click += new System.EventHandler(this.btnInterop_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(811, 290);
+            this.Controls.Add(this.btnInterop);
             this.Controls.Add(this.bntTerritories);
             this.Controls.Add(this.btnDepartments);
             this.Controls.Add(this.btnCities);
@@ -95,6 +107,7 @@
         private System.Windows.Forms.Button btnCities;
         private System.Windows.Forms.Button btnDepartments;
         private System.Windows.Forms.Button bntTerritories;
+        private System.Windows.Forms.Button btnInterop;
 
     }
 }

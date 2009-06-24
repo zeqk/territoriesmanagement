@@ -49,10 +49,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ExcelImporter.cs" />
-    <Compile Include="ExcelImporterConfig.cs" />
+    <Compile Include="IImporter.cs" />
+    <Compile Include="Importer.cs" />
+    <Compile Include="ImporterConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\My.Enums\My.csproj">
+      <Project>{37B58754-D6D4-4A68-9870-D5B432B1E81E}</Project>
+      <Name>My</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Territories.Model\Territories.Model.csproj">
       <Project>{E227CF22-352C-4A32-BEC8-ABD6202B79C3}</Project>
       <Name>Territories.Model</Name>

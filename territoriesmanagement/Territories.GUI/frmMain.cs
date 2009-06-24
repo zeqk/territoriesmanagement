@@ -67,5 +67,19 @@ namespace Territories.GUI
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnInterop_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmInterop myForm = new frmInterop();
+                myForm.Show();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

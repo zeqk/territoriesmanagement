@@ -117,11 +117,11 @@
     <Compile Include="frmDirections.Designer.cs">
       <DependentUpon>frmDirections.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmImports.cs">
+    <Compile Include="frmInterop.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmImports.Designer.cs">
-      <DependentUpon>frmImports.cs</DependentUpon>
+    <Compile Include="frmInterop.Designer.cs">
+      <DependentUpon>frmInterop.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -149,8 +149,8 @@
     <EmbeddedResource Include="frmDirections.resx">
       <DependentUpon>frmDirections.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmImports.resx">
-      <DependentUpon>frmImports.cs</DependentUpon>
+    <EmbeddedResource Include="frmInterop.resx">
+      <DependentUpon>frmInterop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
