@@ -169,7 +169,7 @@ namespace Territories.BLL
         public bool IsValid(City v, ref string message)
         {
             bool rv = true;
-            if (v.Name == "" || v.Name == null)
+            if (string.IsNullOrEmpty(v.Name))
             {
                 message += "Enter city name.";
                 rv = false;
@@ -227,14 +227,9 @@ namespace Territories.BLL
 
         private bool Exist(City v)
         {
-            bool rv;
-            var results = _compiledSameCity(_dm, v).ToList();
+            var found = _compiledSameCity(_dm, v).ToList();
 
-            if (results.Count>0)
-                rv = true;
-            else
-                rv = false;
-            return rv;
+            return (found.Count > 0);
         }
 
         public IList GetDepartments()

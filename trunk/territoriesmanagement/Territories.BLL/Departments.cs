@@ -32,6 +32,12 @@ namespace Territories.BLL
             _dm = new TerritoriesDataContext(conection);
             PreCompileQueries();
         }
+
+        internal Departments(TerritoriesDataContext dm)
+        {
+            _dm = dm;
+            PreCompileQueries();
+        }
         #endregion
 
         #region IGenericServer<Department> Members
@@ -135,7 +141,7 @@ namespace Territories.BLL
         public bool IsValid(Department v, ref string message)
         {
             bool rv = true;
-            if (v.Name == "" || v.Name == null)
+            if (string.IsNullOrEmpty(v.Name))
             {
                 message += "The department name is invalid. Correct and retrieve.";
                 rv = false;
@@ -196,12 +202,9 @@ namespace Territories.BLL
 
         private bool Exist(Department v)
         {
-            ObjectParameter[] parameters = { new ObjectParameter("Name", v.Name) };
-            var results = _compiledSameDepartment(_dm, v).ToList();
-            if (results.Count > 0)
-                return true;
-            else
-                return false;
+            var found = _compiledSameDepartment(_dm, v).ToList();
+
+            return (found.Count > 0);
         }
 
         private void PreCompileQueries()
