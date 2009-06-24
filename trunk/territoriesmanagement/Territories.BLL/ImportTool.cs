@@ -199,6 +199,18 @@ namespace Territories.BLL
         private Department DataRowToDepartment(DataRow row)
         {
             Department rv = new Department();
+            //Department.IdDepartment
+            if (_config.Territories.LoadId)
+            {
+                if (!string.IsNullOrEmpty(_config.Departments.Columns["IdDepartment"]))
+                {
+                    string idColumn = _config.Departments.Columns["IdDepartment"];
+                    int id = 0;
+                    if (int.TryParse(row[idColumn].ToString(), out id))
+                        rv.IdDepartment = id;
+                }
+            }
+            //
             //Department.Name
             string name = "";
             if (!string.IsNullOrEmpty(_config.Departments.Columns["Name"]))
@@ -214,7 +226,18 @@ namespace Territories.BLL
         private City DataRowToCity(DataRow row)
         {
             City rv = new City();
-
+            //City.IdCity
+            if (_config.Territories.LoadId)
+            {
+                if (!string.IsNullOrEmpty(_config.Cities.Columns["IdCity"]))
+                {
+                    string idColumn = _config.Cities.Columns["IdCity"];
+                    int id = 0;
+                    if (int.TryParse(row[idColumn].ToString(), out id))
+                        rv.IdCity = id;
+                }
+            }
+            //
             //City.Name
             string name = "";
             if (!string.IsNullOrEmpty(_config.Cities.Columns["Name"]))
@@ -247,7 +270,17 @@ namespace Territories.BLL
         private Territory DataRowToTerritory(DataRow row)
         {
             Territory rv = new Territory();
-
+            //Territory.IdTerritory
+            if (_config.Territories.LoadId)
+            {
+                if (!string.IsNullOrEmpty(_config.Territories.Columns["IdTerritory"]))
+                {
+                    string idColumn = _config.Territories.Columns["IdTerritory"];
+                    int id = 0;
+                    if(int.TryParse(row[idColumn].ToString(),out id))
+                        rv.IdTerritory = id;
+                }
+            }
             //Territory.Name
             if (!string.IsNullOrEmpty(_config.Territories.Columns["Name"]))
             {
@@ -268,73 +301,85 @@ namespace Territories.BLL
         private Direction DataRowToDirection(DataRow row)
         {            
             Direction rv = new Direction();
+
+            //Direction.IdDirection
+            if (_config.Directions.LoadId)
+            {
+                if (!string.IsNullOrEmpty(_config.Directions.Columns["IdDirection"]))
+                {
+                    string idColumn = _config.Directions.Columns["IdDirection"];
+                    int id = 0;
+                    if(int.TryParse(row[idColumn].ToString(),out id))
+                        rv.IdDirection = id;
+                }
+            }
             //Direction.Street
             if (!string.IsNullOrEmpty(_config.Directions.Columns["Street"]))
             {
-                string streetColumn = _config.Territories.Columns["Street"];
+                string streetColumn = _config.Directions.Columns["Street"];
                 rv.Street = row[streetColumn].ToString();
             }            
             //Direction.Number
             if (!string.IsNullOrEmpty(_config.Directions.Columns["Number"]))
             {
-                string columnName = _config.Territories.Columns["Number"];
+                string columnName = _config.Directions.Columns["Number"];
                 rv.Number = row[columnName].ToString();
             }
             //Direction.Corener1
             if (!string.IsNullOrEmpty(_config.Directions.Columns["Corner1"]))
             {
-                string columnName = _config.Territories.Columns["Corner1"];
+                string columnName = _config.Directions.Columns["Corner1"];
                 rv.Corner1 = row[columnName].ToString();
             }
             //Direction.Corner2
             if (!string.IsNullOrEmpty(_config.Directions.Columns["Corner2"]))
             {
-                string columnName = _config.Territories.Columns["Corner2"];
+                string columnName = _config.Directions.Columns["Corner2"];
                 rv.Corner2 = row[columnName].ToString();
             }
             //Direction.Phone1
             if (!string.IsNullOrEmpty(_config.Directions.Columns["Phone1"]))
             {
-                string columnName = _config.Territories.Columns["Phone1"];
+                string columnName = _config.Directions.Columns["Phone1"];
                 rv.Phone1 = row[columnName].ToString();
             }
             //Direction.Phone2
             if (!string.IsNullOrEmpty(_config.Directions.Columns["Phone2"]))
             {
-                string columnName = _config.Territories.Columns["Phone2"];
+                string columnName = _config.Directions.Columns["Phone2"];
                 rv.Phone2 = row[columnName].ToString();
             }
             //Direction.Description
             if (!string.IsNullOrEmpty(_config.Directions.Columns["Description"]))
             {
-                string columnName = _config.Territories.Columns["Description"];
+                string columnName = _config.Directions.Columns["Description"];
                 rv.Description = row[columnName].ToString();
             }
             //Direction.Map1
             if (!string.IsNullOrEmpty(_config.Directions.Columns["Map1"]))
             {
-                string columnName = _config.Territories.Columns["Map1"];
+                string columnName = _config.Directions.Columns["Map1"];
                 rv.Map1 = row[columnName].ToString();
             }
             //Direction.Map2
             if (!string.IsNullOrEmpty(_config.Directions.Columns["Map2"]))
             {
-                string columnName = _config.Territories.Columns["Map2"];
+                string columnName = _config.Directions.Columns["Map2"];
                 rv.Map2 = row[columnName].ToString();
             }
             //Direction.City
             int idCity = 0;
-            if (!string.IsNullOrEmpty(_config.Directions.Columns["Citiy"]))
+            if (!string.IsNullOrEmpty(_config.Directions.Columns["City"]))
             {
-                string nameColumn = _config.Directions.Columns["Citiy"];
+                string nameColumn = _config.Directions.Columns["City"];
                 string cityName = row[nameColumn].ToString();
 
                 idCity = _compiledIdCityByName(_dm, cityName).First();
             }
             else
             {
-                if (_config.Directions.DefautlValues["Citiy"] != null)
-                    idCity = (int)_config.Directions.DefautlValues["Citiy"];
+                if (_config.Directions.DefautlValues["City"] != null)
+                    idCity = (int)_config.Directions.DefautlValues["City"];
             }
 
             rv.CityReference.EntityKey = new EntityKey("TerritoriesDataContext.Directions", "IdCity", idCity);
@@ -361,7 +406,7 @@ namespace Territories.BLL
             //Direction.Geopositions
             if (!string.IsNullOrEmpty(_config.Directions.Columns["GeoPosition"]))
             {
-                string columnName = _config.Territories.Columns["GeoPosition"];
+                string columnName = _config.Directions.Columns["GeoPosition"];
                 string[] strGeopos = row[columnName].ToString().Split(' ');
 
                 if (!string.IsNullOrEmpty(strGeopos[0]) && !string.IsNullOrEmpty(strGeopos[1]))

@@ -78,6 +78,8 @@ namespace Territories.Interop
             set { _provider = value; }
         }
 
+        
+
         #endregion
 
     }
@@ -87,6 +89,7 @@ namespace Territories.Interop
     {
         private IDictionary<string, string> _columns;
         private IDictionary<string, object> _defaultValues;
+        private bool _loadId;
 
         private bool _load;
 
@@ -107,6 +110,12 @@ namespace Territories.Interop
         {
             get { return _load; }
             set { _load = value; }
+        }
+
+        public bool LoadId
+        {
+            get { return _loadId; }
+            set { _loadId = value; }
         }
 
     }
