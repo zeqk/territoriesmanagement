@@ -22,5 +22,14 @@ namespace My
             Text = 1,
             Date = 2
         }
+
+
+        public enum Provider
+        {
+            MSExcel,
+            MSAcces,
+            Oracle,
+            SQLServer
+        }
     }
 }

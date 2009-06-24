@@ -10,38 +10,52 @@ using Territories.Model;
 
 namespace Territories.Interop
 {
-    public class ExcelImporter
+    internal class ExcelImporter : IImporter
     {
 
-        private ExcelImporterConfig _config;
+        #region Fields
+        private ImporterConfig _config;
 
         private DataSet _ds;
 
+        #endregion
 
+        #region Constructors
         public ExcelImporter()
         {
             _ds = new DataSet();
         }
 
+        #endregion
 
-        public ExcelImporterConfig Configuration
+        #region Properties
+
+        public ImporterConfig Configuration
         {
             get { return _config; }
             set { _config = value; }
-        }	
+        }
+        #endregion
 
+        #region Methods
+        public string SetConnectionString(string[] parameters)
+        {
+            string connectionString = @"Provider=Microsoft.Jet.Oledb.4.0;Data Source=";
+            connectionString += parameters[0];
+            connectionString += @";Extended Properties=""Excel 8.0;HDR=Yes;IMEX=1""";
+            _config.ConnectionString = connectionString;
 
-        public DataSet ReadExcelFile()
+            return connectionString;
+        }
+
+        public DataSet GetData()
         {
             DataSet ds = new DataSet();
 
             if (_config.Departments.Load || _config.Cities.Load || _config.Territories.Load || _config.Directions.Load)
             {
-                //conection
-                string stringConnection = @"Provider=Microsoft.Jet.Oledb.4.0;Data Source=";
-                stringConnection = stringConnection + _config.ExcelPath;
-                stringConnection = stringConnection + @";Extended Properties=""Excel 8.0;HDR=Yes;IMEX=1""";
-                OleDbConnection connection = new OleDbConnection(stringConnection);
+                //conection                
+                OleDbConnection connection = new OleDbConnection(_config.ConnectionString);
 
                 //tables
                 DataTable territoriesDt = new DataTable("Territories");
@@ -59,7 +73,7 @@ namespace Territories.Interop
                 {
                     //query for departments in excel
                     string strCommand = "SELECT " + _config.Departments.Columns +
-                        " FROM [" + _config.SheetName + "$]" +
+                        " FROM [" + _config.TableName + "$]" +
                         " GROUP BY " + _config.Departments.Columns;
                     OleDbCommand cmd = new OleDbCommand(strCommand, connection);
                     departmentsDA = new OleDbDataAdapter(cmd);                    
@@ -70,7 +84,7 @@ namespace Territories.Interop
                     //query for cities in excel
                     string strCommand = "SELECT " + ListToStr(_config.Departments.Columns) + " " +
                                                     ListToStr(_config.Cities.Columns) +
-                        " FROM [" + _config.SheetName + "$]" +
+                        " FROM [" + _config.TableName + "$]" +
                         " GROUP BY " + ListToStr(_config.Departments.Columns) + " " +
                                        ListToStr(_config.Cities.Columns);
                     OleDbCommand cmd = new OleDbCommand(strCommand, connection);
@@ -80,7 +94,7 @@ namespace Territories.Interop
                 if (_config.Territories.Load)
                 {
                     string strCommand = "SELECT " + ListToStr(_config.Territories.Columns) + " " +
-                    " FROM [" + _config.SheetName + "$]" +
+                    " FROM [" + _config.TableName + "$]" +
                     " GROUP BY " + ListToStr(_config.Territories.Columns);
                     OleDbCommand cmd = new OleDbCommand(strCommand, connection);
                     territoriesDA = new OleDbDataAdapter(cmd);                    
@@ -91,7 +105,7 @@ namespace Territories.Interop
                     string strCommand = "SELECT " + ListToStr(_config.Cities.Columns) + " " +
                                             ListToStr(_config.Territories.Columns) + " " +
                                             ListToStr(_config.Directions.Columns) +
-                    " FROM [" + _config.SheetName + "$]";
+                    " FROM [" + _config.TableName + "$]";
                     OleDbCommand cmd = new OleDbCommand(strCommand, connection);
                     directionsDA = new OleDbDataAdapter(cmd);
                 } 
@@ -147,7 +161,7 @@ namespace Territories.Interop
 
             return rv;
         }
-        
+        #endregion
     } 
     
 
