@@ -159,15 +159,15 @@ namespace Territories.BLL
             bool rv = true;
             if (string.IsNullOrEmpty(v.Name))
             {
-                message += "Enter the name.";
+                message += "Enter territory name.";
                 rv = false;
             }
             
-            if (v.Number==0)
-            {
-                message += "Enter the number.";
-                rv = false;
-            }
+            //if (v.Number==0)
+            //{
+            //    message += "Enter territory number.";
+            //    rv = false;
+            //}
 
             if (Exist(v))
             {
@@ -180,16 +180,9 @@ namespace Territories.BLL
 
         private bool Exist(Territory v)
         {
-            bool rv;
+            var found = _compileSameTerritory(_dm, v).ToList();
 
-            var results = _compileSameTerritory(_dm, v).ToList();
-
-            if (results.Count > 0)
-                rv = true;
-            else
-                rv = false;
-
-            return rv;
+            return (found.Count > 0);
         }
 
         public IDictionary LoadRelations(int id)
