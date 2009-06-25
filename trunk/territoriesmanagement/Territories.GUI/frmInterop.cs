@@ -52,5 +52,10 @@ namespace Territories.GUI
                 }
             }
         }
+
+        private void dataRepeater1_CurrentItemIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
