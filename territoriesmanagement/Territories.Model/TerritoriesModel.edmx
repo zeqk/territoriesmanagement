@@ -152,7 +152,7 @@
             <PropertyRef Name="IdGeoposition" />
           </Key>
           <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="IdGeoposition" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="IdGeoposition" Type="int" Nullable="false" />
           <Property Name="Latitude" Type="bigint" Nullable="false" />
           <Property Name="Longitude" Type="bigint" Nullable="false" />
         </EntityType>
@@ -427,6 +427,11 @@
           <Parameter Name="name" Type="nvarchar" Mode="In" />
           <Parameter Name="idDeparment" Type="int" Mode="In" />
         </Function>
+        <Function Name="cities_AddWithPK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="idDeparment" Type="int" Mode="In" />
+        </Function>
         <Function Name="cities_DeleteAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="cities_DeleteById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
@@ -450,6 +455,10 @@
         <Function Name="departments_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="name" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="departments_AddWithPK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="departments_AutoIdentityOff" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="departments_DeleteAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="departments_DeleteById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -467,6 +476,20 @@
           <Parameter Name="name" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="directions_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="street" Type="nvarchar" Mode="In" />
+          <Parameter Name="number" Type="nvarchar" Mode="In" />
+          <Parameter Name="corner1" Type="nvarchar" Mode="In" />
+          <Parameter Name="corner2" Type="nvarchar" Mode="In" />
+          <Parameter Name="phone1" Type="nvarchar" Mode="In" />
+          <Parameter Name="phone2" Type="nvarchar" Mode="In" />
+          <Parameter Name="description" Type="nvarchar" Mode="In" />
+          <Parameter Name="map1" Type="nvarchar" Mode="In" />
+          <Parameter Name="map2" Type="nvarchar" Mode="In" />
+          <Parameter Name="idTerritory" Type="int" Mode="In" />
+          <Parameter Name="idCity" Type="int" Mode="In" />
+        </Function>
+        <Function Name="directions_AddWithPK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="street" Type="nvarchar" Mode="In" />
           <Parameter Name="number" Type="nvarchar" Mode="In" />
           <Parameter Name="corner1" Type="nvarchar" Mode="In" />
@@ -555,6 +578,11 @@
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="territories_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="nvarchar" Mode="In" />
+          <Parameter Name="number" Type="int" Mode="In" />
+        </Function>
+        <Function Name="territories_AddWithPK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="name" Type="nvarchar" Mode="In" />
           <Parameter Name="number" Type="int" Mode="In" />
         </Function>
@@ -651,7 +679,14 @@
             <Parameter Name="idCity" Mode="In" Type="Int32" /></FunctionImport>
           <FunctionImport Name="territories_GetById" EntitySet="Territories" ReturnType="Collection(TerritoriesModel.Territory)">
             <Parameter Name="id" Mode="In" Type="Int32" /></FunctionImport>
-          <FunctionImport Name="territories_GetAll" EntitySet="Territories" ReturnType="Collection(TerritoriesModel.Territory)" /></EntityContainer>
+          <FunctionImport Name="territories_GetAll" EntitySet="Territories" ReturnType="Collection(TerritoriesModel.Territory)" />
+          <FunctionImport Name="departments_AddWithPK">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" /></FunctionImport>
+          <FunctionImport Name="cities_AddWithPK">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="idDeparment" Mode="In" Type="Int32" /></FunctionImport></EntityContainer>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="IdCity" />
@@ -1078,7 +1113,9 @@
           <FunctionImportMapping FunctionImportName="cities_GetByDepartment" FunctionName="TerritoriesModel.Store.cities_GetByDepartment" />
           <FunctionImportMapping FunctionImportName="publishers_GetByCity" FunctionName="TerritoriesModel.Store.publishers_GetByCity" />
           <FunctionImportMapping FunctionImportName="territories_GetById" FunctionName="TerritoriesModel.Store.territories_GetById" />
-          <FunctionImportMapping FunctionImportName="territories_GetAll" FunctionName="TerritoriesModel.Store.territories_GetAll" /></EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="territories_GetAll" FunctionName="TerritoriesModel.Store.territories_GetAll" />
+          <FunctionImportMapping FunctionImportName="departments_AddWithPK" FunctionName="TerritoriesModel.Store.departments_AddWithPK" />
+          <FunctionImportMapping FunctionImportName="cities_AddWithPK" FunctionName="TerritoriesModel.Store.cities_AddWithPK" /></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

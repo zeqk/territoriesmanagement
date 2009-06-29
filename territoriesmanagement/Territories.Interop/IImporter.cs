@@ -8,7 +8,6 @@ namespace Territories.Interop
 {
     public interface IImporter
     {
-        ImporterConfig Configuration { get; set; }
         string SetConnectionString(string[] parameters);
         DataSet GetData();
         

@@ -28,13 +28,7 @@ namespace Territories.Interop
                 default:
                     break;
             }
-        }       
-
-        public ImporterConfig Configuration
-        {
-            get { return _importer.Configuration; }
-            set { _importer.Configuration = value; }
-        }
+        } 
 	
 
         public string SetConnectionString(string[] parameters)
