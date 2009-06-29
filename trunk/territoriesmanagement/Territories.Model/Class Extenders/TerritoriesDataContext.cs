@@ -73,5 +73,35 @@ namespace Territories.Model
             }
             
         }
+
+
+        /// <summary>
+        /// There are no comments for TerritoriesModel.departments_GetById in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<Department> departments_AddWithPK(int? id,string name)
+        {
+            global::System.Data.Objects.ObjectParameter idParameter;
+            ObjectParameter nameParamenter;
+            if (id.HasValue)
+            {
+                idParameter = new global::System.Data.Objects.ObjectParameter("id", id);
+            }
+            else
+            {
+                idParameter = new global::System.Data.Objects.ObjectParameter("id", typeof(int));
+            }
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                nameParamenter = new global::System.Data.Objects.ObjectParameter("name", name);
+            }
+            else
+            {
+                nameParamenter = new global::System.Data.Objects.ObjectParameter("name", typeof(string));
+            }
+
+            return base.ExecuteFunction<Department>("departments_AddWithPK", idParameter);
+        }
+
     }
 }

@@ -33,7 +33,7 @@
   <ItemGroup>
     <Reference Include="GeoRSSLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\georsslibrary\GeoRSSLibrary\bin\Debug\GeoRSSLibrary.dll</HintPath>
+      <HintPath>..\..\GeoRSSLibrary2\GeoRSSLibrary\bin\Debug\GeoRSSLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -60,6 +60,7 @@
     </Compile>
     <Compile Include="Directions.cs" />
     <Compile Include="GeoRssImportTool.cs" />
+    <Compile Include="ImporterConfig.cs" />
     <Compile Include="ImportTool.cs" />
     <Compile Include="QueryExecutor.cs" />
     <Compile Include="Departments.cs" />
