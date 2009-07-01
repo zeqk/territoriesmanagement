@@ -11,6 +11,7 @@ namespace Territories.BLL
     {
         #region Fields
         private Enumerators.Provider _provider;
+        private string _connectionString;	
 
         private ImportTable _departments;
         private ImportTable _cities;
@@ -19,6 +20,17 @@ namespace Territories.BLL
 
         #endregion
 
+        #region Constructors
+        public ImporterConfig()
+        {
+            _departments = new ImportTable();
+            _cities = new ImportTable();
+            _territories = new ImportTable();
+            _directions = new ImportTable();
+        }
+        #endregion
+
+
         #region Properties
 
         public Enumerators.Provider Provider
@@ -26,8 +38,12 @@ namespace Territories.BLL
             get { return _provider; }
             set { _provider = value; }
         }
-
         
+        public string ConnectionString
+        {
+            get { return _connectionString; }
+            set { _connectionString = value; }
+        }
 
         public ImportTable Departments
         {
@@ -57,14 +73,13 @@ namespace Territories.BLL
 
 
 
-
     }
 
     [Serializable]
     public class ImportTable
     {
         #region Fields
-        private string _name;
+        private string _tableName;
 
         private Dictionary<string,string> _fields;
 
@@ -72,11 +87,20 @@ namespace Territories.BLL
 
         #endregion
 
-        #region Properties
-        public string Name
+
+        #region Constructors
+        public ImportTable()
         {
-            get { return _name; }
-            set { _name = value; }
+            _fields = new Dictionary<string, string>();
+            _defaultFieldValues = new Dictionary<string, object>();
+        }
+        #endregion
+
+        #region Properties
+        public string TableName
+        {
+            get { return _tableName; }
+            set { _tableName = value; }
         }
 
         public Dictionary<string,string> Fields

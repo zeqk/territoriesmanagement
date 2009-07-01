@@ -8,8 +8,9 @@ namespace Territories.Interop
 {
     public interface IImporter
     {
-        string SetConnectionString(string[] parameters);
+        string MakeConnectStr(string[] parameters);
         DataSet GetData();
-        
+        List<Table> Tables {get;set;}
+        string ConnectionStr {get;set;}
     }
 }
