@@ -11,6 +11,21 @@ namespace Territories.Interop
     {
         private IImporter _importer;
 
+        public List<Table> Tables   
+        {
+            get { return _importer.Tables; }
+            set { _importer.Tables = value; }
+        }
+
+
+
+
+        public string ConnectStr 
+        {
+            get { return _importer.ConnectionStr;} 
+            set{_importer.ConnectionStr = value;}
+        }
+
 
         public Importer(Enumerators.Provider provider)
         {
@@ -28,12 +43,12 @@ namespace Territories.Interop
                 default:
                     break;
             }
-        } 
-	
+        }
 
-        public string SetConnectionString(string[] parameters)
+
+        public string MakeConnectStr(string[] parameters)
         {
-            return _importer.SetConnectionString(parameters);
+            return _importer.MakeConnectStr(parameters);
         }
 
         public DataSet GetData()

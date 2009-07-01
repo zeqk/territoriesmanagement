@@ -12,12 +12,11 @@ namespace Territories.Interop
 {
     internal class ExcelImporter : IImporter
     {
+        #region Fields
 
         List<Table> _tables;
 
-        string _connectionStr;
-
-        #region Fields
+        string _connectionStr;        
 
         private DataSet _ds;
 
@@ -27,22 +26,33 @@ namespace Territories.Interop
         public ExcelImporter()
         {
             _ds = new DataSet();
+            _tables = new List<Table>();
         }
 
         #endregion
 
-        #region Properties
+        #region Properties        
+
+        public List<Table> Tables
+        {
+            get { return _tables; }
+            set { _tables = value; }
+        }       
+
+        public string ConnectionStr
+        {
+            get { return _connectionStr; }
+            set { _connectionStr = value; }
+        }	
 
         #endregion
 
         #region Methods
-        public string SetConnectionString(string[] parameters)
+        public string MakeConnectStr(string[] parameters)
         {
             string connectionString = @"Provider=Microsoft.Jet.Oledb.4.0;Data Source=";
             connectionString += parameters[0];
             connectionString += @";Extended Properties=""Excel 8.0;HDR=Yes;IMEX=1""";
-            _connectionStr = connectionString;
-
             return connectionString;
         }
 

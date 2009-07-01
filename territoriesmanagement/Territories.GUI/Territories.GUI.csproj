@@ -135,7 +135,17 @@
     <Compile Include="frmTerritories.Designer.cs">
       <DependentUpon>frmTerritories.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImporterConfig.cs" />
+    <Compile Include="ImporterConfig\CitiesTable.cs" />
+    <Compile Include="ImporterConfig\CitiesTableConverter.cs" />
+    <Compile Include="ImporterConfig\DirectionsTable.cs" />
+    <Compile Include="ImporterConfig\DirectionsTableConverter.cs" />
+    <Compile Include="ImporterConfig\TerritoriesTable.cs" />
+    <Compile Include="ImporterConfig\TerritoriesTableConverter.cs" />
+    <Compile Include="ImporterConfig\DepartmentsTable.cs" />
+    <Compile Include="ImporterConfig\Field.cs" />
+    <Compile Include="ImporterConfig\ImporterConfig.cs" />
+    <Compile Include="ImporterConfig\FieldConverter.cs" />
+    <Compile Include="ImporterConfig\DepartmentsTableConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmCities.resx">

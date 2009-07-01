@@ -15,7 +15,7 @@ namespace Territories.BLL
     {
 
         TerritoriesDataContext _dm;
-        Importer _importer;
+        Interop.Importer _importer;
         private ImporterConfig _config;
 
         private string log;
@@ -42,11 +42,14 @@ namespace Territories.BLL
 	    {
             
             _dm = new TerritoriesDataContext();
-            _importer = new Importer(Enumerators.Provider.MSExcel);
+            _importer = new Interop.Importer(Enumerators.Provider.MSExcel);
+            _config = new ImporterConfig();
 	    }
 
         public void ExternalDataToModel()
         {
+            SetConfig();
+
             PreCompileQueries();
             try
             {
@@ -554,6 +557,63 @@ namespace Territories.BLL
         }
         #endregion        
 
+
+        private void SetConfig()
+        {
+            _importer.ConnectStr = _config.ConnectionString;
+
+            _importer.Tables = new List<Table>();
+
+            if (_config.Departments.Fields.Count>0)
+            {
+                Table table = new Table(_config.Departments.TableName);
+                foreach (var item in _config.Departments.Fields)
+                {
+                    table.Fields.Add(item.Value);
+                }
+
+                _importer.Tables.Add(table);
+            }   
+
+            if (_config.Cities.Fields.Count>0)
+            {
+                Table table = new Table(_config.Cities.TableName);
+                foreach (var item in _config.Cities.Fields)
+                {
+                    table.Fields.Add(item.Value);
+                }
+
+                _importer.Tables.Add(table);
+            }
+
+            if (_config.Territories.Fields.Count > 0)
+            {
+                Table table = new Table(_config.Territories.TableName);
+                foreach (var item in _config.Territories.Fields)
+                {
+                    table.Fields.Add(item.Value);
+                }
+
+                _importer.Tables.Add(table);
+            }
+
+            if (_config.Directions.Fields.Count > 0)
+            {
+                Table table = new Table(_config.Directions.TableName);
+                foreach (var item in _config.Directions.Fields)
+                {
+                    table.Fields.Add(item.Value);
+                }
+
+                _importer.Tables.Add(table);
+            }
+
+        }
+
+        public string MakeConnectStr(string[] parameters)
+        {
+            return  _importer.MakeConnectStr(parameters);
+        }
 
         private void PreCompileQueries()
         {
