@@ -18,6 +18,11 @@
           <EntitySet Name="Territories" EntityType="TerritoriesModel.Store.Territories" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="TerritoriesGeopositions" EntityType="TerritoriesModel.Store.TerritoriesGeopositions" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Tours" EntityType="TerritoriesModel.Store.Tours" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DepartmentReturnPK" EntityType="TerritoriesModel.Store.DepartmentReturnPK" store:Type="Views" store:Schema="dbo" store:Name="DepartmentReturnPK">
+            <DefiningQuery>SELECT 
+      [DepartmentReturnPK].[id] AS [id]
+      FROM [dbo].[DepartmentReturnPK] AS [DepartmentReturnPK]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_cities_departments" Association="TerritoriesModel.Store.FK_cities_departments">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="Cities" EntitySet="Cities" />
@@ -206,6 +211,15 @@
           <Property Name="IdPublisher" Type="int" />
           <Property Name="IdTerritory" Type="int" Nullable="false" />
           <Property Name="TourNumber" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'Territories.dbo.DepartmentReturnPK' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="DepartmentReturnPK">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_cities_departments">
           <End Role="Departments" Type="TerritoriesModel.Store.Departments" Multiplicity="1" />
@@ -680,13 +694,14 @@
           <FunctionImport Name="territories_GetById" EntitySet="Territories" ReturnType="Collection(TerritoriesModel.Territory)">
             <Parameter Name="id" Mode="In" Type="Int32" /></FunctionImport>
           <FunctionImport Name="territories_GetAll" EntitySet="Territories" ReturnType="Collection(TerritoriesModel.Territory)" />
-          <FunctionImport Name="departments_AddWithPK">
-            <Parameter Name="id" Mode="In" Type="Int32" />
-            <Parameter Name="name" Mode="In" Type="String" /></FunctionImport>
           <FunctionImport Name="cities_AddWithPK">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="name" Mode="In" Type="String" />
-            <Parameter Name="idDeparment" Mode="In" Type="Int32" /></FunctionImport></EntityContainer>
+            <Parameter Name="idDeparment" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="departments_AddWithPK" ReturnType="Collection(Int32)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" /></FunctionImport>
+          <EntitySet Name="DepartmentReturnPK" EntityType="TerritoriesModel.DepartmentReturnPK" /></EntityContainer>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="IdCity" />
@@ -839,7 +854,11 @@
           <End Type="TerritoriesModel.GeoPosition" Role="GeoPositions" Multiplicity="*" /></Association>
         <Association Name="TerritoriesGeopositions">
           <End Type="TerritoriesModel.GeoPosition" Role="GeoPositions" Multiplicity="*" />
-          <End Type="TerritoriesModel.Territory" Role="Territory" Multiplicity="*" /></Association></Schema>
+          <End Type="TerritoriesModel.Territory" Role="Territory" Multiplicity="*" /></Association>
+        <EntityType Name="DepartmentReturnPK">
+          <Key>
+            <PropertyRef Name="id" /></Key>
+          <Property Name="id" Type="Int32" Nullable="false" /></EntityType></Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -1114,8 +1133,13 @@
           <FunctionImportMapping FunctionImportName="publishers_GetByCity" FunctionName="TerritoriesModel.Store.publishers_GetByCity" />
           <FunctionImportMapping FunctionImportName="territories_GetById" FunctionName="TerritoriesModel.Store.territories_GetById" />
           <FunctionImportMapping FunctionImportName="territories_GetAll" FunctionName="TerritoriesModel.Store.territories_GetAll" />
+          <FunctionImportMapping FunctionImportName="cities_AddWithPK" FunctionName="TerritoriesModel.Store.cities_AddWithPK" />
           <FunctionImportMapping FunctionImportName="departments_AddWithPK" FunctionName="TerritoriesModel.Store.departments_AddWithPK" />
-          <FunctionImportMapping FunctionImportName="cities_AddWithPK" FunctionName="TerritoriesModel.Store.cities_AddWithPK" /></EntityContainerMapping>
+          <EntitySetMapping Name="DepartmentReturnPK">
+            <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.DepartmentReturnPK)">
+              <MappingFragment StoreEntitySet="DepartmentReturnPK">
+                <ScalarProperty Name="id" ColumnName="id" />
+                </MappingFragment></EntityTypeMapping></EntitySetMapping></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -1181,25 +1205,26 @@
           </AssociationConnector>
         <EntityTypeShape EntityType="TerritoriesModel.GeoPosition" Width="1.5" PointX="0.5" PointY="1.375" Height="2.2496956380208326" />
         <AssociationConnector Association="TerritoriesModel.CitiesGeopositions" >
-          <ConnectorPoint PointX="2.53124725" PointY="6.75" />
-          <ConnectorPoint PointX="2.53124725" PointY="1.90625" />
-          <ConnectorPoint PointX="2" PointY="1.90625" />
+          <ConnectorPoint PointX="2.6953118125" PointY="6.75" />
+          <ConnectorPoint PointX="2.6953118125" PointY="1.7402312500000001" />
+          <ConnectorPoint PointX="2" PointY="1.7402312500000001" />
           </AssociationConnector>
         <AssociationConnector Association="TerritoriesModel.DepartmentsGeopositions" >
           <ConnectorPoint PointX="3.25" PointY="10.296153157552084" />
-          <ConnectorPoint PointX="1.25" PointY="10.296153157552084" />
-          <ConnectorPoint PointX="1.25" PointY="3.6246956380208326" />
+          <ConnectorPoint PointX="0.59375" PointY="10.296153157552084" />
+          <ConnectorPoint PointX="0.59375" PointY="3.6246956380208326" />
           </AssociationConnector>
         <AssociationConnector Association="TerritoriesModel.DirectionsGeopositions" >
-          <ConnectorPoint PointX="3.5" PointY="3.0623478190104163" />
-          <ConnectorPoint PointX="2.6145805833333333" PointY="3.0623478190104159" />
-          <ConnectorPoint PointX="2.4479139166666664" PointY="3.0623478190104163" />
-          <ConnectorPoint PointX="2" PointY="3.0623478190104163" /></AssociationConnector>
+          <ConnectorPoint PointX="2.375" PointY="3.0623478190104163" />
+          <ConnectorPoint PointX="2.6119784791666665" PointY="3.0623478190104159" />
+          <ConnectorPoint PointX="2.7786451458333334" PointY="3.0623478190104163" />
+          <ConnectorPoint PointX="3.875" PointY="3.0623478190104163" /></AssociationConnector>
         <AssociationConnector Association="TerritoriesModel.TerritoriesGeopositions" >
-          <ConnectorPoint PointX="2" PointY="2.234375" />
-          <ConnectorPoint PointX="2.4479139166666664" PointY="2.2343749999999996" />
-          <ConnectorPoint PointX="2.6145805833333333" PointY="2.234375" />
-          <ConnectorPoint PointX="5.875" PointY="2.234375" /></AssociationConnector></Diagram></edmx:Diagrams>
+          <ConnectorPoint PointX="2" PointY="2.1679675" />
+          <ConnectorPoint PointX="2.6119784791666665" PointY="2.1679674999999996" />
+          <ConnectorPoint PointX="2.7786451458333334" PointY="2.1679675" />
+          <ConnectorPoint PointX="5.875" PointY="2.1679675" /></AssociationConnector>
+        <EntityTypeShape EntityType="TerritoriesModel.DepartmentReturnPK" Width="1.5" PointX="0.75" PointY="4.75" Height="1.0992643229166665" /></Diagram></edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
 

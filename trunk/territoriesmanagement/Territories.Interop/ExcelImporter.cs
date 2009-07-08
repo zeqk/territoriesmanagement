@@ -70,7 +70,7 @@ namespace Territories.Interop
                 {
                     string strFields = ListToStr(table.Fields);
                     string strCommand = "SELECT" + strFields +
-                        " FROM " + table.TableName +
+                        " FROM [" + table.TableName + "$]" +
                         " GROUP BY " + strFields;
 
                     OleDbDataAdapter da = new OleDbDataAdapter(strCommand, connection);
@@ -88,6 +88,7 @@ namespace Territories.Interop
                         string tableName = _tables[i].TableName;
                         DataTable dt = new DataTable(tableName);
                         da.Fill(dt);
+                        ds.Tables.Add(dt);
                         i++;
                     }
                     connection.Close();
@@ -102,24 +103,18 @@ namespace Territories.Interop
             return ds;
         }
 
-        private string DicToStr(IDictionary<string,string> list)
-        {                 
-            string rv = "";
-
-            foreach (var item in list.ToList())
-            {
-                rv += item.Value;
-            }
-
-            return rv;
-        }
-
         private string ListToStr(List<string> list)
         {
             string rv = "";
+            bool first = true;
 
             foreach (string item in list)
             {
+                if (!first)
+                    rv += ",";
+                else
+                    first = false;
+
                 rv += " " + item;
             }
 
