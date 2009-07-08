@@ -23,8 +23,8 @@ namespace Territories.GUI.ImporterConfig
 
         public DepartmentsTable()
         {
-            _id = new Field("Id");
-            _name = new Field("Department");
+            _id = new Field("ID");
+            _name = new Field("PARTIDO");
         }
         #region Properties
 

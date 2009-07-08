@@ -180,6 +180,7 @@
             this.txtConnectStr.Name = "txtConnectStr";
             this.txtConnectStr.Size = new System.Drawing.Size(424, 70);
             this.txtConnectStr.TabIndex = 1;
+            this.txtConnectStr.TextChanged += new System.EventHandler(this.txtConnectStr_TextChanged);
             // 
             // txtExcelFile
             // 

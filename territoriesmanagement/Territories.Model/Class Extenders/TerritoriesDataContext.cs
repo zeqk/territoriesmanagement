@@ -6,6 +6,7 @@ using System.Data.Objects.DataClasses;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections.ObjectModel;
 
 namespace Territories.Model
 {
@@ -78,7 +79,7 @@ namespace Territories.Model
         /// <summary>
         /// There are no comments for TerritoriesModel.departments_GetById in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectResult<Department> departments_AddWithPK(int? id,string name)
+        public Collection<Int32> departments_AddWithPK(int? id, string name) //TODO!!
         {
             global::System.Data.Objects.ObjectParameter idParameter;
             ObjectParameter nameParamenter;
@@ -99,7 +100,6 @@ namespace Territories.Model
             {
                 nameParamenter = new global::System.Data.Objects.ObjectParameter("name", typeof(string));
             }
-
             return base.ExecuteFunction<Department>("departments_AddWithPK", idParameter);
         }
 

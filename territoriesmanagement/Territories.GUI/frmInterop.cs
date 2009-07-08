@@ -82,6 +82,7 @@ namespace Territories.GUI
             if (_isDirty)
             {
                 _config.Provider = (Enumerators.Provider)cboProvider.SelectedItem;
+                _importer = new ImportTool();
                 _importer.Config.ConnectionString = _config.ConnectionString;
                 if (_config.Departments.Load)
                 {
@@ -164,6 +165,8 @@ namespace Territories.GUI
                 }
                 else
                     _importer.Config.Directions.Fields = new Dictionary<string, string>();
+
+                _isDirty = false;
             }
             
                 
@@ -208,6 +211,11 @@ namespace Territories.GUI
         }
 
         private void grdImportConfig_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        {
+            _isDirty = true;
+        }
+
+        private void txtConnectStr_TextChanged(object sender, EventArgs e)
         {
             _isDirty = true;
         }

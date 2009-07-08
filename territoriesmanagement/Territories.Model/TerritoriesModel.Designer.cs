@@ -25,7 +25,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "TerritoriesGeopositions", "GeoPositions", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.GeoPosition), "Territory", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Territory))]
 
 // Original file name:
-// Generation date: 28/06/2009 06:36:25 p.m.
+// Generation date: 08/07/2009 16:41:56
 namespace Territories.Model
 {
     
@@ -180,6 +180,21 @@ namespace Territories.Model
         }
         private global::System.Data.Objects.ObjectQuery<GeoPosition> _GeoPositions;
         /// <summary>
+        /// There are no comments for DepartmentReturnPK in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectQuery<DepartmentReturnPK> DepartmentReturnPK
+        {
+            get
+            {
+                if ((this._DepartmentReturnPK == null))
+                {
+                    this._DepartmentReturnPK = base.CreateQuery<DepartmentReturnPK>("[DepartmentReturnPK]");
+                }
+                return this._DepartmentReturnPK;
+            }
+        }
+        private global::System.Data.Objects.ObjectQuery<DepartmentReturnPK> _DepartmentReturnPK;
+        /// <summary>
         /// There are no comments for Cities in the schema.
         /// </summary>
         public void AddToCities(City city)
@@ -234,6 +249,13 @@ namespace Territories.Model
         public void AddToGeoPositions(GeoPosition geoPosition)
         {
             base.AddObject("GeoPositions", geoPosition);
+        }
+        /// <summary>
+        /// There are no comments for DepartmentReturnPK in the schema.
+        /// </summary>
+        public void AddToDepartmentReturnPK(DepartmentReturnPK departmentReturnPK)
+        {
+            base.AddObject("DepartmentReturnPK", departmentReturnPK);
         }
         /// <summary>
         /// There are no comments for TerritoriesModel.departments_GetAll in the schema.
@@ -2092,5 +2114,50 @@ namespace Territories.Model
                 }
             }
         }
+    }
+    /// <summary>
+    /// There are no comments for TerritoriesModel.DepartmentReturnPK in the schema.
+    /// </summary>
+    /// <KeyProperties>
+    /// id
+    /// </KeyProperties>
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="TerritoriesModel", Name="DepartmentReturnPK")]
+    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
+    [global::System.Serializable()]
+    public partial class DepartmentReturnPK : global::System.Data.Objects.DataClasses.EntityObject
+    {
+        /// <summary>
+        /// Create a new DepartmentReturnPK object.
+        /// </summary>
+        /// <param name="id">Initial value of id.</param>
+        public static DepartmentReturnPK CreateDepartmentReturnPK(int id)
+        {
+            DepartmentReturnPK departmentReturnPK = new DepartmentReturnPK();
+            departmentReturnPK.id = id;
+            return departmentReturnPK;
+        }
+        /// <summary>
+        /// There are no comments for Property id in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public int id
+        {
+            get
+            {
+                return this._id;
+            }
+            set
+            {
+                this.OnidChanging(value);
+                this.ReportPropertyChanging("id");
+                this._id = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("id");
+                this.OnidChanged();
+            }
+        }
+        private int _id;
+        partial void OnidChanging(int value);
+        partial void OnidChanged();
     }
 }
