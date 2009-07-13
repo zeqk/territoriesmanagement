@@ -102,6 +102,7 @@
             this.cboDepartment.Name = "cboDepartment";
             this.cboDepartment.Size = new System.Drawing.Size(325, 21);
             this.cboDepartment.TabIndex = 12;
+            this.cboDepartment.SelectedIndexChanged += new System.EventHandler(this.cboDepartment_SelectedIndexChanged);
             // 
             // lblId
             // 

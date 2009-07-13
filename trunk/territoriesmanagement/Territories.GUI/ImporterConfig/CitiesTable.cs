@@ -19,7 +19,9 @@ namespace Territories.GUI.ImporterConfig
 
         private Field _name;
 
-        private Field _department;
+        private Field _departmentName;
+
+        private Field _departmentId;
 
         #endregion
 
@@ -28,7 +30,8 @@ namespace Territories.GUI.ImporterConfig
         {
             _id = new Field("IdCity");
             _name = new Field("City");
-            _department = new Field("Department");
+            _departmentName = new Field("Department");
+            _departmentId = new Field("IdDepartment");
         }
 
         #region Properties
@@ -55,14 +58,18 @@ namespace Territories.GUI.ImporterConfig
             get { return _name; }
             set { _name = value; }
         }
-        
-        public Field Department
+
+        public Field DepartmentId
         {
-            get { return _department; }
-            set { _department = value; }
+            get { return _departmentId; }
+            set { _departmentId = value; }
         }
-
-
+        
+        public Field DepartmentName
+        {
+            get { return _departmentName; }
+            set { _departmentName = value; }
+        }
 
         #endregion
     }

@@ -31,8 +31,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTerritories));
             this.grpObject = new System.Windows.Forms.GroupBox();
+            this.txtNumber = new System.Windows.Forms.MaskedTextBox();
+            this.lblNumber = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
-            this.bsTerritory = new System.Windows.Forms.BindingSource(this.components);
             this.btnRelations = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -52,10 +53,8 @@
             this.dgvDirections = new System.Windows.Forms.DataGridView();
             this.tabTours = new System.Windows.Forms.TabPage();
             this.dgvTours = new System.Windows.Forms.DataGridView();
-            this.lblNumber = new System.Windows.Forms.Label();
-            this.txtNumber = new System.Windows.Forms.MaskedTextBox();
+            this.bsTerritory = new System.Windows.Forms.BindingSource(this.components);
             this.grpObject.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).BeginInit();
             this.grdSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
             this.tabPanel.SuspendLayout();
@@ -63,6 +62,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDirections)).BeginInit();
             this.tabTours.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTours)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).BeginInit();
             this.SuspendLayout();
             // 
             // grpObject
@@ -83,18 +83,34 @@
             this.grpObject.TabStop = false;
             this.grpObject.Text = "Territory";
             // 
+            // txtNumber
+            // 
+            this.txtNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsTerritory, "Number", true));
+            this.txtNumber.Location = new System.Drawing.Point(22, 72);
+            this.txtNumber.Mask = "99999";
+            this.txtNumber.Name = "txtNumber";
+            this.txtNumber.PromptChar = ' ';
+            this.txtNumber.Size = new System.Drawing.Size(100, 20);
+            this.txtNumber.TabIndex = 23;
+            this.txtNumber.ValidatingType = typeof(int);
+            // 
+            // lblNumber
+            // 
+            this.lblNumber.AutoSize = true;
+            this.lblNumber.Location = new System.Drawing.Point(19, 55);
+            this.lblNumber.Name = "lblNumber";
+            this.lblNumber.Size = new System.Drawing.Size(44, 13);
+            this.lblNumber.TabIndex = 22;
+            this.lblNumber.Text = "Number";
+            // 
             // lblId
             // 
             this.lblId.AutoSize = true;
-            this.lblId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsTerritory, "IdCity", true));
+            this.lblId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsTerritory, "IdTerritory", true));
             this.lblId.Location = new System.Drawing.Point(321, 3);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(0, 13);
             this.lblId.TabIndex = 11;
-            // 
-            // bsTerritory
-            // 
-            this.bsTerritory.DataSource = typeof(Territories.Model.City);
             // 
             // btnRelations
             // 
@@ -293,11 +309,11 @@
             // 
             this.tabTours.Controls.Add(this.dgvTours);
             this.tabTours.Location = new System.Drawing.Point(4, 22);
-            this.tabTours.Name = "tabPublishers";
+            this.tabTours.Name = "tabTours";
             this.tabTours.Padding = new System.Windows.Forms.Padding(3);
             this.tabTours.Size = new System.Drawing.Size(354, 218);
             this.tabTours.TabIndex = 1;
-            this.tabTours.Text = "Publishers";
+            this.tabTours.Text = "Tours";
             this.tabTours.UseVisualStyleBackColor = true;
             // 
             // dgvTours
@@ -307,31 +323,16 @@
             this.dgvTours.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTours.Location = new System.Drawing.Point(6, 6);
             this.dgvTours.MultiSelect = false;
-            this.dgvTours.Name = "dgvPublishers";
+            this.dgvTours.Name = "dgvTours";
             this.dgvTours.ReadOnly = true;
             this.dgvTours.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTours.Size = new System.Drawing.Size(342, 206);
             this.dgvTours.TabIndex = 7;
             this.dgvTours.VirtualMode = true;
             // 
-            // lblNumber
+            // bsTerritory
             // 
-            this.lblNumber.AutoSize = true;
-            this.lblNumber.Location = new System.Drawing.Point(19, 55);
-            this.lblNumber.Name = "lblNumber";
-            this.lblNumber.Size = new System.Drawing.Size(44, 13);
-            this.lblNumber.TabIndex = 22;
-            this.lblNumber.Text = "Number";
-            // 
-            // txtNumber
-            // 
-            this.txtNumber.Location = new System.Drawing.Point(22, 72);
-            this.txtNumber.Mask = "99999";
-            this.txtNumber.Name = "txtNumber";
-            this.txtNumber.PromptChar = ' ';
-            this.txtNumber.Size = new System.Drawing.Size(100, 20);
-            this.txtNumber.TabIndex = 23;
-            this.txtNumber.ValidatingType = typeof(int);
+            this.bsTerritory.DataSource = typeof(Territories.Model.Territory);
             // 
             // frmTerritories
             // 
@@ -344,9 +345,9 @@
             this.Name = "frmTerritories";
             this.Text = "Territories";
             this.Load += new System.EventHandler(this.frmTerritories_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmTerritories_FormClosed_1);
             this.grpObject.ResumeLayout(false);
             this.grpObject.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).EndInit();
             this.grdSearch.ResumeLayout(false);
             this.grdSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).EndInit();
@@ -355,6 +356,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDirections)).EndInit();
             this.tabTours.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTours)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -380,10 +382,10 @@
         protected System.Windows.Forms.DataGridView dgvDirections;
         private System.Windows.Forms.TabPage tabTours;
         protected System.Windows.Forms.DataGridView dgvTours;
-        private System.Windows.Forms.BindingSource bsTerritory;
         private My.Controls.Search schName;
         private System.Windows.Forms.Label lblFilterName;
         private System.Windows.Forms.Label lblNumber;
         private System.Windows.Forms.MaskedTextBox txtNumber;
+        private System.Windows.Forms.BindingSource bsTerritory;
     }
 }

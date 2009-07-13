@@ -13,10 +13,6 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_directions_cities", "Cities", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.City), "Directions", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Direction))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_publishers_cities", "Cities", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Territories.Model.City), "Publishers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Publisher))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_directions_territories", "Territories", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Territories.Model.Territory), "Directions", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Direction))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_groups_publisherCaptain", "Publishers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.Publisher), "Groups", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Group))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_groups_publishersAuxiliar", "Publishers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.Publisher), "Groups", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Group))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_publishers_groups", "Groups", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.Group), "Publishers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Publisher))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_territories_groups", "Groups", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.Group), "Territories", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Territory))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_tours_publishers", "Publishers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Territories.Model.Publisher), "Tours", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Tour))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_tours_territories", "Territories", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.Territory), "Tours", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Tour))]
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "CitiesGeopositions", "City", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.City), "GeoPositions", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.GeoPosition))]
@@ -25,7 +21,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "TerritoriesGeopositions", "GeoPositions", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.GeoPosition), "Territory", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Territory))]
 
 // Original file name:
-// Generation date: 08/07/2009 16:41:56
+// Generation date: 13/07/2009 16:32:06
 namespace Territories.Model
 {
     
@@ -105,21 +101,6 @@ namespace Territories.Model
         }
         private global::System.Data.Objects.ObjectQuery<Direction> _Directions;
         /// <summary>
-        /// There are no comments for Groups in the schema.
-        /// </summary>
-        public global::System.Data.Objects.ObjectQuery<Group> Groups
-        {
-            get
-            {
-                if ((this._Groups == null))
-                {
-                    this._Groups = base.CreateQuery<Group>("[Groups]");
-                }
-                return this._Groups;
-            }
-        }
-        private global::System.Data.Objects.ObjectQuery<Group> _Groups;
-        /// <summary>
         /// There are no comments for Publishers in the schema.
         /// </summary>
         public global::System.Data.Objects.ObjectQuery<Publisher> Publishers
@@ -180,21 +161,6 @@ namespace Territories.Model
         }
         private global::System.Data.Objects.ObjectQuery<GeoPosition> _GeoPositions;
         /// <summary>
-        /// There are no comments for DepartmentReturnPK in the schema.
-        /// </summary>
-        public global::System.Data.Objects.ObjectQuery<DepartmentReturnPK> DepartmentReturnPK
-        {
-            get
-            {
-                if ((this._DepartmentReturnPK == null))
-                {
-                    this._DepartmentReturnPK = base.CreateQuery<DepartmentReturnPK>("[DepartmentReturnPK]");
-                }
-                return this._DepartmentReturnPK;
-            }
-        }
-        private global::System.Data.Objects.ObjectQuery<DepartmentReturnPK> _DepartmentReturnPK;
-        /// <summary>
         /// There are no comments for Cities in the schema.
         /// </summary>
         public void AddToCities(City city)
@@ -214,13 +180,6 @@ namespace Territories.Model
         public void AddToDirections(Direction direction)
         {
             base.AddObject("Directions", direction);
-        }
-        /// <summary>
-        /// There are no comments for Groups in the schema.
-        /// </summary>
-        public void AddToGroups(Group group)
-        {
-            base.AddObject("Groups", group);
         }
         /// <summary>
         /// There are no comments for Publishers in the schema.
@@ -249,13 +208,6 @@ namespace Territories.Model
         public void AddToGeoPositions(GeoPosition geoPosition)
         {
             base.AddObject("GeoPositions", geoPosition);
-        }
-        /// <summary>
-        /// There are no comments for DepartmentReturnPK in the schema.
-        /// </summary>
-        public void AddToDepartmentReturnPK(DepartmentReturnPK departmentReturnPK)
-        {
-            base.AddObject("DepartmentReturnPK", departmentReturnPK);
         }
         /// <summary>
         /// There are no comments for TerritoriesModel.departments_GetAll in the schema.
@@ -1014,192 +966,6 @@ namespace Territories.Model
         }
     }
     /// <summary>
-    /// There are no comments for TerritoriesModel.Group in the schema.
-    /// </summary>
-    /// <KeyProperties>
-    /// IdGroup
-    /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="TerritoriesModel", Name="Group")]
-    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
-    [global::System.Serializable()]
-    public partial class Group : global::System.Data.Objects.DataClasses.EntityObject
-    {
-        /// <summary>
-        /// Create a new Group object.
-        /// </summary>
-        /// <param name="idGroup">Initial value of IdGroup.</param>
-        /// <param name="description">Initial value of Description.</param>
-        public static Group CreateGroup(int idGroup, string description)
-        {
-            Group group = new Group();
-            group.IdGroup = idGroup;
-            group.Description = description;
-            return group;
-        }
-        /// <summary>
-        /// There are no comments for Property IdGroup in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public int IdGroup
-        {
-            get
-            {
-                return this._IdGroup;
-            }
-            set
-            {
-                this.OnIdGroupChanging(value);
-                this.ReportPropertyChanging("IdGroup");
-                this._IdGroup = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("IdGroup");
-                this.OnIdGroupChanged();
-            }
-        }
-        private int _IdGroup;
-        partial void OnIdGroupChanging(int value);
-        partial void OnIdGroupChanged();
-        /// <summary>
-        /// There are no comments for Property Description in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description
-        {
-            get
-            {
-                return this._Description;
-            }
-            set
-            {
-                this.OnDescriptionChanging(value);
-                this.ReportPropertyChanging("Description");
-                this._Description = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("Description");
-                this.OnDescriptionChanged();
-            }
-        }
-        private string _Description;
-        partial void OnDescriptionChanging(string value);
-        partial void OnDescriptionChanged();
-        /// <summary>
-        /// There are no comments for Captain in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_groups_publisherCaptain", "Publishers")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Publisher Captain
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Publisher>("TerritoriesModel.FK_groups_publisherCaptain", "Publishers").Value;
-            }
-            set
-            {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Publisher>("TerritoriesModel.FK_groups_publisherCaptain", "Publishers").Value = value;
-            }
-        }
-        /// <summary>
-        /// There are no comments for Captain in the schema.
-        /// </summary>
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Publisher> CaptainReference
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Publisher>("TerritoriesModel.FK_groups_publisherCaptain", "Publishers");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Publisher>("TerritoriesModel.FK_groups_publisherCaptain", "Publishers", value);
-                }
-            }
-        }
-        /// <summary>
-        /// There are no comments for Auxiliar in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_groups_publishersAuxiliar", "Publishers")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Publisher Auxiliar
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Publisher>("TerritoriesModel.FK_groups_publishersAuxiliar", "Publishers").Value;
-            }
-            set
-            {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Publisher>("TerritoriesModel.FK_groups_publishersAuxiliar", "Publishers").Value = value;
-            }
-        }
-        /// <summary>
-        /// There are no comments for Auxiliar in the schema.
-        /// </summary>
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Publisher> AuxiliarReference
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Publisher>("TerritoriesModel.FK_groups_publishersAuxiliar", "Publishers");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Publisher>("TerritoriesModel.FK_groups_publishersAuxiliar", "Publishers", value);
-                }
-            }
-        }
-        /// <summary>
-        /// There are no comments for Publishers in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_publishers_groups", "Publishers")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<Publisher> Publishers
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Publisher>("TerritoriesModel.FK_publishers_groups", "Publishers");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Publisher>("TerritoriesModel.FK_publishers_groups", "Publishers", value);
-                }
-            }
-        }
-        /// <summary>
-        /// There are no comments for Territories in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_territories_groups", "Territories")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<Territory> Territories
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Territory>("TerritoriesModel.FK_territories_groups", "Territories");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Territory>("TerritoriesModel.FK_territories_groups", "Territories", value);
-                }
-            }
-        }
-    }
-    /// <summary>
     /// There are no comments for TerritoriesModel.Publisher in the schema.
     /// </summary>
     /// <KeyProperties>
@@ -1423,85 +1189,6 @@ namespace Territories.Model
             }
         }
         /// <summary>
-        /// There are no comments for CaptainGroup in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_groups_publisherCaptain", "Groups")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<Group> CaptainGroup
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Group>("TerritoriesModel.FK_groups_publisherCaptain", "Groups");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Group>("TerritoriesModel.FK_groups_publisherCaptain", "Groups", value);
-                }
-            }
-        }
-        /// <summary>
-        /// There are no comments for AuxiliarGroup in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_groups_publishersAuxiliar", "Groups")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityCollection<Group> AuxiliarGroup
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Group>("TerritoriesModel.FK_groups_publishersAuxiliar", "Groups");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Group>("TerritoriesModel.FK_groups_publishersAuxiliar", "Groups", value);
-                }
-            }
-        }
-        /// <summary>
-        /// There are no comments for Group in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_publishers_groups", "Groups")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Group Group
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Group>("TerritoriesModel.FK_publishers_groups", "Groups").Value;
-            }
-            set
-            {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Group>("TerritoriesModel.FK_publishers_groups", "Groups").Value = value;
-            }
-        }
-        /// <summary>
-        /// There are no comments for Group in the schema.
-        /// </summary>
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Group> GroupReference
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Group>("TerritoriesModel.FK_publishers_groups", "Groups");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Group>("TerritoriesModel.FK_publishers_groups", "Groups", value);
-                }
-            }
-        }
-        /// <summary>
         /// There are no comments for Tours in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_tours_publishers", "Tours")]
@@ -1539,13 +1226,11 @@ namespace Territories.Model
         /// </summary>
         /// <param name="idTerritory">Initial value of IdTerritory.</param>
         /// <param name="name">Initial value of Name.</param>
-        /// <param name="number">Initial value of Number.</param>
-        public static Territory CreateTerritory(int idTerritory, string name, int number)
+        public static Territory CreateTerritory(int idTerritory, string name)
         {
             Territory territory = new Territory();
             territory.IdTerritory = idTerritory;
             territory.Name = name;
-            territory.Number = number;
             return territory;
         }
         /// <summary>
@@ -1597,9 +1282,9 @@ namespace Territories.Model
         /// <summary>
         /// There are no comments for Property Number in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public int Number
+        public global::System.Nullable<int> Number
         {
             get
             {
@@ -1614,8 +1299,8 @@ namespace Territories.Model
                 this.OnNumberChanged();
             }
         }
-        private int _Number;
-        partial void OnNumberChanging(int value);
+        private global::System.Nullable<int> _Number;
+        partial void OnNumberChanging(global::System.Nullable<int> value);
         partial void OnNumberChanged();
         /// <summary>
         /// There are no comments for Directions in the schema.
@@ -1635,43 +1320,6 @@ namespace Territories.Model
                 if ((value != null))
                 {
                     ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Direction>("TerritoriesModel.FK_directions_territories", "Directions", value);
-                }
-            }
-        }
-        /// <summary>
-        /// There are no comments for Group in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_territories_groups", "Groups")]
-        [global::System.Xml.Serialization.XmlIgnoreAttribute()]
-        [global::System.Xml.Serialization.SoapIgnoreAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Group Group
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Group>("TerritoriesModel.FK_territories_groups", "Groups").Value;
-            }
-            set
-            {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Group>("TerritoriesModel.FK_territories_groups", "Groups").Value = value;
-            }
-        }
-        /// <summary>
-        /// There are no comments for Group in the schema.
-        /// </summary>
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Group> GroupReference
-        {
-            get
-            {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Group>("TerritoriesModel.FK_territories_groups", "Groups");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Group>("TerritoriesModel.FK_territories_groups", "Groups", value);
                 }
             }
         }
@@ -2114,50 +1762,5 @@ namespace Territories.Model
                 }
             }
         }
-    }
-    /// <summary>
-    /// There are no comments for TerritoriesModel.DepartmentReturnPK in the schema.
-    /// </summary>
-    /// <KeyProperties>
-    /// id
-    /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="TerritoriesModel", Name="DepartmentReturnPK")]
-    [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
-    [global::System.Serializable()]
-    public partial class DepartmentReturnPK : global::System.Data.Objects.DataClasses.EntityObject
-    {
-        /// <summary>
-        /// Create a new DepartmentReturnPK object.
-        /// </summary>
-        /// <param name="id">Initial value of id.</param>
-        public static DepartmentReturnPK CreateDepartmentReturnPK(int id)
-        {
-            DepartmentReturnPK departmentReturnPK = new DepartmentReturnPK();
-            departmentReturnPK.id = id;
-            return departmentReturnPK;
-        }
-        /// <summary>
-        /// There are no comments for Property id in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public int id
-        {
-            get
-            {
-                return this._id;
-            }
-            set
-            {
-                this.OnidChanging(value);
-                this.ReportPropertyChanging("id");
-                this._id = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("id");
-                this.OnidChanged();
-            }
-        }
-        private int _id;
-        partial void OnidChanging(int value);
-        partial void OnidChanged();
     }
 }

@@ -107,7 +107,6 @@
             this.cboProvider.Name = "cboProvider";
             this.cboProvider.Size = new System.Drawing.Size(289, 21);
             this.cboProvider.TabIndex = 11;
-            this.cboProvider.SelectedIndexChanged += new System.EventHandler(this.cboProvider_SelectedIndexChanged);
             // 
             // tabProviders
             // 
@@ -295,6 +294,7 @@
             this.Name = "frmInterop";
             this.Text = "Interoperability";
             this.Load += new System.EventHandler(this.frmInterop_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmInterop_FormClosing);
             this.tabDataImport.ResumeLayout(false);
             this.grpConfig.ResumeLayout(false);
             this.grpConfig.PerformLayout();

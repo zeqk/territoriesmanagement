@@ -12,7 +12,7 @@ namespace Territories.GUI.ImporterConfig
         #region Fields
         private string _columnName;
 
-        private object _defaultValue;
+        private string _defaultValue;
 
         private bool _load;
         #endregion
@@ -43,7 +43,7 @@ namespace Territories.GUI.ImporterConfig
             set { _columnName = value; }
         }
 
-        public object DefaultValue
+        public string DefaultValue
         {
             get { return _defaultValue; }
             set { _defaultValue = value; }

@@ -20,8 +20,8 @@ namespace Territories.GUI
 
         GeoRssImportTool _geoRssImporter;
         ImportTool _importer;
+        string _configFile;
         bool _isDirty;
-
         ImporterConfig.ImporterConfig _config;
 
         public frmInterop()
@@ -32,7 +32,10 @@ namespace Territories.GUI
             _isDirty = false;
             InitializeComponent();
 
-        }
+            _configFile = AppDomain.CurrentDomain.BaseDirectory + "importConfig.xml";
+
+        }       
+
 
         private void btnSelectRssSource_Click(object sender, EventArgs e)
         {
@@ -69,12 +72,64 @@ namespace Territories.GUI
             SetConfig();
             try
             {
-                _importer.ExternalDataToModel();
+                bool ok = _importer.ExternalDataToModel();
+                if (ok)
+                    MessageBox.Show("The importation was successful");
+                else
+                    MessageBox.Show("The importation have problems. Check the settings and see the log.");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }            
+        }        
+
+        private void frmInterop_Load(object sender, EventArgs e)
+        {
+            cboProvider.DataSource = Enum.GetValues(typeof(Enumerators.Provider));
+
+            _config = new ImporterConfig.ImporterConfig();
+
+            _config.LoadConfig(_configFile);
+            
+            grdImportConfig.SelectedObject = _config;
+        }
+
+        private void btnSetConnectStr_Click(object sender, EventArgs e)
+        {
+            _config.ConnectionString = txtConnectStr.Text;
+        }
+
+        private void btnSelectExcelFile_Click(object sender, EventArgs e)
+        {
+            ofdFileSource.ShowDialog();
+        }
+
+        private void ofdFileSource_FileOk(object sender, CancelEventArgs e)
+        {
+            if (_config.Provider == Enumerators.Provider.MSExcel)
+            {
+                string file = Path.GetFullPath(ofdFileSource.FileName);
+                txtExcelFile.Text = file;
+                string connectStr = _importer.MakeConnectStr(new string[] { file });
+                txtConnectStr.Text = connectStr;
+                _config.ConnectionString = connectStr;
+            }
+        }
+
+        private void grdImportConfig_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+        {
+            _isDirty = true;
+        }
+
+        private void txtConnectStr_TextChanged(object sender, EventArgs e)
+        {
+            _isDirty = true;
+        }
+
+        private void frmInterop_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _config.SaveConfig(_configFile);
         }
 
         private void SetConfig()
@@ -93,6 +148,7 @@ namespace Territories.GUI
 
                     if (_config.Departments.Name.Load)
                         _importer.Config.Departments.Fields.Add("Name", _config.Departments.Name.ColumnName);
+                    
                 }
                 else
                     _importer.Config.Departments.Fields = new Dictionary<string, string>();
@@ -107,8 +163,27 @@ namespace Territories.GUI
                     if (_config.Cities.Name.Load)
                         _importer.Config.Cities.Fields.Add("Name", _config.Cities.Name.ColumnName);
 
-                    if (_config.Cities.Department.Load)
-                        _importer.Config.Cities.Fields.Add("Department", _config.Cities.Department.ColumnName);
+                    //Department
+                    //Si valor para el id del department se busca si existe valor para el nombre
+                    if (_config.Cities.DepartmentId.Load)
+                    {
+                        if (!string.IsNullOrEmpty(_config.Cities.DepartmentId.ColumnName))
+                            _importer.Config.Cities.Fields.Add("DepartmentId", _config.Cities.DepartmentId.ColumnName);
+                        if (!string.IsNullOrEmpty(_config.Cities.DepartmentId.DefaultValue))
+                            _importer.Config.Cities.DefaultFieldValues.Add("DepartmentId", _config.Cities.DepartmentId.DefaultValue);
+
+                    }
+                    else
+                    {
+                        if (_config.Cities.DepartmentName.Load)
+                        {
+                            if (!string.IsNullOrEmpty(_config.Cities.DepartmentName.ColumnName))
+                                _importer.Config.Cities.Fields.Add("DepartmentName", _config.Cities.DepartmentName.ColumnName);
+                            if (!string.IsNullOrEmpty(_config.Cities.DepartmentName.DefaultValue))
+                                _importer.Config.Cities.DefaultFieldValues.Add("DepartmentName", _config.Cities.DepartmentName.DefaultValue);
+                        }
+                    }
+                    //
                 }
                 else
                 {
@@ -157,67 +232,70 @@ namespace Territories.GUI
                     if (_config.Directions.Description.Load)
                         _importer.Config.Directions.Fields.Add("Description", _config.Directions.Description.ColumnName);
 
-                    if (_config.Directions.City.Load)
-                        _importer.Config.Directions.Fields.Add("City", _config.Directions.City.ColumnName);
+                    //City
+                    if (_config.Directions.CityId.Load)
+                    {
+                        if (!string.IsNullOrEmpty(_config.Directions.CityId.ColumnName))
+                            _importer.Config.Directions.Fields.Add("CityId", _config.Directions.CityId.ColumnName);
+                        if (!string.IsNullOrEmpty(_config.Directions.CityId.DefaultValue))
+                            _importer.Config.Directions.DefaultFieldValues.Add("CityId", _config.Directions.CityId.DefaultValue);
 
-                    if (_config.Directions.Territory.Load)
-                        _importer.Config.Directions.Fields.Add("Territory", _config.Directions.Territory.ColumnName);
+                    }
+                    else
+                    {
+                        if (_config.Directions.CityName.Load)
+                        {
+                            if (!string.IsNullOrEmpty(_config.Directions.CityName.ColumnName))
+                                _importer.Config.Directions.Fields.Add("CityName", _config.Directions.CityName.ColumnName);
+                            if (!string.IsNullOrEmpty(_config.Directions.CityName.DefaultValue))
+                                _importer.Config.Directions.DefaultFieldValues.Add("CityName", _config.Directions.CityName.DefaultValue);
+                        }
+                    }
+                   //
+
+
+                    //Territory
+                    if (_config.Directions.TerritoryId.Load)
+                    {
+                        if (!string.IsNullOrEmpty(_config.Directions.TerritoryId.ColumnName))
+                            _importer.Config.Directions.Fields.Add("TerritoryId", _config.Directions.TerritoryId.ColumnName);
+                        if (!string.IsNullOrEmpty(_config.Directions.TerritoryId.DefaultValue))
+                            _importer.Config.Directions.DefaultFieldValues.Add("TerritoryId", _config.Directions.TerritoryId.DefaultValue);
+
+                    }
+                    else
+                    {
+                        if (_config.Directions.TerritoryName.Load)
+                        {
+                            if (!string.IsNullOrEmpty(_config.Directions.TerritoryName.ColumnName))
+                                _importer.Config.Directions.Fields.Add("TerritoryName", _config.Directions.TerritoryName.ColumnName);
+                            if (!string.IsNullOrEmpty(_config.Directions.TerritoryName.DefaultValue))
+                                _importer.Config.Directions.DefaultFieldValues.Add("TerritoryName", _config.Directions.TerritoryName.DefaultValue);
+                        }
+                    }
+                    //
+
+                    
                 }
                 else
                     _importer.Config.Directions.Fields = new Dictionary<string, string>();
 
                 _isDirty = false;
             }
-            
-                
+
+
         }
 
-        private void frmInterop_Load(object sender, EventArgs e)
+        private void SetTabValuesConfig(ImporterConfig.ImporterConfig config)
         {
-            cboProvider.DataSource = Enum.GetValues(typeof(Enumerators.Provider));
-
-            _config = new ImporterConfig.ImporterConfig();
-            grdImportConfig.SelectedObject = _config;
-        }
-
-        private void btnSetConnectStr_Click(object sender, EventArgs e)
-        {
-            _config.ConnectionString = txtConnectStr.Text;
-        }
-
-        private void btnSelectExcelFile_Click(object sender, EventArgs e)
-        {
-            ofdFileSource.ShowDialog();
-        }
-
-        private void ofdFileSource_FileOk(object sender, CancelEventArgs e)
-        {
-            if (_config.Provider == Enumerators.Provider.MSExcel)
+            cboProvider.SelectedItem = _config.Provider;
+            switch (config.Provider)
             {
-                string file = Path.GetFullPath(ofdFileSource.FileName);
-                txtExcelFile.Text = file;
-                string connectStr = _importer.MakeConnectStr(new string[] { file });
-                txtConnectStr.Text = connectStr;
-                _config.ConnectionString = connectStr;
+                case Enumerators.Provider.MSExcel:
+                    txtConnectStr.Text = _config.ConnectionString;
+                    break;
+                default: break;
             }
-        }
-
-        private void cboProvider_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cboProvider.SelectedItem!=null)
-            {
-                
-            }
-        }
-
-        private void grdImportConfig_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
-        {
-            _isDirty = true;
-        }
-
-        private void txtConnectStr_TextChanged(object sender, EventArgs e)
-        {
-            _isDirty = true;
         }
 
     }
