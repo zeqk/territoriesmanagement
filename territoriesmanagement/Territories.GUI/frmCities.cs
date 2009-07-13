@@ -348,6 +348,11 @@ namespace Territories.GUI
             _opened = false;
         }
 
+        private void cboDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _isDirty = true;
+        }
+
 
     }
 }

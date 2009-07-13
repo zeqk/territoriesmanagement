@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using System.IO;
+using System.Xml.Serialization;
 using My;
 
 namespace Territories.GUI.ImporterConfig
@@ -77,6 +79,41 @@ namespace Territories.GUI.ImporterConfig
         {
             get { return _connectionString; }
             set { _connectionString = value; }
+        }
+
+        #endregion
+
+        #region Serialization methods
+
+        public void SaveConfig(string path)
+        {
+            using(StreamWriter sw = new StreamWriter(path,false,Encoding.UTF8))
+	        {
+                XmlSerializer ser = new XmlSerializer(this.GetType());
+                ser.Serialize(sw, this);
+	        }
+            
+        }
+
+        public void LoadConfig(string path)
+        {
+            if (File.Exists(path))
+            {
+                using (StreamReader sr = new StreamReader(path))
+                {
+                    XmlSerializer ser = new XmlSerializer(this.GetType());
+                    this.SetConfig((ImporterConfig)ser.Deserialize(sr));
+                }
+            }
+        }
+
+        private void SetConfig(ImporterConfig config)
+        {
+            this.ConnectionString = config.ConnectionString;
+            this.Departments = config.Departments;
+            this.Cities = config.Cities;
+            this.Territories = config.Territories;
+            this.Directions = config.Directions;
         }
 
         #endregion

@@ -98,8 +98,12 @@ namespace Territories.GUI
         }
 
         private void btnSave_Click(object sender, EventArgs e)
-        {            
-            this.DialogResult = DialogResult.OK;
+        {
+            if (_isDirty == true)
+                this.DialogResult = DialogResult.OK;
+            else
+                this.DialogResult = DialogResult.None;
+            
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

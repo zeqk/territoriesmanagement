@@ -16,7 +16,6 @@ namespace Territories.GUI
     public partial class frmDirections : Form
     {
         BLL.Directions _server = new Directions();
-        private bool _isDirty;
         
         public frmDirections()
         {

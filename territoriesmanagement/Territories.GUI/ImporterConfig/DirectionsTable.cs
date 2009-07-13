@@ -33,9 +33,13 @@ namespace Territories.GUI.ImporterConfig
 
         private Field _geoPosition;
 
-        private Field _territory;
+        private Field _territoryName;
 
-        private Field _city;
+        private Field _territoryId;
+
+        private Field _cityName;
+
+        private Field _cityId;
 
         #endregion
 
@@ -50,8 +54,10 @@ namespace Territories.GUI.ImporterConfig
             _phone1 = new Field("Phone1");
             _phone2 = new Field("Phone2");
             _geoPosition = new Field("GeoPosition");
-            _territory = new Field("Territory");
-            _city = new Field("City");
+            _territoryName = new Field("Territory");
+            _territoryId = new Field("IdTerritory");
+            _cityName = new Field("City");
+            _cityId = new Field("IdCity");
         }
         #region Properties
 
@@ -120,16 +126,28 @@ namespace Territories.GUI.ImporterConfig
             set { _geoPosition = value; }
         }
 
-        public Field Territory
+        public Field TerritoryId
         {
-            get { return _territory; }
-            set { _territory = value; }
+            get { return _territoryId; }
+            set { _territoryId = value; }
         }
 
-        public Field City
+        public Field TerritoryName
         {
-            get { return _city; }
-            set { _city = value; }
+            get { return _territoryName; }
+            set { _territoryName = value; }
+        }
+
+        public Field CityId
+        {
+            get { return _cityId; }
+            set { _cityId = value; }
+        }
+
+        public Field CityName
+        {
+            get { return _cityName; }
+            set { _cityName = value; }
         }
         
         #endregion

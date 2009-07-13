@@ -27,7 +27,7 @@ namespace Territories.BLL
         private Func<TerritoriesDataContext, string, IQueryable<int>> _compiledIdTerritoryByName;
 
         private Func<TerritoriesDataContext, Department, IQueryable<Department>> _compiledSameDepartment;
-        private Func<TerritoriesDataContext, City, IQueryable<City>> _compiledSameCity;
+        private Func<TerritoriesDataContext, City, int,IQueryable<City>> _compiledSameCity;
         private Func<TerritoriesDataContext, Territory, IQueryable<Territory>> _compiledSameTerritory;
         
 
@@ -48,8 +48,9 @@ namespace Territories.BLL
             _config = new ImporterConfig();
 	    }
 
-        public void ExternalDataToModel()
+        public bool  ExternalDataToModel()
         {
+            bool rv = true;
             SetConfig();
 
             PreCompileQueries();
@@ -58,22 +59,32 @@ namespace Territories.BLL
                 DataSet ds = _importer.GetData();
                 if (ds.Tables.Count > 0)
                 {
+                    bool departmentsImported = true;
                     string departments = _config.Departments.TableName;
                     if (ds.Tables[departments] != null)
-                        AddDepartments(ds.Tables[departments]);
+                        departmentsImported = AddDepartments(ds.Tables[departments]) > 0;
 
+                    bool citiesImported = true;
                     string cities = _config.Cities.TableName;
                     if (ds.Tables[cities] != null)
-                        AddCities(ds.Tables[cities]);
+                        citiesImported = AddCities(ds.Tables[cities]) > 0;
 
+                    bool territoriesImported = true;
                     string territories = _config.Territories.TableName;
                     if (ds.Tables[territories] != null)
-                        AddTerritories(ds.Tables[territories]);
+                        territoriesImported = AddTerritories(ds.Tables[territories]) > 0;
 
+                    bool directionsImported = true;
                     string directions = _config.Directions.TableName;
                     if (ds.Tables[directions] != null)
-                        AddDirections(ds.Tables[directions]);
+                        directionsImported = AddDirections(ds.Tables[directions]) > 0;
+
+                    rv = departmentsImported && citiesImported && territoriesImported && directionsImported;
                 }
+                else
+                    rv = false;
+
+                
             }
             catch (Exception ex)
             {                
@@ -81,42 +92,46 @@ namespace Territories.BLL
             }
 
             SaveLog();
+            return rv;
         }
 
         #region AddEntity Methods
 
-        private bool AddDepartments(DataTable dt)
+        private int AddDepartments(DataTable dt)
         {
-            bool rv;
+            int rv = 0;
             string message = "";
             try
             {
                 if (dt.Rows.Count>0)
                 {
+                    int count = 0;
                     foreach (DataRow row in dt.Rows)
                     {
 
                         Department v = DataRowToDepartment(row);
+
                         if (DepartmentIsValid(v, ref message))
                         {
                             if (!_config.Departments.Fields.ContainsKey("IdDepartment"))
+                            {
                                 _dm.AddToDepartments(v);
+                                count++;
+                            }
                             else
-                            {                                
-                                _dm.departments_AddWithPK(v.IdDepartment, v.Name);
-                                //departments_AddWithPK(v, (EntityConnection)_dm.Connection);
+                            {
+                                _dm.departments_AddWithPK(v);
+                                count++;
                             }
                         }
-
                     }
-                    _dm.SaveChanges();                    
+                    _dm.SaveChanges();
+                    rv = count;
                 }
-                rv = true; 
             }
             catch (Exception ex)
             {
                 message += "Error: "+ ex.Message+"";
-                rv = false;
             }
             finally
             {
@@ -127,25 +142,37 @@ namespace Territories.BLL
             
         }
 
-        private bool AddCities(DataTable dt)
+        private int AddCities(DataTable dt)
         {
-            bool rv;
+            int rv = 0;
             string message = "";
             try
             {
+                int count = 0;
                 foreach (DataRow row in dt.Rows)
                 {
+                    
                     City v = DataRowToCity(row);
                     if (CityIsValid(v, ref message))
-                        _dm.AddToCities(v);
+                    {
+                        if (_config.Cities.DefaultFieldValues.ContainsKey("IdCity"))
+                        {
+                            _dm.AddToCities(v);
+                            count++;
+                        }
+                        else
+                        {
+                            _dm.cities_AddWithPK(v);
+                            count++;
+                        }
+                    }
                 }
                 _dm.SaveChanges();
-                rv = true;
+                rv = count;
             }
             catch (Exception ex)
             {
                 message += "Error: " + ex.Message + " ";
-                rv = false;
             }
             finally
             {
@@ -155,25 +182,36 @@ namespace Territories.BLL
             return rv;
         }
 
-        private bool AddTerritories(DataTable dt)
+        private int AddTerritories(DataTable dt)
         {
-            bool rv;
+            int rv =0;
             string message = "";
             try
             {
+                int count = 0;
                 foreach (DataRow row in dt.Rows)
                 {
                     Territory v = DataRowToTerritory(row);
                     if (TerritoryIsValid(v, ref message))
-                        _dm.AddToTerritories(v);
+                    {
+                        if (!_config.Territories.Fields.ContainsKey("IdTerritory"))
+                        {
+                            _dm.AddToTerritories(v);
+                            count++;
+                        }
+                        else
+                        {
+                            _dm.territories_AddWithPK(v);
+                            count++;
+                        }
+                    }
                 }
                 _dm.SaveChanges();
-                rv = true;
+                rv = count;
             }
             catch (Exception ex)
             {
                 message +=  "Error: "+ ex.Message+ " ";
-                rv = false;
             }
             finally
             {
@@ -181,37 +219,45 @@ namespace Territories.BLL
             }
 
             return rv;
-
         }
 
-        private bool AddDirections(DataTable dt)
+        private int AddDirections(DataTable dt)
         {
-            bool rv;
+            int rv = 0;
             string message = "";
             try
             {
+                int count = 0;
                 foreach (DataRow row in dt.Rows)
                 {
                     Direction v = DataRowToDirection(row);
                     if (DirectionIsValid(v, ref message))
-                        _dm.AddToDirections(v);
+                    {
+                        if (!_config.Directions.Fields.ContainsKey("IdDirection"))
+                        {
+                            _dm.AddToDirections(v);
+                            count++;
+                        }
+                        else
+                        {
+                            _dm.directions_AddWithPK(v);
+                            count++;
+                        }
+                    }
                 }
                 _dm.SaveChanges();
-                rv = true;
+                rv = count;
             }
             catch (Exception ex)
             {
                 message += "Error: " + ex.Message + " ";
-                rv = false;
             }
             finally
             {
                 log += "\nADD DIRECTIONS ERRORS:" + message;
-            }
-            
+            }            
 
             return rv;
-
         }
 
         #endregion
@@ -267,21 +313,31 @@ namespace Territories.BLL
             //
             //City.Department
             int idDepartment = 0;
-            if (_config.Cities.Fields.ContainsKey("Department"))
-            {
-                string nameColumn = _config.Cities.Fields["Department"];
-                string departmentName = row[nameColumn].ToString();
 
-                idDepartment = _compiledIdDepartmentByName(_dm, departmentName).First();                
+            if (_config.Cities.Fields.ContainsKey("DepartmentId") || _config.Cities.DefaultFieldValues.ContainsKey("DepartmentId"))
+            {
+                if (_config.Cities.Fields.ContainsKey("DepartmentId"))
+                {
+                    string idColumn = _config.Cities.Fields["DepartmentId"];
+                    idDepartment = Convert.ToInt32(row[idColumn].ToString());
+                }
+                else
+                    idDepartment = Convert.ToInt32(_config.Cities.DefaultFieldValues["DepartmentId"]);
             }
-            //else //TODO: DEFAULT VALUE
-            //{
-            //    if (_config.Cities.DefaultFieldValues["Department"] != null)
-            //    {
-            //        string departmentName = _config.Cities.DefaultFieldValues["Department"].ToString();
-            //        idDepartment = _compiledIdDepartmentByName(_dm, departmentName).First();  
-            //    }
-            //}
+            //sólo si el id no está indicado se tratará de buscar por el nombre, si es que está indicado
+            if (idDepartment==0 && (_config.Cities.Fields.ContainsKey("DepartmentName") || _config.Cities.DefaultFieldValues.ContainsKey("DepartmentName"))) 
+            {
+                string departmentName="";
+                if (_config.Cities.Fields.ContainsKey("DepartmentName"))
+                {
+                    string nameColumn = _config.Cities.Fields["DepartmentName"];
+                    departmentName = row[nameColumn].ToString();                    
+                }
+                else
+                    departmentName = _config.Cities.DefaultFieldValues["DepartmentName"].ToString();
+
+                idDepartment = _compiledIdDepartmentByName(_dm, departmentName).First();
+            }            
 
             rv.DepartmentReference.EntityKey = new EntityKey("TerritoriesDataContext.Departments", "IdDepartment", idDepartment);
             //
@@ -384,42 +440,60 @@ namespace Territories.BLL
             }
             //Direction.City
             int idCity = 0;
-            if (_config.Directions.Fields.ContainsKey("City"))
+            if (_config.Directions.Fields.ContainsKey("CityId")|| _config.Directions.DefaultFieldValues.ContainsKey("CityId"))
             {
-                string nameColumn = _config.Directions.Fields["City"];
-                string cityName = row[nameColumn].ToString();
+                if (_config.Directions.Fields.ContainsKey("CityId"))
+                {
+                    string idColumn = _config.Directions.Fields["CityId"];
+                    idCity = Convert.ToInt32(row[idColumn].ToString());
+                }
+                else
+                    idCity = Convert.ToInt32(_config.Directions.DefaultFieldValues["CityId"]);
+            }
+
+            if (idCity==0 && (_config.Directions.Fields.ContainsKey("CityName")||_config.Directions.DefaultFieldValues.ContainsKey("CityName")))
+            {
+                string cityName = "";
+                if (_config.Directions.Fields.ContainsKey("CityName"))
+                {
+                    string nameColumn = _config.Directions.Fields["CityName"];
+                    cityName = row[nameColumn].ToString();
+                }
+                else
+                    cityName = _config.Directions.DefaultFieldValues["CityName"].ToString();
 
                 idCity = _compiledIdCityByName(_dm, cityName).First();
             }
-            //else //TODO: Defautl Value
-            //{
-            //    if (_config.Directions.DefaultFieldValues["City"] != null)
-            //    {
-            //        string cityName = _config.Directions.DefaultFieldValues["City"].ToString();
-            //        idCity = _compiledIdCityByName(_dm, cityName).First();
-            //    }
-            //}
 
             rv.CityReference.EntityKey = new EntityKey("TerritoriesDataContext.Directions", "IdCity", idCity);
             //
 
             //Direction.Territory
             int idTerritory = 0;
-            if (_config.Directions.Fields.ContainsKey("Territory"))
+            if (_config.Directions.Fields.ContainsKey("TerritoryId") || _config.Directions.DefaultFieldValues.ContainsKey("TerritoryId"))
             {
-                string nameColumn = _config.Directions.Fields["Territory"];
-                string terrName = row[nameColumn].ToString();
-
-                idTerritory = _compiledIdTerritoryByName(_dm, terrName).First();
+                if (_config.Directions.Fields.ContainsKey("TerritoryId"))
+                {
+                    string idColumn = _config.Directions.Fields["TerritoryId"];
+                    idTerritory = Convert.ToInt32((row[idColumn].ToString()));
+                }
+                else
+                    idTerritory = Convert.ToInt32(_config.Directions.DefaultFieldValues["TerritoryId"]);
             }
-            //else //TODO: Default Value
-            //{
-            //    if (_config.Directions.DefaultFieldValues["Territory"] != null)
-            //    {
-            //        string terrName = _config.Directions.DefaultFieldValues["Territory"].ToString();
-            //        idTerritory = _compiledIdTerritoryByName(_dm, terrName).First();
-            //    }
-            //}            
+
+            if (idTerritory == 0 && (_config.Directions.Fields.ContainsKey("TerritoryName") || _config.Directions.DefaultFieldValues.ContainsKey("TerritoryName")))
+            {
+                string territoryName = "";
+                if (_config.Directions.Fields.ContainsKey("TerritoryName"))
+                {
+                    string nameColumn = _config.Directions.Fields["TerritoryName"];
+                    territoryName = row[nameColumn].ToString();
+                }
+                else
+                    territoryName = _config.Directions.DefaultFieldValues["TerritoryName"].ToString();
+
+                idTerritory = _compiledIdTerritoryByName(_dm, territoryName).First();
+            }         
 
             rv.TerritoryReference.EntityKey = new EntityKey("TerritoriesDataContext.Territories", "IdTerritory", idTerritory);
             //
@@ -451,20 +525,21 @@ namespace Territories.BLL
         public bool DepartmentIsValid(Department v, ref string message)
         {
             bool rv = true;
+            string msg = "";
             if (string.IsNullOrEmpty(v.Name))
             {
-                message +=  "Name is blank or null. ";
+                msg +=  "Name is blank or null. ";
                 rv = false;
             }
             if (DepartmentExist(v))
-            {                
-                message += "Already exist. ";
+            {
+                msg += "Already exist. ";
                 rv = false;
             }
 
             if (!rv)
             {
-                message = "\n" + v.IdDepartment + " " + v.Name + " invalid: " + message;
+                message = "\n \"" + v.IdDepartment + " " + v.Name + "\" invalid: " + msg;
             }
 
             return rv;
@@ -473,25 +548,27 @@ namespace Territories.BLL
         public bool CityIsValid(City v, ref string message)
         {
             bool rv = true;
-            if (!string.IsNullOrEmpty(v.Name))
+            string msg = "";
+            if (string.IsNullOrEmpty(v.Name))
             {
-                message += "Name is blank or null. ";
+                msg += "Name is blank or null. ";
                 rv = false;
             }
-            if (v.Department == null || v.Department.IdDepartment == 0)
+            if (v.DepartmentReference.EntityKey==null)
             {
-                message += "Haven't department. ";
+                msg += "Haven't department. ";
                 rv = false;
             }
-            if (CityExist(v))
-            {
-                message += "Already exist. ";
-                rv = false;
-            }
+            else
+                if (CityExist(v))
+                {
+                    msg += "Already exist. ";
+                    rv = false;
+                }
 
             if (!rv)
             {
-                message = "\n" + v.IdCity + " " + v.Name + " invalid: " + message;
+                message = "\n \"" + v.IdCity + " " + v.Name + "\" invalid: " + msg;
             }
 
             return rv;
@@ -500,20 +577,21 @@ namespace Territories.BLL
         private bool TerritoryIsValid(Territory v, ref string message)
         {
             bool rv = true;
+            string msg = "";
             if (string.IsNullOrEmpty(v.Name))
             {
-                message += "Name is blank or null. ";
+                msg += "Name is blank or null. ";
                 rv = false;
             }
             if (TerritoryExist(v))
             {
-                message += "Already exist. ";
+                msg += "Already exist. ";
                 rv = false;
             }
 
             if (!rv)
             {
-                message = "\n" + v.IdTerritory + " " + v.Name + " invalid: " + message;
+                message = "\n \"" + v.IdTerritory + " " + v.Name + "\" invalid: " + msg;
             }
 
             return rv;
@@ -522,25 +600,26 @@ namespace Territories.BLL
         private bool DirectionIsValid(Direction v, ref string message)
         {
             bool rv = true;
+            string msg  = "";
             if (string.IsNullOrEmpty(v.Street))
             {
-                message += "The street name is blank or null. ";
+                msg += "The street name is blank or null. ";
                 rv = false;
             }
-            if (v.Territory == null || v.Territory.IdTerritory == 0)
+            if (v.TerritoryReference.EntityKey==null)
             {
-                message += "Haven't territory. ";
+                msg += "Haven't territory. ";
                 rv = false;
             }
-            if (v.City == null || v.City.IdCity == 0)
+            if (v.TerritoryReference.EntityKey==null)
             {
-                message += "Haven't city. ";
+                msg += "Haven't city. ";
                 rv = false;
             }
 
             if (!rv)
             {
-                message = "\n" + v.IdDirection + " " + v.Street + " invalid: " + message;
+                message = "\n \"" + v.IdDirection + " " + v.Street + "\" invalid: " + msg;
             }
 
             return rv;
@@ -558,7 +637,8 @@ namespace Territories.BLL
 
         private bool CityExist(City v)
         {
-            var found = _compiledSameCity(_dm, v).ToList();
+            int idDepartment = (int)v.DepartmentReference.EntityKey.EntityKeyValues[0].Value;
+            var found = _compiledSameCity(_dm, v,idDepartment).ToList();            
 
             return (found.Count > 0);
         }
@@ -566,6 +646,11 @@ namespace Territories.BLL
         private bool TerritoryExist(Territory v)
         {
             var found = _compiledSameTerritory(_dm, v).ToList();
+            //var found = from t in _dm.Territories
+            //            where t.Name == v.Name ||
+            //                  (t.Number == v.Number && v.Number != null) ||
+            //                  t.IdTerritory == v.IdTerritory
+            //            select t;
 
             return (found.Count > 0);
         }
@@ -672,8 +757,8 @@ namespace Territories.BLL
 
             this._compiledSameCity = CompiledQuery.Compile
                 (
-                    (TerritoriesDataContext dm, City v) => from c in dm.Cities
-                                                           where (c.Name == v.Name && c.Department.IdDepartment == v.Department.IdDepartment) ||
+                    (TerritoriesDataContext dm, City v,int idDepartment) => from c in dm.Cities
+                                                           where (c.Name == v.Name && c.Department.IdDepartment == idDepartment) ||
                                                                     c.IdCity == v.IdCity
                                                            select c
                 );
@@ -681,7 +766,7 @@ namespace Territories.BLL
                 (
                     (TerritoriesDataContext dm, Territory v) => from t in dm.Territories
                                                                 where t.Name == v.Name ||
-                                                                      t.Number == v.Number ||
+                                                                      (v.Number != null && t.Number == v.Number) ||
                                                                       t.IdTerritory == v.IdTerritory
                                                                 select t
                 );

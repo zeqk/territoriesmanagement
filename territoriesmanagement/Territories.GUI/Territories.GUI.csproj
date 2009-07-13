@@ -92,7 +92,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration.cs" />
     <Compile Include="frmCities.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,6 +182,7 @@
     <None Include="Properties\DataSources\Territories.Model.Department.datasource" />
     <None Include="Properties\DataSources\Territories.Model.Direction.datasource" />
     <None Include="Properties\DataSources\Territories.Model.GeoPosition.datasource" />
+    <None Include="Properties\DataSources\Territories.Model.Territory.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

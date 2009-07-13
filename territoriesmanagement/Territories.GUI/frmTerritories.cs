@@ -57,15 +57,16 @@ namespace Territories.GUI
 
             dgvResults.Columns.Add("Id", "Id");
             dgvResults.Columns.Add("Number", "Number");
-            dgvResults.Columns.Add("Name", "Territory");
-            dgvResults.Columns.Add("blank", "");
+            dgvResults.Columns.Add("Name", "Territory");            
 
             dgvResults.Columns["Id"].Visible = false;
             dgvResults.Columns["Id"].DataPropertyName = "Id";
-            dgvResults.Columns["Name"].Width = 150;
-            dgvResults.Columns["Name"].DataPropertyName = "Name";
             dgvResults.Columns["Number"].Width = 100;
             dgvResults.Columns["Number"].DataPropertyName = "Number";
+            dgvResults.Columns["Name"].Width = 150;
+            dgvResults.Columns["Name"].DataPropertyName = "Name";
+
+            dgvResults.Columns.Add("blank", "");
             dgvResults.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -73,12 +74,15 @@ namespace Territories.GUI
 
             dgvDirections.Columns.Add("Id", "Id");
             dgvDirections.Columns.Add("Name", "Direction");
-            dgvDirections.Columns.Add("blank", "");
+            
 
             dgvDirections.Columns["Id"].Visible = false;
             dgvDirections.Columns["Id"].DataPropertyName = "Id";
             dgvDirections.Columns["Name"].Width = 200;
-            dgvDirections.Columns["Name"].DataPropertyName = "Name";
+            dgvDirections.Columns["Name"].DataPropertyName = "Direction";
+
+            dgvDirections.Columns.Add("blank", "");
+            int i = dgvDirections.Columns["blank"].Index;
             dgvDirections.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dgvDirections.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -283,7 +287,7 @@ namespace Territories.GUI
                     LoadRelations((Territory)bsTerritory.DataSource);
                 }
                 else
-                    MessageBox.Show("You must select any city");
+                    MessageBox.Show("You must select any territory");
             }
         }
 
@@ -318,7 +322,7 @@ namespace Territories.GUI
             return rv;
         }
 
-        private void frmTerritories_FormClosed(object sender, FormClosedEventArgs e)
+        private void frmTerritories_FormClosed_1(object sender, FormClosedEventArgs e)
         {
             _opened = false;
         }
