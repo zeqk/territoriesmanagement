@@ -12,6 +12,7 @@ using System.Globalization;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using GeoRSSLibrary;
+using GeoRSSLibrary.GeoRssItems;
 
 namespace TerritoriesToGoogleMaps
 {
@@ -26,9 +27,9 @@ namespace TerritoriesToGoogleMaps
         static public Double MiddleLng;
 
 
-        public static List<GeoRssItem> ReadMarks(string pathIn)
+        public static List<IGeoRssItem> ReadMarks(string pathIn)
         {
-            List<GeoRssItem> items;
+            List<IGeoRssItem> items;
             try
             {
                 GeoRssFeed feed = new GeoRssFeed(pathIn);
@@ -52,7 +53,7 @@ namespace TerritoriesToGoogleMaps
         }
 
 
-        public static void WriteTerritoriesFiles(string pathOut, List<GeoRssItem> geoItems)
+        public static void WriteTerritoriesFiles(string pathOut, List<IGeoRssItem> geoItems)
         {
             string conStr = @"Provider=Microsoft.Jet.Oledb.4.0;Data Source=";
             conStr = conStr + pathOut;
@@ -81,10 +82,11 @@ namespace TerritoriesToGoogleMaps
 
                 foreach (var item in geoItems)
                 {
-                    if (item.Type == GeoRssItemType.Point)
-                    {                        
-                        id = ExtractId(item.Description);
-                        ds.Tables[0].Select("ID = " + id)[0]["GEOPOSITION"] = ((GeoRssItem)item).Coordinates.First().ToString();
+                    if (item.GetType()==typeof(Point))
+                    {
+                        Point point = (Point)item;
+                        id = ExtractId(point.Description);
+                        ds.Tables[0].Select("ID = " + id)[0]["GEOPOSITION"] = point.Coordinates.ToString();
                     }
                 }
                 ds.Tables[0].WriteXml(pathOut + ".xml");                                
@@ -101,7 +103,7 @@ namespace TerritoriesToGoogleMaps
 
         public static void UpdateGeoposition(string xmlFile, string xlsFile)
         {
-            List<GeoRssItem> geopositions = ReadMarks(xmlFile);
+            List<IGeoRssItem> geopositions = ReadMarks(xmlFile);
             WriteTerritoriesFiles(xlsFile, geopositions);
         }
 

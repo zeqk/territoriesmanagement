@@ -76,7 +76,8 @@ namespace Territories.BLL
                 return v;
             }
             catch (Exception ex)
-            {                
+            {
+                _dm.Refresh(RefreshMode.StoreWins, _dm.Territories);
                 throw ex;
             }
         }
@@ -90,7 +91,8 @@ namespace Territories.BLL
                 return v;
             }
             catch (Exception ex)
-            {                
+            {
+                _dm.Refresh(RefreshMode.StoreWins, _dm.Territories);
                 throw ex;
             }
         }
@@ -104,7 +106,8 @@ namespace Territories.BLL
                 _dm.SaveChanges();
             }
             catch (Exception ex)
-            {                
+            {
+                _dm.Refresh(RefreshMode.StoreWins, _dm.Territories);
                 throw ex;
             }
         }

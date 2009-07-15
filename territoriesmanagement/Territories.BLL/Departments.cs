@@ -10,7 +10,6 @@ using System.Data.Objects;
 using System.Linq;
 using System.Text;
 using Territories.Model;
-using Territories.DAL;
           
 namespace Territories.BLL
 {
@@ -68,6 +67,7 @@ namespace Territories.BLL
             }
             catch (Exception e)
             {
+                _dm.Refresh(RefreshMode.StoreWins, _dm.Departments);
                 throw e;
             }
         }
@@ -83,6 +83,7 @@ namespace Territories.BLL
             }
             catch (Exception e)
             {
+                _dm.Refresh(RefreshMode.StoreWins, _dm.Departments);
                 throw e;
             }
         }
@@ -97,6 +98,7 @@ namespace Territories.BLL
             }
             catch (Exception e)
             {
+                _dm.Refresh(RefreshMode.StoreWins, _dm.Departments);
                 throw e;
             }
         }

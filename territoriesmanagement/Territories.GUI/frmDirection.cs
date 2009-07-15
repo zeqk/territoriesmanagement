@@ -100,7 +100,18 @@ namespace Territories.GUI
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (_isDirty == true)
-                this.DialogResult = DialogResult.OK;
+            {                
+                try
+                {                    
+                    _server.Save(this.Direction);
+                    this.DialogResult = DialogResult.OK;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+            }
             else
                 this.DialogResult = DialogResult.None;
             

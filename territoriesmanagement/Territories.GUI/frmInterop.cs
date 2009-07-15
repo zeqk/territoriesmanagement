@@ -57,7 +57,8 @@ namespace Territories.GUI
             {
                 try
                 {
-                    _geoRssImporter.AddPointsToDirections(txtRssSource.Text);                    
+                    string importMessage ="";
+                    _geoRssImporter.ImportGeoRss(txtRssSource.Text, ref importMessage, false, false, true, false);                    
                     MessageBox.Show("Xls file updated successfully");
                 }
                 catch (Exception ex)
@@ -72,9 +73,10 @@ namespace Territories.GUI
             SetConfig();
             try
             {
-                bool ok = _importer.ExternalDataToModel();
+                string importationMessage = "";
+                bool ok = _importer.ExternalDataToModel(ref importationMessage);
                 if (ok)
-                    MessageBox.Show("The importation was successful");
+                    MessageBox.Show("The importation has ben successful.\n"+importationMessage);
                 else
                     MessageBox.Show("The importation have problems. Check the settings and see the log.");
             }

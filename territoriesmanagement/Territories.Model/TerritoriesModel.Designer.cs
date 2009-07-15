@@ -21,7 +21,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "TerritoriesGeopositions", "GeoPositions", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.GeoPosition), "Territory", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Territory))]
 
 // Original file name:
-// Generation date: 13/07/2009 16:32:06
+// Generation date: 15/07/2009 16:17:28
 namespace Territories.Model
 {
     
@@ -332,6 +332,97 @@ namespace Territories.Model
         public global::System.Data.Objects.ObjectResult<Territory> territories_GetAll()
         {
             return base.ExecuteFunction<Territory>("territories_GetAll");
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.territories_Add in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<Territory> territories_Add(string name, global::System.Nullable<int> number)
+        {
+            global::System.Data.Objects.ObjectParameter nameParameter;
+            if ((name != null))
+            {
+                nameParameter = new global::System.Data.Objects.ObjectParameter("name", name);
+            }
+            else
+            {
+                nameParameter = new global::System.Data.Objects.ObjectParameter("name", typeof(string));
+            }
+            global::System.Data.Objects.ObjectParameter numberParameter;
+            if (number.HasValue)
+            {
+                numberParameter = new global::System.Data.Objects.ObjectParameter("number", number);
+            }
+            else
+            {
+                numberParameter = new global::System.Data.Objects.ObjectParameter("number", typeof(int));
+            }
+            return base.ExecuteFunction<Territory>("territories_Add", nameParameter, numberParameter);
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.territories_UpdateById in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<Territory> territories_UpdateById(global::System.Nullable<int> id, string name, global::System.Nullable<int> number)
+        {
+            global::System.Data.Objects.ObjectParameter idParameter;
+            if (id.HasValue)
+            {
+                idParameter = new global::System.Data.Objects.ObjectParameter("id", id);
+            }
+            else
+            {
+                idParameter = new global::System.Data.Objects.ObjectParameter("id", typeof(int));
+            }
+            global::System.Data.Objects.ObjectParameter nameParameter;
+            if ((name != null))
+            {
+                nameParameter = new global::System.Data.Objects.ObjectParameter("name", name);
+            }
+            else
+            {
+                nameParameter = new global::System.Data.Objects.ObjectParameter("name", typeof(string));
+            }
+            global::System.Data.Objects.ObjectParameter numberParameter;
+            if (number.HasValue)
+            {
+                numberParameter = new global::System.Data.Objects.ObjectParameter("number", number);
+            }
+            else
+            {
+                numberParameter = new global::System.Data.Objects.ObjectParameter("number", typeof(int));
+            }
+            return base.ExecuteFunction<Territory>("territories_UpdateById", idParameter, nameParameter, numberParameter);
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.territories_DeleteById in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<Territory> territories_DeleteById(global::System.Nullable<int> id)
+        {
+            global::System.Data.Objects.ObjectParameter idParameter;
+            if (id.HasValue)
+            {
+                idParameter = new global::System.Data.Objects.ObjectParameter("id", id);
+            }
+            else
+            {
+                idParameter = new global::System.Data.Objects.ObjectParameter("id", typeof(int));
+            }
+            return base.ExecuteFunction<Territory>("territories_DeleteById", idParameter);
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.directions_GetById in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<Direction> directions_GetById(global::System.Nullable<int> id)
+        {
+            global::System.Data.Objects.ObjectParameter idParameter;
+            if (id.HasValue)
+            {
+                idParameter = new global::System.Data.Objects.ObjectParameter("id", id);
+            }
+            else
+            {
+                idParameter = new global::System.Data.Objects.ObjectParameter("id", typeof(int));
+            }
+            return base.ExecuteFunction<Direction>("directions_GetById", idParameter);
         }
     }
     /// <summary>
@@ -1577,7 +1668,7 @@ namespace Territories.Model
         /// <param name="idGeoposition">Initial value of IdGeoposition.</param>
         /// <param name="latitude">Initial value of Latitude.</param>
         /// <param name="longitude">Initial value of Longitude.</param>
-        public static GeoPosition CreateGeoPosition(global::System.DateTime date, int idGeoposition, long latitude, long longitude)
+        public static GeoPosition CreateGeoPosition(global::System.DateTime date, int idGeoposition, double latitude, double longitude)
         {
             GeoPosition geoPosition = new GeoPosition();
             geoPosition.Date = date;
@@ -1637,7 +1728,7 @@ namespace Territories.Model
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public long Latitude
+        public double Latitude
         {
             get
             {
@@ -1652,15 +1743,15 @@ namespace Territories.Model
                 this.OnLatitudeChanged();
             }
         }
-        private long _Latitude;
-        partial void OnLatitudeChanging(long value);
+        private double _Latitude;
+        partial void OnLatitudeChanging(double value);
         partial void OnLatitudeChanged();
         /// <summary>
         /// There are no comments for Property Longitude in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public long Longitude
+        public double Longitude
         {
             get
             {
@@ -1675,8 +1766,8 @@ namespace Territories.Model
                 this.OnLongitudeChanged();
             }
         }
-        private long _Longitude;
-        partial void OnLongitudeChanging(long value);
+        private double _Longitude;
+        partial void OnLongitudeChanging(double value);
         partial void OnLongitudeChanged();
         /// <summary>
         /// There are no comments for Cities in the schema.

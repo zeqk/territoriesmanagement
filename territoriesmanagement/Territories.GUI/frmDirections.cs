@@ -214,11 +214,6 @@ namespace Territories.GUI
                         myForm.Direction = v;
 
                         myForm.ShowDialog();
-                        if (myForm.DialogResult == DialogResult.OK)
-                        {
-                            v = myForm.Direction;
-                            _server.Save(v);
-                        }
                     }
                     catch (Exception ex)
                     {
