@@ -136,8 +136,8 @@
           </Key>
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="IdGeoposition" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Latitude" Type="bigint" Nullable="false" />
-          <Property Name="Longitude" Type="bigint" Nullable="false" />
+          <Property Name="Latitude" Type="float" Nullable="false" />
+          <Property Name="Longitude" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="Publishers">
           <Key>
@@ -156,7 +156,6 @@
           <Key>
             <PropertyRef Name="IdTerritory" />
           </Key>
-          <Property Name="IdGroup" Type="int" />
           <Property Name="IdTerritory" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="80" />
           <Property Name="Number" Type="int" />
@@ -457,17 +456,19 @@
         <Function Name="fn_diagramobjects" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="geoPositions_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="date" Type="datetime" Mode="In" />
-          <Parameter Name="lat" Type="bigint" Mode="In" />
-          <Parameter Name="lon" Type="bigint" Mode="In" />
+          <Parameter Name="lat" Type="float" Mode="In" />
+          <Parameter Name="lon" Type="float" Mode="In" />
         </Function>
+        <Function Name="geoPositions_DeleteAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="geoPositions_DeleteById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
+        <Function Name="geoPositions_GetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="geopositions_UpdateById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="date" Type="datetime" Mode="In" />
-          <Parameter Name="lat" Type="bigint" Mode="In" />
-          <Parameter Name="lon" Type="bigint" Mode="In" />
+          <Parameter Name="lat" Type="float" Mode="In" />
+          <Parameter Name="lon" Type="float" Mode="In" />
         </Function>
         <Function Name="publishers_GetByCity" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idCity" Type="int" Mode="In" />
@@ -604,14 +605,25 @@
             <Parameter Name="map2" Mode="In" Type="String" />
             <Parameter Name="idTerritory" Mode="In" Type="Int32" />
             <Parameter Name="idCity" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="cities_AddWithPK" ReturnType="Collection(Int32)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="idDepartment" Mode="In" Type="Int32" /></FunctionImport>
           <FunctionImport Name="territories_AddWithPK" ReturnType="Collection(Int32)">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="name" Mode="In" Type="String" />
             <Parameter Name="number" Mode="In" Type="Int32" /></FunctionImport>
-          <FunctionImport Name="cities_AddWithPK" ReturnType="Collection(Int32)">
+          <FunctionImport Name="territories_Add" EntitySet="Territories" ReturnType="Collection(TerritoriesModel.Territory)">
+            <Parameter Name="name" Mode="In" Type="String" />
+            <Parameter Name="number" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="territories_UpdateById" EntitySet="Territories" ReturnType="Collection(TerritoriesModel.Territory)">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="name" Mode="In" Type="String" />
-            <Parameter Name="idDepartment" Mode="In" Type="Int32" /></FunctionImport></EntityContainer>
+            <Parameter Name="number" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="territories_DeleteById" EntitySet="Territories" ReturnType="Collection(TerritoriesModel.Territory)">
+            <Parameter Name="id" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="directions_GetById" EntitySet="Directions" ReturnType="Collection(TerritoriesModel.Direction)">
+            <Parameter Name="id" Mode="In" Type="Int32" /></FunctionImport></EntityContainer>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="IdCity" />
@@ -621,7 +633,8 @@
           <NavigationProperty Name="Department" Relationship="TerritoriesModel.FK_cities_departments" FromRole="Cities" ToRole="Departments" />
           <NavigationProperty Name="Directions" Relationship="TerritoriesModel.FK_directions_cities" FromRole="Cities" ToRole="Directions" />
           <NavigationProperty Name="Publishers" Relationship="TerritoriesModel.FK_publishers_cities" FromRole="Cities" ToRole="Publishers" />
-          <NavigationProperty Name="GeoPositions" Relationship="TerritoriesModel.CitiesGeopositions" FromRole="City" ToRole="GeoPositions" /></EntityType>
+          <NavigationProperty Name="GeoPositions" Relationship="TerritoriesModel.CitiesGeopositions" FromRole="City" ToRole="GeoPositions" />
+          </EntityType>
         <EntityType Name="Department">
           <Key>
             <PropertyRef Name="IdDepartment" />
@@ -629,7 +642,8 @@
           <Property Name="IdDepartment" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Cities" Relationship="TerritoriesModel.FK_cities_departments" FromRole="Departments" ToRole="Cities" />
-          <NavigationProperty Name="GeoPositions" Relationship="TerritoriesModel.DepartmentsGeopositions" FromRole="Department" ToRole="GeoPositions" /></EntityType>
+          <NavigationProperty Name="GeoPositions" Relationship="TerritoriesModel.DepartmentsGeopositions" FromRole="Department" ToRole="GeoPositions" />
+          </EntityType>
         <EntityType Name="Direction">
           <Key>
             <PropertyRef Name="IdDirection" />
@@ -670,7 +684,8 @@
           <NavigationProperty Name="Directions" Relationship="TerritoriesModel.FK_directions_territories" FromRole="Territories" ToRole="Directions" />
           <NavigationProperty Name="Tours" Relationship="TerritoriesModel.FK_tours_territories" FromRole="Territories" ToRole="Tours" />
           <NavigationProperty Name="GeoPositions" Relationship="TerritoriesModel.TerritoriesGeopositions" FromRole="Territory" ToRole="GeoPositions" />
-          <Property Name="Number" Type="Int32" Nullable="true" /></EntityType>
+          <Property Name="Number" Type="Int32" Nullable="true" />
+          </EntityType>
         <EntityType Name="Tour">
           <Key>
             <PropertyRef Name="IdTerritory" />
@@ -706,7 +721,7 @@
         <Association Name="FK_tours_territories">
           <End Role="Territories" Type="TerritoriesModel.Territory" Multiplicity="1" />
           <End Role="Tours" Type="TerritoriesModel.Tour" Multiplicity="*" />
-        <ReferentialConstraint>
+          <ReferentialConstraint>
             <Principal Role="Territories">
               <PropertyRef Name="IdTerritory" /></Principal>
             <Dependent Role="Tours">
@@ -716,8 +731,8 @@
             <PropertyRef Name="IdGeoposition" /></Key>
           <Property Name="Date" Type="DateTime" Nullable="false" />
           <Property Name="IdGeoposition" Type="Int32" Nullable="false" />
-          <Property Name="Latitude" Type="Int64" Nullable="false" />
-          <Property Name="Longitude" Type="Int64" Nullable="false" />
+          <Property Name="Latitude" Type="Double" Nullable="false" />
+          <Property Name="Longitude" Type="Double" Nullable="false" />
           <NavigationProperty Name="Cities" Relationship="TerritoriesModel.CitiesGeopositions" FromRole="GeoPositions" ToRole="City" />
           <NavigationProperty Name="Departments" Relationship="TerritoriesModel.DepartmentsGeopositions" FromRole="GeoPositions" ToRole="Department" />
           <NavigationProperty Name="Directions" Relationship="TerritoriesModel.DirectionsGeopositions" FromRole="GeoPositions" ToRole="Direction" />
@@ -854,7 +869,18 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
-          </EntitySetMapping>
+            <EntityTypeMapping TypeName="TerritoriesModel.Territory">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="TerritoriesModel.Store.territories_Add">
+                  <ScalarProperty Name="Number" ParameterName="number" />
+                  <ScalarProperty Name="Name" ParameterName="name" />
+                  <ResultBinding Name="IdTerritory" ColumnName="id" /></InsertFunction>
+                <UpdateFunction FunctionName="TerritoriesModel.Store.territories_UpdateById">
+                  <ScalarProperty Name="IdTerritory" ParameterName="id" Version="Original" />
+                  <ScalarProperty Name="Number" ParameterName="number" Version="Current" />
+                  <ScalarProperty Name="Name" ParameterName="name" Version="Current" /></UpdateFunction>
+                <DeleteFunction FunctionName="TerritoriesModel.Store.territories_DeleteById" >
+                  <ScalarProperty Name="IdTerritory" ParameterName="id" /></DeleteFunction></ModificationFunctionMapping></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Tours">
             <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.Tour)">
               <MappingFragment StoreEntitySet="Tours">
@@ -971,8 +997,12 @@
           <FunctionImportMapping FunctionImportName="territories_GetAll" FunctionName="TerritoriesModel.Store.territories_GetAll" />
           <FunctionImportMapping FunctionImportName="departments_AddWithPK" FunctionName="TerritoriesModel.Store.departments_AddWithPK" />
           <FunctionImportMapping FunctionImportName="directions_AddWithPK" FunctionName="TerritoriesModel.Store.directions_AddWithPK" />
+          <FunctionImportMapping FunctionImportName="cities_AddWithPK" FunctionName="TerritoriesModel.Store.cities_AddWithPK" />
           <FunctionImportMapping FunctionImportName="territories_AddWithPK" FunctionName="TerritoriesModel.Store.territories_AddWithPK" />
-          <FunctionImportMapping FunctionImportName="cities_AddWithPK" FunctionName="TerritoriesModel.Store.cities_AddWithPK" /></EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="territories_Add" FunctionName="TerritoriesModel.Store.territories_Add" />
+          <FunctionImportMapping FunctionImportName="territories_UpdateById" FunctionName="TerritoriesModel.Store.territories_UpdateById" />
+          <FunctionImportMapping FunctionImportName="territories_DeleteById" FunctionName="TerritoriesModel.Store.territories_DeleteById" />
+          <FunctionImportMapping FunctionImportName="directions_GetById" FunctionName="TerritoriesModel.Store.directions_GetById" /></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -992,7 +1022,7 @@
     <edmx:Diagrams>
       <Diagram Name="TerritoriesModel" ZoomLevel="86">
         <EntityTypeShape EntityType="TerritoriesModel.City" Width="1.5" PointX="2" PointY="6.625" Height="1.9210009765624996" IsExpanded="true" />
-        <EntityTypeShape EntityType="TerritoriesModel.Department" Width="1.5" PointX="0.875" PointY="9.625" Height="1.5923063151041657" IsExpanded="true" />
+        <EntityTypeShape EntityType="TerritoriesModel.Department" Width="1.5" PointX="0.875" PointY="9.625" Height="1.5923063151041674" IsExpanded="true" />
         <EntityTypeShape EntityType="TerritoriesModel.Direction" Width="1.5" PointX="4" PointY="3.125" Height="3.0714322916666656" IsExpanded="true" />
         <EntityTypeShape EntityType="TerritoriesModel.Publisher" Width="1.5" PointX="7.75" PointY="6.5" Height="2.4140429687499996" IsExpanded="true" />
         <EntityTypeShape EntityType="TerritoriesModel.Territory" Width="1.5" PointX="5.875" PointY="1.5" Height="1.9210009765625" IsExpanded="true" />
@@ -1002,15 +1032,15 @@
           <ConnectorPoint PointX="2.1875" PointY="8.5460009765625" />
           </AssociationConnector>
         <AssociationConnector Association="TerritoriesModel.FK_directions_cities" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.57812375" PointY="6.625" />
-          <ConnectorPoint PointX="2.57812375" PointY="4.6607161458333328" />
-          <ConnectorPoint PointX="3.0729191666666664" PointY="4.6607161458333319" />
-          <ConnectorPoint PointX="3.2395858333333334" PointY="4.6607161458333328" />
-          <ConnectorPoint PointX="4" PointY="4.6607161458333328" />
+          <ConnectorPoint PointX="2.60937625" PointY="6.625" />
+          <ConnectorPoint PointX="2.60937625" PointY="4.8168925553385407" />
+          <ConnectorPoint PointX="3.0026072916666666" PointY="4.81689255533854" />
+          <ConnectorPoint PointX="3.1692739583333336" PointY="4.8168925553385407" />
+          <ConnectorPoint PointX="4" PointY="4.8168925553385407" />
           </AssociationConnector>
         <AssociationConnector Association="TerritoriesModel.FK_publishers_cities" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.5" PointY="7.1431994628906246" />
-          <ConnectorPoint PointX="7.75" PointY="7.1431994628906246" />
+          <ConnectorPoint PointX="3.5" PointY="7.58550048828125" />
+          <ConnectorPoint PointX="7.75" PointY="7.58550048828125" />
           </AssociationConnector>
         <AssociationConnector Association="TerritoriesModel.FK_directions_territories" ManuallyRouted="false">
           <ConnectorPoint PointX="6.625" PointY="3.4210009765625" />
@@ -1024,25 +1054,25 @@
           <ConnectorPoint PointX="7.375" PointY="3.14800048828125" />
           <ConnectorPoint PointX="8.25" PointY="3.14800048828125" />
           </AssociationConnector>
-        <EntityTypeShape EntityType="TerritoriesModel.GeoPosition" Width="1.5" PointX="0.5" PointY="1.375" Height="2.2496956380208326" />
+        <EntityTypeShape EntityType="TerritoriesModel.GeoPosition" Width="1.5" PointX="0.5" PointY="1.375" Height="2.2496956380208339" IsExpanded="true" />
         <AssociationConnector Association="TerritoriesModel.CitiesGeopositions" >
-          <ConnectorPoint PointX="3.1562525" PointY="6.625" />
-          <ConnectorPoint PointX="3.1562525" PointY="3.044283131510416" />
-          <ConnectorPoint PointX="2" PointY="3.044283131510416" />
+          <ConnectorPoint PointX="3.085940625" PointY="6.625" />
+          <ConnectorPoint PointX="3.085940625" PointY="3.0373490690104168" />
+          <ConnectorPoint PointX="2" PointY="3.0373490690104168" />
           </AssociationConnector>
         <AssociationConnector Association="TerritoriesModel.DepartmentsGeopositions" >
-          <ConnectorPoint PointX="1.20312625" PointY="9.625" />
-          <ConnectorPoint PointX="1.20312625" PointY="3.6246956380208326" />
+          <ConnectorPoint PointX="1.40625" PointY="9.625" />
+          <ConnectorPoint PointX="1.40625" PointY="3.6246956380208339" />
           </AssociationConnector>
         <AssociationConnector Association="TerritoriesModel.DirectionsGeopositions" >
-          <ConnectorPoint PointX="4" PointY="3.3748478190104163" />
-          <ConnectorPoint PointX="3.2395858333333334" PointY="3.3748478190104159" />
-          <ConnectorPoint PointX="3.0729191666666664" PointY="3.3748478190104163" />
-          <ConnectorPoint PointX="2" PointY="3.3748478190104163" />
+          <ConnectorPoint PointX="4" PointY="3.3748478190104167" />
+          <ConnectorPoint PointX="3.1692739583333336" PointY="3.3748478190104163" />
+          <ConnectorPoint PointX="3.0026072916666666" PointY="3.3748478190104167" />
+          <ConnectorPoint PointX="2" PointY="3.3748478190104167" />
           </AssociationConnector>
         <AssociationConnector Association="TerritoriesModel.TerritoriesGeopositions" >
-          <ConnectorPoint PointX="2" PointY="2.209641565755208" />
-          <ConnectorPoint PointX="5.875" PointY="2.209641565755208" />
+          <ConnectorPoint PointX="2" PointY="2.2061745345052084" />
+          <ConnectorPoint PointX="5.875" PointY="2.2061745345052084" />
           </AssociationConnector>
         </Diagram></edmx:Diagrams>
   </edmx:Designer>

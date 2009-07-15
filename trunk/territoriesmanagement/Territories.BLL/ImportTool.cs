@@ -48,7 +48,7 @@ namespace Territories.BLL
             _config = new ImporterConfig();
 	    }
 
-        public bool  ExternalDataToModel()
+        public bool ExternalDataToModel(ref string importationMessage)
         {
             bool rv = true;
             SetConfig();
@@ -62,22 +62,51 @@ namespace Territories.BLL
                     bool departmentsImported = true;
                     string departments = _config.Departments.TableName;
                     if (ds.Tables[departments] != null)
-                        departmentsImported = AddDepartments(ds.Tables[departments]) > 0;
+                    {
+                        int count = AddDepartments(ds.Tables[departments]);
+
+                        departmentsImported = count > 0;
+                        if (departmentsImported)
+                            importationMessage += count + " departments has ben imported.\n";
+                        else
+                            importationMessage += "No department has ben imported.\n";
+                    }
 
                     bool citiesImported = true;
                     string cities = _config.Cities.TableName;
                     if (ds.Tables[cities] != null)
-                        citiesImported = AddCities(ds.Tables[cities]) > 0;
+                    {
+                        int count = AddCities(ds.Tables[cities]);
+                        citiesImported = count > 0;
+                        if (citiesImported)
+                            importationMessage += count + "cities has ben imported.\n";
+                        else
+                            importationMessage += "No city has ben imported.\n";
+                    }
 
                     bool territoriesImported = true;
                     string territories = _config.Territories.TableName;
                     if (ds.Tables[territories] != null)
-                        territoriesImported = AddTerritories(ds.Tables[territories]) > 0;
+                    {
+                        int count = AddTerritories(ds.Tables[territories]);
+                        territoriesImported = count > 0;
+                        if (territoriesImported)
+                            importationMessage += count + "territories has ben imported.\n";
+                        else
+                            importationMessage += "No territory has ben imported.\n";
+                    }
 
                     bool directionsImported = true;
                     string directions = _config.Directions.TableName;
                     if (ds.Tables[directions] != null)
-                        directionsImported = AddDirections(ds.Tables[directions]) > 0;
+                    {
+                        int count = AddDirections(ds.Tables[directions]);
+                        directionsImported =  count > 0;
+                        if (directionsImported)
+                            importationMessage += count + "directions has ben imported.\n";
+                        else
+                            importationMessage += "No direction has ben imported.\n";
+                    }
 
                     rv = departmentsImported && citiesImported && territoriesImported && directionsImported;
                 }

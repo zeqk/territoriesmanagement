@@ -19,13 +19,17 @@ namespace Territories.GUI.ImporterConfig
 
         private Field _name;
 
+        private Field _number;
+
         #endregion
 
         public TerritoriesTable()
         {
             _id = new Field("Id");
-            _name = new Field("Territory");
+            _name = new Field("Territorio");
+            _number = new Field("Numero");
         }
+
         #region Properties
 
         public string TableName
@@ -50,6 +54,13 @@ namespace Territories.GUI.ImporterConfig
             get { return _name; }
             set { _name = value; }
         }
+
+        public Field Number
+        {
+            get { return _number; }
+            set { _number = value; }
+        }
+
         #endregion
 
     }
