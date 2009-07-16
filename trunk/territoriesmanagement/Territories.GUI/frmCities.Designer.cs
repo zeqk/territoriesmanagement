@@ -123,7 +123,7 @@
             this.btnRelations.Name = "btnRelations";
             this.btnRelations.Size = new System.Drawing.Size(69, 38);
             this.btnRelations.TabIndex = 10;
-            this.btnRelations.Text = "View &Relations";
+            this.btnRelations.Text = "View &relations";
             this.btnRelations.UseVisualStyleBackColor = true;
             this.btnRelations.Click += new System.EventHandler(this.btnRelations_Click);
             // 
@@ -146,7 +146,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(69, 38);
             this.btnSave.TabIndex = 8;
-            this.btnSave.Text = "&Update";
+            this.btnSave.Text = "&Save";
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);

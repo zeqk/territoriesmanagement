@@ -67,9 +67,9 @@ namespace Territories.BLL
 
                         departmentsImported = count > 0;
                         if (departmentsImported)
-                            importationMessage += count + " departments has ben imported.\n";
+                            importationMessage += count + " departments has been imported.\n";
                         else
-                            importationMessage += "No department has ben imported.\n";
+                            importationMessage += "No department has been imported.\n";
                     }
 
                     bool citiesImported = true;
@@ -79,9 +79,9 @@ namespace Territories.BLL
                         int count = AddCities(ds.Tables[cities]);
                         citiesImported = count > 0;
                         if (citiesImported)
-                            importationMessage += count + "cities has ben imported.\n";
+                            importationMessage += count + "cities has been imported.\n";
                         else
-                            importationMessage += "No city has ben imported.\n";
+                            importationMessage += "No city has been imported.\n";
                     }
 
                     bool territoriesImported = true;
@@ -91,9 +91,9 @@ namespace Territories.BLL
                         int count = AddTerritories(ds.Tables[territories]);
                         territoriesImported = count > 0;
                         if (territoriesImported)
-                            importationMessage += count + "territories has ben imported.\n";
+                            importationMessage += count + "territories has been imported.\n";
                         else
-                            importationMessage += "No territory has ben imported.\n";
+                            importationMessage += "No territory has been imported.\n";
                     }
 
                     bool directionsImported = true;
@@ -103,9 +103,9 @@ namespace Territories.BLL
                         int count = AddDirections(ds.Tables[directions]);
                         directionsImported =  count > 0;
                         if (directionsImported)
-                            importationMessage += count + "directions has ben imported.\n";
+                            importationMessage += count + "directions has been imported.\n";
                         else
-                            importationMessage += "No direction has ben imported.\n";
+                            importationMessage += "No direction has been imported.\n";
                     }
 
                     rv = departmentsImported && citiesImported && territoriesImported && directionsImported;
@@ -164,7 +164,7 @@ namespace Territories.BLL
             }
             finally
             {
-                log += "\nADD DEPARTMENTS ERRORS: " + message;
+                log += "\nIMPORT DEPARTMENTS ERRORS: " + message;
             }
 
             return rv;
@@ -205,7 +205,7 @@ namespace Territories.BLL
             }
             finally
             {
-                log += "\nADD CITIES ERRORS: " + message;
+                log += "\nIMPORT CITIES ERRORS: " + message;
             }
 
             return rv;
@@ -244,7 +244,7 @@ namespace Territories.BLL
             }
             finally
             {
-                log += "\nADD TERRITORIES ERRORS: " + message;
+                log += "\nIMPORT TERRITORIES ERRORS: " + message;
             }
 
             return rv;
@@ -283,7 +283,7 @@ namespace Territories.BLL
             }
             finally
             {
-                log += "\nADD DIRECTIONS ERRORS:" + message;
+                log += "\nIMPORT DIRECTIONS ERRORS:" + message;
             }            
 
             return rv;
@@ -632,7 +632,7 @@ namespace Territories.BLL
             string msg  = "";
             if (string.IsNullOrEmpty(v.Street))
             {
-                msg += "The street name is blank or null. ";
+                msg += "The street is blank or null. ";
                 rv = false;
             }
             if (v.TerritoryReference.EntityKey==null)
@@ -675,11 +675,6 @@ namespace Territories.BLL
         private bool TerritoryExist(Territory v)
         {
             var found = _compiledSameTerritory(_dm, v).ToList();
-            //var found = from t in _dm.Territories
-            //            where t.Name == v.Name ||
-            //                  (t.Number == v.Number && v.Number != null) ||
-            //                  t.IdTerritory == v.IdTerritory
-            //            select t;
 
             return (found.Count > 0);
         }

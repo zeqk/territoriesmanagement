@@ -165,7 +165,7 @@ namespace Territories.GUI
         {
             bool yes = true;
             if (_isDirty)
-                if (MessageBox.Show("Desea continuar?", "Mensaje", MessageBoxButtons.YesNo) == DialogResult.No)
+                if (MessageBox.Show("Desea continuar?", "Message", MessageBoxButtons.YesNo) == DialogResult.No)
                 {
                     yes = false;
                     txtName.Focus();
@@ -211,7 +211,7 @@ namespace Territories.GUI
                 }
             }
             else
-                MessageBox.Show("The data is incomplete");
+                MessageBox.Show("The data is incomplete.");
 
         }
 
@@ -270,7 +270,7 @@ namespace Territories.GUI
                     lblFiltered.Visible = true;
                 }
                 else
-                    MessageBox.Show("Debe llenar al menos 1 campo de búsqueda");
+                    MessageBox.Show("Debe llenar al menos 1 campo de búsqueda.");
 
                 ClearForm();
             }

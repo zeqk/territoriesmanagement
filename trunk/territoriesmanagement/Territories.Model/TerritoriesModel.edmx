@@ -111,7 +111,10 @@
           </Key>
           <Property Name="Corner1" Type="nvarchar" MaxLength="80" />
           <Property Name="Corner2" Type="nvarchar" MaxLength="80" />
+          <Property Name="CustomField1" Type="nvarchar" MaxLength="200" />
+          <Property Name="CustomField2" Type="nvarchar" MaxLength="200" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="DirectionData" Type="nvarchar" MaxLength="50" />
           <Property Name="IdCity" Type="int" Nullable="false" />
           <Property Name="IdDirection" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IdTerritory" Type="int" />
@@ -402,6 +405,7 @@
         <Function Name="directions_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="street" Type="nvarchar" Mode="In" />
           <Parameter Name="number" Type="nvarchar" Mode="In" />
+          <Parameter Name="directionData" Type="nvarchar" Mode="In" />
           <Parameter Name="corner1" Type="nvarchar" Mode="In" />
           <Parameter Name="corner2" Type="nvarchar" Mode="In" />
           <Parameter Name="phone1" Type="nvarchar" Mode="In" />
@@ -411,11 +415,14 @@
           <Parameter Name="map2" Type="nvarchar" Mode="In" />
           <Parameter Name="idTerritory" Type="int" Mode="In" />
           <Parameter Name="idCity" Type="int" Mode="In" />
+          <Parameter Name="customField1" Type="nvarchar" Mode="In" />
+          <Parameter Name="customField2" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="directions_AddWithPK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="street" Type="nvarchar" Mode="In" />
           <Parameter Name="number" Type="nvarchar" Mode="In" />
+          <Parameter Name="directionData" Type="nvarchar" Mode="In" />
           <Parameter Name="corner1" Type="nvarchar" Mode="In" />
           <Parameter Name="corner2" Type="nvarchar" Mode="In" />
           <Parameter Name="phone1" Type="nvarchar" Mode="In" />
@@ -425,6 +432,8 @@
           <Parameter Name="map2" Type="nvarchar" Mode="In" />
           <Parameter Name="idTerritory" Type="int" Mode="In" />
           <Parameter Name="idCity" Type="int" Mode="In" />
+          <Parameter Name="customField1" Type="nvarchar" Mode="In" />
+          <Parameter Name="customField2" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="directions_DeleteAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="directions_DeleteById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -443,6 +452,7 @@
           <Parameter Name="id" Type="int" Mode="In" />
           <Parameter Name="street" Type="nvarchar" Mode="In" />
           <Parameter Name="number" Type="nvarchar" Mode="In" />
+          <Parameter Name="directionData" Type="nvarchar" Mode="In" />
           <Parameter Name="corner1" Type="nvarchar" Mode="In" />
           <Parameter Name="corner2" Type="nvarchar" Mode="In" />
           <Parameter Name="phone1" Type="nvarchar" Mode="In" />
@@ -452,6 +462,8 @@
           <Parameter Name="map2" Type="nvarchar" Mode="In" />
           <Parameter Name="idTerritory" Type="int" Mode="In" />
           <Parameter Name="idCity" Type="int" Mode="In" />
+          <Parameter Name="customField1" Type="nvarchar" Mode="In" />
+          <Parameter Name="customField2" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="fn_diagramobjects" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="geoPositions_Add" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -592,19 +604,6 @@
           <FunctionImport Name="departments_AddWithPK" ReturnType="Collection(Int32)">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="name" Mode="In" Type="String" /></FunctionImport>
-          <FunctionImport Name="directions_AddWithPK" ReturnType="Collection(Int32)">
-            <Parameter Name="id" Mode="In" Type="Int32" />
-            <Parameter Name="street" Mode="In" Type="String" />
-            <Parameter Name="number" Mode="In" Type="String" />
-            <Parameter Name="corner1" Mode="In" Type="String" />
-            <Parameter Name="corner2" Mode="In" Type="String" />
-            <Parameter Name="phone1" Mode="In" Type="String" />
-            <Parameter Name="phone2" Mode="In" Type="String" />
-            <Parameter Name="description" Mode="In" Type="String" />
-            <Parameter Name="map1" Mode="In" Type="String" />
-            <Parameter Name="map2" Mode="In" Type="String" />
-            <Parameter Name="idTerritory" Mode="In" Type="Int32" />
-            <Parameter Name="idCity" Mode="In" Type="Int32" /></FunctionImport>
           <FunctionImport Name="cities_AddWithPK" ReturnType="Collection(Int32)">
             <Parameter Name="id" Mode="In" Type="Int32" />
             <Parameter Name="name" Mode="In" Type="String" />
@@ -623,7 +622,23 @@
           <FunctionImport Name="territories_DeleteById" EntitySet="Territories" ReturnType="Collection(TerritoriesModel.Territory)">
             <Parameter Name="id" Mode="In" Type="Int32" /></FunctionImport>
           <FunctionImport Name="directions_GetById" EntitySet="Directions" ReturnType="Collection(TerritoriesModel.Direction)">
-            <Parameter Name="id" Mode="In" Type="Int32" /></FunctionImport></EntityContainer>
+            <Parameter Name="id" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="directions_AddWithPK" ReturnType="Collection(Int32)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="street" Mode="In" Type="String" />
+            <Parameter Name="number" Mode="In" Type="String" />
+            <Parameter Name="directionData" Mode="In" Type="String" />
+            <Parameter Name="corner1" Mode="In" Type="String" />
+            <Parameter Name="corner2" Mode="In" Type="String" />
+            <Parameter Name="phone1" Mode="In" Type="String" />
+            <Parameter Name="phone2" Mode="In" Type="String" />
+            <Parameter Name="description" Mode="In" Type="String" />
+            <Parameter Name="map1" Mode="In" Type="String" />
+            <Parameter Name="map2" Mode="In" Type="String" />
+            <Parameter Name="idTerritory" Mode="In" Type="Int32" />
+            <Parameter Name="idCity" Mode="In" Type="Int32" />
+            <Parameter Name="customField1" Mode="In" Type="String" />
+            <Parameter Name="customField2" Mode="In" Type="String" /></FunctionImport></EntityContainer>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="IdCity" />
@@ -660,7 +675,10 @@
           <NavigationProperty Name="Territory" Relationship="TerritoriesModel.FK_directions_territories" FromRole="Directions" ToRole="Territories" />
           <NavigationProperty Name="GeoPositions" Relationship="TerritoriesModel.DirectionsGeopositions" FromRole="Direction" ToRole="GeoPositions" />
           <Property Name="Number" Type="String" Nullable="true" />
-          <Property Name="Street" Type="String" Nullable="false" /></EntityType>
+          <Property Name="Street" Type="String" Nullable="false" />
+          <Property Name="CustomField1" Type="String" Nullable="true" />
+          <Property Name="CustomField2" Type="String" Nullable="true" />
+          <Property Name="DirectionData" Type="String" Nullable="true" /></EntityType>
         <EntityType Name="Publisher">
           <Key>
             <PropertyRef Name="IdPublisher" />
@@ -798,6 +816,9 @@
           <EntitySetMapping Name="Directions">
             <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.Direction)">
               <MappingFragment StoreEntitySet="Directions">
+                <ScalarProperty Name="DirectionData" ColumnName="DirectionData" />
+                <ScalarProperty Name="CustomField2" ColumnName="CustomField2" />
+                <ScalarProperty Name="CustomField1" ColumnName="CustomField1" />
                 <ScalarProperty Name="Street" ColumnName="Street" />
                 <ScalarProperty Name="Number" ColumnName="Number" />
                 <ScalarProperty Name="IdDirection" ColumnName="IdDirection" />
@@ -813,6 +834,9 @@
             <EntityTypeMapping TypeName="TerritoriesModel.Direction">
               <ModificationFunctionMapping>
                 <InsertFunction FunctionName="TerritoriesModel.Store.directions_Add">
+                  <ScalarProperty Name="DirectionData" ParameterName="directionData" />
+                  <ScalarProperty Name="CustomField2" ParameterName="customField2" />
+                  <ScalarProperty Name="CustomField1" ParameterName="customField1" />
                   <ScalarProperty Name="Number" ParameterName="number" />
                   <ScalarProperty Name="Street" ParameterName="street" />
                   <AssociationEnd AssociationSet="FK_directions_cities" From="Directions" To="Cities">
@@ -828,6 +852,9 @@
                   <ScalarProperty Name="Corner1" ParameterName="corner1" />
                   <ResultBinding Name="IdDirection" ColumnName="id" /></InsertFunction>
                 <UpdateFunction FunctionName="TerritoriesModel.Store.directions_UpdateById">
+                  <ScalarProperty Name="CustomField1" ParameterName="customField1" Version="Current" />
+                  <ScalarProperty Name="CustomField2" ParameterName="customField2" Version="Current" />
+                  <ScalarProperty Name="DirectionData" ParameterName="directionData" Version="Current" />
                   <ScalarProperty Name="Number" ParameterName="number" Version="Current" />
                   <ScalarProperty Name="Street" ParameterName="street" Version="Current" />
                   <AssociationEnd AssociationSet="FK_directions_cities" From="Directions" To="Cities">
@@ -996,13 +1023,13 @@
           <FunctionImportMapping FunctionImportName="territories_GetById" FunctionName="TerritoriesModel.Store.territories_GetById" />
           <FunctionImportMapping FunctionImportName="territories_GetAll" FunctionName="TerritoriesModel.Store.territories_GetAll" />
           <FunctionImportMapping FunctionImportName="departments_AddWithPK" FunctionName="TerritoriesModel.Store.departments_AddWithPK" />
-          <FunctionImportMapping FunctionImportName="directions_AddWithPK" FunctionName="TerritoriesModel.Store.directions_AddWithPK" />
           <FunctionImportMapping FunctionImportName="cities_AddWithPK" FunctionName="TerritoriesModel.Store.cities_AddWithPK" />
           <FunctionImportMapping FunctionImportName="territories_AddWithPK" FunctionName="TerritoriesModel.Store.territories_AddWithPK" />
           <FunctionImportMapping FunctionImportName="territories_Add" FunctionName="TerritoriesModel.Store.territories_Add" />
           <FunctionImportMapping FunctionImportName="territories_UpdateById" FunctionName="TerritoriesModel.Store.territories_UpdateById" />
           <FunctionImportMapping FunctionImportName="territories_DeleteById" FunctionName="TerritoriesModel.Store.territories_DeleteById" />
-          <FunctionImportMapping FunctionImportName="directions_GetById" FunctionName="TerritoriesModel.Store.directions_GetById" /></EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="directions_GetById" FunctionName="TerritoriesModel.Store.directions_GetById" />
+          <FunctionImportMapping FunctionImportName="directions_AddWithPK" FunctionName="TerritoriesModel.Store.directions_AddWithPK" /></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

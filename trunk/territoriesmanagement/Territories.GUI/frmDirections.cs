@@ -222,7 +222,7 @@ namespace Territories.GUI
                 }
             }
             else
-                MessageBox.Show("Select any direction");
+                MessageBox.Show("Select any direction.");
         }
 
         private void fields_CheckedChanged(object sender, EventArgs e)

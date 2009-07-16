@@ -93,7 +93,7 @@
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(9, 128);
+            this.btnDelete.Location = new System.Drawing.Point(9, 89);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(81, 37);
             this.btnDelete.TabIndex = 2;
@@ -104,7 +104,7 @@
             // 
             this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.Location = new System.Drawing.Point(9, 73);
+            this.btnEdit.Location = new System.Drawing.Point(9, 46);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(81, 37);
             this.btnEdit.TabIndex = 1;
@@ -116,7 +116,7 @@
             // 
             this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNew.Location = new System.Drawing.Point(9, 18);
+            this.btnNew.Location = new System.Drawing.Point(9, 3);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(81, 37);
             this.btnNew.TabIndex = 0;
@@ -128,7 +128,7 @@
             // 
             this.lblFiltered.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFiltered.AutoSize = true;
-            this.lblFiltered.Location = new System.Drawing.Point(700, 144);
+            this.lblFiltered.Location = new System.Drawing.Point(700, 147);
             this.lblFiltered.Name = "lblFiltered";
             this.lblFiltered.Size = new System.Drawing.Size(41, 13);
             this.lblFiltered.TabIndex = 57;
@@ -137,7 +137,7 @@
             // lblResults
             // 
             this.lblResults.AutoSize = true;
-            this.lblResults.Location = new System.Drawing.Point(5, 144);
+            this.lblResults.Location = new System.Drawing.Point(2, 147);
             this.lblResults.Name = "lblResults";
             this.lblResults.Size = new System.Drawing.Size(42, 13);
             this.lblResults.TabIndex = 56;
@@ -149,9 +149,9 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvResults.Location = new System.Drawing.Point(2, 160);
+            this.dgvResults.Location = new System.Drawing.Point(2, 163);
             this.dgvResults.Name = "dgvResults";
-            this.dgvResults.Size = new System.Drawing.Size(788, 357);
+            this.dgvResults.Size = new System.Drawing.Size(788, 354);
             this.dgvResults.TabIndex = 55;
             // 
             // panel2
@@ -267,7 +267,7 @@
             // 
             this.cboCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCity.FormattingEnabled = true;
-            this.cboCity.Location = new System.Drawing.Point(18, 104);
+            this.cboCity.Location = new System.Drawing.Point(18, 103);
             this.cboCity.Name = "cboCity";
             this.cboCity.Size = new System.Drawing.Size(360, 21);
             this.cboCity.TabIndex = 56;
