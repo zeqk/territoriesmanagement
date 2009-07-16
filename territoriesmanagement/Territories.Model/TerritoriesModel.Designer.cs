@@ -21,7 +21,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "TerritoriesGeopositions", "GeoPositions", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.GeoPosition), "Territory", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Territory))]
 
 // Original file name:
-// Generation date: 15/07/2009 16:17:28
+// Generation date: 15/07/2009 07:13:23 p.m.
 namespace Territories.Model
 {
     
@@ -960,6 +960,75 @@ namespace Territories.Model
         private string _Street;
         partial void OnStreetChanging(string value);
         partial void OnStreetChanged();
+        /// <summary>
+        /// There are no comments for Property CustomField1 in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string CustomField1
+        {
+            get
+            {
+                return this._CustomField1;
+            }
+            set
+            {
+                this.OnCustomField1Changing(value);
+                this.ReportPropertyChanging("CustomField1");
+                this._CustomField1 = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("CustomField1");
+                this.OnCustomField1Changed();
+            }
+        }
+        private string _CustomField1;
+        partial void OnCustomField1Changing(string value);
+        partial void OnCustomField1Changed();
+        /// <summary>
+        /// There are no comments for Property CustomField2 in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string CustomField2
+        {
+            get
+            {
+                return this._CustomField2;
+            }
+            set
+            {
+                this.OnCustomField2Changing(value);
+                this.ReportPropertyChanging("CustomField2");
+                this._CustomField2 = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("CustomField2");
+                this.OnCustomField2Changed();
+            }
+        }
+        private string _CustomField2;
+        partial void OnCustomField2Changing(string value);
+        partial void OnCustomField2Changed();
+        /// <summary>
+        /// There are no comments for Property DirectionData in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string DirectionData
+        {
+            get
+            {
+                return this._DirectionData;
+            }
+            set
+            {
+                this.OnDirectionDataChanging(value);
+                this.ReportPropertyChanging("DirectionData");
+                this._DirectionData = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("DirectionData");
+                this.OnDirectionDataChanged();
+            }
+        }
+        private string _DirectionData;
+        partial void OnDirectionDataChanging(string value);
+        partial void OnDirectionDataChanged();
         /// <summary>
         /// There are no comments for City in the schema.
         /// </summary>

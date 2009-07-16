@@ -145,7 +145,7 @@ namespace Territories.BLL
             bool rv = true;
             if (string.IsNullOrEmpty(v.Name))
             {
-                message += "The department name is invalid. Correct and retrieve.";
+                message += "Enter department name.";
                 rv = false;
             }
             if (Exist(v))

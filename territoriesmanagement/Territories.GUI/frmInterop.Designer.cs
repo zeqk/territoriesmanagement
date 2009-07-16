@@ -46,7 +46,7 @@
             this.grdImportConfig = new System.Windows.Forms.PropertyGrid();
             this.tabGeoRss = new System.Windows.Forms.TabPage();
             this.lblRssSource = new System.Windows.Forms.Label();
-            this.btnUpdateXls = new System.Windows.Forms.Button();
+            this.btnImportGeoRss = new System.Windows.Forms.Button();
             this.txtRssSource = new System.Windows.Forms.TextBox();
             this.btnSelectRssSource = new System.Windows.Forms.Button();
             this.tabPanel = new System.Windows.Forms.TabControl();
@@ -221,7 +221,7 @@
             // tabGeoRss
             // 
             this.tabGeoRss.Controls.Add(this.lblRssSource);
-            this.tabGeoRss.Controls.Add(this.btnUpdateXls);
+            this.tabGeoRss.Controls.Add(this.btnImportGeoRss);
             this.tabGeoRss.Controls.Add(this.txtRssSource);
             this.tabGeoRss.Controls.Add(this.btnSelectRssSource);
             this.tabGeoRss.Location = new System.Drawing.Point(4, 22);
@@ -241,15 +241,15 @@
             this.lblRssSource.TabIndex = 14;
             this.lblRssSource.Text = "GeoRSS file source";
             // 
-            // btnUpdateXls
+            // btnImportGeoRss
             // 
-            this.btnUpdateXls.Location = new System.Drawing.Point(123, 96);
-            this.btnUpdateXls.Name = "btnUpdateXls";
-            this.btnUpdateXls.Size = new System.Drawing.Size(270, 35);
-            this.btnUpdateXls.TabIndex = 13;
-            this.btnUpdateXls.Text = "Update Excel File";
-            this.btnUpdateXls.UseVisualStyleBackColor = true;
-            this.btnUpdateXls.Click += new System.EventHandler(this.btnUpdateXls_Click);
+            this.btnImportGeoRss.Location = new System.Drawing.Point(123, 96);
+            this.btnImportGeoRss.Name = "btnImportGeoRss";
+            this.btnImportGeoRss.Size = new System.Drawing.Size(270, 35);
+            this.btnImportGeoRss.TabIndex = 13;
+            this.btnImportGeoRss.Text = "Import";
+            this.btnImportGeoRss.UseVisualStyleBackColor = true;
+            this.btnImportGeoRss.Click += new System.EventHandler(this.btnUpdateXls_Click);
             // 
             // txtRssSource
             // 
@@ -327,7 +327,7 @@
         private System.Windows.Forms.PropertyGrid grdImportConfig;
         private System.Windows.Forms.TabPage tabGeoRss;
         private System.Windows.Forms.Label lblRssSource;
-        private System.Windows.Forms.Button btnUpdateXls;
+        private System.Windows.Forms.Button btnImportGeoRss;
         private System.Windows.Forms.TextBox txtRssSource;
         private System.Windows.Forms.Button btnSelectRssSource;
         private System.Windows.Forms.TabControl tabPanel;

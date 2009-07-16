@@ -51,7 +51,7 @@ namespace Territories.GUI
         {
             if (txtRssSource.Text == "")
             {
-                MessageBox.Show("Select source and destiny files");
+                MessageBox.Show("Select source and destiny files. ");
             }
             else
             {
@@ -59,7 +59,7 @@ namespace Territories.GUI
                 {
                     string importMessage ="";
                     _geoRssImporter.ImportGeoRss(txtRssSource.Text, ref importMessage, false, false, true, false);                    
-                    MessageBox.Show("Xls file updated successfully");
+                    MessageBox.Show("Geo data has been imported.");
                 }
                 catch (Exception ex)
                 {
@@ -76,7 +76,7 @@ namespace Territories.GUI
                 string importationMessage = "";
                 bool ok = _importer.ExternalDataToModel(ref importationMessage);
                 if (ok)
-                    MessageBox.Show("The importation has ben successful.\n"+importationMessage);
+                    MessageBox.Show("The importation has been successful.\n"+importationMessage);
                 else
                     MessageBox.Show("The importation have problems. Check the settings and see the log.");
             }

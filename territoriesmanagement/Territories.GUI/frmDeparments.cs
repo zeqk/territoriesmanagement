@@ -134,7 +134,7 @@ namespace Territories.GUI
         {
             bool yes = true;
             if (_isDirty)
-                if (MessageBox.Show("Desea continuar?", "Mensaje", MessageBoxButtons.YesNo) == DialogResult.No)
+                if (MessageBox.Show("Desea continuar?", "Message", MessageBoxButtons.YesNo) == DialogResult.No)
                 {
                     yes = false;
                     txtName.Focus();

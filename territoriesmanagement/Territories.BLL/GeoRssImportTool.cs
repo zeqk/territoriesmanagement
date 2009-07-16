@@ -95,11 +95,11 @@ namespace Territories.BLL
                             
                         }
                         else
-                            message += "\nMark: " + point.Guid + " Direction Id " + id + " dont't exist.";
+                            message += "\nMark: " + point.Guid + " direction id " + id + " dont't exist.";
 
                     }
                     else
-                        message += "\nMark: " + point.Guid + " " + point.Description + " " + " haven't direction id";
+                        message += "\nMark: " + point.Guid + " " + point.Description + " " + " haven't direction id.";
                 }
                 catch (Exception ex)
                 {
@@ -147,7 +147,7 @@ namespace Territories.BLL
                                 }
                             }
                             else
-                                message += "\nMark: " + polygon.Guid + " Territory Id " + id + " dont't exist.";
+                                message += "\nMark: " + polygon.Guid + " territory id " + id + " dont't exist.";
 
                         }
                         else
