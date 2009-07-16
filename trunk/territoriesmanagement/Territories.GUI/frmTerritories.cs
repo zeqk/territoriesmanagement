@@ -54,35 +54,33 @@ namespace Territories.GUI
 
         private void ConfigGrids()
         {
-
             dgvResults.Columns.Add("Id", "Id");
+            dgvResults.Columns.Add("Name", "Territory");
             dgvResults.Columns.Add("Number", "Number");
-            dgvResults.Columns.Add("Name", "Territory");            
+            dgvResults.Columns.Add("blank", "");
 
             dgvResults.Columns["Id"].Visible = false;
             dgvResults.Columns["Id"].DataPropertyName = "Id";
-            dgvResults.Columns["Number"].Width = 100;
-            dgvResults.Columns["Number"].DataPropertyName = "Number";
             dgvResults.Columns["Name"].Width = 150;
             dgvResults.Columns["Name"].DataPropertyName = "Name";
-
-            dgvResults.Columns.Add("blank", "");
+            dgvResults.Columns["Number"].Width = 100;
+            dgvResults.Columns["Number"].DataPropertyName = "Number";
             dgvResults.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvResults.MultiSelect = false;
 
             dgvDirections.Columns.Add("Id", "Id");
-            dgvDirections.Columns.Add("Name", "Direction");
-            
+            dgvDirections.Columns.Add("Direction", "Direction");
+            dgvDirections.Columns.Add("Corners", "Between");
+            dgvDirections.Columns.Add("blank", "");
 
             dgvDirections.Columns["Id"].Visible = false;
             dgvDirections.Columns["Id"].DataPropertyName = "Id";
-            dgvDirections.Columns["Name"].Width = 200;
-            dgvDirections.Columns["Name"].DataPropertyName = "Direction";
-
-            dgvDirections.Columns.Add("blank", "");
-            int i = dgvDirections.Columns["blank"].Index;
+            dgvDirections.Columns["Direction"].Width = 200;
+            dgvDirections.Columns["Direction"].DataPropertyName = "Direction";
+            dgvDirections.Columns["Corners"].Width = 200;
+            dgvDirections.Columns["Corners"].DataPropertyName = "Corners";
             dgvDirections.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dgvDirections.SelectionMode = DataGridViewSelectionMode.FullRowSelect;

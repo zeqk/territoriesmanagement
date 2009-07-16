@@ -78,7 +78,9 @@ namespace Territories.GUI
                 if (ok)
                     MessageBox.Show("The importation has been successful.\n"+importationMessage);
                 else
-                    MessageBox.Show("The importation have problems. Check the settings and see the log.");
+                    MessageBox.Show("The importation have problems. Check the settings and see the log.\n" + importationMessage);
+
+
             }
             catch (Exception ex)
             {

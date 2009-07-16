@@ -20,7 +20,7 @@ namespace Territories.BLL
         Interop.Importer _importer;
         private ImporterConfig _config;
 
-        private string log;
+        private string _log;
 
         private Func<TerritoriesDataContext, string, IQueryable<int>> _compiledIdDepartmentByName;
         private Func<TerritoriesDataContext, string, IQueryable<int>> _compiledIdCityByName;
@@ -29,16 +29,6 @@ namespace Territories.BLL
         private Func<TerritoriesDataContext, Department, IQueryable<Department>> _compiledSameDepartment;
         private Func<TerritoriesDataContext, City, int,IQueryable<City>> _compiledSameCity;
         private Func<TerritoriesDataContext, Territory, IQueryable<Territory>> _compiledSameTerritory;
-        
-
-
-        public ImporterConfig Config
-        {
-            get { return _config; }
-            set { _config = value; }           
-        }
-
-
 
         public ImportTool()
 	    {
@@ -47,6 +37,19 @@ namespace Territories.BLL
             _importer = new Interop.Importer(Enumerators.Provider.MSExcel);
             _config = new ImporterConfig();
 	    }
+
+        public ImporterConfig Config
+        {
+            get { return _config; }
+            set { _config = value; }
+        }
+
+        public string Log
+        {
+            get { return _log; }
+            set { _log = value; }
+        }	
+
 
         public bool ExternalDataToModel(ref string importationMessage)
         {
@@ -67,9 +70,15 @@ namespace Territories.BLL
 
                         departmentsImported = count > 0;
                         if (departmentsImported)
-                            importationMessage += count + " departments has been imported.\n";
+                        {
+                            importationMessage += "\n" + count + " departments has been imported.\n";
+                            if (ds.Tables[departments].Rows.Count>count)
+                            {
+                                //TODO
+                            }
+                        }
                         else
-                            importationMessage += "No department has been imported.\n";
+                            importationMessage += "\nNo department has been imported.\n";
                     }
 
                     bool citiesImported = true;
@@ -79,9 +88,9 @@ namespace Territories.BLL
                         int count = AddCities(ds.Tables[cities]);
                         citiesImported = count > 0;
                         if (citiesImported)
-                            importationMessage += count + "cities has been imported.\n";
+                            importationMessage += "\n" + count + " cities has been imported.\n";
                         else
-                            importationMessage += "No city has been imported.\n";
+                            importationMessage += "\nNo city has been imported.\n";
                     }
 
                     bool territoriesImported = true;
@@ -91,9 +100,9 @@ namespace Territories.BLL
                         int count = AddTerritories(ds.Tables[territories]);
                         territoriesImported = count > 0;
                         if (territoriesImported)
-                            importationMessage += count + "territories has been imported.\n";
+                            importationMessage += "\n" + count + " territories has been imported.\n";
                         else
-                            importationMessage += "No territory has been imported.\n";
+                            importationMessage += "\nNo territory has been imported.\n";
                     }
 
                     bool directionsImported = true;
@@ -103,9 +112,9 @@ namespace Territories.BLL
                         int count = AddDirections(ds.Tables[directions]);
                         directionsImported =  count > 0;
                         if (directionsImported)
-                            importationMessage += count + "directions has been imported.\n";
+                            importationMessage += "\n" + count + " directions has been imported.\n";
                         else
-                            importationMessage += "No direction has been imported.\n";
+                            importationMessage += "\nNo direction has been imported.\n";
                     }
 
                     rv = departmentsImported && citiesImported && territoriesImported && directionsImported;
@@ -119,7 +128,6 @@ namespace Territories.BLL
             {                
                 throw ex;
             }
-
             SaveLog();
             return rv;
         }
@@ -164,7 +172,7 @@ namespace Territories.BLL
             }
             finally
             {
-                log += "\nIMPORT DEPARTMENTS ERRORS: " + message;
+                _log += "\nIMPORT DEPARTMENTS ERRORS: " + message;
             }
 
             return rv;
@@ -201,11 +209,11 @@ namespace Territories.BLL
             }
             catch (Exception ex)
             {
-                message += "Error: " + ex.Message + " ";
+                message += "\n-Error: " + ex.Message + " ";
             }
             finally
             {
-                log += "\nIMPORT CITIES ERRORS: " + message;
+                _log += "\nIMPORT CITIES ERRORS: " + message;
             }
 
             return rv;
@@ -240,11 +248,11 @@ namespace Territories.BLL
             }
             catch (Exception ex)
             {
-                message +=  "Error: "+ ex.Message+ " ";
+                message +=  "\n-Error: "+ ex.Message+ " ";
             }
             finally
             {
-                log += "\nIMPORT TERRITORIES ERRORS: " + message;
+                _log += "\nIMPORT TERRITORIES ERRORS: " + message;
             }
 
             return rv;
@@ -279,11 +287,11 @@ namespace Territories.BLL
             }
             catch (Exception ex)
             {
-                message += "Error: " + ex.Message + " ";
+                message += "\n-Error: " + ex.Message + " ";
             }
             finally
             {
-                log += "\nIMPORT DIRECTIONS ERRORS:" + message;
+                _log += "\nIMPORT DIRECTIONS ERRORS:" + message;
             }            
 
             return rv;
@@ -455,6 +463,21 @@ namespace Territories.BLL
                 string columnName = _config.Directions.Fields["Description"];
                 rv.Description = row[columnName].ToString();
             }
+
+            //Direction.CustomField1
+            if (_config.Directions.Fields.ContainsKey("CustomField1"))
+            {
+                string columnName = _config.Directions.Fields["CustomField1"];
+                rv.CustomField1 = row[columnName].ToString();
+            }
+
+            //Direction.CustomField2
+            if (_config.Directions.Fields.ContainsKey("CustomField2"))
+            {
+                string columnName = _config.Directions.Fields["CustomField2"];
+                rv.CustomField2 = row[columnName].ToString();
+            }
+
             //Direction.Map1
             if (_config.Directions.Fields.ContainsKey("Map1"))
             {
@@ -467,6 +490,8 @@ namespace Territories.BLL
                 string columnName = _config.Directions.Fields["Map2"];
                 rv.Map2 = row[columnName].ToString();
             }
+
+
             //Direction.City
             int idCity = 0;
             if (_config.Directions.Fields.ContainsKey("CityId")|| _config.Directions.DefaultFieldValues.ContainsKey("CityId"))
@@ -557,18 +582,18 @@ namespace Territories.BLL
             string msg = "";
             if (string.IsNullOrEmpty(v.Name))
             {
-                msg +=  "Name is blank or null. ";
+                msg +=  "\n  -Name is blank or null. ";
                 rv = false;
             }
             if (DepartmentExist(v))
             {
-                msg += "Already exist. ";
+                msg += "\n  -Already exist. ";
                 rv = false;
             }
 
             if (!rv)
             {
-                message = "\n \"" + v.IdDepartment + " " + v.Name + "\" invalid: " + msg;
+                message += "\n-\"" + v.IdDepartment + " " + v.Name + "\" is invalid: " + msg;
             }
 
             return rv;
@@ -580,24 +605,38 @@ namespace Territories.BLL
             string msg = "";
             if (string.IsNullOrEmpty(v.Name))
             {
-                msg += "Name is blank or null. ";
+                msg += "\n  -Name is blank or null. ";
                 rv = false;
             }
-            if (v.DepartmentReference.EntityKey==null)
+
+            
+            if (v.DepartmentReference.EntityKey == null ||
+                (int) v.DepartmentReference.EntityKey.EntityKeyValues[0].Value == 0 )
             {
-                msg += "Haven't department. ";
+                msg += "\n  -Haven't department. ";
                 rv = false;
             }
             else
-                if (CityExist(v))
+            {
+                int idDepartment = (int)v.DepartmentReference.EntityKey.EntityKeyValues[0].Value;
+                if (!DepartmentExist(idDepartment))
                 {
-                    msg += "Already exist. ";
+                    msg += "\n  -Department don't exist. ";
+                    rv = false;
+                    
+                }                
+                else if(CityExist(v))
+                {
+                    msg += "\n  -Already exist. ";
                     rv = false;
                 }
+            }
+
+            
 
             if (!rv)
             {
-                message = "\n \"" + v.IdCity + " " + v.Name + "\" invalid: " + msg;
+                message += "\n-\"" + v.IdCity + " " + v.Name + "\" is invalid: " + msg;
             }
 
             return rv;
@@ -609,18 +648,18 @@ namespace Territories.BLL
             string msg = "";
             if (string.IsNullOrEmpty(v.Name))
             {
-                msg += "Name is blank or null. ";
+                msg += "\n  -Name is blank or null. ";
                 rv = false;
             }
             if (TerritoryExist(v))
             {
-                msg += "Already exist. ";
+                msg += "\n  -Already exist. ";
                 rv = false;
             }
 
             if (!rv)
             {
-                message = "\n \"" + v.IdTerritory + " " + v.Name + "\" invalid: " + msg;
+                message += "\n-\"" + v.IdTerritory + " " + v.Name + "\" is invalid: " + msg;
             }
 
             return rv;
@@ -629,55 +668,132 @@ namespace Territories.BLL
         private bool DirectionIsValid(Direction v, ref string message)
         {
             bool rv = true;
-            string msg  = "";
+            string msg  = "";            
+
             if (string.IsNullOrEmpty(v.Street))
             {
-                msg += "The street is blank or null. ";
+                msg += "\n  -The street is blank or null. ";
                 rv = false;
             }
-            if (v.TerritoryReference.EntityKey==null)
+            if (v.CityReference.EntityKey==null ||
+                (int)v.CityReference.EntityKey.EntityKeyValues[0].Value==0)
             {
-                msg += "Haven't territory. ";
+                msg += "\n  -Haven't city. ";
                 rv = false;
             }
-            if (v.TerritoryReference.EntityKey==null)
+            else
             {
-                msg += "Haven't city. ";
+                int idCity = (int)v.CityReference.EntityKey.EntityKeyValues[0].Value;
+                if (!CityExist(idCity))
+                {
+                    msg += "\n  -City don't exist. ";
+                    rv = false;
+
+                }
+            }
+
+
+            if (v.TerritoryReference.EntityKey == null ||
+                (int)v.TerritoryReference.EntityKey.EntityKeyValues[0].Value == 0)
+            {
+                msg += "\n  -Haven't territory. ";
+                rv = false;
+            }
+            else
+            {
+                int idTerritory = (int)v.TerritoryReference.EntityKey.EntityKeyValues[0].Value;
+                if (!TerritoryExist(idTerritory))
+                {
+                    msg += "\n  -Territory don't exist. ";
+                    rv = false;
+
+                }
+            }
+
+            if (DirectionExist(v.IdDirection))
+            {
+                msg += "\n  -Already exist. ";
                 rv = false;
             }
 
             if (!rv)
             {
-                message = "\n \"" + v.IdDirection + " " + v.Street + "\" invalid: " + msg;
+                message += "\n-\"" + v.IdDirection + " " + v.Street + "\" is invalid: " + msg;
             }
 
             return rv;
 
-        }
+        }       
+
 
         #endregion
 
         #region EntityExist Methods
         private bool DepartmentExist(Department v)
         {
-            var found = _compiledSameDepartment(_dm, v).ToList();
-            return (found.Count > 0);
+            int found = _compiledSameDepartment(_dm, v).Count();
+            return (found > 0);
+        }
+
+        private bool DepartmentExist(int id)
+        {
+            int found = 0;
+            if (id != 0)
+            {
+                found = _dm.departments_GetById(id).Count();
+            }
+
+            return found > 0;
         }
 
         private bool CityExist(City v)
         {
             int idDepartment = (int)v.DepartmentReference.EntityKey.EntityKeyValues[0].Value;
-            var found = _compiledSameCity(_dm, v,idDepartment).ToList();            
+            int found = _compiledSameCity(_dm, v,idDepartment).Count();            
 
-            return (found.Count > 0);
+            return (found > 0);
+        }
+
+        private bool CityExist(int id)
+        {
+            int found = 0;
+            if (id != 0)
+            {
+                found = _dm.cities_GetById(id).Count();
+            }
+
+            return found > 0;
         }
 
         private bool TerritoryExist(Territory v)
         {
-            var found = _compiledSameTerritory(_dm, v).ToList();
+            int found = _compiledSameTerritory(_dm, v).Count();
 
-            return (found.Count > 0);
+            return (found > 0);
         }
+
+        private bool TerritoryExist(int id)
+        {
+            int found = 0;
+            if (id != 0)
+            {
+                found = _dm.territories_GetById(id).Count();
+            }
+
+            return found > 0;
+        }
+
+        private bool DirectionExist(int id)
+        {
+            int found = 0;
+            if (id!=0)
+            {
+                found = _dm.directions_GetById(id).Count();
+            }
+
+            return found > 0;
+        }
+
         #endregion        
 
 
@@ -743,7 +859,11 @@ namespace Territories.BLL
             string path = AppDomain.CurrentDomain.BaseDirectory + "log.txt";
             using (StreamWriter sr = new StreamWriter(path,false))
             {
-                sr.Write(log);
+                string[] strArray = _log.Split('\n');
+                foreach (string item in strArray)
+                {
+                    sr.WriteLine(item);
+                }
             }
         }
 

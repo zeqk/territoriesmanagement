@@ -258,7 +258,11 @@ namespace Territories.BLL
             string path = AppDomain.CurrentDomain.BaseDirectory + "log.txt";
             using (StreamWriter sr = new StreamWriter(path, false))
             {
-                sr.Write(log);
+                string[] strArray = log.Split('\n');
+                foreach (string item in strArray)
+                {
+                    sr.WriteLine(item);
+                }
             }
         }
 
