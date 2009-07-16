@@ -168,6 +168,7 @@
     <EmbeddedResource Include="frmTerritories.resx">
       <DependentUpon>frmTerritories.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Internacionalization\frmCities.es-AR.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -197,6 +198,10 @@
     <ProjectReference Include="..\My.Enums\My.csproj">
       <Project>{37B58754-D6D4-4A68-9870-D5B432B1E81E}</Project>
       <Name>My</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\My.Internationalization\My.Internationalization.csproj">
+      <Project>{4EB50090-2657-42C9-9243-6909678424E0}</Project>
+      <Name>My.Internationalization</Name>
     </ProjectReference>
     <ProjectReference Include="..\MyControls\My.Controls.csproj">
       <Project>{10B0ABBC-894E-4890-8988-18C4BA8A05BE}</Project>

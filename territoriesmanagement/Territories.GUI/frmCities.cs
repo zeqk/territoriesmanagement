@@ -10,6 +10,8 @@ using System.Text;
 using System.Windows.Forms;
 using Territories.Model;
 using Territories.BLL;
+using My.Internationalization;
+
 
 namespace Territories.GUI
 {
@@ -17,6 +19,8 @@ namespace Territories.GUI
     {
         static private bool _opened = false;
         private Cities server = new Cities();
+        private Globalization _gl;
+
 
         private bool _isDirty;
 
@@ -26,7 +30,9 @@ namespace Territories.GUI
                 throw new Exception("The window is already opened.");
             else
                 _opened = true;
+            this.
             InitializeComponent();
+            Internationalize();
         }
 
         private void frmCities_Load(object sender, EventArgs e)
@@ -353,6 +359,12 @@ namespace Territories.GUI
             _isDirty = true;
         }
 
+
+        private void Internationalize()
+        {
+            _gl = new Globalization("es-AR");
+            this.Text = _gl.GetString(this.GetType(),"Cities");
+        }
 
     }
 }

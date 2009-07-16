@@ -27,6 +27,8 @@ namespace Territories.GUI.ImporterConfig
 
         private Field _description;
 
+        private Field _customField1;
+
         private Field _phone1;
 
         private Field _phone2;
@@ -45,19 +47,20 @@ namespace Territories.GUI.ImporterConfig
 
         public DirectionsTable()
         {
-            _id = new Field("Id");
-            _street = new Field("Street");
-            _number = new Field("Number");
-            _corner1 = new Field("Corner1");
-            _corner2 = new Field("Corner2");
-            _description = new Field("Description");
-            _phone1 = new Field("Phone1");
-            _phone2 = new Field("Phone2");
-            _geoPosition = new Field("GeoPosition");
-            _territoryName = new Field("Territory");
-            _territoryId = new Field("IdTerritory");
-            _cityName = new Field("City");
-            _cityId = new Field("IdCity");
+            _id = new Field("ID");
+            _street = new Field("CALLE");
+            _number = new Field("NUMERO");
+            _corner1 = new Field("ESQUINA1");
+            _corner2 = new Field("ESQUINA2");
+            _description = new Field("DESCRIPCION");
+            _customField1 = new Field("OTRO");
+            _phone1 = new Field("TELEFONO1");
+            _phone2 = new Field("TELEFONO2");
+            _geoPosition = new Field("GEOPOSICION");
+            _territoryName = new Field("TERRITORIO");
+            _territoryId = new Field("IDTERRITORIO");
+            _cityName = new Field("CIUDAD");
+            _cityId = new Field("IDCIUDAD");
         }
         #region Properties
 
@@ -106,6 +109,12 @@ namespace Territories.GUI.ImporterConfig
         {
             get { return _description; }
             set { _description = value; }
+        }
+
+        public Field CustomField1
+        {
+            get { return _customField1; }
+            set { _customField1 = value; }
         }
 
         public Field Phone2
