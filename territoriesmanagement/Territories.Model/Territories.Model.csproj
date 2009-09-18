@@ -53,20 +53,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class Extenders\TerritoriesDataContext.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TerritoriesModel.Designer.cs">
-      <DependentUpon>TerritoriesModel.edmx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>TerritoriesModel.edmx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
     <EntityDeploy Include="TerritoriesModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TerritoriesModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

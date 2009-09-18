@@ -58,7 +58,7 @@
     <Compile Include="Cities.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Directions.cs" />
+    <Compile Include="Addresses.cs" />
     <Compile Include="GeoRssImportTool.cs" />
     <Compile Include="ImporterConfig.cs" />
     <Compile Include="ImportTool.cs" />

@@ -105,19 +105,19 @@ namespace Territories.BLL
                             importationMessage += "\nNo territory has been imported.\n";
                     }
 
-                    bool directionsImported = true;
-                    string directions = _config.Directions.TableName;
-                    if (ds.Tables[directions] != null)
+                    bool addressesImported = true;
+                    string addresses = _config.Addresses.TableName;
+                    if (ds.Tables[addresses] != null)
                     {
-                        int count = AddDirections(ds.Tables[directions]);
-                        directionsImported =  count > 0;
-                        if (directionsImported)
-                            importationMessage += "\n" + count + " directions has been imported.\n";
+                        int count = AddAddresses(ds.Tables[addresses]);
+                        addressesImported =  count > 0;
+                        if (addressesImported)
+                            importationMessage += "\n" + count + " addresses has been imported.\n";
                         else
-                            importationMessage += "\nNo direction has been imported.\n";
+                            importationMessage += "\nNo address has been imported.\n";
                     }
 
-                    rv = departmentsImported && citiesImported && territoriesImported && directionsImported;
+                    rv = departmentsImported && citiesImported && territoriesImported && addressesImported;
                 }
                 else
                     rv = false;
@@ -192,7 +192,7 @@ namespace Territories.BLL
                     City v = DataRowToCity(row);
                     if (CityIsValid(v, ref message))
                     {
-                        if (_config.Cities.DefaultFieldValues.ContainsKey("IdCity"))
+                        if (!_config.Cities.Fields.ContainsKey("IdCity"))
                         {
                             _dm.AddToCities(v);
                             count++;
@@ -258,7 +258,7 @@ namespace Territories.BLL
             return rv;
         }
 
-        private int AddDirections(DataTable dt)
+        private int AddAddresses(DataTable dt)
         {
             int rv = 0;
             string message = "";
@@ -267,17 +267,17 @@ namespace Territories.BLL
                 int count = 0;
                 foreach (DataRow row in dt.Rows)
                 {
-                    Direction v = DataRowToDirection(row);
-                    if (DirectionIsValid(v, ref message))
+                    Address v = DataRowToAddress(row);
+                    if (AddressIsValid(v, ref message))
                     {
-                        if (!_config.Directions.Fields.ContainsKey("IdDirection"))
+                        if (!_config.Addresses.Fields.ContainsKey("IdAddress"))
                         {
-                            _dm.AddToDirections(v);
+                            _dm.AddToAddresses(v);
                             count++;
                         }
                         else
                         {
-                            _dm.directions_AddWithPK(v);
+                            _dm.addresses_AddWithPK(v);
                             count++;
                         }
                     }
@@ -291,7 +291,7 @@ namespace Territories.BLL
             }
             finally
             {
-                _log += "\nIMPORT DIRECTIONS ERRORS:" + message;
+                _log += "\nIMPORT ADDRESSES ERRORS:" + message;
             }            
 
             return rv;
@@ -409,165 +409,155 @@ namespace Territories.BLL
             return rv;
         }
 
-        private Direction DataRowToDirection(DataRow row)
-        {            
-            Direction rv = new Direction();
+        private Address DataRowToAddress(DataRow row)
+        {
+            Address rv = new Address();
 
-            //Direction.IdDirection
-            if (_config.Directions.Fields.ContainsKey("IdDirection"))
+            //Address.IdAddress
+            if (_config.Addresses.Fields.ContainsKey("IdAddress"))
             {
-                string idColumn = _config.Directions.Fields["IdDirection"];
+                string idColumn = _config.Addresses.Fields["IdAddress"];
                 int id = 0;
                 if(int.TryParse(row[idColumn].ToString(),out id))
-                    rv.IdDirection = id;
+                    rv.IdAddresses = id;
             }
-            //Direction.Street
-            if (_config.Directions.Fields.ContainsKey("Street"))
+            //Address.Street
+            if (_config.Addresses.Fields.ContainsKey("Street"))
             {
-                string streetColumn = _config.Directions.Fields["Street"];
+                string streetColumn = _config.Addresses.Fields["Street"];
                 rv.Street = row[streetColumn].ToString();
             }            
-            //Direction.Number
-            if (_config.Directions.Fields.ContainsKey("Number"))
+            //Address.Number
+            if (_config.Addresses.Fields.ContainsKey("Number"))
             {
-                string columnName = _config.Directions.Fields["Number"];
+                string columnName = _config.Addresses.Fields["Number"];
                 rv.Number = row[columnName].ToString();
             }
-            //Direction.Corener1
-            if (_config.Directions.Fields.ContainsKey("Corner1"))
+            //Address.Corner1
+            if (_config.Addresses.Fields.ContainsKey("Corner1"))
             {
-                string columnName = _config.Directions.Fields["Corner1"];
+                string columnName = _config.Addresses.Fields["Corner1"];
                 rv.Corner1 = row[columnName].ToString();
             }
-            //Direction.Corner2
-            if (_config.Directions.Fields.ContainsKey("Corner2"))
+            //Address.Corner2
+            if (_config.Addresses.Fields.ContainsKey("Corner2"))
             {
-                string columnName = _config.Directions.Fields["Corner2"];
+                string columnName = _config.Addresses.Fields["Corner2"];
                 rv.Corner2 = row[columnName].ToString();
             }
-            //Direction.Phone1
-            if (_config.Directions.Fields.ContainsKey("Phone1"))
+            //Address.Phone1
+            if (_config.Addresses.Fields.ContainsKey("Phone1"))
             {
-                string columnName = _config.Directions.Fields["Phone1"];
+                string columnName = _config.Addresses.Fields["Phone1"];
                 rv.Phone1 = row[columnName].ToString();
             }
-            //Direction.Phone2
-            if (_config.Directions.Fields.ContainsKey("Phone2"))
+            //Address.Phone2
+            if (_config.Addresses.Fields.ContainsKey("Phone2"))
             {
-                string columnName = _config.Directions.Fields["Phone2"];
+                string columnName = _config.Addresses.Fields["Phone2"];
                 rv.Phone2 = row[columnName].ToString();
             }
-            //Direction.Description
-            if (_config.Directions.Fields.ContainsKey("Description"))
+            //Address.Description
+            if (_config.Addresses.Fields.ContainsKey("Description"))
             {
-                string columnName = _config.Directions.Fields["Description"];
+                string columnName = _config.Addresses.Fields["Description"];
                 rv.Description = row[columnName].ToString();
             }
 
-            //Direction.CustomField1
-            if (_config.Directions.Fields.ContainsKey("CustomField1"))
+            //Address.CustomField1
+            if (_config.Addresses.Fields.ContainsKey("CustomField1"))
             {
-                string columnName = _config.Directions.Fields["CustomField1"];
+                string columnName = _config.Addresses.Fields["CustomField1"];
                 rv.CustomField1 = row[columnName].ToString();
             }
 
-            //Direction.CustomField2
-            if (_config.Directions.Fields.ContainsKey("CustomField2"))
+            //Address.CustomField2
+            if (_config.Addresses.Fields.ContainsKey("CustomField2"))
             {
-                string columnName = _config.Directions.Fields["CustomField2"];
+                string columnName = _config.Addresses.Fields["CustomField2"];
                 rv.CustomField2 = row[columnName].ToString();
             }
 
-            //Direction.Map1
-            if (_config.Directions.Fields.ContainsKey("Map1"))
+            //Address.Map1
+            if (_config.Addresses.Fields.ContainsKey("Map1"))
             {
-                string columnName = _config.Directions.Fields["Map1"];
+                string columnName = _config.Addresses.Fields["Map1"];
                 rv.Map1 = row[columnName].ToString();
             }
-            //Direction.Map2
-            if (_config.Directions.Fields.ContainsKey("Map2"))
+            //Address.Map2
+            if (_config.Addresses.Fields.ContainsKey("Map2"))
             {
-                string columnName = _config.Directions.Fields["Map2"];
+                string columnName = _config.Addresses.Fields["Map2"];
                 rv.Map2 = row[columnName].ToString();
             }
 
-
-            //Direction.City
-            int idCity = 0;
-            if (_config.Directions.Fields.ContainsKey("CityId")|| _config.Directions.DefaultFieldValues.ContainsKey("CityId"))
+            //Address.Geoposition
+            if (_config.Addresses.Fields.ContainsKey("Geoposition"))
             {
-                if (_config.Directions.Fields.ContainsKey("CityId"))
+                string columnName = _config.Addresses.Fields["Geoposition"];
+                rv.Geoposition = row[columnName].ToString();
+            }
+
+
+            //Address.City
+            int idCity = 0;
+            if (_config.Addresses.Fields.ContainsKey("CityId")|| _config.Addresses.DefaultFieldValues.ContainsKey("CityId"))
+            {
+                if (_config.Addresses.Fields.ContainsKey("CityId"))
                 {
-                    string idColumn = _config.Directions.Fields["CityId"];
+                    string idColumn = _config.Addresses.Fields["CityId"];
                     idCity = Convert.ToInt32(row[idColumn].ToString());
                 }
                 else
-                    idCity = Convert.ToInt32(_config.Directions.DefaultFieldValues["CityId"]);
+                    idCity = Convert.ToInt32(_config.Addresses.DefaultFieldValues["CityId"]);
             }
 
-            if (idCity==0 && (_config.Directions.Fields.ContainsKey("CityName")||_config.Directions.DefaultFieldValues.ContainsKey("CityName")))
+            if (idCity==0 && (_config.Addresses.Fields.ContainsKey("CityName")||_config.Addresses.DefaultFieldValues.ContainsKey("CityName")))
             {
                 string cityName = "";
-                if (_config.Directions.Fields.ContainsKey("CityName"))
+                if (_config.Addresses.Fields.ContainsKey("CityName"))
                 {
-                    string nameColumn = _config.Directions.Fields["CityName"];
+                    string nameColumn = _config.Addresses.Fields["CityName"];
                     cityName = row[nameColumn].ToString();
                 }
                 else
-                    cityName = _config.Directions.DefaultFieldValues["CityName"].ToString();
+                    cityName = _config.Addresses.DefaultFieldValues["CityName"].ToString();
 
                 idCity = _compiledIdCityByName(_dm, cityName).First();
             }
 
-            rv.CityReference.EntityKey = new EntityKey("TerritoriesDataContext.Directions", "IdCity", idCity);
+            rv.CityReference.EntityKey = new EntityKey("TerritoriesDataContext.Cities", "IdCity", idCity);
             //
 
-            //Direction.Territory
+            //Address.Territory
             int idTerritory = 0;
-            if (_config.Directions.Fields.ContainsKey("TerritoryId") || _config.Directions.DefaultFieldValues.ContainsKey("TerritoryId"))
+            if (_config.Addresses.Fields.ContainsKey("TerritoryId") || _config.Addresses.DefaultFieldValues.ContainsKey("TerritoryId"))
             {
-                if (_config.Directions.Fields.ContainsKey("TerritoryId"))
+                if (_config.Addresses.Fields.ContainsKey("TerritoryId"))
                 {
-                    string idColumn = _config.Directions.Fields["TerritoryId"];
+                    string idColumn = _config.Addresses.Fields["TerritoryId"];
                     idTerritory = Convert.ToInt32((row[idColumn].ToString()));
                 }
                 else
-                    idTerritory = Convert.ToInt32(_config.Directions.DefaultFieldValues["TerritoryId"]);
+                    idTerritory = Convert.ToInt32(_config.Addresses.DefaultFieldValues["TerritoryId"]);
             }
 
-            if (idTerritory == 0 && (_config.Directions.Fields.ContainsKey("TerritoryName") || _config.Directions.DefaultFieldValues.ContainsKey("TerritoryName")))
+            if (idTerritory == 0 && (_config.Addresses.Fields.ContainsKey("TerritoryName") || _config.Addresses.DefaultFieldValues.ContainsKey("TerritoryName")))
             {
                 string territoryName = "";
-                if (_config.Directions.Fields.ContainsKey("TerritoryName"))
+                if (_config.Addresses.Fields.ContainsKey("TerritoryName"))
                 {
-                    string nameColumn = _config.Directions.Fields["TerritoryName"];
+                    string nameColumn = _config.Addresses.Fields["TerritoryName"];
                     territoryName = row[nameColumn].ToString();
                 }
                 else
-                    territoryName = _config.Directions.DefaultFieldValues["TerritoryName"].ToString();
+                    territoryName = _config.Addresses.DefaultFieldValues["TerritoryName"].ToString();
 
                 idTerritory = _compiledIdTerritoryByName(_dm, territoryName).First();
             }         
 
             rv.TerritoryReference.EntityKey = new EntityKey("TerritoriesDataContext.Territories", "IdTerritory", idTerritory);
             //
-
-            //Direction.Geopositions
-            if (_config.Directions.Fields.ContainsKey("GeoPosition"))
-            {
-                string columnName = _config.Directions.Fields["GeoPosition"];
-                string[] strGeopos = row[columnName].ToString().Split(' ');
-
-                if (!string.IsNullOrEmpty(strGeopos[0]) && !string.IsNullOrEmpty(strGeopos[1]))
-                {
-                    GeoPosition geopos = new GeoPosition();
-                    geopos.Latitude = long.Parse(strGeopos[0]);
-                    geopos.Longitude = long.Parse(strGeopos[1]);
-                    geopos.Date = DateTime.Now;
-                    _dm.AddToGeoPositions(geopos);
-                    rv.GeoPositions.Add(geopos);
-                }
-            }
 
             return rv;
         }
@@ -665,7 +655,7 @@ namespace Territories.BLL
             return rv;
         }
 
-        private bool DirectionIsValid(Direction v, ref string message)
+        private bool AddressIsValid(Address v, ref string message)
         {
             bool rv = true;
             string msg  = "";            
@@ -710,7 +700,7 @@ namespace Territories.BLL
                 }
             }
 
-            if (DirectionExist(v.IdDirection))
+            if (AddressExist(v.IdAddresses))
             {
                 msg += "\n  -Already exist. ";
                 rv = false;
@@ -718,7 +708,7 @@ namespace Territories.BLL
 
             if (!rv)
             {
-                message += "\n-\"" + v.IdDirection + " " + v.Street + "\" is invalid: " + msg;
+                message += "\n-\"" + v.IdAddresses + " " + v.Street + "\" is invalid: " + msg;
             }
 
             return rv;
@@ -783,12 +773,12 @@ namespace Territories.BLL
             return found > 0;
         }
 
-        private bool DirectionExist(int id)
+        private bool AddressExist(int id)
         {
             int found = 0;
             if (id!=0)
             {
-                found = _dm.directions_GetById(id).Count();
+                found = _dm.address_GetById(id).Count();
             }
 
             return found > 0;
@@ -836,10 +826,10 @@ namespace Territories.BLL
                 _importer.Tables.Add(table);
             }
 
-            if (_config.Directions.Fields.Count > 0)
+            if (_config.Addresses.Fields.Count > 0)
             {
-                Table table = new Table(_config.Directions.TableName);
-                foreach (var item in _config.Directions.Fields)
+                Table table = new Table(_config.Addresses.TableName);
+                foreach (var item in _config.Addresses.Fields)
                 {
                     table.Fields.Add(item.Value);
                 }

@@ -6,7 +6,7 @@ using System.ComponentModel;
 
 namespace Territories.GUI.ImporterConfig
 {
-    public class DirectionsTableConverter : ExpandableObjectConverter
+    public class AddressesTableConverter : ExpandableObjectConverter
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
@@ -17,20 +17,20 @@ namespace Territories.GUI.ImporterConfig
 
         public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
         {
-            if (ReferenceEquals(destinationType, typeof(DirectionsTable)))
+            if (ReferenceEquals(destinationType, typeof(AddressesTable)))
                 return true;
             return base.CanConvertTo(context, destinationType);
         }
 
         public override object ConvertTo(ITypeDescriptorContext context, System.Globalization.CultureInfo culture, object value, Type destinationType)
         {
-            if (object.ReferenceEquals(destinationType, typeof(string)) && value is DirectionsTable)
+            if (object.ReferenceEquals(destinationType, typeof(string)) && value is AddressesTable)
             {
-                DirectionsTable t;
+                AddressesTable t;
                 if (value == null)
-                    t = new DirectionsTable();
+                    t = new AddressesTable();
                 else
-                    t = (DirectionsTable)value;
+                    t = (AddressesTable)value;
 
                 string rv = t.Load.ToString();
 

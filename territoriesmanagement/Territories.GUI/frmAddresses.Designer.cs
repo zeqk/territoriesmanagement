@@ -1,6 +1,6 @@
 ﻿namespace Territories.GUI
 {
-    partial class frmDirections
+    partial class frmAddresses
     {
         /// <summary>
         /// Required designer variable.
@@ -44,7 +44,7 @@
             this.schStreet = new My.Controls.Search();
             this.lblTerritory = new System.Windows.Forms.Label();
             this.cboTerritory = new System.Windows.Forms.ComboBox();
-            this.lblDirection = new System.Windows.Forms.Label();
+            this.lblAddress = new System.Windows.Forms.Label();
             this.lblCity = new System.Windows.Forms.Label();
             this.lblDepartment = new System.Windows.Forms.Label();
             this.cboCity = new System.Windows.Forms.ComboBox();
@@ -57,7 +57,7 @@
             // btnAll
             // 
             this.btnAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAll.Location = new System.Drawing.Point(790, 65);
+            this.btnAll.Location = new System.Drawing.Point(833, 65);
             this.btnAll.Name = "btnAll";
             this.btnAll.Size = new System.Drawing.Size(96, 37);
             this.btnAll.TabIndex = 51;
@@ -68,7 +68,7 @@
             // btnSearch
             // 
             this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.Location = new System.Drawing.Point(790, 10);
+            this.btnSearch.Location = new System.Drawing.Point(833, 10);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(96, 45);
             this.btnSearch.TabIndex = 50;
@@ -84,7 +84,7 @@
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.btnEdit);
             this.panel1.Controls.Add(this.btnNew);
-            this.panel1.Location = new System.Drawing.Point(796, 160);
+            this.panel1.Location = new System.Drawing.Point(839, 160);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(98, 357);
             this.panel1.TabIndex = 54;
@@ -128,7 +128,7 @@
             // 
             this.lblFiltered.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFiltered.AutoSize = true;
-            this.lblFiltered.Location = new System.Drawing.Point(700, 147);
+            this.lblFiltered.Location = new System.Drawing.Point(743, 147);
             this.lblFiltered.Name = "lblFiltered";
             this.lblFiltered.Size = new System.Drawing.Size(41, 13);
             this.lblFiltered.TabIndex = 57;
@@ -151,7 +151,7 @@
             this.dgvResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvResults.Location = new System.Drawing.Point(2, 163);
             this.dgvResults.Name = "dgvResults";
-            this.dgvResults.Size = new System.Drawing.Size(788, 354);
+            this.dgvResults.Size = new System.Drawing.Size(831, 354);
             this.dgvResults.TabIndex = 55;
             // 
             // panel2
@@ -162,7 +162,7 @@
             this.panel2.Controls.Add(this.schStreet);
             this.panel2.Controls.Add(this.lblTerritory);
             this.panel2.Controls.Add(this.cboTerritory);
-            this.panel2.Controls.Add(this.lblDirection);
+            this.panel2.Controls.Add(this.lblAddress);
             this.panel2.Controls.Add(this.lblCity);
             this.panel2.Controls.Add(this.lblDepartment);
             this.panel2.Controls.Add(this.cboCity);
@@ -236,14 +236,14 @@
             this.cboTerritory.Size = new System.Drawing.Size(360, 21);
             this.cboTerritory.TabIndex = 60;
             // 
-            // lblDirection
+            // lblAddress
             // 
-            this.lblDirection.AutoSize = true;
-            this.lblDirection.Location = new System.Drawing.Point(18, 6);
-            this.lblDirection.Name = "lblDirection";
-            this.lblDirection.Size = new System.Drawing.Size(49, 13);
-            this.lblDirection.TabIndex = 55;
-            this.lblDirection.Text = "Direction";
+            this.lblAddress.AutoSize = true;
+            this.lblAddress.Location = new System.Drawing.Point(18, 6);
+            this.lblAddress.Name = "lblAddress";
+            this.lblAddress.Size = new System.Drawing.Size(45, 13);
+            this.lblAddress.TabIndex = 55;
+            this.lblAddress.Text = "Address";
             // 
             // lblCity
             // 
@@ -281,11 +281,11 @@
             this.cboDepartment.Size = new System.Drawing.Size(360, 21);
             this.cboDepartment.TabIndex = 57;
             // 
-            // frmDirections
+            // frmAddresses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(895, 524);
+            this.ClientSize = new System.Drawing.Size(938, 524);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblFiltered);
@@ -293,9 +293,9 @@
             this.Controls.Add(this.dgvResults);
             this.Controls.Add(this.btnAll);
             this.Controls.Add(this.btnSearch);
-            this.Name = "frmDirections";
-            this.Text = "Directions";
-            this.Load += new System.EventHandler(this.frmDirections_Load);
+            this.Name = "frmAddresses";
+            this.Text = "Addresses";
+            this.Load += new System.EventHandler(this.frmAddresses_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -323,7 +323,7 @@
         private My.Controls.Search schStreet;
         private System.Windows.Forms.Label lblTerritory;
         private System.Windows.Forms.ComboBox cboTerritory;
-        private System.Windows.Forms.Label lblDirection;
+        private System.Windows.Forms.Label lblAddress;
         private System.Windows.Forms.Label lblCity;
         private System.Windows.Forms.Label lblDepartment;
         private System.Windows.Forms.ComboBox cboCity;

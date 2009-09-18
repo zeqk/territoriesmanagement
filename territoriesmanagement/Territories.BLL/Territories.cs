@@ -195,16 +195,16 @@ namespace Territories.BLL
                 IDictionary rv = new Hashtable();
 
                 Territory t = _dm.territories_GetById(id).First();
-                t.Directions.Load();
+                t.Addresses.Load();
                 t.Tours.Load();
 
-                var directions = from dir in t.Directions
-                                 orderby dir.Street, dir.Number
+                var addresses = from a in t.Addresses
+                                 orderby a.Street, a.Number
                                  select new
                                  {
-                                     Id = dir.IdDirection,
-                                     Direction = dir.Street + " " + dir.Number,
-                                     Corners = dir.Corner1
+                                     Id = a.IdAddresses,
+                                     Address = a.Street + " " + a.Number,
+                                     Corners = a.Corner1
                                  };
 
                 var tours = from tour in t.Tours
@@ -217,7 +217,7 @@ namespace Territories.BLL
                                      EndDate = tour.EndDate
                                  };
 
-                rv.Add("Directions", directions.ToList());
+                rv.Add("Addresses", addresses.ToList());
                 rv.Add("Tours", tours.ToList());
 
                 return rv;

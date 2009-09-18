@@ -12,21 +12,16 @@ using Territories.BLL;
 
 namespace Territories.GUI
 {
-    public partial class frmDirection : Form
+    public partial class frmAddress : Form
     {
-        private Directions _server;
+        private Addresses _server;
         private bool _isDirty;
 
-        private bool _geoPositionIsModified;
-
-        
-	
-
-        public Direction Direction
+        public Address Address
         {
             get 
             {
-                Direction rv = (Direction)bsDirection.DataSource;
+                Address rv = (Address)bsAddress.DataSource;
 
                 rv.City = new City();
                 rv.City.IdCity = (int)cboCity.SelectedValue;
@@ -34,24 +29,16 @@ namespace Territories.GUI
                 rv.Territory = new Territory();
                 rv.Territory.IdTerritory = (int)cboTerritory.SelectedValue;
 
-                
-                if (_geoPositionIsModified)
-                {
-                    rv.GeoPositions.Clear();
-                    if (chkHaveGeo.Checked)
-                    {
-                        GeoPosition geoPos = (GeoPosition)bsGeoposition.DataSource;
-                        geoPos.Date = DateTime.Now;
-                        rv.GeoPositions.Add(geoPos);
-                    }
-                        
-                    
-                }
+                if (chkHaveGeoPos.Checked)
+                    rv.Geoposition = txtLat.Text + " " + txtLon.Text;
+                else 
+                    rv.Geoposition = null;
+
                 return rv;
             }
             set 
             {   
-                bsDirection.DataSource = value;
+                bsAddress.DataSource = value;
 
                 if (value.Territory != null)
                     cboTerritory.SelectedValue = value.Territory.IdTerritory;
@@ -66,33 +53,34 @@ namespace Territories.GUI
                 else
                     cboDepartment.SelectedItem = null;
 
-                if (value.GeoPositions.Count > 0)
+                if (!string.IsNullOrEmpty(value.Geoposition))
                 {
-                    chkHaveGeo.Checked = true;                    
-                    bsGeoposition.DataSource = value.GeoPositions.First();
+                    string[] geoPosition = value.Geoposition.Split(' ');
+
+                    txtLat.Text = geoPosition[0];
+                    txtLon.Text = geoPosition[1];
+                    chkHaveGeoPos.Checked = true;
                 }
                 else
                 {
-                    chkHaveGeo.Checked = false;
-                    txtLat.Enabled = false;
-                    txtLon.Enabled = false;
-                    bsGeoposition.DataSource = _server.NewGeoPosition();
+                    txtLat.Enabled = chkHaveGeoPos.Checked;
+                    txtLon.Enabled = chkHaveGeoPos.Checked;
+                    chkHaveGeoPos.Checked = false;
                 }
-
             }
         }
 	
 
-        public frmDirection(Directions server)
+        public frmAddress(Addresses server)
         {
             _server = server;
             InitializeComponent();
             ConfigureMenus();
         }
 
-        public frmDirection()
+        public frmAddress()
         {
-            _server = new Directions();
+            _server = new Addresses();
             InitializeComponent(); 
             ConfigureMenus();
         }
@@ -103,7 +91,7 @@ namespace Territories.GUI
             {                
                 try
                 {                    
-                    _server.Save(this.Direction);
+                    _server.Save(this.Address);
                     this.DialogResult = DialogResult.OK;
                 }
                 catch (Exception ex)
@@ -135,10 +123,9 @@ namespace Territories.GUI
             
         }
 
-        private void frmDirection_Load(object sender, EventArgs e)
+        private void frmAddress_Load(object sender, EventArgs e)
         {
             _isDirty = false;
-            _geoPositionIsModified = false;
         }
 
         private void ConfigureMenus()
@@ -162,12 +149,6 @@ namespace Territories.GUI
             _isDirty = true;
         }
 
-        private void GeoPositionHaveChanges(object sender, EventArgs e)
-        {
-            _geoPositionIsModified = true;
-            _isDirty = true;
-        }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             txtLat.Clear();
@@ -176,11 +157,10 @@ namespace Territories.GUI
             txtLon.Enabled = false;
         }
 
-        private void chkHaveGeo_CheckedChanged(object sender, EventArgs e)
+        private void chkHaveGeoPos_CheckedChanged(object sender, EventArgs e)
         {
-            txtLat.Enabled = chkHaveGeo.Checked;
-            txtLon.Enabled = chkHaveGeo.Checked;
-            _geoPositionIsModified = true;
+            txtLat.Enabled = chkHaveGeoPos.Checked;
+            txtLon.Enabled = chkHaveGeoPos.Checked;
             _isDirty = true;
         }
 

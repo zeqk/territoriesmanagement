@@ -25,7 +25,7 @@ namespace Territories.GUI.ImporterConfig
 
         private TerritoriesTable _territories;
 
-        private DirectionsTable _directions;
+        private AddressesTable _addresses;
 
         #endregion
 
@@ -36,7 +36,7 @@ namespace Territories.GUI.ImporterConfig
             _departments = new DepartmentsTable();
             _cities = new CitiesTable();
             _territories = new TerritoriesTable();
-            _directions = new DirectionsTable();
+            _addresses = new AddressesTable();
         }
 
         #region Properties
@@ -56,10 +56,10 @@ namespace Territories.GUI.ImporterConfig
         }
 
         [Category("Import tables"), ReadOnly(false)]
-        public DirectionsTable Directions
+        public AddressesTable Addresses
         {
-            get { return _directions; }
-            set { _directions = value; }
+            get { return _addresses; }
+            set { _addresses = value; }
         }
         [Category("Import tables"), ReadOnly(false)]
         public TerritoriesTable Territories
@@ -113,7 +113,7 @@ namespace Territories.GUI.ImporterConfig
             this.Departments = config.Departments;
             this.Cities = config.Cities;
             this.Territories = config.Territories;
-            this.Directions = config.Directions;
+            this.Addresses = config.Addresses;
         }
 
         #endregion
