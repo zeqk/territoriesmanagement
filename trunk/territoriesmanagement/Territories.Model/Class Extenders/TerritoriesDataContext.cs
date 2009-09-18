@@ -156,9 +156,9 @@ namespace Territories.Model
         }
 
         /// <summary>
-        /// There are no comments for TerritoriesModel.directions_AddWithPK in the schema.
+        /// There are no comments for TerritoriesModel.addresses_AddWithPK in the schema.
         /// </summary>
-        public Collection<Int32> directions_AddWithPK(Direction v)
+        public Collection<Int32> addresses_AddWithPK(Address v)
         {
             Collection<Int32> rv = new Collection<int>();
 
@@ -167,11 +167,11 @@ namespace Territories.Model
                 using (EntityConnection conn = new EntityConnection(this.Connection.ConnectionString))
                 {
                     EntityCommand cmd = conn.CreateCommand();
-                    cmd.CommandText = string.Format("{0}.{1}", this.DefaultContainerName, "directions_AddWithPK");
+                    cmd.CommandText = string.Format("{0}.{1}", this.DefaultContainerName, "addresses_AddWithPK");
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     EntityParameter idParam = new EntityParameter("id", DbType.Int32);
-                    idParam.Value = v.IdDirection;
+                    idParam.Value = v.IdAddresses;
                     cmd.Parameters.Add(idParam);
 
                     EntityParameter streetParam = new EntityParameter("street", DbType.String);
@@ -250,7 +250,7 @@ namespace Territories.Model
             return id;
         }
 
-        private int? ExtractCityId(Direction v)
+        private int? ExtractCityId(Address v)
         {
             int? id = null;
 
@@ -269,7 +269,7 @@ namespace Territories.Model
             return id;
         }
 
-        private int? ExtractTerritoryId(Direction v)
+        private int? ExtractTerritoryId(Address v)
         {
             int? id = null;
             try 

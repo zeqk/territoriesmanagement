@@ -13,17 +13,17 @@ using Territories.Model;
 
 namespace Territories.GUI
 {
-    public partial class frmDirections : Form
+    public partial class frmAddresses : Form
     {
-        BLL.Directions _server = new Directions();
+        BLL.Addresses _server = new Addresses();
         
-        public frmDirections()
+        public frmAddresses()
         {
             InitializeComponent();
 
         }
 
-        private void frmDirections_Load(object sender, EventArgs e)
+        private void frmAddresses_Load(object sender, EventArgs e)
         {
             chkStreet.Checked = true;
 
@@ -67,7 +67,7 @@ namespace Territories.GUI
             dgvResults.Columns.Add("DepartmentName", "Department");
             dgvResults.Columns.Add("CityName", "City");
             dgvResults.Columns.Add("Territory", "Territory");
-            dgvResults.Columns.Add("Direction", "Street and Nº");
+            dgvResults.Columns.Add("Address", "Street and Nº");
             dgvResults.Columns.Add("Corner1", "Corner1");
             dgvResults.Columns.Add("Corner2", "Corner2");
             dgvResults.Columns.Add("Description", "Description");
@@ -81,8 +81,8 @@ namespace Territories.GUI
             dgvResults.Columns["CityName"].DataPropertyName = "CityName";
             dgvResults.Columns["Territory"].Width = 100;
             dgvResults.Columns["Territory"].DataPropertyName = "Territory";
-            dgvResults.Columns["Direction"].Width = 100;
-            dgvResults.Columns["Direction"].DataPropertyName = "Direction";
+            dgvResults.Columns["Address"].Width = 100;
+            dgvResults.Columns["Address"].DataPropertyName = "Address";
             dgvResults.Columns["Corner1"].Width = 100;
             dgvResults.Columns["Corner1"].DataPropertyName = "Corner1";
             dgvResults.Columns["Corner2"].Width = 100;
@@ -133,7 +133,7 @@ namespace Territories.GUI
                     if (parameters.Count > 0)
                         strQuery += " AND ";
 
-                    strQuery += "Direction.City.IdCity = @IdCity";
+                    strQuery += "Address.City.IdCity = @IdCity";
                     ObjectParameter cityPar = new ObjectParameter("IdCity", (int)cboCity.SelectedValue);
 
                     parameters.Add(cityPar);
@@ -144,7 +144,7 @@ namespace Territories.GUI
                         if (parameters.Count > 0)
                             strQuery += " AND ";
 
-                        strQuery += "Direction.City.Department.IdDepartment = @IdDepartment";
+                        strQuery += "Address.City.Department.IdDepartment = @IdDepartment";
                         ObjectParameter depPar = new ObjectParameter("IdDepartment", (int)cboDepartment.SelectedValue);
 
                         parameters.Add(depPar);
@@ -155,7 +155,7 @@ namespace Territories.GUI
                     if (parameters.Count > 0)
                         strQuery += " AND ";
 
-                    strQuery += "Direction.Territory.IdTerritory = @IdTerritory";
+                    strQuery += "Address.Territory.IdTerritory = @IdTerritory";
                     ObjectParameter terrPar = new ObjectParameter("IdTerritory", (int)cboTerritory.SelectedValue);
 
                     parameters.Add(terrPar);
@@ -178,18 +178,18 @@ namespace Territories.GUI
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            using (frmDirection myForm = new frmDirection(_server))
+            using (frmAddress myForm = new frmAddress(_server))
             {
                 try
                 {
-                    var dir = _server.NewObject();
-                    myForm.Direction = dir;
+                    var address = _server.NewObject();
+                    myForm.Address = address;
 
                     myForm.ShowDialog();
                     if (myForm.DialogResult == DialogResult.OK)
                     {
-                        dir = myForm.Direction;
-                        _server.Save(dir);
+                        address = myForm.Address;
+                        _server.Save(address);
                     }
                 }
                 catch (Exception ex)
@@ -207,11 +207,11 @@ namespace Territories.GUI
             {
                 var v = _server.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
 
-                using (frmDirection myForm = new frmDirection(_server))
+                using (frmAddress myForm = new frmAddress(_server))
                 {
                     try
                     {
-                        myForm.Direction = v;
+                        myForm.Address = v;
 
                         myForm.ShowDialog();
                     }
@@ -222,7 +222,7 @@ namespace Territories.GUI
                 }
             }
             else
-                MessageBox.Show("Select any direction.");
+                MessageBox.Show("Select any address.");
         }
 
         private void fields_CheckedChanged(object sender, EventArgs e)
@@ -232,21 +232,21 @@ namespace Territories.GUI
 
             if (chkStreet.Checked)
             {
-                columns.Add("Direction.Street");
+                columns.Add("Address.Street");
                 variables.Add("street");
             }
 
             if (chkCorners.Checked)
             {
-                columns.Add("Direction.Corner1");
+                columns.Add("Address.Corner1");
                 variables.Add("corner1");
-                columns.Add("Direction.Corner2");
+                columns.Add("Address.Corner2");
                 variables.Add("corner2");
             }
 
             if (chkDescription.Checked)
             {
-                columns.Add("Direction.Description");
+                columns.Add("Address.Description");
                 variables.Add("desc");
             }
             if (columns.Count>0)

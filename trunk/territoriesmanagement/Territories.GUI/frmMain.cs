@@ -16,11 +16,11 @@ namespace Territories.GUI
             InitializeComponent();
         }
 
-        private void btnDirections_Click(object sender, EventArgs e)
+        private void btnAddress_Click(object sender, EventArgs e)
         {
             try
             {
-                frmDirections myForm = new frmDirections();
+                frmAddresses myForm = new frmAddresses();
                 myForm.Show();
             }
             catch (Exception ex)

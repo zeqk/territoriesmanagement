@@ -16,7 +16,7 @@ namespace Territories.BLL
         private ImportTable _departments;
         private ImportTable _cities;
         private ImportTable _territories;
-        private ImportTable _directions;
+        private ImportTable _addresses;
 
         #endregion
 
@@ -26,7 +26,7 @@ namespace Territories.BLL
             _departments = new ImportTable();
             _cities = new ImportTable();
             _territories = new ImportTable();
-            _directions = new ImportTable();
+            _addresses = new ImportTable();
         }
         #endregion
 
@@ -63,10 +63,10 @@ namespace Territories.BLL
             set { _territories = value; }
         }
 
-        public ImportTable Directions
+        public ImportTable Addresses
         {
-            get { return _directions; }
-            set { _directions = value; }
+            get { return _addresses; }
+            set { _addresses = value; }
         }
 
         #endregion

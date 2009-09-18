@@ -7,8 +7,8 @@ using System.ComponentModel;
 namespace Territories.GUI.ImporterConfig
 {
     [Serializable]
-    [TypeConverter(typeof(DirectionsTableConverter))]
-    public class DirectionsTable
+    [TypeConverter(typeof(AddressesTableConverter))]
+    public class AddressesTable
     {
         #region Fields
         private bool _load;
@@ -45,7 +45,7 @@ namespace Territories.GUI.ImporterConfig
 
         #endregion
 
-        public DirectionsTable()
+        public AddressesTable()
         {
             _id = new Field("ID");
             _street = new Field("CALLE");

@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnDirections = new System.Windows.Forms.Button();
+            this.btnAddress = new System.Windows.Forms.Button();
             this.btnCities = new System.Windows.Forms.Button();
             this.btnDepartments = new System.Windows.Forms.Button();
             this.bntTerritories = new System.Windows.Forms.Button();
             this.btnInterop = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // btnDirections
+            // btnAddress
             // 
-            this.btnDirections.Location = new System.Drawing.Point(115, 106);
-            this.btnDirections.Name = "btnDirections";
-            this.btnDirections.Size = new System.Drawing.Size(175, 64);
-            this.btnDirections.TabIndex = 0;
-            this.btnDirections.Text = "Directions";
-            this.btnDirections.UseVisualStyleBackColor = true;
-            this.btnDirections.Click += new System.EventHandler(this.btnDirections_Click);
+            this.btnAddress.Location = new System.Drawing.Point(115, 106);
+            this.btnAddress.Name = "btnAddress";
+            this.btnAddress.Size = new System.Drawing.Size(175, 64);
+            this.btnAddress.TabIndex = 0;
+            this.btnAddress.Text = "Address";
+            this.btnAddress.UseVisualStyleBackColor = true;
+            this.btnAddress.Click += new System.EventHandler(this.btnAddress_Click);
             // 
             // btnCities
             // 
@@ -94,7 +94,7 @@
             this.Controls.Add(this.bntTerritories);
             this.Controls.Add(this.btnDepartments);
             this.Controls.Add(this.btnCities);
-            this.Controls.Add(this.btnDirections);
+            this.Controls.Add(this.btnAddress);
             this.Name = "frmMain";
             this.Text = "Main";
             this.ResumeLayout(false);
@@ -103,7 +103,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnDirections;
+        private System.Windows.Forms.Button btnAddress;
         private System.Windows.Forms.Button btnCities;
         private System.Windows.Forms.Button btnDepartments;
         private System.Windows.Forms.Button bntTerritories;

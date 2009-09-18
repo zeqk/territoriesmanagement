@@ -87,21 +87,21 @@ namespace Territories.GUI
             dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvResults.MultiSelect = false;
 
-            dgvDirections.Columns.Add("Id", "Id");
-            dgvDirections.Columns.Add("Direction", "Direction");
-            dgvDirections.Columns.Add("Corners", "Between");
-            dgvDirections.Columns.Add("blank", "");
+            dgvAddresses.Columns.Add("Id", "Id");
+            dgvAddresses.Columns.Add("Address", "Address");
+            dgvAddresses.Columns.Add("Corners", "Between");
+            dgvAddresses.Columns.Add("blank", "");
 
-            dgvDirections.Columns["Id"].Visible = false;
-            dgvDirections.Columns["Id"].DataPropertyName = "Id";
-            dgvDirections.Columns["Direction"].Width = 200;
-            dgvDirections.Columns["Direction"].DataPropertyName = "Direction";
-            dgvDirections.Columns["Corners"].Width = 200;
-            dgvDirections.Columns["Corners"].DataPropertyName = "Corners";
-            dgvDirections.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvAddresses.Columns["Id"].Visible = false;
+            dgvAddresses.Columns["Id"].DataPropertyName = "Id";
+            dgvAddresses.Columns["Address"].Width = 200;
+            dgvAddresses.Columns["Address"].DataPropertyName = "Address";
+            dgvAddresses.Columns["Corners"].Width = 200;
+            dgvAddresses.Columns["Corners"].DataPropertyName = "Corners";
+            dgvAddresses.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            dgvDirections.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvDirections.MultiSelect = false;
+            dgvAddresses.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvAddresses.MultiSelect = false;
 
             dgvPublishers.Columns.Add("Id", "Id");
             dgvPublishers.Columns.Add("Name", "Publisher");
@@ -321,10 +321,10 @@ namespace Territories.GUI
         private void LoadRelations(City v)
         {
             IDictionary relations = this.server.LoadRelations(v.IdCity);
-            dgvDirections.DataSource = relations["Directions"];
-            dgvDirections.Refresh();
+            dgvAddresses.DataSource = relations["Addresses"];
+            dgvAddresses.Refresh();
 
-            dgvDirections.RowHeadersVisible = false;
+            dgvAddresses.RowHeadersVisible = false;
 
             dgvPublishers.DataSource = relations["Publishers"];
             dgvPublishers.Refresh();

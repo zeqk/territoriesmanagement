@@ -199,23 +199,23 @@ namespace Territories.BLL
                 IDictionary rv = new Hashtable();
 
                 City city = _dm.cities_GetById(id).First();
-                city.Directions.Load();
+                city.Addresses.Load();
                 city.Publishers.Load();
 
-                var directions = from dir in city.Directions
-                                 orderby dir.Street, dir.Number
+                var addresses = from a in city.Addresses
+                                 orderby a.Street, a.Number
                                  select new 
                                  { 
-                                     Id = dir.IdDirection, 
-                                     Direction = dir.Street + " " + dir.Number,
-                                     Corners = dir.Corner1
+                                     Id = a.IdAddresses, 
+                                     Address = a.Street + " " + a.Number,
+                                     Corners = a.Corner1
                                  };
 
                 var publishers = from pub in city.Publishers
                                  orderby pub.Name
                                  select new { Id = pub.IdPublisher, Name = pub.Name };
 
-                rv.Add("Directions", directions.ToList());
+                rv.Add("Addresses", addresses.ToList());
                 rv.Add("Publishers",publishers.ToList());
                 
                 return rv;               

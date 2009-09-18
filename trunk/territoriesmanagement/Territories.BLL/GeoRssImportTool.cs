@@ -16,7 +16,7 @@ namespace Territories.BLL
 
         TerritoriesDataContext _dm;
 
-        private Func<TerritoriesDataContext, int, IQueryable<Direction>> _compiledLoadDirectionById;
+        private Func<TerritoriesDataContext, int, IQueryable<Address>> _compiledLoadAddressById;
         private Func<TerritoriesDataContext, int, IQueryable<Territory>> _compiledLoadTerritoryById;
 
         string log;
@@ -27,7 +27,7 @@ namespace Territories.BLL
 
         }
 
-        public bool ImportGeoRss(string path, ref string importMessage,bool departments, bool cities, bool territories, bool directions)
+        public bool ImportGeoRss(string path, ref string importMessage,bool departments, bool cities, bool territories, bool address)
         {
             bool rv = true;    
             List<IGeoRssItem> geoRssItems = ReadMarks(path);
@@ -40,20 +40,18 @@ namespace Territories.BLL
                 AddPolygonsToTerritories(polygons);
             }
 
-            if (directions)
+            if (address)
             {
                 List<Point> points = geoRssItems.Where(item => item.GetType() == typeof(Point)).Cast<Point>().ToList();
-                AddPointsToDirections(points);
+                AddPointsToAddresses(points);
             }
-
-            DeleteNoUseGeoPositions();
 
             return rv;
         }
 
         #region AddGeoRssItemsToModel
 
-        public void AddPointsToDirections(List<Point> geoItems)
+        public void AddPointsToAddresses(List<Point> geoItems)
         {            
             string message ="";
             foreach (Point point in geoItems)
@@ -63,43 +61,21 @@ namespace Territories.BLL
                 {
                     if (TryExtractId(point.Description, out id))
                     {
-                        var results = _dm.directions_GetById(id).ToList();
+                        var results = _dm.address_GetById(id).ToList();
                         
                         if (results.Count>0)
                         {
-                            Direction v = results.First();
-                            v.GeoPositions.Load();
+                            Address v = results.First();
 
-                            if (v.GeoPositions.Count > 0)
-                            {                                
-                                GeoPosition originalGeoPos = v.GeoPositions.First();
-                                if (originalGeoPos.Latitude!=point.Coordinates.Latitude || 
-                                    originalGeoPos.Longitude!=point.Coordinates.Longitude)
-                                {
-                                    GeoPosition nGeoPos = originalGeoPos;
-                                    nGeoPos.Date = DateTime.Now;
-                                    nGeoPos.Latitude = point.Coordinates.Latitude;
-                                    nGeoPos.Longitude = point.Coordinates.Longitude;
-                                    _dm.ApplyPropertyChanges("GeoPositions", nGeoPos);
-                                }
-                            }
-                            else
-                            {
-                                GeoPosition nGeoPos = new GeoPosition();
-                                nGeoPos.Date = DateTime.Now;
-                                nGeoPos.Latitude = point.Coordinates.Latitude;
-                                nGeoPos.Longitude = point.Coordinates.Longitude;
-                                _dm.AddToGeoPositions(nGeoPos);
-                                v.GeoPositions.Add(nGeoPos);
-                            }
+                            v.Geoposition = point.Coordinates.Latitude.ToString() + " " + point.Coordinates.Longitude.ToString();                            
                             
                         }
                         else
-                            message += "\nMark: " + point.Guid + " direction id " + id + " dont't exist.";
+                            message += "\nMark: " + point.Guid + " address id " + id + " dont't exist.";
 
                     }
                     else
-                        message += "\nMark: " + point.Guid + " " + point.Description + " " + " haven't direction id.";
+                        message += "\nMark: " + point.Guid + " " + point.Description + " " + " haven't address id.";
                 }
                 catch (Exception ex)
                 {
@@ -130,20 +106,15 @@ namespace Territories.BLL
                             if (results.Count > 0)
                             {
                                 Territory v = results.First();
-                                v.GeoPositions.Load();
 
-                                if (v.GeoPositions.Count == 0 || (v.GeoPositions.Count!=polygon.Coordinates.Count))
+                                v.Area = "";
+
+                                foreach (Coordinates coord in polygon.Coordinates)
                                 {
-                                    v.GeoPositions.Clear();
-                                    foreach (Coordinates coord in polygon.Coordinates)
-                                    {
-                                        GeoPosition newPos = new GeoPosition();
-                                        newPos.Latitude = coord.Latitude;
-                                        newPos.Longitude = coord.Longitude;
-                                        newPos.Date = DateTime.Now;
-                                        _dm.AddToGeoPositions(newPos);
-                                        v.GeoPositions.Add(newPos);
-                                    }
+                                    if (!string.IsNullOrEmpty(v.Area))
+                                        v.Area = "\n";
+
+                                    v.Area = coord.Latitude.ToString() + " " + coord.Longitude.ToString();
                                 }
                             }
                             else
@@ -166,29 +137,6 @@ namespace Territories.BLL
 
             log += message;
             SaveLog();
-
-        }
-
-        public void DeleteNoUseGeoPositions()
-        {
-            try
-            {
-                IQueryable<GeoPosition> list = _dm.GeoPositions.Where(g => g.Departments.Count < 1 &&
-                g.Cities.Count < 1 &&
-                g.Territories.Count < 1 &&
-                g.Directions.Count < 1);
-
-                foreach (GeoPosition g in list)
-                {
-                    _dm.DeleteObject(g);
-                }
-                _dm.SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                
-                throw ex;
-            }           
 
         }
 
@@ -234,17 +182,16 @@ namespace Territories.BLL
         private void PreCompileQueries()
         {
 
-            this._compiledLoadDirectionById = CompiledQuery.Compile
+            this._compiledLoadAddressById = CompiledQuery.Compile
                 (
-                    (TerritoriesDataContext dm, int id) => from d in dm.Directions
-                                                               .Include("GeoPositions")
-                                                           where d.IdDirection == id
-                                                           select d
+                    (TerritoriesDataContext dm, int id) => from a in dm.Addresses
+                                                           where a.IdAddresses == id
+                                                           select a
                 );
 
             this._compiledLoadTerritoryById = CompiledQuery.Compile
                 (
-                    (TerritoriesDataContext dm, int id) => from t in dm.Territories.Include("GeoPositions")
+                    (TerritoriesDataContext dm, int id) => from t in dm.Territories
                                                            where t.IdTerritory == id
                                                            select t
                                                                 

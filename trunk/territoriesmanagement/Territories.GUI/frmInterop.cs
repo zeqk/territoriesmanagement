@@ -208,73 +208,73 @@ namespace Territories.GUI
                 else
                     _importer.Config.Territories.Fields = new Dictionary<string, string>();
 
-                if (_config.Directions.Load)
+                if (_config.Addresses.Load)
                 {
-                    _importer.Config.Directions.TableName = _config.Directions.TableName;
+                    _importer.Config.Addresses.TableName = _config.Addresses.TableName;
 
-                    if (_config.Directions.Id.Load)
-                        _importer.Config.Directions.Fields.Add("IdDirection", _config.Directions.Id.ColumnName);
+                    if (_config.Addresses.Id.Load)
+                        _importer.Config.Addresses.Fields.Add("IdAddress", _config.Addresses.Id.ColumnName);
 
-                    if (_config.Directions.Street.Load)
-                        _importer.Config.Directions.Fields.Add("Street", _config.Directions.Street.ColumnName);
+                    if (_config.Addresses.Street.Load)
+                        _importer.Config.Addresses.Fields.Add("Street", _config.Addresses.Street.ColumnName);
 
-                    if (_config.Directions.Number.Load)
-                        _importer.Config.Directions.Fields.Add("Number", _config.Directions.Number.ColumnName);
+                    if (_config.Addresses.Number.Load)
+                        _importer.Config.Addresses.Fields.Add("Number", _config.Addresses.Number.ColumnName);
 
-                    if (_config.Directions.Corner1.Load)
-                        _importer.Config.Directions.Fields.Add("Corner1", _config.Directions.Corner1.ColumnName);
+                    if (_config.Addresses.Corner1.Load)
+                        _importer.Config.Addresses.Fields.Add("Corner1", _config.Addresses.Corner1.ColumnName);
 
-                    if (_config.Directions.Corner2.Load)
-                        _importer.Config.Directions.Fields.Add("Corner2", _config.Directions.Corner2.ColumnName);
+                    if (_config.Addresses.Corner2.Load)
+                        _importer.Config.Addresses.Fields.Add("Corner2", _config.Addresses.Corner2.ColumnName);
 
-                    if (_config.Directions.Phone1.Load)
-                        _importer.Config.Directions.Fields.Add("Phone1", _config.Directions.Phone1.ColumnName);
+                    if (_config.Addresses.Phone1.Load)
+                        _importer.Config.Addresses.Fields.Add("Phone1", _config.Addresses.Phone1.ColumnName);
 
-                    if (_config.Directions.Phone2.Load)
-                        _importer.Config.Directions.Fields.Add("Phone2", _config.Directions.Phone2.ColumnName);
+                    if (_config.Addresses.Phone2.Load)
+                        _importer.Config.Addresses.Fields.Add("Phone2", _config.Addresses.Phone2.ColumnName);
 
-                    if (_config.Directions.Description.Load)
-                        _importer.Config.Directions.Fields.Add("Description", _config.Directions.Description.ColumnName);
+                    if (_config.Addresses.Description.Load)
+                        _importer.Config.Addresses.Fields.Add("Description", _config.Addresses.Description.ColumnName);
 
                     //City
-                    if (_config.Directions.CityId.Load)
+                    if (_config.Addresses.CityId.Load)
                     {
-                        if (!string.IsNullOrEmpty(_config.Directions.CityId.ColumnName))
-                            _importer.Config.Directions.Fields.Add("CityId", _config.Directions.CityId.ColumnName);
-                        if (!string.IsNullOrEmpty(_config.Directions.CityId.DefaultValue))
-                            _importer.Config.Directions.DefaultFieldValues.Add("CityId", _config.Directions.CityId.DefaultValue);
+                        if (!string.IsNullOrEmpty(_config.Addresses.CityId.ColumnName))
+                            _importer.Config.Addresses.Fields.Add("CityId", _config.Addresses.CityId.ColumnName);
+                        if (!string.IsNullOrEmpty(_config.Addresses.CityId.DefaultValue))
+                            _importer.Config.Addresses.DefaultFieldValues.Add("CityId", _config.Addresses.CityId.DefaultValue);
 
                     }
                     else
                     {
-                        if (_config.Directions.CityName.Load)
+                        if (_config.Addresses.CityName.Load)
                         {
-                            if (!string.IsNullOrEmpty(_config.Directions.CityName.ColumnName))
-                                _importer.Config.Directions.Fields.Add("CityName", _config.Directions.CityName.ColumnName);
-                            if (!string.IsNullOrEmpty(_config.Directions.CityName.DefaultValue))
-                                _importer.Config.Directions.DefaultFieldValues.Add("CityName", _config.Directions.CityName.DefaultValue);
+                            if (!string.IsNullOrEmpty(_config.Addresses.CityName.ColumnName))
+                                _importer.Config.Addresses.Fields.Add("CityName", _config.Addresses.CityName.ColumnName);
+                            if (!string.IsNullOrEmpty(_config.Addresses.CityName.DefaultValue))
+                                _importer.Config.Addresses.DefaultFieldValues.Add("CityName", _config.Addresses.CityName.DefaultValue);
                         }
                     }
                    //
 
 
                     //Territory
-                    if (_config.Directions.TerritoryId.Load)
+                    if (_config.Addresses.TerritoryId.Load)
                     {
-                        if (!string.IsNullOrEmpty(_config.Directions.TerritoryId.ColumnName))
-                            _importer.Config.Directions.Fields.Add("TerritoryId", _config.Directions.TerritoryId.ColumnName);
-                        if (!string.IsNullOrEmpty(_config.Directions.TerritoryId.DefaultValue))
-                            _importer.Config.Directions.DefaultFieldValues.Add("TerritoryId", _config.Directions.TerritoryId.DefaultValue);
+                        if (!string.IsNullOrEmpty(_config.Addresses.TerritoryId.ColumnName))
+                            _importer.Config.Addresses.Fields.Add("TerritoryId", _config.Addresses.TerritoryId.ColumnName);
+                        if (!string.IsNullOrEmpty(_config.Addresses.TerritoryId.DefaultValue))
+                            _importer.Config.Addresses.DefaultFieldValues.Add("TerritoryId", _config.Addresses.TerritoryId.DefaultValue);
 
                     }
                     else
                     {
-                        if (_config.Directions.TerritoryName.Load)
+                        if (_config.Addresses.TerritoryName.Load)
                         {
-                            if (!string.IsNullOrEmpty(_config.Directions.TerritoryName.ColumnName))
-                                _importer.Config.Directions.Fields.Add("TerritoryName", _config.Directions.TerritoryName.ColumnName);
-                            if (!string.IsNullOrEmpty(_config.Directions.TerritoryName.DefaultValue))
-                                _importer.Config.Directions.DefaultFieldValues.Add("TerritoryName", _config.Directions.TerritoryName.DefaultValue);
+                            if (!string.IsNullOrEmpty(_config.Addresses.TerritoryName.ColumnName))
+                                _importer.Config.Addresses.Fields.Add("TerritoryName", _config.Addresses.TerritoryName.ColumnName);
+                            if (!string.IsNullOrEmpty(_config.Addresses.TerritoryName.DefaultValue))
+                                _importer.Config.Addresses.DefaultFieldValues.Add("TerritoryName", _config.Addresses.TerritoryName.DefaultValue);
                         }
                     }
                     //
@@ -282,7 +282,7 @@ namespace Territories.GUI
                     
                 }
                 else
-                    _importer.Config.Directions.Fields = new Dictionary<string, string>();
+                    _importer.Config.Addresses.Fields = new Dictionary<string, string>();
 
                 _isDirty = false;
             }

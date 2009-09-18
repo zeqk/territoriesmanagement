@@ -49,8 +49,8 @@
             this.dgvResults = new System.Windows.Forms.DataGridView();
             this.btnFilter = new System.Windows.Forms.Button();
             this.tabPanel = new System.Windows.Forms.TabControl();
-            this.tabDirections = new System.Windows.Forms.TabPage();
-            this.dgvDirections = new System.Windows.Forms.DataGridView();
+            this.tabAddresses = new System.Windows.Forms.TabPage();
+            this.dgvAddresses = new System.Windows.Forms.DataGridView();
             this.tabTours = new System.Windows.Forms.TabPage();
             this.dgvTours = new System.Windows.Forms.DataGridView();
             this.bsTerritory = new System.Windows.Forms.BindingSource(this.components);
@@ -58,8 +58,8 @@
             this.grdSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
             this.tabPanel.SuspendLayout();
-            this.tabDirections.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDirections)).BeginInit();
+            this.tabAddresses.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAddresses)).BeginInit();
             this.tabTours.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTours)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).BeginInit();
@@ -271,7 +271,7 @@
             // 
             // tabPanel
             // 
-            this.tabPanel.Controls.Add(this.tabDirections);
+            this.tabPanel.Controls.Add(this.tabAddresses);
             this.tabPanel.Controls.Add(this.tabTours);
             this.tabPanel.Location = new System.Drawing.Point(383, 170);
             this.tabPanel.Name = "tabPanel";
@@ -280,30 +280,30 @@
             this.tabPanel.TabIndex = 12;
             this.tabPanel.Visible = false;
             // 
-            // tabDirections
+            // tabAddresses
             // 
-            this.tabDirections.Controls.Add(this.dgvDirections);
-            this.tabDirections.Location = new System.Drawing.Point(4, 22);
-            this.tabDirections.Name = "tabDirections";
-            this.tabDirections.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDirections.Size = new System.Drawing.Size(354, 218);
-            this.tabDirections.TabIndex = 0;
-            this.tabDirections.Text = "Directions";
-            this.tabDirections.UseVisualStyleBackColor = true;
+            this.tabAddresses.Controls.Add(this.dgvAddresses);
+            this.tabAddresses.Location = new System.Drawing.Point(4, 22);
+            this.tabAddresses.Name = "tabAddresses";
+            this.tabAddresses.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAddresses.Size = new System.Drawing.Size(354, 218);
+            this.tabAddresses.TabIndex = 0;
+            this.tabAddresses.Text = "Addresses";
+            this.tabAddresses.UseVisualStyleBackColor = true;
             // 
-            // dgvDirections
+            // dgvAddresses
             // 
-            this.dgvDirections.AllowUserToAddRows = false;
-            this.dgvDirections.AllowUserToDeleteRows = false;
-            this.dgvDirections.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDirections.Location = new System.Drawing.Point(6, 6);
-            this.dgvDirections.MultiSelect = false;
-            this.dgvDirections.Name = "dgvDirections";
-            this.dgvDirections.ReadOnly = true;
-            this.dgvDirections.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvDirections.Size = new System.Drawing.Size(342, 206);
-            this.dgvDirections.TabIndex = 6;
-            this.dgvDirections.VirtualMode = true;
+            this.dgvAddresses.AllowUserToAddRows = false;
+            this.dgvAddresses.AllowUserToDeleteRows = false;
+            this.dgvAddresses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAddresses.Location = new System.Drawing.Point(6, 6);
+            this.dgvAddresses.MultiSelect = false;
+            this.dgvAddresses.Name = "dgvAddresses";
+            this.dgvAddresses.ReadOnly = true;
+            this.dgvAddresses.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvAddresses.Size = new System.Drawing.Size(342, 206);
+            this.dgvAddresses.TabIndex = 6;
+            this.dgvAddresses.VirtualMode = true;
             // 
             // tabTours
             // 
@@ -352,8 +352,8 @@
             this.grdSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).EndInit();
             this.tabPanel.ResumeLayout(false);
-            this.tabDirections.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDirections)).EndInit();
+            this.tabAddresses.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAddresses)).EndInit();
             this.tabTours.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTours)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).EndInit();
@@ -375,11 +375,11 @@
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.Button btnRelations;
         private System.Windows.Forms.TabControl tabPanel;
-        private System.Windows.Forms.TabPage tabDirections;
+        private System.Windows.Forms.TabPage tabAddresses;
         private System.Windows.Forms.Label lblId;
         private System.Windows.Forms.Label lblResult;
         private System.Windows.Forms.Label lblFiltered;
-        protected System.Windows.Forms.DataGridView dgvDirections;
+        protected System.Windows.Forms.DataGridView dgvAddresses;
         private System.Windows.Forms.TabPage tabTours;
         protected System.Windows.Forms.DataGridView dgvTours;
         private My.Controls.Search schName;
