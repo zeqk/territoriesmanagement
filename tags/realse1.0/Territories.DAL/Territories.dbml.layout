@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 13, 13.375" name="Territories">
+  <DataContextMoniker Name="/TerritoriesDataContext" />
+  <nestedChildShapes>
+    <classShape Id="1ab33287-d0fc-4b36-88e7-602f5880ace2" absoluteBounds="4.125, 9.875, 2, 1.2605004882812505">
+      <DataClassMoniker Name="/TerritoriesDataContext/City" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fb18ba74-6753-43f2-b2b7-b6b25f98371e" absoluteBounds="4.1400000000000006, 10.335, 1.9700000000000002, 0.70050048828125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="ff85babe-0531-4fb4-b306-33814453a424" absoluteBounds="6.125, 7.375, 2, 1.5891951497395827">
+      <DataClassMoniker Name="/TerritoriesDataContext/Tour" />
+      <nestedChildShapes>
+        <elementListCompartment Id="2537a0bb-4c99-4987-a484-dcfe57df068a" absoluteBounds="6.1400000000000006, 7.835, 1.9700000000000002, 1.0291951497395833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="f4ca669c-566f-4213-8a5e-959730fed0e1" absoluteBounds="4, 12, 2, 1.0961531575520827">
+      <DataClassMoniker Name="/TerritoriesDataContext/Department" />
+      <nestedChildShapes>
+        <elementListCompartment Id="61e2602d-fb3c-4b65-9170-32bc3f98e29b" absoluteBounds="4.015, 12.46, 1.9700000000000002, 0.53615315755208326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="61e59f07-8859-4aea-84e0-a84b800c3cdf" absoluteBounds="2, 6.125, 2, 2.7396264648437505">
+      <DataClassMoniker Name="/TerritoriesDataContext/Direction" />
+      <nestedChildShapes>
+        <elementListCompartment Id="a59d1fd0-e9e1-401c-9915-ed475e758695" absoluteBounds="2.0150000000000006, 6.585, 1.9700000000000002, 2.17962646484375" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="abca657d-8465-42a1-b36f-fe69af20e0c4" absoluteBounds="10.75, 5.25, 2, 1.4248478190104157">
+      <DataClassMoniker Name="/TerritoriesDataContext/Group" />
+      <nestedChildShapes>
+        <elementListCompartment Id="09429c05-d9c6-4644-a2d8-477fda3eb617" absoluteBounds="10.765, 5.71, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="788dc7fa-d117-433a-a7a6-3bb55507e42b" absoluteBounds="10.75, 7.75, 2, 2.2465844726562505">
+      <DataClassMoniker Name="/TerritoriesDataContext/Publisher" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bdc63e8d-5fdb-433c-9649-7135d5b7cf97" absoluteBounds="10.765, 8.21, 1.9700000000000002, 1.68658447265625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="b0ce0a1f-01d4-463f-8c69-5d7b24bdf2c9" absoluteBounds="5.375, 5.125, 2, 1.4248478190104157">
+      <DataClassMoniker Name="/TerritoriesDataContext/Territory" />
+      <nestedChildShapes>
+        <elementListCompartment Id="854b07be-7890-4058-a0d7-dc1770eb96f8" absoluteBounds="5.3900000000000006, 5.585, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.0625 : 12); (5.0625 : 11.1355004882813)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TerritoriesDataContext/Department/Department_City" />
+      <nodes>
+        <classShapeMoniker Id="f4ca669c-566f-4213-8a5e-959730fed0e1" />
+        <classShapeMoniker Id="1ab33287-d0fc-4b36-88e7-602f5880ace2" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.125 : 9.875); (5.125 : 7.65310593424479); (4 : 7.65310593424479)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TerritoriesDataContext/City/City_Direction" />
+      <nodes>
+        <classShapeMoniker Id="1ab33287-d0fc-4b36-88e7-602f5880ace2" />
+        <classShapeMoniker Id="61e59f07-8859-4aea-84e0-a84b800c3cdf" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.75 : 8.35709757486979); (8.125 : 8.35709757486979)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TerritoriesDataContext/Publisher/Publisher_Tour" />
+      <nodes>
+        <classShapeMoniker Id="788dc7fa-d117-433a-a7a6-3bb55507e42b" />
+        <classShapeMoniker Id="ff85babe-0531-4fb4-b306-33814453a424" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.75 : 7.75); (11.75 : 6.67484781901042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TerritoriesDataContext/Publisher/Publisher_Group" />
+      <nodes>
+        <classShapeMoniker Id="788dc7fa-d117-433a-a7a6-3bb55507e42b" />
+        <classShapeMoniker Id="abca657d-8465-42a1-b36f-fe69af20e0c4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(12.3125 : 7.75); (12.3125 : 6.67484781901042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TerritoriesDataContext/Publisher/Publisher_Group1" />
+      <nodes>
+        <classShapeMoniker Id="788dc7fa-d117-433a-a7a6-3bb55507e42b" />
+        <classShapeMoniker Id="abca657d-8465-42a1-b36f-fe69af20e0c4" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.125 : 10.5660429804688); (11.75 : 10.5660429804688); (11.75 : 9.99658447265625)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TerritoriesDataContext/City/City_Publisher" />
+      <nodes>
+        <classShapeMoniker Id="1ab33287-d0fc-4b36-88e7-602f5880ace2" />
+        <classShapeMoniker Id="788dc7fa-d117-433a-a7a6-3bb55507e42b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(11.1875 : 6.67484781901042); (11.1875 : 7.75)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TerritoriesDataContext/Group/Group_Publisher" />
+      <nodes>
+        <classShapeMoniker Id="abca657d-8465-42a1-b36f-fe69af20e0c4" />
+        <classShapeMoniker Id="788dc7fa-d117-433a-a7a6-3bb55507e42b" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(6.75 : 6.54984781901042); (6.75 : 7.375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TerritoriesDataContext/Territory/Territory_Tour" />
+      <nodes>
+        <classShapeMoniker Id="b0ce0a1f-01d4-463f-8c69-5d7b24bdf2c9" />
+        <classShapeMoniker Id="ff85babe-0531-4fb4-b306-33814453a424" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(5.375 : 6.33742390950521); (4 : 6.33742390950521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TerritoriesDataContext/Territory/Territory_Direction" />
+      <nodes>
+        <classShapeMoniker Id="b0ce0a1f-01d4-463f-8c69-5d7b24bdf2c9" />
+        <classShapeMoniker Id="61e59f07-8859-4aea-84e0-a84b800c3cdf" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(10.75 : 5.89992390950521); (7.375 : 5.89992390950521)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/TerritoriesDataContext/Group/Group_Territory" />
+      <nodes>
+        <classShapeMoniker Id="abca657d-8465-42a1-b36f-fe69af20e0c4" />
+        <classShapeMoniker Id="b0ce0a1f-01d4-463f-8c69-5d7b24bdf2c9" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

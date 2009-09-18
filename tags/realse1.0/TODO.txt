@@ -1,0 +1,4 @@
+TODO:
++ que guarde tambien la PK http://blogs.msdn.com/bindeshv/archive/2008/11/21/using-stored-procedures-that-return-non-entity-type.aspx
++ valores por defecto en la importación de datos
++ maxLenght del search 
