@@ -14,6 +14,7 @@ namespace Territories.Model
 {
     public partial class TerritoriesDataContext
     {
+        #region entities_AddWIthPK
 
         /// <summary>
         /// There are no comments for TerritoriesModel.departments_AddWithPK in the schema.
@@ -286,6 +287,76 @@ namespace Territories.Model
 
             return id;
         }
+        #endregion
+
+        #region NonQuery function imports
+        /// <summary>
+        /// There are no comments for TerritoriesModel.address_DeleteAll in the schema.
+        /// </summary>
+        public void address_DeleteAll()
+        {
+            Collection<Int32> rv = new Collection<int>();
+
+            try
+            {
+                using (EntityConnection conn = new EntityConnection(this.Connection.ConnectionString))
+                {
+                    EntityCommand cmd = conn.CreateCommand();
+                    cmd.CommandText = string.Format("{0}.{1}", this.DefaultContainerName, "address_DeleteAll");
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    if (conn.State != ConnectionState.Open)
+                    {
+                        conn.Open();
+                    }
+
+                    int count = cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// There are no comments for TerritoriesModel.address_ResetId in the schema.
+        /// </summary>
+        public void address_ResetId(int newId)
+        {
+            Collection<Int32> rv = new Collection<int>();
+
+            try
+            {
+                using (EntityConnection conn = new EntityConnection(this.Connection.ConnectionString))
+                {
+                    EntityCommand cmd = conn.CreateCommand();
+                    cmd.CommandText = string.Format("{0}.{1}", this.DefaultContainerName, "address_ResetId");
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    EntityParameter newIdParam = new EntityParameter("newId", DbType.Int32);
+                    newIdParam.Value = newId;
+                    cmd.Parameters.Add(newIdParam);
+
+                    if (conn.State != ConnectionState.Open)
+                    {
+                        conn.Open();
+                    }
+
+                    int count = cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+        #endregion
 
     }
 }

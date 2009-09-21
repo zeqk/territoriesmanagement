@@ -165,6 +165,11 @@ namespace Territories.BLL
 
         }
 
+        public void DeleteAll()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         public bool IsValid(City v, ref string message)

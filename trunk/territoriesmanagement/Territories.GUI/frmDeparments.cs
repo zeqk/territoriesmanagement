@@ -168,11 +168,12 @@ namespace Territories.GUI
             {
                 try
                 {                    
-                    v = this.server.Save(v);
-
-                    LoadResults("");
+                    v = this.server.Save(v);                    
                     ClearForm();
                     ObjectToForm(v);
+
+                    if (lblFiltered.Visible) Filter();
+                    else ClearFilter();
                 }
                 catch (Exception ex)
                 {
@@ -197,9 +198,11 @@ namespace Territories.GUI
             var v = FormToOject();
             try
             {
-                this.server.Delete(v.IdDepartment);
-                Filter();
+                this.server.Delete(v.IdDepartment);                
                 ClearForm();
+
+                if (lblFiltered.Visible) Filter();
+                else ClearFilter();
             }
             catch (Exception ex)
             {
@@ -245,6 +248,11 @@ namespace Territories.GUI
         }
 
         private void btnClearFilter_Click(object sender, EventArgs e)
+        {
+            ClearFilter();
+        }
+
+        private void ClearFilter()
         {
             schName.Clear();
             LoadResults("");

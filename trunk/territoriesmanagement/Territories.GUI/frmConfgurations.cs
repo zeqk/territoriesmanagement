@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using Territories.BLL;
 
 namespace Territories.GUI
 {
@@ -14,6 +15,15 @@ namespace Territories.GUI
         public frmConfgurations()
         {
             InitializeComponent();
+        }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            if (chkAddresses.Checked)
+            {
+                Addresses server = new Addresses();
+                server.DeleteAll();                
+            }
         }
     }
 }

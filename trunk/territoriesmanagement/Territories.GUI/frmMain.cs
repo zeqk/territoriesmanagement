@@ -81,5 +81,18 @@ namespace Territories.GUI
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void btnConfiguration_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmConfgurations myForm = new frmConfgurations();
+                myForm.Show();
+            }
+            catch (Exception ex)
+            {                
+                throw ex;
+            }
+        }
     }
 }

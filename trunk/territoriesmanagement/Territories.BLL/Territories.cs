@@ -155,6 +155,11 @@ namespace Territories.BLL
             return rv;
         }
 
+        public void DeleteAll()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         private bool IsValid(Territory v, ref string message)

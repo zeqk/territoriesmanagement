@@ -24,10 +24,16 @@ namespace Territories.GUI
                 Address rv = (Address)bsAddress.DataSource;
 
                 rv.City = new City();
-                rv.City.IdCity = (int)cboCity.SelectedValue;
+                if (cboCity.SelectedItem != null)
+                    rv.City.IdCity = (int)cboCity.SelectedValue;
+                else
+                    rv.City.IdCity = 0;
 
                 rv.Territory = new Territory();
-                rv.Territory.IdTerritory = (int)cboTerritory.SelectedValue;
+                if (cboTerritory.SelectedItem != null)
+                    rv.Territory.IdTerritory = (int)cboTerritory.SelectedValue;
+                else
+                    rv.Territory.IdTerritory = 0;
 
                 if (chkHaveGeoPos.Checked)
                     rv.Geoposition = txtLat.Text + " " + txtLon.Text;

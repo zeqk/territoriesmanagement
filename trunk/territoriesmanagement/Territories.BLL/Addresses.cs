@@ -181,6 +181,21 @@ namespace Territories.BLL
             return rv;
         }
 
+        public void DeleteAll()
+        {
+            try
+            {
+                _dm.address_DeleteAll();
+                _dm.address_ResetId(0);
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
+            
+        }
+
         #endregion
 
         private bool IsValid(Address v, ref string message)

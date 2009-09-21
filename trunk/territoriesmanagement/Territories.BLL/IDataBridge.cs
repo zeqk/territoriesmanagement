@@ -14,6 +14,7 @@ namespace Territories.BLL
         void Delete(int id);
         T Load(int id);
         IList Search(string strCriteria, params ObjectParameter[] parameters);
-        T NewObject();       
+        T NewObject();
+        void DeleteAll();
     }
 }
