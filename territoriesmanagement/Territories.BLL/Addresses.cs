@@ -116,7 +116,7 @@ namespace Territories.BLL
         {
             try
             {
-                Address d = _dm.address_GetByCity(id).First();
+                Address d = _dm.address_GetById(id).First();
                 _dm.DeleteObject(d);
                 _dm.SaveChanges();
             }

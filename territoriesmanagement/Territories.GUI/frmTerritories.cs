@@ -210,7 +210,7 @@ namespace Territories.GUI
             try
             {
                 this.server.Delete(v.IdTerritory);
-                LoadResults("");
+                Filter();
                 ClearForm();
             }
             catch (Exception ex)

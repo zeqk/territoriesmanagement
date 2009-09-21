@@ -113,6 +113,7 @@ namespace Territories.GUI
 
         private void ClearForm()
         {
+            schName.Clear();
             dgvResults.ClearSelection();
             var v = this.server.NewObject();
             ObjectToForm(v);
@@ -197,7 +198,7 @@ namespace Territories.GUI
             try
             {
                 this.server.Delete(v.IdDepartment);
-                LoadResults("");
+                Filter();
                 ClearForm();
             }
             catch (Exception ex)
@@ -245,6 +246,7 @@ namespace Territories.GUI
 
         private void btnClearFilter_Click(object sender, EventArgs e)
         {
+            schName.Clear();
             LoadResults("");
             lblFiltered.Visible = false;
             ClearForm();
