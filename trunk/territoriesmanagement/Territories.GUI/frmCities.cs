@@ -18,7 +18,7 @@ namespace Territories.GUI
     public partial class frmCities : Form
     {
         static private bool _opened = false;
-        private Cities server = new Cities();
+        private Cities _server = new Cities();
         private Globalization _gl;
 
 
@@ -42,12 +42,12 @@ namespace Territories.GUI
             schName.SetProperties(columns, variables);
             ConfigGrids();
 
-            cboDepartment.DataSource = this.server.GetDepartments();
+            cboDepartment.DataSource = this._server.GetDepartments();
             cboDepartment.DisplayMember = "Name";
             cboDepartment.ValueMember = "Id";
             cboDepartment.SelectedItem = null;
 
-            cboFilterDepartment.DataSource = this.server.GetDepartments();
+            cboFilterDepartment.DataSource = this._server.GetDepartments();
             cboFilterDepartment.DisplayMember = "Name";
             cboFilterDepartment.ValueMember = "Id";
             cboFilterDepartment.SelectedItem = null;
@@ -59,7 +59,7 @@ namespace Territories.GUI
         {
             try
             {
-                dgvResults.DataSource = this.server.Search(query);
+                dgvResults.DataSource = this._server.Search(query);
             }
             catch (Exception ex)
             {
@@ -122,7 +122,7 @@ namespace Territories.GUI
         {
             if (dgvResults.SelectedRows.Count != 0)
             {
-                var v = server.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
+                var v = _server.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
                 ObjectToForm(v);
                 if (tabPanel.Visible)
                     LoadRelations(v);
@@ -151,7 +151,7 @@ namespace Territories.GUI
         private void ClearForm()
         {
             dgvResults.ClearSelection();
-            var v = this.server.NewObject();
+            var v = this._server.NewObject();
             ObjectToForm(v);
             txtName.Focus();
             this._isDirty = false;
@@ -181,7 +181,7 @@ namespace Territories.GUI
                 ClearForm();
                 try
                 {
-                    var v = this.server.NewObject();
+                    var v = this._server.NewObject();
                     ObjectToForm(v);
                     this._isDirty = false;
                 }
@@ -205,7 +205,7 @@ namespace Territories.GUI
 
                 try
                 {
-                    v =this.server.Save(v);
+                    v =this._server.Save(v);
 
                     LoadResults("");
                     ClearForm();
@@ -226,8 +226,8 @@ namespace Territories.GUI
             var v = FormToOject();
             try
             {
-                this.server.Delete(v.IdCity);
-                LoadResults("");
+                this._server.Delete(v.IdCity);
+                Filter();
                 ClearForm();
             }
             catch (Exception ex)
@@ -272,7 +272,7 @@ namespace Territories.GUI
 
                 if (!string.IsNullOrEmpty(strQuery))
                 {
-                    dgvResults.DataSource = this.server.Search(strQuery, parameters.ToArray<ObjectParameter>());
+                    dgvResults.DataSource = this._server.Search(strQuery, parameters.ToArray<ObjectParameter>());
                     lblFiltered.Visible = true;
                 }
                 else
@@ -320,7 +320,7 @@ namespace Territories.GUI
 
         private void LoadRelations(City v)
         {
-            IDictionary relations = this.server.LoadRelations(v.IdCity);
+            IDictionary relations = this._server.LoadRelations(v.IdCity);
             dgvAddresses.DataSource = relations["Addresses"];
             dgvAddresses.Refresh();
 

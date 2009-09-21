@@ -259,5 +259,24 @@ namespace Territories.GUI
                 ((CheckBox)sender).Checked = true;
             }
         }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvResults.SelectedRows.Count!=0)
+            {
+                int idAddress = (int)dgvResults.SelectedRows[0].Cells["Id"].Value;
+                try
+                {
+                    _server.Delete(idAddress);
+                    Filter();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error");
+                }
+            }
+            
+        }
     }
 }
