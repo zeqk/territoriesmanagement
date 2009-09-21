@@ -33,6 +33,7 @@
             this.btnDepartments = new System.Windows.Forms.Button();
             this.bntTerritories = new System.Windows.Forms.Button();
             this.btnInterop = new System.Windows.Forms.Button();
+            this.btnConfiguration = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAddress
@@ -85,11 +86,22 @@
             this.btnInterop.UseVisualStyleBackColor = true;
             this.btnInterop.Click += new System.EventHandler(this.btnInterop_Click);
             // 
+            // btnConfiguration
+            // 
+            this.btnConfiguration.Location = new System.Drawing.Point(573, 170);
+            this.btnConfiguration.Name = "btnConfiguration";
+            this.btnConfiguration.Size = new System.Drawing.Size(138, 46);
+            this.btnConfiguration.TabIndex = 5;
+            this.btnConfiguration.Text = "Configuration";
+            this.btnConfiguration.UseVisualStyleBackColor = true;
+            this.btnConfiguration.Click += new System.EventHandler(this.btnConfiguration_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(811, 290);
+            this.Controls.Add(this.btnConfiguration);
             this.Controls.Add(this.btnInterop);
             this.Controls.Add(this.bntTerritories);
             this.Controls.Add(this.btnDepartments);
@@ -108,6 +120,7 @@
         private System.Windows.Forms.Button btnDepartments;
         private System.Windows.Forms.Button bntTerritories;
         private System.Windows.Forms.Button btnInterop;
+        private System.Windows.Forms.Button btnConfiguration;
 
     }
 }

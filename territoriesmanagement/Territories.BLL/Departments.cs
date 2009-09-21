@@ -180,6 +180,11 @@ namespace Territories.BLL
             }
         }
 
+        public void DeleteAll()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
 

@@ -99,16 +99,21 @@ namespace Territories.GUI
 
         private void btnAll_Click(object sender, EventArgs e)
         {
-            schStreet.Clear();
-            cboDepartment.SelectedItem = null;
-            cboTerritory.SelectedItem = null;
-            LoadResults("");
-            lblFiltered.Visible = false;
+            ClearFilter();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
             Filter();
+        }
+
+        private void ClearFilter()
+        {
+            schStreet.Clear();
+            cboDepartment.SelectedItem = null;
+            cboTerritory.SelectedItem = null;
+            LoadResults("");
+            lblFiltered.Visible = false;
         }
 
         private void Filter()
@@ -186,11 +191,10 @@ namespace Territories.GUI
                     myForm.Address = address;
 
                     myForm.ShowDialog();
-                    if (myForm.DialogResult == DialogResult.OK)
-                    {
-                        address = myForm.Address;
-                        _server.Save(address);
-                    }
+
+                    if (lblFiltered.Visible) Filter();
+                    else ClearFilter();
+
                 }
                 catch (Exception ex)
                 {
@@ -212,8 +216,10 @@ namespace Territories.GUI
                     try
                     {
                         myForm.Address = v;
-
                         myForm.ShowDialog();
+
+                        if (lblFiltered.Visible) Filter();
+                        else ClearFilter();
                     }
                     catch (Exception ex)
                     {
@@ -268,8 +274,9 @@ namespace Territories.GUI
                 try
                 {
                     _server.Delete(idAddress);
-                    Filter();
 
+                    if (lblFiltered.Visible) Filter();
+                    else ClearFilter();
                 }
                 catch (Exception ex)
                 {

@@ -135,7 +135,10 @@ namespace Territories.GUI
         {
             City rv = (City)this.bsCity.DataSource;
             rv.Department = new Department();
-            rv.Department.IdDepartment = (int)cboDepartment.SelectedValue;
+            if (cboDepartment.SelectedItem != null)
+                rv.Department.IdDepartment = (int)cboDepartment.SelectedValue;
+            else 
+                rv.Department.IdDepartment = 0;
             return rv;
         }
 
@@ -205,10 +208,16 @@ namespace Territories.GUI
 
                 try
                 {
-                    v =this._server.Save(v);
+                    v = this._server.Save(v);
 
-                    LoadResults("");
+                    //traigo los datos
+                    if (lblFiltered.Visible) Filter();
+                    else ClearFilter();
+
+                    //limpio el formulario
                     ClearForm();
+
+                    //muestro el mismo objeto
                     ObjectToForm(v);
                 }
                 catch (Exception ex)
@@ -227,7 +236,12 @@ namespace Territories.GUI
             try
             {
                 this._server.Delete(v.IdCity);
-                Filter();
+
+                //traigo los datos actualizados
+                if (lblFiltered.Visible) Filter();
+                else ClearFilter();
+                
+                //limpio el formulario
                 ClearForm();
             }
             catch (Exception ex)
@@ -245,6 +259,8 @@ namespace Territories.GUI
         {
             try
             {
+                var v = FormToOject();
+
                 schName.MakeQuery();
 
                 List<ObjectParameter> parameters = new List<ObjectParameter>();
@@ -278,7 +294,9 @@ namespace Territories.GUI
                 else
                     MessageBox.Show("Debe llenar al menos 1 campo de búsqueda.");
 
-                ClearForm();
+                dgvResults.ClearSelection();
+
+                ObjectToForm(v);
             }
             catch (Exception ex)
             {
@@ -290,11 +308,20 @@ namespace Territories.GUI
 
         private void btnClearFilter_Click(object sender, EventArgs e)
         {
+            var v = FormToOject();
+            ClearFilter();
+            ClearForm();
+
+            ObjectToForm(v);
+        }
+
+        private void ClearFilter()
+        {
             cboFilterDepartment.SelectedItem = null;
             schName.Clear();
             LoadResults("");
             lblFiltered.Visible = false;
-            ClearForm();
+            dgvResults.ClearSelection();
         }
 
         private void btnRelations_Click(object sender, EventArgs e)
