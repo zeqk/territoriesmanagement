@@ -265,12 +265,18 @@ namespace Territories.GUI
                 if (cboTerritory.SelectedValue != null)
                 {
                     if (parameters.Count > 0)
-                        strQuery += " AND ";
-
-                    strQuery += "Address.Territory.IdTerritory = @IdTerritory";
-                    ObjectParameter terrPar = new ObjectParameter("IdTerritory", (int)cboTerritory.SelectedValue);
-
-                    parameters.Add(terrPar);
+                        strQuery += " AND ";                    
+                    
+                    int idTerritory = (int)cboTerritory.SelectedValue;
+                    
+                    if (idTerritory!=0)
+                    {
+                        strQuery += "Address.Territory.IdTerritory = @IdTerritory";
+                        ObjectParameter terrPar = new ObjectParameter("IdTerritory", idTerritory);
+                        parameters.Add(terrPar);
+                    }
+                    else
+                        strQuery += "Address.Territory IS NULL";
                 }
                 if (!string.IsNullOrEmpty(strQuery))
                 {

@@ -63,7 +63,7 @@ namespace Territories.BLL
             {
                 _dm.AddToDepartments(v);
                 _dm.SaveChanges();
-                return v;
+                return Load(v.IdDepartment); //devuelvo un objeto desatachado
             }
             catch (Exception e)
             {

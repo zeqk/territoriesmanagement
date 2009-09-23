@@ -86,7 +86,7 @@ namespace Territories.GUI
         {
             try
             {
-                frmConfgurations myForm = new frmConfgurations();
+                frmConfig myForm = new frmConfig();
                 myForm.Show();
             }
             catch (Exception ex)

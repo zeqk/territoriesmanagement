@@ -227,14 +227,30 @@ namespace Territories.GUI
                     if (_config.Addresses.Corner2.Import)
                         _importer.Config.Addresses.Fields.Add("Corner2", _config.Addresses.Corner2.ColumnName);
 
+                    if (_config.Addresses.Description.Import)
+                        _importer.Config.Addresses.Fields.Add("Description", _config.Addresses.Description.ColumnName);
+
+                    if (_config.Addresses.CustomField1.Import)
+                        _importer.Config.Addresses.Fields.Add("CustomField1", _config.Addresses.CustomField1.ColumnName);
+
+                    if (_config.Addresses.CustomField2.Import)
+                        _importer.Config.Addresses.Fields.Add("CustomField2", _config.Addresses.CustomField2.ColumnName);
+
                     if (_config.Addresses.Phone1.Import)
                         _importer.Config.Addresses.Fields.Add("Phone1", _config.Addresses.Phone1.ColumnName);
 
                     if (_config.Addresses.Phone2.Import)
                         _importer.Config.Addresses.Fields.Add("Phone2", _config.Addresses.Phone2.ColumnName);
 
-                    if (_config.Addresses.Description.Import)
-                        _importer.Config.Addresses.Fields.Add("Description", _config.Addresses.Description.ColumnName);
+                    if (_config.Addresses.Map1.Import)
+                        _importer.Config.Addresses.Fields.Add("Map1", _config.Addresses.Map1.ColumnName);
+
+                    if (_config.Addresses.Map2.Import)
+                        _importer.Config.Addresses.Fields.Add("Map2", _config.Addresses.Map2.ColumnName);
+
+                    if (_config.Addresses.GeoPosition.Import)
+                        _importer.Config.Addresses.Fields.Add("Geoposition", _config.Addresses.GeoPosition.ColumnName);
+                    
 
                     //City
                     if (_config.Addresses.CityId.Import)

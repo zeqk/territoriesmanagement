@@ -55,25 +55,9 @@ namespace Territories.BLL
         {
             try
             {
-                //if (v.GeoPositions.Count>0)
-                //{
-                //    EntityCollection<GeoPosition> myGeoPositions = new EntityCollection<GeoPosition>();
-                //    foreach (var geoPos in v.GeoPositions)
-                //    {   
-                //        myGeoPositions.Add(geoPos);
-                //        _dm.AddToGeoPositions(geoPos);                        
-                //    }
-
-                //    foreach (var geoPos in myGeoPositions)
-                //    {
-                //        v.GeoPositions.Remove(geoPos);
-                //        v.GeoPositions.Add(geoPos);
-                //    }
-                //}
-
                 _dm.AddToTerritories(v);
                 _dm.SaveChanges();
-                return v;
+                return Load(v.IdTerritory); //devuelvo un objeto desatachado
             }
             catch (Exception ex)
             {

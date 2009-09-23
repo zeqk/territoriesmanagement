@@ -10,9 +10,9 @@ using Territories.BLL;
 
 namespace Territories.GUI
 {
-    public partial class frmConfgurations : Form
+    public partial class frmConfig : Form
     {
-        public frmConfgurations()
+        public frmConfig()
         {
             InitializeComponent();
         }
