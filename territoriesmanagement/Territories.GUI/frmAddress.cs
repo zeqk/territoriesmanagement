@@ -74,8 +74,7 @@ namespace Territories.GUI
                     chkHaveGeoPos.Checked = false;
                 }
             }
-        }
-	
+        }	
 
         public frmAddress(Addresses server)
         {
@@ -134,6 +133,21 @@ namespace Territories.GUI
             _isDirty = false;
         }
 
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            txtLat.Clear();
+            txtLat.Enabled = false;
+            txtLon.Clear();
+            txtLon.Enabled = false;
+        }
+
+        private void chkHaveGeoPos_CheckedChanged(object sender, EventArgs e)
+        {
+            txtLat.Enabled = chkHaveGeoPos.Checked;
+            txtLon.Enabled = chkHaveGeoPos.Checked;
+            _isDirty = true;
+        }
+
         private void ConfigureMenus()
         {
             cboDepartment.DisplayMember = "Name";
@@ -152,21 +166,6 @@ namespace Territories.GUI
 
         private void HaveChanges(object sender, EventArgs e)
         {
-            _isDirty = true;
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
-        {
-            txtLat.Clear();
-            txtLat.Enabled = false;
-            txtLon.Clear();
-            txtLon.Enabled = false;
-        }
-
-        private void chkHaveGeoPos_CheckedChanged(object sender, EventArgs e)
-        {
-            txtLat.Enabled = chkHaveGeoPos.Checked;
-            txtLon.Enabled = chkHaveGeoPos.Checked;
             _isDirty = true;
         }
 

@@ -421,7 +421,16 @@
             <Parameter Name="area" Mode="In" Type="String" /></FunctionImport>
           <FunctionImport Name="address_ResetId">
             <Parameter Name="newId" Mode="In" Type="Int32" /></FunctionImport>
-          <FunctionImport Name="address_DeleteAll" /></EntityContainer>
+          <FunctionImport Name="address_DeleteAll" />
+          <FunctionImport Name="cities_DeleteAll" />
+          <FunctionImport Name="cities_ResetId">
+            <Parameter Name="newId" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="departments_DeleteAll" />
+          <FunctionImport Name="departments_ResetId">
+            <Parameter Name="newId" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="territories_DeleteAll" />
+          <FunctionImport Name="territories_ResetId">
+            <Parameter Name="id" Mode="In" Type="Int32" /></FunctionImport></EntityContainer>
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="IdAddresses" />
@@ -763,7 +772,13 @@
           <FunctionImportMapping FunctionImportName="departments_AddWithPK" FunctionName="TerritoriesModel.Store.departments_AddWithPK" />
           <FunctionImportMapping FunctionImportName="territories_AddWithPK" FunctionName="TerritoriesModel.Store.territories_AddWithPK" />
           <FunctionImportMapping FunctionImportName="address_ResetId" FunctionName="TerritoriesModel.Store.address_ResetId" />
-          <FunctionImportMapping FunctionImportName="address_DeleteAll" FunctionName="TerritoriesModel.Store.address_DeleteAll" /></EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="address_DeleteAll" FunctionName="TerritoriesModel.Store.address_DeleteAll" />
+          <FunctionImportMapping FunctionImportName="cities_DeleteAll" FunctionName="TerritoriesModel.Store.cities_DeleteAll" />
+          <FunctionImportMapping FunctionImportName="cities_ResetId" FunctionName="TerritoriesModel.Store.cities_ResetId" />
+          <FunctionImportMapping FunctionImportName="departments_DeleteAll" FunctionName="TerritoriesModel.Store.departments_DeleteAll" />
+          <FunctionImportMapping FunctionImportName="departments_ResetId" FunctionName="TerritoriesModel.Store.departments_ResetId" />
+          <FunctionImportMapping FunctionImportName="territories_DeleteAll" FunctionName="TerritoriesModel.Store.territories_DeleteAll" />
+          <FunctionImportMapping FunctionImportName="territories_ResetId" FunctionName="TerritoriesModel.Store.territories_ResetId" /></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

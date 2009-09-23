@@ -11,7 +11,7 @@ namespace Territories.GUI.ImporterConfig
     public class AddressesTable
     {
         #region Fields
-        private bool _load;
+        private bool _import;
 
         private string _tableName;
 
@@ -70,10 +70,10 @@ namespace Territories.GUI.ImporterConfig
             set { _tableName = value; }
         }
 
-        public bool Load
+        public bool Import
         {
-            get { return _load; }
-            set { _load = value; }
+            get { return _import; }
+            set { _import = value; }
         }
 
         public Field Id

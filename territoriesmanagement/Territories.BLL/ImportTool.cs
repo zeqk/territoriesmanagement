@@ -262,12 +262,20 @@ namespace Territories.BLL
         {
             int rv = 0;
             string message = "";
+            Address v2;
+            DataRow r;
             try
             {
                 int count = 0;
                 foreach (DataRow row in dt.Rows)
                 {
+                    r = row;
+                    if (row[0].ToString() == "ABRAHAM MENDELEVICH (835)")
+                    {
+                        Console.WriteLine();
+                    }
                     Address v = DataRowToAddress(row);
+                    v2 = v;
                     if (AddressIsValid(v, ref message))
                     {
                         if (!_config.Addresses.Fields.ContainsKey("IdAddress"))
@@ -553,10 +561,12 @@ namespace Territories.BLL
                 else
                     territoryName = _config.Addresses.DefaultFieldValues["TerritoryName"].ToString();
 
-                idTerritory = _compiledIdTerritoryByName(_dm, territoryName).First();
+                if(!string.IsNullOrEmpty(territoryName))
+                    idTerritory = _compiledIdTerritoryByName(_dm, territoryName).First();
             }         
 
-            rv.TerritoryReference.EntityKey = new EntityKey("TerritoriesDataContext.Territories", "IdTerritory", idTerritory);
+            if(idTerritory!=0)
+                rv.TerritoryReference.EntityKey = new EntityKey("TerritoriesDataContext.Territories", "IdTerritory", idTerritory);
             //
 
             return rv;
@@ -683,22 +693,22 @@ namespace Territories.BLL
             }
 
 
-            if (v.TerritoryReference.EntityKey == null ||
-                (int)v.TerritoryReference.EntityKey.EntityKeyValues[0].Value == 0)
-            {
-                msg += "\n  -Haven't territory. ";
-                rv = false;
-            }
-            else
-            {
-                int idTerritory = (int)v.TerritoryReference.EntityKey.EntityKeyValues[0].Value;
-                if (!TerritoryExist(idTerritory))
-                {
-                    msg += "\n  -Territory don't exist. ";
-                    rv = false;
+            //if (v.TerritoryReference.EntityKey == null ||
+            //    (int)v.TerritoryReference.EntityKey.EntityKeyValues[0].Value == 0)
+            //{
+            //    msg += "\n  -Haven't territory. ";
+            //    rv = false;
+            //}
+            //else
+            //{
+            //    int idTerritory = (int)v.TerritoryReference.EntityKey.EntityKeyValues[0].Value;
+            //    if (!TerritoryExist(idTerritory))
+            //    {
+            //        msg += "\n  -Territory don't exist. ";
+            //        rv = false;
 
-                }
-            }
+            //    }
+            //}
 
             if (AddressExist(v.IdAddresses))
             {

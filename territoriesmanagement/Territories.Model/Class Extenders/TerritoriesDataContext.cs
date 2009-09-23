@@ -289,7 +289,7 @@ namespace Territories.Model
         }
         #endregion
 
-        #region NonQuery function imports
+        #region entities_DeleteAll function imports
         /// <summary>
         /// There are no comments for TerritoriesModel.address_DeleteAll in the schema.
         /// </summary>
@@ -318,8 +318,100 @@ namespace Territories.Model
             {
                 throw ex;
             }
+        }   
+
+        /// <summary>
+        /// There are no comments for TerritoriesModel.cities_DeleteAll in the schema.
+        /// </summary>
+        public void cities_DeleteAll()
+        {
+            Collection<Int32> rv = new Collection<int>();
+
+            try
+            {
+                using (EntityConnection conn = new EntityConnection(this.Connection.ConnectionString))
+                {
+                    EntityCommand cmd = conn.CreateCommand();
+                    cmd.CommandText = string.Format("{0}.{1}", this.DefaultContainerName, "cities_DeleteAll");
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    if (conn.State != ConnectionState.Open)
+                    {
+                        conn.Open();
+                    }
+
+                    int count = cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
+        /// <summary>
+        /// There are no comments for TerritoriesModel.departments_DeleteAll in the schema.
+        /// </summary>
+        public void departments_DeleteAll()
+        {
+            Collection<Int32> rv = new Collection<int>();
+
+            try
+            {
+                using (EntityConnection conn = new EntityConnection(this.Connection.ConnectionString))
+                {
+                    EntityCommand cmd = conn.CreateCommand();
+                    cmd.CommandText = string.Format("{0}.{1}", this.DefaultContainerName, "departments_DeleteAll");
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    if (conn.State != ConnectionState.Open)
+                    {
+                        conn.Open();
+                    }
+
+                    int count = cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// There are no comments for TerritoriesModel.territories_DeleteAll in the schema.
+        /// </summary>
+        public void territories_DeleteAll()
+        {
+            Collection<Int32> rv = new Collection<int>();
+
+            try
+            {
+                using (EntityConnection conn = new EntityConnection(this.Connection.ConnectionString))
+                {
+                    EntityCommand cmd = conn.CreateCommand();
+                    cmd.CommandText = string.Format("{0}.{1}", this.DefaultContainerName, "territories_DeleteAll");
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    if (conn.State != ConnectionState.Open)
+                    {
+                        conn.Open();
+                    }
+
+                    int count = cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
+
+        #region entities_ResetId function imports
         /// <summary>
         /// There are no comments for TerritoriesModel.address_ResetId in the schema.
         /// </summary>
@@ -354,8 +446,107 @@ namespace Territories.Model
             }
         }
 
+        /// <summary>
+        /// There are no comments for TerritoriesModel.cities_ResetId in the schema.
+        /// </summary>
+        public void cities_ResetId(int newId)
+        {
+            Collection<Int32> rv = new Collection<int>();
 
+            try
+            {
+                using (EntityConnection conn = new EntityConnection(this.Connection.ConnectionString))
+                {
+                    EntityCommand cmd = conn.CreateCommand();
+                    cmd.CommandText = string.Format("{0}.{1}", this.DefaultContainerName, "cities_ResetId");
+                    cmd.CommandType = CommandType.StoredProcedure;
 
+                    EntityParameter newIdParam = new EntityParameter("newId", DbType.Int32);
+                    newIdParam.Value = newId;
+                    cmd.Parameters.Add(newIdParam);
+
+                    if (conn.State != ConnectionState.Open)
+                    {
+                        conn.Open();
+                    }
+
+                    int count = cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// There are no comments for TerritoriesModel.departments_ResetId in the schema.
+        /// </summary>
+        public void departments_ResetId(int newId)
+        {
+            Collection<Int32> rv = new Collection<int>();
+
+            try
+            {
+                using (EntityConnection conn = new EntityConnection(this.Connection.ConnectionString))
+                {
+                    EntityCommand cmd = conn.CreateCommand();
+                    cmd.CommandText = string.Format("{0}.{1}", this.DefaultContainerName, "departments_ResetId");
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    EntityParameter newIdParam = new EntityParameter("newId", DbType.Int32);
+                    newIdParam.Value = newId;
+                    cmd.Parameters.Add(newIdParam);
+
+                    if (conn.State != ConnectionState.Open)
+                    {
+                        conn.Open();
+                    }
+
+                    int count = cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        /// <summary>
+        /// There are no comments for TerritoriesModel.territories_ResetId in the schema.
+        /// </summary>
+        public void territories_ResetId(int newId)
+        {
+            Collection<Int32> rv = new Collection<int>();
+
+            try
+            {
+                using (EntityConnection conn = new EntityConnection(this.Connection.ConnectionString))
+                {
+                    EntityCommand cmd = conn.CreateCommand();
+                    cmd.CommandText = string.Format("{0}.{1}", this.DefaultContainerName, "territories_ResetId");
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    EntityParameter newIdParam = new EntityParameter("id", DbType.Int32);
+                    newIdParam.Value = newId;
+                    cmd.Parameters.Add(newIdParam);
+
+                    if (conn.State != ConnectionState.Open)
+                    {
+                        conn.Open();
+                    }
+
+                    int count = cmd.ExecuteNonQuery();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         #endregion
 
     }

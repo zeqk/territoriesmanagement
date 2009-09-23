@@ -16,8 +16,7 @@ namespace Territories.GUI
     public partial class frmTerritories : Form
     {
         static private bool _opened = false;
-        private BLL.Territories server = new BLL.Territories();
-
+        private BLL.Territories _server = new BLL.Territories();
         private bool _isDirty;
 
         public frmTerritories()
@@ -36,14 +35,106 @@ namespace Territories.GUI
             schName.SetProperties(columns, variables);
             ConfigGrids();
 
-            LoadResults("");
+            ClearFilter();
         }
+
+        private void dgvResults_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvResults.SelectedRows.Count != 0)
+            {
+                var v = _server.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
+                ObjectToForm(v);
+                if (tabPanel.Visible)
+                    LoadRelations(v);
+
+                this._isDirty = false;
+            }
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+            this._isDirty = true;
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            New();
+        }
+        
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            this.Save();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            var v = FormToOject();
+            try
+            {
+                this._server.Delete(v.IdTerritory);
+
+                if (lblFiltered.Visible) Filter();
+                else ClearFilter();
+
+                ClearData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+        }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+            Filter();
+        }
+
+        private void btnClearFilter_Click(object sender, EventArgs e)
+        {
+            var v = FormToOject();
+            ClearFilter();
+            ObjectToForm(v);
+            _isDirty = false;
+            txtName.Focus();
+        }
+
+        private void btnRelations_Click(object sender, EventArgs e)
+        {
+            if (tabPanel.Visible == true)
+            {
+                tabPanel.Visible = false;
+                btnRelations.Text = "View relations";
+            }
+            else
+            {
+                if (lblId.Text != "0")
+                {
+                    tabPanel.Visible = true;
+                    btnRelations.Text = "Hide relations";
+
+                    LoadRelations((Territory)bsTerritory.DataSource);
+                }
+                else
+                    MessageBox.Show("You must select any territory");
+            }
+        }
+
+        private void frmTerritories_Shown(object sender, EventArgs e)
+        {
+            New();
+        }
+
+        private void frmTerritories_FormClosed_1(object sender, FormClosedEventArgs e)
+        {
+            _opened = false;
+        }
+
 
         private void LoadResults(string query)
         {
             try
             {
-                dgvResults.DataSource = this.server.Search(query);
+                dgvResults.DataSource = this._server.Search(query);
             }
             catch (Exception ex)
             {
@@ -107,19 +198,6 @@ namespace Territories.GUI
 
         }
 
-        private void dgvResults_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgvResults.SelectedRows.Count != 0)
-            {
-                var v = server.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
-                ObjectToForm(v);
-                if (tabPanel.Visible)
-                    LoadRelations(v);
-
-                this._isDirty = false;
-            }
-        }
-
         private Territory FormToOject()
         {
             Territory rv = (Territory)this.bsTerritory.DataSource;
@@ -131,24 +209,13 @@ namespace Territories.GUI
             this.bsTerritory.DataSource = v;
         }
 
-        private void ClearForm()
+        private void ClearData()
         {
-            dgvResults.ClearSelection();
-            var v = this.server.NewObject();
+            var v = this._server.NewObject();
             ObjectToForm(v);
             txtName.Focus();
             this._isDirty = false;
-        }
-
-        private void txtName_TextChanged(object sender, EventArgs e)
-        {
-            this._isDirty = true;
-        }
-
-        private void btnNew_Click(object sender, EventArgs e)
-        {
-            New();
-        }
+        }        
 
         private void New()
         {
@@ -161,24 +228,9 @@ namespace Territories.GUI
                 }
             if (yes)
             {
-                ClearForm();
-                try
-                {
-                    var v = this.server.NewObject();
-                    ObjectToForm(v);
-                    this._isDirty = false;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error");
-                }
+                ClearData();
             }
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            this.Save();
-        }
+        }        
 
         private void Save()
         {
@@ -188,11 +240,14 @@ namespace Territories.GUI
 
                 try
                 {
-                    v =this.server.Save(v);
+                    v =this._server.Save(v);
 
-                    LoadResults("");
-                    ClearForm();
-                    ObjectToForm(v);
+                    //traigo los datos
+                    if (lblFiltered.Visible) Filter();
+                    else ClearFilter();
+
+                    _isDirty = false;
+                    txtName.Focus();
                 }
                 catch (Exception ex)
                 {
@@ -204,32 +259,24 @@ namespace Territories.GUI
 
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private bool IsComplete()
         {
-            var v = FormToOject();
-            try
-            {
-                this.server.Delete(v.IdTerritory);
-                Filter();
-                ClearForm();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error");
-            }
-        }
+            bool rv = true;
+            if (string.IsNullOrEmpty(txtName.Text))
+                rv = false;
+            if (string.IsNullOrEmpty(txtNumber.Text))
+                rv = false;
 
-        private void btnFilter_Click(object sender, EventArgs e)
-        {
-            Filter();
+            return rv;
         }
 
         private void Filter()
         {
             try
             {
-                schName.MakeQuery();
+                var v = FormToOject();
 
+                schName.MakeQuery();
                 List<ObjectParameter> parameters = new List<ObjectParameter>();
                 string strQuery = "";
 
@@ -244,13 +291,15 @@ namespace Territories.GUI
 
                 if (!string.IsNullOrEmpty(strQuery))
                 {
-                    dgvResults.DataSource = this.server.Search(strQuery, parameters.ToArray<ObjectParameter>());
+                    dgvResults.DataSource = this._server.Search(strQuery, parameters.ToArray<ObjectParameter>());
                     lblFiltered.Visible = true;
                 }
                 else
                     MessageBox.Show("Debe llenar al menos 1 campo de búsqueda");
 
-                ClearForm();
+                dgvResults.ClearSelection();
+
+                ObjectToForm(v);
             }
             catch (Exception ex)
             {
@@ -260,38 +309,17 @@ namespace Territories.GUI
 
         }
 
-        private void btnClearFilter_Click(object sender, EventArgs e)
-        {            
+        private void ClearFilter()
+        {
             schName.Clear();
             LoadResults("");
             lblFiltered.Visible = false;
-            ClearForm();
-        }
-
-        private void btnRelations_Click(object sender, EventArgs e)
-        {
-            if (tabPanel.Visible == true)
-            {
-                tabPanel.Visible = false;
-                btnRelations.Text = "View relations";
-            }
-            else
-            {
-                if (lblId.Text != "0")
-                {
-                    tabPanel.Visible = true;
-                    btnRelations.Text = "Hide relations";
-
-                    LoadRelations((Territory)bsTerritory.DataSource);
-                }
-                else
-                    MessageBox.Show("You must select any territory");
-            }
-        }
+            dgvResults.ClearSelection();
+        }        
 
         private void LoadRelations(Territory v)
         {
-            IDictionary relations = this.server.LoadRelations(v.IdTerritory);
+            IDictionary relations = this._server.LoadRelations(v.IdTerritory);
             dgvAddresses.DataSource = relations["Addresses"];
             dgvAddresses.Refresh();
 
@@ -304,27 +332,7 @@ namespace Territories.GUI
 
         }
 
-        private void frmTerritories_Shown(object sender, EventArgs e)
-        {
-            New();
-        }
-
-        private bool IsComplete()
-        {
-            bool rv = true;
-            if (string.IsNullOrEmpty(txtName.Text))
-                rv = false;
-            if (string.IsNullOrEmpty(txtNumber.Text))
-                rv = false;
-
-            return rv;
-        }
-
-        private void frmTerritories_FormClosed_1(object sender, FormClosedEventArgs e)
-        {
-            _opened = false;
-        }
-
+        
 
     }
 }

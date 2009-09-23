@@ -31,7 +31,7 @@ namespace Territories.GUI.ImporterConfig
                 else
                     t = (Field)value;
 
-                string rv = t.Load.ToString();
+                string rv = t.Import.ToString();
 
                 return rv;
 

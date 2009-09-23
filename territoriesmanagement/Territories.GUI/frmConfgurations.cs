@@ -24,6 +24,29 @@ namespace Territories.GUI
                 Addresses server = new Addresses();
                 server.DeleteAll();                
             }
+
+            if (chkCities.Checked)
+            {
+                Cities server = new Cities();
+                server.DeleteAll();
+            }
+
+            if (chkDepartments.Checked)
+            {
+                Departments server = new Departments();
+                server.DeleteAll();
+            }
+
+            if (chkTours.Checked)
+            {
+                //TODO
+            }
+
+            if (chkTerritories.Checked)
+            {
+                BLL.Territories server = new BLL.Territories();
+                server.DeleteAll();
+            }
         }
     }
 }

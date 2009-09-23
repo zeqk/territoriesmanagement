@@ -64,7 +64,7 @@ namespace Territories.BLL
                 _dm.AddToCities(v);
                 _dm.SaveChanges();
 
-                return v;
+                return Load(v.IdCity); //devuelvo un objeto desatachado
             }
             catch (Exception e)
             {
@@ -167,7 +167,15 @@ namespace Territories.BLL
 
         public void DeleteAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                _dm.cities_DeleteAll();
+                _dm.cities_ResetId(0);
+            }
+            catch (Exception ex)
+            {                
+                throw ex;
+            }
         }
 
         #endregion
@@ -271,7 +279,9 @@ namespace Territories.BLL
             this._compiledSameCity = CompiledQuery.Compile
                 (
                     (TerritoriesDataContext dm,City v) => from city in dm.Cities
-                                where city.Name == v.Name && city.Department.IdDepartment != v.Department.IdDepartment
+                                where city.Name == v.Name && 
+                                      city.Department.IdDepartment == v.Department.IdDepartment &&
+                                      city.IdCity != v.IdCity
                                 select city
 
                 );
