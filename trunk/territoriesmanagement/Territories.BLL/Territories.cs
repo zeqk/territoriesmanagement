@@ -157,7 +157,16 @@ namespace Territories.BLL
 
         public void DeleteAll()
         {
-            throw new NotImplementedException();
+            try
+            {
+                _dm.territories_DeleteAll();
+                _dm.territories_ResetId(0);
+                    
+            }
+            catch (Exception ex)
+            {                
+                throw ex;
+            }
         }
 
         #endregion

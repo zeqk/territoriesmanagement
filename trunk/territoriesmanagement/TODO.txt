@@ -1,5 +1,9 @@
 TODO:
 
++hacer q funcione y busque con territorio null
++hacer q importe maps, y geoposición
+
+
 +probar importación 
 + porbar importacion de georss
 

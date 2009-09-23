@@ -14,7 +14,7 @@ namespace Territories.GUI.ImporterConfig
 
         private string _defaultValue;
 
-        private bool _load;
+        private bool _import;
         #endregion
 
         #region Contructors
@@ -23,9 +23,9 @@ namespace Territories.GUI.ImporterConfig
 
         }
 
-        public Field(bool load, string columnName)
+        public Field(bool import, string columnName)
         {
-            _load = load;
+            _import = import;
             _columnName = columnName;
         }
 
@@ -49,10 +49,10 @@ namespace Territories.GUI.ImporterConfig
             set { _defaultValue = value; }
         }
 
-        public bool Load
+        public bool Import
         {
-            get { return _load; }
-            set { _load = value; }
+            get { return _import; }
+            set { _import = value; }
         }
         #endregion
 

@@ -143,33 +143,33 @@ namespace Territories.GUI
                 _config.Provider = (Enumerators.Provider)cboProvider.SelectedItem;
                 _importer = new ImportTool();
                 _importer.Config.ConnectionString = _config.ConnectionString;
-                if (_config.Departments.Load)
+                if (_config.Departments.Import)
                 {
                     _importer.Config.Departments.TableName = _config.Departments.TableName;
 
-                    if (_config.Departments.Id.Load)
+                    if (_config.Departments.Id.Import)
                         _importer.Config.Departments.Fields.Add("IdDepartment", _config.Departments.Id.ColumnName);
 
-                    if (_config.Departments.Name.Load)
+                    if (_config.Departments.Name.Import)
                         _importer.Config.Departments.Fields.Add("Name", _config.Departments.Name.ColumnName);
                     
                 }
                 else
                     _importer.Config.Departments.Fields = new Dictionary<string, string>();
 
-                if (_config.Cities.Load)
+                if (_config.Cities.Import)
                 {
                     _importer.Config.Cities.TableName = _config.Cities.TableName;
 
-                    if (_config.Cities.Id.Load)
+                    if (_config.Cities.Id.Import)
                         _importer.Config.Cities.Fields.Add("IdCity", _config.Cities.Name.ColumnName);
 
-                    if (_config.Cities.Name.Load)
+                    if (_config.Cities.Name.Import)
                         _importer.Config.Cities.Fields.Add("Name", _config.Cities.Name.ColumnName);
 
                     //Department
                     //Si valor para el id del department se busca si existe valor para el nombre
-                    if (_config.Cities.DepartmentId.Load)
+                    if (_config.Cities.DepartmentId.Import)
                     {
                         if (!string.IsNullOrEmpty(_config.Cities.DepartmentId.ColumnName))
                             _importer.Config.Cities.Fields.Add("DepartmentId", _config.Cities.DepartmentId.ColumnName);
@@ -179,7 +179,7 @@ namespace Territories.GUI
                     }
                     else
                     {
-                        if (_config.Cities.DepartmentName.Load)
+                        if (_config.Cities.DepartmentName.Import)
                         {
                             if (!string.IsNullOrEmpty(_config.Cities.DepartmentName.ColumnName))
                                 _importer.Config.Cities.Fields.Add("DepartmentName", _config.Cities.DepartmentName.ColumnName);
@@ -195,49 +195,49 @@ namespace Territories.GUI
 
                 }
 
-                if (_config.Territories.Load)
+                if (_config.Territories.Import)
                 {
                     _importer.Config.Territories.TableName = _config.Territories.TableName;
 
-                    if (_config.Territories.Id.Load)
+                    if (_config.Territories.Id.Import)
                         _importer.Config.Territories.Fields.Add("IdTerritory", _config.Territories.Id.ColumnName);
 
-                    if (_config.Territories.Name.Load)
+                    if (_config.Territories.Name.Import)
                         _importer.Config.Territories.Fields.Add("Name", _config.Territories.Name.ColumnName);
                 }
                 else
                     _importer.Config.Territories.Fields = new Dictionary<string, string>();
 
-                if (_config.Addresses.Load)
+                if (_config.Addresses.Import)
                 {
                     _importer.Config.Addresses.TableName = _config.Addresses.TableName;
 
-                    if (_config.Addresses.Id.Load)
+                    if (_config.Addresses.Id.Import)
                         _importer.Config.Addresses.Fields.Add("IdAddress", _config.Addresses.Id.ColumnName);
 
-                    if (_config.Addresses.Street.Load)
+                    if (_config.Addresses.Street.Import)
                         _importer.Config.Addresses.Fields.Add("Street", _config.Addresses.Street.ColumnName);
 
-                    if (_config.Addresses.Number.Load)
+                    if (_config.Addresses.Number.Import)
                         _importer.Config.Addresses.Fields.Add("Number", _config.Addresses.Number.ColumnName);
 
-                    if (_config.Addresses.Corner1.Load)
+                    if (_config.Addresses.Corner1.Import)
                         _importer.Config.Addresses.Fields.Add("Corner1", _config.Addresses.Corner1.ColumnName);
 
-                    if (_config.Addresses.Corner2.Load)
+                    if (_config.Addresses.Corner2.Import)
                         _importer.Config.Addresses.Fields.Add("Corner2", _config.Addresses.Corner2.ColumnName);
 
-                    if (_config.Addresses.Phone1.Load)
+                    if (_config.Addresses.Phone1.Import)
                         _importer.Config.Addresses.Fields.Add("Phone1", _config.Addresses.Phone1.ColumnName);
 
-                    if (_config.Addresses.Phone2.Load)
+                    if (_config.Addresses.Phone2.Import)
                         _importer.Config.Addresses.Fields.Add("Phone2", _config.Addresses.Phone2.ColumnName);
 
-                    if (_config.Addresses.Description.Load)
+                    if (_config.Addresses.Description.Import)
                         _importer.Config.Addresses.Fields.Add("Description", _config.Addresses.Description.ColumnName);
 
                     //City
-                    if (_config.Addresses.CityId.Load)
+                    if (_config.Addresses.CityId.Import)
                     {
                         if (!string.IsNullOrEmpty(_config.Addresses.CityId.ColumnName))
                             _importer.Config.Addresses.Fields.Add("CityId", _config.Addresses.CityId.ColumnName);
@@ -247,7 +247,7 @@ namespace Territories.GUI
                     }
                     else
                     {
-                        if (_config.Addresses.CityName.Load)
+                        if (_config.Addresses.CityName.Import)
                         {
                             if (!string.IsNullOrEmpty(_config.Addresses.CityName.ColumnName))
                                 _importer.Config.Addresses.Fields.Add("CityName", _config.Addresses.CityName.ColumnName);
@@ -259,7 +259,7 @@ namespace Territories.GUI
 
 
                     //Territory
-                    if (_config.Addresses.TerritoryId.Load)
+                    if (_config.Addresses.TerritoryId.Import)
                     {
                         if (!string.IsNullOrEmpty(_config.Addresses.TerritoryId.ColumnName))
                             _importer.Config.Addresses.Fields.Add("TerritoryId", _config.Addresses.TerritoryId.ColumnName);
@@ -269,7 +269,7 @@ namespace Territories.GUI
                     }
                     else
                     {
-                        if (_config.Addresses.TerritoryName.Load)
+                        if (_config.Addresses.TerritoryName.Import)
                         {
                             if (!string.IsNullOrEmpty(_config.Addresses.TerritoryName.ColumnName))
                                 _importer.Config.Addresses.Fields.Add("TerritoryName", _config.Addresses.TerritoryName.ColumnName);

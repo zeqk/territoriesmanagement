@@ -29,21 +29,137 @@ namespace Territories.GUI
 
             ConfigGrids();
 
-            cboDepartment.DataSource = this._server.GetDepartments();
+            
             cboDepartment.DisplayMember = "Name";
             cboDepartment.ValueMember = "Id";
+            cboDepartment.DataSource = this._server.GetDepartments();
             cboDepartment.SelectedItem = null;
             
             cboCity.DisplayMember = "Name";
             cboCity.ValueMember = "Id";
             cboCity.SelectedItem = null;
-
-            cboTerritory.DataSource = _server.GetTerritories();
+            
             cboTerritory.DisplayMember = "Name";
             cboTerritory.ValueMember = "Id";
+            cboTerritory.DataSource = _server.GetTerritories();
             cboTerritory.SelectedItem = null;
 
-            
+
+        }
+
+        private void btnAll_Click(object sender, EventArgs e)
+        {
+            ClearFilter();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            Filter();
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            using (frmAddress myForm = new frmAddress(_server))
+            {
+                try
+                {
+                    var address = _server.NewObject();
+                    myForm.Address = address;
+
+                    myForm.ShowDialog();
+
+                    if (lblFiltered.Visible) Filter();
+                    else ClearFilter();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+
+
+            }
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (dgvResults.SelectedRows.Count != 0)
+            {
+                var v = _server.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
+
+                using (frmAddress myForm = new frmAddress(_server))
+                {
+                    try
+                    {
+                        myForm.Address = v;
+                        myForm.ShowDialog();
+
+                        if (lblFiltered.Visible) Filter();
+                        else ClearFilter();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+            }
+            else
+                MessageBox.Show("Select any address.");
+        }
+
+        private void fields_CheckedChanged(object sender, EventArgs e)
+        {
+            List<string> columns = new List<string>();
+            List<string> variables = new List<string>();
+
+            if (chkStreet.Checked)
+            {
+                columns.Add("Address.Street");
+                variables.Add("street");
+            }
+
+            if (chkCorners.Checked)
+            {
+                columns.Add("Address.Corner1");
+                variables.Add("corner1");
+                columns.Add("Address.Corner2");
+                variables.Add("corner2");
+            }
+
+            if (chkDescription.Checked)
+            {
+                columns.Add("Address.Description");
+                variables.Add("desc");
+            }
+            if (columns.Count > 0)
+            {
+                schStreet.SetProperties(columns.ToArray(), variables.ToArray());
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar al menos 1 campo donde buscar");
+                ((CheckBox)sender).Checked = true;
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (dgvResults.SelectedRows.Count != 0)
+            {
+                int idAddress = (int)dgvResults.SelectedRows[0].Cells["Id"].Value;
+                try
+                {
+                    _server.Delete(idAddress);
+
+                    if (lblFiltered.Visible) Filter();
+                    else ClearFilter();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "Error");
+                }
+            }
+
         }
 
         private void LoadResults(string query)
@@ -51,6 +167,7 @@ namespace Territories.GUI
             try
             {
                 dgvResults.DataSource = this._server.Search(query);
+                dgvResults.ClearSelection();
             }
             catch (Exception ex)
             {
@@ -95,16 +212,6 @@ namespace Territories.GUI
             dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvResults.MultiSelect = false;
 
-        }
-
-        private void btnAll_Click(object sender, EventArgs e)
-        {
-            ClearFilter();
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            Filter();
         }
 
         private void ClearFilter()
@@ -181,109 +288,37 @@ namespace Territories.GUI
             }  
         }
 
-        private void btnNew_Click(object sender, EventArgs e)
+        private void dgvResults_MouseClick(object sender, MouseEventArgs e)
         {
-            using (frmAddress myForm = new frmAddress(_server))
+            if (e.Button == MouseButtons.Right)
             {
-                try
-                {
-                    var address = _server.NewObject();
-                    myForm.Address = address;
-
-                    myForm.ShowDialog();
-
-                    if (lblFiltered.Visible) Filter();
-                    else ClearFilter();
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }               
-
-                
+                ctxMenu.Show(dgvResults, e.Location);
             }
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            if (dgvResults.SelectedRows.Count != 0)
-            {
-                var v = _server.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
-
-                using (frmAddress myForm = new frmAddress(_server))
-                {
-                    try
-                    {
-                        myForm.Address = v;
-                        myForm.ShowDialog();
-
-                        if (lblFiltered.Visible) Filter();
-                        else ClearFilter();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-                }
-            }
-            else
-                MessageBox.Show("Select any address.");
-        }
-
-        private void fields_CheckedChanged(object sender, EventArgs e)
-        {
-            List<string> columns = new List<string>();
-            List<string> variables = new List<string>();
-
-            if (chkStreet.Checked)
-            {
-                columns.Add("Address.Street");
-                variables.Add("street");
-            }
-
-            if (chkCorners.Checked)
-            {
-                columns.Add("Address.Corner1");
-                variables.Add("corner1");
-                columns.Add("Address.Corner2");
-                variables.Add("corner2");
-            }
-
-            if (chkDescription.Checked)
-            {
-                columns.Add("Address.Description");
-                variables.Add("desc");
-            }
-            if (columns.Count>0)
-            {
-                schStreet.SetProperties(columns.ToArray(), variables.ToArray());
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar al menos 1 campo donde buscar");
-                ((CheckBox)sender).Checked = true;
-            }
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void copyGoogleMapsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (dgvResults.SelectedRows.Count!=0)
             {
-                int idAddress = (int)dgvResults.SelectedRows[0].Cells["Id"].Value;
-                try
-                {
-                    _server.Delete(idAddress);
+                DataGridViewRow row = dgvResults.SelectedRows[0];
 
-                    if (lblFiltered.Visible) Filter();
-                    else ClearFilter();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error");
-                }
+                string text = row.Cells["Address"].Value.ToString() + ", " + 
+                    row.Cells["CityName"].Value.ToString() + ", " + 
+                    row.Cells["DepartmentName"].Value.ToString();
+
+                Clipboard.SetText(text);
             }
-            
+        }
+
+        private void cboDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboDepartment.SelectedItem!=null)
+	        {
+    	         int idDepartment = (int)cboDepartment.SelectedValue;
+                 cboCity.DataSource = this._server.GetCitiesByDepartment(idDepartment);
+                 cboCity.SelectedItem = null;
+	        }
+           
         }
     }
 }

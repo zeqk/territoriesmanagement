@@ -32,7 +32,7 @@ namespace Territories.GUI.ImporterConfig
                 else
                     t = (AddressesTable)value;
 
-                string rv = t.Load.ToString();
+                string rv = t.Import.ToString();
 
                 return rv;
 

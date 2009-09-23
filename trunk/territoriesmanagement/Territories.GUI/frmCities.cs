@@ -12,7 +12,6 @@ using Territories.Model;
 using Territories.BLL;
 using My.Internationalization;
 
-
 namespace Territories.GUI
 {
     public partial class frmCities : Form
@@ -20,8 +19,6 @@ namespace Territories.GUI
         static private bool _opened = false;
         private Cities _server = new Cities();
         private Globalization _gl;
-
-
         private bool _isDirty;
 
         public frmCities()
@@ -30,7 +27,6 @@ namespace Territories.GUI
                 throw new Exception("The window is already opened.");
             else
                 _opened = true;
-            this.
             InitializeComponent();
             Internationalize();
         }
@@ -45,15 +41,114 @@ namespace Territories.GUI
             cboDepartment.DataSource = this._server.GetDepartments();
             cboDepartment.DisplayMember = "Name";
             cboDepartment.ValueMember = "Id";
-            cboDepartment.SelectedItem = null;
 
             cboFilterDepartment.DataSource = this._server.GetDepartments();
             cboFilterDepartment.DisplayMember = "Name";
             cboFilterDepartment.ValueMember = "Id";
             cboFilterDepartment.SelectedItem = null;
 
-            LoadResults("");
+            _isDirty = false; //porque al cargar los datos del combo el isDirty sepone en true
+            ClearFilter();
         }
+
+        private void dgvResults_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvResults.SelectedRows.Count != 0)
+            {
+                var v = _server.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
+                ObjectToForm(v);
+                if (tabPanel.Visible)
+                    LoadRelations(v);
+
+                this._isDirty = false;
+            }
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+            this._isDirty = true;
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            New();
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            this.Save();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            var v = FormToOject();
+            try
+            {
+                this._server.Delete(v.IdCity);
+
+                //traigo los datos actualizados
+                if (lblFiltered.Visible) Filter();
+                else ClearFilter();
+
+                //limpio el formulario
+                ClearData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+        }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+            Filter();
+        }
+
+        private void btnClearFilter_Click(object sender, EventArgs e)
+        {
+            var v = FormToOject();
+            ClearFilter();
+            ObjectToForm(v);
+            _isDirty = false;
+            txtName.Focus();
+        }
+
+        private void btnRelations_Click(object sender, EventArgs e)
+        {
+            if (tabPanel.Visible == true)
+            {
+                tabPanel.Visible = false;
+                btnRelations.Text = "View relations";
+            }
+            else
+            {
+                if (lblId.Text != "0")
+                {
+                    tabPanel.Visible = true;
+                    btnRelations.Text = "Hide relations";
+
+                    LoadRelations((City)bsCity.DataSource);
+                }
+                else
+                    MessageBox.Show("You must select any city");
+            }
+        }
+
+        private void frmCities_Shown(object sender, EventArgs e)
+        {
+            New();
+        }
+
+        private void frmCities_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _opened = false;
+        }
+
+        private void cboDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _isDirty = true;
+        }
+
 
         private void LoadResults(string query)
         {
@@ -118,19 +213,6 @@ namespace Territories.GUI
 
         }
 
-        private void dgvResults_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgvResults.SelectedRows.Count != 0)
-            {
-                var v = _server.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
-                ObjectToForm(v);
-                if (tabPanel.Visible)
-                    LoadRelations(v);
-
-                this._isDirty = false;
-            }
-        }
-
         private City FormToOject()
         {
             City rv = (City)this.bsCity.DataSource;
@@ -151,23 +233,12 @@ namespace Territories.GUI
                 this.cboDepartment.SelectedItem = null;
         }
 
-        private void ClearForm()
-        {
-            dgvResults.ClearSelection();
+        private void ClearData()
+        {            
             var v = this._server.NewObject();
             ObjectToForm(v);
             txtName.Focus();
             this._isDirty = false;
-        }
-
-        private void txtName_TextChanged(object sender, EventArgs e)
-        {
-            this._isDirty = true;
-        }
-
-        private void btnNew_Click(object sender, EventArgs e)
-        {
-            New();
         }
 
         private void New()
@@ -181,23 +252,8 @@ namespace Territories.GUI
                 }
             if (yes)
             {
-                ClearForm();
-                try
-                {
-                    var v = this._server.NewObject();
-                    ObjectToForm(v);
-                    this._isDirty = false;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, "Error");
-                }
+                ClearData();
             }
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            this.Save();
         }
 
         private void Save()
@@ -214,11 +270,8 @@ namespace Territories.GUI
                     if (lblFiltered.Visible) Filter();
                     else ClearFilter();
 
-                    //limpio el formulario
-                    ClearForm();
-
-                    //muestro el mismo objeto
-                    ObjectToForm(v);
+                    _isDirty = false;
+                    txtName.Focus();
                 }
                 catch (Exception ex)
                 {
@@ -230,29 +283,15 @@ namespace Territories.GUI
 
         }
 
-        private void btnDelete_Click(object sender, EventArgs e)
+        private bool IsComplete()
         {
-            var v = FormToOject();
-            try
-            {
-                this._server.Delete(v.IdCity);
+            bool rv = true;
+            if (txtName.Text == "")
+                rv = false;
+            if (cboDepartment.SelectedValue == null)
+                rv = false;
 
-                //traigo los datos actualizados
-                if (lblFiltered.Visible) Filter();
-                else ClearFilter();
-                
-                //limpio el formulario
-                ClearForm();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error");
-            }
-        }
-
-        private void btnFilter_Click(object sender, EventArgs e)
-        {
-            Filter();
+            return rv;
         }
 
         private void Filter()
@@ -262,7 +301,6 @@ namespace Territories.GUI
                 var v = FormToOject();
 
                 schName.MakeQuery();
-
                 List<ObjectParameter> parameters = new List<ObjectParameter>();
                 string strQuery = "";
 
@@ -306,15 +344,6 @@ namespace Territories.GUI
 
         }
 
-        private void btnClearFilter_Click(object sender, EventArgs e)
-        {
-            var v = FormToOject();
-            ClearFilter();
-            ClearForm();
-
-            ObjectToForm(v);
-        }
-
         private void ClearFilter()
         {
             cboFilterDepartment.SelectedItem = null;
@@ -322,28 +351,7 @@ namespace Territories.GUI
             LoadResults("");
             lblFiltered.Visible = false;
             dgvResults.ClearSelection();
-        }
-
-        private void btnRelations_Click(object sender, EventArgs e)
-        {
-            if (tabPanel.Visible == true)
-            {
-                tabPanel.Visible = false;
-                btnRelations.Text = "View relations";
-            }
-            else
-            {
-                if (lblId.Text != "0")
-                {
-                    tabPanel.Visible = true;
-                    btnRelations.Text = "Hide relations";
-
-                    LoadRelations((City)bsCity.DataSource);
-                }
-                else
-                    MessageBox.Show("You must select any city");
-            }
-        }
+        }        
 
         private void LoadRelations(City v)
         {
@@ -359,33 +367,6 @@ namespace Territories.GUI
             dgvPublishers.RowHeadersVisible = false;
 
         }
-
-        private void frmCities_Shown(object sender, EventArgs e)
-        {
-            New();
-        }
-
-        private bool IsComplete()
-        {
-            bool rv = true;
-            if (txtName.Text == "")
-                rv = false;
-            if (cboDepartment.SelectedValue == null)
-                rv = false;
-
-            return rv;
-        }
-
-        private void frmCities_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            _opened = false;
-        }
-
-        private void cboDepartment_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            _isDirty = true;
-        }
-
 
         private void Internationalize()
         {
