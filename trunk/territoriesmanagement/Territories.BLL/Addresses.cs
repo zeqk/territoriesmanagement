@@ -63,7 +63,8 @@ namespace Territories.BLL
                 v.Territory = null;
 
                 v.CityReference.EntityKey = new EntityKey("TerritoriesDataContext.Cities", "IdCity", idCity);                
-                v.TerritoryReference.EntityKey = new EntityKey("TerritoriesDataContext.Territories", "IdTerritory", idTerritory);
+                if(idTerritory!=0)
+                    v.TerritoryReference.EntityKey = new EntityKey("TerritoriesDataContext.Territories", "IdTerritory", idTerritory);
 
                 _dm.AddToAddresses(v);
                 _dm.SaveChanges();
@@ -150,7 +151,7 @@ namespace Territories.BLL
 
                 if (!string.IsNullOrEmpty(strCriteria))
                     strQuery += " WHERE " + strCriteria;
-
+                
                 var query = _dm.CreateQuery<Address>(strQuery, parameters).Include("City"); ;
                 objectResults = query.Execute(MergeOption.AppendOnly);
                 var results = from a in objectResults
@@ -160,7 +161,7 @@ namespace Territories.BLL
                                   Id = a.IdAddresses,
                                   DepartmentName = a.City.Department.Name,
                                   CityName = a.City.Name,
-                                  Territory = a.Territory.Number+ " - " + a.Territory.Name,
+                                  Territory = GetTerritoryStr(a.Territory),
                                   Address = a.Street + " " + a.Number,
                                   Corner1 = a.Corner1,
                                   Corner2 = a.Corner2,
@@ -173,6 +174,16 @@ namespace Territories.BLL
                 
                 throw ex;
             }
+        }
+
+        private string GetTerritoryStr(Territory t)
+        {
+            string rv = "";
+
+            if (t != null)
+                rv = t.Number + " - " + t.Name;
+
+            return rv;
         }
 
         public Address NewObject()
@@ -213,13 +224,13 @@ namespace Territories.BLL
                 rv = false;
             }
 
-            if (v.Territory == null || v.Territory.IdTerritory == 0)
-            {
-                if (!rv)
-                    message += "\n";
-                message += "Select any territory.";
-                rv = false;
-            }
+            //if (v.Territory == null || v.Territory.IdTerritory == 0)
+            //{
+            //    if (!rv)
+            //        message += "\n";
+            //    message += "Select any territory.";
+            //    rv = false;
+            //}
 
             if (v.City == null || v.City.IdCity == 0)
             {
@@ -297,7 +308,10 @@ namespace Territories.BLL
                 var results = from t in objectResults
                               orderby t.Name
                               select new { Id = t.IdTerritory, Name = t.Number + " - " + t.Name };
-                return results.ToList();
+
+                var rv = results.ToList();
+                rv.Add(new { Id = 0, Name = "(no territory)" });
+                return rv;
             }
             catch (Exception ex)
             {

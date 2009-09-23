@@ -1,6 +1,6 @@
 ﻿namespace Territories.GUI
 {
-    partial class frmConfgurations
+    partial class frmConfig
     {
         /// <summary>
         /// Required designer variable.

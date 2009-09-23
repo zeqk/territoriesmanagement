@@ -133,11 +133,12 @@
             // 
             this.lblFiltered.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFiltered.AutoSize = true;
-            this.lblFiltered.Location = new System.Drawing.Point(743, 147);
+            this.lblFiltered.Location = new System.Drawing.Point(792, 147);
             this.lblFiltered.Name = "lblFiltered";
             this.lblFiltered.Size = new System.Drawing.Size(41, 13);
             this.lblFiltered.TabIndex = 57;
             this.lblFiltered.Text = "Filtered";
+            this.lblFiltered.Visible = false;
             // 
             // lblResults
             // 
@@ -296,12 +297,12 @@
             this.ctxMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyGoogleMapsToolStripMenuItem});
             this.ctxMenu.Name = "ctxMenu";
-            this.ctxMenu.Size = new System.Drawing.Size(184, 26);
+            this.ctxMenu.Size = new System.Drawing.Size(172, 26);
             // 
             // copyGoogleMapsToolStripMenuItem
             // 
             this.copyGoogleMapsToolStripMenuItem.Name = "copyGoogleMapsToolStripMenuItem";
-            this.copyGoogleMapsToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.copyGoogleMapsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.copyGoogleMapsToolStripMenuItem.Text = "Copy (Google Maps)";
             this.copyGoogleMapsToolStripMenuItem.Click += new System.EventHandler(this.copyGoogleMapsToolStripMenuItem_Click);
             // 
@@ -312,8 +313,8 @@
             this.ClientSize = new System.Drawing.Size(938, 524);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.lblFiltered);
             this.Controls.Add(this.lblResults);
+            this.Controls.Add(this.lblFiltered);
             this.Controls.Add(this.dgvResults);
             this.Controls.Add(this.btnAll);
             this.Controls.Add(this.btnSearch);

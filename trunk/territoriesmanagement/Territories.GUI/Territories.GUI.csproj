@@ -121,11 +121,11 @@
     <Compile Include="frmCities.Designer.cs">
       <DependentUpon>frmCities.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmConfgurations.cs">
+    <Compile Include="frmConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmConfgurations.Designer.cs">
-      <DependentUpon>frmConfgurations.cs</DependentUpon>
+    <Compile Include="frmConfig.Designer.cs">
+      <DependentUpon>frmConfig.cs</DependentUpon>
     </Compile>
     <Compile Include="frmDeparments.cs">
       <SubType>Form</SubType>
@@ -179,8 +179,8 @@
     <EmbeddedResource Include="frmCities.resx">
       <DependentUpon>frmCities.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmConfgurations.resx">
-      <DependentUpon>frmConfgurations.cs</DependentUpon>
+    <EmbeddedResource Include="frmConfig.resx">
+      <DependentUpon>frmConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDeparments.resx">
       <DependentUpon>frmDeparments.cs</DependentUpon>

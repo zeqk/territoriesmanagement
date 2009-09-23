@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.grpMaps = new System.Windows.Forms.GroupBox();
             this.grpGeoLocation = new System.Windows.Forms.GroupBox();
+            this.chkHaveGeoPos = new System.Windows.Forms.CheckBox();
             this.lblLon = new System.Windows.Forms.Label();
             this.lblLat = new System.Windows.Forms.Label();
             this.txtLon = new System.Windows.Forms.TextBox();
@@ -69,7 +70,7 @@
             this.grpTerritory = new System.Windows.Forms.GroupBox();
             this.cboTerritory = new System.Windows.Forms.ComboBox();
             this.grpAdditional = new System.Windows.Forms.GroupBox();
-            this.chkHaveGeoPos = new System.Windows.Forms.CheckBox();
+            this.txtId = new System.Windows.Forms.TextBox();
             this.grpMaps.SuspendLayout();
             this.grpGeoLocation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsAddress)).BeginInit();
@@ -81,6 +82,7 @@
             // 
             // grpMaps
             // 
+            this.grpMaps.Controls.Add(this.txtId);
             this.grpMaps.Controls.Add(this.grpGeoLocation);
             this.grpMaps.Controls.Add(this.lblMap2);
             this.grpMaps.Controls.Add(this.txtMap2);
@@ -106,6 +108,17 @@
             this.grpGeoLocation.TabIndex = 4;
             this.grpGeoLocation.TabStop = false;
             this.grpGeoLocation.Text = "Geo location";
+            // 
+            // chkHaveGeoPos
+            // 
+            this.chkHaveGeoPos.AutoSize = true;
+            this.chkHaveGeoPos.Location = new System.Drawing.Point(189, 17);
+            this.chkHaveGeoPos.Name = "chkHaveGeoPos";
+            this.chkHaveGeoPos.Size = new System.Drawing.Size(109, 17);
+            this.chkHaveGeoPos.TabIndex = 4;
+            this.chkHaveGeoPos.Text = "Have geoposition";
+            this.chkHaveGeoPos.UseVisualStyleBackColor = true;
+            this.chkHaveGeoPos.CheckedChanged += new System.EventHandler(this.chkHaveGeoPos_CheckedChanged);
             // 
             // lblLon
             // 
@@ -473,16 +486,15 @@
             this.grpAdditional.TabStop = false;
             this.grpAdditional.Text = "Additional data";
             // 
-            // chkHaveGeoPos
+            // txtId
             // 
-            this.chkHaveGeoPos.AutoSize = true;
-            this.chkHaveGeoPos.Location = new System.Drawing.Point(189, 17);
-            this.chkHaveGeoPos.Name = "chkHaveGeoPos";
-            this.chkHaveGeoPos.Size = new System.Drawing.Size(109, 17);
-            this.chkHaveGeoPos.TabIndex = 4;
-            this.chkHaveGeoPos.Text = "Have geoposition";
-            this.chkHaveGeoPos.UseVisualStyleBackColor = true;
-            this.chkHaveGeoPos.CheckedChanged += new System.EventHandler(this.chkHaveGeoPos_CheckedChanged);
+            this.txtId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "IdAddresses", true));
+            this.txtId.Location = new System.Drawing.Point(249, 0);
+            this.txtId.MaxLength = 50;
+            this.txtId.Name = "txtId";
+            this.txtId.ReadOnly = true;
+            this.txtId.Size = new System.Drawing.Size(100, 20);
+            this.txtId.TabIndex = 50;
             // 
             // frmAddress
             // 
@@ -558,6 +570,7 @@
         private System.Windows.Forms.ComboBox cboTerritory;
         private System.Windows.Forms.GroupBox grpAdditional;
         private System.Windows.Forms.CheckBox chkHaveGeoPos;
+        private System.Windows.Forms.TextBox txtId;
 
 
     }

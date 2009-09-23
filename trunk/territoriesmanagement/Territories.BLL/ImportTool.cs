@@ -74,7 +74,7 @@ namespace Territories.BLL
                             importationMessage += "\n" + count + " departments has been imported.\n";
                             if (ds.Tables[departments].Rows.Count>count)
                             {
-                                //TODO
+                                importationMessage += "Some departments has not been imported successfully.\n";
                             }
                         }
                         else
@@ -88,7 +88,13 @@ namespace Territories.BLL
                         int count = AddCities(ds.Tables[cities]);
                         citiesImported = count > 0;
                         if (citiesImported)
+                        {
                             importationMessage += "\n" + count + " cities has been imported.\n";
+                            if (ds.Tables[cities].Rows.Count > count)
+                            {
+                                importationMessage += "Some cities has not been imported successfully.\n";
+                            }
+                        }
                         else
                             importationMessage += "\nNo city has been imported.\n";
                     }
@@ -100,7 +106,13 @@ namespace Territories.BLL
                         int count = AddTerritories(ds.Tables[territories]);
                         territoriesImported = count > 0;
                         if (territoriesImported)
+                        {
                             importationMessage += "\n" + count + " territories has been imported.\n";
+                            if (ds.Tables[territories].Rows.Count > count)
+                            {
+                                importationMessage += "Some territories has not been imported successfully.\n";
+                            }
+                        }
                         else
                             importationMessage += "\nNo territory has been imported.\n";
                     }
@@ -112,7 +124,13 @@ namespace Territories.BLL
                         int count = AddAddresses(ds.Tables[addresses]);
                         addressesImported =  count > 0;
                         if (addressesImported)
+                        {
                             importationMessage += "\n" + count + " addresses has been imported.\n";
+                            if (ds.Tables[addresses].Rows.Count > count)
+                            {
+                                importationMessage += "Some addresses has not been imported successfully.\n";
+                            }
+                        }
                         else
                             importationMessage += "\nNo address has been imported.\n";
                     }

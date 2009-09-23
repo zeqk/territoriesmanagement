@@ -29,9 +29,15 @@ namespace Territories.GUI.ImporterConfig
 
         private Field _customField1;
 
+        private Field _customField2;
+
         private Field _phone1;
 
         private Field _phone2;
+
+        private Field _map1;
+
+        private Field _map2;
 
         private Field _geoPosition;
 
@@ -54,8 +60,11 @@ namespace Territories.GUI.ImporterConfig
             _corner2 = new Field("ESQUINA2");
             _description = new Field("DESCRIPCION");
             _customField1 = new Field("OTRO");
+            _customField2 = new Field("OTRO2");
             _phone1 = new Field("TELEFONO1");
             _phone2 = new Field("TELEFONO2");
+            _map1 = new Field("MAPA1");
+            _map2 = new Field("MAPA2");
             _geoPosition = new Field("GEOPOSICION");
             _territoryName = new Field("TERRITORIO");
             _territoryId = new Field("IDTERRITORIO");
@@ -117,6 +126,12 @@ namespace Territories.GUI.ImporterConfig
             set { _customField1 = value; }
         }
 
+        public Field CustomField2
+        {
+            get { return _customField2; }
+            set { _customField2 = value; }
+        }
+
         public Field Phone2
         {
             get { return _phone2; }
@@ -127,6 +142,18 @@ namespace Territories.GUI.ImporterConfig
         {
             get { return _phone1; }
             set { _phone1 = value; }
+        }
+
+        public Field Map1
+        {
+            get { return _map1; }
+            set { _map1 = value; }
+        }
+
+        public Field Map2
+        {
+            get { return _map2; }
+            set { _map2 = value; }
         }
 
         public Field GeoPosition
