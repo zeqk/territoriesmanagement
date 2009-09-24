@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using My;
 
 namespace Territories.Interop
 {
@@ -27,18 +26,18 @@ namespace Territories.Interop
         }
 
 
-        public Importer(Enumerators.Provider provider)
+        public Importer(Provider provider)
         {
             switch (provider)
             {
-                case Enumerators.Provider.MSExcel:
+                case Provider.MSExcel:
                     _importer = new ExcelImporter();
                     break;
-                case Enumerators.Provider.MSAcces:
+                case Provider.MSAcces:
                     break;
-                case Enumerators.Provider.Oracle:
+                case Provider.Oracle:
                     break;
-                case Enumerators.Provider.SQLServer:
+                case Provider.SQLServer:
                     break;
                 default:
                     break;

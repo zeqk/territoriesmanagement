@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using My;
+using Territories.Interop;
 
 namespace Territories.BLL
 {
@@ -10,7 +10,7 @@ namespace Territories.BLL
     public class ImporterConfig
     {
         #region Fields
-        private Enumerators.Provider _provider;
+        private Provider _provider;
         private string _connectionString;	
 
         private ImportTable _departments;
@@ -19,7 +19,7 @@ namespace Territories.BLL
         private ImportTable _addresses;
 
         #endregion
-
+        
         #region Constructors
         public ImporterConfig()
         {
@@ -33,7 +33,7 @@ namespace Territories.BLL
 
         #region Properties
 
-        public Enumerators.Provider Provider
+        public Provider Provider
         {
             get { return _provider; }
             set { _provider = value; }

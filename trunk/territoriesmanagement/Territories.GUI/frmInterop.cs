@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-using My;
 using Territories.BLL;
 using Territories.GUI;
 using Territories.GUI.ImporterConfig;
@@ -84,7 +83,7 @@ namespace Territories.GUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error");
             }            
         }        
 

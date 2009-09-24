@@ -5,7 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using System.IO;
 using System.Xml.Serialization;
-using My;
+using Territories.
 
 namespace Territories.GUI.ImporterConfig
 {
@@ -15,7 +15,7 @@ namespace Territories.GUI.ImporterConfig
 
         #region Fields
 
-        private Enumerators.Provider _provider;
+        private Provider _provider;
 
         private string _connectionString;
 
