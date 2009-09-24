@@ -113,6 +113,18 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="ZeqkTools.Controls, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\ZeqkTools.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="ZeqkTools.Internationalization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\ZeqkTools.Internationalization.dll</HintPath>
+    </Reference>
+    <Reference Include="ZeqkTools.Queries, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\ZeqkTools.Queries.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="frmCities.cs">
@@ -227,18 +239,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\My.Enums\My.csproj">
-      <Project>{37B58754-D6D4-4A68-9870-D5B432B1E81E}</Project>
-      <Name>My</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\My.Internationalization\My.Internationalization.csproj">
-      <Project>{4EB50090-2657-42C9-9243-6909678424E0}</Project>
-      <Name>My.Internationalization</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MyControls\My.Controls.csproj">
-      <Project>{10B0ABBC-894E-4890-8988-18C4BA8A05BE}</Project>
-      <Name>My.Controls</Name>
-    </ProjectReference>
     <ProjectReference Include="..\territories.bll\Territories.BLL.csproj">
       <Project>{2AF8144A-682F-4B8E-A3CF-4FD77816AD78}</Project>
       <Name>Territories.BLL</Name>

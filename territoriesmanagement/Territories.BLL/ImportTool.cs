@@ -9,7 +9,7 @@ using System.Data.EntityClient;
 using System.IO;
 using Territories.Model;
 using Territories.Interop;
-using My;
+using ZeqkTools;
 
 namespace Territories.BLL
 {    
@@ -32,9 +32,9 @@ namespace Territories.BLL
 
         public ImportTool()
 	    {
-            
+            _log = "";
             _dm = new TerritoriesDataContext();
-            _importer = new Interop.Importer(Enumerators.Provider.MSExcel);
+            _importer = new Interop.Importer(Provider.MSExcel);
             _config = new ImporterConfig();
 	    }
 
@@ -163,22 +163,21 @@ namespace Territories.BLL
                     int count = 0;
                     foreach (DataRow row in dt.Rows)
                     {
-
-                        Department v = DataRowToDepartment(row);
-
-                        if (DepartmentIsValid(v, ref message))
-                        {
-                            if (!_config.Departments.Fields.ContainsKey("IdDepartment"))
+                        Department v;
+                        if(DataRowToDepartment(row,out v,ref message))
+                            if (DepartmentIsValid(v, ref message))
                             {
-                                _dm.AddToDepartments(v);
-                                count++;
+                                if (!_config.Departments.Fields.ContainsKey("IdDepartment"))
+                                {
+                                    _dm.AddToDepartments(v);
+                                    count++;
+                                }
+                                else
+                                {
+                                    _dm.departments_AddWithPK(v);
+                                    count++;
+                                }
                             }
-                            else
-                            {
-                                _dm.departments_AddWithPK(v);
-                                count++;
-                            }
-                        }
                     }
                     _dm.SaveChanges();
                     rv = count;
@@ -207,20 +206,21 @@ namespace Territories.BLL
                 foreach (DataRow row in dt.Rows)
                 {
                     
-                    City v = DataRowToCity(row);
-                    if (CityIsValid(v, ref message))
-                    {
-                        if (!_config.Cities.Fields.ContainsKey("IdCity"))
+                    City v;
+                    if(DataRowToCity(row,out v, ref message))
+                        if (CityIsValid(v, ref message))
                         {
-                            _dm.AddToCities(v);
-                            count++;
+                            if (!_config.Cities.Fields.ContainsKey("IdCity"))
+                            {
+                                _dm.AddToCities(v);
+                                count++;
+                            }
+                            else
+                            {
+                                _dm.cities_AddWithPK(v);
+                                count++;
+                            }
                         }
-                        else
-                        {
-                            _dm.cities_AddWithPK(v);
-                            count++;
-                        }
-                    }
                 }
                 _dm.SaveChanges();
                 rv = count;
@@ -246,20 +246,21 @@ namespace Territories.BLL
                 int count = 0;
                 foreach (DataRow row in dt.Rows)
                 {
-                    Territory v = DataRowToTerritory(row);
-                    if (TerritoryIsValid(v, ref message))
-                    {
-                        if (!_config.Territories.Fields.ContainsKey("IdTerritory"))
+                    Territory v; 
+                    if(DataRowToTerritory(row,out v,ref message))
+                        if (TerritoryIsValid(v, ref message))
                         {
-                            _dm.AddToTerritories(v);
-                            count++;
+                            if (!_config.Territories.Fields.ContainsKey("IdTerritory"))
+                            {
+                                _dm.AddToTerritories(v);
+                                count++;
+                            }
+                            else
+                            {
+                                _dm.territories_AddWithPK(v);
+                                count++;
+                            }
                         }
-                        else
-                        {
-                            _dm.territories_AddWithPK(v);
-                            count++;
-                        }
-                    }
                 }
                 _dm.SaveChanges();
                 rv = count;
@@ -287,26 +288,22 @@ namespace Territories.BLL
                 int count = 0;
                 foreach (DataRow row in dt.Rows)
                 {
-                    r = row;
-                    if (row[0].ToString() == "ABRAHAM MENDELEVICH (835)")
-                    {
-                        Console.WriteLine();
-                    }
-                    Address v = DataRowToAddress(row);
-                    v2 = v;
-                    if (AddressIsValid(v, ref message))
-                    {
-                        if (!_config.Addresses.Fields.ContainsKey("IdAddress"))
+                    Address v;
+                    if(DataRowToAddress(row,out v,ref message))
+                        v2 = v;
+                        if (AddressIsValid(v, ref message))
                         {
-                            _dm.AddToAddresses(v);
-                            count++;
+                            if (!_config.Addresses.Fields.ContainsKey("IdAddress"))
+                            {
+                                _dm.AddToAddresses(v);
+                                count++;
+                            }
+                            else
+                            {
+                                _dm.addresses_AddWithPK(v);
+                                count++;
+                            }
                         }
-                        else
-                        {
-                            _dm.addresses_AddWithPK(v);
-                            count++;
-                        }
-                    }
                 }
                 _dm.SaveChanges();
                 rv = count;
@@ -328,265 +325,288 @@ namespace Territories.BLL
         #region DataRowToEntity Methods
 
 
-        private Department DataRowToDepartment(DataRow row)
+        private bool DataRowToDepartment(DataRow row, out Department dep, ref string errorMsg)
         {
-            Department rv = new Department();
-            //Department.IdDepartment
+            bool rv = true;
+            dep = new Department();
+            try
+            {
+                //Department.IdDepartment
+                if (_config.Departments.Fields.ContainsKey("IdDepartment"))
+                {
+                    string idColumn = _config.Departments.Fields["IdDepartment"];
+                    dep.IdDepartment = int.Parse(row[idColumn].ToString());                    
+                }
+                //
+                //Department.Name
+                if (_config.Departments.Fields.ContainsKey("Name"))
+                {
+                    string nameColumn = _config.Departments.Fields["Name"];
+                    dep.Name = row[nameColumn].ToString();
+                }
+                //
+            }
+            catch (Exception)
+            {
+                rv = false;
+                int index = row.Table.Rows.IndexOf(row);
+                errorMsg += "\n-Conversion error. (Row values: " + RowToStr(row) +")";
+            }
             
-            if (_config.Departments.Fields.ContainsKey("IdDepartment"))
-            {
-                string idColumn = _config.Departments.Fields["IdDepartment"];
-                int id = 0;
-                if (int.TryParse(row[idColumn].ToString(), out id))
-                    rv.IdDepartment = id;
-            }
-            //
-            //Department.Name
-            string name = "";
-            if (_config.Departments.Fields.ContainsKey("Name"))
-            {
-                string nameColumn = _config.Departments.Fields["Name"];
-                name= row[nameColumn].ToString();
-            }
-            rv.Name = name;
-            //
             return rv;
         }
 
-        private City DataRowToCity(DataRow row)
+        private bool DataRowToCity(DataRow row, out City c, ref string errorMsg)
         {
-            City rv = new City();
-            //City.IdCity
-            if (_config.Cities.Fields.ContainsKey("IdCity"))
-            {
-                string idColumn = _config.Cities.Fields["IdCity"];
-                int id = 0;
-                if (int.TryParse(row[idColumn].ToString(), out id))
-                    rv.IdCity = id;
-            }
-            //
-            //City.Name
-            string name = "";
-            if (_config.Cities.Fields.ContainsKey("Name"))
-            {
-                string nameColumn = _config.Cities.Fields["Name"];
-                name = row[nameColumn].ToString();
-            }
-            rv.Name = name;
-            //
-            //City.Department
-            int idDepartment = 0;
-
-            if (_config.Cities.Fields.ContainsKey("DepartmentId") || _config.Cities.DefaultFieldValues.ContainsKey("DepartmentId"))
-            {
-                if (_config.Cities.Fields.ContainsKey("DepartmentId"))
+            bool rv = true;
+            c = new City();
+            try 
+	        {  
+                //City.IdCity            
+                if (_config.Cities.Fields.ContainsKey("IdCity"))
                 {
-                    string idColumn = _config.Cities.Fields["DepartmentId"];
-                    idDepartment = Convert.ToInt32(row[idColumn].ToString());
+                    string idColumn = _config.Cities.Fields["IdCity"];                
+                    c.IdCity = int.Parse(row[idColumn].ToString());                
                 }
-                else
-                    idDepartment = Convert.ToInt32(_config.Cities.DefaultFieldValues["DepartmentId"]);
-            }
-            //sólo si el id no está indicado se tratará de buscar por el nombre, si es que está indicado
-            if (idDepartment==0 && (_config.Cities.Fields.ContainsKey("DepartmentName") || _config.Cities.DefaultFieldValues.ContainsKey("DepartmentName"))) 
-            {
-                string departmentName="";
-                if (_config.Cities.Fields.ContainsKey("DepartmentName"))
+                //
+                //City.Name
+                if (_config.Cities.Fields.ContainsKey("Name"))
                 {
-                    string nameColumn = _config.Cities.Fields["DepartmentName"];
-                    departmentName = row[nameColumn].ToString();                    
+                    string nameColumn = _config.Cities.Fields["Name"];
+                    c.Name = row[nameColumn].ToString();
                 }
-                else
-                    departmentName = _config.Cities.DefaultFieldValues["DepartmentName"].ToString();
+                //
+                //City.Department
+                int idDepartment = 0;
 
-                idDepartment = _compiledIdDepartmentByName(_dm, departmentName).First();
-            }            
+                if (_config.Cities.Fields.ContainsKey("DepartmentId") || _config.Cities.DefaultFieldValues.ContainsKey("DepartmentId"))
+                {
+                    if (_config.Cities.Fields.ContainsKey("DepartmentId"))
+                    {
+                        string idColumn = _config.Cities.Fields["DepartmentId"];
+                        idDepartment = Convert.ToInt32(row[idColumn].ToString());
+                    }
+                    else
+                        idDepartment = Convert.ToInt32(_config.Cities.DefaultFieldValues["DepartmentId"]);
+                }
+                //sólo si el id no está indicado se tratará de buscar por el nombre, si es que está indicado
+                if (idDepartment==0 && (_config.Cities.Fields.ContainsKey("DepartmentName") || _config.Cities.DefaultFieldValues.ContainsKey("DepartmentName"))) 
+                {
+                    string departmentName="";
+                    if (_config.Cities.Fields.ContainsKey("DepartmentName"))
+                    {
+                        string nameColumn = _config.Cities.Fields["DepartmentName"];
+                        departmentName = row[nameColumn].ToString();                    
+                    }
+                    else
+                        departmentName = _config.Cities.DefaultFieldValues["DepartmentName"].ToString();
 
-            rv.DepartmentReference.EntityKey = new EntityKey("TerritoriesDataContext.Departments", "IdDepartment", idDepartment);
-            //
+                    idDepartment = _compiledIdDepartmentByName(_dm, departmentName).First();
+                }            
+
+                c.DepartmentReference.EntityKey = new EntityKey("TerritoriesDataContext.Departments", "IdDepartment", idDepartment);
+                //
+	        }
+	        catch (Exception)
+	        {
+        		rv = false;
+                int index = row.Table.Rows.IndexOf(row);
+                errorMsg += "\n-Conversion error. (Row values: " + RowToStr(row) +")";
+	        }
             return rv;
         }
 
-        private Territory DataRowToTerritory(DataRow row)
+        private bool DataRowToTerritory(DataRow row,out Territory t, ref string errorMsg)
         {
-            Territory rv = new Territory();
-            //Territory.IdTerritory
-            if (_config.Territories.Fields.ContainsKey("IdTerritory"))
-            {
-                string idColumn = _config.Territories.Fields["IdTerritory"];
-                int id = 0;
-                if(int.TryParse(row[idColumn].ToString(),out id))
-                    rv.IdTerritory = id;
+            bool rv = true;
+            t = new Territory();
+            try
+            {                
+                //Territory.IdTerritory
+                if (_config.Territories.Fields.ContainsKey("IdTerritory"))
+                {
+                    string idColumn = _config.Territories.Fields["IdTerritory"];
+                    t.IdTerritory = int.Parse(row[idColumn].ToString());
+                }
+                //Territory.Name
+                if (_config.Territories.Fields.ContainsKey("Name"))
+                {
+                    string nameColumn = _config.Territories.Fields["Name"];
+                    t.Name = row[nameColumn].ToString();
+                } 
+                //
+                //Territory.Number
+                if (_config.Territories.Fields.ContainsKey("Number"))
+                {
+                    string numColumn = _config.Territories.Fields["Number"];
+                    t.Number = int.Parse(row[numColumn].ToString());
+                }
+                //
             }
-            //Territory.Name
-            if (_config.Territories.Fields.ContainsKey("Name"))
+            catch (Exception)
             {
-                string nameColumn = _config.Territories.Fields["Name"];
-                rv.Name = row[nameColumn].ToString();
-            } 
-            //
-            //Territory.Number
-            if (_config.Territories.Fields.ContainsKey("Number"))
-            {
-                string numColumn = _config.Territories.Fields["Number"];
-                rv.Number = int.Parse(row[numColumn].ToString());
+                rv = false;
+                int index = row.Table.Rows.IndexOf(row);
+                errorMsg += "\n-Conversion error. (Row values: " + RowToStr(row) +")";
             }
-            //
             return rv;
         }
 
-        private Address DataRowToAddress(DataRow row)
+        private bool DataRowToAddress(DataRow row,out Address a, ref string errorMsg)
         {
-            Address rv = new Address();
-
-            //Address.IdAddress
-            if (_config.Addresses.Fields.ContainsKey("IdAddress"))
+            bool rv = true;
+            a = new Address();
+            try
             {
-                string idColumn = _config.Addresses.Fields["IdAddress"];
-                int id = 0;
-                if(int.TryParse(row[idColumn].ToString(),out id))
-                    rv.IdAddresses = id;
-            }
-            //Address.Street
-            if (_config.Addresses.Fields.ContainsKey("Street"))
-            {
-                string streetColumn = _config.Addresses.Fields["Street"];
-                rv.Street = row[streetColumn].ToString();
-            }            
-            //Address.Number
-            if (_config.Addresses.Fields.ContainsKey("Number"))
-            {
-                string columnName = _config.Addresses.Fields["Number"];
-                rv.Number = row[columnName].ToString();
-            }
-            //Address.Corner1
-            if (_config.Addresses.Fields.ContainsKey("Corner1"))
-            {
-                string columnName = _config.Addresses.Fields["Corner1"];
-                rv.Corner1 = row[columnName].ToString();
-            }
-            //Address.Corner2
-            if (_config.Addresses.Fields.ContainsKey("Corner2"))
-            {
-                string columnName = _config.Addresses.Fields["Corner2"];
-                rv.Corner2 = row[columnName].ToString();
-            }
-            //Address.Phone1
-            if (_config.Addresses.Fields.ContainsKey("Phone1"))
-            {
-                string columnName = _config.Addresses.Fields["Phone1"];
-                rv.Phone1 = row[columnName].ToString();
-            }
-            //Address.Phone2
-            if (_config.Addresses.Fields.ContainsKey("Phone2"))
-            {
-                string columnName = _config.Addresses.Fields["Phone2"];
-                rv.Phone2 = row[columnName].ToString();
-            }
-            //Address.Description
-            if (_config.Addresses.Fields.ContainsKey("Description"))
-            {
-                string columnName = _config.Addresses.Fields["Description"];
-                rv.Description = row[columnName].ToString();
-            }
-
-            //Address.CustomField1
-            if (_config.Addresses.Fields.ContainsKey("CustomField1"))
-            {
-                string columnName = _config.Addresses.Fields["CustomField1"];
-                rv.CustomField1 = row[columnName].ToString();
-            }
-
-            //Address.CustomField2
-            if (_config.Addresses.Fields.ContainsKey("CustomField2"))
-            {
-                string columnName = _config.Addresses.Fields["CustomField2"];
-                rv.CustomField2 = row[columnName].ToString();
-            }
-
-            //Address.Map1
-            if (_config.Addresses.Fields.ContainsKey("Map1"))
-            {
-                string columnName = _config.Addresses.Fields["Map1"];
-                rv.Map1 = row[columnName].ToString();
-            }
-            //Address.Map2
-            if (_config.Addresses.Fields.ContainsKey("Map2"))
-            {
-                string columnName = _config.Addresses.Fields["Map2"];
-                rv.Map2 = row[columnName].ToString();
-            }
-
-            //Address.Geoposition
-            if (_config.Addresses.Fields.ContainsKey("Geoposition"))
-            {
-                string columnName = _config.Addresses.Fields["Geoposition"];
-                rv.Geoposition = row[columnName].ToString();
-            }
-
-
-            //Address.City
-            int idCity = 0;
-            if (_config.Addresses.Fields.ContainsKey("CityId")|| _config.Addresses.DefaultFieldValues.ContainsKey("CityId"))
-            {
-                if (_config.Addresses.Fields.ContainsKey("CityId"))
+                //Address.IdAddress
+                if (_config.Addresses.Fields.ContainsKey("IdAddress"))
                 {
-                    string idColumn = _config.Addresses.Fields["CityId"];
-                    idCity = Convert.ToInt32(row[idColumn].ToString());
+                    string idColumn = _config.Addresses.Fields["IdAddress"];
+                    a.IdAddresses = int.Parse(row[idColumn].ToString());
                 }
-                else
-                    idCity = Convert.ToInt32(_config.Addresses.DefaultFieldValues["CityId"]);
-            }
-
-            if (idCity==0 && (_config.Addresses.Fields.ContainsKey("CityName")||_config.Addresses.DefaultFieldValues.ContainsKey("CityName")))
-            {
-                string cityName = "";
-                if (_config.Addresses.Fields.ContainsKey("CityName"))
+                //Address.Street
+                if (_config.Addresses.Fields.ContainsKey("Street"))
                 {
-                    string nameColumn = _config.Addresses.Fields["CityName"];
-                    cityName = row[nameColumn].ToString();
+                    string streetColumn = _config.Addresses.Fields["Street"];
+                    a.Street = row[streetColumn].ToString();
                 }
-                else
-                    cityName = _config.Addresses.DefaultFieldValues["CityName"].ToString();
-
-                idCity = _compiledIdCityByName(_dm, cityName).First();
-            }
-
-            rv.CityReference.EntityKey = new EntityKey("TerritoriesDataContext.Cities", "IdCity", idCity);
-            //
-
-            //Address.Territory
-            int idTerritory = 0;
-            if (_config.Addresses.Fields.ContainsKey("TerritoryId") || _config.Addresses.DefaultFieldValues.ContainsKey("TerritoryId"))
-            {
-                if (_config.Addresses.Fields.ContainsKey("TerritoryId"))
+                //Address.Number
+                if (_config.Addresses.Fields.ContainsKey("Number"))
                 {
-                    string idColumn = _config.Addresses.Fields["TerritoryId"];
-                    idTerritory = Convert.ToInt32((row[idColumn].ToString()));
+                    string columnName = _config.Addresses.Fields["Number"];
+                    a.Number = row[columnName].ToString();
                 }
-                else
-                    idTerritory = Convert.ToInt32(_config.Addresses.DefaultFieldValues["TerritoryId"]);
-            }
-
-            if (idTerritory == 0 && (_config.Addresses.Fields.ContainsKey("TerritoryName") || _config.Addresses.DefaultFieldValues.ContainsKey("TerritoryName")))
-            {
-                string territoryName = "";
-                if (_config.Addresses.Fields.ContainsKey("TerritoryName"))
+                //Address.Corner1
+                if (_config.Addresses.Fields.ContainsKey("Corner1"))
                 {
-                    string nameColumn = _config.Addresses.Fields["TerritoryName"];
-                    territoryName = row[nameColumn].ToString();
+                    string columnName = _config.Addresses.Fields["Corner1"];
+                    a.Corner1 = row[columnName].ToString();
                 }
-                else
-                    territoryName = _config.Addresses.DefaultFieldValues["TerritoryName"].ToString();
+                //Address.Corner2
+                if (_config.Addresses.Fields.ContainsKey("Corner2"))
+                {
+                    string columnName = _config.Addresses.Fields["Corner2"];
+                    a.Corner2 = row[columnName].ToString();
+                }
+                //Address.Phone1
+                if (_config.Addresses.Fields.ContainsKey("Phone1"))
+                {
+                    string columnName = _config.Addresses.Fields["Phone1"];
+                    a.Phone1 = row[columnName].ToString();
+                }
+                //Address.Phone2
+                if (_config.Addresses.Fields.ContainsKey("Phone2"))
+                {
+                    string columnName = _config.Addresses.Fields["Phone2"];
+                    a.Phone2 = row[columnName].ToString();
+                }
+                //Address.Description
+                if (_config.Addresses.Fields.ContainsKey("Description"))
+                {
+                    string columnName = _config.Addresses.Fields["Description"];
+                    a.Description = row[columnName].ToString();
+                }
 
-                if(!string.IsNullOrEmpty(territoryName))
-                    idTerritory = _compiledIdTerritoryByName(_dm, territoryName).First();
-            }         
+                //Address.CustomField1
+                if (_config.Addresses.Fields.ContainsKey("CustomField1"))
+                {
+                    string columnName = _config.Addresses.Fields["CustomField1"];
+                    a.CustomField1 = row[columnName].ToString();
+                }
 
-            if(idTerritory!=0)
-                rv.TerritoryReference.EntityKey = new EntityKey("TerritoriesDataContext.Territories", "IdTerritory", idTerritory);
-            //
+                //Address.CustomField2
+                if (_config.Addresses.Fields.ContainsKey("CustomField2"))
+                {
+                    string columnName = _config.Addresses.Fields["CustomField2"];
+                    a.CustomField2 = row[columnName].ToString();
+                }
 
+                //Address.Map1
+                if (_config.Addresses.Fields.ContainsKey("Map1"))
+                {
+                    string columnName = _config.Addresses.Fields["Map1"];
+                    a.Map1 = row[columnName].ToString();
+                }
+                //Address.Map2
+                if (_config.Addresses.Fields.ContainsKey("Map2"))
+                {
+                    string columnName = _config.Addresses.Fields["Map2"];
+                    a.Map2 = row[columnName].ToString();
+                }
+                //Address.Geoposition
+                if (_config.Addresses.Fields.ContainsKey("Geoposition"))
+                {
+                    string columnName = _config.Addresses.Fields["Geoposition"];
+                    a.Geoposition = row[columnName].ToString();
+                }
+                //Address.City
+                int idCity = 0;
+                if (_config.Addresses.Fields.ContainsKey("CityId") || _config.Addresses.DefaultFieldValues.ContainsKey("CityId"))
+                {
+                    if (_config.Addresses.Fields.ContainsKey("CityId"))
+                    {
+                        string idColumn = _config.Addresses.Fields["CityId"];
+                        idCity = Convert.ToInt32(row[idColumn].ToString());
+                    }
+                    else
+                        idCity = Convert.ToInt32(_config.Addresses.DefaultFieldValues["CityId"]);
+                }
+
+                if (idCity == 0 && (_config.Addresses.Fields.ContainsKey("CityName") || _config.Addresses.DefaultFieldValues.ContainsKey("CityName")))
+                {
+                    string cityName = "";
+                    if (_config.Addresses.Fields.ContainsKey("CityName"))
+                    {
+                        string nameColumn = _config.Addresses.Fields["CityName"];
+                        cityName = row[nameColumn].ToString();
+                    }
+                    else
+                        cityName = _config.Addresses.DefaultFieldValues["CityName"].ToString();
+
+                    idCity = _compiledIdCityByName(_dm, cityName).First();
+                }
+
+                a.CityReference.EntityKey = new EntityKey("TerritoriesDataContext.Cities", "IdCity", idCity);
+                //
+
+                //Address.Territory
+                int idTerritory = 0;
+                if (_config.Addresses.Fields.ContainsKey("TerritoryId") || _config.Addresses.DefaultFieldValues.ContainsKey("TerritoryId"))
+                {
+                    if (_config.Addresses.Fields.ContainsKey("TerritoryId"))
+                    {
+                        string idColumn = _config.Addresses.Fields["TerritoryId"];
+                        idTerritory = Convert.ToInt32((row[idColumn].ToString()));
+                    }
+                    else
+                        idTerritory = Convert.ToInt32(_config.Addresses.DefaultFieldValues["TerritoryId"]);
+                }
+
+                if (idTerritory == 0 && (_config.Addresses.Fields.ContainsKey("TerritoryName") || _config.Addresses.DefaultFieldValues.ContainsKey("TerritoryName")))
+                {
+                    string territoryName = "";
+                    if (_config.Addresses.Fields.ContainsKey("TerritoryName"))
+                    {
+                        string nameColumn = _config.Addresses.Fields["TerritoryName"];
+                        territoryName = row[nameColumn].ToString();
+                    }
+                    else
+                        territoryName = _config.Addresses.DefaultFieldValues["TerritoryName"].ToString();
+
+                    if (!string.IsNullOrEmpty(territoryName))
+                        idTerritory = _compiledIdTerritoryByName(_dm, territoryName).First();
+                }
+
+                if (idTerritory != 0)
+                    a.TerritoryReference.EntityKey = new EntityKey("TerritoriesDataContext.Territories", "IdTerritory", idTerritory);
+                //
+            }
+            catch (Exception)
+            {
+                rv = false;
+                int index = row.Table.Rows.IndexOf(row);
+                errorMsg += "\n-Conversion error. (Row values: " + RowToStr(row) +")";
+            }
             return rv;
         }
 
@@ -883,6 +903,20 @@ namespace Territories.BLL
                     sr.WriteLine(item);
                 }
             }
+        }
+
+        private string RowToStr(DataRow row)
+        {
+            string rv = "";
+
+            for (int i = 0; i < row.ItemArray.Count(); i++)
+            {
+                if (!string.IsNullOrEmpty(rv))
+                    rv = " ";
+                rv += row[i].ToString();
+            }
+
+            return rv;
         }
 
         private void PreCompileQueries()

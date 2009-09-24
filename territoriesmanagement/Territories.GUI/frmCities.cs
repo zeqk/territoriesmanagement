@@ -10,7 +10,7 @@ using System.Text;
 using System.Windows.Forms;
 using Territories.Model;
 using Territories.BLL;
-using My.Internationalization;
+using ZeqkTools.Internationalization;
 
 namespace Territories.GUI
 {

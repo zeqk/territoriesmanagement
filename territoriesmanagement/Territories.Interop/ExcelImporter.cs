@@ -95,8 +95,15 @@ namespace Territories.Interop
                 }
                 catch (Exception ex)
                 {
-
-                    throw ex;
+                    switch (((OleDbException)ex).ErrorCode)
+                    {
+                        case -2147467259 : throw new Exception("Enter the table name.", ex);
+                            break;
+                        case -2147217904: throw new Exception("The name of a column is incorrect.", ex);
+                            break;
+                        default: throw ex;
+                            break;
+                    }
                 }
             }
 
