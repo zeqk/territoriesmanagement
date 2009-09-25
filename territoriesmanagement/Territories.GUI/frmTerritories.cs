@@ -200,8 +200,7 @@ namespace Territories.GUI
 
         private Territory FormToOject()
         {
-            Territory rv = (Territory)this.bsTerritory.DataSource;
-            return rv;
+            return (Territory)this.bsTerritory.DataSource;            
         }
 
         private void ObjectToForm(Territory v)
@@ -256,7 +255,6 @@ namespace Territories.GUI
             }
             else
                 MessageBox.Show("The data is incomplete");
-
         }
 
         private bool IsComplete()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using ZeqkTools.Query.Enumerators;
 
 namespace Territories.Interop
 {
@@ -26,18 +27,18 @@ namespace Territories.Interop
         }
 
 
-        public Importer(Provider provider)
+        public Importer(DataProviders provider)
         {
             switch (provider)
             {
-                case Provider.MSExcel:
+                case DataProviders.MSExcel:
                     _importer = new ExcelImporter();
                     break;
-                case Provider.MSAcces:
+                case DataProviders.MSAcces:
                     break;
-                case Provider.Oracle:
+                case DataProviders.Oracle:
                     break;
-                case Provider.SQLServer:
+                case DataProviders.SQLServer:
                     break;
                 default:
                     break;

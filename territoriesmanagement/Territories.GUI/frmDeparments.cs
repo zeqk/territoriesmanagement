@@ -180,9 +180,9 @@ namespace Territories.GUI
             return (Department)this.bsDepartment.DataSource;
         }
 
-        private void ObjectToForm(Department dep)
+        private void ObjectToForm(Department v)
         {
-            this.bsDepartment.DataSource = dep;
+            this.bsDepartment.DataSource = v;
         }
 
         private void ClearData()
@@ -229,7 +229,6 @@ namespace Territories.GUI
                     MessageBox.Show(ex.Message, "Error");
                 }
             }
-
             else
                 MessageBox.Show("The data is incomplete");            
         }
@@ -237,7 +236,7 @@ namespace Territories.GUI
         private bool IsComplete()
         {
             bool rv = true;
-            if (txtName.Text == "")
+            if (string.IsNullOrEmpty(txtName.Text))
                 rv = false;
             return rv;
         }

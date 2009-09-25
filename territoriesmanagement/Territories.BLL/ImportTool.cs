@@ -9,7 +9,7 @@ using System.Data.EntityClient;
 using System.IO;
 using Territories.Model;
 using Territories.Interop;
-using ZeqkTools;
+using ZeqkTools.Query.Enumerators;
 
 namespace Territories.BLL
 {    
@@ -34,7 +34,7 @@ namespace Territories.BLL
 	    {
             _log = "";
             _dm = new TerritoriesDataContext();
-            _importer = new Interop.Importer(Provider.MSExcel);
+            _importer = new Interop.Importer(DataProviders.MSExcel);
             _config = new ImporterConfig();
 	    }
 
@@ -281,8 +281,6 @@ namespace Territories.BLL
         {
             int rv = 0;
             string message = "";
-            Address v2;
-            DataRow r;
             try
             {
                 int count = 0;
@@ -290,7 +288,6 @@ namespace Territories.BLL
                 {
                     Address v;
                     if(DataRowToAddress(row,out v,ref message))
-                        v2 = v;
                         if (AddressIsValid(v, ref message))
                         {
                             if (!_config.Addresses.Fields.ContainsKey("IdAddress"))

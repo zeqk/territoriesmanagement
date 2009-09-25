@@ -45,18 +45,27 @@
             this.btnImport = new System.Windows.Forms.Button();
             this.grdImportConfig = new System.Windows.Forms.PropertyGrid();
             this.tabGeoRss = new System.Windows.Forms.TabPage();
-            this.lblRssSource = new System.Windows.Forms.Label();
             this.btnImportGeoRss = new System.Windows.Forms.Button();
             this.txtRssSource = new System.Windows.Forms.TextBox();
             this.btnSelectRssSource = new System.Windows.Forms.Button();
-            this.tabPanel = new System.Windows.Forms.TabControl();
+            this.tabExport = new System.Windows.Forms.TabControl();
             this.ofdFileSource = new System.Windows.Forms.OpenFileDialog();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.grpExport = new System.Windows.Forms.GroupBox();
+            this.txtExcelDestiny = new System.Windows.Forms.TextBox();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.btnSelectExcel = new System.Windows.Forms.Button();
+            this.sfdExcelDestiny = new System.Windows.Forms.SaveFileDialog();
             this.tabDataImport.SuspendLayout();
             this.grpConfig.SuspendLayout();
             this.tabProviders.SuspendLayout();
             this.tabMsExcel.SuspendLayout();
             this.tabGeoRss.SuspendLayout();
-            this.tabPanel.SuspendLayout();
+            this.tabExport.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.grpExport.SuspendLayout();
             this.SuspendLayout();
             // 
             // odfRssSource
@@ -72,7 +81,7 @@
             this.tabDataImport.Location = new System.Drawing.Point(4, 22);
             this.tabDataImport.Name = "tabDataImport";
             this.tabDataImport.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDataImport.Size = new System.Drawing.Size(759, 590);
+            this.tabDataImport.Size = new System.Drawing.Size(578, 590);
             this.tabDataImport.TabIndex = 2;
             this.tabDataImport.Text = "Data import";
             this.tabDataImport.UseVisualStyleBackColor = true;
@@ -85,7 +94,7 @@
             this.grpConfig.Controls.Add(this.btnImport);
             this.grpConfig.Location = new System.Drawing.Point(3, 6);
             this.grpConfig.Name = "grpConfig";
-            this.grpConfig.Size = new System.Drawing.Size(750, 279);
+            this.grpConfig.Size = new System.Drawing.Size(568, 279);
             this.grpConfig.TabIndex = 10;
             this.grpConfig.TabStop = false;
             this.grpConfig.Text = "Configure import properties";
@@ -115,7 +124,7 @@
             this.tabProviders.Location = new System.Drawing.Point(0, 78);
             this.tabProviders.Name = "tabProviders";
             this.tabProviders.SelectedIndex = 0;
-            this.tabProviders.Size = new System.Drawing.Size(750, 196);
+            this.tabProviders.Size = new System.Drawing.Size(568, 196);
             this.tabProviders.TabIndex = 10;
             // 
             // tabMsExcel
@@ -129,14 +138,14 @@
             this.tabMsExcel.Location = new System.Drawing.Point(4, 22);
             this.tabMsExcel.Name = "tabMsExcel";
             this.tabMsExcel.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMsExcel.Size = new System.Drawing.Size(742, 170);
+            this.tabMsExcel.Size = new System.Drawing.Size(560, 170);
             this.tabMsExcel.TabIndex = 0;
             this.tabMsExcel.Text = "MS Excel";
             this.tabMsExcel.UseVisualStyleBackColor = true;
             // 
             // btnSetConnectStr
             // 
-            this.btnSetConnectStr.Location = new System.Drawing.Point(489, 77);
+            this.btnSetConnectStr.Location = new System.Drawing.Point(414, 77);
             this.btnSetConnectStr.Name = "btnSetConnectStr";
             this.btnSetConnectStr.Size = new System.Drawing.Size(113, 37);
             this.btnSetConnectStr.TabIndex = 5;
@@ -164,7 +173,7 @@
             // 
             // btnSelectExcelFile
             // 
-            this.btnSelectExcelFile.Location = new System.Drawing.Point(489, 24);
+            this.btnSelectExcelFile.Location = new System.Drawing.Point(414, 24);
             this.btnSelectExcelFile.Name = "btnSelectExcelFile";
             this.btnSelectExcelFile.Size = new System.Drawing.Size(113, 23);
             this.btnSelectExcelFile.TabIndex = 2;
@@ -177,7 +186,7 @@
             this.txtConnectStr.Location = new System.Drawing.Point(32, 77);
             this.txtConnectStr.Multiline = true;
             this.txtConnectStr.Name = "txtConnectStr";
-            this.txtConnectStr.Size = new System.Drawing.Size(424, 70);
+            this.txtConnectStr.Size = new System.Drawing.Size(341, 70);
             this.txtConnectStr.TabIndex = 1;
             this.txtConnectStr.TextChanged += new System.EventHandler(this.txtConnectStr_TextChanged);
             // 
@@ -186,7 +195,7 @@
             this.txtExcelFile.Enabled = false;
             this.txtExcelFile.Location = new System.Drawing.Point(32, 26);
             this.txtExcelFile.Name = "txtExcelFile";
-            this.txtExcelFile.Size = new System.Drawing.Size(424, 20);
+            this.txtExcelFile.Size = new System.Drawing.Size(341, 20);
             this.txtExcelFile.TabIndex = 0;
             // 
             // tabOther
@@ -201,7 +210,7 @@
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(550, 40);
+            this.btnImport.Location = new System.Drawing.Point(418, 40);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(113, 23);
             this.btnImport.TabIndex = 9;
@@ -214,70 +223,59 @@
             this.grdImportConfig.Location = new System.Drawing.Point(3, 291);
             this.grdImportConfig.Name = "grdImportConfig";
             this.grdImportConfig.PropertySort = System.Windows.Forms.PropertySort.Categorized;
-            this.grdImportConfig.Size = new System.Drawing.Size(753, 292);
+            this.grdImportConfig.Size = new System.Drawing.Size(568, 292);
             this.grdImportConfig.TabIndex = 1;
             this.grdImportConfig.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.grdImportConfig_PropertyValueChanged);
             // 
             // tabGeoRss
             // 
-            this.tabGeoRss.Controls.Add(this.lblRssSource);
-            this.tabGeoRss.Controls.Add(this.btnImportGeoRss);
-            this.tabGeoRss.Controls.Add(this.txtRssSource);
-            this.tabGeoRss.Controls.Add(this.btnSelectRssSource);
+            this.tabGeoRss.Controls.Add(this.groupBox1);
             this.tabGeoRss.Location = new System.Drawing.Point(4, 22);
             this.tabGeoRss.Name = "tabGeoRss";
             this.tabGeoRss.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGeoRss.Size = new System.Drawing.Size(759, 590);
+            this.tabGeoRss.Size = new System.Drawing.Size(578, 590);
             this.tabGeoRss.TabIndex = 0;
             this.tabGeoRss.Text = "GeoRSS import";
             this.tabGeoRss.UseVisualStyleBackColor = true;
             // 
-            // lblRssSource
-            // 
-            this.lblRssSource.AutoSize = true;
-            this.lblRssSource.Location = new System.Drawing.Point(12, 37);
-            this.lblRssSource.Name = "lblRssSource";
-            this.lblRssSource.Size = new System.Drawing.Size(100, 13);
-            this.lblRssSource.TabIndex = 14;
-            this.lblRssSource.Text = "GeoRSS file source";
-            // 
             // btnImportGeoRss
             // 
-            this.btnImportGeoRss.Location = new System.Drawing.Point(123, 96);
+            this.btnImportGeoRss.Location = new System.Drawing.Point(104, 68);
             this.btnImportGeoRss.Name = "btnImportGeoRss";
-            this.btnImportGeoRss.Size = new System.Drawing.Size(270, 35);
+            this.btnImportGeoRss.Size = new System.Drawing.Size(344, 35);
             this.btnImportGeoRss.TabIndex = 13;
             this.btnImportGeoRss.Text = "Import";
             this.btnImportGeoRss.UseVisualStyleBackColor = true;
-            this.btnImportGeoRss.Click += new System.EventHandler(this.btnUpdateXls_Click);
+            this.btnImportGeoRss.Click += new System.EventHandler(this.btnImportGeoRss_Click);
             // 
             // txtRssSource
             // 
-            this.txtRssSource.Location = new System.Drawing.Point(15, 53);
+            this.txtRssSource.Location = new System.Drawing.Point(15, 30);
             this.txtRssSource.Name = "txtRssSource";
             this.txtRssSource.ReadOnly = true;
-            this.txtRssSource.Size = new System.Drawing.Size(417, 20);
+            this.txtRssSource.Size = new System.Drawing.Size(379, 20);
             this.txtRssSource.TabIndex = 12;
             // 
             // btnSelectRssSource
             // 
-            this.btnSelectRssSource.Location = new System.Drawing.Point(438, 50);
+            this.btnSelectRssSource.Location = new System.Drawing.Point(420, 27);
             this.btnSelectRssSource.Name = "btnSelectRssSource";
             this.btnSelectRssSource.Size = new System.Drawing.Size(118, 24);
             this.btnSelectRssSource.TabIndex = 11;
-            this.btnSelectRssSource.Text = "Open";
+            this.btnSelectRssSource.Text = "Select";
             this.btnSelectRssSource.UseVisualStyleBackColor = true;
             this.btnSelectRssSource.Click += new System.EventHandler(this.btnSelectRssSource_Click);
             // 
-            // tabPanel
+            // tabExport
             // 
-            this.tabPanel.Controls.Add(this.tabDataImport);
-            this.tabPanel.Controls.Add(this.tabGeoRss);
-            this.tabPanel.Location = new System.Drawing.Point(8, 11);
-            this.tabPanel.Name = "tabPanel";
-            this.tabPanel.SelectedIndex = 0;
-            this.tabPanel.Size = new System.Drawing.Size(767, 616);
-            this.tabPanel.TabIndex = 0;
+            this.tabExport.Controls.Add(this.tabDataImport);
+            this.tabExport.Controls.Add(this.tabGeoRss);
+            this.tabExport.Controls.Add(this.tabPage1);
+            this.tabExport.Location = new System.Drawing.Point(8, 11);
+            this.tabExport.Name = "tabExport";
+            this.tabExport.SelectedIndex = 0;
+            this.tabExport.Size = new System.Drawing.Size(586, 616);
+            this.tabExport.TabIndex = 0;
             // 
             // ofdFileSource
             // 
@@ -285,12 +283,73 @@
             this.ofdFileSource.InitialDirectory = "C:\\\\";
             this.ofdFileSource.FileOk += new System.ComponentModel.CancelEventHandler(this.ofdFileSource_FileOk);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.grpExport);
+            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(578, 590);
+            this.tabPage1.TabIndex = 3;
+            this.tabPage1.Text = "Data export";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtRssSource);
+            this.groupBox1.Controls.Add(this.btnImportGeoRss);
+            this.groupBox1.Controls.Add(this.btnSelectRssSource);
+            this.groupBox1.Location = new System.Drawing.Point(6, 25);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(566, 127);
+            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Import from GeoRss file";
+            // 
+            // grpExport
+            // 
+            this.grpExport.Controls.Add(this.txtExcelDestiny);
+            this.grpExport.Controls.Add(this.btnExport);
+            this.grpExport.Controls.Add(this.btnSelectExcel);
+            this.grpExport.Location = new System.Drawing.Point(6, 25);
+            this.grpExport.Name = "grpExport";
+            this.grpExport.Size = new System.Drawing.Size(566, 127);
+            this.grpExport.TabIndex = 16;
+            this.grpExport.TabStop = false;
+            this.grpExport.Text = "Export to excel file";
+            // 
+            // txtExcelDestiny
+            // 
+            this.txtExcelDestiny.Location = new System.Drawing.Point(15, 30);
+            this.txtExcelDestiny.Name = "txtExcelDestiny";
+            this.txtExcelDestiny.ReadOnly = true;
+            this.txtExcelDestiny.Size = new System.Drawing.Size(379, 20);
+            this.txtExcelDestiny.TabIndex = 12;
+            // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(104, 68);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(344, 35);
+            this.btnExport.TabIndex = 13;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = true;
+            // 
+            // btnSelectExcel
+            // 
+            this.btnSelectExcel.Location = new System.Drawing.Point(420, 27);
+            this.btnSelectExcel.Name = "btnSelectExcel";
+            this.btnSelectExcel.Size = new System.Drawing.Size(118, 24);
+            this.btnSelectExcel.TabIndex = 11;
+            this.btnSelectExcel.Text = "Select";
+            this.btnSelectExcel.UseVisualStyleBackColor = true;
+            // 
             // frmInterop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(781, 632);
-            this.Controls.Add(this.tabPanel);
+            this.ClientSize = new System.Drawing.Size(600, 632);
+            this.Controls.Add(this.tabExport);
             this.Name = "frmInterop";
             this.Text = "Interoperability";
             this.Load += new System.EventHandler(this.frmInterop_Load);
@@ -302,8 +361,12 @@
             this.tabMsExcel.ResumeLayout(false);
             this.tabMsExcel.PerformLayout();
             this.tabGeoRss.ResumeLayout(false);
-            this.tabGeoRss.PerformLayout();
-            this.tabPanel.ResumeLayout(false);
+            this.tabExport.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.grpExport.ResumeLayout(false);
+            this.grpExport.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -326,12 +389,18 @@
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.PropertyGrid grdImportConfig;
         private System.Windows.Forms.TabPage tabGeoRss;
-        private System.Windows.Forms.Label lblRssSource;
         private System.Windows.Forms.Button btnImportGeoRss;
         private System.Windows.Forms.TextBox txtRssSource;
         private System.Windows.Forms.Button btnSelectRssSource;
-        private System.Windows.Forms.TabControl tabPanel;
+        private System.Windows.Forms.TabControl tabExport;
         private System.Windows.Forms.Button btnSetConnectStr;
         private System.Windows.Forms.OpenFileDialog ofdFileSource;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox grpExport;
+        private System.Windows.Forms.TextBox txtExcelDestiny;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button btnSelectExcel;
+        private System.Windows.Forms.SaveFileDialog sfdExcelDestiny;
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Territories.Interop;
+using ZeqkTools.Query.Enumerators;
 
 namespace Territories.BLL
 {
@@ -10,7 +11,7 @@ namespace Territories.BLL
     public class ImporterConfig
     {
         #region Fields
-        private Provider _provider;
+        private DataProviders _provider;
         private string _connectionString;	
 
         private ImportTable _departments;
@@ -33,7 +34,7 @@ namespace Territories.BLL
 
         #region Properties
 
-        public Provider Provider
+        public DataProviders Provider
         {
             get { return _provider; }
             set { _provider = value; }

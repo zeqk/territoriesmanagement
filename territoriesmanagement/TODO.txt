@@ -1,12 +1,3 @@
 TODO:
 
-+hacer q funcione y busque con territorio null
-+hacer q importe maps, y geoposición
-
-
-+probar importación 
-+ porbar importacion de georss
-
-+ que guarde tambien la PK http://blogs.msdn.com/bindeshv/archive/2008/11/21/using-stored-procedures-that-return-non-entity-type.aspx
-+ valores por defecto en la importación de datos
-+ maxLenght del search 
+- el abm de territorios selecciona un territorio al iniciar

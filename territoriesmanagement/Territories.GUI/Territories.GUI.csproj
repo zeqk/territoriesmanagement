@@ -121,9 +121,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\ZeqkTools.Internationalization.dll</HintPath>
     </Reference>
-    <Reference Include="ZeqkTools.Queries, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ZeqkTools.Query, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libs\ZeqkTools.Queries.dll</HintPath>
+      <HintPath>..\libs\ZeqkTools.Query.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
