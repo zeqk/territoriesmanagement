@@ -1,0 +1,10 @@
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\ZeqkTools\My.Internationalization\bin\Debug\ZeqkTools.Internationalization.dll
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\ZeqkTools\My.Internationalization\bin\Debug\ZeqkTools.Internationalization.pdb
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\ZeqkTools\My.Internationalization\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\ZeqkTools\My.Internationalization\obj\Debug\ZeqkTools.Internationalization.dll
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\ZeqkTools\My.Internationalization\obj\Debug\ZeqkTools.Internationalization.pdb
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\ZeqkTools\Internationalization\bin\Debug\ZeqkTools.Internationalization.dll
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\ZeqkTools\Internationalization\bin\Debug\ZeqkTools.Internationalization.pdb
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\ZeqkTools\Internationalization\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\ZeqkTools\Internationalization\obj\Debug\ZeqkTools.Internationalization.dll
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\ZeqkTools\Internationalization\obj\Debug\ZeqkTools.Internationalization.pdb

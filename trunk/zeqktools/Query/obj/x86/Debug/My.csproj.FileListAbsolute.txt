@@ -1,0 +1,5 @@
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\My.Enums\bin\x86\Debug\My.Enums.dll
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\My.Enums\bin\x86\Debug\My.Enums.pdb
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\My.Enums\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\My.Enums\obj\x86\Debug\My.Enums.dll
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\My.Enums\obj\x86\Debug\My.Enums.pdb
