@@ -5,7 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using System.IO;
 using System.Xml.Serialization;
-using Territories.
+using ZeqkTools.Query.Enumerators;
 
 namespace Territories.GUI.ImporterConfig
 {
@@ -15,7 +15,7 @@ namespace Territories.GUI.ImporterConfig
 
         #region Fields
 
-        private Provider _provider;
+        private DataProviders _provider;
 
         private string _connectionString;
 
@@ -69,7 +69,7 @@ namespace Territories.GUI.ImporterConfig
         }
 
         [Category("Connection propeties"), ReadOnly(true), Browsable(false)]
-        public Enumerators.Provider Provider
+        public DataProviders Provider
         {
             get { return _provider; }
             set { _provider = value; }

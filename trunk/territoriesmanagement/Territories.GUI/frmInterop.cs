@@ -10,7 +10,7 @@ using System.IO;
 using Territories.BLL;
 using Territories.GUI;
 using Territories.GUI.ImporterConfig;
-
+using ZeqkTools.Query.Enumerators;
 
 namespace Territories.GUI
 {
@@ -33,40 +33,25 @@ namespace Territories.GUI
 
             _configFile = AppDomain.CurrentDomain.BaseDirectory + "importConfig.xml";
 
-        }       
-
-
-        private void btnSelectRssSource_Click(object sender, EventArgs e)
-        {
-            odfRssSource.ShowDialog();
         }
 
-        private void odfRssSource_FileOk(object sender, CancelEventArgs e)
+        private void frmInterop_Load(object sender, EventArgs e)
         {
-            txtRssSource.Text = Path.GetFullPath(odfRssSource.FileName);
+            cboProvider.DataSource = Enum.GetValues(typeof(DataProviders));
+
+            _config = new ImporterConfig.ImporterConfig();
+
+            _config.LoadConfig(_configFile);
+
+            grdImportConfig.SelectedObject = _config;
         }
 
-        private void btnUpdateXls_Click(object sender, EventArgs e)
+        private void frmInterop_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (txtRssSource.Text == "")
-            {
-                MessageBox.Show("Select source and destiny files. ");
-            }
-            else
-            {
-                try
-                {
-                    string importMessage ="";
-                    _geoRssImporter.ImportGeoRss(txtRssSource.Text, ref importMessage, false, false, true, false);                    
-                    MessageBox.Show("Geo data has been imported.");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+            _config.SaveConfig(_configFile);
         }
 
+        #region DataImport
         private void btnImport_Click(object sender, EventArgs e)
         {
             SetConfig();
@@ -75,7 +60,7 @@ namespace Territories.GUI
                 string importationMessage = "";
                 bool ok = _importer.ExternalDataToModel(ref importationMessage);
                 if (ok)
-                    MessageBox.Show("The importation has been successful.\n"+importationMessage);
+                    MessageBox.Show("The importation has been successful.\n" + importationMessage);
                 else
                     MessageBox.Show("The importation have problems. Check the settings and see the log.\n" + importationMessage);
 
@@ -84,18 +69,7 @@ namespace Territories.GUI
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error");
-            }            
-        }        
-
-        private void frmInterop_Load(object sender, EventArgs e)
-        {
-            cboProvider.DataSource = Enum.GetValues(typeof(Enumerators.Provider));
-
-            _config = new ImporterConfig.ImporterConfig();
-
-            _config.LoadConfig(_configFile);
-            
-            grdImportConfig.SelectedObject = _config;
+            }
         }
 
         private void btnSetConnectStr_Click(object sender, EventArgs e)
@@ -110,7 +84,7 @@ namespace Territories.GUI
 
         private void ofdFileSource_FileOk(object sender, CancelEventArgs e)
         {
-            if (_config.Provider == Enumerators.Provider.MSExcel)
+            if (_config.Provider == DataProviders.MSExcel)
             {
                 string file = Path.GetFullPath(ofdFileSource.FileName);
                 txtExcelFile.Text = file;
@@ -130,16 +104,11 @@ namespace Territories.GUI
             _isDirty = true;
         }
 
-        private void frmInterop_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            _config.SaveConfig(_configFile);
-        }
-
         private void SetConfig()
         {
             if (_isDirty)
             {
-                _config.Provider = (Enumerators.Provider)cboProvider.SelectedItem;
+                _config.Provider = (DataProviders)cboProvider.SelectedItem;
                 _importer = new ImportTool();
                 _importer.Config.ConnectionString = _config.ConnectionString;
                 if (_config.Departments.Import)
@@ -151,7 +120,7 @@ namespace Territories.GUI
 
                     if (_config.Departments.Name.Import)
                         _importer.Config.Departments.Fields.Add("Name", _config.Departments.Name.ColumnName);
-                    
+
                 }
                 else
                     _importer.Config.Departments.Fields = new Dictionary<string, string>();
@@ -249,7 +218,7 @@ namespace Territories.GUI
 
                     if (_config.Addresses.GeoPosition.Import)
                         _importer.Config.Addresses.Fields.Add("Geoposition", _config.Addresses.GeoPosition.ColumnName);
-                    
+
 
                     //City
                     if (_config.Addresses.CityId.Import)
@@ -270,7 +239,7 @@ namespace Territories.GUI
                                 _importer.Config.Addresses.DefaultFieldValues.Add("CityName", _config.Addresses.CityName.DefaultValue);
                         }
                     }
-                   //
+                    //
 
 
                     //Territory
@@ -294,7 +263,7 @@ namespace Territories.GUI
                     }
                     //
 
-                    
+
                 }
                 else
                     _importer.Config.Addresses.Fields = new Dictionary<string, string>();
@@ -310,12 +279,56 @@ namespace Territories.GUI
             cboProvider.SelectedItem = _config.Provider;
             switch (config.Provider)
             {
-                case Enumerators.Provider.MSExcel:
+                case DataProviders.MSExcel:
                     txtConnectStr.Text = _config.ConnectionString;
                     break;
                 default: break;
             }
         }
+
+        #endregion
+
+        #region GeoRSS Import
+
+        private void btnSelectRssSource_Click(object sender, EventArgs e)
+        {
+            odfRssSource.ShowDialog();
+        }
+
+        private void odfRssSource_FileOk(object sender, CancelEventArgs e)
+        {
+            txtRssSource.Text = Path.GetFullPath(odfRssSource.FileName);
+        }
+
+        private void btnImportGeoRss_Click(object sender, EventArgs e)
+        {
+            if (txtRssSource.Text == "")
+            {
+                MessageBox.Show("Select source and destiny files. ");
+            }
+            else
+            {
+                try
+                {
+                    string importMessage = "";
+                    _geoRssImporter.ImportGeoRss(txtRssSource.Text, ref importMessage, false, false, true, false);
+                    MessageBox.Show("Geo data has been imported.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
+        #endregion    
+
+        #region DataExport
+
+        #endregion
+
+
+
 
     }
 }

@@ -42,7 +42,7 @@
             this.chkDescription = new System.Windows.Forms.CheckBox();
             this.chkStreet = new System.Windows.Forms.CheckBox();
             this.chkCorners = new System.Windows.Forms.CheckBox();
-            this.schStreet = new My.Controls.Search();
+            this.schStreet = new ZeqkTools.Controls.Search();
             this.lblTerritory = new System.Windows.Forms.Label();
             this.cboTerritory = new System.Windows.Forms.ComboBox();
             this.lblAddress = new System.Windows.Forms.Label();
@@ -219,7 +219,7 @@
             // 
             this.schStreet.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.schStreet.Columns = null;
-            this.schStreet.Criteria = My.Enumerators.Criterias.EqualTo;
+            this.schStreet.Criteria = ZeqkTools.Query.Enumerators.Criterias.EqualTo;
             this.schStreet.Location = new System.Drawing.Point(18, 22);
             this.schStreet.Name = "schStreet";
             this.schStreet.Parameters = null;
@@ -346,7 +346,7 @@
         private System.Windows.Forms.CheckBox chkDescription;
         private System.Windows.Forms.CheckBox chkStreet;
         private System.Windows.Forms.CheckBox chkCorners;
-        private My.Controls.Search schStreet;
+        private ZeqkTools.Controls.Search schStreet;
         private System.Windows.Forms.Label lblTerritory;
         private System.Windows.Forms.ComboBox cboTerritory;
         private System.Windows.Forms.Label lblAddress;
