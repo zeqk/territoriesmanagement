@@ -1,0 +1,10 @@
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\My.Internationalization\bin\Debug\My.Internationalization.dll
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\My.Internationalization\bin\Debug\My.Internationalization.pdb
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\My.Internationalization\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\My.Internationalization\obj\Debug\My.Internationalization.dll
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\My.Internationalization\obj\Debug\My.Internationalization.pdb
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\ZeqkTools\My.Internationalization\bin\Debug\My.Internationalization.dll
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\ZeqkTools\My.Internationalization\bin\Debug\My.Internationalization.pdb
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\ZeqkTools\My.Internationalization\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\ZeqkTools\My.Internationalization\obj\Debug\My.Internationalization.dll
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\ZeqkTools\My.Internationalization\obj\Debug\My.Internationalization.pdb

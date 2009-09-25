@@ -1,0 +1,9 @@
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\MyControls\bin\Release\My.Controls.dll
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\MyControls\bin\Release\My.Controls.pdb
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\MyControls\bin\Release\My.Enums.dll
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\MyControls\bin\Release\My.Enums.pdb
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\MyControls\obj\Release\ResolveAssemblyReference.cache
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\MyControls\obj\Release\My.Controls.Search.resources
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\MyControls\obj\Release\My.Controls.csproj.GenerateResource.Cache
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\MyControls\obj\Release\My.Controls.dll
+C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\MyControls\obj\Release\My.Controls.pdb
