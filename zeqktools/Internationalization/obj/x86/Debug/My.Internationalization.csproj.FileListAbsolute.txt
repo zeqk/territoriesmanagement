@@ -1,5 +1,0 @@
-C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\My.Internationalization\bin\x86\Debug\My.Internationalization.dll
-C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\My.Internationalization\bin\x86\Debug\My.Internationalization.pdb
-C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\My.Internationalization\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\My.Internationalization\obj\x86\Debug\My.Internationalization.dll
-C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\My.Internationalization\obj\x86\Debug\My.Internationalization.pdb
