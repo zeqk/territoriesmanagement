@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.Objects;
-using Territories.BLL;
+using Territories.BLL.DataBridge;
 using Territories.Model;
 
 
@@ -15,7 +15,7 @@ namespace Territories.GUI
 {
     public partial class frmAddresses : Form
     {
-        BLL.Addresses _server = new Addresses();
+        Addresses _server = new Addresses();
         
         public frmAddresses()
         {

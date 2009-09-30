@@ -10,27 +10,50 @@ using System.Data.Objects.DataClasses;
 using System.Linq;
 using System.Text;
 using Territories.Model;
+using ZeqkTools.Internationalization;
 
-namespace Territories.BLL
+namespace Territories.BLL.DataBridge
 {                
     public class Cities : IDataBridge<City>
     {
         private TerritoriesDataContext _dm;
         private Func<TerritoriesDataContext, City, IQueryable<City>> _compiledSameCity;
         private Func<TerritoriesDataContext, int, IQueryable<City>> _compileLoadCity;
-        private Func<TerritoriesDataContext, IQueryable<City>> _compileGetAllCities;        
+        private Func<TerritoriesDataContext, IQueryable<City>> _compileGetAllCities;
+        private Globalization _gl;
 
+        public string Globalization
+        {
+            get 
+            { 
+                return _gl.Culture.IetfLanguageTag; 
+            }
+            set 
+            { 
+                _gl = new Globalization(value); 
+            }
+        }
+	
         #region Constructors
         public Cities()        
         {
             _dm = new TerritoriesDataContext();
             PreCompileQueries();
+            _gl = new Globalization("en-US");            
+        }
+
+        public Cities(string culture)
+        {
+            _dm = new TerritoriesDataContext();
+            PreCompileQueries();
+            _gl = new Globalization(culture);
         }
 
         public Cities(EntityConnection conection)
         {
             _dm = new TerritoriesDataContext(conection);
             PreCompileQueries();
+            _gl = new Globalization();
 
         }
         #endregion
@@ -178,6 +201,23 @@ namespace Territories.BLL
             }
         }
 
+        public List<string> GetPropertyList()
+        {
+            List<string> propertyList = new List<string>();
+
+            System.Reflection.PropertyInfo[] properties = typeof(City).GetProperties();
+
+            foreach (var prop in properties)
+            {
+                propertyList.Add(prop.Name);
+            }
+
+            propertyList.Add("Department.IdDepartment");
+
+            return propertyList;
+
+        }
+
         #endregion
 
         public bool IsValid(City v, ref string message)
@@ -297,8 +337,13 @@ namespace Territories.BLL
                 (
                     (TerritoriesDataContext dm) => dm.Cities.Include("Department").AsQueryable()
                 );
-
             
+        }
+
+        public string GetString(Type type, string text, string culture)
+        {
+            _gl.Culture = new System.Globalization.CultureInfo(culture);
+            return _gl.GetString(type, text);
         }
     }
 }

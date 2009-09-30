@@ -117,10 +117,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\ZeqkTools.Controls.dll</HintPath>
     </Reference>
-    <Reference Include="ZeqkTools.Internationalization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libs\ZeqkTools.Internationalization.dll</HintPath>
-    </Reference>
     <Reference Include="ZeqkTools.Query, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\ZeqkTools.Query.dll</HintPath>

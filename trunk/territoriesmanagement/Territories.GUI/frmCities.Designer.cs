@@ -123,7 +123,7 @@
             this.btnRelations.Name = "btnRelations";
             this.btnRelations.Size = new System.Drawing.Size(69, 38);
             this.btnRelations.TabIndex = 10;
-            this.btnRelations.Text = "View &relations";
+            this.btnRelations.Text = "View relations";
             this.btnRelations.UseVisualStyleBackColor = true;
             this.btnRelations.Click += new System.EventHandler(this.btnRelations_Click);
             // 
@@ -134,7 +134,7 @@
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(69, 38);
             this.btnDelete.TabIndex = 9;
-            this.btnDelete.Text = "&Delete";
+            this.btnDelete.Text = "Delete";
             this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
@@ -146,7 +146,7 @@
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(69, 38);
             this.btnSave.TabIndex = 8;
-            this.btnSave.Text = "&Save";
+            this.btnSave.Text = "Save";
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -158,7 +158,7 @@
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(69, 38);
             this.btnNew.TabIndex = 7;
-            this.btnNew.Text = "&New";
+            this.btnNew.Text = "New";
             this.btnNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
@@ -247,7 +247,7 @@
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(45, 13);
             this.lblResult.TabIndex = 13;
-            this.lblResult.Text = "Results:";
+            this.lblResult.Text = "Result:";
             // 
             // lblFiltered
             // 

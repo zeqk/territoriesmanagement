@@ -9,7 +9,7 @@ using System.Data.EntityClient;
 using System.Collections;
 using Territories.Model;
 
-namespace Territories.BLL
+namespace Territories.BLL.DataBridge
 {
     public class Territories : IDataBridge<Territory>
     {
@@ -151,6 +151,21 @@ namespace Territories.BLL
             {                
                 throw ex;
             }
+        }
+
+        public List<string> GetPropertyList()
+        {
+            List<string> propertyList = new List<string>();
+
+            System.Reflection.PropertyInfo[] properties = typeof(Territory).GetProperties();
+
+            foreach (var prop in properties)
+            {
+                propertyList.Add(prop.Name);
+            }
+
+            return propertyList;
+
         }
 
         #endregion

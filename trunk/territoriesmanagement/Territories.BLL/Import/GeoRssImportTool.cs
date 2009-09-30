@@ -9,7 +9,7 @@ using GeoRSSLibrary;
 using GeoRSSLibrary.GeoRssItems;
 using Territories.Model;
 
-namespace Territories.BLL
+namespace Territories.BLL.Import
 {
     public class GeoRssImportTool
     {

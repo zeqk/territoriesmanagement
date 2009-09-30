@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
-using Territories.BLL;
+using Territories.BLL.Import;
 using Territories.GUI;
 using Territories.GUI.ImporterConfig;
 using ZeqkTools.Query.Enumerators;
@@ -44,6 +44,11 @@ namespace Territories.GUI
             _config.LoadConfig(_configFile);
 
             grdImportConfig.SelectedObject = _config;
+
+
+            //Export
+            BLL.DataBridge.Addresses address = new Territories.BLL.DataBridge.Addresses();
+            chkListAddresses.Items.AddRange(address.GetPropertyList().ToArray());
         }
 
         private void frmInterop_FormClosing(object sender, FormClosingEventArgs e)
@@ -323,9 +328,35 @@ namespace Territories.GUI
 
         #endregion    
 
-        #region DataExport
+        
 
+        #region DataExport
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+
+            //List<string> properties = new List<string>();
+            if (rdoAddresses.Checked)
+            {
+
+                string[] properties = chkListAddresses.CheckedItems.Cast<string>().ToArray(); ;
+                BLL.Export.ExportTool tool = new Territories.BLL.Export.ExportTool();
+
+
+
+
+                tool.ExportToExcel(txtExcelDestiny.Text, "Addresses", "Address",properties);
+            }
+
+        }
         #endregion
+
+        private void rdo_CheckedChanged(object sender, EventArgs e)
+        {
+            chkListAddresses.Enabled = rdoAddresses.Checked;
+            chkListCities.Enabled = rdoCities.Checked;
+            chkListTerritories.Enabled = rdoTerritories.Checked;
+            chkListDepartments.Enabled = rdoDepartments.Checked;
+        }
 
 
 

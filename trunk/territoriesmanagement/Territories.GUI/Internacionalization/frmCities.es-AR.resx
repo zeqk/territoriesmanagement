@@ -117,10 +117,85 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Address" xml:space="preserve">
+    <value>Dirección</value>
+  </data>
+  <data name="Addresses" xml:space="preserve">
+    <value>Direcciones</value>
+  </data>
+  <data name="Between" xml:space="preserve">
+    <value>Entre</value>
+  </data>
   <data name="Cities" xml:space="preserve">
     <value>Ciudades</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>Ciudad</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Borrar</value>
+  </data>
+  <data name="Department" xml:space="preserve">
+    <value>Partido</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Filter for city name" xml:space="preserve">
+    <value>Filtrar por nombre de ciudad</value>
+  </data>
+  <data name="Filter for department" xml:space="preserve">
+    <value>Filtrar por partido</value>
+  </data>
+  <data name="Filtered" xml:space="preserve">
+    <value>Filtrado</value>
+  </data>
+  <data name="Hide relations" xml:space="preserve">
+    <value>Ocultar relaciones</value>
+  </data>
+  <data name="Id" xml:space="preserve">
+    <value>Id</value>
+  </data>
+  <data name="Message" xml:space="preserve">
+    <value>Mensaje</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="New" xml:space="preserve">
+    <value>Nuevo</value>
+  </data>
+  <data name="Publisher" xml:space="preserve">
+    <value>Publicador</value>
+  </data>
+  <data name="Publishers" xml:space="preserve">
+    <value>Publicadores</value>
+  </data>
+  <data name="Result:" xml:space="preserve">
+    <value>Resultado:</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Guardar</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Buscar</value>
+  </data>
+  <data name="The data is incomplete." xml:space="preserve">
+    <value>Los datos están incompletos.</value>
+  </data>
+  <data name="The window is already opened." xml:space="preserve">
+    <value>La ventana ya está abierta.</value>
+  </data>
+  <data name="There is some unsaved data. Do you want to continue?" xml:space="preserve">
+    <value>Existen datos que no han sido guardados. ¿Desea continuar?</value>
+  </data>
+  <data name="View relations" xml:space="preserve">
+    <value>Ver relaciones</value>
+  </data>
+  <data name="You must complete at least 1 search field" xml:space="preserve">
+    <value>Debe llenar al menos 1 campo de búsqueda.</value>
+  </data>
+  <data name="You must select some city" xml:space="preserve">
+    <value>Debe seleccionar alguna ciudad</value>
   </data>
 </root>

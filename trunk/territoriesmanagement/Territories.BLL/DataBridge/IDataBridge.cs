@@ -3,8 +3,9 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Data.Objects;
+using System.Collections.Generic;
 
-namespace Territories.BLL
+namespace Territories.BLL.DataBridge
 {
     public interface IDataBridge<T>
     {
@@ -16,5 +17,6 @@ namespace Territories.BLL
         IList Search(string strCriteria, params ObjectParameter[] parameters);
         T NewObject();
         void DeleteAll();
+        List<string> GetPropertyList();
     }
 }

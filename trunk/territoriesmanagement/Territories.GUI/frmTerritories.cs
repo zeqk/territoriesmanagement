@@ -9,14 +9,14 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Territories.Model;
-using Territories.BLL;
+using Territories.BLL.DataBridge;
 
 namespace Territories.GUI
 {
     public partial class frmTerritories : Form
     {
         static private bool _opened = false;
-        private BLL.Territories _server = new BLL.Territories();
+        private BLL.DataBridge.Territories _server = new BLL.DataBridge.Territories();
         private bool _isDirty;
 
         public frmTerritories()

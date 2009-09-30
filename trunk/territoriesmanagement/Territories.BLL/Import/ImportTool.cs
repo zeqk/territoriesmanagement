@@ -11,7 +11,7 @@ using Territories.Model;
 using Territories.Interop;
 using ZeqkTools.Query.Enumerators;
 
-namespace Territories.BLL
+namespace Territories.BLL.Import
 {    
     public class ImportTool
     {
