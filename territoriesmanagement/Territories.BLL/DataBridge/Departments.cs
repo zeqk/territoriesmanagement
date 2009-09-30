@@ -10,26 +10,29 @@ using System.Data.Objects;
 using System.Linq;
 using System.Text;
 using Territories.Model;
-          
-namespace Territories.BLL
+using ZeqkTools.Internationalization;
+
+namespace Territories.BLL.DataBridge
 {
     public class Departments : IDataBridge<Department>
     {
-        private TerritoriesDataContext _dm;      
-
+        private TerritoriesDataContext _dm;
         private Func<TerritoriesDataContext, Department, IQueryable<Department>> _compiledSameDepartment;
+        Globalization _gl;
 
         #region Constructors
         public Departments()        
         {
             _dm = new TerritoriesDataContext();
             PreCompileQueries();
+            _gl = new Globalization();
         }
 
         public Departments(EntityConnection conection)
         {
             _dm = new TerritoriesDataContext(conection);
             PreCompileQueries();
+            _gl = new Globalization();
         }
 
         internal Departments(TerritoriesDataContext dm)
@@ -193,6 +196,21 @@ namespace Territories.BLL
             }
         }
 
+        public List<string> GetPropertyList()
+        {
+            List<string> propertyList = new List<string>();
+
+            System.Reflection.PropertyInfo[] properties = typeof(Department).GetProperties();
+
+            foreach (var prop in properties)
+            {
+                propertyList.Add(prop.Name);
+            }
+
+            return propertyList;
+
+        }
+
         #endregion
 
 
@@ -232,6 +250,13 @@ namespace Territories.BLL
                                                                  select dep
 
                 );
+        }
+
+
+        public string GetString(Type type, string text, string culture)
+        {
+            _gl.Culture = new System.Globalization.CultureInfo(culture);
+            return _gl.GetString(type, text);
         }
     }
 }

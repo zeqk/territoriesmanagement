@@ -9,8 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Territories.Model;
-using Territories.BLL;
-using ZeqkTools.Internationalization;
+using Territories.BLL.DataBridge;
 
 namespace Territories.GUI
 {
@@ -18,7 +17,7 @@ namespace Territories.GUI
     {
         static private bool _opened = false;
         private Cities _server = new Cities();
-        private Globalization _gl;
+        
         private bool _isDirty;
 
         public frmCities()
@@ -95,7 +94,7 @@ namespace Territories.GUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show(ex.Message, GetString("Error"));
             }
         }
 
@@ -118,19 +117,19 @@ namespace Territories.GUI
             if (tabPanel.Visible == true)
             {
                 tabPanel.Visible = false;
-                btnRelations.Text = "View relations";
+                btnRelations.Text = GetString("View relations");
             }
             else
             {
                 if (lblId.Text != "0")
                 {
                     tabPanel.Visible = true;
-                    btnRelations.Text = "Hide relations";
+                    btnRelations.Text = GetString("Hide relations");
 
                     LoadRelations((City)bsCity.DataSource);
                 }
                 else
-                    MessageBox.Show("You must select any city");
+                    MessageBox.Show(GetString("You must select some city"));
             }
         }
 
@@ -158,7 +157,7 @@ namespace Territories.GUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show(ex.Message, GetString("Error"));
             }
             lblFiltered.Visible = false;
         }
@@ -166,9 +165,9 @@ namespace Territories.GUI
         private void ConfigGrids()
         {
 
-            dgvResults.Columns.Add("Id", "Id");
-            dgvResults.Columns.Add("Name", "City");
-            dgvResults.Columns.Add("DepartmentName", "Department");
+            dgvResults.Columns.Add("Id", GetString("Id"));
+            dgvResults.Columns.Add("Name", GetString("City"));
+            dgvResults.Columns.Add("DepartmentName", GetString("Department"));
             dgvResults.Columns.Add("blank", "");
 
             dgvResults.Columns["Id"].Visible = false;
@@ -245,7 +244,7 @@ namespace Territories.GUI
         {
             bool yes = true;
             if (_isDirty)
-                if (MessageBox.Show("Desea continuar?", "Message", MessageBoxButtons.YesNo) == DialogResult.No)
+                if (MessageBox.Show(GetString("There is some unsaved data. Do you want to continue?"), GetString("Message"), MessageBoxButtons.YesNo) == DialogResult.No)
                 {
                     yes = false;
                     txtName.Focus();
@@ -275,11 +274,11 @@ namespace Territories.GUI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error");
+                    MessageBox.Show(ex.Message, GetString("Error"));
                 }
             }
             else
-                MessageBox.Show("The data is incomplete.");
+                MessageBox.Show(GetString("The data is incomplete."));
 
         }
 
@@ -330,7 +329,7 @@ namespace Territories.GUI
                     lblFiltered.Visible = true;
                 }
                 else
-                    MessageBox.Show("Debe llenar al menos 1 campo de búsqueda.");
+                    MessageBox.Show(GetString("You must complete at least 1 search field"));
 
                 dgvResults.ClearSelection();
 
@@ -338,7 +337,7 @@ namespace Territories.GUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show(ex.Message, GetString("Error"));
             }
 
 
@@ -368,10 +367,28 @@ namespace Territories.GUI
 
         }
 
+        private string GetString(string text)
+        {
+            return _server.GetString(GetType(), text, "es-AR");
+        }
+
         private void Internationalize()
         {
-            _gl = new Globalization("es-AR");
-            this.Text = _gl.GetString(this.GetType(),"Cities");
+            this.lblDepartment.Text = GetString("Department");
+            this.btnRelations.Text = GetString("View relations");
+            this.btnDelete.Text = GetString("Delete");
+            this.btnSave.Text = GetString("Save");
+            this.btnNew.Text = GetString("New");
+            this.lblName.Text = GetString("Name");
+            this.grdSearch.Text = GetString("Search");
+            this.lblFilterName.Text = GetString("Filter for city name");
+            this.lblFilterDepartment.Text = GetString("Filter for department");
+            this.lblResult.Text = GetString("Result:");
+            this.lblFiltered.Text = GetString("Filtered");
+            this.tabAddresses.Text = GetString("Addresses");
+            this.tabPublishers.Text = GetString("Publishers");
+            this.Text = GetString("Cities");
+            this.grpObject.Text = GetString("City");
         }
 
     }

@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.Objects.DataClasses;
 using Territories.Model;
-using Territories.BLL;
+using Territories.BLL.DataBridge;
 
 namespace Territories.GUI
 {

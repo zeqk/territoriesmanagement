@@ -7,7 +7,7 @@ using System.Data.Common;
 using CarlosAg.ExcelXmlWriter;
 using Territories.Model;
 
-namespace Territories.BLL
+namespace Territories.BLL.Export
 {
     public class ExportTool
     {
@@ -18,17 +18,15 @@ namespace Territories.BLL
 
             string strQuery = "SELECT VALUE " + entity + " FROM TerritoriesDataContext." + entitySet;
 
-            EntityCommand cmd = new EntityCommand(strQuery);
 
-            EntityDataReader r = cmd.ExecuteReader();
-            while (r.Read())
-            {
-                WorksheetRow row = book.Worksheets[0].Table.Rows.Add();
-                foreach (string item in properties)
-                {
-                    row.Cells.Add(r[item].ToString());
-                }
-            }
+            TerritoriesDataContext dm = new TerritoriesDataContext();
+
+            //var res = dm.CreateQuery(strQuery).Execute(System.Data.Objects.MergeOption.AppendOnly);
+
+            //foreach (var item in res)
+            //{
+            //    item.
+            //}
 
             book.Save(path);
 

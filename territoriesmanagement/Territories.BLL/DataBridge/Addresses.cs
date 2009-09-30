@@ -9,7 +9,7 @@ using System.Data.Objects;
 using System.Data.Objects.DataClasses;
 using Territories.Model;
 
-namespace Territories.BLL
+namespace Territories.BLL.DataBridge
 {
     public class Addresses : IDataBridge<Address>
     {
@@ -205,6 +205,27 @@ namespace Territories.BLL
                 throw ex;
             }
             
+        }
+
+        public List<string> GetPropertyList()
+        {
+            List<string> propertyList = new List<string>();
+            
+            System.Reflection.PropertyInfo[] properties = typeof(Address).GetProperties();
+
+            foreach (var prop in properties)
+            {
+                if (!prop.Name.Contains("City") && !prop.Name.Contains("Territory") && !prop.Name.Contains("Entity"))
+                    propertyList.Add(prop.Name);
+            }
+
+            propertyList.Add("Territory.IdTerritory");
+            propertyList.Add("Territory.Name");
+            propertyList.Add("City.IdCity");
+            propertyList.Add("City.Name");
+
+            return propertyList;
+
         }
 
         #endregion

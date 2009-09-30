@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Territories.BLL;
+using Territories.BLL.DataBridge;
 
 namespace Territories.GUI
 {
@@ -44,7 +44,7 @@ namespace Territories.GUI
 
             if (chkTerritories.Checked)
             {
-                BLL.Territories server = new BLL.Territories();
+                BLL.DataBridge.Territories server = new BLL.DataBridge.Territories();
                 server.DeleteAll();
             }
         }
