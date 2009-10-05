@@ -21,7 +21,7 @@ namespace Territories.BLL.Export
 
             TerritoriesDataContext dm = new TerritoriesDataContext();
 
-            //var res = dm.CreateQuery(strQuery).Execute(System.Data.Objects.MergeOption.AppendOnly);
+            var res = dm.CreateQuery<typeof(Address)>(strQuery).Execute(System.Data.Objects.MergeOption.AppendOnly);
 
             //foreach (var item in res)
             //{
