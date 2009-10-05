@@ -49,7 +49,7 @@
             this.txtRssSource = new System.Windows.Forms.TextBox();
             this.btnImportGeoRss = new System.Windows.Forms.Button();
             this.btnSelectRssSource = new System.Windows.Forms.Button();
-            this.tabExport = new System.Windows.Forms.TabControl();
+            this.tabMaps = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.grpExport = new System.Windows.Forms.GroupBox();
             this.rdoDepartments = new System.Windows.Forms.RadioButton();
@@ -62,18 +62,24 @@
             this.chkListAddresses = new System.Windows.Forms.CheckedListBox();
             this.txtExcelDestiny = new System.Windows.Forms.TextBox();
             this.btnExport = new System.Windows.Forms.Button();
-            this.btnSelectExcel = new System.Windows.Forms.Button();
+            this.btnSaveToExcel = new System.Windows.Forms.Button();
             this.ofdFileSource = new System.Windows.Forms.OpenFileDialog();
             this.sfdExcelDestiny = new System.Windows.Forms.SaveFileDialog();
+            this.grpGMapsExport = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnExportToGmaps = new System.Windows.Forms.Button();
+            this.btnSaveToGMaps = new System.Windows.Forms.Button();
+            this.sfdGMaps = new System.Windows.Forms.SaveFileDialog();
             this.tabDataImport.SuspendLayout();
             this.grpConfig.SuspendLayout();
             this.tabProviders.SuspendLayout();
             this.tabMsExcel.SuspendLayout();
             this.tabGeoRss.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.tabExport.SuspendLayout();
+            this.tabMaps.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.grpExport.SuspendLayout();
+            this.grpGMapsExport.SuspendLayout();
             this.SuspendLayout();
             // 
             // odfRssSource
@@ -237,13 +243,14 @@
             // 
             // tabGeoRss
             // 
+            this.tabGeoRss.Controls.Add(this.grpGMapsExport);
             this.tabGeoRss.Controls.Add(this.groupBox1);
             this.tabGeoRss.Location = new System.Drawing.Point(4, 22);
             this.tabGeoRss.Name = "tabGeoRss";
             this.tabGeoRss.Padding = new System.Windows.Forms.Padding(3);
             this.tabGeoRss.Size = new System.Drawing.Size(578, 590);
             this.tabGeoRss.TabIndex = 0;
-            this.tabGeoRss.Text = "GeoRSS import";
+            this.tabGeoRss.Text = "Maps";
             this.tabGeoRss.UseVisualStyleBackColor = true;
             // 
             // groupBox1
@@ -286,16 +293,16 @@
             this.btnSelectRssSource.UseVisualStyleBackColor = true;
             this.btnSelectRssSource.Click += new System.EventHandler(this.btnSelectRssSource_Click);
             // 
-            // tabExport
+            // tabMaps
             // 
-            this.tabExport.Controls.Add(this.tabDataImport);
-            this.tabExport.Controls.Add(this.tabGeoRss);
-            this.tabExport.Controls.Add(this.tabPage1);
-            this.tabExport.Location = new System.Drawing.Point(8, 11);
-            this.tabExport.Name = "tabExport";
-            this.tabExport.SelectedIndex = 0;
-            this.tabExport.Size = new System.Drawing.Size(586, 616);
-            this.tabExport.TabIndex = 0;
+            this.tabMaps.Controls.Add(this.tabDataImport);
+            this.tabMaps.Controls.Add(this.tabGeoRss);
+            this.tabMaps.Controls.Add(this.tabPage1);
+            this.tabMaps.Location = new System.Drawing.Point(8, 11);
+            this.tabMaps.Name = "tabMaps";
+            this.tabMaps.SelectedIndex = 0;
+            this.tabMaps.Size = new System.Drawing.Size(586, 616);
+            this.tabMaps.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -320,7 +327,7 @@
             this.grpExport.Controls.Add(this.chkListAddresses);
             this.grpExport.Controls.Add(this.txtExcelDestiny);
             this.grpExport.Controls.Add(this.btnExport);
-            this.grpExport.Controls.Add(this.btnSelectExcel);
+            this.grpExport.Controls.Add(this.btnSaveToExcel);
             this.grpExport.Location = new System.Drawing.Point(6, 25);
             this.grpExport.Name = "grpExport";
             this.grpExport.Size = new System.Drawing.Size(566, 559);
@@ -430,14 +437,15 @@
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
-            // btnSelectExcel
+            // btnSaveToExcel
             // 
-            this.btnSelectExcel.Location = new System.Drawing.Point(420, 27);
-            this.btnSelectExcel.Name = "btnSelectExcel";
-            this.btnSelectExcel.Size = new System.Drawing.Size(118, 24);
-            this.btnSelectExcel.TabIndex = 11;
-            this.btnSelectExcel.Text = "Select";
-            this.btnSelectExcel.UseVisualStyleBackColor = true;
+            this.btnSaveToExcel.Location = new System.Drawing.Point(420, 27);
+            this.btnSaveToExcel.Name = "btnSaveToExcel";
+            this.btnSaveToExcel.Size = new System.Drawing.Size(118, 24);
+            this.btnSaveToExcel.TabIndex = 11;
+            this.btnSaveToExcel.Text = "Save";
+            this.btnSaveToExcel.UseVisualStyleBackColor = true;
+            this.btnSaveToExcel.Click += new System.EventHandler(this.btnSaveToExcel_Click);
             // 
             // ofdFileSource
             // 
@@ -445,12 +453,56 @@
             this.ofdFileSource.InitialDirectory = "C:\\\\";
             this.ofdFileSource.FileOk += new System.ComponentModel.CancelEventHandler(this.ofdFileSource_FileOk);
             // 
+            // sfdExcelDestiny
+            // 
+            this.sfdExcelDestiny.FileName = "Excel files (*.xls)|*.xls";
+            this.sfdExcelDestiny.FileOk += new System.ComponentModel.CancelEventHandler(this.sfdExcelDestiny_FileOk);
+            // 
+            // grpGMapsExport
+            // 
+            this.grpGMapsExport.Controls.Add(this.textBox1);
+            this.grpGMapsExport.Controls.Add(this.btnExportToGmaps);
+            this.grpGMapsExport.Controls.Add(this.btnSaveToGMaps);
+            this.grpGMapsExport.Location = new System.Drawing.Point(6, 180);
+            this.grpGMapsExport.Name = "grpGMapsExport";
+            this.grpGMapsExport.Size = new System.Drawing.Size(566, 127);
+            this.grpGMapsExport.TabIndex = 17;
+            this.grpGMapsExport.TabStop = false;
+            this.grpGMapsExport.Text = "Export to Gmaps";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(15, 30);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(379, 20);
+            this.textBox1.TabIndex = 12;
+            // 
+            // btnExportToGmaps
+            // 
+            this.btnExportToGmaps.Location = new System.Drawing.Point(104, 68);
+            this.btnExportToGmaps.Name = "btnExportToGmaps";
+            this.btnExportToGmaps.Size = new System.Drawing.Size(344, 35);
+            this.btnExportToGmaps.TabIndex = 13;
+            this.btnExportToGmaps.Text = "Export";
+            this.btnExportToGmaps.UseVisualStyleBackColor = true;
+            // 
+            // btnSaveToGMaps
+            // 
+            this.btnSaveToGMaps.Location = new System.Drawing.Point(420, 27);
+            this.btnSaveToGMaps.Name = "btnSaveToGMaps";
+            this.btnSaveToGMaps.Size = new System.Drawing.Size(118, 24);
+            this.btnSaveToGMaps.TabIndex = 11;
+            this.btnSaveToGMaps.Text = "Save";
+            this.btnSaveToGMaps.UseVisualStyleBackColor = true;
+            this.btnSaveToGMaps.Click += new System.EventHandler(this.btnSaveToGMaps_Click);
+            // 
             // frmInterop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 632);
-            this.Controls.Add(this.tabExport);
+            this.Controls.Add(this.tabMaps);
             this.Name = "frmInterop";
             this.Text = "Interoperability";
             this.Load += new System.EventHandler(this.frmInterop_Load);
@@ -464,10 +516,12 @@
             this.tabGeoRss.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.tabExport.ResumeLayout(false);
+            this.tabMaps.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.grpExport.ResumeLayout(false);
             this.grpExport.PerformLayout();
+            this.grpGMapsExport.ResumeLayout(false);
+            this.grpGMapsExport.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -493,7 +547,7 @@
         private System.Windows.Forms.Button btnImportGeoRss;
         private System.Windows.Forms.TextBox txtRssSource;
         private System.Windows.Forms.Button btnSelectRssSource;
-        private System.Windows.Forms.TabControl tabExport;
+        private System.Windows.Forms.TabControl tabMaps;
         private System.Windows.Forms.Button btnSetConnectStr;
         private System.Windows.Forms.OpenFileDialog ofdFileSource;
         private System.Windows.Forms.TabPage tabPage1;
@@ -501,7 +555,7 @@
         private System.Windows.Forms.GroupBox grpExport;
         private System.Windows.Forms.TextBox txtExcelDestiny;
         private System.Windows.Forms.Button btnExport;
-        private System.Windows.Forms.Button btnSelectExcel;
+        private System.Windows.Forms.Button btnSaveToExcel;
         private System.Windows.Forms.SaveFileDialog sfdExcelDestiny;
         private System.Windows.Forms.CheckedListBox chkListAddresses;
         private System.Windows.Forms.RadioButton rdoAddresses;
@@ -511,5 +565,10 @@
         private System.Windows.Forms.RadioButton rdoDepartments;
         private System.Windows.Forms.RadioButton rdoTerritories;
         private System.Windows.Forms.RadioButton rdoCities;
+        private System.Windows.Forms.GroupBox grpGMapsExport;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnExportToGmaps;
+        private System.Windows.Forms.Button btnSaveToGMaps;
+        private System.Windows.Forms.SaveFileDialog sfdGMaps;
     }
 }

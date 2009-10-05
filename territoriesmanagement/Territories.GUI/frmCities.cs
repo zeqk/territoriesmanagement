@@ -215,7 +215,7 @@ namespace Territories.GUI
         private City FormToOject()
         {
             City rv = (City)this.bsCity.DataSource;
-            rv.Department = new Department();
+            rv.Department = new Model.Department();
             if (cboDepartment.SelectedItem != null)
                 rv.Department.IdDepartment = (int)cboDepartment.SelectedValue;
             else 

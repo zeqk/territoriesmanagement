@@ -150,7 +150,7 @@ namespace Territories.GUI
 
         private void ConfigureMenus()
         {
-            cboDepartment.DisplayMember = "Name";
+            cboDepartment.DisplayMember = "Name";            
             cboDepartment.ValueMember = "Id";
             cboDepartment.DataSource = _server.GetDepartments();            
             cboDepartment.SelectedItem = null;
@@ -167,6 +167,30 @@ namespace Territories.GUI
         private void HaveChanges(object sender, EventArgs e)
         {
             _isDirty = true;
+        }
+
+        private void btnSearchGeoPos_Click(object sender, EventArgs e)
+        {
+            using (frmGeoPoint myForm = new frmGeoPoint())
+            {
+                Address a = (Address) bsAddress.DataSource;
+                if (!string.IsNullOrEmpty(a.Geoposition))
+                {
+                    myForm.GeoPosition = a.Geoposition;
+                }
+
+                myForm.Address = a.Street + a.Number + ", " + a.City.Name + ", " + GetDepartmentName();
+
+                myForm.ShowDialog();
+
+            }
+        }
+
+        private string GetDepartmentName()
+        {
+            string rv = cboDepartment.SelectedItem.GetType().GetProperty("Name").GetValue(cboDepartment.SelectedItem, null).ToString();
+
+            return rv;
         }
 
         

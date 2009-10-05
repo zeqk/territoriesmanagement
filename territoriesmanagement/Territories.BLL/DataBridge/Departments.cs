@@ -204,7 +204,8 @@ namespace Territories.BLL.DataBridge
 
             foreach (var prop in properties)
             {
-                propertyList.Add(prop.Name);
+                if (!prop.Name.Contains("Cities") && !prop.Name.Contains("Entity"))
+                    propertyList.Add(prop.Name);
             }
 
             return propertyList;

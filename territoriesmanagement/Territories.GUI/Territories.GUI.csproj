@@ -84,6 +84,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\..\WINDOWS\assembly\GAC_MSIL\CrystalDecisions.Shared\10.5.3700.0__692fbea5521e1304\CrystalDecisions.Shared.dll</HintPath>
     </Reference>
+    <Reference Include="GMap.NET.Core, Version=1.3.8.4, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\GMap.NET.WindowsForms.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="System" />
@@ -153,6 +161,12 @@
     <Compile Include="frmAddresses.Designer.cs">
       <DependentUpon>frmAddresses.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGeoPoint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGeoPoint.Designer.cs">
+      <DependentUpon>frmGeoPoint.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmInterop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +212,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddresses.resx">
       <DependentUpon>frmAddresses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGeoPoint.resx">
+      <DependentUpon>frmGeoPoint.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmInterop.resx">
       <DependentUpon>frmInterop.cs</DependentUpon>

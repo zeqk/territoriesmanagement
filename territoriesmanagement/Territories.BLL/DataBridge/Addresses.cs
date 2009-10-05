@@ -165,7 +165,8 @@ namespace Territories.BLL.DataBridge
                                   Address = a.Street + " " + a.Number,
                                   Corner1 = a.Corner1,
                                   Corner2 = a.Corner2,
-                                  Description = a.Description
+                                  Description = a.Description,
+                                  HaveGeoposition = a.Geoposition != null
                               };
                 return results.ToList();
             }

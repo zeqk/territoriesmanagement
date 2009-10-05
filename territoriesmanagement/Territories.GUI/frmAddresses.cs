@@ -188,6 +188,7 @@ namespace Territories.GUI
             dgvResults.Columns.Add("Corner1", "Corner1");
             dgvResults.Columns.Add("Corner2", "Corner2");
             dgvResults.Columns.Add("Description", "Description");
+            dgvResults.Columns.Add("HaveGeoPosition", "GEO");
             dgvResults.Columns.Add("blank", "");
 
             dgvResults.Columns["Id"].Visible = false;
@@ -204,8 +205,10 @@ namespace Territories.GUI
             dgvResults.Columns["Corner1"].DataPropertyName = "Corner1";
             dgvResults.Columns["Corner2"].Width = 100;
             dgvResults.Columns["Corner2"].DataPropertyName = "Corner2";
-            dgvResults.Columns["Description"].Width = 200;
+            dgvResults.Columns["Description"].Width = 160;
             dgvResults.Columns["Description"].DataPropertyName = "Description";
+            dgvResults.Columns["HaveGeoPosition"].Width = 40;
+            dgvResults.Columns["HaveGeoPosition"].DataPropertyName = "HaveGeoPosition";
 
             dgvResults.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
