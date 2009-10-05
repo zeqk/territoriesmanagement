@@ -336,23 +336,43 @@ namespace Territories.GUI
         #region DataExport
         private void btnExport_Click(object sender, EventArgs e)
         {
+            bool exported = true;
 
             BLL.Export.ExportTool tool = new Territories.BLL.Export.ExportTool();
             if (rdoAddresses.Checked)
             {
 
-                string[] properties = chkListAddresses.CheckedItems.Cast<string>().ToArray();                 
+                string[] properties = chkListAddresses.CheckedItems.Cast<string>().ToArray();
 
-                tool.ExportToExcel(txtExcelDestiny.Text, "Addresses", "Address",properties);
+                exported = tool.ExportToExcel(txtExcelDestiny.Text, "Address", "Addresses", properties);
             }
 
 
             if (rdoTerritories.Checked)
             {
-                string[] properties = chkListTerritories.CheckedItems.Cast<string>().ToArray(); 
+                string[] properties = chkListTerritories.CheckedItems.Cast<string>().ToArray();
 
-                tool.ExportToExcel(txtExcelDestiny.Text, "Territories", "Territory", properties);
+                exported = tool.ExportToExcel(txtExcelDestiny.Text, "Territory", "Territories", properties);
             }
+
+            if (rdoCities.Checked)
+            {
+                string[] properties = chkListCities.CheckedItems.Cast<string>().ToArray();
+
+                exported = tool.ExportToExcel(txtExcelDestiny.Text, "City", "Cities", properties);
+            }
+
+            if (rdoDepartments.Checked)
+            {
+                string[] properties = chkListDepartments.CheckedItems.Cast<string>().ToArray();
+
+                exported = tool.ExportToExcel(txtExcelDestiny.Text, "Department", "Departments", properties);
+            }
+
+            if (exported)
+                MessageBox.Show("The exportation has been successful.\n");
+            else
+                MessageBox.Show("The exportation have problems. Check the settings and see the log.\n");
         }
 
         private void LoadExportCheckList()
@@ -379,7 +399,24 @@ namespace Territories.GUI
             chkListDepartments.Enabled = rdoDepartments.Checked;
         }
 
+        private void btnSaveToExcel_Click(object sender, EventArgs e)
+        {
+            sfdExcelDestiny.ShowDialog();
+        }
+
+        private void sfdExcelDestiny_FileOk(object sender, CancelEventArgs e)
+        {
+            txtExcelDestiny.Text = Path.GetFullPath(sfdExcelDestiny.FileName);
+        }
+
         #endregion
+
+        private void btnSaveToGMaps_Click(object sender, EventArgs e)
+        {
+            sfdGMaps.ShowDialog();
+        }
+
+        
 
 
 

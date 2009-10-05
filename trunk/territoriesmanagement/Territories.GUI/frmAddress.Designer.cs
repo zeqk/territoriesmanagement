@@ -30,7 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.grpMaps = new System.Windows.Forms.GroupBox();
+            this.txtId = new System.Windows.Forms.TextBox();
+            this.bsAddress = new System.Windows.Forms.BindingSource(this.components);
             this.grpGeoLocation = new System.Windows.Forms.GroupBox();
+            this.btnSearchGeoPos = new System.Windows.Forms.Button();
             this.chkHaveGeoPos = new System.Windows.Forms.CheckBox();
             this.lblLon = new System.Windows.Forms.Label();
             this.lblLat = new System.Windows.Forms.Label();
@@ -38,7 +41,6 @@
             this.txtLat = new System.Windows.Forms.TextBox();
             this.lblMap2 = new System.Windows.Forms.Label();
             this.txtMap2 = new System.Windows.Forms.TextBox();
-            this.bsAddress = new System.Windows.Forms.BindingSource(this.components);
             this.lblMap1 = new System.Windows.Forms.Label();
             this.txtMap1 = new System.Windows.Forms.TextBox();
             this.lblDescription = new System.Windows.Forms.Label();
@@ -70,10 +72,9 @@
             this.grpTerritory = new System.Windows.Forms.GroupBox();
             this.cboTerritory = new System.Windows.Forms.ComboBox();
             this.grpAdditional = new System.Windows.Forms.GroupBox();
-            this.txtId = new System.Windows.Forms.TextBox();
             this.grpMaps.SuspendLayout();
-            this.grpGeoLocation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsAddress)).BeginInit();
+            this.grpGeoLocation.SuspendLayout();
             this.grpPhones.SuspendLayout();
             this.grpUbication.SuspendLayout();
             this.grpTerritory.SuspendLayout();
@@ -95,8 +96,24 @@
             this.grpMaps.TabStop = false;
             this.grpMaps.Text = "Maps";
             // 
+            // txtId
+            // 
+            this.txtId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "IdAddresses", true));
+            this.txtId.Location = new System.Drawing.Point(249, 0);
+            this.txtId.MaxLength = 50;
+            this.txtId.Name = "txtId";
+            this.txtId.ReadOnly = true;
+            this.txtId.Size = new System.Drawing.Size(100, 20);
+            this.txtId.TabIndex = 50;
+            // 
+            // bsAddress
+            // 
+            this.bsAddress.DataSource = typeof(Territories.Model.Address);
+            this.bsAddress.CurrentItemChanged += new System.EventHandler(this.HaveChanges);
+            // 
             // grpGeoLocation
             // 
+            this.grpGeoLocation.Controls.Add(this.btnSearchGeoPos);
             this.grpGeoLocation.Controls.Add(this.chkHaveGeoPos);
             this.grpGeoLocation.Controls.Add(this.lblLon);
             this.grpGeoLocation.Controls.Add(this.lblLat);
@@ -108,6 +125,16 @@
             this.grpGeoLocation.TabIndex = 4;
             this.grpGeoLocation.TabStop = false;
             this.grpGeoLocation.Text = "Geo location";
+            // 
+            // btnSearchGeoPos
+            // 
+            this.btnSearchGeoPos.Location = new System.Drawing.Point(259, 59);
+            this.btnSearchGeoPos.Name = "btnSearchGeoPos";
+            this.btnSearchGeoPos.Size = new System.Drawing.Size(29, 23);
+            this.btnSearchGeoPos.TabIndex = 5;
+            this.btnSearchGeoPos.Text = "...";
+            this.btnSearchGeoPos.UseVisualStyleBackColor = true;
+            this.btnSearchGeoPos.Click += new System.EventHandler(this.btnSearchGeoPos_Click);
             // 
             // chkHaveGeoPos
             // 
@@ -171,11 +198,6 @@
             this.txtMap2.Name = "txtMap2";
             this.txtMap2.Size = new System.Drawing.Size(304, 20);
             this.txtMap2.TabIndex = 2;
-            // 
-            // bsAddress
-            // 
-            this.bsAddress.DataSource = typeof(Territories.Model.Address);
-            this.bsAddress.CurrentItemChanged += new System.EventHandler(this.HaveChanges);
             // 
             // lblMap1
             // 
@@ -486,16 +508,6 @@
             this.grpAdditional.TabStop = false;
             this.grpAdditional.Text = "Additional data";
             // 
-            // txtId
-            // 
-            this.txtId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "IdAddresses", true));
-            this.txtId.Location = new System.Drawing.Point(249, 0);
-            this.txtId.MaxLength = 50;
-            this.txtId.Name = "txtId";
-            this.txtId.ReadOnly = true;
-            this.txtId.Size = new System.Drawing.Size(100, 20);
-            this.txtId.TabIndex = 50;
-            // 
             // frmAddress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -513,9 +525,9 @@
             this.Load += new System.EventHandler(this.frmAddress_Load);
             this.grpMaps.ResumeLayout(false);
             this.grpMaps.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAddress)).EndInit();
             this.grpGeoLocation.ResumeLayout(false);
             this.grpGeoLocation.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAddress)).EndInit();
             this.grpPhones.ResumeLayout(false);
             this.grpPhones.PerformLayout();
             this.grpUbication.ResumeLayout(false);
@@ -571,6 +583,7 @@
         private System.Windows.Forms.GroupBox grpAdditional;
         private System.Windows.Forms.CheckBox chkHaveGeoPos;
         private System.Windows.Forms.TextBox txtId;
+        private System.Windows.Forms.Button btnSearchGeoPos;
 
 
     }

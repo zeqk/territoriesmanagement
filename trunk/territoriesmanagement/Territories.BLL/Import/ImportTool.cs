@@ -534,7 +534,9 @@ namespace Territories.BLL.Import
                 if (_config.Addresses.Fields.ContainsKey("Geoposition"))
                 {
                     string columnName = _config.Addresses.Fields["Geoposition"];
-                    a.Geoposition = row[columnName].ToString();
+                    string geoPos = row[columnName].ToString();
+                    if (!string.IsNullOrEmpty(geoPos))
+                        a.Geoposition = geoPos;
                 }
                 //Address.City
                 int idCity = 0;

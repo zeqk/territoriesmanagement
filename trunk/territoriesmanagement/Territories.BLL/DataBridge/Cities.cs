@@ -209,10 +209,13 @@ namespace Territories.BLL.DataBridge
 
             foreach (var prop in properties)
             {
-                propertyList.Add(prop.Name);
+                if (!prop.Name.Contains("Department") && !prop.Name.Contains("Addresses")
+                    && !prop.Name.Contains("Entity") && !prop.Name.Contains("Publishers"))
+                    propertyList.Add(prop.Name);
             }
 
             propertyList.Add("Department.IdDepartment");
+            propertyList.Add("Department.Name");
 
             return propertyList;
 

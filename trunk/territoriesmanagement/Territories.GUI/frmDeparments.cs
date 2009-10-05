@@ -116,7 +116,7 @@ namespace Territories.GUI
                     tabPanel.Visible = true;
                     btnRelations.Text = GetString("Hide relations");
 
-                    LoadRelations((Department)bsDepartment.DataSource);
+                    LoadRelations((Model.Department)bsDepartment.DataSource);
                 }
                 else
                     MessageBox.Show(GetString("You must select some department"));
@@ -178,12 +178,12 @@ namespace Territories.GUI
 
         } 
 
-        private Department FormToOject()
+        private Model.Department FormToOject()
         {
-            return (Department)this.bsDepartment.DataSource;
+            return (Model.Department)this.bsDepartment.DataSource;
         }
 
-        private void ObjectToForm(Department v)
+        private void ObjectToForm(Model.Department v)
         {
             this.bsDepartment.DataSource = v;
         }
@@ -288,7 +288,7 @@ namespace Territories.GUI
             dgvResults.ClearSelection();
         }
 
-        private void LoadRelations(Department v)
+        private void LoadRelations(Model.Department v)
         {
             dgvCities.DataSource = this._server.LoadRelations(v.IdDepartment)["Cities"];
             dgvCities.Refresh();
