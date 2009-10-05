@@ -549,5 +549,10 @@ namespace Territories.Model
         }
         #endregion
 
+
+        public object CreateQuery(string strQuery,string )
+        {
+            throw new NotImplementedException();
+        }
     }
 }

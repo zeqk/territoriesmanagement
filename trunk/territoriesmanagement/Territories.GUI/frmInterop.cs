@@ -46,10 +46,13 @@ namespace Territories.GUI
             grdImportConfig.SelectedObject = _config;
 
 
-            //Export
-            BLL.DataBridge.Addresses address = new Territories.BLL.DataBridge.Addresses();
-            chkListAddresses.Items.AddRange(address.GetPropertyList().ToArray());
+            
+
+            LoadExportCheckList();
+            
         }
+
+        
 
         private void frmInterop_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -334,21 +337,39 @@ namespace Territories.GUI
         private void btnExport_Click(object sender, EventArgs e)
         {
 
-            //List<string> properties = new List<string>();
+            BLL.Export.ExportTool tool = new Territories.BLL.Export.ExportTool();
             if (rdoAddresses.Checked)
             {
 
-                string[] properties = chkListAddresses.CheckedItems.Cast<string>().ToArray(); ;
-                BLL.Export.ExportTool tool = new Territories.BLL.Export.ExportTool();
-
-
-
+                string[] properties = chkListAddresses.CheckedItems.Cast<string>().ToArray();                 
 
                 tool.ExportToExcel(txtExcelDestiny.Text, "Addresses", "Address",properties);
             }
 
+
+            if (rdoTerritories.Checked)
+            {
+                string[] properties = chkListTerritories.CheckedItems.Cast<string>().ToArray(); 
+
+                tool.ExportToExcel(txtExcelDestiny.Text, "Territories", "Territory", properties);
+            }
         }
-        #endregion
+
+        private void LoadExportCheckList()
+        {
+            //Export
+            BLL.DataBridge.Addresses address = new Territories.BLL.DataBridge.Addresses();
+            chkListAddresses.Items.AddRange(address.GetPropertyList().ToArray());
+
+            BLL.DataBridge.Territories territories = new Territories.BLL.DataBridge.Territories();
+            chkListTerritories.Items.AddRange(territories.GetPropertyList().ToArray());
+
+            BLL.DataBridge.Cities cities = new Territories.BLL.DataBridge.Cities();
+            chkListCities.Items.AddRange(cities.GetPropertyList().ToArray());
+
+            BLL.DataBridge.Departments departments = new Territories.BLL.DataBridge.Departments();
+            chkListDepartments.Items.AddRange(departments.GetPropertyList().ToArray());
+        }
 
         private void rdo_CheckedChanged(object sender, EventArgs e)
         {
@@ -357,6 +378,8 @@ namespace Territories.GUI
             chkListTerritories.Enabled = rdoTerritories.Checked;
             chkListDepartments.Enabled = rdoDepartments.Checked;
         }
+
+        #endregion
 
 
 
