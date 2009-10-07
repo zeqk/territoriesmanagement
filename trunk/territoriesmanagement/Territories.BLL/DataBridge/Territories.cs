@@ -102,6 +102,7 @@ namespace Territories.BLL.DataBridge
             {
                 _dm.Territories.MergeOption = MergeOption.NoTracking;
                 Territory rv = this._compileLoadTerritory(_dm, id).First();
+                rv.Addresses.Load();
                 return rv;
             }
             catch (Exception ex)

@@ -30,8 +30,10 @@ namespace Territories.GUI
 
         private void frmTerritories_Load(object sender, EventArgs e)
         {
-            string[] columns = { "Territory.Name","Territory.Number" };
-            string[] variables = { "name","number" };
+            //string[] columns = { "Territory.Name","Territory.Number" };
+            //string[] variables = { "name","number" };
+            string[] columns = { "Territory.Name" };
+            string[] variables = { "name" };
             schName.SetProperties(columns, variables);
             ConfigGrids();
 
@@ -328,6 +330,30 @@ namespace Territories.GUI
 
             dgvTours.RowHeadersVisible = false;
 
+        }
+
+        private void btnViewMap_Click(object sender, EventArgs e)
+        {
+            using (frmGeoArea myForm = new frmGeoArea())
+            {
+                Territory t = FormToOject();
+                if (!string.IsNullOrEmpty(t.Area))
+                {
+                    myForm.GeoPositions = t.Area.Split('\n').ToList();
+                    if (t.Addresses.Count > 0)
+                    {
+                        List<string> marks = new List<string>();
+                        foreach (var item in t.Addresses)
+                        {
+                            marks.Add(item.Geoposition);
+                        }
+                        myForm.Marks = marks;
+                    }
+                }
+
+                myForm.ShowDialog();
+
+            }
         }
 
         

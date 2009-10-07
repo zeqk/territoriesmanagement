@@ -8,6 +8,7 @@ using System.IO;
 using GeoRSSLibrary;
 using GeoRSSLibrary.GeoRssItems;
 using Territories.Model;
+using System.Globalization;
 
 namespace Territories.BLL.Import
 {
@@ -112,9 +113,9 @@ namespace Territories.BLL.Import
                                 foreach (Coordinates coord in polygon.Coordinates)
                                 {
                                     if (!string.IsNullOrEmpty(v.Area))
-                                        v.Area = "\n";
+                                        v.Area += "\n";
 
-                                    v.Area = coord.Latitude.ToString() + " " + coord.Longitude.ToString();
+                                    v.Area += coord.Latitude.ToString(new CultureInfo("en-US")) + " " + coord.Longitude.ToString(new CultureInfo("en-US"));
                                 }
                             }
                             else
