@@ -23,6 +23,8 @@ namespace Territories.GUI
         GMapOverlay top;
         GMapOverlay objects;
 
+        bool isMouseDown;
+
 	    public string Address
 	    {
 		    get { return txtAddress.Text;}
@@ -49,16 +51,13 @@ namespace Territories.GUI
         
 
         private void btnSearch_Click(object sender, EventArgs e)
-        {
-            GeoCoderStatusCode status = MainMap.SetCurrentPositionByKeywords(txtAddress.Text);            
-            if (status != GeoCoderStatusCode.G_GEO_SUCCESS)
-            {
-                MessageBox.Show("Google Maps Geocoder can't find: '" + txtAddress.Text + "', reason: " + status.ToString(), "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
+        {            
+            GoToAddress(txtAddress.Text);
         }
 
         private void ConfigMap()
         {
+            isMouseDown = false;
             // config gmaps
             GMaps.Instance.UseRouteCache = true;
             GMaps.Instance.UseGeocoderCache = true;
@@ -79,13 +78,13 @@ namespace Territories.GUI
             MainMap.OnCurrentPositionChanged += new CurrentPositionChanged(MainMap_OnCurrentPositionChanged);
             //MainMap.OnTileLoadStart += new TileLoadStart(MainMap_OnTileLoadStart);
             //MainMap.OnTileLoadComplete += new TileLoadComplete(MainMap_OnTileLoadComplete);
-            //MainMap.OnMarkerClick += new MarkerClick(MainMap_OnMarkerClick);
+            MainMap.OnMarkerClick += new MarkerClick(MainMap_OnMarkerClick);
             //MainMap.OnEmptyTileError += new EmptyTileError(MainMap_OnEmptyTileError);
             //MainMap.OnMapZoomChanged += new MapZoomChanged(MainMap_OnMapZoomChanged);
             //MainMap.OnMapTypeChanged += new MapTypeChanged(MainMap_OnMapTypeChanged);
-            //MainMap.MouseMove += new MouseEventHandler(MainMap_MouseMove);
-            //MainMap.MouseDown += new MouseEventHandler(MainMap_MouseDown);
-            //MainMap.MouseUp += new MouseEventHandler(MainMap_MouseUp);
+            MainMap.MouseMove += new MouseEventHandler(MainMap_MouseMove);
+            MainMap.MouseDown += new MouseEventHandler(MainMap_MouseDown);
+            MainMap.MouseUp += new MouseEventHandler(MainMap_MouseUp);
 
 
             // map center
@@ -121,8 +120,7 @@ namespace Territories.GUI
         }
 
         private void GoToAddress(string keywordToSearch)
-        {
-            
+        {            
 
             GeoCoderStatusCode status = MainMap.SetCurrentPositionByKeywords(keywordToSearch);
             if (status != GeoCoderStatusCode.G_GEO_SUCCESS)
@@ -131,17 +129,60 @@ namespace Territories.GUI
             }
 
             // set current marker
-            currentMarker = new GMapMarkerGoogleCustom(MainMap.CurrentPosition, Properties.Resources.legendIcon);
+            currentMarker = new GMapMarkerGoogleRed(MainMap.CurrentPosition);
             top.Markers.Add(currentMarker);
 
             center = new GMapMarkerCross(MainMap.CurrentPosition);
             top.Markers.Add(center);
+
+            txtLat.Text = MainMap.CurrentPosition.Lat.ToString(CultureInfo.CurrentCulture);
+            txtLng.Text = MainMap.CurrentPosition.Lng.ToString(CultureInfo.CurrentCulture);
         }
 
         // current point changed
         void MainMap_OnCurrentPositionChanged(PointLatLng point)
         {
             center.Position = point;
+        }
+
+        // move current marker with left holding
+        void MainMap_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && isMouseDown)
+            {
+                currentMarker.Position = MainMap.FromLocalToLatLng(e.X, e.Y);
+                UpdateCurrentMarkerPositionText();
+            }
+        }
+
+        void MainMap_MouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                isMouseDown = false;
+            }
+        }
+
+        void UpdateCurrentMarkerPositionText()
+        {
+            txtLat.Text = currentMarker.Position.Lat.ToString(CultureInfo.InvariantCulture);
+            txtLng.Text = currentMarker.Position.Lng.ToString(CultureInfo.InvariantCulture);
+        }
+
+        void MainMap_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                isMouseDown = true;
+                currentMarker.Position = MainMap.FromLocalToLatLng(e.X, e.Y);
+                UpdateCurrentMarkerPositionText();
+            }
+        }
+
+        void MainMap_OnMarkerClick(GMapMarker item)
+        {
+            MainMap.CurrentPosition = item.Position;
+            MainMap.Zoom = 5;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -158,24 +199,6 @@ namespace Territories.GUI
             
 
             this.Close();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            GeoCoderStatusCode status = MainMap.SetCurrentPositionByKeywords("-34.77677 -58.31553");
-            if (status != GeoCoderStatusCode.G_GEO_SUCCESS)
-            {
-                MessageBox.Show("Google Maps Geocoder can't find: '" + txtAddress.Text + "', reason: " + status.ToString(), "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
-
-            // set current marker
-            List<PointLatLng> points = new List<PointLatLng>();
-            points.Add(new PointLatLng(-34.77776,-58.31740));
-            points.Add(new PointLatLng(-34.77885,-58.31646));
-            points.Add(new PointLatLng(-34.77698,-58.31348));
-            points.Add(new PointLatLng(-34.77535,-58.31506));
-            currentMarker = new GMapMarkerPolygon(MainMap.CurrentPosition, points);
-            top.Markers.Add(currentMarker);
         }
         
     }
