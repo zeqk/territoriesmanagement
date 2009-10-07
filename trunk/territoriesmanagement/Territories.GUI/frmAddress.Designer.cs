@@ -92,7 +92,7 @@
             this.grpMaps.Location = new System.Drawing.Point(383, 12);
             this.grpMaps.Name = "grpMaps";
             this.grpMaps.Size = new System.Drawing.Size(355, 255);
-            this.grpMaps.TabIndex = 40;
+            this.grpMaps.TabIndex = 2;
             this.grpMaps.TabStop = false;
             this.grpMaps.Text = "Maps";
             // 
@@ -104,7 +104,7 @@
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(100, 20);
-            this.txtId.TabIndex = 50;
+            this.txtId.TabIndex = 0;
             // 
             // bsAddress
             // 
@@ -122,7 +122,7 @@
             this.grpGeoLocation.Location = new System.Drawing.Point(26, 113);
             this.grpGeoLocation.Name = "grpGeoLocation";
             this.grpGeoLocation.Size = new System.Drawing.Size(304, 115);
-            this.grpGeoLocation.TabIndex = 4;
+            this.grpGeoLocation.TabIndex = 5;
             this.grpGeoLocation.TabStop = false;
             this.grpGeoLocation.Text = "Geo location";
             // 
@@ -142,7 +142,7 @@
             this.chkHaveGeoPos.Location = new System.Drawing.Point(189, 17);
             this.chkHaveGeoPos.Name = "chkHaveGeoPos";
             this.chkHaveGeoPos.Size = new System.Drawing.Size(109, 17);
-            this.chkHaveGeoPos.TabIndex = 4;
+            this.chkHaveGeoPos.TabIndex = 0;
             this.chkHaveGeoPos.Text = "Have geoposition";
             this.chkHaveGeoPos.UseVisualStyleBackColor = true;
             this.chkHaveGeoPos.CheckedChanged += new System.EventHandler(this.chkHaveGeoPos_CheckedChanged);
@@ -162,7 +162,7 @@
             this.lblLat.Location = new System.Drawing.Point(20, 24);
             this.lblLat.Name = "lblLat";
             this.lblLat.Size = new System.Drawing.Size(45, 13);
-            this.lblLat.TabIndex = 2;
+            this.lblLat.TabIndex = 1;
             this.lblLat.Text = "Latitude";
             // 
             // txtLon
@@ -170,7 +170,7 @@
             this.txtLon.Location = new System.Drawing.Point(23, 80);
             this.txtLon.Name = "txtLon";
             this.txtLon.Size = new System.Drawing.Size(217, 20);
-            this.txtLon.TabIndex = 1;
+            this.txtLon.TabIndex = 4;
             this.txtLon.TextChanged += new System.EventHandler(this.HaveChanges);
             // 
             // txtLat
@@ -178,7 +178,7 @@
             this.txtLat.Location = new System.Drawing.Point(23, 40);
             this.txtLat.Name = "txtLat";
             this.txtLat.Size = new System.Drawing.Size(217, 20);
-            this.txtLat.TabIndex = 0;
+            this.txtLat.TabIndex = 2;
             this.txtLat.TextChanged += new System.EventHandler(this.HaveChanges);
             // 
             // lblMap2
@@ -197,7 +197,7 @@
             this.txtMap2.MaxLength = 15;
             this.txtMap2.Name = "txtMap2";
             this.txtMap2.Size = new System.Drawing.Size(304, 20);
-            this.txtMap2.TabIndex = 2;
+            this.txtMap2.TabIndex = 4;
             // 
             // lblMap1
             // 
@@ -215,7 +215,7 @@
             this.txtMap1.MaxLength = 15;
             this.txtMap1.Name = "txtMap1";
             this.txtMap1.Size = new System.Drawing.Size(304, 20);
-            this.txtMap1.TabIndex = 0;
+            this.txtMap1.TabIndex = 2;
             // 
             // lblDescription
             // 
@@ -223,7 +223,7 @@
             this.lblDescription.Location = new System.Drawing.Point(15, 20);
             this.lblDescription.Name = "lblDescription";
             this.lblDescription.Size = new System.Drawing.Size(60, 13);
-            this.lblDescription.TabIndex = 39;
+            this.lblDescription.TabIndex = 0;
             this.lblDescription.Text = "Description";
             // 
             // txtDescription
@@ -234,7 +234,7 @@
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(316, 135);
-            this.txtDescription.TabIndex = 38;
+            this.txtDescription.TabIndex = 1;
             // 
             // grpPhones
             // 
@@ -245,7 +245,7 @@
             this.grpPhones.Location = new System.Drawing.Point(383, 365);
             this.grpPhones.Name = "grpPhones";
             this.grpPhones.Size = new System.Drawing.Size(355, 124);
-            this.grpPhones.TabIndex = 41;
+            this.grpPhones.TabIndex = 4;
             this.grpPhones.TabStop = false;
             this.grpPhones.Text = "Phones";
             // 
@@ -255,7 +255,7 @@
             this.lblPhone2.Location = new System.Drawing.Point(23, 67);
             this.lblPhone2.Name = "lblPhone2";
             this.lblPhone2.Size = new System.Drawing.Size(47, 13);
-            this.lblPhone2.TabIndex = 3;
+            this.lblPhone2.TabIndex = 2;
             this.lblPhone2.Text = "Phone 2";
             // 
             // lblPhone1
@@ -264,7 +264,7 @@
             this.lblPhone1.Location = new System.Drawing.Point(23, 23);
             this.lblPhone1.Name = "lblPhone1";
             this.lblPhone1.Size = new System.Drawing.Size(47, 13);
-            this.lblPhone1.TabIndex = 2;
+            this.lblPhone1.TabIndex = 0;
             this.lblPhone1.Text = "Phone 1";
             // 
             // txtPhone2
@@ -274,7 +274,7 @@
             this.txtPhone2.MaxLength = 15;
             this.txtPhone2.Name = "txtPhone2";
             this.txtPhone2.Size = new System.Drawing.Size(304, 20);
-            this.txtPhone2.TabIndex = 1;
+            this.txtPhone2.TabIndex = 3;
             // 
             // txtPhone1
             // 
@@ -283,14 +283,14 @@
             this.txtPhone1.MaxLength = 15;
             this.txtPhone1.Name = "txtPhone1";
             this.txtPhone1.Size = new System.Drawing.Size(304, 20);
-            this.txtPhone1.TabIndex = 0;
+            this.txtPhone1.TabIndex = 1;
             // 
             // btnSave
             // 
             this.btnSave.Location = new System.Drawing.Point(560, 517);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(86, 55);
-            this.btnSave.TabIndex = 42;
+            this.btnSave.TabIndex = 5;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -300,7 +300,7 @@
             this.btnCancel.Location = new System.Drawing.Point(652, 517);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(86, 55);
-            this.btnCancel.TabIndex = 43;
+            this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -324,7 +324,7 @@
             this.grpUbication.Location = new System.Drawing.Point(12, 12);
             this.grpUbication.Name = "grpUbication";
             this.grpUbication.Size = new System.Drawing.Size(355, 291);
-            this.grpUbication.TabIndex = 44;
+            this.grpUbication.TabIndex = 0;
             this.grpUbication.TabStop = false;
             this.grpUbication.Text = "Ubication";
             // 
@@ -334,7 +334,7 @@
             this.lblAddressData.Location = new System.Drawing.Point(134, 147);
             this.lblAddressData.Name = "lblAddressData";
             this.lblAddressData.Size = new System.Drawing.Size(69, 13);
-            this.lblAddressData.TabIndex = 59;
+            this.lblAddressData.TabIndex = 8;
             this.lblAddressData.Text = "Address data";
             // 
             // txtAddressData
@@ -344,7 +344,7 @@
             this.txtAddressData.MaxLength = 50;
             this.txtAddressData.Name = "txtAddressData";
             this.txtAddressData.Size = new System.Drawing.Size(197, 20);
-            this.txtAddressData.TabIndex = 58;
+            this.txtAddressData.TabIndex = 9;
             // 
             // lblNumber
             // 
@@ -352,7 +352,7 @@
             this.lblNumber.Location = new System.Drawing.Point(15, 147);
             this.lblNumber.Name = "lblNumber";
             this.lblNumber.Size = new System.Drawing.Size(44, 13);
-            this.lblNumber.TabIndex = 57;
+            this.lblNumber.TabIndex = 6;
             this.lblNumber.Text = "Number";
             // 
             // lblCity
@@ -361,7 +361,7 @@
             this.lblCity.Location = new System.Drawing.Point(15, 60);
             this.lblCity.Name = "lblCity";
             this.lblCity.Size = new System.Drawing.Size(24, 13);
-            this.lblCity.TabIndex = 56;
+            this.lblCity.TabIndex = 2;
             this.lblCity.Text = "City";
             // 
             // lblDepartment
@@ -370,7 +370,7 @@
             this.lblDepartment.Location = new System.Drawing.Point(15, 16);
             this.lblDepartment.Name = "lblDepartment";
             this.lblDepartment.Size = new System.Drawing.Size(62, 13);
-            this.lblDepartment.TabIndex = 55;
+            this.lblDepartment.TabIndex = 0;
             this.lblDepartment.Text = "Department";
             // 
             // lblCorner2
@@ -379,7 +379,7 @@
             this.lblCorner2.Location = new System.Drawing.Point(15, 233);
             this.lblCorner2.Name = "lblCorner2";
             this.lblCorner2.Size = new System.Drawing.Size(47, 13);
-            this.lblCorner2.TabIndex = 54;
+            this.lblCorner2.TabIndex = 12;
             this.lblCorner2.Text = "Corner 2";
             // 
             // lblCorner1
@@ -388,7 +388,7 @@
             this.lblCorner1.Location = new System.Drawing.Point(15, 190);
             this.lblCorner1.Name = "lblCorner1";
             this.lblCorner1.Size = new System.Drawing.Size(47, 13);
-            this.lblCorner1.TabIndex = 53;
+            this.lblCorner1.TabIndex = 10;
             this.lblCorner1.Text = "Corner 1";
             // 
             // lblStreet
@@ -397,7 +397,7 @@
             this.lblStreet.Location = new System.Drawing.Point(15, 104);
             this.lblStreet.Name = "lblStreet";
             this.lblStreet.Size = new System.Drawing.Size(35, 13);
-            this.lblStreet.TabIndex = 52;
+            this.lblStreet.TabIndex = 4;
             this.lblStreet.Text = "Street";
             // 
             // txtCorner2
@@ -407,7 +407,7 @@
             this.txtCorner2.MaxLength = 80;
             this.txtCorner2.Name = "txtCorner2";
             this.txtCorner2.Size = new System.Drawing.Size(316, 20);
-            this.txtCorner2.TabIndex = 51;
+            this.txtCorner2.TabIndex = 13;
             // 
             // txtCorner1
             // 
@@ -416,7 +416,7 @@
             this.txtCorner1.MaxLength = 80;
             this.txtCorner1.Name = "txtCorner1";
             this.txtCorner1.Size = new System.Drawing.Size(316, 20);
-            this.txtCorner1.TabIndex = 50;
+            this.txtCorner1.TabIndex = 11;
             // 
             // txtNumber
             // 
@@ -425,7 +425,7 @@
             this.txtNumber.MaxLength = 50;
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.Size = new System.Drawing.Size(100, 20);
-            this.txtNumber.TabIndex = 49;
+            this.txtNumber.TabIndex = 7;
             // 
             // cboCity
             // 
@@ -434,7 +434,7 @@
             this.cboCity.Location = new System.Drawing.Point(18, 78);
             this.cboCity.Name = "cboCity";
             this.cboCity.Size = new System.Drawing.Size(316, 21);
-            this.cboCity.TabIndex = 48;
+            this.cboCity.TabIndex = 3;
             this.cboCity.SelectedIndexChanged += new System.EventHandler(this.HaveChanges);
             // 
             // cboDepartment
@@ -445,7 +445,7 @@
             this.cboDepartment.Location = new System.Drawing.Point(18, 34);
             this.cboDepartment.Name = "cboDepartment";
             this.cboDepartment.Size = new System.Drawing.Size(316, 21);
-            this.cboDepartment.TabIndex = 47;
+            this.cboDepartment.TabIndex = 1;
             this.cboDepartment.SelectedIndexChanged += new System.EventHandler(this.cboDepartment_SelectedIndexChanged);
             // 
             // txtStreet
@@ -455,7 +455,7 @@
             this.txtStreet.MaxLength = 80;
             this.txtStreet.Name = "txtStreet";
             this.txtStreet.Size = new System.Drawing.Size(316, 20);
-            this.txtStreet.TabIndex = 46;
+            this.txtStreet.TabIndex = 5;
             // 
             // txtField1
             // 
@@ -465,7 +465,7 @@
             this.txtField1.Multiline = true;
             this.txtField1.Name = "txtField1";
             this.txtField1.Size = new System.Drawing.Size(316, 43);
-            this.txtField1.TabIndex = 45;
+            this.txtField1.TabIndex = 3;
             // 
             // lblField1
             // 
@@ -473,7 +473,7 @@
             this.lblField1.Location = new System.Drawing.Point(15, 181);
             this.lblField1.Name = "lblField1";
             this.lblField1.Size = new System.Drawing.Size(73, 13);
-            this.lblField1.TabIndex = 46;
+            this.lblField1.TabIndex = 2;
             this.lblField1.Text = "Custom field 1";
             // 
             // grpTerritory
@@ -482,7 +482,7 @@
             this.grpTerritory.Location = new System.Drawing.Point(383, 278);
             this.grpTerritory.Name = "grpTerritory";
             this.grpTerritory.Size = new System.Drawing.Size(355, 71);
-            this.grpTerritory.TabIndex = 47;
+            this.grpTerritory.TabIndex = 3;
             this.grpTerritory.TabStop = false;
             this.grpTerritory.Text = "Territory";
             // 
@@ -493,7 +493,7 @@
             this.cboTerritory.Location = new System.Drawing.Point(26, 29);
             this.cboTerritory.Name = "cboTerritory";
             this.cboTerritory.Size = new System.Drawing.Size(304, 21);
-            this.cboTerritory.TabIndex = 37;
+            this.cboTerritory.TabIndex = 0;
             // 
             // grpAdditional
             // 
@@ -504,7 +504,7 @@
             this.grpAdditional.Location = new System.Drawing.Point(12, 316);
             this.grpAdditional.Name = "grpAdditional";
             this.grpAdditional.Size = new System.Drawing.Size(355, 256);
-            this.grpAdditional.TabIndex = 48;
+            this.grpAdditional.TabIndex = 1;
             this.grpAdditional.TabStop = false;
             this.grpAdditional.Text = "Additional data";
             // 
@@ -521,7 +521,7 @@
             this.Controls.Add(this.grpPhones);
             this.Controls.Add(this.grpMaps);
             this.Name = "frmAddress";
-            this.Text = "Address";
+            this.Text = "2";
             this.Load += new System.EventHandler(this.frmAddress_Load);
             this.grpMaps.ResumeLayout(false);
             this.grpMaps.PerformLayout();
