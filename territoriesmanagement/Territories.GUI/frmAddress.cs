@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Data.Objects.DataClasses;
 using Territories.Model;
 using Territories.BLL.DataBridge;
+using System.Globalization;
 
 namespace Territories.GUI
 {
@@ -36,7 +37,8 @@ namespace Territories.GUI
                     rv.Territory.IdTerritory = 0;
 
                 if (chkHaveGeoPos.Checked)
-                    rv.Geoposition = txtLat.Text + " " + txtLon.Text;
+                    rv.Geoposition = txtLat.Text.ToString(new CultureInfo("en-US")) + " " + 
+                                     txtLon.Text.ToString(new CultureInfo("en-US"));
                 else 
                     rv.Geoposition = null;
 
@@ -63,8 +65,8 @@ namespace Territories.GUI
                 {
                     string[] geoPosition = value.Geoposition.Split(' ');
 
-                    txtLat.Text = geoPosition[0];
-                    txtLon.Text = geoPosition[1];
+                    txtLat.Text = geoPosition[0].ToString(CultureInfo.CurrentCulture);
+                    txtLon.Text = geoPosition[1].ToString(CultureInfo.CurrentCulture);
                     chkHaveGeoPos.Checked = true;
                 }
                 else
@@ -182,6 +184,15 @@ namespace Territories.GUI
                 myForm.Address = a.Street + a.Number + ", " + a.City.Name + ", " + GetDepartmentName();
 
                 myForm.ShowDialog();
+
+                if (myForm.DialogResult == DialogResult.OK)
+                {
+                    chkHaveGeoPos.Checked = true;
+                    string[] geoPosStr = myForm.GeoPosition.Split(' ');
+                    
+                    txtLat.Text = geoPosStr[0].ToString(new CultureInfo("en-US"));
+                    txtLon.Text = geoPosStr[1].ToString(new CultureInfo("en-US"));
+                }
 
             }
         }

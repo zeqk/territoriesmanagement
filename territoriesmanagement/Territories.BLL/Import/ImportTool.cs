@@ -10,6 +10,7 @@ using System.IO;
 using Territories.Model;
 using Territories.Interop;
 using ZeqkTools.Query.Enumerators;
+using System.Globalization;
 
 namespace Territories.BLL.Import
 {    
@@ -536,7 +537,23 @@ namespace Territories.BLL.Import
                     string columnName = _config.Addresses.Fields["Geoposition"];
                     string geoPos = row[columnName].ToString();
                     if (!string.IsNullOrEmpty(geoPos))
-                        a.Geoposition = geoPos;
+                    {
+                        string[] strArray = geoPos.Split(' ');
+                        if (strArray.Count<string>() != 0)
+                        {
+                            bool validGeoPosition = true;
+                            double lat = 0;
+                            if(!double.TryParse(strArray[0],NumberStyles.Any,new CultureInfo("en-US"),out lat))
+                                validGeoPosition = false;
+
+                            double lng = 0;
+                            if (!double.TryParse(strArray[1], NumberStyles.Any, new CultureInfo("en-US"), out lng))
+                                validGeoPosition = false;
+
+                            if (validGeoPosition)
+                                a.Geoposition = lat.ToString(new CultureInfo("en-US")) + " " + lng.ToString(new CultureInfo("en-US"));
+                        }
+                    }
                 }
                 //Address.City
                 int idCity = 0;

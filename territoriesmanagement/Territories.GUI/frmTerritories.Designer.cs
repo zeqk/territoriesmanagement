@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTerritories));
             this.grpObject = new System.Windows.Forms.GroupBox();
             this.txtNumber = new System.Windows.Forms.MaskedTextBox();
+            this.bsTerritory = new System.Windows.Forms.BindingSource(this.components);
             this.lblNumber = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
             this.btnRelations = new System.Windows.Forms.Button();
@@ -53,8 +54,9 @@
             this.dgvAddresses = new System.Windows.Forms.DataGridView();
             this.tabTours = new System.Windows.Forms.TabPage();
             this.dgvTours = new System.Windows.Forms.DataGridView();
-            this.bsTerritory = new System.Windows.Forms.BindingSource(this.components);
+            this.btnViewMap = new System.Windows.Forms.Button();
             this.grpObject.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).BeginInit();
             this.grdSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
             this.tabPanel.SuspendLayout();
@@ -62,11 +64,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddresses)).BeginInit();
             this.tabTours.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTours)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).BeginInit();
             this.SuspendLayout();
             // 
             // grpObject
             // 
+            this.grpObject.Controls.Add(this.btnViewMap);
             this.grpObject.Controls.Add(this.txtNumber);
             this.grpObject.Controls.Add(this.lblNumber);
             this.grpObject.Controls.Add(this.lblId);
@@ -93,6 +95,10 @@
             this.txtNumber.Size = new System.Drawing.Size(100, 20);
             this.txtNumber.TabIndex = 23;
             this.txtNumber.ValidatingType = typeof(int);
+            // 
+            // bsTerritory
+            // 
+            this.bsTerritory.DataSource = typeof(Territories.Model.Territory);
             // 
             // lblNumber
             // 
@@ -330,9 +336,15 @@
             this.dgvTours.TabIndex = 7;
             this.dgvTours.VirtualMode = true;
             // 
-            // bsTerritory
+            // btnViewMap
             // 
-            this.bsTerritory.DataSource = typeof(Territories.Model.Territory);
+            this.btnViewMap.Location = new System.Drawing.Point(269, 72);
+            this.btnViewMap.Name = "btnViewMap";
+            this.btnViewMap.Size = new System.Drawing.Size(69, 23);
+            this.btnViewMap.TabIndex = 24;
+            this.btnViewMap.Text = "View map";
+            this.btnViewMap.UseVisualStyleBackColor = true;
+            this.btnViewMap.Click += new System.EventHandler(this.btnViewMap_Click);
             // 
             // frmTerritories
             // 
@@ -348,6 +360,7 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmTerritories_FormClosed_1);
             this.grpObject.ResumeLayout(false);
             this.grpObject.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).EndInit();
             this.grdSearch.ResumeLayout(false);
             this.grdSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).EndInit();
@@ -356,7 +369,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddresses)).EndInit();
             this.tabTours.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTours)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -387,5 +399,6 @@
         private System.Windows.Forms.Label lblNumber;
         private System.Windows.Forms.MaskedTextBox txtNumber;
         private System.Windows.Forms.BindingSource bsTerritory;
+        private System.Windows.Forms.Button btnViewMap;
     }
 }

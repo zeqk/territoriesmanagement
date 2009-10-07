@@ -21,6 +21,7 @@ namespace Territories.GUI
 
         // layers
         GMapOverlay top;
+        GMapOverlay objects;
 
 	    public string Address
 	    {
@@ -62,27 +63,20 @@ namespace Territories.GUI
             GMaps.Instance.UseRouteCache = true;
             GMaps.Instance.UseGeocoderCache = true;
             GMaps.Instance.UsePlacemarkCache = true;
-            GMaps.Instance.Mode = AccessMode.ServerAndCache;
-
-            // add your custom map db provider
-            // MsSQLPureImageCache ch = new MsSQLPureImageCache();
-            //ch.ConnectionString = @"Data Source=RADIOMAN-PC\SQLEXPRESS;Initial Catalog=Test;Persist Security Info=False;User ID=aa;Password=aa;";
-            //GMaps.Instance.ImageCacheSecond = ch;
-
-            // set your proxy here if need
-            //GMaps.Instance.Proxy = new WebProxy("10.2.0.100", 8080);
-            //GMaps.Instance.Proxy.Credentials = new NetworkCredential("ogrenci@bilgeadam.com", "bilgeadam");
+            GMaps.Instance.Mode = AccessMode.ServerAndCache;           
 
             // config map 
             MainMap.MapType = MapType.GoogleMap;
-            MainMap.MaxZoom = 12;
-            MainMap.MinZoom = 2;
-            MainMap.Zoom = 9;
-            MainMap.CurrentPosition = new PointLatLng(54.6961334816182, 25.2985095977783);
-            //MainMap.CurrentPosition = new PointLatLng(29.8741410626414, 121.563806533813); // china test
+            MainMap.MaxZoom = 20;
+            MainMap.MinZoom = 5;
+            MainMap.Zoom = 16;
+
+            //string[] geoPos = GeoPosition.Split(' ');
+
+            MainMap.CurrentPosition = new PointLatLng();
 
             // map events
-            //MainMap.OnCurrentPositionChanged += new CurrentPositionChanged(MainMap_OnCurrentPositionChanged);
+            MainMap.OnCurrentPositionChanged += new CurrentPositionChanged(MainMap_OnCurrentPositionChanged);
             //MainMap.OnTileLoadStart += new TileLoadStart(MainMap_OnTileLoadStart);
             //MainMap.OnTileLoadComplete += new TileLoadComplete(MainMap_OnTileLoadComplete);
             //MainMap.OnMarkerClick += new MarkerClick(MainMap_OnMarkerClick);
@@ -93,60 +87,95 @@ namespace Territories.GUI
             //MainMap.MouseDown += new MouseEventHandler(MainMap_MouseDown);
             //MainMap.MouseUp += new MouseEventHandler(MainMap_MouseUp);
 
-           
-
-            // get position
-            //textBoxLat.Text = MainMap.CurrentPosition.Lat.ToString(CultureInfo.InvariantCulture);
-            //textBoxLng.Text = MainMap.CurrentPosition.Lng.ToString(CultureInfo.InvariantCulture);
-
-            
-
-            // get zoom  
-            //trackBar1.Minimum = MainMap.MinZoom;
-            //trackBar1.Maximum = MainMap.MaxZoom;
-            //trackBar1.Value = MainMap.Zoom;
-
-            
-
-            // set current marker
-            currentMarker = new GMapMarkerGoogleRed(MainMap.CurrentPosition);
-            top.Markers.Add(currentMarker);
 
             // map center
-            center = new GMapMarkerCross(MainMap.CurrentPosition);
-            top.Markers.Add(center);
+            //center = new GMapMarkerCross(MainMap.CurrentPosition);
+            //top.Markers.Add(center);
 
-            // add my city location for demo
-            //GeoCoderStatusCode status = GeoCoderStatusCode.Unknow;
-            //{
-            //   PointLatLng? pos = GMaps.Instance.GetLatLngFromGeocoder("Lithuania, Vilnius", out status);
-            //   if(pos != null && status == GeoCoderStatusCode.G_GEO_SUCCESS)
-            //   {
-            //      currentMarker.Position = pos.Value;
+            // add custom layers  
+            {
+                //routes = new GMapOverlay(MainMap, "routes");
+                //MainMap.Overlays.Add(routes);
 
-            //      GMapMarker myCity = new GMapMarkerGoogleGreen(pos.Value);
-            //      myCity.TooltipMode = MarkerTooltipMode.Always;
-            //      myCity.ToolTipText = "Welcome to Lithuania! ;}";
-            //      objects.Markers.Add(myCity);
-            //   }
-            //}
+                objects = new GMapOverlay(MainMap, "objects");
+                MainMap.Overlays.Add(objects);
+
+                top = new GMapOverlay(MainMap, "top");
+                MainMap.Overlays.Add(top);
+            }
 
             MainMap.ZoomAndCenterMarkers(null);
          }
 
         private void frmGeoPoint_Load(object sender, EventArgs e)
         {
+            ConfigMap();
+
             string keywordToSearch = "";
             if (!string.IsNullOrEmpty(GeoPosition))
                 keywordToSearch = GeoPosition;
             else
                 keywordToSearch = Address;
+            GoToAddress(keywordToSearch);
+            
+        }
+
+        private void GoToAddress(string keywordToSearch)
+        {
+            
 
             GeoCoderStatusCode status = MainMap.SetCurrentPositionByKeywords(keywordToSearch);
             if (status != GeoCoderStatusCode.G_GEO_SUCCESS)
             {
                 MessageBox.Show("Google Maps Geocoder can't find: '" + txtAddress.Text + "', reason: " + status.ToString(), "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+
+            // set current marker
+            currentMarker = new GMapMarkerGoogleCustom(MainMap.CurrentPosition, Properties.Resources.legendIcon);
+            top.Markers.Add(currentMarker);
+
+            center = new GMapMarkerCross(MainMap.CurrentPosition);
+            top.Markers.Add(center);
+        }
+
+        // current point changed
+        void MainMap_OnCurrentPositionChanged(PointLatLng point)
+        {
+            center.Position = point;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+
+            this.GeoPosition = MainMap.CurrentPosition.Lat.ToString(new CultureInfo("en-US")) + " " + MainMap.CurrentPosition.Lng.ToString(new CultureInfo("en-US"));
+            
+
+            this.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            GeoCoderStatusCode status = MainMap.SetCurrentPositionByKeywords("-34.77677 -58.31553");
+            if (status != GeoCoderStatusCode.G_GEO_SUCCESS)
+            {
+                MessageBox.Show("Google Maps Geocoder can't find: '" + txtAddress.Text + "', reason: " + status.ToString(), "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+
+            // set current marker
+            List<PointLatLng> points = new List<PointLatLng>();
+            points.Add(new PointLatLng(-34.77776,-58.31740));
+            points.Add(new PointLatLng(-34.77885,-58.31646));
+            points.Add(new PointLatLng(-34.77698,-58.31348));
+            points.Add(new PointLatLng(-34.77535,-58.31506));
+            currentMarker = new GMapMarkerPolygon(MainMap.CurrentPosition, points);
+            top.Markers.Add(currentMarker);
         }
         
     }
