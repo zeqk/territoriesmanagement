@@ -23,58 +23,23 @@ namespace Territories.GUI
             get 
             {
                 Address rv = (Address)bsAddress.DataSource;
-
-                rv.City = new City();
-                if (cboCity.SelectedItem != null)
-                    rv.City.IdCity = (int)cboCity.SelectedValue;
-                else
-                    rv.City.IdCity = 0;
-
-                rv.Territory = new Territory();
-                if (cboTerritory.SelectedItem != null)
-                    rv.Territory.IdTerritory = (int)cboTerritory.SelectedValue;
-                else
-                    rv.Territory.IdTerritory = 0;
-
-                if (chkHaveGeoPos.Checked)
-                    rv.Geoposition = txtLat.Text.ToString(new CultureInfo("en-US")) + " " + 
-                                     txtLon.Text.ToString(new CultureInfo("en-US"));
-                else 
-                    rv.Geoposition = null;
-
                 return rv;
             }
             set 
             {   
                 bsAddress.DataSource = value;
 
-                if (value.Territory != null)
-                    cboTerritory.SelectedValue = value.Territory.IdTerritory;
-                else
-                    cboTerritory.SelectedItem = null;
-
-                if (value.City != null)
-                {
+                if (value.City != null && value.City.Department != null)
                     cboDepartment.SelectedValue = value.City.Department.IdDepartment;
-                    cboCity.SelectedValue = value.City.IdCity;
-                }
                 else
                     cboDepartment.SelectedItem = null;
 
-                if (!string.IsNullOrEmpty(value.Geoposition))
-                {
-                    string[] geoPosition = value.Geoposition.Split(' ');
-
-                    txtLat.Text = geoPosition[0].ToString(CultureInfo.CurrentCulture);
-                    txtLon.Text = geoPosition[1].ToString(CultureInfo.CurrentCulture);
+                if (value.Lat != null && value.Lng != null)
                     chkHaveGeoPos.Checked = true;
-                }
                 else
-                {
-                    txtLat.Enabled = chkHaveGeoPos.Checked;
-                    txtLon.Enabled = chkHaveGeoPos.Checked;
                     chkHaveGeoPos.Checked = false;
-                }
+
+
             }
         }	
 
@@ -94,6 +59,7 @@ namespace Territories.GUI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            Address a = this.Address;
             if (_isDirty == true)
             {                
                 try
@@ -123,7 +89,7 @@ namespace Territories.GUI
             {
                 int idDepartment = (int)cboDepartment.SelectedValue;
                 cboCity.DataSource = _server.GetCitiesByDepartment(idDepartment);
-                cboCity.SelectedItem = null;
+                //cboCity.SelectedValue = 0;
             }
             else
                 cboCity.DataSource = null;
@@ -171,27 +137,31 @@ namespace Territories.GUI
             _isDirty = true;
         }
 
+        private void GeoPositionHaveChanges(object sender, EventArgs e)
+        {
+            _isDirty = true;
+        }
+
         private void btnSearchGeoPos_Click(object sender, EventArgs e)
         {
             using (frmGeoPoint myForm = new frmGeoPoint())
             {
-                Address a = (Address) bsAddress.DataSource;
-                if (!string.IsNullOrEmpty(a.Geoposition))
+                Address a = this.Address;
+                if (a.Lat.HasValue && a.Lng.HasValue)
                 {
-                    myForm.GeoPosition = a.Geoposition;
+                    myForm.GeoPosition = new GMap.NET.PointLatLng(a.Lat.Value, a.Lng.Value);
                 }
 
-                myForm.Address = a.Street + a.Number + ", " + a.City.Name + ", " + GetDepartmentName();
+                myForm.Address = a.Street + " " + a.Number + ", " + a.City.Name + ", " + GetDepartmentName();
 
                 myForm.ShowDialog();
 
                 if (myForm.DialogResult == DialogResult.OK)
                 {
                     chkHaveGeoPos.Checked = true;
-                    string[] geoPosStr = myForm.GeoPosition.Split(' ');
-                    
-                    txtLat.Text = geoPosStr[0].ToString(new CultureInfo("en-US"));
-                    txtLon.Text = geoPosStr[1].ToString(new CultureInfo("en-US"));
+
+                    txtLat.Text = myForm.GeoPosition.Lat.ToString();
+                    txtLon.Text = myForm.GeoPosition.Lng.ToString();
                 }
 
             }

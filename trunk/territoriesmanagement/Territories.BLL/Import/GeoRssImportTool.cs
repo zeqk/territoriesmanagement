@@ -67,9 +67,8 @@ namespace Territories.BLL.Import
                         if (results.Count>0)
                         {
                             Address v = results.First();
-
-                            v.Geoposition = point.Coordinates.Latitude.ToString() + " " + point.Coordinates.Longitude.ToString();                            
-                            
+                            v.Lat = point.Coordinates.Latitude;
+                            v.Lng = point.Coordinates.Longitude;                            
                         }
                         else
                             message += "\nMark: " + point.Guid + " address id " + id + " dont't exist.";

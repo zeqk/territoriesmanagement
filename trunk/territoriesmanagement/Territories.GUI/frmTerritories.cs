@@ -342,10 +342,11 @@ namespace Territories.GUI
                     myForm.GeoPositions = t.Area.Split('\n').ToList();
                     if (t.Addresses.Count > 0)
                     {
-                        List<string> marks = new List<string>();
+                        List<GMap.NET.PointLatLng> marks = new List<GMap.NET.PointLatLng>();
                         foreach (var item in t.Addresses)
                         {
-                            marks.Add(item.Geoposition);
+                            if(item.Lat.HasValue && item.Lng.HasValue)
+                                marks.Add(new GMap.NET.PointLatLng(item.Lat.Value, item.Lng.Value));
                         }
                         myForm.Marks = marks;
                     }

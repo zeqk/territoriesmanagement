@@ -16,7 +16,7 @@ namespace Territories.GUI
     public partial class frmGeoArea : Form
     {
         public List<string> GeoPositions;
-        public List<string> Marks;
+        public List<PointLatLng> Marks;
 
         // marker
         GMapMarker currentMarker;
@@ -29,7 +29,7 @@ namespace Territories.GUI
         public frmGeoArea()
         {
             GeoPositions = new List<string>();
-            Marks = new List<string>();
+            Marks = new List<PointLatLng>();
             InitializeComponent();
         }
 
@@ -58,11 +58,11 @@ namespace Territories.GUI
             currentMarker = new GMapMarkerPolygon(MainMap.CurrentPosition, points);
             top.Markers.Add(currentMarker);
 
-            List<PointLatLng> marks = StrPointsToPointsLatLng(this.Marks);
-            foreach (var item in marks)
-            {
-                top.Markers.Add(new GMapMarkerGoogleCustom(item, Properties.Resources.legendIcon));
-            }
+            if(Marks.Count>0)
+                foreach (var item in Marks)
+                {
+                    top.Markers.Add(new GMapMarkerGoogleCustom(item, Properties.Resources.legendIcon));
+                }
 
 
         }
