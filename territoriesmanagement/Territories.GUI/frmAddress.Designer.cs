@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.grpMaps = new System.Windows.Forms.GroupBox();
             this.txtId = new System.Windows.Forms.TextBox();
-            this.bsAddress = new System.Windows.Forms.BindingSource(this.components);
             this.grpGeoLocation = new System.Windows.Forms.GroupBox();
             this.btnSearchGeoPos = new System.Windows.Forms.Button();
             this.chkHaveGeoPos = new System.Windows.Forms.CheckBox();
@@ -72,13 +71,14 @@
             this.grpTerritory = new System.Windows.Forms.GroupBox();
             this.cboTerritory = new System.Windows.Forms.ComboBox();
             this.grpAdditional = new System.Windows.Forms.GroupBox();
+            this.bsAddress = new System.Windows.Forms.BindingSource(this.components);
             this.grpMaps.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAddress)).BeginInit();
             this.grpGeoLocation.SuspendLayout();
             this.grpPhones.SuspendLayout();
             this.grpUbication.SuspendLayout();
             this.grpTerritory.SuspendLayout();
             this.grpAdditional.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAddress)).BeginInit();
             this.SuspendLayout();
             // 
             // grpMaps
@@ -105,11 +105,6 @@
             this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(100, 20);
             this.txtId.TabIndex = 0;
-            // 
-            // bsAddress
-            // 
-            this.bsAddress.DataSource = typeof(Territories.Model.Address);
-            this.bsAddress.CurrentItemChanged += new System.EventHandler(this.HaveChanges);
             // 
             // grpGeoLocation
             // 
@@ -167,6 +162,7 @@
             // 
             // txtLon
             // 
+            this.txtLon.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Lng", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtLon.Location = new System.Drawing.Point(23, 80);
             this.txtLon.Name = "txtLon";
             this.txtLon.Size = new System.Drawing.Size(217, 20);
@@ -175,6 +171,7 @@
             // 
             // txtLat
             // 
+            this.txtLat.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Lat", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtLat.Location = new System.Drawing.Point(23, 40);
             this.txtLat.Name = "txtLat";
             this.txtLat.Size = new System.Drawing.Size(217, 20);
@@ -429,6 +426,8 @@
             // 
             // cboCity
             // 
+            this.cboCity.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsAddress, "City.IdCity", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cboCity.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "City.Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cboCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCity.FormattingEnabled = true;
             this.cboCity.Location = new System.Drawing.Point(18, 78);
@@ -488,6 +487,8 @@
             // 
             // cboTerritory
             // 
+            this.cboTerritory.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsAddress, "Territory.IdTerritory", true));
+            this.cboTerritory.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Territory.Name", true));
             this.cboTerritory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTerritory.FormattingEnabled = true;
             this.cboTerritory.Location = new System.Drawing.Point(26, 29);
@@ -508,6 +509,11 @@
             this.grpAdditional.TabStop = false;
             this.grpAdditional.Text = "Additional data";
             // 
+            // bsAddress
+            // 
+            this.bsAddress.DataSource = typeof(Territories.Model.Address);
+            this.bsAddress.CurrentItemChanged += new System.EventHandler(this.HaveChanges);
+            // 
             // frmAddress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -521,11 +527,10 @@
             this.Controls.Add(this.grpPhones);
             this.Controls.Add(this.grpMaps);
             this.Name = "frmAddress";
-            this.Text = "2";
+            this.Text = "Address";
             this.Load += new System.EventHandler(this.frmAddress_Load);
             this.grpMaps.ResumeLayout(false);
             this.grpMaps.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAddress)).EndInit();
             this.grpGeoLocation.ResumeLayout(false);
             this.grpGeoLocation.PerformLayout();
             this.grpPhones.ResumeLayout(false);
@@ -535,6 +540,7 @@
             this.grpTerritory.ResumeLayout(false);
             this.grpAdditional.ResumeLayout(false);
             this.grpAdditional.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAddress)).EndInit();
             this.ResumeLayout(false);
 
         }

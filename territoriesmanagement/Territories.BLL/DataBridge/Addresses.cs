@@ -166,7 +166,7 @@ namespace Territories.BLL.DataBridge
                                   Corner1 = a.Corner1,
                                   Corner2 = a.Corner2,
                                   Description = a.Description,
-                                  HaveGeoposition = a.Geoposition != null
+                                  HaveGeoposition = a.Lat != null && a.Lng != null
                               };
                 return results.ToList();
             }
@@ -190,6 +190,8 @@ namespace Territories.BLL.DataBridge
         public Address NewObject()
         {
             Address rv = new Address();
+            rv.Territory = new Territory();
+            rv.City = new City();
             return rv;
         }
 
@@ -236,12 +238,16 @@ namespace Territories.BLL.DataBridge
             bool rv = true;
             if (string.IsNullOrEmpty(v.Street))
             {
+                if (!rv)
+                    message += "\n";
                 message += "Enter the street.";
                 rv = false;
             }
 
             if (string.IsNullOrEmpty(v.Number) && string.IsNullOrEmpty(v.Corner1))
             {
+                if (!rv)
+                    message += "\n";
                 message += "Enter the number or the corner.";
                 rv = false;
             }
@@ -261,30 +267,6 @@ namespace Territories.BLL.DataBridge
                 message += "Select any city.";
                 rv = false;
             }
-
-            if(!string.IsNullOrEmpty(v.Geoposition))
-                if (!GeoPositionIsValid(v.Geoposition))
-                {
-                    if (!rv)
-                        message += "\n";
-                    message += "Geoposition is invalid.";
-                    rv = false;
-                }
-
-            return rv;
-
-        }
-
-        private bool GeoPositionIsValid(string p)
-        {
-            bool rv = true;
-            string[] geoPosition = p.Split(' ');
-            double aux = 0;
-
-            if (!Double.TryParse(geoPosition[0], out aux))
-                rv = false;
-            if (!Double.TryParse(geoPosition[1], out aux))
-                rv = false;
 
             return rv;
 
@@ -312,9 +294,11 @@ namespace Territories.BLL.DataBridge
             {
                 var objectResults = _dm.cities_GetByDepartment(idDepartment);
                 var results = from c in objectResults
-                              orderby c.Name
-                              select new { Id = c.IdCity, Name = c.Name };
-                return results.ToList();
+                              select new { Id = c.IdCity, Name = c.Name };                
+                
+                var rv = results.ToList();
+                rv.Add(new { Id = 0, Name = "" });
+                return rv.OrderBy(a => a.Name).ToList() ;
             }
             catch (Exception ex)
             {
@@ -328,12 +312,11 @@ namespace Territories.BLL.DataBridge
             {
                 var objectResults = _dm.territories_GetAll();
                 var results = from t in objectResults
-                              orderby t.Name
                               select new { Id = t.IdTerritory, Name = t.Number + " - " + t.Name };
 
                 var rv = results.ToList();
                 rv.Add(new { Id = 0, Name = "(no territory)" });
-                return rv;
+                return rv.OrderBy(a=>a.Name).ToList();
             }
             catch (Exception ex)
             {

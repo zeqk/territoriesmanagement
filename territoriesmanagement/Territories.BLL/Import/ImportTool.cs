@@ -551,7 +551,10 @@ namespace Territories.BLL.Import
                                 validGeoPosition = false;
 
                             if (validGeoPosition)
-                                a.Geoposition = lat.ToString(new CultureInfo("en-US")) + " " + lng.ToString(new CultureInfo("en-US"));
+                            {
+                                a.Lat = lat;
+                                a.Lng = lng;
+                            }
                         }
                     }
                 }

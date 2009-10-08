@@ -171,17 +171,9 @@ namespace Territories.Model
                     cmd.CommandText = string.Format("{0}.{1}", this.DefaultContainerName, "addresses_AddWithPK");
                     cmd.CommandType = CommandType.StoredProcedure;
 
-                    EntityParameter idParam = new EntityParameter("id", DbType.Int32);
-                    idParam.Value = v.IdAddresses;
-                    cmd.Parameters.Add(idParam);
-
-                    EntityParameter streetParam = new EntityParameter("street", DbType.String);
-                    streetParam.Value = v.Street;
-                    cmd.Parameters.Add(streetParam);
-
-                    EntityParameter numParam = new EntityParameter("number", DbType.Int32);
-                    numParam.Value = v.Number;
-                    cmd.Parameters.Add(numParam);
+                    EntityParameter aDataParam = new EntityParameter("addresData", DbType.String);
+                    aDataParam.Value = v.AddressData;
+                    cmd.Parameters.Add(aDataParam);
 
                     EntityParameter corner1Param = new EntityParameter("corner1", DbType.String);
                     corner1Param.Value = v.Corner1;
@@ -191,9 +183,33 @@ namespace Territories.Model
                     corner2Param.Value = v.Corner2;
                     cmd.Parameters.Add(corner2Param);
 
+                    EntityParameter custom1DataParam = new EntityParameter("customField1", DbType.String);
+                    custom1DataParam.Value = v.CustomField1;
+                    cmd.Parameters.Add(custom1DataParam);
+
+                    EntityParameter custom2DataParam = new EntityParameter("customField2", DbType.String);
+                    custom2DataParam.Value = v.CustomField2;
+                    cmd.Parameters.Add(custom2DataParam);
+
                     EntityParameter descParam = new EntityParameter("description", DbType.String);
                     descParam.Value = v.Description;
                     cmd.Parameters.Add(descParam);
+
+                    EntityParameter idParam = new EntityParameter("id", DbType.Int32);
+                    idParam.Value = v.IdAddresses;
+                    cmd.Parameters.Add(idParam);
+
+                    EntityParameter map1Param = new EntityParameter("map1", DbType.String);
+                    map1Param.Value = v.Map1;
+                    cmd.Parameters.Add(map1Param);
+
+                    EntityParameter map2Param = new EntityParameter("map2", DbType.String);
+                    map2Param.Value = v.Map2;
+                    cmd.Parameters.Add(map2Param);
+
+                    EntityParameter numParam = new EntityParameter("number", DbType.Int32);
+                    numParam.Value = v.Number;
+                    cmd.Parameters.Add(numParam);
 
                     EntityParameter phone1Param = new EntityParameter("phone1", DbType.String);
                     phone1Param.Value = v.Phone1;
@@ -202,6 +218,18 @@ namespace Territories.Model
                     EntityParameter phone2Param = new EntityParameter("phone2", DbType.String);
                     phone2Param.Value = v.Phone2;
                     cmd.Parameters.Add(phone2Param);
+
+                    EntityParameter streetParam = new EntityParameter("street", DbType.String);
+                    streetParam.Value = v.Street;
+                    cmd.Parameters.Add(streetParam);
+
+                    EntityParameter latParam = new EntityParameter("lat", DbType.Double);
+                    latParam.Value = v.Lat;
+                    cmd.Parameters.Add(latParam);
+
+                    EntityParameter lngParam = new EntityParameter("lng", DbType.Double);
+                    lngParam.Value = v.Lng;
+                    cmd.Parameters.Add(lngParam);
 
                     EntityParameter cityParam = new EntityParameter("idCity", DbType.Int32);
                     cityParam.Value = ExtractCityId(v);

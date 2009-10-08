@@ -31,9 +31,9 @@ namespace Territories.GUI
 		    set { txtAddress.Text = value;}
 	    }
 
-        private string _geoPosition;
+        private PointLatLng _geoPosition;
 
-        public string GeoPosition
+        public PointLatLng GeoPosition
         {
 	        get { return _geoPosition;}
 	        set { _geoPosition = value;}
@@ -44,8 +44,7 @@ namespace Territories.GUI
         public frmGeoPoint()
         {
             InitializeComponent();
-
-            
+            _geoPosition = new PointLatLng();
         }
 
         
@@ -110,12 +109,10 @@ namespace Territories.GUI
         {
             ConfigMap();
 
-            string keywordToSearch = "";
-            if (!string.IsNullOrEmpty(GeoPosition))
-                keywordToSearch = GeoPosition;
+            if (!GeoPosition.IsEmpty)
+                GoToCoordinate(GeoPosition);
             else
-                keywordToSearch = Address;
-            GoToAddress(keywordToSearch);
+                GoToAddress(this.Address);
             
         }
 
@@ -138,6 +135,22 @@ namespace Territories.GUI
             txtLat.Text = MainMap.CurrentPosition.Lat.ToString(CultureInfo.CurrentCulture);
             txtLng.Text = MainMap.CurrentPosition.Lng.ToString(CultureInfo.CurrentCulture);
         }
+
+        private void GoToCoordinate(PointLatLng p)
+        {
+            MainMap.CurrentPosition = p;
+            // set current marker
+            currentMarker = new GMapMarkerGoogleRed(MainMap.CurrentPosition);
+            top.Markers.Add(currentMarker);
+
+            center = new GMapMarkerCross(MainMap.CurrentPosition);
+            top.Markers.Add(center);
+
+            txtLat.Text = MainMap.CurrentPosition.Lat.ToString(CultureInfo.CurrentCulture);
+            txtLng.Text = MainMap.CurrentPosition.Lng.ToString(CultureInfo.CurrentCulture);
+        }
+
+
 
         // current point changed
         void MainMap_OnCurrentPositionChanged(PointLatLng point)
@@ -195,8 +208,7 @@ namespace Territories.GUI
         {
             this.DialogResult = DialogResult.OK;
 
-            this.GeoPosition = MainMap.CurrentPosition.Lat.ToString(new CultureInfo("en-US")) + " " + MainMap.CurrentPosition.Lng.ToString(new CultureInfo("en-US"));
-            
+            this.GeoPosition = currentMarker.Position;            
 
             this.Close();
         }
