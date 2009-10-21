@@ -22,18 +22,5 @@ namespace Territories.BLL.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;AttachDbFilename=\"C:\\Documents and Settings\\interaccionl" +
-            "iuh\\Mis documentos\\Visual Studio 2008\\Projects\\TerritoriesManagement\\Territories" +
-            ".DB\\Territories.mdf\";Integrated Security=True;Connect Timeout=30;User Instance=T" +
-            "rue")]
-        public string TerritoriesDataContext {
-            get {
-                return ((string)(this["TerritoriesDataContext"]));
-            }
-        }
     }
 }

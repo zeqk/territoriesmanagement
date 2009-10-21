@@ -26,23 +26,10 @@ namespace Territories.GUI.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"metadata=res://*/TerritoriesModel.csdl|res://*/TerritoriesModel.ssdl|res://*/TerritoriesModel.msl;provider=System.Data.SqlClient;provider connection string='Data Source=.\SQLEXPRESS;AttachDbFilename=&quot;C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\TerritoriesManagement\Territories.DB\Territories.mdf&quot;;Integrated Security=True;Connect Timeout=30;User Instance=True'")]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"metadata=res://*/TerritoriesModel.csdl|res://*/TerritoriesModel.ssdl|res://*/TerritoriesModel.msl;provider=System.Data.SqlClient;provider connection string='Data Source=.\SQLEXPRESS;AttachDbFilename=C:\TerritoriesDb\Territories.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True'")]
         public string TerritoriesDataContext {
             get {
                 return ((string)(this["TerritoriesDataContext"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;AttachDbFilename=\"C:\\Documents and Settings\\interaccionl" +
-            "iuh\\Mis documentos\\Visual Studio 2008\\Projects\\territoriesmanagement\\Territories" +
-            ".DB\\Territories.mdf\";Integrated Security=True;Connect Timeout=30;User Instance=T" +
-            "rue")]
-        public string NoAttachedTerritoriesDataContext {
-            get {
-                return ((string)(this["NoAttachedTerritoriesDataContext"]));
             }
         }
     }
