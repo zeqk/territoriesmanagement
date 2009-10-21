@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace Territories.GUI
 {
@@ -94,5 +95,27 @@ namespace Territories.GUI
                 throw ex;
             }
         }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+
+            //string dbPath = AppDomain.CurrentDomain.BaseDirectory + "Territories.mdf";
+            //string connStr = "Data Source=.\\SQLEXPRESS;AttachDbFilename=" + dbPath + ";Integrated Security=True;Connect Timeout=30;User Instance=True";
+            //string entityConnStr = @"metadata=res://*/TerritoriesModel.csdl|res://*/TerritoriesModel.ssdl|res://*/TerritoriesModel.msl;provider=System.Data.SqlClient;provider connection string='" + connStr + "'";
+
+            //Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+
+
+            //ConnectionStringSettings set = new ConnectionStringSettings("TerritoriesDataContext", entityConnStr);
+
+            //config.ConnectionStrings.ConnectionStrings.Add(set);
+
+            //config.Save(ConfigurationSaveMode.Modified, true);
+
+            //string hola = config.ConnectionStrings.ConnectionStrings["TerritoriesDataContext"].ConnectionString;
+            
+        }
+
+
     }
 }

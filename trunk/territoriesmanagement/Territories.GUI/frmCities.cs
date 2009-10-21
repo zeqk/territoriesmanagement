@@ -369,7 +369,7 @@ namespace Territories.GUI
 
         private string GetString(string text)
         {
-            return _server.GetString(GetType(), text, "es-AR");
+            return _server.GetString(GetType(), text, "en-US");
         }
 
         private void Internationalize()

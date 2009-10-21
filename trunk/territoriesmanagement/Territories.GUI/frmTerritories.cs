@@ -208,6 +208,10 @@ namespace Territories.GUI
         private void ObjectToForm(Territory v)
         {
             this.bsTerritory.DataSource = v;
+            if (!string.IsNullOrEmpty(v.Area))
+                btnViewMap.Enabled = true;
+            else
+                btnViewMap.Enabled = false;
         }
 
         private void ClearData()

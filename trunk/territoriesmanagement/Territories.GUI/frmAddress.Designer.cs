@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.grpMaps = new System.Windows.Forms.GroupBox();
             this.txtId = new System.Windows.Forms.TextBox();
+            this.bsAddress = new System.Windows.Forms.BindingSource(this.components);
             this.grpGeoLocation = new System.Windows.Forms.GroupBox();
             this.btnSearchGeoPos = new System.Windows.Forms.Button();
             this.chkHaveGeoPos = new System.Windows.Forms.CheckBox();
@@ -71,14 +72,13 @@
             this.grpTerritory = new System.Windows.Forms.GroupBox();
             this.cboTerritory = new System.Windows.Forms.ComboBox();
             this.grpAdditional = new System.Windows.Forms.GroupBox();
-            this.bsAddress = new System.Windows.Forms.BindingSource(this.components);
             this.grpMaps.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAddress)).BeginInit();
             this.grpGeoLocation.SuspendLayout();
             this.grpPhones.SuspendLayout();
             this.grpUbication.SuspendLayout();
             this.grpTerritory.SuspendLayout();
             this.grpAdditional.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAddress)).BeginInit();
             this.SuspendLayout();
             // 
             // grpMaps
@@ -105,6 +105,12 @@
             this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(100, 20);
             this.txtId.TabIndex = 0;
+            this.txtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // bsAddress
+            // 
+            this.bsAddress.DataSource = typeof(Territories.Model.Address);
+            this.bsAddress.CurrentItemChanged += new System.EventHandler(this.HaveChanges);
             // 
             // grpGeoLocation
             // 
@@ -509,11 +515,6 @@
             this.grpAdditional.TabStop = false;
             this.grpAdditional.Text = "Additional data";
             // 
-            // bsAddress
-            // 
-            this.bsAddress.DataSource = typeof(Territories.Model.Address);
-            this.bsAddress.CurrentItemChanged += new System.EventHandler(this.HaveChanges);
-            // 
             // frmAddress
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -531,6 +532,7 @@
             this.Load += new System.EventHandler(this.frmAddress_Load);
             this.grpMaps.ResumeLayout(false);
             this.grpMaps.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsAddress)).EndInit();
             this.grpGeoLocation.ResumeLayout(false);
             this.grpGeoLocation.PerformLayout();
             this.grpPhones.ResumeLayout(false);
@@ -540,7 +542,6 @@
             this.grpTerritory.ResumeLayout(false);
             this.grpAdditional.ResumeLayout(false);
             this.grpAdditional.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAddress)).EndInit();
             this.ResumeLayout(false);
 
         }
