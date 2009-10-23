@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Territories.BLL.DataBridge;
+using System.Globalization;
+using System.Threading;
 
 namespace Territories.GUI
 {
@@ -46,6 +48,29 @@ namespace Territories.GUI
             {
                 BLL.DataBridge.Territories server = new BLL.DataBridge.Territories();
                 server.DeleteAll();
+            }
+        }
+
+        private void frmConfig_Load(object sender, EventArgs e)
+        {
+            string[] cultures = { "en-US", "es-AR" };
+
+            cmbCulture.DataSource = cultures;
+
+            cmbCulture.SelectedText = Thread.CurrentThread.CurrentCulture.IetfLanguageTag;
+        }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            ApplyCultureChange();
+        }
+
+        private void ApplyCultureChange()
+        {
+            if (!string.IsNullOrEmpty(cmbCulture.SelectedText))
+            {
+                Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(cmbCulture.SelectedText);
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cmbCulture.SelectedText);
             }
         }
     }
