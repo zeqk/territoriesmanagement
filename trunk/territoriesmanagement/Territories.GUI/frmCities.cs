@@ -10,6 +10,8 @@ using System.Text;
 using System.Windows.Forms;
 using Territories.Model;
 using Territories.BLL.DataBridge;
+using System.Threading;
+using System.Globalization;
 
 namespace Territories.GUI
 {
@@ -26,8 +28,8 @@ namespace Territories.GUI
                 throw new Exception("The window is already opened.");
             else
                 _opened = true;
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("es-AR");
             InitializeComponent();
-            Internationalize();
         }
 
         private void frmCities_Load(object sender, EventArgs e)
@@ -96,6 +98,11 @@ namespace Territories.GUI
             {
                 MessageBox.Show(ex.Message, GetString("Error"));
             }
+        }
+
+        private string GetString(string p)
+        {
+            return p;
         }
 
         private void btnFilter_Click(object sender, EventArgs e)
@@ -365,30 +372,6 @@ namespace Territories.GUI
 
             dgvPublishers.RowHeadersVisible = false;
 
-        }
-
-        private string GetString(string text)
-        {
-            return _server.GetString(GetType(), text, "en-US");
-        }
-
-        private void Internationalize()
-        {
-            this.lblDepartment.Text = GetString("Department");
-            this.btnRelations.Text = GetString("View relations");
-            this.btnDelete.Text = GetString("Delete");
-            this.btnSave.Text = GetString("Save");
-            this.btnNew.Text = GetString("New");
-            this.lblName.Text = GetString("Name");
-            this.grdSearch.Text = GetString("Search");
-            this.lblFilterName.Text = GetString("Filter for city name");
-            this.lblFilterDepartment.Text = GetString("Filter for department");
-            this.lblResult.Text = GetString("Result:");
-            this.lblFiltered.Text = GetString("Filtered");
-            this.tabAddresses.Text = GetString("Addresses");
-            this.tabPublishers.Text = GetString("Publishers");
-            this.Text = GetString("Cities");
-            this.grpObject.Text = GetString("City");
         }
 
     }

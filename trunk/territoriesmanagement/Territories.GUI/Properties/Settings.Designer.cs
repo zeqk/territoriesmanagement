@@ -22,15 +22,5 @@ namespace Territories.GUI.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"metadata=res://*/TerritoriesModel.csdl|res://*/TerritoriesModel.ssdl|res://*/TerritoriesModel.msl;provider=System.Data.SqlClient;provider connection string='Data Source=.\SQLEXPRESS;AttachDbFilename=C:\TerritoriesDb\Territories.mdf;Integrated Security=True;Connect Timeout=30;User Instance=True'")]
-        public string TerritoriesDataContext {
-            get {
-                return ((string)(this["TerritoriesDataContext"]));
-            }
-        }
     }
 }

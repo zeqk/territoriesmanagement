@@ -12,6 +12,8 @@
     <AssemblyName>Territories.GUI</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <StartupObject>Territories.GUI.Program</StartupObject>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,10 +26,8 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <StartupObject>Territories.GUI.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -217,11 +217,23 @@
     <Compile Include="ImporterConfig\DepartmentsTableConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAddress.es-AR.resx">
+      <DependentUpon>frmAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddresses.es-AR.resx">
+      <DependentUpon>frmAddresses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCities.es-AR.resx">
+      <DependentUpon>frmCities.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmCities.resx">
       <DependentUpon>frmCities.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmConfig.resx">
       <DependentUpon>frmConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDeparments.es-AR.resx">
+      <DependentUpon>frmDeparments.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDeparments.resx">
       <DependentUpon>frmDeparments.cs</DependentUpon>
@@ -244,14 +256,11 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTerritories.resx">
+    <EmbeddedResource Include="frmTerritories.es-AR.resx">
       <DependentUpon>frmTerritories.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Internacionalization\frmCities.en-US.resx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Internacionalization\frmCities.es-AR.resx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <EmbeddedResource Include="frmTerritories.resx">
+      <DependentUpon>frmTerritories.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -321,7 +330,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <Content Include="app.config" />
     <None Include="Resources\legend.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
