@@ -97,14 +97,23 @@ namespace Territories.GUI.ImporterConfig
 
         public void LoadConfig(string path)
         {
-            if (File.Exists(path))
+            try
             {
-                using (StreamReader sr = new StreamReader(path))
+                if (File.Exists(path))
                 {
-                    XmlSerializer ser = new XmlSerializer(this.GetType());
-                    this.SetConfig((ImporterConfig)ser.Deserialize(sr));
+                    using (StreamReader sr = new StreamReader(path))
+                    {
+                        XmlSerializer ser = new XmlSerializer(this.GetType());
+                        this.SetConfig((ImporterConfig)ser.Deserialize(sr));
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                
+                throw;
+            }
+            
         }
 
         private void SetConfig(ImporterConfig config)

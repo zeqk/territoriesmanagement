@@ -12,6 +12,7 @@ using Territories.Model;
 using Territories.BLL.DataBridge;
 using System.Threading;
 using System.Globalization;
+using System.Resources;
 
 namespace Territories.GUI
 {
@@ -19,16 +20,20 @@ namespace Territories.GUI
     {
         static private bool _opened = false;
         private Cities _server = new Cities();
+        ResourceManager _rm;
+
         
         private bool _isDirty;
 
         public frmCities()
-        {
+        { 
+            _rm = new ResourceManager(this.GetType());
+            
             if (_opened)
                 throw new Exception("The window is already opened.");
             else
                 _opened = true;
-            Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo("es-AR");
+
             InitializeComponent();
         }
 
@@ -98,11 +103,6 @@ namespace Territories.GUI
             {
                 MessageBox.Show(ex.Message, GetString("Error"));
             }
-        }
-
-        private string GetString(string p)
-        {
-            return p;
         }
 
         private void btnFilter_Click(object sender, EventArgs e)
@@ -372,6 +372,12 @@ namespace Territories.GUI
 
             dgvPublishers.RowHeadersVisible = false;
 
+        }
+
+        private string GetString(string text)
+        {
+            //return _rm.GetString(text, Thread.CurrentThread.CurrentCulture);
+            return text;
         }
 
     }
