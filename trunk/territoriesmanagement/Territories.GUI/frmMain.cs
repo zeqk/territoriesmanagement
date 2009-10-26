@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Reflection;
+using System.Globalization;
 
 namespace Territories.GUI
 {
@@ -129,7 +130,17 @@ namespace Territories.GUI
 
 
             //Console.WriteLine(hola);
+            LoadConfig();
 
+        }
+
+
+        private void LoadConfig()
+        {
+            Config.Config config = new Territories.GUI.Config.Config();
+            config.LoadSavedConfig();
+            System.Threading.Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(config.CultureTag);
+            System.Threading.Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(config.CultureTag);
         }
 
 

@@ -14,9 +14,19 @@ namespace Territories.GUI
 {
     public partial class frmConfig : Form
     {
+        private Config.Config _config;
+
+        public Config.Config Config
+        {
+            get { return _config; }
+            set { _config = value; }
+        }
+	
+
         public frmConfig()
         {
             InitializeComponent();
+            _config = new Territories.GUI.Config.Config();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -53,6 +63,9 @@ namespace Territories.GUI
 
         private void frmConfig_Load(object sender, EventArgs e)
         {
+
+            _config.LoadSavedConfig();
+
             string[] cultures = { "en-US", "es-AR" };
 
             cmbCulture.DataSource = cultures;
@@ -63,14 +76,16 @@ namespace Territories.GUI
         private void btnApply_Click(object sender, EventArgs e)
         {
             ApplyCultureChange();
+            _config.SaveConfig();
         }
 
         private void ApplyCultureChange()
         {
-            if (!string.IsNullOrEmpty(cmbCulture.SelectedText))
+            if (cmbCulture.SelectedValue != null)
             {
-                Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(cmbCulture.SelectedText);
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cmbCulture.SelectedText);
+                Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(cmbCulture.SelectedValue.ToString());
+                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cmbCulture.SelectedValue.ToString());
+                _config.CultureTag = Thread.CurrentThread.CurrentCulture.IetfLanguageTag;
             }
         }
     }
