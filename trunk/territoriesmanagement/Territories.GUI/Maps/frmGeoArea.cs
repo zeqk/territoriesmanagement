@@ -61,7 +61,7 @@ namespace Territories.GUI
             if(Marks.Count>0)
                 foreach (var item in Marks)
                 {
-                    top.Markers.Add(new GMapMarkerGoogleCustom(item, Properties.Resources.legendIcon));
+                    top.Markers.Add(new GMapMarkerCustom(item, Properties.Resources.legendIcon));
                 }
 
 
@@ -184,6 +184,31 @@ namespace Territories.GUI
         private void btnOk_Click_1(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnGenImage_Click(object sender, EventArgs e)
+        {
+            GMapMarkerPolygon polygon = (GMapMarkerPolygon)top.Markers[1];
+            double maxLat = polygon.GeoPoints.Max(p => p.Lat);
+            double minLat = polygon.GeoPoints.Min(p => p.Lat);
+
+            double maxLng = polygon.GeoPoints.Max(p => p.Lng);
+            double minLng = polygon.GeoPoints.Min(p => p.Lng);
+
+            RectLatLng area = new RectLatLng(minLat, minLng, maxLng - minLng, maxLat - minLat);
+
+            MainMap.SelectedArea = area;
+
+            if (!area.IsEmpty)
+            {
+                StaticImage st = new StaticImage(MainMap);
+                st.Owner = this;
+                st.Show();
+            }
+            else
+            {
+                MessageBox.Show("Select map area holding ALT", "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
     }
 }
