@@ -32,6 +32,7 @@
             this.MainMap = new System.Windows.Forms.GMapControl();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
+            this.btnGenImage = new System.Windows.Forms.Button();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -50,10 +51,11 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.btnGenImage);
             this.splitContainer1.Panel2.Controls.Add(this.btnCancel);
             this.splitContainer1.Panel2.Controls.Add(this.btnOk);
             this.splitContainer1.Size = new System.Drawing.Size(652, 486);
-            this.splitContainer1.SplitterDistance = 449;
+            this.splitContainer1.SplitterDistance = 448;
             this.splitContainer1.TabIndex = 0;
             // 
             // MainMap
@@ -64,7 +66,7 @@
             this.MainMap.Location = new System.Drawing.Point(0, 0);
             this.MainMap.MarkersEnabled = true;
             this.MainMap.Name = "MainMap";
-            this.MainMap.Size = new System.Drawing.Size(652, 449);
+            this.MainMap.Size = new System.Drawing.Size(652, 448);
             this.MainMap.TabIndex = 9;
             // 
             // btnCancel
@@ -73,7 +75,7 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.Location = new System.Drawing.Point(452, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(91, 27);
+            this.btnCancel.Size = new System.Drawing.Size(91, 28);
             this.btnCancel.TabIndex = 11;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -85,11 +87,23 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.btnOk.Location = new System.Drawing.Point(549, 3);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(91, 27);
+            this.btnOk.Size = new System.Drawing.Size(91, 28);
             this.btnOk.TabIndex = 10;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click_1);
+            // 
+            // btnGenImage
+            // 
+            this.btnGenImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGenImage.Location = new System.Drawing.Point(12, 3);
+            this.btnGenImage.Name = "btnGenImage";
+            this.btnGenImage.Size = new System.Drawing.Size(91, 28);
+            this.btnGenImage.TabIndex = 12;
+            this.btnGenImage.Text = "To image";
+            this.btnGenImage.UseVisualStyleBackColor = true;
+            this.btnGenImage.Click += new System.EventHandler(this.btnGenImage_Click);
             // 
             // frmGeoArea
             // 
@@ -113,6 +127,7 @@
         private System.Windows.Forms.GMapControl MainMap;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.Button btnGenImage;
 
     }
 }
