@@ -195,11 +195,11 @@ namespace Territories.GUI
             double maxLng = polygon.GeoPoints.Max(p => p.Lng);
             double minLng = polygon.GeoPoints.Min(p => p.Lng);
 
-            RectLatLng area = new RectLatLng(minLat, minLng, maxLng - minLng, maxLat - minLat);
+            //RectLatLng area = new RectLatLng(maxLat, minLng, maxLng - minLng, maxLat - minLat);
 
-            MainMap.SelectedArea = area;
+            //MainMap.SelectedArea = area;
 
-            if (!area.IsEmpty)
+            if (!MainMap.SelectedArea.IsEmpty)
             {
                 StaticImage st = new StaticImage(MainMap);
                 st.Owner = this;
