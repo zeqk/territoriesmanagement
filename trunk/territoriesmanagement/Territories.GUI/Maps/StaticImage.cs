@@ -135,6 +135,7 @@ namespace Territories.GUI
                        {
                            rect.Location = new System.Drawing.Point(padding, padding);
                            rect.Size = new System.Drawing.Size(pxDelta.X, pxDelta.Y);
+                           
                        }
                        using (Font f = new Font(FontFamily.GenericSansSerif, 9, FontStyle.Bold))
                        using (Graphics gfx = Graphics.FromImage(bmpDestination))
@@ -186,21 +187,24 @@ namespace Territories.GUI
                                    GMapMarkerCustom customMark = (GMapMarkerCustom)marker;
                                    IntPtr iconHandle = customMark.Icon.GetHicon();
                                    Icon icon = Icon.FromHandle(iconHandle);
-                                   GMap.NET.Point point = MainMap.FromLatLngToLocal(customMark.Position);
+                                   GMap.NET.Point point = info.Projection.FromLatLngToPixel(customMark.Position,info.Zoom);
                                    gfx.DrawIcon(icon, point.X, point.Y);
                                }
 
                                if (marker.GetType() == typeof(GMapMarkerPolygon))
                                {
-                                   GMapMarkerPolygon customMark = (GMapMarkerPolygon)marker;
+                                   
+                                   GMapMarkerPolygon customMark = (GMapMarkerPolygon)marker;                                 
+                                   
+
                                    List<System.Drawing.Point> points = new List<System.Drawing.Point>();
                                    foreach (var gPoint in customMark.GeoPoints)
                                    {
-                                       GMap.NET.Point p = MainMap.FromLatLngToLocal(gPoint);
+                                       GMap.NET.Point p = info.Projection.FromLatLngToPixel(gPoint, info.Zoom);
                                        points.Add(new System.Drawing.Point(p.X, p.Y));
                                    }
                                    Pen pen = new Pen(Color.Blue,15);
-                                   gfx.DrawPolygon(pen,points.ToArray());
+                                   gfx.DrawPolygon(pen, points.ToArray());
                                }
                            }
                        }
@@ -230,7 +234,7 @@ namespace Territories.GUI
                progressBar1.Value = 0;
                button1.Enabled = false;
 
-               bg.RunWorkerAsync(new MapInfo(MainMap.Projection, area, (int)numericUpDown1.Value, MainMap.MapType, MainMap.Overlays[0].Markers));
+               bg.RunWorkerAsync(new MapInfo(MainMap.Projection, area, (int)numericUpDown1.Value, MainMap.MapType, MainMap.Overlays[1].Markers));
             }
          }
          else
