@@ -204,13 +204,12 @@ namespace Territories.GUI
                                    foreach (var gPoint in customMark.GeoPoints)
                                    {
                                        int x, y = 0;
-                                       FromLatLngToLocal(info, rect.Height, rect.Width, customMark.Position.Lat, customMark.Position.Lng, out x, out y);
-                                       gfx.DrawIcon(icon2, x, y);
-                                       points.Add(new System.Drawing.Point(x, y));
+                                       FromLatLngToLocal(info, rect.Height, rect.Width, gPoint.Lat, gPoint.Lng, out x, out y);
+                                      points.Add(new System.Drawing.Point(x, y));
                                    }
                                    Pen pen = new Pen(Color.Blue, 8);
                                    //gfx.DrawLines
-                                   gfx.DrawLines(pen, points.ToArray());
+                                   gfx.DrawPolygon(pen, points.ToArray());
                                }
                            }
                        }
