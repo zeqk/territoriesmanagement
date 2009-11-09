@@ -175,39 +175,47 @@ namespace Territories.GUI
                                gfx.DrawString(leftBottom, f, p.Brush, rect.X + 10, rect.Bottom - s.Height - 20);
                            }
                        }
-                   }
-
-                   {
+                       //bmpDestination.RotateFlip(RotateFlipType.Rotate270FlipNone);
                        using (Graphics gfx = Graphics.FromImage(bmpDestination))
                        {
+                           gfx.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                           IntPtr iconHandle2 = Properties.Resources.marker99.GetHicon();
+                           Icon icon2 = Icon.FromHandle(iconHandle2);
                            foreach (var marker in info.Markers)
                            {
                                if (marker.GetType() == typeof(GMapMarkerCustom))
                                {
                                    GMapMarkerCustom customMark = (GMapMarkerCustom)marker;
-                                   IntPtr iconHandle = customMark.Icon.GetHicon();
-                                   Icon icon = Icon.FromHandle(iconHandle);
-                                   GMap.NET.Point point = info.Projection.FromLatLngToPixel(customMark.Position,info.Zoom);
-                                   gfx.DrawIcon(icon, point.X, point.Y);
+                                   IntPtr iconHandle1 = Properties.Resources.legendIcon.GetHicon();
+                                   Icon icon1 = Icon.FromHandle(iconHandle1);
+
+                                   int x, y = 0;
+                                   FromLatLngToLocal(info, rect.Height, rect.Width, customMark.Position.Lat, customMark.Position.Lng, out x, out y);
+
+                                   gfx.DrawIcon(icon1, x, y);
                                }
 
                                if (marker.GetType() == typeof(GMapMarkerPolygon))
                                {
-                                   
-                                   GMapMarkerPolygon customMark = (GMapMarkerPolygon)marker;                                 
-                                   
+                                   GMapMarkerPolygon customMark = (GMapMarkerPolygon)marker;
+
 
                                    List<System.Drawing.Point> points = new List<System.Drawing.Point>();
                                    foreach (var gPoint in customMark.GeoPoints)
                                    {
-                                       GMap.NET.Point p = info.Projection.FromLatLngToPixel(gPoint, info.Zoom);
-                                       points.Add(new System.Drawing.Point(p.X, p.Y));
+                                       int x, y = 0;
+                                       FromLatLngToLocal(info, rect.Height, rect.Width, customMark.Position.Lat, customMark.Position.Lng, out x, out y);
+                                       gfx.DrawIcon(icon2, x, y);
+                                       points.Add(new System.Drawing.Point(x, y));
                                    }
-                                   Pen pen = new Pen(Color.Blue,15);
-                                   gfx.DrawPolygon(pen, points.ToArray());
+                                   Pen pen = new Pen(Color.Blue, 8);
+                                   //gfx.DrawLines
+                                   gfx.DrawLines(pen, points.ToArray());
                                }
                            }
                        }
+
+                       //bmpDestination.RotateFlip(RotateFlipType.Rotate90FlipNone);
                    }
 
 
@@ -250,6 +258,26 @@ namespace Territories.GUI
             bg.CancelAsync();
          }
       }
+
+      private void FromLatLngToLocal(MapInfo info, int imageHeigth, int imageWidth, double lat, double lng, out int x, out int y)
+      {
+          //
+          double heigthLat = lat - info.Area.LocationRightBottom.Lat;
+          double widthLng = lng - info.Area.LocationTopLeft.Lng;
+
+          y = Convert.ToInt32((heigthLat * imageHeigth) / info.Area.HeightLat);
+          x = Convert.ToInt32((widthLng * imageWidth) / info.Area.WidthLng);
+
+          y = imageHeigth - y;
+
+          //calculo un 1% del tamaño de la imágen
+          int heigthPer = Convert.ToInt32(imageHeigth * 0.01);
+          int widthPer = Convert.ToInt32(imageWidth * 0.01);
+          //le sumo un 1%
+          y = y + heigthPer;
+          x = x + heigthPer;
+          
+      }
    }
 
    public class MapInfo
@@ -267,7 +295,7 @@ namespace Territories.GUI
          this.Area = Area;
          this.Zoom = Zoom;
          this.Type = Type;
-         this.Markers = markers;
+         this.Markers = markers;          
           
       }
    }

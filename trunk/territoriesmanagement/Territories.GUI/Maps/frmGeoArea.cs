@@ -195,9 +195,9 @@ namespace Territories.GUI
             double maxLng = polygon.GeoPoints.Max(p => p.Lng);
             double minLng = polygon.GeoPoints.Min(p => p.Lng);
 
-            //RectLatLng area = new RectLatLng(maxLat, minLng, maxLng - minLng, maxLat - minLat);
+            RectLatLng area = new RectLatLng(maxLat, minLng, maxLng - minLng, maxLat - minLat);
 
-            //MainMap.SelectedArea = area;
+            MainMap.SelectedArea = area;
 
             if (!MainMap.SelectedArea.IsEmpty)
             {
@@ -209,6 +209,32 @@ namespace Territories.GUI
             {
                 MessageBox.Show("Select map area holding ALT", "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private void btnSaveScreen_Click(object sender, EventArgs e)
+        {
+            try
+         {
+            using(SaveFileDialog sfd = new SaveFileDialog())
+            {
+               sfd.Filter = "PNG (*.png)|*.png";
+               sfd.FileName = "GMap.NET image";
+               Image tmpImage = MainMap.ToImage();
+               if(tmpImage != null)
+               {
+                  if(sfd.ShowDialog() == DialogResult.OK)
+                  {
+                     tmpImage.Save(sfd.FileName);
+
+                     MessageBox.Show("Image saved: " + sfd.FileName, "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                  }
+               }
+            }
+         }
+         catch(Exception ex)
+         {
+            MessageBox.Show("Image failed to save: " + ex.Message, "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Error);
+         }
         }
     }
 }
