@@ -10,6 +10,10 @@ using System.Text;
 using System.Windows.Forms;
 using Territories.Model;
 using Territories.BLL.DataBridge;
+using GMap.NET.WindowsForms;
+using GMap.NET;
+using GMap.NET.WindowsForms.Markers;
+using System.Globalization;
 
 namespace Territories.GUI
 {
@@ -343,14 +347,22 @@ namespace Territories.GUI
                 Territory t = FormToOject();
                 if (!string.IsNullOrEmpty(t.Area))
                 {
-                    myForm.GeoPositions = t.Area.Split('\n').ToList();
+                    string[] strPoints = t.Area.Split('\n');
+                    myForm.Area = StrPointsToPointsLatLng(strPoints);
                     if (t.Addresses.Count > 0)
                     {
-                        List<GMap.NET.PointLatLng> marks = new List<GMap.NET.PointLatLng>();
+                        List<GMapMarker> marks = new List<GMapMarker>();
                         foreach (var item in t.Addresses)
                         {
-                            if(item.Lat.HasValue && item.Lng.HasValue)
-                                marks.Add(new GMap.NET.PointLatLng(item.Lat.Value, item.Lng.Value));
+                            if (item.Lat.HasValue && item.Lng.HasValue)
+                            {
+
+                                GMapMarkerCustom marker = new GMapMarkerCustom(new PointLatLng(item.Lat.Value, item.Lng.Value));
+                                marker.Tag = item.IdAddresses;
+                                marker.ToolTipText = item.Street + item.Number;
+                                marker.Icon = Properties.Resources.legendIcon;
+                                marks.Add(marker);
+                            }
                         }
                         myForm.Marks = marks;
                     }
@@ -359,6 +371,33 @@ namespace Territories.GUI
                 myForm.ShowDialog();
 
             }
+        }
+
+        private List<PointLatLng> StrPointsToPointsLatLng(string[] strPoints)
+        {
+            List<PointLatLng> points = new List<PointLatLng>();
+
+            for (int i = 0; i < strPoints.Length; i++)
+            {
+
+                string[] strArray = strPoints[i].Split(' ');
+                bool canParse = true;
+                double lat = 0;
+                double lng = 0;
+                if (!double.TryParse(strArray[0], NumberStyles.Any, new CultureInfo("en-US"), out lat))
+                    canParse = false;
+
+                if (!double.TryParse(strArray[1], NumberStyles.Any, new CultureInfo("en-US"), out lng))
+                    canParse = false;
+
+                if (canParse)
+                {
+                    PointLatLng point = new PointLatLng(lat, lng);
+                    points.Add(point);
+                }
+            }
+
+            return points;
         }
 
         
