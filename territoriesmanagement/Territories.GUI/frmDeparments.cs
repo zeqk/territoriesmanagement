@@ -298,7 +298,7 @@ namespace Territories.GUI
         }
         private string GetString(string text)
         {
-            return _server.GetString(this.GetType(), text,"es-AR");
+            return text;
         }
 
         private void Internationalize()
