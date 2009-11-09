@@ -15,8 +15,8 @@ namespace Territories.GUI
 {
     public partial class frmGeoArea : Form
     {
-        public List<string> GeoPositions;
-        public List<PointLatLng> Marks;
+        public List<PointLatLng> Area;
+        public List<GMapMarker> Marks;
 
         // marker
         GMapMarker currentMarker;
@@ -28,8 +28,8 @@ namespace Territories.GUI
 
         public frmGeoArea()
         {
-            GeoPositions = new List<string>();
-            Marks = new List<PointLatLng>();
+            Area = new List<PointLatLng>();
+            Marks = new List<GMapMarker>();
             InitializeComponent();
         }
 
@@ -46,25 +46,18 @@ namespace Territories.GUI
         private void frmGeoArea_Load(object sender, EventArgs e)
         {
             ConfigMap();
-
-            List<PointLatLng> points = StrPointsToPointsLatLng(GeoPositions);
-            PointLatLng middle = CalculateMiddlePoint(points);
+            PointLatLng middle = CalculateMiddlePoint(Area);
 
             MainMap.CurrentPosition = middle;
 
             center = new GMapMarkerCross(MainMap.CurrentPosition);
             top.Markers.Add(center);
 
-            currentMarker = new GMapMarkerPolygon(MainMap.CurrentPosition, points);
+            currentMarker = new GMapMarkerPolygon(MainMap.CurrentPosition, Area);
             top.Markers.Add(currentMarker);
 
-            if(Marks.Count>0)
-                foreach (var item in Marks)
-                {
-                    top.Markers.Add(new GMapMarkerCustom(item, Properties.Resources.legendIcon));
-                }
-
-
+            foreach (var mark in Marks)
+                top.Markers.Add(mark);
         }
 
         private void ConfigMap()
@@ -102,6 +95,11 @@ namespace Territories.GUI
             //center = new GMapMarkerCross(MainMap.CurrentPosition);
             //top.Markers.Add(center);
 
+            // get zoom  
+            trackBar1.Minimum = MainMap.MinZoom;
+            trackBar1.Maximum = MainMap.MaxZoom;
+            trackBar1.Value = MainMap.Zoom;
+
             // add custom layers  
             {
                 //routes = new GMapOverlay(MainMap, "routes");
@@ -123,30 +121,7 @@ namespace Territories.GUI
             center.Position = point;
         }
 
-        private List<PointLatLng> StrPointsToPointsLatLng(List<string> strPoints)
-        {
-            List<PointLatLng> points = new List<PointLatLng>();
-
-            foreach (string item in strPoints)
-            {
-                string[] strArray = item.Split(' ');
-                bool canParse = true;
-                double lat = 0;
-                double lng = 0;
-                if (!double.TryParse(strArray[0], NumberStyles.Any, new CultureInfo("en-US"), out lat))
-                    canParse = false;
-
-                if (!double.TryParse(strArray[1], NumberStyles.Any, new CultureInfo("en-US"), out lng))
-                    canParse = false;
-
-                if (canParse)
-                {
-                    PointLatLng point = new PointLatLng(lat, lng);
-                    points.Add(point);
-                }                
-            }
-            return points;
-        }
+        
 
         private PointLatLng CalculateMiddlePoint(List<PointLatLng> points)
         {
@@ -178,12 +153,12 @@ namespace Territories.GUI
 
         private void btnCancel_Click_1(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void btnOk_Click_1(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void btnGenImage_Click(object sender, EventArgs e)
@@ -214,27 +189,32 @@ namespace Territories.GUI
         private void btnSaveScreen_Click(object sender, EventArgs e)
         {
             try
-         {
-            using(SaveFileDialog sfd = new SaveFileDialog())
             {
-               sfd.Filter = "PNG (*.png)|*.png";
-               sfd.FileName = "GMap.NET image";
-               Image tmpImage = MainMap.ToImage();
-               if(tmpImage != null)
-               {
-                  if(sfd.ShowDialog() == DialogResult.OK)
-                  {
-                     tmpImage.Save(sfd.FileName);
+                using(SaveFileDialog sfd = new SaveFileDialog())
+                {
+                   sfd.Filter = "PNG (*.png)|*.png";
+                   sfd.FileName = "GMap.NET image";
+                   Image tmpImage = MainMap.ToImage();
+                   if(tmpImage != null)
+                   {
+                      if(sfd.ShowDialog() == DialogResult.OK)
+                      {
+                         tmpImage.Save(sfd.FileName);
 
-                     MessageBox.Show("Image saved: " + sfd.FileName, "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                  }
-               }
-            }
-         }
-         catch(Exception ex)
-         {
-            MessageBox.Show("Image failed to save: " + ex.Message, "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Error);
-         }
+                         MessageBox.Show("Image saved: " + sfd.FileName, "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                      }
+                   }
+                }
+          }
+          catch(Exception ex)
+          {
+             MessageBox.Show("Image failed to save: " + ex.Message, "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Error);
+          }
+        }
+
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            MainMap.Zoom = trackBar1.Value;
         }
     }
 }

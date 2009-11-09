@@ -188,11 +188,12 @@ namespace Territories.GUI
                                    GMapMarkerCustom customMark = (GMapMarkerCustom)marker;
                                    IntPtr iconHandle1 = Properties.Resources.legendIcon.GetHicon();
                                    Icon icon1 = Icon.FromHandle(iconHandle1);
-
+                                   
                                    int x, y = 0;
                                    FromLatLngToLocal(info, rect.Height, rect.Width, customMark.Position.Lat, customMark.Position.Lng, out x, out y);
 
                                    gfx.DrawIcon(icon1, x, y);
+                                   gfx.DrawString(marker.Tag.ToString(), SystemFonts.DefaultFont, Brushes.Red, x + 10, y - 10);
                                }
 
                                if (marker.GetType() == typeof(GMapMarkerPolygon))
@@ -205,18 +206,16 @@ namespace Territories.GUI
                                    {
                                        int x, y = 0;
                                        FromLatLngToLocal(info, rect.Height, rect.Width, gPoint.Lat, gPoint.Lng, out x, out y);
-                                      points.Add(new System.Drawing.Point(x, y));
+                                       points.Add(new System.Drawing.Point(x, y));
                                    }
-                                   Pen pen = new Pen(Color.Blue, 8);
-                                   //gfx.DrawLines
+                                   Pen pen = new Pen(Color.Blue, 4);
+                                   pen.DashStyle = DashStyle.DashDotDot;
+
                                    gfx.DrawPolygon(pen, points.ToArray());
                                }
                            }
                        }
-
-                       //bmpDestination.RotateFlip(RotateFlipType.Rotate90FlipNone);
                    }
-
 
                    bmpDestination.Save(bigImage, ImageFormat.Png);
                }
