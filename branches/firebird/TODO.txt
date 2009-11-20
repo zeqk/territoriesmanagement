@@ -1,0 +1,3 @@
+TODO:
+
+- el abm de territorios selecciona un territorio al iniciar

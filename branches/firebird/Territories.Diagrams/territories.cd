@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="territories.diagrams.City">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAEAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>City.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="deparment" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="territories.diagrams.Department">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Department.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="territories.diagrams.Direction">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAAAYAEAIAAACAAAAAAwIAAgAAAAAAAAAgA=</HashCode>
+      <FileName>Direction.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="city" />
+      <Property Name="territory" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="territories.diagrams.Territory">
+    <Position X="3.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAEAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Territory.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="group" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="territories.diagrams.Publisher">
+    <Position X="7.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAIABAACAAAAAAEAAAgAAAAAAAAIgA=</HashCode>
+      <FileName>Publisher.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="territories.diagrams.Group">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <AssociationLine Name="conductor" Type="territories.diagrams.Publisher">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.046" Y="0.529" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABAAAAAIAAAAABAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Group.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="conductor" />
+      <Property Name="auxiliar" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="territories.diagrams.Tour">
+    <Position X="3.25" Y="3.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgBAAAAAACAAAAgAAAAAIAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Tour.cs</FileName>
+      <NewMemberFileName>tour.cs</NewMemberFileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="territory" />
+      <Property Name="publisher" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Tahoma" Size="8.25" />
+</ClassDiagram>
