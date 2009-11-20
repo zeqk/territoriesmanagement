@@ -85,7 +85,9 @@ namespace Territories.BLL.DataBridge
             {
                 //copio las propiedades de navegación
                 int idCity = v.City.IdCity;
-                int idTerritory = v.Territory.IdTerritory;
+                int idTerritory = 0;
+                if(v.Territory != null)
+                    idTerritory = v.Territory.IdTerritory;
 
                 //aplico las propiedades escalares
                 _dm.ApplyPropertyChanges("Addresses", v);
@@ -99,8 +101,8 @@ namespace Territories.BLL.DataBridge
                 original.City = null;
                 original.Territory = null;
                 original.CityReference.EntityKey = new EntityKey("TerritoriesDataContext.Cities", "IdCity", idCity);
-                original.TerritoryReference.EntityKey = new EntityKey("TerritoriesDataContext.Territories", "IdTerritory", idTerritory);
-                                
+                if(idTerritory != 0)
+                    original.TerritoryReference.EntityKey = new EntityKey("TerritoriesDataContext.Territories", "IdTerritory", idTerritory);                                
 
                 _dm.SaveChanges();
 

@@ -34,6 +34,9 @@ namespace Territories.GUI
                 else
                     cboDepartment.SelectedItem = null;
 
+                if (value.Territory == null)
+                    cboTerritory.SelectedValue = 0;
+
                 if (value.Lat != null && value.Lng != null)
                     chkHaveGeoPos.Checked = true;
                 else
@@ -169,7 +172,9 @@ namespace Territories.GUI
 
         private string GetDepartmentName()
         {
-            string rv = cboDepartment.SelectedItem.GetType().GetProperty("Name").GetValue(cboDepartment.SelectedItem, null).ToString();
+            string rv = "";
+            if(cboDepartment.SelectedItem != null)
+                rv = cboDepartment.SelectedItem.GetType().GetProperty("Name").GetValue(cboDepartment.SelectedItem, null).ToString();
 
             return rv;
         }
