@@ -138,44 +138,44 @@ namespace Territories.GUI
                            
                        }
                        using (Font f = new Font(FontFamily.GenericSansSerif, 9, FontStyle.Bold))
-                       using (Graphics gfx = Graphics.FromImage(bmpDestination))
-                       {
-                           gfx.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                       //using (Graphics gfx = Graphics.FromImage(bmpDestination))
+                       //{
+                       //    gfx.InterpolationMode = InterpolationMode.HighQualityBicubic;
 
-                           // draw bounds & coordinates
-                           using (Pen p = new Pen(Brushes.Red, 3))
-                           {
-                               p.DashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
+                       //    // draw bounds & coordinates
+                       //    using (Pen p = new Pen(Brushes.Red, 3))
+                       //    {
+                       //        p.DashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
 
-                               gfx.DrawRectangle(p, rect);
+                       //        gfx.DrawRectangle(p, rect);
 
-                               string topleft = info.Area.LocationTopLeft.ToString();
-                               SizeF s = gfx.MeasureString(topleft, f);
+                       //        string topleft = info.Area.LocationTopLeft.ToString();
+                       //        SizeF s = gfx.MeasureString(topleft, f);
 
-                               gfx.DrawString(topleft, f, p.Brush, rect.X + s.Height / 2, rect.Y + s.Height / 2);
+                       //        gfx.DrawString(topleft, f, p.Brush, rect.X + s.Height / 2, rect.Y + s.Height / 2);
 
-                               string rightBottom = new PointLatLng(info.Area.Bottom, info.Area.Right).ToString();
-                               SizeF s2 = gfx.MeasureString(rightBottom, f);
+                       //        string rightBottom = new PointLatLng(info.Area.Bottom, info.Area.Right).ToString();
+                       //        SizeF s2 = gfx.MeasureString(rightBottom, f);
 
-                               gfx.DrawString(rightBottom, f, p.Brush, rect.Right - s2.Width - s2.Height / 2, rect.Bottom - s2.Height - s2.Height / 2);
-                           }
+                       //        gfx.DrawString(rightBottom, f, p.Brush, rect.Right - s2.Width - s2.Height / 2, rect.Bottom - s2.Height - s2.Height / 2);
+                       //    }
 
-                           // draw scale
-                           using (Pen p = new Pen(Brushes.Blue, 1))
-                           {
-                               double rez = info.Projection.GetGroundResolution(info.Zoom, info.Area.Bottom);
-                               int px100 = (int)(100.0 / rez); // 100 meters
-                               int px1000 = (int)(1000.0 / rez); // 1km   
+                       //     draw scale
+                       //    using (Pen p = new Pen(Brushes.Blue, 1))
+                       //    {
+                       //        double rez = info.Projection.GetGroundResolution(info.Zoom, info.Area.Bottom);
+                       //        int px100 = (int)(100.0 / rez); // 100 meters
+                       //        int px1000 = (int)(1000.0 / rez); // 1km   
 
-                               gfx.DrawRectangle(p, rect.X + 10, rect.Bottom - 20, px1000, 10);
-                               gfx.DrawRectangle(p, rect.X + 10, rect.Bottom - 20, px100, 10);
+                       //        gfx.DrawRectangle(p, rect.X + 10, rect.Bottom - 20, px1000, 10);
+                       //        gfx.DrawRectangle(p, rect.X + 10, rect.Bottom - 20, px100, 10);
 
-                               string leftBottom = "scale: 100m | 1Km";
-                               SizeF s = gfx.MeasureString(leftBottom, f);
-                               gfx.DrawString(leftBottom, f, p.Brush, rect.X + 10, rect.Bottom - s.Height - 20);
-                           }
-                       }
-                       //bmpDestination.RotateFlip(RotateFlipType.Rotate270FlipNone);
+                       //        string leftBottom = "scale: 100m | 1Km";
+                       //        SizeF s = gfx.MeasureString(leftBottom, f);
+                       //        gfx.DrawString(leftBottom, f, p.Brush, rect.X + 10, rect.Bottom - s.Height - 20);
+                       //    }
+                       //}
+
                        using (Graphics gfx = Graphics.FromImage(bmpDestination))
                        {
                            gfx.InterpolationMode = InterpolationMode.HighQualityBicubic;
@@ -193,7 +193,9 @@ namespace Territories.GUI
                                    FromLatLngToLocal(info, rect.Height, rect.Width, customMark.Position.Lat, customMark.Position.Lng, out x, out y);
 
                                    gfx.DrawIcon(icon1, x, y);
-                                   gfx.DrawString(marker.Tag.ToString(), SystemFonts.DefaultFont, Brushes.Red, x + 10, y - 10);
+                                   Font font = new Font(FontFamily.GenericSansSerif, 15);                                 
+                                   
+                                   gfx.DrawString(marker.Tag.ToString(), font, Brushes.Red, x + 10, y - 10);
                                }
 
                                if (marker.GetType() == typeof(GMapMarkerPolygon))
@@ -209,7 +211,7 @@ namespace Territories.GUI
                                        points.Add(new System.Drawing.Point(x, y));
                                    }
                                    Pen pen = new Pen(Color.Blue, 4);
-                                   pen.DashStyle = DashStyle.DashDotDot;
+                                   pen.DashStyle = DashStyle.Dot;
 
                                    gfx.DrawPolygon(pen, points.ToArray());
                                }
@@ -269,8 +271,8 @@ namespace Territories.GUI
           y = imageHeigth - y;
 
           //calculo un 1% del tamaño de la imágen
-          int heigthPer = Convert.ToInt32(imageHeigth * 0.01);
-          int widthPer = Convert.ToInt32(imageWidth * 0.01);
+          int heigthPer = Convert.ToInt32(imageHeigth * 0.015);
+          int widthPer = Convert.ToInt32(imageWidth * 0.015);
           //le sumo un 1%
           y = y + heigthPer;
           x = x + heigthPer;
