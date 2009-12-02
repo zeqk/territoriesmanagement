@@ -507,12 +507,13 @@
             this.cboTerritory.AccessibleName = null;
             resources.ApplyResources(this.cboTerritory, "cboTerritory");
             this.cboTerritory.BackgroundImage = null;
-            this.cboTerritory.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsAddress, "Territory.IdTerritory", true));
-            this.cboTerritory.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Territory.Name", true));
+            this.cboTerritory.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsAddress, "Territory.IdTerritory", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.cboTerritory.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Territory.Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cboTerritory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTerritory.Font = null;
             this.cboTerritory.FormattingEnabled = true;
             this.cboTerritory.Name = "cboTerritory";
+            this.cboTerritory.SelectedIndexChanged += new System.EventHandler(this.HaveChanges);
             // 
             // grpAdditional
             // 
