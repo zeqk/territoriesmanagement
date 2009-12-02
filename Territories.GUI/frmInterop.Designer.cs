@@ -45,6 +45,10 @@
             this.btnImport = new System.Windows.Forms.Button();
             this.grdImportConfig = new System.Windows.Forms.PropertyGrid();
             this.tabGeoRss = new System.Windows.Forms.TabPage();
+            this.grpGMapsExport = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnExportToGmaps = new System.Windows.Forms.Button();
+            this.btnSaveToGMaps = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtRssSource = new System.Windows.Forms.TextBox();
             this.btnImportGeoRss = new System.Windows.Forms.Button();
@@ -65,21 +69,17 @@
             this.btnSaveToExcel = new System.Windows.Forms.Button();
             this.ofdFileSource = new System.Windows.Forms.OpenFileDialog();
             this.sfdExcelDestiny = new System.Windows.Forms.SaveFileDialog();
-            this.grpGMapsExport = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.btnExportToGmaps = new System.Windows.Forms.Button();
-            this.btnSaveToGMaps = new System.Windows.Forms.Button();
             this.sfdGMaps = new System.Windows.Forms.SaveFileDialog();
             this.tabDataImport.SuspendLayout();
             this.grpConfig.SuspendLayout();
             this.tabProviders.SuspendLayout();
             this.tabMsExcel.SuspendLayout();
             this.tabGeoRss.SuspendLayout();
+            this.grpGMapsExport.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabMaps.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.grpExport.SuspendLayout();
-            this.grpGMapsExport.SuspendLayout();
             this.SuspendLayout();
             // 
             // odfRssSource
@@ -252,6 +252,45 @@
             this.tabGeoRss.TabIndex = 0;
             this.tabGeoRss.Text = "Maps";
             this.tabGeoRss.UseVisualStyleBackColor = true;
+            // 
+            // grpGMapsExport
+            // 
+            this.grpGMapsExport.Controls.Add(this.textBox1);
+            this.grpGMapsExport.Controls.Add(this.btnExportToGmaps);
+            this.grpGMapsExport.Controls.Add(this.btnSaveToGMaps);
+            this.grpGMapsExport.Location = new System.Drawing.Point(6, 180);
+            this.grpGMapsExport.Name = "grpGMapsExport";
+            this.grpGMapsExport.Size = new System.Drawing.Size(566, 127);
+            this.grpGMapsExport.TabIndex = 17;
+            this.grpGMapsExport.TabStop = false;
+            this.grpGMapsExport.Text = "Export to Gmaps";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(15, 30);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(379, 20);
+            this.textBox1.TabIndex = 12;
+            // 
+            // btnExportToGmaps
+            // 
+            this.btnExportToGmaps.Location = new System.Drawing.Point(104, 68);
+            this.btnExportToGmaps.Name = "btnExportToGmaps";
+            this.btnExportToGmaps.Size = new System.Drawing.Size(344, 35);
+            this.btnExportToGmaps.TabIndex = 13;
+            this.btnExportToGmaps.Text = "Export";
+            this.btnExportToGmaps.UseVisualStyleBackColor = true;
+            // 
+            // btnSaveToGMaps
+            // 
+            this.btnSaveToGMaps.Location = new System.Drawing.Point(420, 27);
+            this.btnSaveToGMaps.Name = "btnSaveToGMaps";
+            this.btnSaveToGMaps.Size = new System.Drawing.Size(118, 24);
+            this.btnSaveToGMaps.TabIndex = 11;
+            this.btnSaveToGMaps.Text = "Save";
+            this.btnSaveToGMaps.UseVisualStyleBackColor = true;
+            this.btnSaveToGMaps.Click += new System.EventHandler(this.btnSaveToGMaps_Click);
             // 
             // groupBox1
             // 
@@ -455,47 +494,8 @@
             // 
             // sfdExcelDestiny
             // 
-            this.sfdExcelDestiny.FileName = "Excel files (*.xls)|*.xls";
+            this.sfdExcelDestiny.Filter = "Excel files (*.xls)|*.xls";
             this.sfdExcelDestiny.FileOk += new System.ComponentModel.CancelEventHandler(this.sfdExcelDestiny_FileOk);
-            // 
-            // grpGMapsExport
-            // 
-            this.grpGMapsExport.Controls.Add(this.textBox1);
-            this.grpGMapsExport.Controls.Add(this.btnExportToGmaps);
-            this.grpGMapsExport.Controls.Add(this.btnSaveToGMaps);
-            this.grpGMapsExport.Location = new System.Drawing.Point(6, 180);
-            this.grpGMapsExport.Name = "grpGMapsExport";
-            this.grpGMapsExport.Size = new System.Drawing.Size(566, 127);
-            this.grpGMapsExport.TabIndex = 17;
-            this.grpGMapsExport.TabStop = false;
-            this.grpGMapsExport.Text = "Export to Gmaps";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(15, 30);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(379, 20);
-            this.textBox1.TabIndex = 12;
-            // 
-            // btnExportToGmaps
-            // 
-            this.btnExportToGmaps.Location = new System.Drawing.Point(104, 68);
-            this.btnExportToGmaps.Name = "btnExportToGmaps";
-            this.btnExportToGmaps.Size = new System.Drawing.Size(344, 35);
-            this.btnExportToGmaps.TabIndex = 13;
-            this.btnExportToGmaps.Text = "Export";
-            this.btnExportToGmaps.UseVisualStyleBackColor = true;
-            // 
-            // btnSaveToGMaps
-            // 
-            this.btnSaveToGMaps.Location = new System.Drawing.Point(420, 27);
-            this.btnSaveToGMaps.Name = "btnSaveToGMaps";
-            this.btnSaveToGMaps.Size = new System.Drawing.Size(118, 24);
-            this.btnSaveToGMaps.TabIndex = 11;
-            this.btnSaveToGMaps.Text = "Save";
-            this.btnSaveToGMaps.UseVisualStyleBackColor = true;
-            this.btnSaveToGMaps.Click += new System.EventHandler(this.btnSaveToGMaps_Click);
             // 
             // frmInterop
             // 
@@ -514,14 +514,14 @@
             this.tabMsExcel.ResumeLayout(false);
             this.tabMsExcel.PerformLayout();
             this.tabGeoRss.ResumeLayout(false);
+            this.grpGMapsExport.ResumeLayout(false);
+            this.grpGMapsExport.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.tabMaps.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.grpExport.ResumeLayout(false);
             this.grpExport.PerformLayout();
-            this.grpGMapsExport.ResumeLayout(false);
-            this.grpGMapsExport.PerformLayout();
             this.ResumeLayout(false);
 
         }

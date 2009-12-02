@@ -17,12 +17,20 @@ namespace Territories.GUI
     {
         private Addresses _server;
         private bool _isDirty;
+        private bool _haventTerritory;
 
         public Address Address
         {
             get 
             {
                 Address rv = (Address)bsAddress.DataSource;
+
+                if (_haventTerritory && cboTerritory.SelectedItem != null)
+                {
+                    rv.Territory = new Territory();
+                    rv.Territory.IdTerritory = (int)cboTerritory.SelectedValue;
+                }
+
                 return rv;
             }
             set 
@@ -35,7 +43,12 @@ namespace Territories.GUI
                     cboDepartment.SelectedItem = null;
 
                 if (value.Territory == null)
-                    cboTerritory.SelectedValue = 0;
+                {
+                    //cboTerritory.SelectedItem = null;
+                    _haventTerritory = true;
+                }
+                else
+                    _haventTerritory = false;
 
                 if (value.Lat != null && value.Lng != null)
                     chkHaveGeoPos.Checked = true;
@@ -48,7 +61,7 @@ namespace Territories.GUI
 
         public frmAddress(Addresses server)
         {
-            _server = server;
+            _server = server;            
             InitializeComponent();
             ConfigureMenus();
         }
@@ -62,11 +75,10 @@ namespace Territories.GUI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Address a = this.Address;
-            if (_isDirty == true)
+            if (_isDirty)
             {                
                 try
-                {                    
+                {
                     _server.Save(this.Address);
                     this.DialogResult = DialogResult.OK;
                 }

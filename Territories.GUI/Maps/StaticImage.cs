@@ -137,44 +137,44 @@ namespace Territories.GUI
                            rect.Size = new System.Drawing.Size(pxDelta.X, pxDelta.Y);
                            
                        }
-                       using (Font f = new Font(FontFamily.GenericSansSerif, 9, FontStyle.Bold))
-                       using (Graphics gfx = Graphics.FromImage(bmpDestination))
-                       {
-                           gfx.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                       //using (Font f = new Font(FontFamily.GenericSansSerif, 9, FontStyle.Bold))
+                       //using (Graphics gfx = Graphics.FromImage(bmpDestination))
+                       //{
+                       //    gfx.InterpolationMode = InterpolationMode.HighQualityBicubic;
 
-                           // draw bounds & coordinates
-                           using (Pen p = new Pen(Brushes.Red, 3))
-                           {
-                               p.DashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
+                       //    // draw bounds & coordinates
+                       //    using (Pen p = new Pen(Brushes.Red, 3))
+                       //    {
+                       //        p.DashStyle = System.Drawing.Drawing2D.DashStyle.DashDot;
 
-                               gfx.DrawRectangle(p, rect);
+                       //        gfx.DrawRectangle(p, rect);
 
-                               string topleft = info.Area.LocationTopLeft.ToString();
-                               SizeF s = gfx.MeasureString(topleft, f);
+                       //        string topleft = info.Area.LocationTopLeft.ToString();
+                       //        SizeF s = gfx.MeasureString(topleft, f);
 
-                               gfx.DrawString(topleft, f, p.Brush, rect.X + s.Height / 2, rect.Y + s.Height / 2);
+                       //        gfx.DrawString(topleft, f, p.Brush, rect.X + s.Height / 2, rect.Y + s.Height / 2);
 
-                               string rightBottom = new PointLatLng(info.Area.Bottom, info.Area.Right).ToString();
-                               SizeF s2 = gfx.MeasureString(rightBottom, f);
+                       //        string rightBottom = new PointLatLng(info.Area.Bottom, info.Area.Right).ToString();
+                       //        SizeF s2 = gfx.MeasureString(rightBottom, f);
 
-                               gfx.DrawString(rightBottom, f, p.Brush, rect.Right - s2.Width - s2.Height / 2, rect.Bottom - s2.Height - s2.Height / 2);
-                           }
+                       //        gfx.DrawString(rightBottom, f, p.Brush, rect.Right - s2.Width - s2.Height / 2, rect.Bottom - s2.Height - s2.Height / 2);
+                       //    }
 
-                           // draw scale
-                           using (Pen p = new Pen(Brushes.Blue, 1))
-                           {
-                               double rez = info.Projection.GetGroundResolution(info.Zoom, info.Area.Bottom);
-                               int px100 = (int)(100.0 / rez); // 100 meters
-                               int px1000 = (int)(1000.0 / rez); // 1km   
+                       //    // draw scale
+                       //    using (Pen p = new Pen(Brushes.Blue, 1))
+                       //    {
+                       //        double rez = info.Projection.GetGroundResolution(info.Zoom, info.Area.Bottom);
+                       //        int px100 = (int)(100.0 / rez); // 100 meters
+                       //        int px1000 = (int)(1000.0 / rez); // 1km   
 
-                               gfx.DrawRectangle(p, rect.X + 10, rect.Bottom - 20, px1000, 10);
-                               gfx.DrawRectangle(p, rect.X + 10, rect.Bottom - 20, px100, 10);
+                       //        gfx.DrawRectangle(p, rect.X + 10, rect.Bottom - 20, px1000, 10);
+                       //        gfx.DrawRectangle(p, rect.X + 10, rect.Bottom - 20, px100, 10);
 
-                               string leftBottom = "scale: 100m | 1Km";
-                               SizeF s = gfx.MeasureString(leftBottom, f);
-                               gfx.DrawString(leftBottom, f, p.Brush, rect.X + 10, rect.Bottom - s.Height - 20);
-                           }
-                       }
+                       //        string leftBottom = "scale: 100m | 1Km";
+                       //        SizeF s = gfx.MeasureString(leftBottom, f);
+                       //        gfx.DrawString(leftBottom, f, p.Brush, rect.X + 10, rect.Bottom - s.Height - 20);
+                       //    }
+                       //}
                        //bmpDestination.RotateFlip(RotateFlipType.Rotate270FlipNone);
                        using (Graphics gfx = Graphics.FromImage(bmpDestination))
                        {
