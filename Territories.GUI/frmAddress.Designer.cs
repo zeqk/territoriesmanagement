@@ -104,7 +104,7 @@
             this.txtId.AccessibleName = null;
             resources.ApplyResources(this.txtId, "txtId");
             this.txtId.BackgroundImage = null;
-            this.txtId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "IdAddresses", true));
+            this.txtId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "IdAddress", true));
             this.txtId.Font = null;
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;

@@ -4,35 +4,35 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TerritoriesDataContext.Store" Alias="Self" Provider="FirebirdSql.Data.FirebirdClient" ProviderManifestToken="2.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
-        <EntityContainer Name="TerritoriesDataContextStoreContainer">
-          <EntitySet Name="Addresses" EntityType="TerritoriesDataContext.Store.Addresses" store:Type="Tables" Schema="Firebird" />
-          <EntitySet Name="Cities" EntityType="TerritoriesDataContext.Store.Cities" store:Type="Tables" Schema="Firebird" />
-          <EntitySet Name="Departments" EntityType="TerritoriesDataContext.Store.Departments" store:Type="Tables" Schema="Firebird" />
-          <EntitySet Name="Publishers" EntityType="TerritoriesDataContext.Store.Publishers" store:Type="Tables" Schema="Firebird" />
-          <EntitySet Name="Territories" EntityType="TerritoriesDataContext.Store.Territories" store:Type="Tables" Schema="Firebird" />
-          <EntitySet Name="Tours" EntityType="TerritoriesDataContext.Store.Tours" store:Type="Tables" Schema="Firebird" />
-          <AssociationSet Name="ADDRESSESKEY0" Association="TerritoriesDataContext.Store.ADDRESSESKEY0">
+    <Schema Namespace="TerritoriesModel.Store" Alias="Self" Provider="FirebirdSql.Data.FirebirdClient" ProviderManifestToken="2.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="TerritoriesModelStoreContainer">
+          <EntitySet Name="Addresses" EntityType="TerritoriesModel.Store.Addresses" store:Type="Tables" Schema="Firebird" />
+          <EntitySet Name="Cities" EntityType="TerritoriesModel.Store.Cities" store:Type="Tables" Schema="Firebird" />
+          <EntitySet Name="Departments" EntityType="TerritoriesModel.Store.Departments" store:Type="Tables" Schema="Firebird" />
+          <EntitySet Name="Publishers" EntityType="TerritoriesModel.Store.Publishers" store:Type="Tables" Schema="Firebird" />
+          <EntitySet Name="Territories" EntityType="TerritoriesModel.Store.Territories" store:Type="Tables" Schema="Firebird" />
+          <EntitySet Name="Tours" EntityType="TerritoriesModel.Store.Tours" store:Type="Tables" Schema="Firebird" />
+          <AssociationSet Name="ADDRESSESKEY0" Association="TerritoriesModel.Store.ADDRESSESKEY0">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="Addresses" EntitySet="Addresses" />
           </AssociationSet>
-          <AssociationSet Name="ADDRESSESKEY1" Association="TerritoriesDataContext.Store.ADDRESSESKEY1">
+          <AssociationSet Name="ADDRESSESKEY1" Association="TerritoriesModel.Store.ADDRESSESKEY1">
             <End Role="Territories" EntitySet="Territories" />
             <End Role="Addresses" EntitySet="Addresses" />
           </AssociationSet>
-          <AssociationSet Name="CITIESKEY0" Association="TerritoriesDataContext.Store.CITIESKEY0">
+          <AssociationSet Name="CITIESKEY0" Association="TerritoriesModel.Store.CITIESKEY0">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="Cities" EntitySet="Cities" />
           </AssociationSet>
-          <AssociationSet Name="PUBLISHERSKEY0" Association="TerritoriesDataContext.Store.PUBLISHERSKEY0">
+          <AssociationSet Name="PUBLISHERSKEY0" Association="TerritoriesModel.Store.PUBLISHERSKEY0">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="Publishers" EntitySet="Publishers" />
           </AssociationSet>
-          <AssociationSet Name="TOURSKEY0" Association="TerritoriesDataContext.Store.TOURSKEY0">
+          <AssociationSet Name="TOURSKEY0" Association="TerritoriesModel.Store.TOURSKEY0">
             <End Role="Publishers" EntitySet="Publishers" />
             <End Role="Tours" EntitySet="Tours" />
           </AssociationSet>
-          <AssociationSet Name="TOURSKEY1" Association="TerritoriesDataContext.Store.TOURSKEY1">
+          <AssociationSet Name="TOURSKEY1" Association="TerritoriesModel.Store.TOURSKEY1">
             <End Role="Territories" EntitySet="Territories" />
             <End Role="Tours" EntitySet="Tours" />
           </AssociationSet>
@@ -110,8 +110,8 @@
           <Property Name="IdPublisher" Type="int" />
         </EntityType>
         <Association Name="ADDRESSESKEY0">
-          <End Role="Cities" Type="TerritoriesDataContext.Store.Cities" Multiplicity="1" />
-          <End Role="Addresses" Type="TerritoriesDataContext.Store.Addresses" Multiplicity="*" />
+          <End Role="Cities" Type="TerritoriesModel.Store.Cities" Multiplicity="1" />
+          <End Role="Addresses" Type="TerritoriesModel.Store.Addresses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cities">
               <PropertyRef Name="IdCity" />
@@ -122,8 +122,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="ADDRESSESKEY1">
-          <End Role="Territories" Type="TerritoriesDataContext.Store.Territories" Multiplicity="0..1" />
-          <End Role="Addresses" Type="TerritoriesDataContext.Store.Addresses" Multiplicity="*" />
+          <End Role="Territories" Type="TerritoriesModel.Store.Territories" Multiplicity="0..1" />
+          <End Role="Addresses" Type="TerritoriesModel.Store.Addresses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Territories">
               <PropertyRef Name="IdTerritory" />
@@ -134,8 +134,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="CITIESKEY0">
-          <End Role="Departments" Type="TerritoriesDataContext.Store.Departments" Multiplicity="1" />
-          <End Role="Cities" Type="TerritoriesDataContext.Store.Cities" Multiplicity="*" />
+          <End Role="Departments" Type="TerritoriesModel.Store.Departments" Multiplicity="1" />
+          <End Role="Cities" Type="TerritoriesModel.Store.Cities" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Departments">
               <PropertyRef Name="IdDepartment" />
@@ -146,8 +146,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="PUBLISHERSKEY0">
-          <End Role="Cities" Type="TerritoriesDataContext.Store.Cities" Multiplicity="0..1" />
-          <End Role="Publishers" Type="TerritoriesDataContext.Store.Publishers" Multiplicity="*" />
+          <End Role="Cities" Type="TerritoriesModel.Store.Cities" Multiplicity="0..1" />
+          <End Role="Publishers" Type="TerritoriesModel.Store.Publishers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cities">
               <PropertyRef Name="IdCity" />
@@ -158,8 +158,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="TOURSKEY0">
-          <End Role="Publishers" Type="TerritoriesDataContext.Store.Publishers" Multiplicity="0..1" />
-          <End Role="Tours" Type="TerritoriesDataContext.Store.Tours" Multiplicity="*" />
+          <End Role="Publishers" Type="TerritoriesModel.Store.Publishers" Multiplicity="0..1" />
+          <End Role="Tours" Type="TerritoriesModel.Store.Tours" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Publishers">
               <PropertyRef Name="IdPublisher" />
@@ -170,8 +170,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="TOURSKEY1">
-          <End Role="Territories" Type="TerritoriesDataContext.Store.Territories" Multiplicity="1" />
-          <End Role="Tours" Type="TerritoriesDataContext.Store.Tours" Multiplicity="*" />
+          <End Role="Territories" Type="TerritoriesModel.Store.Territories" Multiplicity="1" />
+          <End Role="Tours" Type="TerritoriesModel.Store.Tours" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Territories">
               <PropertyRef Name="IdTerritory" />
@@ -220,13 +220,13 @@
           <Parameter Name="LNG" Type="float" Mode="In" />
         </Function>
         <Function Name="ADDRESSES_DELETEALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <Parameter Name="NUM_RECS" Type="int" Mode="Out" />
+          <!--<Parameter Name="NUM_RECS" Type="int" Mode="Out" />-->
         </Function>
         <Function Name="ADDRESSES_DELTEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
         <Function Name="ADDRESSES_GETALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <Parameter Name="IDADDRESS" Type="int" Mode="Out" />
+          <!--<Parameter Name="IDADDRESS" Type="int" Mode="Out" />
           <Parameter Name="STREET" Type="varchar" Mode="Out" />
           <Parameter Name="NUMBER" Type="varchar" Mode="Out" />
           <Parameter Name="ADDRESSDATA" Type="varchar" Mode="Out" />
@@ -242,11 +242,11 @@
           <Parameter Name="CUSTOMFIELD1" Type="varchar" Mode="Out" />
           <Parameter Name="CUSTOMFIELD2" Type="varchar" Mode="Out" />
           <Parameter Name="LAT" Type="float" Mode="Out" />
-          <Parameter Name="LNG" Type="float" Mode="Out" />
+          <Parameter Name="LNG" Type="float" Mode="Out" />-->
         </Function>
-        <Function Name="ADDRESSES_GETALLBYCITY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+        <Function Name="ADDRESSES_GETBYCITY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="CITY" Type="int" Mode="In" />
-          <Parameter Name="IDADDRESS" Type="int" Mode="Out" />
+          <!--<Parameter Name="IDADDRESS" Type="int" Mode="Out" />
           <Parameter Name="STREET" Type="varchar" Mode="Out" />
           <Parameter Name="NUMBER" Type="varchar" Mode="Out" />
           <Parameter Name="ADDRESSDATA" Type="varchar" Mode="Out" />
@@ -262,11 +262,11 @@
           <Parameter Name="CUSTOMFIELD1" Type="varchar" Mode="Out" />
           <Parameter Name="CUSTOMFIELD2" Type="varchar" Mode="Out" />
           <Parameter Name="LAT" Type="float" Mode="Out" />
-          <Parameter Name="LNG" Type="float" Mode="Out" />
+          <Parameter Name="LNG" Type="float" Mode="Out" />-->
         </Function>
-        <Function Name="ADDRESSES_GETALLBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+        <Function Name="ADDRESSES_GETBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
-          <Parameter Name="IDADDRESS" Type="int" Mode="Out" />
+          <!--<Parameter Name="IDADDRESS" Type="int" Mode="Out" />
           <Parameter Name="STREET" Type="varchar" Mode="Out" />
           <Parameter Name="NUMBER" Type="varchar" Mode="Out" />
           <Parameter Name="ADDRESSDATA" Type="varchar" Mode="Out" />
@@ -282,7 +282,7 @@
           <Parameter Name="CUSTOMFIELD1" Type="varchar" Mode="Out" />
           <Parameter Name="CUSTOMFIELD2" Type="varchar" Mode="Out" />
           <Parameter Name="LAT" Type="float" Mode="Out" />
-          <Parameter Name="LNG" Type="float" Mode="Out" />
+          <Parameter Name="LNG" Type="float" Mode="Out" />-->
         </Function>
         <Function Name="ADDRESSES_RESETID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="NEWID" Type="int" Mode="In" />
@@ -310,40 +310,40 @@
           <Parameter Name="NAME" Type="varchar" Mode="In" />
           <Parameter Name="NEWID" Type="int" Mode="Out" />
           <Parameter Name="IDDEPARTMENT" Type="int" Mode="In" />
-          <Parameter Name="AREA" Type="blob" Mode="In" />
+          <Parameter Name="AREA" Type="clob" Mode="In" />
         </Function>
         <Function Name="CITIES_ADDWITHPK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
           <Parameter Name="NAME" Type="varchar" Mode="In" />
           <Parameter Name="IDDEPARTMENT" Type="int" Mode="In" />
-          <Parameter Name="AREA" Type="blob" Mode="In" />
+          <Parameter Name="AREA" Type="clob" Mode="In" />
         </Function>
         <Function Name="CITIES_DELETEALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <Parameter Name="NUM_RECS" Type="int" Mode="Out" />
+          <!--<Parameter Name="NUM_RECS" Type="int" Mode="Out" />-->
         </Function>
         <Function Name="CITIES_DELTEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
           <Parameter Name="IDDEPARTMENT" Type="int" Mode="In" />
         </Function>
         <Function Name="CITIES_GETALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <Parameter Name="ID" Type="int" Mode="Out" />
+          <!--<Parameter Name="ID" Type="int" Mode="Out" />
           <Parameter Name="NAME" Type="varchar" Mode="Out" />
-          <Parameter Name="AREA" Type="blob" Mode="Out" />
-          <Parameter Name="IDDEPARTMENT" Type="int" Mode="Out" />
+          <Parameter Name="AREA" Type="clob" Mode="Out" />
+          <Parameter Name="IDDEPARTMENT" Type="int" Mode="Out" />-->
         </Function>
         <Function Name="CITIES_GETBYDEPARTMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="DEPARTMENT" Type="int" Mode="In" />
-          <Parameter Name="IDCITY" Type="int" Mode="Out" />
+          <!--<Parameter Name="IDCITY" Type="int" Mode="Out" />
           <Parameter Name="NAME" Type="varchar" Mode="Out" />
-          <Parameter Name="AREA" Type="blob" Mode="Out" />
-          <Parameter Name="IDDEPARTMENT" Type="int" Mode="Out" />
+          <Parameter Name="AREA" Type="clob" Mode="Out" />
+          <Parameter Name="IDDEPARTMENT" Type="int" Mode="Out" />-->
         </Function>
         <Function Name="CITIES_GETBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
-          <Parameter Name="IDCITY" Type="int" Mode="Out" />
+          <!--<Parameter Name="IDCITY" Type="int" Mode="Out" />
           <Parameter Name="NAME" Type="varchar" Mode="Out" />
-          <Parameter Name="AREA" Type="blob" Mode="Out" />
-          <Parameter Name="IDDEPARTMENT" Type="int" Mode="Out" />
+          <Parameter Name="AREA" Type="clob" Mode="Out" />
+          <Parameter Name="IDDEPARTMENT" Type="int" Mode="Out" />-->
         </Function>
         <Function Name="CITIES_RESETID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="NEWID" Type="int" Mode="In" />
@@ -351,35 +351,35 @@
         <Function Name="CITIES_UPDATEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
           <Parameter Name="NAME" Type="varchar" Mode="In" />
-          <Parameter Name="AREA" Type="blob" Mode="In" />
+          <Parameter Name="AREA" Type="clob" Mode="In" />
           <Parameter Name="IDDEPARTMENT" Type="int" Mode="In" />
         </Function>
         <Function Name="DEPARTMENTS_ADD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="NAME" Type="varchar" Mode="In" />
-          <Parameter Name="NEWID" Type="int" Mode="Out" />
-          <Parameter Name="AREA" Type="blob" Mode="In" />
+          <!--<Parameter Name="NEWID" Type="int" Mode="Out" />-->
+          <Parameter Name="AREA" Type="clob" Mode="In" />
         </Function>
         <Function Name="DEPARTMENTS_ADDWITHPK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
           <Parameter Name="NAME" Type="varchar" Mode="In" />
-          <Parameter Name="AREA" Type="blob" Mode="In" />
+          <Parameter Name="AREA" Type="clob" Mode="In" />
         </Function>
         <Function Name="DEPARTMENTS_DELETEALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <Parameter Name="NUM_RECS" Type="int" Mode="Out" />
+          <!--<Parameter Name="NUM_RECS" Type="int" Mode="Out" />-->
         </Function>
         <Function Name="DEPARTMENTS_DELTEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
         <Function Name="DEPARTMENTS_GETALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <Parameter Name="ID" Type="int" Mode="Out" />
+          <!--<Parameter Name="ID" Type="int" Mode="Out" />
           <Parameter Name="NAME" Type="varchar" Mode="Out" />
-          <Parameter Name="AREA" Type="blob" Mode="Out" />
+          <Parameter Name="AREA" Type="clob" Mode="Out" />-->
         </Function>
         <Function Name="DEPARTMENTS_GETBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
-          <Parameter Name="IDDEPARTMENT" Type="int" Mode="Out" />
+          <!--<Parameter Name="IDDEPARTMENT" Type="int" Mode="Out" />
           <Parameter Name="NAME" Type="varchar" Mode="Out" />
-          <Parameter Name="AREA" Type="blob" Mode="Out" />
+          <Parameter Name="AREA" Type="clob" Mode="Out" />-->
         </Function>
         <Function Name="DEPARTMENTS_RESETID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="NEWID" Type="int" Mode="In" />
@@ -387,48 +387,48 @@
         <Function Name="DEPARTMENTS_UPDATEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
           <Parameter Name="NAME" Type="varchar" Mode="In" />
-          <Parameter Name="AREA" Type="blob" Mode="In" />
+          <Parameter Name="AREA" Type="clob" Mode="In" />
         </Function>
         <Function Name="PUBLISHERS_GETBYCITY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <Parameter Name="IDPUBLISHER" Type="int" Mode="In" />
-          <Parameter Name="NAME" Type="varchar" Mode="In" />
-          <Parameter Name="ADDRESS" Type="blob" Mode="In" />
-          <Parameter Name="IDCITY" Type="int" Mode="In" />
-          <Parameter Name="NOTES" Type="blob" Mode="In" />
-          <Parameter Name="PHONE1" Type="varchar" Mode="In" />
-          <Parameter Name="PHONE2" Type="varchar" Mode="In" />
-          <Parameter Name="ZIP" Type="varchar" Mode="In" />
+          <!--<Parameter Name="IDPUBLISHER" Type="int" Mode="Out" />
+          <Parameter Name="NAME" Type="varchar" Mode="Out" />
+          <Parameter Name="ADDRESS" Type="clob" Mode="Out" />
+          <Parameter Name="IDCITY" Type="int" Mode="Out" />
+          <Parameter Name="NOTES" Type="clob" Mode="Out" />
+          <Parameter Name="PHONE1" Type="varchar" Mode="Out" />
+          <Parameter Name="PHONE2" Type="varchar" Mode="Out" />
+          <Parameter Name="ZIP" Type="varchar" Mode="Out" />-->
         </Function>
         <Function Name="TERRITORIES_ADD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="NAME" Type="varchar" Mode="In" />
-          <Parameter Name="NEWID" Type="int" Mode="Out" />
+          <!--<Parameter Name="NEWID" Type="int" Mode="Out" />-->
           <Parameter Name="NUMBER" Type="int" Mode="In" />
-          <Parameter Name="AREA" Type="blob" Mode="In" />
+          <Parameter Name="AREA" Type="clob" Mode="In" />
         </Function>
         <Function Name="TERRITORIES_ADDWITHPK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
           <Parameter Name="NAME" Type="varchar" Mode="In" />
           <Parameter Name="NUMBER" Type="int" Mode="In" />
-          <Parameter Name="AREA" Type="blob" Mode="In" />
+          <Parameter Name="AREA" Type="clob" Mode="In" />
         </Function>
         <Function Name="TERRITORIES_DELETEALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <Parameter Name="NUM_RECS" Type="int" Mode="Out" />
+          <!--<Parameter Name="NUM_RECS" Type="int" Mode="Out" />-->
         </Function>
         <Function Name="TERRITORIES_DELTEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
         <Function Name="TERRITORIES_GETALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <Parameter Name="IDTERRITORY" Type="int" Mode="Out" />
+          <!--<Parameter Name="IDTERRITORY" Type="int" Mode="Out" />
           <Parameter Name="NAME" Type="varchar" Mode="Out" />
           <Parameter Name="NUMBER" Type="int" Mode="Out" />
-          <Parameter Name="AREA" Type="blob" Mode="Out" />
+          <Parameter Name="AREA" Type="clob" Mode="Out" />-->
         </Function>
         <Function Name="TERRITORIES_GETBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
-          <Parameter Name="IDTERRITORY" Type="int" Mode="Out" />
+          <!--<Parameter Name="IDTERRITORY" Type="int" Mode="Out" />
           <Parameter Name="NAME" Type="varchar" Mode="Out" />
           <Parameter Name="NUMBER" Type="int" Mode="Out" />
-          <Parameter Name="AREA" Type="blob" Mode="Out" />
+          <Parameter Name="AREA" Type="clob" Mode="Out" />-->
         </Function>
         <Function Name="TERRITORIES_RESETID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="NEWID" Type="int" Mode="In" />
@@ -437,65 +437,70 @@
           <Parameter Name="ID" Type="int" Mode="In" />
           <Parameter Name="NAME" Type="varchar" Mode="In" />
           <Parameter Name="NUMBER" Type="int" Mode="In" />
-          <Parameter Name="AREA" Type="blob" Mode="In" />
+          <Parameter Name="AREA" Type="clob" Mode="In" />
         </Function>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="TerritoriesDataContext" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
-        <EntityContainer Name="TerritoriesModel">
-          <EntitySet Name="Addresses" EntityType="TerritoriesDataContext.Address" />
-          <EntitySet Name="Cities" EntityType="TerritoriesDataContext.City" />
-          <EntitySet Name="Departments" EntityType="TerritoriesDataContext.Department" />
-          <EntitySet Name="Publishers" EntityType="TerritoriesDataContext.Publisher" />
-          <EntitySet Name="Territories" EntityType="TerritoriesDataContext.Territories" />
-          <EntitySet Name="Tours" EntityType="TerritoriesDataContext.Tour" />
-          <AssociationSet Name="ADDRESSESKEY0" Association="TerritoriesDataContext.ADDRESSESKEY0">
+      <Schema Namespace="TerritoriesModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="TerritoriesDataContext">
+          <EntitySet Name="Addresses" EntityType="TerritoriesModel.Address" />
+          <EntitySet Name="Cities" EntityType="TerritoriesModel.City" />
+          <EntitySet Name="Departments" EntityType="TerritoriesModel.Department" />
+          <EntitySet Name="Publishers" EntityType="TerritoriesModel.Publisher" />
+          <EntitySet Name="Territories" EntityType="TerritoriesModel.Territory" />
+          <EntitySet Name="Tours" EntityType="TerritoriesModel.Tour" />
+          <AssociationSet Name="ADDRESSESKEY0" Association="TerritoriesModel.ADDRESSESKEY0">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="Addresses" EntitySet="Addresses" />
           </AssociationSet>
-          <AssociationSet Name="ADDRESSESKEY1" Association="TerritoriesDataContext.ADDRESSESKEY1">
+          <AssociationSet Name="ADDRESSESKEY1" Association="TerritoriesModel.ADDRESSESKEY1">
             <End Role="Territories" EntitySet="Territories" />
             <End Role="Addresses" EntitySet="Addresses" />
           </AssociationSet>
-          <AssociationSet Name="CITIESKEY0" Association="TerritoriesDataContext.CITIESKEY0">
+          <AssociationSet Name="CITIESKEY0" Association="TerritoriesModel.CITIESKEY0">
             <End Role="Departments" EntitySet="Departments" />
             <End Role="Cities" EntitySet="Cities" />
           </AssociationSet>
-          <AssociationSet Name="PUBLISHERSKEY0" Association="TerritoriesDataContext.PUBLISHERSKEY0">
+          <AssociationSet Name="PUBLISHERSKEY0" Association="TerritoriesModel.PUBLISHERSKEY0">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="Publishers" EntitySet="Publishers" />
           </AssociationSet>
-          <AssociationSet Name="TOURSKEY0" Association="TerritoriesDataContext.TOURSKEY0">
+          <AssociationSet Name="TOURSKEY0" Association="TerritoriesModel.TOURSKEY0">
             <End Role="Publishers" EntitySet="Publishers" />
             <End Role="Tours" EntitySet="Tours" />
           </AssociationSet>
-          <AssociationSet Name="TOURSKEY1" Association="TerritoriesDataContext.TOURSKEY1">
+          <AssociationSet Name="TOURSKEY1" Association="TerritoriesModel.TOURSKEY1">
             <End Role="Territories" EntitySet="Territories" />
             <End Role="Tours" EntitySet="Tours" />
           </AssociationSet>
-          <FunctionImport Name="Departments_Add" EntitySet="Departments" ReturnType="Collection(TerritoriesDataContext.Department)">
-            <Parameter Name="NAME" Mode="In" Type="String" />
-            <Parameter Name="NEWID" Mode="Out" Type="Int32" />
-            <Parameter Name="AREA" Mode="In" Type="Binary" /></FunctionImport>
-          <FunctionImport Name="Departments_DelleteAll" EntitySet="Departments" ReturnType="Collection(TerritoriesDataContext.Department)">
-            <Parameter Name="NUM_RECS" Mode="Out" Type="Int32" /></FunctionImport>
-          <FunctionImport Name="Departments_DeleteById">
+          <FunctionImport Name="addresses_GetAll" EntitySet="Addresses" ReturnType="Collection(TerritoriesModel.Address)" />
+          <FunctionImport Name="addresses_GetByCity" EntitySet="Addresses" ReturnType="Collection(TerritoriesModel.Address)">
+            <Parameter Name="CITY" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="addresses_GetById" EntitySet="Addresses" ReturnType="Collection(TerritoriesModel.Address)">
             <Parameter Name="ID" Mode="In" Type="Int32" /></FunctionImport>
-          <FunctionImport Name="Departments_GetAll" EntitySet="Departments" ReturnType="Collection(TerritoriesDataContext.Department)">
-            <Parameter Name="ID" Mode="Out" Type="Int32" />
-            <Parameter Name="NAME" Mode="Out" Type="String" />
-            <Parameter Name="AREA" Mode="Out" Type="Binary" /></FunctionImport>
-          <FunctionImport Name="Departments_GetById" EntitySet="Departments" ReturnType="Collection(TerritoriesDataContext.Department)">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
-            <Parameter Name="IDDEPARTMENT" Mode="Out" Type="Int32" />
-            <Parameter Name="NAME" Mode="Out" Type="String" />
-            <Parameter Name="AREA" Mode="Out" Type="Binary" /></FunctionImport>
-          <FunctionImport Name="Departments_UpdateById" EntitySet="Departments" ReturnType="Collection(TerritoriesDataContext.Department)">
-            <Parameter Name="ID" Mode="In" Type="Int32" />
-            <Parameter Name="NAME" Mode="In" Type="String" />
-            <Parameter Name="AREA" Mode="In" Type="Binary" /></FunctionImport></EntityContainer>
+          <FunctionImport Name="cities_GetAll" EntitySet="Cities" ReturnType="Collection(TerritoriesModel.City)" />
+          <FunctionImport Name="cities_GetByDepartment" EntitySet="Cities" ReturnType="Collection(TerritoriesModel.City)">
+            <Parameter Name="DEPARTMENT" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="cities_GetById" EntitySet="Cities" ReturnType="Collection(TerritoriesModel.City)">
+            <Parameter Name="ID" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="departments_GetAll" EntitySet="Departments" ReturnType="Collection(TerritoriesModel.Department)" />
+          <FunctionImport Name="departments_GetById" EntitySet="Departments" ReturnType="Collection(TerritoriesModel.Department)">
+            <Parameter Name="ID" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="publishers_GetByCity" EntitySet="Publishers" ReturnType="Collection(TerritoriesModel.Publisher)" />
+          <FunctionImport Name="territories_GetAll" EntitySet="Territories" ReturnType="Collection(TerritoriesModel.Territory)" />
+          <FunctionImport Name="territories_GetById" EntitySet="Territories" ReturnType="Collection(TerritoriesModel.Territory)">
+            <Parameter Name="ID" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="addresses_ResetId">
+            <Parameter Name="NEWID" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="citeis_ResetId" ReturnType="Collection(Int32)">
+            <Parameter Name="NEWID" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="departments_ResetId" ReturnType="Collection(Int32)">
+            <Parameter Name="NEWID" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="addresses_DeleteAll" />
+          <FunctionImport Name="citeis_DelleteAll" />
+          <FunctionImport Name="departments_DelleteAll" />
+          <FunctionImport Name="territories_DelleteAll" /></EntityContainer>
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="IdAddress" />
@@ -515,8 +520,8 @@
           <Property Name="CustomField2" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="Lat" Type="Double" />
           <Property Name="Lng" Type="Double" />
-          <NavigationProperty Name="Cities" Relationship="TerritoriesDataContext.ADDRESSESKEY0" FromRole="Addresses" ToRole="Cities" />
-          <NavigationProperty Name="Territories" Relationship="TerritoriesDataContext.ADDRESSESKEY1" FromRole="Addresses" ToRole="Territories" />
+          <NavigationProperty Name="City" Relationship="TerritoriesModel.ADDRESSESKEY0" FromRole="Addresses" ToRole="Cities" />
+          <NavigationProperty Name="Territory" Relationship="TerritoriesModel.ADDRESSESKEY1" FromRole="Addresses" ToRole="Territories" />
         </EntityType>
         <EntityType Name="City">
           <Key>
@@ -525,9 +530,9 @@
           <Property Name="IdCity" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="80" Unicode="true" FixedLength="false" />
           <Property Name="Area" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Addresses" Relationship="TerritoriesDataContext.ADDRESSESKEY0" FromRole="Cities" ToRole="Addresses" />
-          <NavigationProperty Name="Departments" Relationship="TerritoriesDataContext.CITIESKEY0" FromRole="Cities" ToRole="Departments" />
-          <NavigationProperty Name="Publishers" Relationship="TerritoriesDataContext.PUBLISHERSKEY0" FromRole="Cities" ToRole="Publishers" />
+          <NavigationProperty Name="Addresses" Relationship="TerritoriesModel.ADDRESSESKEY0" FromRole="Cities" ToRole="Addresses" />
+          <NavigationProperty Name="Department" Relationship="TerritoriesModel.CITIESKEY0" FromRole="Cities" ToRole="Departments" />
+          <NavigationProperty Name="Publishers" Relationship="TerritoriesModel.PUBLISHERSKEY0" FromRole="Cities" ToRole="Publishers" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -536,7 +541,7 @@
           <Property Name="IdDepartment" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="80" Unicode="true" FixedLength="false" />
           <Property Name="Area" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Cities" Relationship="TerritoriesDataContext.CITIESKEY0" FromRole="Departments" ToRole="Cities" />
+          <NavigationProperty Name="Cities" Relationship="TerritoriesModel.CITIESKEY0" FromRole="Departments" ToRole="Cities" />
         </EntityType>
         <EntityType Name="Publisher">
           <Key>
@@ -549,10 +554,10 @@
           <Property Name="Phone1" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
           <Property Name="Phone2" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
           <Property Name="Zip" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Cities" Relationship="TerritoriesDataContext.PUBLISHERSKEY0" FromRole="Publishers" ToRole="Cities" />
-          <NavigationProperty Name="Tours" Relationship="TerritoriesDataContext.TOURSKEY0" FromRole="Publishers" ToRole="Tours" />
+          <NavigationProperty Name="City" Relationship="TerritoriesModel.PUBLISHERSKEY0" FromRole="Publishers" ToRole="Cities" />
+          <NavigationProperty Name="Tours" Relationship="TerritoriesModel.TOURSKEY0" FromRole="Publishers" ToRole="Tours" />
         </EntityType>
-        <EntityType Name="Territories">
+        <EntityType Name="Territory">
           <Key>
             <PropertyRef Name="IdTerritory" />
           </Key>
@@ -560,8 +565,8 @@
           <Property Name="Number" Type="Int32" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="80" Unicode="true" FixedLength="false" />
           <Property Name="Area" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Addresses" Relationship="TerritoriesDataContext.ADDRESSESKEY1" FromRole="Territories" ToRole="Addresses" />
-          <NavigationProperty Name="Tours" Relationship="TerritoriesDataContext.TOURSKEY1" FromRole="Territories" ToRole="Tours" />
+          <NavigationProperty Name="Addresses" Relationship="TerritoriesModel.ADDRESSESKEY1" FromRole="Territories" ToRole="Addresses" />
+          <NavigationProperty Name="Tours" Relationship="TerritoriesModel.TOURSKEY1" FromRole="Territories" ToRole="Tours" />
         </EntityType>
         <EntityType Name="Tour">
           <Key>
@@ -572,32 +577,32 @@
           <Property Name="BeginDate" Type="DateTime" Nullable="false" />
           <Property Name="EndDate" Type="DateTime" />
           <Property Name="TourNumber" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Publishers" Relationship="TerritoriesDataContext.TOURSKEY0" FromRole="Tours" ToRole="Publishers" />
-          <NavigationProperty Name="Territories" Relationship="TerritoriesDataContext.TOURSKEY1" FromRole="Tours" ToRole="Territories" />
+          <NavigationProperty Name="Publisher" Relationship="TerritoriesModel.TOURSKEY0" FromRole="Tours" ToRole="Publishers" />
+          <NavigationProperty Name="Territory" Relationship="TerritoriesModel.TOURSKEY1" FromRole="Tours" ToRole="Territories" />
         </EntityType>
         <Association Name="ADDRESSESKEY0">
-          <End Role="Cities" Type="TerritoriesDataContext.City" Multiplicity="1" />
-          <End Role="Addresses" Type="TerritoriesDataContext.Address" Multiplicity="*" />
+          <End Role="Cities" Type="TerritoriesModel.City" Multiplicity="1" />
+          <End Role="Addresses" Type="TerritoriesModel.Address" Multiplicity="*" />
         </Association>
         <Association Name="ADDRESSESKEY1">
-          <End Role="Territories" Type="TerritoriesDataContext.Territories" Multiplicity="0..1" />
-          <End Role="Addresses" Type="TerritoriesDataContext.Address" Multiplicity="*" />
+          <End Role="Territories" Type="TerritoriesModel.Territory" Multiplicity="0..1" />
+          <End Role="Addresses" Type="TerritoriesModel.Address" Multiplicity="*" />
         </Association>
         <Association Name="CITIESKEY0">
-          <End Role="Departments" Type="TerritoriesDataContext.Department" Multiplicity="1" />
-          <End Role="Cities" Type="TerritoriesDataContext.City" Multiplicity="*" />
+          <End Role="Departments" Type="TerritoriesModel.Department" Multiplicity="1" />
+          <End Role="Cities" Type="TerritoriesModel.City" Multiplicity="*" />
         </Association>
         <Association Name="PUBLISHERSKEY0">
-          <End Role="Cities" Type="TerritoriesDataContext.City" Multiplicity="0..1" />
-          <End Role="Publishers" Type="TerritoriesDataContext.Publisher" Multiplicity="*" />
+          <End Role="Cities" Type="TerritoriesModel.City" Multiplicity="0..1" />
+          <End Role="Publishers" Type="TerritoriesModel.Publisher" Multiplicity="*" />
         </Association>
         <Association Name="TOURSKEY0">
-          <End Role="Publishers" Type="TerritoriesDataContext.Publisher" Multiplicity="0..1" />
-          <End Role="Tours" Type="TerritoriesDataContext.Tour" Multiplicity="*" />
+          <End Role="Publishers" Type="TerritoriesModel.Publisher" Multiplicity="0..1" />
+          <End Role="Tours" Type="TerritoriesModel.Tour" Multiplicity="*" />
         </Association>
         <Association Name="TOURSKEY1">
-          <End Role="Territories" Type="TerritoriesDataContext.Territories" Multiplicity="1" />
-          <End Role="Tours" Type="TerritoriesDataContext.Tour" Multiplicity="*" />
+          <End Role="Territories" Type="TerritoriesModel.Territory" Multiplicity="1" />
+          <End Role="Tours" Type="TerritoriesModel.Tour" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Territories">
               <PropertyRef Name="IdTerritory" />
@@ -612,9 +617,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
-        <EntityContainerMapping StorageEntityContainer="TerritoriesDataContextStoreContainer" CdmEntityContainer="TerritoriesModel">
+        <EntityContainerMapping StorageEntityContainer="TerritoriesModelStoreContainer" CdmEntityContainer="TerritoriesDataContext">
           <EntitySetMapping Name="Addresses">
-            <EntityTypeMapping TypeName="IsTypeOf(TerritoriesDataContext.Address)">
+            <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.Address)">
               <MappingFragment StoreEntitySet="Addresses">
                 <ScalarProperty Name="IdAddress" ColumnName="IdAddress" />
                 <ScalarProperty Name="Street" ColumnName="Street" />
@@ -635,7 +640,7 @@
             </EntityTypeMapping>
             </EntitySetMapping>
           <EntitySetMapping Name="Cities">
-            <EntityTypeMapping TypeName="IsTypeOf(TerritoriesDataContext.City)">
+            <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.City)">
               <MappingFragment StoreEntitySet="Cities">
                 <ScalarProperty Name="IdCity" ColumnName="IdCity" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -644,28 +649,27 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="IsTypeOf(TerritoriesDataContext.Department)">
+            <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.Department)">
               <MappingFragment StoreEntitySet="Departments">
                 <ScalarProperty Name="IdDepartment" ColumnName="IdDepartment" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Area" ColumnName="Area" />
               </MappingFragment>
             </EntityTypeMapping>
-            <EntityTypeMapping TypeName="TerritoriesDataContext.Department">
+            <EntityTypeMapping TypeName="TerritoriesModel.Department">
               <ModificationFunctionMapping>
-                <InsertFunction FunctionName="TerritoriesDataContext.Store.DEPARTMENTS_ADD">
-                  <ScalarProperty Name="IdDepartment" ParameterName="NEWID" />
+                <InsertFunction FunctionName="TerritoriesModel.Store.DEPARTMENTS_ADD">
                   <ScalarProperty Name="Area" ParameterName="AREA" />
                   <ScalarProperty Name="Name" ParameterName="NAME" />
                   <ResultBinding Name="IdDepartment" ColumnName="NEWID" /></InsertFunction>
-                <UpdateFunction FunctionName="TerritoriesDataContext.Store.DEPARTMENTS_UPDATEBYID">
+                <UpdateFunction FunctionName="TerritoriesModel.Store.DEPARTMENTS_UPDATEBYID">
                   <ScalarProperty Name="IdDepartment" ParameterName="ID" Version="Original" />
                   <ScalarProperty Name="Area" ParameterName="AREA" Version="Current" />
                   <ScalarProperty Name="Name" ParameterName="NAME" Version="Current" /></UpdateFunction>
-                <DeleteFunction FunctionName="TerritoriesDataContext.Store.DEPARTMENTS_DELTEBYID" >
+                <DeleteFunction FunctionName="TerritoriesModel.Store.DEPARTMENTS_DELTEBYID" >
                   <ScalarProperty Name="IdDepartment" ParameterName="ID" /></DeleteFunction></ModificationFunctionMapping></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Publishers">
-            <EntityTypeMapping TypeName="IsTypeOf(TerritoriesDataContext.Publisher)">
+            <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.Publisher)">
               <MappingFragment StoreEntitySet="Publishers">
                 <ScalarProperty Name="IdPublisher" ColumnName="IdPublisher" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -678,7 +682,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Territories">
-            <EntityTypeMapping TypeName="IsTypeOf(TerritoriesDataContext.Territories)">
+            <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.Territory)">
               <MappingFragment StoreEntitySet="Territories">
                 <ScalarProperty Name="IdTerritory" ColumnName="IdTerritory" />
                 <ScalarProperty Name="Number" ColumnName="Number" />
@@ -688,7 +692,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Tours">
-            <EntityTypeMapping TypeName="IsTypeOf(TerritoriesDataContext.Tour)">
+            <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.Tour)">
               <MappingFragment StoreEntitySet="Tours">
                 <ScalarProperty Name="IdTerritory" ColumnName="IdTerritory" />
                 <ScalarProperty Name="BeginDate" ColumnName="BeginDate" />
@@ -697,7 +701,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="ADDRESSESKEY0" TypeName="TerritoriesDataContext.ADDRESSESKEY0" StoreEntitySet="Addresses">
+          <AssociationSetMapping Name="ADDRESSESKEY0" TypeName="TerritoriesModel.ADDRESSESKEY0" StoreEntitySet="Addresses">
             <EndProperty Name="Cities">
               <ScalarProperty Name="IdCity" ColumnName="IdCity" />
             </EndProperty>
@@ -705,7 +709,7 @@
               <ScalarProperty Name="IdAddress" ColumnName="IdAddress" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="ADDRESSESKEY1" TypeName="TerritoriesDataContext.ADDRESSESKEY1" StoreEntitySet="Addresses">
+          <AssociationSetMapping Name="ADDRESSESKEY1" TypeName="TerritoriesModel.ADDRESSESKEY1" StoreEntitySet="Addresses">
             <EndProperty Name="Territories">
               <ScalarProperty Name="IdTerritory" ColumnName="IdTerritory" />
             </EndProperty>
@@ -714,7 +718,7 @@
             </EndProperty>
             <Condition ColumnName="IdTerritory" IsNull="false" />
           </AssociationSetMapping>
-          <AssociationSetMapping Name="CITIESKEY0" TypeName="TerritoriesDataContext.CITIESKEY0" StoreEntitySet="Cities">
+          <AssociationSetMapping Name="CITIESKEY0" TypeName="TerritoriesModel.CITIESKEY0" StoreEntitySet="Cities">
             <EndProperty Name="Departments">
               <ScalarProperty Name="IdDepartment" ColumnName="IdDepartment" />
             </EndProperty>
@@ -722,7 +726,7 @@
               <ScalarProperty Name="IdCity" ColumnName="IdCity" />
             </EndProperty>
           </AssociationSetMapping>
-          <AssociationSetMapping Name="PUBLISHERSKEY0" TypeName="TerritoriesDataContext.PUBLISHERSKEY0" StoreEntitySet="Publishers">
+          <AssociationSetMapping Name="PUBLISHERSKEY0" TypeName="TerritoriesModel.PUBLISHERSKEY0" StoreEntitySet="Publishers">
             <EndProperty Name="Cities">
               <ScalarProperty Name="IdCity" ColumnName="IdCity" />
             </EndProperty>
@@ -731,7 +735,7 @@
             </EndProperty>
             <Condition ColumnName="IdCity" IsNull="false" />
           </AssociationSetMapping>
-          <AssociationSetMapping Name="TOURSKEY0" TypeName="TerritoriesDataContext.TOURSKEY0" StoreEntitySet="Tours">
+          <AssociationSetMapping Name="TOURSKEY0" TypeName="TerritoriesModel.TOURSKEY0" StoreEntitySet="Tours">
             <EndProperty Name="Publishers">
               <ScalarProperty Name="IdPublisher" ColumnName="IdPublisher" />
             </EndProperty>
@@ -741,7 +745,7 @@
             </EndProperty>
             <Condition ColumnName="IdPublisher" IsNull="false" />
           </AssociationSetMapping>
-          <AssociationSetMapping Name="TOURSKEY1" TypeName="TerritoriesDataContext.TOURSKEY1" StoreEntitySet="Tours">
+          <AssociationSetMapping Name="TOURSKEY1" TypeName="TerritoriesModel.TOURSKEY1" StoreEntitySet="Tours">
             <EndProperty Name="Territories">
               <ScalarProperty Name="IdTerritory" ColumnName="IdTerritory" />
             </EndProperty>
@@ -750,12 +754,24 @@
               <ScalarProperty Name="TourNumber" ColumnName="TourNumber" />
             </EndProperty>
           </AssociationSetMapping>
-          <FunctionImportMapping FunctionImportName="Departments_Add" FunctionName="TerritoriesDataContext.Store.DEPARTMENTS_ADD" />
-          <FunctionImportMapping FunctionImportName="Departments_DelleteAll" FunctionName="TerritoriesDataContext.Store.DEPARTMENTS_DELETEALL" />
-          <FunctionImportMapping FunctionImportName="Departments_DeleteById" FunctionName="TerritoriesDataContext.Store.DEPARTMENTS_DELTEBYID" />
-          <FunctionImportMapping FunctionImportName="Departments_GetAll" FunctionName="TerritoriesDataContext.Store.DEPARTMENTS_GETALL" />
-          <FunctionImportMapping FunctionImportName="Departments_GetById" FunctionName="TerritoriesDataContext.Store.DEPARTMENTS_GETBYID" />
-          <FunctionImportMapping FunctionImportName="Departments_UpdateById" FunctionName="TerritoriesDataContext.Store.DEPARTMENTS_UPDATEBYID" /></EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="addresses_GetAll" FunctionName="TerritoriesModel.Store.ADDRESSES_GETALL" />
+          <FunctionImportMapping FunctionImportName="addresses_GetByCity" FunctionName="TerritoriesModel.Store.ADDRESSES_GETBYCITY" />
+          <FunctionImportMapping FunctionImportName="addresses_GetById" FunctionName="TerritoriesModel.Store.ADDRESSES_GETBYID" />
+          <FunctionImportMapping FunctionImportName="cities_GetAll" FunctionName="TerritoriesModel.Store.CITIES_GETALL" />
+          <FunctionImportMapping FunctionImportName="cities_GetByDepartment" FunctionName="TerritoriesModel.Store.CITIES_GETBYDEPARTMENT" />
+          <FunctionImportMapping FunctionImportName="cities_GetById" FunctionName="TerritoriesModel.Store.CITIES_GETBYID" />
+          <FunctionImportMapping FunctionImportName="departments_GetAll" FunctionName="TerritoriesModel.Store.DEPARTMENTS_GETALL" />
+          <FunctionImportMapping FunctionImportName="departments_GetById" FunctionName="TerritoriesModel.Store.DEPARTMENTS_GETBYID" />
+          <FunctionImportMapping FunctionImportName="publishers_GetByCity" FunctionName="TerritoriesModel.Store.PUBLISHERS_GETBYCITY" />
+          <FunctionImportMapping FunctionImportName="territories_GetAll" FunctionName="TerritoriesModel.Store.TERRITORIES_GETALL" />
+          <FunctionImportMapping FunctionImportName="territories_GetById" FunctionName="TerritoriesModel.Store.TERRITORIES_GETBYID" />
+          <FunctionImportMapping FunctionImportName="addresses_ResetId" FunctionName="TerritoriesModel.Store.ADDRESSES_RESETID" />
+          <FunctionImportMapping FunctionImportName="citeis_ResetId" FunctionName="TerritoriesModel.Store.CITIES_RESETID" />
+          <FunctionImportMapping FunctionImportName="departments_ResetId" FunctionName="TerritoriesModel.Store.DEPARTMENTS_RESETID" />
+          <FunctionImportMapping FunctionImportName="addresses_DeleteAll" FunctionName="TerritoriesModel.Store.ADDRESSES_DELETEALL" />
+          <FunctionImportMapping FunctionImportName="citeis_DelleteAll" FunctionName="TerritoriesModel.Store.CITIES_DELETEALL" />
+          <FunctionImportMapping FunctionImportName="departments_DelleteAll" FunctionName="TerritoriesModel.Store.DEPARTMENTS_DELETEALL" />
+          <FunctionImportMapping FunctionImportName="territories_DelleteAll" FunctionName="TerritoriesModel.Store.TERRITORIES_DELETEALL" /></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -773,32 +789,32 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="TerritoriesModel">
-        <EntityTypeShape EntityType="TerritoriesDataContext.Address" Width="1.5" PointX="2.125" PointY="0.875" Height="3.7288216145833326" IsExpanded="true" />
-        <EntityTypeShape EntityType="TerritoriesDataContext.City" Width="1.5" PointX="3" PointY="5.625" Height="1.9210009765624996" IsExpanded="true" />
-        <EntityTypeShape EntityType="TerritoriesDataContext.Department" Width="1.5" PointX="0.75" PointY="5.875" Height="1.5923063151041665" IsExpanded="true" />
-        <EntityTypeShape EntityType="TerritoriesDataContext.Publisher" Width="1.5" PointX="5.25" PointY="5.375" Height="2.4140429687499996" IsExpanded="true" />
-        <EntityTypeShape EntityType="TerritoriesDataContext.Territories" Width="1.5" PointX="5.125" PointY="1.625" Height="1.9210009765625005" IsExpanded="true" />
-        <EntityTypeShape EntityType="TerritoriesDataContext.Tour" Width="1.5" PointX="7.5" PointY="5.625" Height="1.9210009765624996" IsExpanded="true" />
-        <AssociationConnector Association="TerritoriesDataContext.ADDRESSESKEY0" ManuallyRouted="false">
+      <Diagram Name="TerritoriesDataContext">
+        <EntityTypeShape EntityType="TerritoriesModel.Address" Width="1.5" PointX="2.125" PointY="0.875" Height="3.7288216145833326" IsExpanded="true" />
+        <EntityTypeShape EntityType="TerritoriesModel.City" Width="1.5" PointX="3" PointY="5.625" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TerritoriesModel.Department" Width="1.5" PointX="0.75" PointY="5.875" Height="1.5923063151041665" IsExpanded="true" />
+        <EntityTypeShape EntityType="TerritoriesModel.Publisher" Width="1.5" PointX="5.25" PointY="5.375" Height="2.4140429687499996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TerritoriesModel.Territory" Width="1.5" PointX="5.125" PointY="1.625" Height="1.9210009765625005" IsExpanded="true" />
+        <EntityTypeShape EntityType="TerritoriesModel.Tour" Width="1.5" PointX="7.5" PointY="5.625" Height="1.9210009765624996" IsExpanded="true" />
+        <AssociationConnector Association="TerritoriesModel.ADDRESSESKEY0" ManuallyRouted="false">
           <ConnectorPoint PointX="3.3125" PointY="5.625" />
           <ConnectorPoint PointX="3.3125" PointY="4.6038216145833326" />
           </AssociationConnector>
-        <AssociationConnector Association="TerritoriesDataContext.ADDRESSESKEY1" ManuallyRouted="false">
+        <AssociationConnector Association="TerritoriesModel.ADDRESSESKEY1" ManuallyRouted="false">
           <ConnectorPoint PointX="5.125" PointY="2.5855004882812502" />
           <ConnectorPoint PointX="3.625" PointY="2.5855004882812502" />
           </AssociationConnector>
-        <AssociationConnector Association="TerritoriesDataContext.CITIESKEY0" ManuallyRouted="false">
+        <AssociationConnector Association="TerritoriesModel.CITIESKEY0" ManuallyRouted="false">
           <ConnectorPoint PointX="2.25" PointY="6.6711531575520837" />
           <ConnectorPoint PointX="3" PointY="6.6711531575520837" /></AssociationConnector>
-        <AssociationConnector Association="TerritoriesDataContext.PUBLISHERSKEY0" ManuallyRouted="false">
+        <AssociationConnector Association="TerritoriesModel.PUBLISHERSKEY0" ManuallyRouted="false">
           <ConnectorPoint PointX="4.5" PointY="6.0427502441406249" />
           <ConnectorPoint PointX="5.25" PointY="6.0427502441406249" />
           </AssociationConnector>
-        <AssociationConnector Association="TerritoriesDataContext.TOURSKEY0" ManuallyRouted="false">
+        <AssociationConnector Association="TerritoriesModel.TOURSKEY0" ManuallyRouted="false">
           <ConnectorPoint PointX="6.75" PointY="6.58550048828125" />
           <ConnectorPoint PointX="7.5" PointY="6.58550048828125" /></AssociationConnector>
-        <AssociationConnector Association="TerritoriesDataContext.TOURSKEY1" ManuallyRouted="false">
+        <AssociationConnector Association="TerritoriesModel.TOURSKEY1" ManuallyRouted="false">
           <ConnectorPoint PointX="6.625" PointY="2.5855004882812502" />
           <ConnectorPoint PointX="8.25" PointY="2.5855004882812502" />
           <ConnectorPoint PointX="8.25" PointY="5.625" />

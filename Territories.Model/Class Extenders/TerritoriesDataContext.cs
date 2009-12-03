@@ -196,7 +196,7 @@ namespace Territories.Model
                     cmd.Parameters.Add(descParam);
 
                     EntityParameter idParam = new EntityParameter("id", DbType.Int32);
-                    idParam.Value = v.IdAddresses;
+                    idParam.Value = v.IdAddress;
                     cmd.Parameters.Add(idParam);
 
                     EntityParameter map1Param = new EntityParameter("map1", DbType.String);

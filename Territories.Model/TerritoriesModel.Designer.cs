@@ -9,44 +9,44 @@
 //------------------------------------------------------------------------------
 
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesDataContext", "ADDRESSESKEY0", "Cities", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.City), "Addresses", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Address))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesDataContext", "ADDRESSESKEY1", "Territories", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Territories.Model.Territories), "Addresses", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Address))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesDataContext", "CITIESKEY0", "Departments", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.Department), "Cities", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.City))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesDataContext", "PUBLISHERSKEY0", "Cities", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Territories.Model.City), "Publishers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Publisher))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesDataContext", "TOURSKEY0", "Publishers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Territories.Model.Publisher), "Tours", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Tour))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesDataContext", "TOURSKEY1", "Territories", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.Territories), "Tours", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Tour))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "ADDRESSESKEY0", "Cities", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.City), "Addresses", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Address))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "ADDRESSESKEY1", "Territories", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Territories.Model.Territory), "Addresses", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Address))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "CITIESKEY0", "Departments", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.Department), "Cities", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.City))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "PUBLISHERSKEY0", "Cities", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Territories.Model.City), "Publishers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Publisher))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "TOURSKEY0", "Publishers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Territories.Model.Publisher), "Tours", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Tour))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "TOURSKEY1", "Territories", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.Territory), "Tours", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Tour))]
 
 // Original file name:
-// Generation date: 02/12/2009 17:24:10
+// Generation date: 03/12/2009 15:24:17
 namespace Territories.Model
 {
     
     /// <summary>
-    /// There are no comments for TerritoriesModel in the schema.
+    /// There are no comments for TerritoriesDataContext in the schema.
     /// </summary>
-    public partial class TerritoriesModel : global::System.Data.Objects.ObjectContext
+    public partial class TerritoriesDataContext : global::System.Data.Objects.ObjectContext
     {
         /// <summary>
-        /// Initializes a new TerritoriesModel object using the connection string found in the 'TerritoriesModel' section of the application configuration file.
+        /// Initializes a new TerritoriesDataContext object using the connection string found in the 'TerritoriesDataContext' section of the application configuration file.
         /// </summary>
-        public TerritoriesModel() : 
-                base("name=TerritoriesModel", "TerritoriesModel")
+        public TerritoriesDataContext() : 
+                base("name=TerritoriesDataContext", "TerritoriesDataContext")
         {
             this.OnContextCreated();
         }
         /// <summary>
-        /// Initialize a new TerritoriesModel object.
+        /// Initialize a new TerritoriesDataContext object.
         /// </summary>
-        public TerritoriesModel(string connectionString) : 
-                base(connectionString, "TerritoriesModel")
+        public TerritoriesDataContext(string connectionString) : 
+                base(connectionString, "TerritoriesDataContext")
         {
             this.OnContextCreated();
         }
         /// <summary>
-        /// Initialize a new TerritoriesModel object.
+        /// Initialize a new TerritoriesDataContext object.
         /// </summary>
-        public TerritoriesModel(global::System.Data.EntityClient.EntityConnection connection) : 
-                base(connection, "TerritoriesModel")
+        public TerritoriesDataContext(global::System.Data.EntityClient.EntityConnection connection) : 
+                base(connection, "TerritoriesDataContext")
         {
             this.OnContextCreated();
         }
@@ -114,18 +114,18 @@ namespace Territories.Model
         /// <summary>
         /// There are no comments for Territories in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectQuery<Territories> Territories
+        public global::System.Data.Objects.ObjectQuery<Territory> Territories
         {
             get
             {
                 if ((this._Territories == null))
                 {
-                    this._Territories = base.CreateQuery<Territories>("[Territories]");
+                    this._Territories = base.CreateQuery<Territory>("[Territories]");
                 }
                 return this._Territories;
             }
         }
-        private global::System.Data.Objects.ObjectQuery<Territories> _Territories;
+        private global::System.Data.Objects.ObjectQuery<Territory> _Territories;
         /// <summary>
         /// There are no comments for Tours in the schema.
         /// </summary>
@@ -172,9 +172,9 @@ namespace Territories.Model
         /// <summary>
         /// There are no comments for Territories in the schema.
         /// </summary>
-        public void AddToTerritories(Territories territories)
+        public void AddToTerritories(Territory territory)
         {
-            base.AddObject("Territories", territories);
+            base.AddObject("Territories", territory);
         }
         /// <summary>
         /// There are no comments for Tours in the schema.
@@ -184,48 +184,32 @@ namespace Territories.Model
             base.AddObject("Tours", tour);
         }
         /// <summary>
-        /// There are no comments for TerritoriesDataContext.Departments_Add in the schema.
+        /// There are no comments for TerritoriesModel.addresses_GetAll in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectResult<Department> Departments_Add(string nAME, global::System.Data.Objects.ObjectParameter nEWID, byte[] aREA)
+        public global::System.Data.Objects.ObjectResult<Address> addresses_GetAll()
         {
-            global::System.Data.Objects.ObjectParameter nAMEParameter;
-            if ((nAME != null))
+            return base.ExecuteFunction<Address>("addresses_GetAll");
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.addresses_GetByCity in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<Address> addresses_GetByCity(global::System.Nullable<int> cITY)
+        {
+            global::System.Data.Objects.ObjectParameter cITYParameter;
+            if (cITY.HasValue)
             {
-                nAMEParameter = new global::System.Data.Objects.ObjectParameter("NAME", nAME);
+                cITYParameter = new global::System.Data.Objects.ObjectParameter("CITY", cITY);
             }
             else
             {
-                nAMEParameter = new global::System.Data.Objects.ObjectParameter("NAME", typeof(string));
+                cITYParameter = new global::System.Data.Objects.ObjectParameter("CITY", typeof(int));
             }
-            global::System.Data.Objects.ObjectParameter aREAParameter;
-            if ((aREA != null))
-            {
-                aREAParameter = new global::System.Data.Objects.ObjectParameter("AREA", aREA);
-            }
-            else
-            {
-                aREAParameter = new global::System.Data.Objects.ObjectParameter("AREA", typeof(byte[]));
-            }
-            return base.ExecuteFunction<Department>("Departments_Add", nAMEParameter, nEWID, aREAParameter);
+            return base.ExecuteFunction<Address>("addresses_GetByCity", cITYParameter);
         }
         /// <summary>
-        /// There are no comments for TerritoriesDataContext.Departments_DelleteAll in the schema.
+        /// There are no comments for TerritoriesModel.addresses_GetById in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectResult<Department> Departments_DelleteAll(global::System.Data.Objects.ObjectParameter nUM_RECS)
-        {
-            return base.ExecuteFunction<Department>("Departments_DelleteAll", nUM_RECS);
-        }
-        /// <summary>
-        /// There are no comments for TerritoriesDataContext.Departments_GetAll in the schema.
-        /// </summary>
-        public global::System.Data.Objects.ObjectResult<Department> Departments_GetAll(global::System.Data.Objects.ObjectParameter id, global::System.Data.Objects.ObjectParameter nAME, global::System.Data.Objects.ObjectParameter aREA)
-        {
-            return base.ExecuteFunction<Department>("Departments_GetAll", id, nAME, aREA);
-        }
-        /// <summary>
-        /// There are no comments for TerritoriesDataContext.Departments_GetById in the schema.
-        /// </summary>
-        public global::System.Data.Objects.ObjectResult<Department> Departments_GetById(global::System.Nullable<int> id, global::System.Data.Objects.ObjectParameter iDDEPARTMENT, global::System.Data.Objects.ObjectParameter nAME, global::System.Data.Objects.ObjectParameter aREA)
+        public global::System.Data.Objects.ObjectResult<Address> addresses_GetById(global::System.Nullable<int> id)
         {
             global::System.Data.Objects.ObjectParameter iDParameter;
             if (id.HasValue)
@@ -236,12 +220,35 @@ namespace Territories.Model
             {
                 iDParameter = new global::System.Data.Objects.ObjectParameter("ID", typeof(int));
             }
-            return base.ExecuteFunction<Department>("Departments_GetById", iDParameter, iDDEPARTMENT, nAME, aREA);
+            return base.ExecuteFunction<Address>("addresses_GetById", iDParameter);
         }
         /// <summary>
-        /// There are no comments for TerritoriesDataContext.Departments_UpdateById in the schema.
+        /// There are no comments for TerritoriesModel.cities_GetAll in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectResult<Department> Departments_UpdateById(global::System.Nullable<int> id, string nAME, byte[] aREA)
+        public global::System.Data.Objects.ObjectResult<City> cities_GetAll()
+        {
+            return base.ExecuteFunction<City>("cities_GetAll");
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.cities_GetByDepartment in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<City> cities_GetByDepartment(global::System.Nullable<int> dEPARTMENT)
+        {
+            global::System.Data.Objects.ObjectParameter dEPARTMENTParameter;
+            if (dEPARTMENT.HasValue)
+            {
+                dEPARTMENTParameter = new global::System.Data.Objects.ObjectParameter("DEPARTMENT", dEPARTMENT);
+            }
+            else
+            {
+                dEPARTMENTParameter = new global::System.Data.Objects.ObjectParameter("DEPARTMENT", typeof(int));
+            }
+            return base.ExecuteFunction<City>("cities_GetByDepartment", dEPARTMENTParameter);
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.cities_GetById in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<City> cities_GetById(global::System.Nullable<int> id)
         {
             global::System.Data.Objects.ObjectParameter iDParameter;
             if (id.HasValue)
@@ -252,34 +259,69 @@ namespace Territories.Model
             {
                 iDParameter = new global::System.Data.Objects.ObjectParameter("ID", typeof(int));
             }
-            global::System.Data.Objects.ObjectParameter nAMEParameter;
-            if ((nAME != null))
+            return base.ExecuteFunction<City>("cities_GetById", iDParameter);
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.departments_GetAll in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<Department> departments_GetAll()
+        {
+            return base.ExecuteFunction<Department>("departments_GetAll");
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.departments_GetById in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<Department> departments_GetById(global::System.Nullable<int> id)
+        {
+            global::System.Data.Objects.ObjectParameter iDParameter;
+            if (id.HasValue)
             {
-                nAMEParameter = new global::System.Data.Objects.ObjectParameter("NAME", nAME);
+                iDParameter = new global::System.Data.Objects.ObjectParameter("ID", id);
             }
             else
             {
-                nAMEParameter = new global::System.Data.Objects.ObjectParameter("NAME", typeof(string));
+                iDParameter = new global::System.Data.Objects.ObjectParameter("ID", typeof(int));
             }
-            global::System.Data.Objects.ObjectParameter aREAParameter;
-            if ((aREA != null))
+            return base.ExecuteFunction<Department>("departments_GetById", iDParameter);
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.publishers_GetByCity in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<Publisher> publishers_GetByCity()
+        {
+            return base.ExecuteFunction<Publisher>("publishers_GetByCity");
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.territories_GetAll in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<Territory> territories_GetAll()
+        {
+            return base.ExecuteFunction<Territory>("territories_GetAll");
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.territories_GetById in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<Territory> territories_GetById(global::System.Nullable<int> id)
+        {
+            global::System.Data.Objects.ObjectParameter iDParameter;
+            if (id.HasValue)
             {
-                aREAParameter = new global::System.Data.Objects.ObjectParameter("AREA", aREA);
+                iDParameter = new global::System.Data.Objects.ObjectParameter("ID", id);
             }
             else
             {
-                aREAParameter = new global::System.Data.Objects.ObjectParameter("AREA", typeof(byte[]));
+                iDParameter = new global::System.Data.Objects.ObjectParameter("ID", typeof(int));
             }
-            return base.ExecuteFunction<Department>("Departments_UpdateById", iDParameter, nAMEParameter, aREAParameter);
+            return base.ExecuteFunction<Territory>("territories_GetById", iDParameter);
         }
     }
     /// <summary>
-    /// There are no comments for TerritoriesDataContext.Address in the schema.
+    /// There are no comments for TerritoriesModel.Address in the schema.
     /// </summary>
     /// <KeyProperties>
     /// IdAddress
     /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="TerritoriesDataContext", Name="Address")]
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="TerritoriesModel", Name="Address")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
     [global::System.Serializable()]
     public partial class Address : global::System.Data.Objects.DataClasses.EntityObject
@@ -642,87 +684,87 @@ namespace Territories.Model
         partial void OnLngChanging(global::System.Nullable<double> value);
         partial void OnLngChanged();
         /// <summary>
-        /// There are no comments for Cities in the schema.
+        /// There are no comments for City in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesDataContext", "ADDRESSESKEY0", "Cities")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "ADDRESSESKEY0", "Cities")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public City Cities
+        public City City
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesDataContext.ADDRESSESKEY0", "Cities").Value;
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.ADDRESSESKEY0", "Cities").Value;
             }
             set
             {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesDataContext.ADDRESSESKEY0", "Cities").Value = value;
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.ADDRESSESKEY0", "Cities").Value = value;
             }
         }
         /// <summary>
-        /// There are no comments for Cities in the schema.
+        /// There are no comments for City in the schema.
         /// </summary>
         [global::System.ComponentModel.BrowsableAttribute(false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<City> CitiesReference
+        public global::System.Data.Objects.DataClasses.EntityReference<City> CityReference
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesDataContext.ADDRESSESKEY0", "Cities");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.ADDRESSESKEY0", "Cities");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<City>("TerritoriesDataContext.ADDRESSESKEY0", "Cities", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<City>("TerritoriesModel.ADDRESSESKEY0", "Cities", value);
                 }
             }
         }
         /// <summary>
-        /// There are no comments for Territories in the schema.
+        /// There are no comments for Territory in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesDataContext", "ADDRESSESKEY1", "Territories")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "ADDRESSESKEY1", "Territories")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Territories Territories
+        public Territory Territory
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territories>("TerritoriesDataContext.ADDRESSESKEY1", "Territories").Value;
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.ADDRESSESKEY1", "Territories").Value;
             }
             set
             {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territories>("TerritoriesDataContext.ADDRESSESKEY1", "Territories").Value = value;
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.ADDRESSESKEY1", "Territories").Value = value;
             }
         }
         /// <summary>
-        /// There are no comments for Territories in the schema.
+        /// There are no comments for Territory in the schema.
         /// </summary>
         [global::System.ComponentModel.BrowsableAttribute(false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Territories> TerritoriesReference
+        public global::System.Data.Objects.DataClasses.EntityReference<Territory> TerritoryReference
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territories>("TerritoriesDataContext.ADDRESSESKEY1", "Territories");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.ADDRESSESKEY1", "Territories");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Territories>("TerritoriesDataContext.ADDRESSESKEY1", "Territories", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Territory>("TerritoriesModel.ADDRESSESKEY1", "Territories", value);
                 }
             }
         }
     }
     /// <summary>
-    /// There are no comments for TerritoriesDataContext.City in the schema.
+    /// There are no comments for TerritoriesModel.City in the schema.
     /// </summary>
     /// <KeyProperties>
     /// IdCity
     /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="TerritoriesDataContext", Name="City")]
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="TerritoriesModel", Name="City")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
     [global::System.Serializable()]
     public partial class City : global::System.Data.Objects.DataClasses.EntityObject
@@ -811,7 +853,7 @@ namespace Territories.Model
         /// <summary>
         /// There are no comments for Addresses in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesDataContext", "ADDRESSESKEY0", "Addresses")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "ADDRESSESKEY0", "Addresses")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
@@ -819,57 +861,57 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Address>("TerritoriesDataContext.ADDRESSESKEY0", "Addresses");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Address>("TerritoriesModel.ADDRESSESKEY0", "Addresses");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Address>("TerritoriesDataContext.ADDRESSESKEY0", "Addresses", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Address>("TerritoriesModel.ADDRESSESKEY0", "Addresses", value);
                 }
             }
         }
         /// <summary>
-        /// There are no comments for Departments in the schema.
+        /// There are no comments for Department in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesDataContext", "CITIESKEY0", "Departments")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "CITIESKEY0", "Departments")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Department Departments
+        public Department Department
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Department>("TerritoriesDataContext.CITIESKEY0", "Departments").Value;
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Department>("TerritoriesModel.CITIESKEY0", "Departments").Value;
             }
             set
             {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Department>("TerritoriesDataContext.CITIESKEY0", "Departments").Value = value;
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Department>("TerritoriesModel.CITIESKEY0", "Departments").Value = value;
             }
         }
         /// <summary>
-        /// There are no comments for Departments in the schema.
+        /// There are no comments for Department in the schema.
         /// </summary>
         [global::System.ComponentModel.BrowsableAttribute(false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Department> DepartmentsReference
+        public global::System.Data.Objects.DataClasses.EntityReference<Department> DepartmentReference
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Department>("TerritoriesDataContext.CITIESKEY0", "Departments");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Department>("TerritoriesModel.CITIESKEY0", "Departments");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Department>("TerritoriesDataContext.CITIESKEY0", "Departments", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Department>("TerritoriesModel.CITIESKEY0", "Departments", value);
                 }
             }
         }
         /// <summary>
         /// There are no comments for Publishers in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesDataContext", "PUBLISHERSKEY0", "Publishers")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "PUBLISHERSKEY0", "Publishers")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
@@ -877,24 +919,24 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Publisher>("TerritoriesDataContext.PUBLISHERSKEY0", "Publishers");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Publisher>("TerritoriesModel.PUBLISHERSKEY0", "Publishers");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Publisher>("TerritoriesDataContext.PUBLISHERSKEY0", "Publishers", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Publisher>("TerritoriesModel.PUBLISHERSKEY0", "Publishers", value);
                 }
             }
         }
     }
     /// <summary>
-    /// There are no comments for TerritoriesDataContext.Department in the schema.
+    /// There are no comments for TerritoriesModel.Department in the schema.
     /// </summary>
     /// <KeyProperties>
     /// IdDepartment
     /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="TerritoriesDataContext", Name="Department")]
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="TerritoriesModel", Name="Department")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
     [global::System.Serializable()]
     public partial class Department : global::System.Data.Objects.DataClasses.EntityObject
@@ -983,7 +1025,7 @@ namespace Territories.Model
         /// <summary>
         /// There are no comments for Cities in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesDataContext", "CITIESKEY0", "Cities")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "CITIESKEY0", "Cities")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
@@ -991,24 +1033,24 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<City>("TerritoriesDataContext.CITIESKEY0", "Cities");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<City>("TerritoriesModel.CITIESKEY0", "Cities");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<City>("TerritoriesDataContext.CITIESKEY0", "Cities", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<City>("TerritoriesModel.CITIESKEY0", "Cities", value);
                 }
             }
         }
     }
     /// <summary>
-    /// There are no comments for TerritoriesDataContext.Publisher in the schema.
+    /// There are no comments for TerritoriesModel.Publisher in the schema.
     /// </summary>
     /// <KeyProperties>
     /// IdPublisher
     /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="TerritoriesDataContext", Name="Publisher")]
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="TerritoriesModel", Name="Publisher")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
     [global::System.Serializable()]
     public partial class Publisher : global::System.Data.Objects.DataClasses.EntityObject
@@ -1189,46 +1231,46 @@ namespace Territories.Model
         partial void OnZipChanging(string value);
         partial void OnZipChanged();
         /// <summary>
-        /// There are no comments for Cities in the schema.
+        /// There are no comments for City in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesDataContext", "PUBLISHERSKEY0", "Cities")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "PUBLISHERSKEY0", "Cities")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public City Cities
+        public City City
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesDataContext.PUBLISHERSKEY0", "Cities").Value;
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.PUBLISHERSKEY0", "Cities").Value;
             }
             set
             {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesDataContext.PUBLISHERSKEY0", "Cities").Value = value;
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.PUBLISHERSKEY0", "Cities").Value = value;
             }
         }
         /// <summary>
-        /// There are no comments for Cities in the schema.
+        /// There are no comments for City in the schema.
         /// </summary>
         [global::System.ComponentModel.BrowsableAttribute(false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<City> CitiesReference
+        public global::System.Data.Objects.DataClasses.EntityReference<City> CityReference
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesDataContext.PUBLISHERSKEY0", "Cities");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.PUBLISHERSKEY0", "Cities");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<City>("TerritoriesDataContext.PUBLISHERSKEY0", "Cities", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<City>("TerritoriesModel.PUBLISHERSKEY0", "Cities", value);
                 }
             }
         }
         /// <summary>
         /// There are no comments for Tours in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesDataContext", "TOURSKEY0", "Tours")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "TOURSKEY0", "Tours")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
@@ -1236,39 +1278,39 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Tour>("TerritoriesDataContext.TOURSKEY0", "Tours");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Tour>("TerritoriesModel.TOURSKEY0", "Tours");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Tour>("TerritoriesDataContext.TOURSKEY0", "Tours", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Tour>("TerritoriesModel.TOURSKEY0", "Tours", value);
                 }
             }
         }
     }
     /// <summary>
-    /// There are no comments for TerritoriesDataContext.Territories in the schema.
+    /// There are no comments for TerritoriesModel.Territory in the schema.
     /// </summary>
     /// <KeyProperties>
     /// IdTerritory
     /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="TerritoriesDataContext", Name="Territories")]
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="TerritoriesModel", Name="Territory")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
     [global::System.Serializable()]
-    public partial class Territories : global::System.Data.Objects.DataClasses.EntityObject
+    public partial class Territory : global::System.Data.Objects.DataClasses.EntityObject
     {
         /// <summary>
-        /// Create a new Territories object.
+        /// Create a new Territory object.
         /// </summary>
         /// <param name="idTerritory">Initial value of IdTerritory.</param>
         /// <param name="name">Initial value of Name.</param>
-        public static Territories CreateTerritories(int idTerritory, string name)
+        public static Territory CreateTerritory(int idTerritory, string name)
         {
-            Territories territories = new Territories();
-            territories.IdTerritory = idTerritory;
-            territories.Name = name;
-            return territories;
+            Territory territory = new Territory();
+            territory.IdTerritory = idTerritory;
+            territory.Name = name;
+            return territory;
         }
         /// <summary>
         /// There are no comments for Property IdTerritory in the schema.
@@ -1365,7 +1407,7 @@ namespace Territories.Model
         /// <summary>
         /// There are no comments for Addresses in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesDataContext", "ADDRESSESKEY1", "Addresses")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "ADDRESSESKEY1", "Addresses")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
@@ -1373,20 +1415,20 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Address>("TerritoriesDataContext.ADDRESSESKEY1", "Addresses");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Address>("TerritoriesModel.ADDRESSESKEY1", "Addresses");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Address>("TerritoriesDataContext.ADDRESSESKEY1", "Addresses", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Address>("TerritoriesModel.ADDRESSESKEY1", "Addresses", value);
                 }
             }
         }
         /// <summary>
         /// There are no comments for Tours in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesDataContext", "TOURSKEY1", "Tours")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "TOURSKEY1", "Tours")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
@@ -1394,25 +1436,25 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Tour>("TerritoriesDataContext.TOURSKEY1", "Tours");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Tour>("TerritoriesModel.TOURSKEY1", "Tours");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Tour>("TerritoriesDataContext.TOURSKEY1", "Tours", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Tour>("TerritoriesModel.TOURSKEY1", "Tours", value);
                 }
             }
         }
     }
     /// <summary>
-    /// There are no comments for TerritoriesDataContext.Tour in the schema.
+    /// There are no comments for TerritoriesModel.Tour in the schema.
     /// </summary>
     /// <KeyProperties>
     /// IdTerritory
     /// TourNumber
     /// </KeyProperties>
-    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="TerritoriesDataContext", Name="Tour")]
+    [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="TerritoriesModel", Name="Tour")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
     [global::System.Serializable()]
     public partial class Tour : global::System.Data.Objects.DataClasses.EntityObject
@@ -1524,76 +1566,76 @@ namespace Territories.Model
         partial void OnTourNumberChanging(int value);
         partial void OnTourNumberChanged();
         /// <summary>
-        /// There are no comments for Publishers in the schema.
+        /// There are no comments for Publisher in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesDataContext", "TOURSKEY0", "Publishers")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "TOURSKEY0", "Publishers")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Publisher Publishers
+        public Publisher Publisher
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Publisher>("TerritoriesDataContext.TOURSKEY0", "Publishers").Value;
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Publisher>("TerritoriesModel.TOURSKEY0", "Publishers").Value;
             }
             set
             {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Publisher>("TerritoriesDataContext.TOURSKEY0", "Publishers").Value = value;
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Publisher>("TerritoriesModel.TOURSKEY0", "Publishers").Value = value;
             }
         }
         /// <summary>
-        /// There are no comments for Publishers in the schema.
+        /// There are no comments for Publisher in the schema.
         /// </summary>
         [global::System.ComponentModel.BrowsableAttribute(false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Publisher> PublishersReference
+        public global::System.Data.Objects.DataClasses.EntityReference<Publisher> PublisherReference
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Publisher>("TerritoriesDataContext.TOURSKEY0", "Publishers");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Publisher>("TerritoriesModel.TOURSKEY0", "Publishers");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Publisher>("TerritoriesDataContext.TOURSKEY0", "Publishers", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Publisher>("TerritoriesModel.TOURSKEY0", "Publishers", value);
                 }
             }
         }
         /// <summary>
-        /// There are no comments for Territories in the schema.
+        /// There are no comments for Territory in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesDataContext", "TOURSKEY1", "Territories")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "TOURSKEY1", "Territories")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public Territories Territories
+        public Territory Territory
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territories>("TerritoriesDataContext.TOURSKEY1", "Territories").Value;
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.TOURSKEY1", "Territories").Value;
             }
             set
             {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territories>("TerritoriesDataContext.TOURSKEY1", "Territories").Value = value;
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.TOURSKEY1", "Territories").Value = value;
             }
         }
         /// <summary>
-        /// There are no comments for Territories in the schema.
+        /// There are no comments for Territory in the schema.
         /// </summary>
         [global::System.ComponentModel.BrowsableAttribute(false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public global::System.Data.Objects.DataClasses.EntityReference<Territories> TerritoriesReference
+        public global::System.Data.Objects.DataClasses.EntityReference<Territory> TerritoryReference
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territories>("TerritoriesDataContext.TOURSKEY1", "Territories");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.TOURSKEY1", "Territories");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Territories>("TerritoriesDataContext.TOURSKEY1", "Territories", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Territory>("TerritoriesModel.TOURSKEY1", "Territories", value);
                 }
             }
         }
