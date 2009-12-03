@@ -460,7 +460,7 @@ namespace Territories.BLL.Import
                 if (_config.Addresses.Fields.ContainsKey("IdAddress"))
                 {
                     string idColumn = _config.Addresses.Fields["IdAddress"];
-                    a.IdAddresses = int.Parse(row[idColumn].ToString());
+                    a.IdAddress = int.Parse(row[idColumn].ToString());
                 }
                 //Address.Street
                 if (_config.Addresses.Fields.ContainsKey("Street"))
@@ -767,7 +767,7 @@ namespace Territories.BLL.Import
             //    }
             //}
 
-            if (AddressExist(v.IdAddresses))
+            if (AddressExist(v.IdAddress))
             {
                 msg += "\n  -Already exist. ";
                 rv = false;
@@ -775,7 +775,7 @@ namespace Territories.BLL.Import
 
             if (!rv)
             {
-                message += "\n-\"" + v.IdAddresses + " " + v.Street + "\" is invalid: " + msg;
+                message += "\n-\"" + v.IdAddress + " " + v.Street + "\" is invalid: " + msg;
             }
 
             return rv;
@@ -845,7 +845,7 @@ namespace Territories.BLL.Import
             int found = 0;
             if (id!=0)
             {
-                found = _dm.address_GetById(id).Count();
+                found = _dm.addresses_GetById(id).Count();
             }
 
             return found > 0;

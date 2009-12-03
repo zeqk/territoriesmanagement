@@ -143,7 +143,7 @@ namespace Territories.BLL.DataBridge
         public void DeleteAll()
         {
             try
-            {
+            {                
                 _dm.territories_DeleteAll();
                 _dm.territories_ResetId(0);
                     
@@ -217,7 +217,7 @@ namespace Territories.BLL.DataBridge
                                  orderby a.Street, a.Number
                                  select new
                                  {
-                                     Id = a.IdAddresses,
+                                     Id = a.IdAddress,
                                      Address = a.Street + " " + a.Number,
                                      Corners = a.Corner1
                                  };

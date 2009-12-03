@@ -62,7 +62,7 @@ namespace Territories.BLL.Import
                 {
                     if (TryExtractId(point.Description, out id))
                     {
-                        var results = _dm.address_GetById(id).ToList();
+                        var results = _dm.addresses_GetById(id).ToList();
                         
                         if (results.Count>0)
                         {
@@ -185,7 +185,7 @@ namespace Territories.BLL.Import
             this._compiledLoadAddressById = CompiledQuery.Compile
                 (
                     (TerritoriesDataContext dm, int id) => from a in dm.Addresses
-                                                           where a.IdAddresses == id
+                                                           where a.IdAddress == id
                                                            select a
                 );
 

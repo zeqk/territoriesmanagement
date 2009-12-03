@@ -262,7 +262,7 @@ namespace Territories.BLL.DataBridge
                                  orderby a.Street, a.Number
                                  select new 
                                  { 
-                                     Id = a.IdAddresses, 
+                                     Id = a.IdAddress, 
                                      Address = a.Street + " " + a.Number,
                                      Corners = a.Corner1
                                  };
