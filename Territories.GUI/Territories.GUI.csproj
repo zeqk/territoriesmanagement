@@ -340,7 +340,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="app.config" />
+    <None Include="app.config" />
     <None Include="Resources\marker99.png" />
     <None Include="Resources\legend.png" />
   </ItemGroup>
