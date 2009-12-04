@@ -370,11 +370,7 @@
         <Function Name="DEPARTMENTS_DELTEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
-        <Function Name="DEPARTMENTS_GETALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <!--<Parameter Name="ID" Type="int" Mode="Out" />
-          <Parameter Name="NAME" Type="varchar" Mode="Out" />
-          <Parameter Name="AREA" Type="clob" Mode="Out" />-->
-        </Function>
+        <Function Name="DEPARTMENTS_GETALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird"/>          
         <Function Name="DEPARTMENTS_GETBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
           <!--<Parameter Name="IDDEPARTMENT" Type="int" Mode="Out" />
