@@ -272,8 +272,8 @@ namespace Territories.GUI
             bool rv = true;
             if (string.IsNullOrEmpty(txtName.Text))
                 rv = false;
-            if (string.IsNullOrEmpty(txtNumber.Text))
-                rv = false;
+            //if (string.IsNullOrEmpty(txtNumber.Text))
+            //    rv = false;
 
             return rv;
         }

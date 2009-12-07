@@ -292,11 +292,11 @@ namespace Territories.BLL.DataBridge
         public IList GetDepartments()
         {
             try
-            {                
+            {
                 var objectResults = _dm.departments_GetAll();
                 var results = from dep in objectResults
-                                  orderby dep.Name
-                                  select new {Id = dep.IdDepartment, Name = dep.Name };
+                              orderby dep.Name
+                              select new { Id = dep.IdDepartment, Name = dep.Name };
                 return results.ToList();
             }
             catch (Exception ex)

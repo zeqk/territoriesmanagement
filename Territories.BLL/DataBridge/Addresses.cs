@@ -201,8 +201,8 @@ namespace Territories.BLL.DataBridge
         {
             try
             {
-                _dm.address_DeleteAll();
-                _dm.address_ResetId(0);
+                _dm.addresses_DeleteAll();
+                _dm.addresses_ResetId(0);
             }
             catch (Exception ex)
             {

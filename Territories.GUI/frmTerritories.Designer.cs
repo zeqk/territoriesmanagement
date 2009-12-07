@@ -91,7 +91,7 @@
             // 
             // txtNumber
             // 
-            this.txtNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsTerritory, "Number", true));
+            this.txtNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsTerritory, "Number", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N0"));
             resources.ApplyResources(this.txtNumber, "txtNumber");
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.ValidatingType = typeof(int);
@@ -272,6 +272,7 @@
             this.Controls.Add(this.grpObject);
             this.Name = "frmTerritories";
             this.Load += new System.EventHandler(this.frmTerritories_Load);
+            this.Shown += new System.EventHandler(this.frmTerritories_Shown);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmTerritories_FormClosed_1);
             this.grpObject.ResumeLayout(false);
             this.grpObject.PerformLayout();
