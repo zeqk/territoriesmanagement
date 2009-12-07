@@ -249,17 +249,20 @@ namespace Territories.BLL.Import
                 {
                     Territory v; 
                     if(DataRowToTerritory(row,out v,ref message))
-                        if (TerritoryIsValid(v, ref message))
+                        if (!string.IsNullOrEmpty(v.Name)) //hay registros que no tienen territorio
                         {
-                            if (!_config.Territories.Fields.ContainsKey("IdTerritory"))
+                            if (TerritoryIsValid(v, ref message))
                             {
-                                _dm.AddToTerritories(v);
-                                count++;
-                            }
-                            else
-                            {
-                                _dm.territories_AddWithPK(v);
-                                count++;
+                                if (!_config.Territories.Fields.ContainsKey("IdTerritory"))
+                                {
+                                    _dm.AddToTerritories(v);
+                                    count++;
+                                }
+                                else
+                                {
+                                    _dm.territories_AddWithPK(v);
+                                    count++;
+                                }
                             }
                         }
                 }

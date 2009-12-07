@@ -183,7 +183,6 @@
         </Association>
         <Function Name="ADDRESSES_ADD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="STREET" Type="varchar" Mode="In" />
-          <Parameter Name="NEWID" Type="int" Mode="Out" />
           <Parameter Name="NUMBER" Type="varchar" Mode="In" />
           <Parameter Name="ADDRESSDATA" Type="varchar" Mode="In" />
           <Parameter Name="CORNER1" Type="varchar" Mode="In" />
@@ -197,8 +196,8 @@
           <Parameter Name="IDCITY" Type="int" Mode="In" />
           <Parameter Name="CUSTOMFIELD1" Type="varchar" Mode="In" />
           <Parameter Name="CUSTOMFIELD2" Type="varchar" Mode="In" />
-          <Parameter Name="LAT" Type="float" Mode="In" />
-          <Parameter Name="LNG" Type="float" Mode="In" />
+          <Parameter Name="LAT" Type="double" Mode="In" />
+          <Parameter Name="LNG" Type="double" Mode="In" />
         </Function>
         <Function Name="ADDRESSES_ADDWITHPK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="IDADDRESS" Type="int" Mode="In" />
@@ -216,73 +215,21 @@
           <Parameter Name="IDCITY" Type="int" Mode="In" />
           <Parameter Name="CUSTOMFIELD1" Type="varchar" Mode="In" />
           <Parameter Name="CUSTOMFIELD2" Type="varchar" Mode="In" />
-          <Parameter Name="LAT" Type="float" Mode="In" />
-          <Parameter Name="LNG" Type="float" Mode="In" />
+          <Parameter Name="LAT" Type="double" Mode="In" />
+          <Parameter Name="LNG" Type="double" Mode="In" />
         </Function>
-        <Function Name="ADDRESSES_DELETEALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <!--<Parameter Name="NUM_RECS" Type="int" Mode="Out" />-->
-        </Function>
-        <Function Name="ADDRESSES_DELTEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+        <Function Name="ADDRESSES_DELETEALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird"/>        
+        <Function Name="ADDRESSES_DELETEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="IDCITY" Type="int" Mode="In" />
+          <Parameter Name="IDTERRITORY" Type="int" Mode="In" />
         </Function>
-        <Function Name="ADDRESSES_GETALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <!--<Parameter Name="IDADDRESS" Type="int" Mode="Out" />
-          <Parameter Name="STREET" Type="varchar" Mode="Out" />
-          <Parameter Name="NUMBER" Type="varchar" Mode="Out" />
-          <Parameter Name="ADDRESSDATA" Type="varchar" Mode="Out" />
-          <Parameter Name="CORNER1" Type="varchar" Mode="Out" />
-          <Parameter Name="CORNER2" Type="varchar" Mode="Out" />
-          <Parameter Name="PHONE1" Type="varchar" Mode="Out" />
-          <Parameter Name="PHONE2" Type="varchar" Mode="Out" />
-          <Parameter Name="DESCRIPTION" Type="varchar" Mode="Out" />
-          <Parameter Name="MAP1" Type="varchar" Mode="Out" />
-          <Parameter Name="MAP2" Type="varchar" Mode="Out" />
-          <Parameter Name="IDTERRITORY" Type="int" Mode="Out" />
-          <Parameter Name="IDCITY" Type="int" Mode="Out" />
-          <Parameter Name="CUSTOMFIELD1" Type="varchar" Mode="Out" />
-          <Parameter Name="CUSTOMFIELD2" Type="varchar" Mode="Out" />
-          <Parameter Name="LAT" Type="float" Mode="Out" />
-          <Parameter Name="LNG" Type="float" Mode="Out" />-->
-        </Function>
+        <Function Name="ADDRESSES_GETALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird"/>
         <Function Name="ADDRESSES_GETBYCITY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="CITY" Type="int" Mode="In" />
-          <!--<Parameter Name="IDADDRESS" Type="int" Mode="Out" />
-          <Parameter Name="STREET" Type="varchar" Mode="Out" />
-          <Parameter Name="NUMBER" Type="varchar" Mode="Out" />
-          <Parameter Name="ADDRESSDATA" Type="varchar" Mode="Out" />
-          <Parameter Name="CORNER1" Type="varchar" Mode="Out" />
-          <Parameter Name="CORNER2" Type="varchar" Mode="Out" />
-          <Parameter Name="PHONE1" Type="varchar" Mode="Out" />
-          <Parameter Name="PHONE2" Type="varchar" Mode="Out" />
-          <Parameter Name="DESCRIPTION" Type="varchar" Mode="Out" />
-          <Parameter Name="MAP1" Type="varchar" Mode="Out" />
-          <Parameter Name="MAP2" Type="varchar" Mode="Out" />
-          <Parameter Name="IDTERRITORY" Type="int" Mode="Out" />
-          <Parameter Name="IDCITY" Type="int" Mode="Out" />
-          <Parameter Name="CUSTOMFIELD1" Type="varchar" Mode="Out" />
-          <Parameter Name="CUSTOMFIELD2" Type="varchar" Mode="Out" />
-          <Parameter Name="LAT" Type="float" Mode="Out" />
-          <Parameter Name="LNG" Type="float" Mode="Out" />-->
         </Function>
         <Function Name="ADDRESSES_GETBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
-          <!--<Parameter Name="IDADDRESS" Type="int" Mode="Out" />
-          <Parameter Name="STREET" Type="varchar" Mode="Out" />
-          <Parameter Name="NUMBER" Type="varchar" Mode="Out" />
-          <Parameter Name="ADDRESSDATA" Type="varchar" Mode="Out" />
-          <Parameter Name="CORNER1" Type="varchar" Mode="Out" />
-          <Parameter Name="CORNER2" Type="varchar" Mode="Out" />
-          <Parameter Name="PHONE1" Type="varchar" Mode="Out" />
-          <Parameter Name="PHONE2" Type="varchar" Mode="Out" />
-          <Parameter Name="DESCRIPTION" Type="varchar" Mode="Out" />
-          <Parameter Name="MAP1" Type="varchar" Mode="Out" />
-          <Parameter Name="MAP2" Type="varchar" Mode="Out" />
-          <Parameter Name="IDTERRITORY" Type="int" Mode="Out" />
-          <Parameter Name="IDCITY" Type="int" Mode="Out" />
-          <Parameter Name="CUSTOMFIELD1" Type="varchar" Mode="Out" />
-          <Parameter Name="CUSTOMFIELD2" Type="varchar" Mode="Out" />
-          <Parameter Name="LAT" Type="float" Mode="Out" />
-          <Parameter Name="LNG" Type="float" Mode="Out" />-->
         </Function>
         <Function Name="ADDRESSES_RESETID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="NEWID" Type="int" Mode="In" />
@@ -303,12 +250,11 @@
           <Parameter Name="IDCITY" Type="int" Mode="In" />
           <Parameter Name="CUSTOMFIELD1" Type="varchar" Mode="In" />
           <Parameter Name="CUSTOMFIELD2" Type="varchar" Mode="In" />
-          <Parameter Name="LAT" Type="float" Mode="In" />
-          <Parameter Name="LNG" Type="float" Mode="In" />
+          <Parameter Name="LAT" Type="double" Mode="In" />
+          <Parameter Name="LNG" Type="double" Mode="In" />
         </Function>
         <Function Name="CITIES_ADD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <Parameter Name="NAME" Type="varchar" Mode="In" />
-          <Parameter Name="NEWID" Type="int" Mode="Out" />
+          <Parameter Name="NAME" Type="varchar" Mode="In" />          
           <Parameter Name="IDDEPARTMENT" Type="int" Mode="In" />
           <Parameter Name="AREA" Type="clob" Mode="In" />
         </Function>
@@ -318,32 +264,17 @@
           <Parameter Name="IDDEPARTMENT" Type="int" Mode="In" />
           <Parameter Name="AREA" Type="clob" Mode="In" />
         </Function>
-        <Function Name="CITIES_DELETEALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <!--<Parameter Name="NUM_RECS" Type="int" Mode="Out" />-->
-        </Function>
-        <Function Name="CITIES_DELTEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+        <Function Name="CITIES_DELETEALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird"/>          
+        <Function Name="CITIES_DELETEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
           <Parameter Name="IDDEPARTMENT" Type="int" Mode="In" />
         </Function>
-        <Function Name="CITIES_GETALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <!--<Parameter Name="ID" Type="int" Mode="Out" />
-          <Parameter Name="NAME" Type="varchar" Mode="Out" />
-          <Parameter Name="AREA" Type="clob" Mode="Out" />
-          <Parameter Name="IDDEPARTMENT" Type="int" Mode="Out" />-->
-        </Function>
+        <Function Name="CITIES_GETALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird"/>
         <Function Name="CITIES_GETBYDEPARTMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="DEPARTMENT" Type="int" Mode="In" />
-          <!--<Parameter Name="IDCITY" Type="int" Mode="Out" />
-          <Parameter Name="NAME" Type="varchar" Mode="Out" />
-          <Parameter Name="AREA" Type="clob" Mode="Out" />
-          <Parameter Name="IDDEPARTMENT" Type="int" Mode="Out" />-->
         </Function>
         <Function Name="CITIES_GETBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
-          <!--<Parameter Name="IDCITY" Type="int" Mode="Out" />
-          <Parameter Name="NAME" Type="varchar" Mode="Out" />
-          <Parameter Name="AREA" Type="clob" Mode="Out" />
-          <Parameter Name="IDDEPARTMENT" Type="int" Mode="Out" />-->
         </Function>
         <Function Name="CITIES_RESETID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="NEWID" Type="int" Mode="In" />
@@ -355,8 +286,7 @@
           <Parameter Name="IDDEPARTMENT" Type="int" Mode="In" />
         </Function>
         <Function Name="DEPARTMENTS_ADD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <Parameter Name="NAME" Type="varchar" Mode="In" />
-          <!--<Parameter Name="NEWID" Type="int" Mode="Out" />-->
+          <Parameter Name="NAME" Type="varchar" Mode="In" />          
           <Parameter Name="AREA" Type="clob" Mode="In" />
         </Function>
         <Function Name="DEPARTMENTS_ADDWITHPK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
@@ -364,18 +294,14 @@
           <Parameter Name="NAME" Type="varchar" Mode="In" />
           <Parameter Name="AREA" Type="clob" Mode="In" />
         </Function>
-        <Function Name="DEPARTMENTS_DELETEALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <!--<Parameter Name="NUM_RECS" Type="int" Mode="Out" />-->
-        </Function>
-        <Function Name="DEPARTMENTS_DELTEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+        <Function Name="DEPARTMENTS_DELETEALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird"/>         
+        
+        <Function Name="DEPARTMENTS_DELETEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
         <Function Name="DEPARTMENTS_GETALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird"/>          
         <Function Name="DEPARTMENTS_GETBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
-          <!--<Parameter Name="IDDEPARTMENT" Type="int" Mode="Out" />
-          <Parameter Name="NAME" Type="varchar" Mode="Out" />
-          <Parameter Name="AREA" Type="clob" Mode="Out" />-->
         </Function>
         <Function Name="DEPARTMENTS_RESETID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="NEWID" Type="int" Mode="In" />
@@ -385,19 +311,9 @@
           <Parameter Name="NAME" Type="varchar" Mode="In" />
           <Parameter Name="AREA" Type="clob" Mode="In" />
         </Function>
-        <Function Name="PUBLISHERS_GETBYCITY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <!--<Parameter Name="IDPUBLISHER" Type="int" Mode="Out" />
-          <Parameter Name="NAME" Type="varchar" Mode="Out" />
-          <Parameter Name="ADDRESS" Type="clob" Mode="Out" />
-          <Parameter Name="IDCITY" Type="int" Mode="Out" />
-          <Parameter Name="NOTES" Type="clob" Mode="Out" />
-          <Parameter Name="PHONE1" Type="varchar" Mode="Out" />
-          <Parameter Name="PHONE2" Type="varchar" Mode="Out" />
-          <Parameter Name="ZIP" Type="varchar" Mode="Out" />-->
-        </Function>
+        <Function Name="PUBLISHERS_GETBYCITY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird"/>          
         <Function Name="TERRITORIES_ADD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <Parameter Name="NAME" Type="varchar" Mode="In" />
-          <!--<Parameter Name="NEWID" Type="int" Mode="Out" />-->
+          <Parameter Name="NAME" Type="varchar" Mode="In" />          
           <Parameter Name="NUMBER" Type="int" Mode="In" />
           <Parameter Name="AREA" Type="clob" Mode="In" />
         </Function>
@@ -407,24 +323,13 @@
           <Parameter Name="NUMBER" Type="int" Mode="In" />
           <Parameter Name="AREA" Type="clob" Mode="In" />
         </Function>
-        <Function Name="TERRITORIES_DELETEALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <!--<Parameter Name="NUM_RECS" Type="int" Mode="Out" />-->
-        </Function>
-        <Function Name="TERRITORIES_DELTEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+        <Function Name="TERRITORIES_DELETEALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird"/>          
+        <Function Name="TERRITORIES_DELETEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
         </Function>
-        <Function Name="TERRITORIES_GETALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
-          <!--<Parameter Name="IDTERRITORY" Type="int" Mode="Out" />
-          <Parameter Name="NAME" Type="varchar" Mode="Out" />
-          <Parameter Name="NUMBER" Type="int" Mode="Out" />
-          <Parameter Name="AREA" Type="clob" Mode="Out" />-->
-        </Function>
+        <Function Name="TERRITORIES_GETALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird"/>          
         <Function Name="TERRITORIES_GETBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="ID" Type="int" Mode="In" />
-          <!--<Parameter Name="IDTERRITORY" Type="int" Mode="Out" />
-          <Parameter Name="NAME" Type="varchar" Mode="Out" />
-          <Parameter Name="NUMBER" Type="int" Mode="Out" />
-          <Parameter Name="AREA" Type="clob" Mode="Out" />-->
         </Function>
         <Function Name="TERRITORIES_RESETID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="NEWID" Type="int" Mode="In" />
@@ -487,16 +392,16 @@
           <FunctionImport Name="territories_GetAll" EntitySet="Territories" ReturnType="Collection(TerritoriesModel.Territory)" />
           <FunctionImport Name="territories_GetById" EntitySet="Territories" ReturnType="Collection(TerritoriesModel.Territory)">
             <Parameter Name="ID" Mode="In" Type="Int32" /></FunctionImport>
-          <FunctionImport Name="addresses_ResetId">
+          <FunctionImport Name="addresses_ResetId" ReturnType="Collection(Int32)">
             <Parameter Name="NEWID" Mode="In" Type="Int32" /></FunctionImport>
-          <FunctionImport Name="citeis_ResetId" ReturnType="Collection(Int32)">
+          <FunctionImport Name="cities_ResetId" ReturnType="Collection(Int32)">
             <Parameter Name="NEWID" Mode="In" Type="Int32" /></FunctionImport>
           <FunctionImport Name="departments_ResetId" ReturnType="Collection(Int32)">
             <Parameter Name="NEWID" Mode="In" Type="Int32" /></FunctionImport>
           <FunctionImport Name="addresses_DeleteAll" />
-          <FunctionImport Name="citeis_DelleteAll" />
-          <FunctionImport Name="departments_DelleteAll" />
-          <FunctionImport Name="territories_DelleteAll" /></EntityContainer>
+          <FunctionImport Name="cities_DeleteAll" />
+          <FunctionImport Name="departments_DeleteAll" />
+          <FunctionImport Name="territories_DeleteAll" /></EntityContainer>
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="IdAddress" />
@@ -558,7 +463,7 @@
             <PropertyRef Name="IdTerritory" />
           </Key>
           <Property Name="IdTerritory" Type="Int32" Nullable="false" />
-          <Property Name="Number" Type="Int32" />
+          <Property Name="Number" Type="Int32" Nullable="true" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="80" Unicode="true" FixedLength="false" />
           <Property Name="Area" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Addresses" Relationship="TerritoriesModel.ADDRESSESKEY1" FromRole="Territories" ToRole="Addresses" />
@@ -634,7 +539,54 @@
                 <ScalarProperty Name="Lng" ColumnName="Lng" />
               </MappingFragment>
             </EntityTypeMapping>
-            </EntitySetMapping>
+            <EntityTypeMapping TypeName="TerritoriesModel.Address">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="TerritoriesModel.Store.ADDRESSES_ADD">
+                  <AssociationEnd AssociationSet="ADDRESSESKEY0" From="Addresses" To="Cities">
+                    <ScalarProperty Name="IdCity" ParameterName="IDCITY" /></AssociationEnd>
+                  <AssociationEnd AssociationSet="ADDRESSESKEY1" From="Addresses" To="Territories">
+                    <ScalarProperty Name="IdTerritory" ParameterName="IDTERRITORY" /></AssociationEnd>
+                  <ScalarProperty Name="Lng" ParameterName="LNG" />
+                  <ScalarProperty Name="Lat" ParameterName="LAT" />
+                  <ScalarProperty Name="CustomField2" ParameterName="CUSTOMFIELD2" />
+                  <ScalarProperty Name="CustomField1" ParameterName="CUSTOMFIELD1" />
+                  <ScalarProperty Name="Map2" ParameterName="MAP2" />
+                  <ScalarProperty Name="Map1" ParameterName="MAP1" />
+                  <ScalarProperty Name="Description" ParameterName="DESCRIPTION" />
+                  <ScalarProperty Name="Phone2" ParameterName="PHONE2" />
+                  <ScalarProperty Name="Phone1" ParameterName="PHONE1" />
+                  <ScalarProperty Name="Corner2" ParameterName="CORNER2" />
+                  <ScalarProperty Name="Corner1" ParameterName="CORNER1" />
+                  <ScalarProperty Name="AddressData" ParameterName="ADDRESSDATA" />
+                  <ScalarProperty Name="Number" ParameterName="NUMBER" />
+                  <ScalarProperty Name="Street" ParameterName="STREET" />
+                  <ResultBinding Name="IdAddress" ColumnName="NEWID" /></InsertFunction>
+                <UpdateFunction FunctionName="TerritoriesModel.Store.ADDRESSES_UPDATEBYID">
+                  <AssociationEnd AssociationSet="ADDRESSESKEY0" From="Addresses" To="Cities">
+                    <ScalarProperty Name="IdCity" ParameterName="IDCITY" Version="Current" /></AssociationEnd>
+                  <AssociationEnd AssociationSet="ADDRESSESKEY1" From="Addresses" To="Territories">
+                    <ScalarProperty Name="IdTerritory" ParameterName="IDTERRITORY" Version="Current" /></AssociationEnd>
+                  <ScalarProperty Name="Lng" ParameterName="LNG" Version="Current" />
+                  <ScalarProperty Name="Lat" ParameterName="LAT" Version="Current" />
+                  <ScalarProperty Name="CustomField2" ParameterName="CUSTOMFIELD2" Version="Current" />
+                  <ScalarProperty Name="CustomField1" ParameterName="CUSTOMFIELD1" Version="Current" />
+                  <ScalarProperty Name="Map2" ParameterName="MAP2" Version="Current" />
+                  <ScalarProperty Name="Map1" ParameterName="MAP1" Version="Current" />
+                  <ScalarProperty Name="Description" ParameterName="DESCRIPTION" Version="Current" />
+                  <ScalarProperty Name="Phone2" ParameterName="PHONE2" Version="Current" />
+                  <ScalarProperty Name="Phone1" ParameterName="PHONE1" Version="Current" />
+                  <ScalarProperty Name="Corner2" ParameterName="CORNER2" Version="Current" />
+                  <ScalarProperty Name="Corner1" ParameterName="CORNER1" Version="Current" />
+                  <ScalarProperty Name="AddressData" ParameterName="ADDRESSDATA" Version="Current" />
+                  <ScalarProperty Name="Number" ParameterName="NUMBER" Version="Current" />
+                  <ScalarProperty Name="Street" ParameterName="STREET" Version="Current" />
+                  <ScalarProperty Name="IdAddress" ParameterName="IDADDRESS" Version="Original" /></UpdateFunction>
+                <DeleteFunction FunctionName="TerritoriesModel.Store.ADDRESSES_DELETEBYID" >
+                  <AssociationEnd AssociationSet="ADDRESSESKEY1" From="Addresses" To="Territories">
+                    <ScalarProperty Name="IdTerritory" ParameterName="IDTERRITORY" /></AssociationEnd>
+                  <AssociationEnd AssociationSet="ADDRESSESKEY0" From="Addresses" To="Cities">
+                    <ScalarProperty Name="IdCity" ParameterName="IDCITY" /></AssociationEnd>
+                  <ScalarProperty Name="IdAddress" ParameterName="ID" /></DeleteFunction></ModificationFunctionMapping></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Cities">
             <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.City)">
               <MappingFragment StoreEntitySet="Cities">
@@ -643,7 +595,24 @@
                 <ScalarProperty Name="Area" ColumnName="Area" />
               </MappingFragment>
             </EntityTypeMapping>
-          </EntitySetMapping>
+            <EntityTypeMapping TypeName="TerritoriesModel.City">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="TerritoriesModel.Store.CITIES_ADD">
+                  <AssociationEnd AssociationSet="CITIESKEY0" From="Cities" To="Departments">
+                    <ScalarProperty Name="IdDepartment" ParameterName="IDDEPARTMENT" /></AssociationEnd>
+                  <ScalarProperty Name="Area" ParameterName="AREA" />
+                  <ScalarProperty Name="Name" ParameterName="NAME" />
+                  <ResultBinding Name="IdCity" ColumnName="NEWID" /></InsertFunction>
+                <UpdateFunction FunctionName="TerritoriesModel.Store.CITIES_UPDATEBYID">
+                  <AssociationEnd AssociationSet="CITIESKEY0" From="Cities" To="Departments">
+                    <ScalarProperty Name="IdDepartment" ParameterName="IDDEPARTMENT" Version="Current" /></AssociationEnd>
+                  <ScalarProperty Name="IdCity" ParameterName="ID" Version="Original" />
+                  <ScalarProperty Name="Area" ParameterName="AREA" Version="Current" />
+                  <ScalarProperty Name="Name" ParameterName="NAME" Version="Current" /></UpdateFunction>
+                <DeleteFunction FunctionName="TerritoriesModel.Store.CITIES_DELETEBYID" >
+                  <AssociationEnd AssociationSet="CITIESKEY0" From="Cities" To="Departments">
+                    <ScalarProperty Name="IdDepartment" ParameterName="IDDEPARTMENT" /></AssociationEnd>
+                  <ScalarProperty Name="IdCity" ParameterName="ID" /></DeleteFunction></ModificationFunctionMapping></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Departments">
             <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.Department)">
               <MappingFragment StoreEntitySet="Departments">
@@ -662,7 +631,7 @@
                   <ScalarProperty Name="IdDepartment" ParameterName="ID" Version="Original" />
                   <ScalarProperty Name="Area" ParameterName="AREA" Version="Current" />
                   <ScalarProperty Name="Name" ParameterName="NAME" Version="Current" /></UpdateFunction>
-                <DeleteFunction FunctionName="TerritoriesModel.Store.DEPARTMENTS_DELTEBYID" >
+                <DeleteFunction FunctionName="TerritoriesModel.Store.DEPARTMENTS_DELETEBYID" >
                   <ScalarProperty Name="IdDepartment" ParameterName="ID" /></DeleteFunction></ModificationFunctionMapping></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Publishers">
             <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.Publisher)">
@@ -686,7 +655,20 @@
                 <ScalarProperty Name="Area" ColumnName="Area" />
               </MappingFragment>
             </EntityTypeMapping>
-          </EntitySetMapping>
+            <EntityTypeMapping TypeName="TerritoriesModel.Territory">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="TerritoriesModel.Store.TERRITORIES_ADD">
+                  <ScalarProperty Name="Area" ParameterName="AREA" />
+                  <ScalarProperty Name="Number" ParameterName="NUMBER" />
+                  <ScalarProperty Name="Name" ParameterName="NAME" />
+                  <ResultBinding Name="IdTerritory" ColumnName="NEWID" /></InsertFunction>
+                <UpdateFunction FunctionName="TerritoriesModel.Store.TERRITORIES_UPDATEBYID">
+                  <ScalarProperty Name="IdTerritory" ParameterName="ID" Version="Original" />
+                  <ScalarProperty Name="Area" ParameterName="AREA" Version="Current" />
+                  <ScalarProperty Name="Number" ParameterName="NUMBER" Version="Current" />
+                  <ScalarProperty Name="Name" ParameterName="NAME" Version="Current" /></UpdateFunction>
+                <DeleteFunction FunctionName="TerritoriesModel.Store.TERRITORIES_DELETEBYID" >
+                  <ScalarProperty Name="IdTerritory" ParameterName="ID" /></DeleteFunction></ModificationFunctionMapping></EntityTypeMapping></EntitySetMapping>
           <EntitySetMapping Name="Tours">
             <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.Tour)">
               <MappingFragment StoreEntitySet="Tours">
@@ -762,12 +744,12 @@
           <FunctionImportMapping FunctionImportName="territories_GetAll" FunctionName="TerritoriesModel.Store.TERRITORIES_GETALL" />
           <FunctionImportMapping FunctionImportName="territories_GetById" FunctionName="TerritoriesModel.Store.TERRITORIES_GETBYID" />
           <FunctionImportMapping FunctionImportName="addresses_ResetId" FunctionName="TerritoriesModel.Store.ADDRESSES_RESETID" />
-          <FunctionImportMapping FunctionImportName="citeis_ResetId" FunctionName="TerritoriesModel.Store.CITIES_RESETID" />
+          <FunctionImportMapping FunctionImportName="cities_ResetId" FunctionName="TerritoriesModel.Store.CITIES_RESETID" />
           <FunctionImportMapping FunctionImportName="departments_ResetId" FunctionName="TerritoriesModel.Store.DEPARTMENTS_RESETID" />
           <FunctionImportMapping FunctionImportName="addresses_DeleteAll" FunctionName="TerritoriesModel.Store.ADDRESSES_DELETEALL" />
-          <FunctionImportMapping FunctionImportName="citeis_DelleteAll" FunctionName="TerritoriesModel.Store.CITIES_DELETEALL" />
-          <FunctionImportMapping FunctionImportName="departments_DelleteAll" FunctionName="TerritoriesModel.Store.DEPARTMENTS_DELETEALL" />
-          <FunctionImportMapping FunctionImportName="territories_DelleteAll" FunctionName="TerritoriesModel.Store.TERRITORIES_DELETEALL" /></EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="cities_DeleteAll" FunctionName="TerritoriesModel.Store.CITIES_DELETEALL" />
+          <FunctionImportMapping FunctionImportName="departments_DeleteAll" FunctionName="TerritoriesModel.Store.DEPARTMENTS_DELETEALL" />
+          <FunctionImportMapping FunctionImportName="territories_DeleteAll" FunctionName="TerritoriesModel.Store.TERRITORIES_DELETEALL" /></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
