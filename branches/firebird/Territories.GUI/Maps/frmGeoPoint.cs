@@ -212,6 +212,11 @@ namespace Territories.GUI
 
             this.Close();
         }
+
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            MainMap.Zoom = trackBar1.Value;
+        }
         
     }
 }

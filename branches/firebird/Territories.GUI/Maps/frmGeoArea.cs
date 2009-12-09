@@ -24,7 +24,6 @@ namespace Territories.GUI
 
         // layers
         GMapOverlay top;
-        GMapOverlay objects;
 
         public frmGeoArea()
         {
@@ -53,9 +52,11 @@ namespace Territories.GUI
             center = new GMapMarkerCross(MainMap.CurrentPosition);
             top.Markers.Add(center);
 
-            currentMarker = new GMapMarkerPolygon(MainMap.CurrentPosition, Area);
-            top.Markers.Add(currentMarker);
-
+            if (Area.Count > 3)
+            {
+                currentMarker = new GMapMarkerPolygon(MainMap.CurrentPosition, Area);
+                top.Markers.Add(currentMarker);
+            }
             foreach (var mark in Marks)
                 top.Markers.Add(mark);
         }
@@ -105,9 +106,6 @@ namespace Territories.GUI
                 //routes = new GMapOverlay(MainMap, "routes");
                 //MainMap.Overlays.Add(routes);
 
-                objects = new GMapOverlay(MainMap, "objects");
-                MainMap.Overlays.Add(objects);
-
                 top = new GMapOverlay(MainMap, "top");
                 MainMap.Overlays.Add(top);
             }
@@ -151,6 +149,21 @@ namespace Territories.GUI
 
         }
 
+        private RectLatLng CalculateRectangle(IList<GMapMarker> marks)
+        {
+            RectLatLng rect = new RectLatLng();
+
+            double maxLat = marks.Max(m => m.Position.Lat);
+            double minLat = marks.Min(m => m.Position.Lat);
+
+            double maxLng = marks.Max(m => m.Position.Lng);
+            double minLng = marks.Min(m => m.Position.Lng);
+
+            rect = new RectLatLng(maxLat, minLng, maxLng - minLng, maxLat - minLat);
+            
+            return rect;
+        }
+
         private void btnCancel_Click_1(object sender, EventArgs e)
         {
             this.Close();
@@ -163,16 +176,20 @@ namespace Territories.GUI
 
         private void btnGenImage_Click(object sender, EventArgs e)
         {
-            GMapMarkerPolygon polygon = (GMapMarkerPolygon)top.Markers[1];
-            double maxLat = polygon.GeoPoints.Max(p => p.Lat);
-            double minLat = polygon.GeoPoints.Min(p => p.Lat);
+            if (top.Markers[1].GetType() == typeof(GMapMarkerPolygon))
+            {
+                GMapMarkerPolygon polygon = (GMapMarkerPolygon)top.Markers[1];
+                double maxLat = polygon.GeoPoints.Max(p => p.Lat);
+                double minLat = polygon.GeoPoints.Min(p => p.Lat);
 
-            double maxLng = polygon.GeoPoints.Max(p => p.Lng);
-            double minLng = polygon.GeoPoints.Min(p => p.Lng);
-
-            RectLatLng area = new RectLatLng(maxLat, minLng, maxLng - minLng, maxLat - minLat);
-
-            MainMap.SelectedArea = area;
+                double maxLng = polygon.GeoPoints.Max(p => p.Lng);
+                double minLng = polygon.GeoPoints.Min(p => p.Lng);
+                RectLatLng area = new RectLatLng(maxLat, minLng, maxLng - minLng, maxLat - minLat);
+                MainMap.SelectedArea = area;
+            }
+            else
+                MainMap.SelectedArea = CalculateRectangle(Marks);
+            
 
             if (!MainMap.SelectedArea.IsEmpty)
             {
@@ -184,32 +201,6 @@ namespace Territories.GUI
             {
                 MessageBox.Show("Select map area holding ALT", "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-        }
-
-        private void btnSaveScreen_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                using(SaveFileDialog sfd = new SaveFileDialog())
-                {
-                   sfd.Filter = "PNG (*.png)|*.png";
-                   sfd.FileName = "GMap.NET image";
-                   Image tmpImage = MainMap.ToImage();
-                   if(tmpImage != null)
-                   {
-                      if(sfd.ShowDialog() == DialogResult.OK)
-                      {
-                         tmpImage.Save(sfd.FileName);
-
-                         MessageBox.Show("Image saved: " + sfd.FileName, "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                      }
-                   }
-                }
-          }
-          catch(Exception ex)
-          {
-             MessageBox.Show("Image failed to save: " + ex.Message, "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Error);
-          }
         }
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)
