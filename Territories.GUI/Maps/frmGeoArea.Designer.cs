@@ -29,16 +29,15 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.btnSaveScreen = new System.Windows.Forms.Button();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.MainMap = new System.Windows.Forms.GMapControl();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.btnToStaticMap = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnGenImage = new System.Windows.Forms.Button();
             this.sfdSaveScreen = new System.Windows.Forms.SaveFileDialog();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.MainMap = new System.Windows.Forms.GMapControl();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -62,73 +61,12 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.btnSaveScreen);
             this.splitContainer1.Panel2.Controls.Add(this.btnToStaticMap);
             this.splitContainer1.Panel2.Controls.Add(this.btnCancel);
             this.splitContainer1.Panel2.Controls.Add(this.btnOk);
             this.splitContainer1.Size = new System.Drawing.Size(641, 476);
             this.splitContainer1.SplitterDistance = 438;
             this.splitContainer1.TabIndex = 0;
-            // 
-            // btnSaveScreen
-            // 
-            this.btnSaveScreen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveScreen.Location = new System.Drawing.Point(108, 3);
-            this.btnSaveScreen.Name = "btnSaveScreen";
-            this.btnSaveScreen.Size = new System.Drawing.Size(91, 28);
-            this.btnSaveScreen.TabIndex = 13;
-            this.btnSaveScreen.Text = "Save screen";
-            this.btnSaveScreen.UseVisualStyleBackColor = true;
-            this.btnSaveScreen.Click += new System.EventHandler(this.btnSaveScreen_Click);
-            // 
-            // btnToStaticMap
-            // 
-            this.btnToStaticMap.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnToStaticMap.Location = new System.Drawing.Point(1, 3);
-            this.btnToStaticMap.Name = "btnToStaticMap";
-            this.btnToStaticMap.Size = new System.Drawing.Size(91, 28);
-            this.btnToStaticMap.TabIndex = 12;
-            this.btnToStaticMap.Text = "To image";
-            this.btnToStaticMap.UseVisualStyleBackColor = true;
-            this.btnToStaticMap.Click += new System.EventHandler(this.btnGenImage_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(441, 3);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(91, 28);
-            this.btnCancel.TabIndex = 11;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click_1);
-            // 
-            // btnOk
-            // 
-            this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOk.Location = new System.Drawing.Point(538, 3);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(91, 28);
-            this.btnOk.TabIndex = 10;
-            this.btnOk.Text = "Ok";
-            this.btnOk.UseVisualStyleBackColor = true;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click_1);
-            // 
-            // btnGenImage
-            // 
-            this.btnGenImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGenImage.Location = new System.Drawing.Point(12, 3);
-            this.btnGenImage.Name = "btnGenImage";
-            this.btnGenImage.Size = new System.Drawing.Size(91, 28);
-            this.btnGenImage.TabIndex = 12;
-            this.btnGenImage.Text = "To image";
-            this.btnGenImage.UseVisualStyleBackColor = true;
-            this.btnGenImage.Click += new System.EventHandler(this.btnGenImage_Click);
             // 
             // splitContainer2
             // 
@@ -191,6 +129,53 @@
             this.trackBar1.Value = 12;
             this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
             // 
+            // btnToStaticMap
+            // 
+            this.btnToStaticMap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnToStaticMap.Location = new System.Drawing.Point(12, 3);
+            this.btnToStaticMap.Name = "btnToStaticMap";
+            this.btnToStaticMap.Size = new System.Drawing.Size(91, 28);
+            this.btnToStaticMap.TabIndex = 12;
+            this.btnToStaticMap.Text = "To image";
+            this.btnToStaticMap.UseVisualStyleBackColor = true;
+            this.btnToStaticMap.Click += new System.EventHandler(this.btnGenImage_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Location = new System.Drawing.Point(441, 3);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(91, 28);
+            this.btnCancel.TabIndex = 11;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click_1);
+            // 
+            // btnOk
+            // 
+            this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnOk.Location = new System.Drawing.Point(538, 3);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(91, 28);
+            this.btnOk.TabIndex = 10;
+            this.btnOk.Text = "Ok";
+            this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click_1);
+            // 
+            // btnGenImage
+            // 
+            this.btnGenImage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGenImage.Location = new System.Drawing.Point(12, 3);
+            this.btnGenImage.Name = "btnGenImage";
+            this.btnGenImage.Size = new System.Drawing.Size(91, 28);
+            this.btnGenImage.TabIndex = 12;
+            this.btnGenImage.Text = "To image";
+            this.btnGenImage.UseVisualStyleBackColor = true;
+            this.btnGenImage.Click += new System.EventHandler(this.btnGenImage_Click);
+            // 
             // frmGeoArea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -219,7 +204,6 @@
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnToStaticMap;
         private System.Windows.Forms.Button btnGenImage;
-        private System.Windows.Forms.Button btnSaveScreen;
         private System.Windows.Forms.SaveFileDialog sfdSaveScreen;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.GMapControl MainMap;

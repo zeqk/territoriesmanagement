@@ -1,3 +1,5 @@
 TODO:
 
 - el abm de territorios selecciona un territorio al iniciar
+- recursos
+- map zoom con el scrol y con el control

@@ -9,6 +9,9 @@ using System.Windows.Forms;
 using System.Data.Objects;
 using Territories.BLL.DataBridge;
 using Territories.Model;
+using GMap.NET.WindowsForms.Markers;
+using GMap.NET;
+using GMap.NET.WindowsForms;
 
 
 namespace Territories.GUI
@@ -83,7 +86,7 @@ namespace Territories.GUI
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (dgvResults.SelectedRows.Count != 0)
+            if (dgvResults.SelectedRows.Count == 1)
             {
                 var v = _server.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
 
@@ -104,7 +107,7 @@ namespace Territories.GUI
                 }
             }
             else
-                MessageBox.Show("Select any address.");
+                MessageBox.Show("Select one address.");
         }
 
         private void fields_CheckedChanged(object sender, EventArgs e)
@@ -137,14 +140,14 @@ namespace Territories.GUI
             }
             else
             {
-                MessageBox.Show("Debe seleccionar al menos 1 campo donde buscar");
+                MessageBox.Show("You must select at least one search criteria.");
                 ((CheckBox)sender).Checked = true;
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgvResults.SelectedRows.Count != 0)
+            if (dgvResults.SelectedRows.Count == 1)
             {
                 int idAddress = (int)dgvResults.SelectedRows[0].Cells["Id"].Value;
                 try
@@ -159,6 +162,8 @@ namespace Territories.GUI
                     MessageBox.Show(ex.Message, "Error");
                 }
             }
+            else
+                MessageBox.Show("Select one address.");
 
         }
 
@@ -213,7 +218,7 @@ namespace Territories.GUI
             dgvResults.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvResults.MultiSelect = false;
+            dgvResults.MultiSelect = true;
 
         }
 
@@ -287,7 +292,7 @@ namespace Territories.GUI
                     lblFiltered.Visible = true;
                 }
                 else
-                    MessageBox.Show("Debe llenar al menos 1 campo de búsqueda");
+                    MessageBox.Show("You must select at least one search criteria.");
 
                 
             }
@@ -328,6 +333,35 @@ namespace Territories.GUI
                  cboCity.SelectedItem = null;
 	        }
            
+        }
+
+        private void btnViewMap_Click(object sender, EventArgs e)
+        {
+            using (frmGeoArea myForm = new frmGeoArea())
+            {
+                if (dgvResults.SelectedRows.Count > 0)
+                {
+                    var selectedRows = dgvResults.SelectedRows;
+                    List<GMapMarker> marks = new List<GMapMarker>();
+                    for (int i = 0; i < selectedRows.Count; i++)
+                    {
+                        double lat = (double) selectedRows[i].Cells["Lat"].Value;
+                        double lng = (double)selectedRows[i].Cells["Lng"].Value;
+                        string address = selectedRows[i].Cells["Address"].Value.ToString();
+                        int idAddres = (int) selectedRows[i].Cells["Id"].Value;
+
+                        GMapMarkerCustom marker = new GMapMarkerCustom(new PointLatLng(lat,lng));
+                        marker.Tag = idAddres;
+                        marker.ToolTipText = address;
+                        marker.Icon = Properties.Resources.legendIcon;
+                        marks.Add(marker);
+                    }
+                    myForm.Marks = marks;
+                }
+
+                myForm.ShowDialog();
+
+            }
         }
     }
 }

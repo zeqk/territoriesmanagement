@@ -387,11 +387,12 @@ namespace Territories.BLL.Import
                         string idColumn = _config.Cities.Fields["DepartmentId"];
                         idDepartment = Convert.ToInt32(row[idColumn].ToString());
                     }
-                    else
+                    else //valor por defecto
                         idDepartment = Convert.ToInt32(_config.Cities.DefaultFieldValues["DepartmentId"]);
                 }
                 //sólo si el id no está indicado se tratará de buscar por el nombre, si es que está indicado
-                if (idDepartment==0 && (_config.Cities.Fields.ContainsKey("DepartmentName") || _config.Cities.DefaultFieldValues.ContainsKey("DepartmentName"))) 
+                if (idDepartment == 0 && 
+                    (_config.Cities.Fields.ContainsKey("DepartmentName") || _config.Cities.DefaultFieldValues.ContainsKey("DepartmentName"))) 
                 {
                     string departmentName="";
                     if (_config.Cities.Fields.ContainsKey("DepartmentName"))
@@ -399,7 +400,7 @@ namespace Territories.BLL.Import
                         string nameColumn = _config.Cities.Fields["DepartmentName"];
                         departmentName = row[nameColumn].ToString();                    
                     }
-                    else
+                    else //valor por defecto
                         departmentName = _config.Cities.DefaultFieldValues["DepartmentName"].ToString();
 
                     idDepartment = _compiledIdDepartmentByName(_dm, departmentName).First();
@@ -442,6 +443,9 @@ namespace Territories.BLL.Import
                     string numColumn = _config.Territories.Fields["Number"];
                     t.Number = int.Parse(row[numColumn].ToString());
                 }
+                else //default value. TODO: comentar
+                    if (_config.Territories.DefaultFieldValues.ContainsKey("Number"))
+                        t.Number = int.Parse(_config.Territories.DefaultFieldValues["Number"].ToString());
                 //
             }
             catch (Exception)
