@@ -33,6 +33,7 @@
             this.btnAll = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnToGMaps = new System.Windows.Forms.Button();
             this.btnViewMap = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -54,6 +55,9 @@
             this.cboDepartment = new System.Windows.Forms.ComboBox();
             this.ctxMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyGoogleMapsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sfdGMaps = new System.Windows.Forms.SaveFileDialog();
+            this.sfdExcelDestiny = new System.Windows.Forms.SaveFileDialog();
+            this.btnToExcel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
             this.panel2.SuspendLayout();
@@ -77,11 +81,20 @@
             // panel1
             // 
             resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Controls.Add(this.btnToExcel);
+            this.panel1.Controls.Add(this.btnToGMaps);
             this.panel1.Controls.Add(this.btnViewMap);
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.btnEdit);
             this.panel1.Controls.Add(this.btnNew);
             this.panel1.Name = "panel1";
+            // 
+            // btnToGMaps
+            // 
+            resources.ApplyResources(this.btnToGMaps, "btnToGMaps");
+            this.btnToGMaps.Name = "btnToGMaps";
+            this.btnToGMaps.UseVisualStyleBackColor = true;
+            this.btnToGMaps.Click += new System.EventHandler(this.btnToGMaps_Click);
             // 
             // btnViewMap
             // 
@@ -233,6 +246,23 @@
             resources.ApplyResources(this.copyGoogleMapsToolStripMenuItem, "copyGoogleMapsToolStripMenuItem");
             this.copyGoogleMapsToolStripMenuItem.Click += new System.EventHandler(this.copyGoogleMapsToolStripMenuItem_Click);
             // 
+            // sfdGMaps
+            // 
+            resources.ApplyResources(this.sfdGMaps, "sfdGMaps");
+            this.sfdGMaps.FileOk += new System.ComponentModel.CancelEventHandler(this.sfdGMaps_FileOk);
+            // 
+            // sfdExcelDestiny
+            // 
+            resources.ApplyResources(this.sfdExcelDestiny, "sfdExcelDestiny");
+            this.sfdExcelDestiny.FileOk += new System.ComponentModel.CancelEventHandler(this.sfdExcelDestiny_FileOk);
+            // 
+            // btnToExcel
+            // 
+            resources.ApplyResources(this.btnToExcel, "btnToExcel");
+            this.btnToExcel.Name = "btnToExcel";
+            this.btnToExcel.UseVisualStyleBackColor = true;
+            this.btnToExcel.Click += new System.EventHandler(this.btnToExcel_Click);
+            // 
             // frmAddresses
             // 
             resources.ApplyResources(this, "$this");
@@ -282,6 +312,10 @@
         private System.Windows.Forms.ContextMenuStrip ctxMenu;
         private System.Windows.Forms.ToolStripMenuItem copyGoogleMapsToolStripMenuItem;
         private System.Windows.Forms.Button btnViewMap;
+        private System.Windows.Forms.Button btnToGMaps;
+        private System.Windows.Forms.SaveFileDialog sfdGMaps;
+        private System.Windows.Forms.Button btnToExcel;
+        private System.Windows.Forms.SaveFileDialog sfdExcelDestiny;
 
 
 

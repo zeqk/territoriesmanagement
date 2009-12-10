@@ -27,7 +27,7 @@ namespace Territories.BLL.Import
         private Func<TerritoriesDataContext, string, IQueryable<int>> _compiledIdCityByName;
         private Func<TerritoriesDataContext, string, IQueryable<int>> _compiledIdTerritoryByName;
 
-        private Func<TerritoriesDataContext, Department, IQueryable<Department>> _compiledSameDepartment;
+        private Func<TerritoriesDataContext, Model.Department, IQueryable<Model.Department>> _compiledSameDepartment;
         private Func<TerritoriesDataContext, City, int,IQueryable<City>> _compiledSameCity;
         private Func<TerritoriesDataContext, Territory, IQueryable<Territory>> _compiledSameTerritory;
 
@@ -164,7 +164,7 @@ namespace Territories.BLL.Import
                     int count = 0;
                     foreach (DataRow row in dt.Rows)
                     {
-                        Department v;
+                        Model.Department v;
                         if(DataRowToDepartment(row,out v,ref message))
                             if (DepartmentIsValid(v, ref message))
                             {
@@ -326,10 +326,10 @@ namespace Territories.BLL.Import
         #region DataRowToEntity Methods
 
 
-        private bool DataRowToDepartment(DataRow row, out Department dep, ref string errorMsg)
+        private bool DataRowToDepartment(DataRow row, out Model.Department dep, ref string errorMsg)
         {
             bool rv = true;
-            dep = new Department();
+            dep = new Model.Department();
             try
             {
                 //Department.IdDepartment
@@ -640,7 +640,7 @@ namespace Territories.BLL.Import
 
         #region IsValid Methods
 
-        public bool DepartmentIsValid(Department v, ref string message)
+        public bool DepartmentIsValid(Model.Department v, ref string message)
         {
             bool rv = true;
             string msg = "";
@@ -793,7 +793,7 @@ namespace Territories.BLL.Import
         #endregion
 
         #region EntityExist Methods
-        private bool DepartmentExist(Department v)
+        private bool DepartmentExist(Model.Department v)
         {
             int found = _compiledSameDepartment(_dm, v).Count();
             return (found > 0);
@@ -970,7 +970,7 @@ namespace Territories.BLL.Import
 
             this._compiledSameDepartment = CompiledQuery.Compile
                 (
-                    (TerritoriesDataContext dm, Department v) => from d in dm.Departments
+                    (TerritoriesDataContext dm, Model.Department v) => from d in dm.Departments
                                                                  where d.Name == v.Name ||
                                                                        d.IdDepartment == v.IdDepartment
                                                                  select d

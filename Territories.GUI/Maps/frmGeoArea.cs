@@ -10,16 +10,16 @@ using System.Globalization;
 using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
+using Territories.BLL;
 
 namespace Territories.GUI
 {
     public partial class frmGeoArea : Form
     {
         public List<PointLatLng> Area;
-        public List<GMapMarker> Marks;
+        public List<GMapMarker> Points;
 
         // marker
-        GMapMarker currentMarker;
         GMapMarker center;
 
         // layers
@@ -28,7 +28,7 @@ namespace Territories.GUI
         public frmGeoArea()
         {
             Area = new List<PointLatLng>();
-            Marks = new List<GMapMarker>();
+            Points = new List<GMapMarker>();
             InitializeComponent();
         }
 
@@ -45,19 +45,25 @@ namespace Territories.GUI
         private void frmGeoArea_Load(object sender, EventArgs e)
         {
             ConfigMap();
-            PointLatLng middle = CalculateMiddlePoint(Area);
+            //Seteo el centro del mapa
+            PointLatLng middle = new PointLatLng(0, 0);
+            if(Area.Count > 0)
+                middle = Functions.CalculateMiddlePoint(Area);
+            else
+                if(Points.Count > 0)
+                    middle = CalculateMiddlePoint(Points);
 
             MainMap.CurrentPosition = middle;
 
             center = new GMapMarkerCross(MainMap.CurrentPosition);
             top.Markers.Add(center);
 
-            if (Area.Count > 3)
+            if (Area.Count > 2)
             {
-                currentMarker = new GMapMarkerPolygon(MainMap.CurrentPosition, Area);
-                top.Markers.Add(currentMarker);
+                GMapMarkerPolygon polygon = new GMapMarkerPolygon(MainMap.CurrentPosition, Area);
+                top.Markers.Add(polygon);
             }
-            foreach (var mark in Marks)
+            foreach (var mark in Points)
                 top.Markers.Add(mark);
         }
 
@@ -106,7 +112,7 @@ namespace Territories.GUI
                 //routes = new GMapOverlay(MainMap, "routes");
                 //MainMap.Overlays.Add(routes);
 
-                top = new GMapOverlay(MainMap, "top");
+                top = new GMapOverlay(MainMap, "top");                
                 MainMap.Overlays.Add(top);
             }
 
@@ -121,30 +127,14 @@ namespace Territories.GUI
 
         
 
-        private PointLatLng CalculateMiddlePoint(List<PointLatLng> points)
+        
+
+        private PointLatLng CalculateMiddlePoint(List<GMapMarker> marks)
         {
-            double lat = 0;
-            double lng = 0;
+            var points = marks.Select(m => m.Position);
 
-            List<double> lats = new List<double>();
-            List<double> lngs = new List<double>();
-
-            foreach (PointLatLng pos in points)
-            {
-                lats.Add(pos.Lat);
-                lngs.Add(pos.Lng);
-            }
-
-
-            double latDistance = lats.Max() - lats.Min();
-            double auxLat = latDistance / 2;
-            lat = lats.Min() + auxLat;
-
-            double lngDistance = lngs.Max() - lngs.Min();
-            double auxLng = lngDistance / 2;
-            lng = lngs.Min() + auxLng;
-
-            PointLatLng point = new PointLatLng(lat, lng);
+            PointLatLng point  = Functions.CalculateMiddlePoint(points.ToList());
+            
             return point;
 
         }
@@ -153,14 +143,29 @@ namespace Territories.GUI
         {
             RectLatLng rect = new RectLatLng();
 
-            double maxLat = marks.Max(m => m.Position.Lat);
-            double minLat = marks.Min(m => m.Position.Lat);
+            if (marks.Count > 1)
+            {
+                double maxLat = marks.Max(m => m.Position.Lat);
+                double minLat = marks.Min(m => m.Position.Lat);
 
-            double maxLng = marks.Max(m => m.Position.Lng);
-            double minLng = marks.Min(m => m.Position.Lng);
+                double maxLng = marks.Max(m => m.Position.Lng);
+                double minLng = marks.Min(m => m.Position.Lng);
 
-            rect = new RectLatLng(maxLat, minLng, maxLng - minLng, maxLat - minLat);
-            
+                double widthLat = maxLat - minLat;
+                double heightLng = maxLng - minLng;
+
+                rect = new RectLatLng(maxLat, minLng, heightLng, widthLat);
+            }
+            else
+            {
+                if (marks.Count > 0)
+                {
+                    SizeLatLng size = new SizeLatLng(0.005, 0.009);
+                    PointLatLng point = new PointLatLng(marks[0].Position.Lat + 0.0025, marks[0].Position.Lng - 0.0045);
+                    rect = new RectLatLng(point, size);
+                    
+                }
+            }
             return rect;
         }
 
@@ -176,6 +181,7 @@ namespace Territories.GUI
 
         private void btnGenImage_Click(object sender, EventArgs e)
         {
+            bool onlyPoints = false;
             if (top.Markers[1].GetType() == typeof(GMapMarkerPolygon))
             {
                 GMapMarkerPolygon polygon = (GMapMarkerPolygon)top.Markers[1];
@@ -188,13 +194,17 @@ namespace Territories.GUI
                 MainMap.SelectedArea = area;
             }
             else
-                MainMap.SelectedArea = CalculateRectangle(Marks);
+            {
+                MainMap.SelectedArea = CalculateRectangle(Points);
+                onlyPoints = true;
+            }
             
 
             if (!MainMap.SelectedArea.IsEmpty)
             {
                 StaticImage st = new StaticImage(MainMap);
                 st.Owner = this;
+                st.OnlyPoints = onlyPoints;
                 st.Show();
             }
             else
