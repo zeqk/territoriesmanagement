@@ -364,7 +364,7 @@ namespace Territories.GUI
                                 marks.Add(marker);
                             }
                         }
-                        myForm.Marks = marks;
+                        myForm.Points = marks;
                     }
                 }
 

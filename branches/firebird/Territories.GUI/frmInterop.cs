@@ -11,6 +11,7 @@ using Territories.BLL.Import;
 using Territories.GUI;
 using Territories.GUI.ImporterConfig;
 using ZeqkTools.Query.Enumerators;
+using Territories.BLL.Export;
 
 namespace Territories.GUI
 {
@@ -346,22 +347,18 @@ namespace Territories.GUI
             }
         }
 
-        #endregion    
-
-        
+        #endregion            
 
         #region DataExport
         private void btnExport_Click(object sender, EventArgs e)
         {
             bool exported = true;
-
-            BLL.Export.ExportTool tool = new Territories.BLL.Export.ExportTool();
             if (rdoAddresses.Checked)
             {
 
                 string[] properties = chkListAddresses.CheckedItems.Cast<string>().ToArray();
 
-                exported = tool.ExportToExcel(txtExcelDestiny.Text, "Address", "Addresses", properties);
+                exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "Address", "Addresses", "", null, properties);
             }
 
 
@@ -369,21 +366,21 @@ namespace Territories.GUI
             {
                 string[] properties = chkListTerritories.CheckedItems.Cast<string>().ToArray();
 
-                exported = tool.ExportToExcel(txtExcelDestiny.Text, "Territory", "Territories", properties);
+                exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "Territory", "Territories","",null, properties);
             }
 
             if (rdoCities.Checked)
             {
                 string[] properties = chkListCities.CheckedItems.Cast<string>().ToArray();
 
-                exported = tool.ExportToExcel(txtExcelDestiny.Text, "City", "Cities", properties);
+                exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "City", "Cities", "", null, properties);
             }
 
             if (rdoDepartments.Checked)
             {
                 string[] properties = chkListDepartments.CheckedItems.Cast<string>().ToArray();
 
-                exported = tool.ExportToExcel(txtExcelDestiny.Text, "Department", "Departments", properties);
+                exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "Department", "Departments", "", null, properties);
             }
 
             if (exported)
@@ -431,6 +428,16 @@ namespace Territories.GUI
         private void btnSaveToGMaps_Click(object sender, EventArgs e)
         {
             sfdGMaps.ShowDialog();
+        }
+
+        private void btnExportToGmaps_Click(object sender, EventArgs e)
+        {
+            ExportTool.ExportToGMap(txtXmlDestiny.Text, "");
+        }
+
+        private void sfdGMaps_FileOk(object sender, CancelEventArgs e)
+        {
+            txtXmlDestiny.Text = Path.GetFullPath(sfdGMaps.FileName);
         }
 
         

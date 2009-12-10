@@ -12,6 +12,8 @@ using Territories.Model;
 using GMap.NET.WindowsForms.Markers;
 using GMap.NET;
 using GMap.NET.WindowsForms;
+using Territories.BLL.Export;
+using System.IO;
 
 
 namespace Territories.GUI
@@ -241,57 +243,9 @@ namespace Territories.GUI
         {
             try
             {
-                schStreet.MakeQuery();
+
                 List<ObjectParameter> parameters = new List<ObjectParameter>();
-                string strQuery = "";
-
-                if (!schStreet.IsClean())
-                {
-                    strQuery = schStreet.Query;
-                    schStreet.Parameters.ForEach(delegate(ObjectParameter param)
-                    {
-                        parameters.Add(param);
-                    });
-                }
-
-                if (cboCity.SelectedValue != null)
-                {
-                    if (parameters.Count > 0)
-                        strQuery += " AND ";
-
-                    strQuery += "Address.City.IdCity = @IdCity";
-                    ObjectParameter cityPar = new ObjectParameter("IdCity", (int)cboCity.SelectedValue);
-
-                    parameters.Add(cityPar);
-                }
-                else
-                    if (cboDepartment.SelectedValue!=null)
-                    {
-                        if (parameters.Count > 0)
-                            strQuery += " AND ";
-
-                        strQuery += "Address.City.Department.IdDepartment = @IdDepartment";
-                        ObjectParameter depPar = new ObjectParameter("IdDepartment", (int)cboDepartment.SelectedValue);
-
-                        parameters.Add(depPar);
-                    }
-
-                if (cboTerritory.SelectedValue != null)
-                {
-                    if (parameters.Count > 0)
-                        strQuery += " AND ";                    
-                    
-                    int idTerritory = (int)cboTerritory.SelectedValue;
-                    
-                    if (idTerritory!=0)
-                    {
-                        strQuery += "Address.Territory.IdTerritory = @IdTerritory";
-                        ObjectParameter terrPar = new ObjectParameter("IdTerritory", idTerritory);
-                        parameters.Add(terrPar);
-                    }
-                    else
-                        strQuery += "Address.Territory IS NULL";
-                }
+                string strQuery = GetQuery(out parameters);
                 if (!string.IsNullOrEmpty(strQuery))
                 {
                     dgvResults.DataSource = this._server.Search(strQuery, parameters.ToArray<ObjectParameter>());
@@ -306,6 +260,64 @@ namespace Territories.GUI
             {                
                 throw ex;
             }  
+        }
+
+        private string GetQuery(out List<ObjectParameter> parameters)
+        {
+            List<ObjectParameter> auxParameters = new List<ObjectParameter>();
+            schStreet.MakeQuery();
+            string strQuery = "";
+
+            if (!schStreet.IsClean())
+            {
+                strQuery = schStreet.Query;
+                schStreet.Parameters.ForEach(delegate(ObjectParameter param)
+                {
+                    auxParameters.Add(param);
+                });
+            }
+
+            if (cboCity.SelectedValue != null)
+            {
+                if (auxParameters.Count > 0)
+                    strQuery += " AND ";
+
+                strQuery += "Address.City.IdCity = @IdCity";
+                ObjectParameter cityPar = new ObjectParameter("IdCity", (int)cboCity.SelectedValue);
+
+                auxParameters.Add(cityPar);
+            }
+            else
+                if (cboDepartment.SelectedValue != null)
+                {
+                    if (auxParameters.Count > 0)
+                        strQuery += " AND ";
+
+                    strQuery += "Address.City.Department.IdDepartment = @IdDepartment";
+                    ObjectParameter depPar = new ObjectParameter("IdDepartment", (int)cboDepartment.SelectedValue);
+
+                    auxParameters.Add(depPar);
+                }
+
+            if (cboTerritory.SelectedValue != null)
+            {
+                if (auxParameters.Count > 0)
+                    strQuery += " AND ";
+
+                int idTerritory = (int)cboTerritory.SelectedValue;
+
+                if (idTerritory != 0)
+                {
+                    strQuery += "Address.Territory.IdTerritory = @IdTerritory";
+                    ObjectParameter terrPar = new ObjectParameter("IdTerritory", idTerritory);
+                    auxParameters.Add(terrPar);
+                }
+                else
+                    strQuery += "Address.Territory IS NULL";
+            }
+
+            parameters = auxParameters;
+            return strQuery;
         }
 
         private void dgvResults_MouseClick(object sender, MouseEventArgs e)
@@ -366,12 +378,61 @@ namespace Territories.GUI
                             marks.Add(marker);
                         }                        
                     }
-                    myForm.Marks = marks;
+                    myForm.Points = marks;
                 }
 
                 myForm.ShowDialog();
 
             }
         }
+        #region ToGMaps
+        private void btnToGMaps_Click(object sender, EventArgs e)
+        {
+            sfdGMaps.ShowDialog();
+            
+        }
+
+        private void sfdGMaps_FileOk(object sender, CancelEventArgs e)
+        {
+            List<ObjectParameter> parameters = new List<ObjectParameter>();
+            string strQuery = GetQuery(out parameters);
+
+            string path = Path.GetFullPath(sfdGMaps.FileName);
+            try
+            {
+                ExportTool.ExportToGMap(path, strQuery, parameters.ToArray());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        #endregion
+
+        #region ToExcel
+        private void btnToExcel_Click(object sender, EventArgs e)
+        {
+            sfdExcelDestiny.ShowDialog();
+        }
+        private void sfdExcelDestiny_FileOk(object sender, CancelEventArgs e)
+        {
+            List<ObjectParameter> parameters = new List<ObjectParameter>();
+            string strQuery = GetQuery(out parameters);
+
+            string path = Path.GetFullPath(sfdGMaps.FileName);
+
+            try
+            {
+
+                ExportTool.ExportToExcel(path, "Address","Addresses",strQuery,parameters.ToArray(),null);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        #endregion
+
+        
     }
 }

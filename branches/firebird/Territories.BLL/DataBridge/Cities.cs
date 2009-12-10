@@ -305,7 +305,7 @@ namespace Territories.BLL.DataBridge
             }                   
         }
 
-        public Department GetDepartmentById(int id)
+        public Model.Department GetDepartmentById(int id)
         {
             try 
 	        {

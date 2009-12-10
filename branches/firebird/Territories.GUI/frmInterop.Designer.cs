@@ -46,7 +46,7 @@
             this.grdImportConfig = new System.Windows.Forms.PropertyGrid();
             this.tabGeoRss = new System.Windows.Forms.TabPage();
             this.grpGMapsExport = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtXmlDestiny = new System.Windows.Forms.TextBox();
             this.btnExportToGmaps = new System.Windows.Forms.Button();
             this.btnSaveToGMaps = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -255,7 +255,7 @@
             // 
             // grpGMapsExport
             // 
-            this.grpGMapsExport.Controls.Add(this.textBox1);
+            this.grpGMapsExport.Controls.Add(this.txtXmlDestiny);
             this.grpGMapsExport.Controls.Add(this.btnExportToGmaps);
             this.grpGMapsExport.Controls.Add(this.btnSaveToGMaps);
             this.grpGMapsExport.Location = new System.Drawing.Point(6, 180);
@@ -265,13 +265,13 @@
             this.grpGMapsExport.TabStop = false;
             this.grpGMapsExport.Text = "Export to Gmaps";
             // 
-            // textBox1
+            // txtXmlDestiny
             // 
-            this.textBox1.Location = new System.Drawing.Point(15, 30);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(379, 20);
-            this.textBox1.TabIndex = 12;
+            this.txtXmlDestiny.Location = new System.Drawing.Point(15, 30);
+            this.txtXmlDestiny.Name = "txtXmlDestiny";
+            this.txtXmlDestiny.ReadOnly = true;
+            this.txtXmlDestiny.Size = new System.Drawing.Size(379, 20);
+            this.txtXmlDestiny.TabIndex = 12;
             // 
             // btnExportToGmaps
             // 
@@ -281,6 +281,7 @@
             this.btnExportToGmaps.TabIndex = 13;
             this.btnExportToGmaps.Text = "Export";
             this.btnExportToGmaps.UseVisualStyleBackColor = true;
+            this.btnExportToGmaps.Click += new System.EventHandler(this.btnExportToGmaps_Click);
             // 
             // btnSaveToGMaps
             // 
@@ -497,6 +498,11 @@
             this.sfdExcelDestiny.Filter = "Excel files (*.xls)|*.xls";
             this.sfdExcelDestiny.FileOk += new System.ComponentModel.CancelEventHandler(this.sfdExcelDestiny_FileOk);
             // 
+            // sfdGMaps
+            // 
+            this.sfdGMaps.Filter = "xml files (*.xml)|*.xml";
+            this.sfdGMaps.FileOk += new System.ComponentModel.CancelEventHandler(this.sfdGMaps_FileOk);
+            // 
             // frmInterop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -566,7 +572,7 @@
         private System.Windows.Forms.RadioButton rdoTerritories;
         private System.Windows.Forms.RadioButton rdoCities;
         private System.Windows.Forms.GroupBox grpGMapsExport;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtXmlDestiny;
         private System.Windows.Forms.Button btnExportToGmaps;
         private System.Windows.Forms.Button btnSaveToGMaps;
         private System.Windows.Forms.SaveFileDialog sfdGMaps;

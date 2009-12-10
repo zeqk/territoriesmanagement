@@ -16,6 +16,8 @@ namespace Territories.GUI
 {
    public partial class StaticImage : Form
    {
+      public bool OnlyPoints = true;
+
       GMapControl MainMap;
       BackgroundWorker bg = new BackgroundWorker();
       readonly List<GMap.NET.Point> tileArea = new List<GMap.NET.Point>();
@@ -240,7 +242,7 @@ namespace Territories.GUI
                progressBar1.Value = 0;
                button1.Enabled = false;
 
-               bg.RunWorkerAsync(new MapInfo(MainMap.Projection, area, (int)numericUpDown1.Value, MainMap.MapType, MainMap.Overlays[1].Markers));
+               bg.RunWorkerAsync(new MapInfo(MainMap.Projection, area, (int)numericUpDown1.Value, MainMap.MapType, MainMap.Overlays[0].Markers));
             }
          }
          else
@@ -268,9 +270,20 @@ namespace Territories.GUI
 
           y = imageHeigth - y;
 
+          //al generar una gráfico los puntos se corren con respecto al mapa, nosé por qué?
           //calculo un 1% del tamaño de la imágen
-          int heigthPer = Convert.ToInt32(imageHeigth * 0.01);
-          int widthPer = Convert.ToInt32(imageWidth * 0.01);
+          int heigthPer = 0;
+          int widthPer = 0;
+          if (!OnlyPoints)
+          {
+              heigthPer = Convert.ToInt32(imageHeigth * 0.01);
+              widthPer = Convert.ToInt32(imageWidth * 0.01);
+          }
+          else //sí sólo tiene puntos, este es el ajuste necesario
+          {
+              heigthPer = Convert.ToInt32(imageHeigth * 0.32);
+              widthPer = Convert.ToInt32(imageWidth * 0.32);
+          }
           //le sumo un 1%
           y = y + heigthPer;
           x = x + heigthPer;
