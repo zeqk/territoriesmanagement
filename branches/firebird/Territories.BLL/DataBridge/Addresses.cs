@@ -168,7 +168,8 @@ namespace Territories.BLL.DataBridge
                                   Corner1 = a.Corner1,
                                   Corner2 = a.Corner2,
                                   Description = a.Description,
-                                  HaveGeoposition = a.Lat != null && a.Lng != null
+                                  HaveGeoposition = a.Lat != null && a.Lng != null,
+                                  Lat = a.Lat, Lng = a.Lng
                               };
                 return results.ToList();
             }

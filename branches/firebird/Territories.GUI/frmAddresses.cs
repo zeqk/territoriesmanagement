@@ -194,6 +194,8 @@ namespace Territories.GUI
             dgvResults.Columns.Add("Corner2", "Corner2");
             dgvResults.Columns.Add("Description", "Description");
             dgvResults.Columns.Add("HaveGeoPosition", "GEO");
+            dgvResults.Columns.Add("Lat", "Lat");
+            dgvResults.Columns.Add("Lng", "Lng");
             dgvResults.Columns.Add("blank", "");
 
             dgvResults.Columns["Id"].Visible = false;
@@ -214,6 +216,10 @@ namespace Territories.GUI
             dgvResults.Columns["Description"].DataPropertyName = "Description";
             dgvResults.Columns["HaveGeoPosition"].Width = 40;
             dgvResults.Columns["HaveGeoPosition"].DataPropertyName = "HaveGeoPosition";
+            dgvResults.Columns["Lat"].Visible = false;
+            dgvResults.Columns["Lat"].DataPropertyName = "Lat";
+            dgvResults.Columns["Lng"].Visible = false;
+            dgvResults.Columns["Lng"].DataPropertyName = "Lng";
 
             dgvResults.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
@@ -345,16 +351,20 @@ namespace Territories.GUI
                     List<GMapMarker> marks = new List<GMapMarker>();
                     for (int i = 0; i < selectedRows.Count; i++)
                     {
-                        double lat = (double) selectedRows[i].Cells["Lat"].Value;
-                        double lng = (double)selectedRows[i].Cells["Lng"].Value;
-                        string address = selectedRows[i].Cells["Address"].Value.ToString();
-                        int idAddres = (int) selectedRows[i].Cells["Id"].Value;
+                        bool haveGeoPosition = (bool)selectedRows[i].Cells["HaveGeoPosition"].Value;
+                        if (haveGeoPosition)
+                        {
+                            double lat = (double)selectedRows[i].Cells["Lat"].Value;
+                            double lng = (double)selectedRows[i].Cells["Lng"].Value;
+                            string address = selectedRows[i].Cells["Address"].Value.ToString();
+                            int idAddres = (int)selectedRows[i].Cells["Id"].Value;
 
-                        GMapMarkerCustom marker = new GMapMarkerCustom(new PointLatLng(lat,lng));
-                        marker.Tag = idAddres;
-                        marker.ToolTipText = address;
-                        marker.Icon = Properties.Resources.legendIcon;
-                        marks.Add(marker);
+                            GMapMarkerCustom marker = new GMapMarkerCustom(new PointLatLng(lat, lng));
+                            marker.Tag = idAddres;
+                            marker.ToolTipText = address;
+                            marker.Icon = Properties.Resources.legendIcon;
+                            marks.Add(marker);
+                        }                        
                     }
                     myForm.Marks = marks;
                 }
