@@ -25,6 +25,7 @@ namespace Territories.GUI
         public frmAddresses()
         {
             InitializeComponent();
+            _server.Search("");
 
         }
 
@@ -400,7 +401,8 @@ namespace Territories.GUI
             string path = Path.GetFullPath(sfdGMaps.FileName);
             try
             {
-                ExportTool.ExportToGMap(path, strQuery, parameters.ToArray());
+                ExportTool tool = new ExportTool();
+                tool.ExportToGMap(path, strQuery, parameters.ToArray());
             }
             catch (Exception ex)
             {

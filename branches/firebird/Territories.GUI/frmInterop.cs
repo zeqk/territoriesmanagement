@@ -431,8 +431,9 @@ namespace Territories.GUI
         }
 
         private void btnExportToGmaps_Click(object sender, EventArgs e)
-        {
-            ExportTool.ExportToGMap(txtXmlDestiny.Text, "");
+        {        
+            ExportTool tool = new ExportTool();
+            tool.ExportToGMap(txtXmlDestiny.Text, "");
         }
 
         private void sfdGMaps_FileOk(object sender, CancelEventArgs e)

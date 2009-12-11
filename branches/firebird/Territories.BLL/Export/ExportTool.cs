@@ -34,7 +34,7 @@ namespace Territories.BLL.Export
 
             try
             {
-                IList entities = Functions.GetEntities(entity, entitySet,where,parameters);
+                IList entities = Functions.GetEntities(entity, entitySet, where, parameters);
 
                 WorksheetRow firstRow = book.Worksheets[entitySet].Table.Rows.Add();
 
@@ -79,7 +79,7 @@ namespace Territories.BLL.Export
             return rv;
         }
 
-        static public void ExportToGMap(string pathOut, string where, params ObjectParameter[] parameters)
+        public void ExportToGMap(string pathOut, string where, params ObjectParameter[] parameters)
         {
             StreamWriter sw = new StreamWriter(pathOut, false, Encoding.UTF8, 512);
             using (XmlTextWriter xw = new XmlTextWriter(sw))
@@ -117,7 +117,8 @@ namespace Territories.BLL.Export
                         vacios++;
 
                 }
-                List<PointLatLng> points = addressList.Select(a => new PointLatLng(a.Lat.Value, a.Lng.Value)).ToList();
+                List<PointLatLng> points = addressList.Where(a => a.Lat.HasValue && a.Lng.HasValue)
+                                                      .Select(a => new PointLatLng(a.Lat.Value, a.Lng.Value)).ToList();
 
                 PointLatLng point = Functions.CalculateMiddlePoint(points);
 
