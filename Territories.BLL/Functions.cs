@@ -14,41 +14,48 @@ namespace Territories.BLL
         static public IList GetEntities(string entity, string entitySet, string where, params ObjectParameter[] parameters)
         {
             IList rv = null;
-            string strQuery = "SELECT VALUE " + entity + " FROM TerritoriesDataContext." + entitySet + " AS " + entity;
+//            string strQuery = "SELECT VALUE " + entity + " FROM TerritoriesDataContext." + entitySet + " AS " + entity;
+            string strQuery = "SELECT VALUE Address FROM TerritoriesDataContext.Addresses AS Address";
 
             if (where != "")
                 strQuery = strQuery + " WHERE " + where;
 
             TerritoriesDataContext dm = new TerritoriesDataContext();
-
-
-            if (entitySet.Equals("Addresses"))
+            try
             {
-                var res = dm.CreateQuery<Address>(strQuery,parameters).Include("Territory")
-                                                                      .Include("City")
-                                                                      .Execute(System.Data.Objects.MergeOption.AppendOnly);
+                if (entitySet.Equals("Addresses"))
+                {
+                    var query = dm.CreateQuery<Address>(strQuery, parameters).Include("Territory")
+                                                                          .Include("City");
+                    var res = query.Execute(MergeOption.AppendOnly);
 
-                rv = res.ToList();
-            }
+                    rv = res.ToList();
+                }
 
-            if (entitySet.Equals("Territories"))
-            {
-                var res = dm.CreateQuery<Territory>(strQuery, parameters).Execute(System.Data.Objects.MergeOption.AppendOnly);
-                rv = res.ToList();
-            }
+                if (entitySet.Equals("Territories"))
+                {
+                    var res = dm.CreateQuery<Territory>(strQuery, parameters).Execute(System.Data.Objects.MergeOption.AppendOnly);
+                    rv = res.ToList();
+                }
 
-            if (entitySet.Equals("Cities"))
-            {
-                var res = dm.CreateQuery<City>(strQuery, parameters).Include("Department")
-                                                                    .Execute(System.Data.Objects.MergeOption.AppendOnly);
-                rv = res.ToList();
-            }
+                if (entitySet.Equals("Cities"))
+                {
+                    var res = dm.CreateQuery<City>(strQuery, parameters).Include("Department")
+                                                                        .Execute(System.Data.Objects.MergeOption.AppendOnly);
+                    rv = res.ToList();
+                }
 
-            if (entitySet.Equals("Departments"))
-            {
-                var res = dm.CreateQuery<Department>(strQuery, parameters).Execute(System.Data.Objects.MergeOption.AppendOnly);
-                rv = res.ToList();
+                if (entitySet.Equals("Departments"))
+                {
+                    var res = dm.CreateQuery<Department>(strQuery, parameters).Execute(System.Data.Objects.MergeOption.AppendOnly);
+                    rv = res.ToList();
+                }
             }
+            catch (Exception ex)
+            {                
+                throw ex;
+            }
+            
 
             return rv;
 
