@@ -41,7 +41,7 @@ namespace Territories.BLL.DataBridge
             if (IsValid(v, ref invalidMessage))
             {
                 Address rv;
-                if (v.IdAddresses == 0)
+                if (v.IdAddress == 0)
                     rv = Insert(v);
                 else
                     rv = Update(v);
@@ -94,7 +94,7 @@ namespace Territories.BLL.DataBridge
 
                 //cargo el objecto original
                 _dm.Addresses.MergeOption = MergeOption.AppendOnly;
-                Address original = _compiledLoadAddress(_dm, v.IdAddresses).FirstOrDefault();
+                Address original = _compiledLoadAddress(_dm, v.IdAddress).FirstOrDefault();
                                
 
                 //aplico las propiedades de referencia
@@ -119,7 +119,7 @@ namespace Territories.BLL.DataBridge
         {
             try
             {
-                Address d = _dm.address_GetById(id).First();
+                Address d = _dm.addresses_GetById(id).First();
                 _dm.DeleteObject(d);
                 _dm.SaveChanges();
             }
@@ -160,7 +160,7 @@ namespace Territories.BLL.DataBridge
                               orderby a.Street, a.City.Name
                               select new
                               {
-                                  Id = a.IdAddresses,
+                                  Id = a.IdAddress,
                                   DepartmentName = a.City.Department.Name,
                                   CityName = a.City.Name,
                                   Territory = GetTerritoryStr(a.Territory),
@@ -168,7 +168,8 @@ namespace Territories.BLL.DataBridge
                                   Corner1 = a.Corner1,
                                   Corner2 = a.Corner2,
                                   Description = a.Description,
-                                  HaveGeoposition = a.Lat != null && a.Lng != null
+                                  HaveGeoposition = a.Lat != null && a.Lng != null,
+                                  Lat = a.Lat, Lng = a.Lng
                               };
                 return results.ToList();
             }
@@ -201,8 +202,8 @@ namespace Territories.BLL.DataBridge
         {
             try
             {
-                _dm.address_DeleteAll();
-                _dm.address_ResetId(0);
+                _dm.addresses_DeleteAll();
+                _dm.addresses_ResetId(0);
             }
             catch (Exception ex)
             {
@@ -334,7 +335,7 @@ namespace Territories.BLL.DataBridge
                     (TerritoriesDataContext dm, int id) => from a in dm.Addresses
                                                                .Include("City.Department")
                                                                .Include("Territory")
-                                                           where a.IdAddresses == id
+                                                           where a.IdAddress == id
                                                            select a
                 );
 

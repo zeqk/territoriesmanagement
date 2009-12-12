@@ -117,560 +117,669 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;btnNew.Name" xml:space="preserve">
-    <value>btnNew</value>
-  </data>
-  <data name="&gt;&gt;btnEdit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="copyGoogleMapsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Copy (Google Maps)</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnEdit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 37</value>
-  </data>
-  <data name="copyGoogleMapsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>171, 22</value>
-  </data>
-  <data name="&gt;&gt;ctxMenu.Name" xml:space="preserve">
-    <value>ctxMenu</value>
-  </data>
-  <data name="chkDescription.Text" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cboTerritory.TabIndex" type="System.Int32, mscorlib">
-    <value>60</value>
-  </data>
-  <data name="&gt;&gt;lblTerritory.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;lblCity.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;schStreet.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;chkCorners.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="ctxMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 26</value>
-  </data>
-  <data name="&gt;&gt;dgvResults.Name" xml:space="preserve">
-    <value>dgvResults</value>
-  </data>
-  <data name="&gt;&gt;lblAddress.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;chkStreet.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;cboTerritory.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;btnNew.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnDelete.Name" xml:space="preserve">
-    <value>btnDelete</value>
-  </data>
-  <data name="&gt;&gt;lblTerritory.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnAll.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblResults.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblCity.Text" xml:space="preserve">
-    <value>City</value>
-  </data>
-  <data name="btnSearch.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 45</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lblFiltered.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="btnAll.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="&gt;&gt;cboTerritory.Name" xml:space="preserve">
-    <value>cboTerritory</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnAll.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        THMAAAAASUVORK5CYII=
+</value>
   </data>
-  <data name="&gt;&gt;copyGoogleMapsToolStripMenuItem.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnAll.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
   </data>
-  <data name="lblFiltered.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;cboDepartment.Name" xml:space="preserve">
-    <value>cboDepartment</value>
-  </data>
-  <data name="&gt;&gt;chkStreet.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="chkCorners.Text" xml:space="preserve">
-    <value>Corns</value>
+  <data name="btnAll.Location" type="System.Drawing.Point, System.Drawing">
+    <value>833, 65</value>
   </data>
   <data name="btnAll.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 37</value>
   </data>
-  <data name="&gt;&gt;lblDepartment.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;dgvResults.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;chkDescription.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
-    <value>54</value>
-  </data>
-  <data name="&gt;&gt;btnNew.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblFiltered.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 13</value>
-  </data>
-  <data name="lblTerritory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>396, 48</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>frmAddresses</value>
-  </data>
-  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;chkDescription.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnDelete.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnDelete.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 37</value>
-  </data>
-  <data name="lblCity.TabIndex" type="System.Int32, mscorlib">
-    <value>59</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Addresses</value>
-  </data>
-  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
-    <value>58</value>
-  </data>
-  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 2</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="&gt;&gt;chkStreet.Name" xml:space="preserve">
-    <value>chkStreet</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnAll.TabIndex" type="System.Int32, mscorlib">
+    <value>51</value>
   </data>
   <data name="&gt;&gt;btnAll.Name" xml:space="preserve">
     <value>btnAll</value>
   </data>
-  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 357</value>
+  <data name="&gt;&gt;btnAll.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lblCity.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;btnAll.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="chkStreet.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;btnAll.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
-  <data name="lblFiltered.Text" xml:space="preserve">
-    <value>Filtered</value>
+  <data name="btnSearch.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
   </data>
-  <data name="btnNew.Text" xml:space="preserve">
-    <value>New</value>
+  <data name="btnSearch.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <data name="btnSearch.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
+  </data>
+  <data name="btnSearch.Location" type="System.Drawing.Point, System.Drawing">
+    <value>833, 10</value>
+  </data>
+  <data name="btnSearch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 45</value>
   </data>
   <data name="btnSearch.TabIndex" type="System.Int32, mscorlib">
     <value>50</value>
   </data>
-  <data name="btnSearch.Text" xml:space="preserve">
-    <value>Search</value>
+  <data name="btnSearch.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
   </data>
-  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnSearch.Name" xml:space="preserve">
+    <value>btnSearch</value>
+  </data>
+  <data name="&gt;&gt;btnSearch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSearch.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnSearch.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="panel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Right</value>
+  </data>
+  <data name="panel1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="btnToExcel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="btnToExcel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnToExcel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 262</value>
+  </data>
+  <data name="btnToExcel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 26</value>
+  </data>
+  <data name="btnToExcel.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="btnToExcel.Text" xml:space="preserve">
+    <value>To Excel</value>
+  </data>
+  <data name="&gt;&gt;btnToExcel.Name" xml:space="preserve">
+    <value>btnToExcel</value>
+  </data>
+  <data name="&gt;&gt;btnToExcel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnToExcel.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;btnToExcel.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnToGMaps.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="btnToGMaps.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnToGMaps.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 294</value>
+  </data>
+  <data name="btnToGMaps.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 26</value>
+  </data>
+  <data name="btnToGMaps.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="btnToGMaps.Text" xml:space="preserve">
+    <value>To GMap</value>
+  </data>
+  <data name="&gt;&gt;btnToGMaps.Name" xml:space="preserve">
+    <value>btnToGMaps</value>
+  </data>
+  <data name="&gt;&gt;btnToGMaps.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnToGMaps.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;btnToGMaps.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnViewMap.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
+  <data name="btnViewMap.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnViewMap.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 326</value>
+  </data>
+  <data name="btnViewMap.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 26</value>
+  </data>
+  <data name="btnViewMap.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="btnViewMap.Text" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="btnViewMap.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;btnViewMap.Name" xml:space="preserve">
+    <value>btnViewMap</value>
+  </data>
+  <data name="&gt;&gt;btnViewMap.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnViewMap.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;btnViewMap.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnDelete.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="btnDelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAGYktHRACNAI4AiyH0o34AAAAHdElNRQfWBhMPHQlIs8vG
+        AAAAD3RFWHRDb21tZW50AGlkIGxvZ2+Gxne5AAAB60lEQVQ4T5WTW08aQRiG+Sne1z/SXjSxVya9bmw9
+        oJKUlnpMDBUVWU6VXXaBpqnRqBzUC02EwAWxXQ72CgiUYlLTLssWZJuWxCXr1xnCboPLhUzyZCZfvveZ
+        zc6MTtcdDhcRt6yb4T7gXiWnzjgoiiIIgqBSq9XgLjzPdzZRg0OPVpcQnSLHcVAoFCCfz/eQy+UAUyqV
+        oFwud3pxBmd1eMGcfYM386+gWCxCLBbrIRqNgkI8HodEItHpxRmcVQWPn44Dy7LAMIwKTdPQD9yrEQw/
+        eQsPRrTgej80gtH1FAyCRoALg9LzDwyBLzAI/7/g4WqieyTK0dx/Rln1PkzpxyGbzUjPXzz7s3+wd6Of
+        nrwNR0LtKf2EfHgUkWYNevn4+Kg9PTMpa24hLrw0GqTP7CdhbtFU9Qf8PEHYWsFQsG7dtIqhcIhbWp6H
+        k9MT4bXJ+LevwLJmvk6l2Q9my0o1mUzyaG6mMymB8dFVdHkuseDq6vvvTdtGUyMg7FYKCX61Wq02zVBw
+        ENwHJOAql5W6P8CcZy8yX700id9Ik6S2fno878Z6JEggS5IEHtJ9gwR5xDXp3YJGoy56KHfa56cBC9Du
+        gEbF6SKidwWUy+2AcCSovjKn2w6B9z7Zy5A/lOad3e2xhcU5Fsk+KrV/h1pZrptoXusAAAAASUVORK5C
+        YII=
+</value>
+  </data>
+  <data name="btnDelete.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
+  </data>
+  <data name="btnDelete.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 89</value>
+  </data>
+  <data name="btnDelete.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 37</value>
+  </data>
+  <data name="btnDelete.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="btnDelete.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="btnDelete.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
+  <data name="&gt;&gt;btnDelete.Name" xml:space="preserve">
+    <value>btnDelete</value>
+  </data>
+  <data name="&gt;&gt;btnDelete.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDelete.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;btnDelete.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="btnEdit.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="btnEdit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 46</value>
+  </data>
+  <data name="btnEdit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 37</value>
+  </data>
+  <data name="btnEdit.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="btnEdit.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="btnEdit.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
+  <data name="&gt;&gt;btnEdit.Name" xml:space="preserve">
+    <value>btnEdit</value>
+  </data>
+  <data name="&gt;&gt;btnEdit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnEdit.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;btnEdit.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="btnNew.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
+  <data name="btnNew.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAGYktHRAD8AOkATzTXsQ0AAAAHdElNRQfVAhIOJhzTthkp
+        AAABe0lEQVQ4T6WTvUoDQRRGo1YRxDewCAo+QQSxECTpFB9AC7GIriCYQhubtJJKMIWRpLCyUQIqgoXP
+        oH1ARCyyPzO7s0l0k83nnegsm+AmigMfO7Ccc+/MZWKlUuk8l8thUPL5Q5TLWVxdajBfk0cQ8RTE6GRM
+        LgkOW45VRJNvw3OW0WRpz9VnbyEmNkgSDwSGYaBWq3Wj63oQbl4TrKHtzsNvbFE0tJwF/4NNXVAnc4Gg
+        H5ZCGcc6o8orBGbQ8W4od/DrO/BY4pG6WOsRqMoKll/Bit8CjeB7dFoPJNuFxxNPJFgNBD/BpmnCtip4
+        tzPw3UX4zT1KFm2x1GkY03QP4zORAgnLMOsZLiuQZBMtkaak6CLX/bdqch9ibKRHoFpXsGVZ+MoLBK+g
+        zo8ppygUDtAdYXiMUTBjDCqc8+7E5ej/LJDwUIFsXbUdrmrbNlQiO+g/txSoqgp2HCf6CGFBuLqUSIGE
+        BwqGvYfw/55L/M1r7H+pxJwEU/jv5hNXyvO35Ux6RgAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="btnNew.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
+  </data>
+  <data name="btnNew.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 3</value>
+  </data>
+  <data name="btnNew.Size" type="System.Drawing.Size, System.Drawing">
+    <value>81, 37</value>
+  </data>
+  <data name="btnNew.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="btnNew.Text" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="btnNew.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
+  <data name="&gt;&gt;btnNew.Name" xml:space="preserve">
+    <value>btnNew</value>
+  </data>
+  <data name="&gt;&gt;btnNew.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnNew.Parent" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;btnNew.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>839, 160</value>
+  </data>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>98, 357</value>
+  </data>
+  <data name="panel1.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
+    <value>panel1</value>
+  </data>
+  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panel1.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lblFiltered.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Right</value>
+  </data>
+  <data name="lblFiltered.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblFiltered.Location" type="System.Drawing.Point, System.Drawing">
+    <value>792, 147</value>
+  </data>
+  <data name="lblFiltered.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 13</value>
+  </data>
+  <data name="lblFiltered.TabIndex" type="System.Int32, mscorlib">
+    <value>57</value>
+  </data>
+  <data name="lblFiltered.Text" xml:space="preserve">
+    <value>Filtered</value>
+  </data>
+  <data name="lblFiltered.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;lblFiltered.Name" xml:space="preserve">
+    <value>lblFiltered</value>
+  </data>
+  <data name="&gt;&gt;lblFiltered.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblFiltered.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblFiltered.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;lblAddress.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lblResults.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="lblDepartment.Text" xml:space="preserve">
-    <value>Department</value>
-  </data>
-  <data name="lblResults.Text" xml:space="preserve">
-    <value>Results</value>
-  </data>
-  <data name="&gt;&gt;cboCity.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;btnEdit.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnSearch.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;copyGoogleMapsToolStripMenuItem.Name" xml:space="preserve">
-    <value>copyGoogleMapsToolStripMenuItem</value>
-  </data>
-  <data name="&gt;&gt;btnEdit.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lblAddress.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="lblAddress.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 6</value>
+  <data name="lblResults.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 147</value>
   </data>
   <data name="lblResults.Size" type="System.Drawing.Size, System.Drawing">
     <value>42, 13</value>
   </data>
-  <data name="lblTerritory.TabIndex" type="System.Int32, mscorlib">
-    <value>61</value>
+  <data name="lblResults.TabIndex" type="System.Int32, mscorlib">
+    <value>56</value>
   </data>
-  <data name="panel1.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblResults.Text" xml:space="preserve">
+    <value>Results</value>
+  </data>
+  <data name="&gt;&gt;lblResults.Name" xml:space="preserve">
+    <value>lblResults</value>
+  </data>
+  <data name="&gt;&gt;lblResults.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblResults.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;lblResults.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="dgvResults.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <data name="dgvResults.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 163</value>
+  </data>
+  <data name="dgvResults.Size" type="System.Drawing.Size, System.Drawing">
+    <value>831, 354</value>
+  </data>
+  <data name="dgvResults.TabIndex" type="System.Int32, mscorlib">
+    <value>55</value>
+  </data>
+  <data name="&gt;&gt;dgvResults.Name" xml:space="preserve">
+    <value>dgvResults</value>
+  </data>
+  <data name="&gt;&gt;dgvResults.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;dgvResults.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;dgvResults.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="chkDescription.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;btnDelete.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="chkDescription.Location" type="System.Drawing.Point, System.Drawing">
+    <value>518, 22</value>
   </data>
-  <data name="btnDelete.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
+  <data name="chkDescription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 17</value>
   </data>
-  <data name="schStreet.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
-    <value>GrowAndShrink</value>
+  <data name="chkDescription.TabIndex" type="System.Int32, mscorlib">
+    <value>64</value>
   </data>
-  <data name="btnDelete.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="chkDescription.Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="&gt;&gt;chkDescription.Name" xml:space="preserve">
+    <value>chkDescription</value>
+  </data>
+  <data name="&gt;&gt;chkDescription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkDescription.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;chkDescription.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chkStreet.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkStreet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>399, 23</value>
+  </data>
+  <data name="chkStreet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 17</value>
+  </data>
+  <data name="chkStreet.TabIndex" type="System.Int32, mscorlib">
+    <value>63</value>
+  </data>
+  <data name="chkStreet.Text" xml:space="preserve">
+    <value>Street</value>
+  </data>
+  <data name="&gt;&gt;chkStreet.Name" xml:space="preserve">
+    <value>chkStreet</value>
+  </data>
+  <data name="&gt;&gt;chkStreet.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkStreet.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;chkStreet.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="chkCorners.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="chkCorners.Location" type="System.Drawing.Point, System.Drawing">
     <value>459, 22</value>
   </data>
+  <data name="chkCorners.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 17</value>
+  </data>
+  <data name="chkCorners.TabIndex" type="System.Int32, mscorlib">
+    <value>62</value>
+  </data>
+  <data name="chkCorners.Text" xml:space="preserve">
+    <value>Corns</value>
+  </data>
+  <data name="&gt;&gt;chkCorners.Name" xml:space="preserve">
+    <value>chkCorners</value>
+  </data>
+  <data name="&gt;&gt;chkCorners.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkCorners.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;chkCorners.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="schStreet.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
+    <value>GrowAndShrink</value>
+  </data>
+  <data name="schStreet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 22</value>
+  </data>
+  <data name="schStreet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>360, 22</value>
+  </data>
+  <data name="schStreet.TabIndex" type="System.Int32, mscorlib">
+    <value>54</value>
+  </data>
+  <data name="&gt;&gt;schStreet.Name" xml:space="preserve">
+    <value>schStreet</value>
+  </data>
+  <data name="&gt;&gt;schStreet.Type" xml:space="preserve">
+    <value>ZeqkTools.Controls.Search, ZeqkTools.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;schStreet.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;schStreet.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lblTerritory.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblTerritory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>396, 48</value>
+  </data>
+  <data name="lblTerritory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 13</value>
+  </data>
+  <data name="lblTerritory.TabIndex" type="System.Int32, mscorlib">
+    <value>61</value>
+  </data>
+  <data name="lblTerritory.Text" xml:space="preserve">
+    <value>Territory</value>
+  </data>
+  <data name="&gt;&gt;lblTerritory.Name" xml:space="preserve">
+    <value>lblTerritory</value>
+  </data>
+  <data name="&gt;&gt;lblTerritory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblTerritory.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
   <data name="&gt;&gt;lblTerritory.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="&gt;&gt;btnAll.ZOrder" xml:space="preserve">
+  <data name="cboTerritory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>399, 63</value>
+  </data>
+  <data name="cboTerritory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>360, 21</value>
+  </data>
+  <data name="cboTerritory.TabIndex" type="System.Int32, mscorlib">
+    <value>60</value>
+  </data>
+  <data name="&gt;&gt;cboTerritory.Name" xml:space="preserve">
+    <value>cboTerritory</value>
+  </data>
+  <data name="&gt;&gt;cboTerritory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboTerritory.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;cboTerritory.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="lblAddress.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblAddress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 6</value>
+  </data>
+  <data name="lblAddress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 13</value>
+  </data>
+  <data name="lblAddress.TabIndex" type="System.Int32, mscorlib">
+    <value>55</value>
+  </data>
+  <data name="lblAddress.Text" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="&gt;&gt;lblAddress.Name" xml:space="preserve">
+    <value>lblAddress</value>
+  </data>
+  <data name="&gt;&gt;lblAddress.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblAddress.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;lblAddress.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
-  <data name="btnEdit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 46</value>
-  </data>
-  <data name="btnAll.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="chkCorners.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblCity.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="lblCity.Location" type="System.Drawing.Point, System.Drawing">
     <value>18, 88</value>
   </data>
-  <data name="&gt;&gt;lblResults.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btnNew.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 3</value>
-  </data>
-  <data name="btnSearch.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Right</value>
-  </data>
-  <data name="btnNew.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="lblFiltered.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="lblAddress.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 13</value>
-  </data>
-  <data name="&gt;&gt;chkDescription.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="btnAll.Text" xml:space="preserve">
-    <value>All</value>
-  </data>
-  <data name="btnAll.Location" type="System.Drawing.Point, System.Drawing">
-    <value>833, 65</value>
-  </data>
-  <data name="&gt;&gt;btnNew.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;chkCorners.Name" xml:space="preserve">
-    <value>chkCorners</value>
-  </data>
-  <data name="&gt;&gt;cboDepartment.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblResults.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 147</value>
-  </data>
-  <data name="&gt;&gt;lblAddress.Name" xml:space="preserve">
-    <value>lblAddress</value>
-  </data>
-  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>782, 139</value>
-  </data>
-  <data name="&gt;&gt;chkCorners.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkCorners.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="lblCity.Size" type="System.Drawing.Size, System.Drawing">
     <value>24, 13</value>
   </data>
-  <data name="chkDescription.TabIndex" type="System.Int32, mscorlib">
-    <value>64</value>
+  <data name="lblCity.TabIndex" type="System.Int32, mscorlib">
+    <value>59</value>
   </data>
-  <data name="&gt;&gt;btnSearch.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="chkStreet.Text" xml:space="preserve">
-    <value>Street</value>
-  </data>
-  <data name="lblTerritory.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cboDepartment.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 63</value>
-  </data>
-  <data name="chkCorners.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 17</value>
+  <data name="lblCity.Text" xml:space="preserve">
+    <value>City</value>
   </data>
   <data name="&gt;&gt;lblCity.Name" xml:space="preserve">
     <value>lblCity</value>
   </data>
-  <data name="&gt;&gt;cboTerritory.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="cboTerritory.Size" type="System.Drawing.Size, System.Drawing">
-    <value>360, 21</value>
-  </data>
-  <data name="btnEdit.Text" xml:space="preserve">
-    <value>Edit</value>
-  </data>
-  <data name="chkDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>518, 22</value>
-  </data>
-  <data name="lblTerritory.Text" xml:space="preserve">
-    <value>Territory</value>
-  </data>
-  <data name="lblFiltered.TabIndex" type="System.Int32, mscorlib">
-    <value>57</value>
-  </data>
-  <data name="schStreet.Size" type="System.Drawing.Size, System.Drawing">
-    <value>360, 22</value>
-  </data>
-  <data name="cboDepartment.Size" type="System.Drawing.Size, System.Drawing">
-    <value>360, 21</value>
-  </data>
-  <data name="lblDepartment.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 13</value>
-  </data>
-  <data name="dgvResults.Size" type="System.Drawing.Size, System.Drawing">
-    <value>831, 354</value>
-  </data>
-  <data name="schStreet.TabIndex" type="System.Int32, mscorlib">
-    <value>54</value>
-  </data>
-  <data name="lblDepartment.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="btnEdit.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;lblFiltered.Name" xml:space="preserve">
-    <value>lblFiltered</value>
-  </data>
-  <data name="btnEdit.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Left, Right</value>
-  </data>
-  <data name="lblFiltered.Location" type="System.Drawing.Point, System.Drawing">
-    <value>792, 147</value>
-  </data>
-  <data name="&gt;&gt;cboDepartment.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="cboCity.TabIndex" type="System.Int32, mscorlib">
-    <value>56</value>
-  </data>
-  <data name="&gt;&gt;chkStreet.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="dgvResults.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 163</value>
-  </data>
-  <data name="&gt;&gt;lblFiltered.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblCity.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnSearch.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="btnDelete.Text" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="&gt;&gt;lblResults.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;lblDepartment.Name" xml:space="preserve">
-    <value>lblDepartment</value>
-  </data>
-  <data name="btnDelete.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 89</value>
-  </data>
-  <data name="chkStreet.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 17</value>
-  </data>
-  <data name="&gt;&gt;btnSearch.Name" xml:space="preserve">
-    <value>btnSearch</value>
-  </data>
-  <data name="&gt;&gt;btnAll.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btnAll.TabIndex" type="System.Int32, mscorlib">
-    <value>51</value>
-  </data>
-  <data name="&gt;&gt;cboCity.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblTerritory.Name" xml:space="preserve">
-    <value>lblTerritory</value>
-  </data>
-  <data name="btnSearch.Location" type="System.Drawing.Point, System.Drawing">
-    <value>833, 10</value>
-  </data>
-  <data name="cboCity.Size" type="System.Drawing.Size, System.Drawing">
-    <value>360, 21</value>
-  </data>
-  <data name="cboTerritory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>399, 63</value>
-  </data>
-  <data name="&gt;&gt;panel1.Name" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="panel1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Right</value>
-  </data>
-  <data name="dgvResults.TabIndex" type="System.Int32, mscorlib">
-    <value>55</value>
-  </data>
-  <data name="chkDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 17</value>
-  </data>
-  <data name="lblTerritory.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 13</value>
-  </data>
-  <data name="&gt;&gt;schStreet.Name" xml:space="preserve">
-    <value>schStreet</value>
-  </data>
-  <data name="&gt;&gt;dgvResults.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="lblResults.TabIndex" type="System.Int32, mscorlib">
-    <value>56</value>
-  </data>
-  <data name="lblAddress.Text" xml:space="preserve">
-    <value>Address</value>
-  </data>
-  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>839, 160</value>
-  </data>
-  <data name="chkCorners.TabIndex" type="System.Int32, mscorlib">
-    <value>62</value>
-  </data>
-  <data name="&gt;&gt;cboDepartment.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="lblDepartment.TabIndex" type="System.Int32, mscorlib">
-    <value>58</value>
-  </data>
-  <data name="&gt;&gt;lblResults.Name" xml:space="preserve">
-    <value>lblResults</value>
-  </data>
-  <data name="&gt;&gt;cboTerritory.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;schStreet.Type" xml:space="preserve">
-    <value>ZeqkTools.Controls.Search, ZeqkTools.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="cboCity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 103</value>
-  </data>
-  <data name="lblAddress.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;lblDepartment.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;schStreet.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnEdit.Name" xml:space="preserve">
-    <value>btnEdit</value>
-  </data>
-  <data name="&gt;&gt;ctxMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblFiltered.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblDepartment.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="lblAddress.TabIndex" type="System.Int32, mscorlib">
-    <value>55</value>
-  </data>
-  <data name="btnNew.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lblResults.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboCity.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="btnNew.Size" type="System.Drawing.Size, System.Drawing">
-    <value>81, 37</value>
-  </data>
-  <data name="schStreet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 22</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>938, 524</value>
-  </data>
-  <data name="&gt;&gt;cboCity.Name" xml:space="preserve">
-    <value>cboCity</value>
-  </data>
-  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="lblDepartment.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 47</value>
-  </data>
-  <data name="chkStreet.TabIndex" type="System.Int32, mscorlib">
-    <value>63</value>
-  </data>
-  <data name="cboDepartment.TabIndex" type="System.Int32, mscorlib">
-    <value>57</value>
-  </data>
-  <data name="&gt;&gt;panel1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblCity.Parent" xml:space="preserve">
     <value>panel2</value>
@@ -678,31 +787,160 @@
   <data name="&gt;&gt;lblCity.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="&gt;&gt;chkDescription.Name" xml:space="preserve">
-    <value>chkDescription</value>
-  </data>
-  <data name="chkDescription.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblDepartment.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="dgvResults.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
+  <data name="lblDepartment.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 47</value>
   </data>
-  <data name="&gt;&gt;btnDelete.Parent" xml:space="preserve">
-    <value>panel1</value>
+  <data name="lblDepartment.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 13</value>
   </data>
-  <data name="chkStreet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>399, 23</value>
+  <data name="lblDepartment.TabIndex" type="System.Int32, mscorlib">
+    <value>58</value>
   </data>
-  <data name="&gt;&gt;dgvResults.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lblDepartment.Text" xml:space="preserve">
+    <value>Department</value>
   </data>
-  <data name="&gt;&gt;panel1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblDepartment.Name" xml:space="preserve">
+    <value>lblDepartment</value>
+  </data>
+  <data name="&gt;&gt;lblDepartment.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDepartment.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;lblDepartment.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="cboCity.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 103</value>
+  </data>
+  <data name="cboCity.Size" type="System.Drawing.Size, System.Drawing">
+    <value>360, 21</value>
+  </data>
+  <data name="cboCity.TabIndex" type="System.Int32, mscorlib">
+    <value>56</value>
+  </data>
+  <data name="&gt;&gt;cboCity.Name" xml:space="preserve">
+    <value>cboCity</value>
+  </data>
+  <data name="&gt;&gt;cboCity.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboCity.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;cboCity.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="cboDepartment.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 63</value>
+  </data>
+  <data name="cboDepartment.Size" type="System.Drawing.Size, System.Drawing">
+    <value>360, 21</value>
+  </data>
+  <data name="cboDepartment.TabIndex" type="System.Int32, mscorlib">
+    <value>57</value>
+  </data>
+  <data name="&gt;&gt;cboDepartment.Name" xml:space="preserve">
+    <value>cboDepartment</value>
+  </data>
+  <data name="&gt;&gt;cboDepartment.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboDepartment.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;cboDepartment.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 2</value>
+  </data>
+  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>782, 139</value>
+  </data>
+  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
+    <value>58</value>
+  </data>
+  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <metadata name="ctxMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <data name="copyGoogleMapsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="copyGoogleMapsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Copy (Google Maps)</value>
+  </data>
+  <data name="ctxMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>184, 26</value>
+  </data>
+  <data name="&gt;&gt;ctxMenu.Name" xml:space="preserve">
+    <value>ctxMenu</value>
+  </data>
+  <data name="&gt;&gt;ctxMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <metadata name="sfdGMaps.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>482, 17</value>
+  </metadata>
+  <data name="sfdGMaps.Filter" xml:space="preserve">
+    <value>xml files (*.xml)|*.xml</value>
+  </data>
+  <metadata name="sfdExcelDestiny.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>582, 17</value>
+  </metadata>
+  <data name="sfdExcelDestiny.Filter" xml:space="preserve">
+    <value>Excel files (*.xls)|*.xls</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="ctxMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>938, 524</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Addresses</value>
+  </data>
+  <data name="&gt;&gt;copyGoogleMapsToolStripMenuItem.Name" xml:space="preserve">
+    <value>copyGoogleMapsToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;copyGoogleMapsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sfdGMaps.Name" xml:space="preserve">
+    <value>sfdGMaps</value>
+  </data>
+  <data name="&gt;&gt;sfdGMaps.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;sfdExcelDestiny.Name" xml:space="preserve">
+    <value>sfdExcelDestiny</value>
+  </data>
+  <data name="&gt;&gt;sfdExcelDestiny.Type" xml:space="preserve">
+    <value>System.Windows.Forms.SaveFileDialog, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>frmAddresses</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

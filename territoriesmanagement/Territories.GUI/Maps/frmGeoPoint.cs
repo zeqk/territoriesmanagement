@@ -56,6 +56,9 @@ namespace Territories.GUI
 
         private void ConfigMap()
         {
+            Config.Config config = new Territories.GUI.Config.Config();
+            config.LoadSavedConfig();
+
             isMouseDown = false;
             // config gmaps
             GMaps.Instance.UseRouteCache = true;
@@ -64,7 +67,7 @@ namespace Territories.GUI
             GMaps.Instance.Mode = AccessMode.ServerAndCache;           
 
             // config map 
-            MainMap.MapType = MapType.GoogleMap;
+            MainMap.MapType = config.MapType;
             MainMap.MaxZoom = 20;
             MainMap.MinZoom = 5;
             MainMap.Zoom = 16;
@@ -211,6 +214,17 @@ namespace Territories.GUI
             this.GeoPosition = currentMarker.Position;            
 
             this.Close();
+        }
+
+        private void trackBar1_ValueChanged(object sender, EventArgs e)
+        {
+            MainMap.Zoom = trackBar1.Value;
+        }
+
+
+        private void MainMap_OnMapZoomChanged()
+        {
+            trackBar1.Value = MainMap.Zoom;
         }
         
     }

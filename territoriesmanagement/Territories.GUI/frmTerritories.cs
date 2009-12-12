@@ -272,8 +272,8 @@ namespace Territories.GUI
             bool rv = true;
             if (string.IsNullOrEmpty(txtName.Text))
                 rv = false;
-            if (string.IsNullOrEmpty(txtNumber.Text))
-                rv = false;
+            //if (string.IsNullOrEmpty(txtNumber.Text))
+            //    rv = false;
 
             return rv;
         }
@@ -358,13 +358,13 @@ namespace Territories.GUI
                             {
 
                                 GMapMarkerCustom marker = new GMapMarkerCustom(new PointLatLng(item.Lat.Value, item.Lng.Value));
-                                marker.Tag = item.IdAddresses;
+                                marker.Tag = item.IdAddress;
                                 marker.ToolTipText = item.Street + item.Number;
                                 marker.Icon = Properties.Resources.legendIcon;
                                 marks.Add(marker);
                             }
                         }
-                        myForm.Marks = marks;
+                        myForm.Points = marks;
                     }
                 }
 
