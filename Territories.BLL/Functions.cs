@@ -14,8 +14,7 @@ namespace Territories.BLL
         static public IList GetEntities(string entity, string entitySet, string where, params ObjectParameter[] parameters)
         {
             IList rv = null;
-//            string strQuery = "SELECT VALUE " + entity + " FROM TerritoriesDataContext." + entitySet + " AS " + entity;
-            string strQuery = "SELECT VALUE Address FROM TerritoriesDataContext.Addresses AS Address";
+            string strQuery = "SELECT VALUE " + entity + " FROM TerritoriesDataContext." + entitySet + " AS " + entity;
 
             if (where != "")
                 strQuery = strQuery + " WHERE " + where;

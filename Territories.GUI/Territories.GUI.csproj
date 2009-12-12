@@ -218,6 +218,9 @@
     <Compile Include="ImporterConfig\DepartmentsTableConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAddress.en.resx">
+      <DependentUpon>frmAddress.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAddress.es-AR.resx">
       <DependentUpon>frmAddress.cs</DependentUpon>
     </EmbeddedResource>

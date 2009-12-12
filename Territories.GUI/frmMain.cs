@@ -90,7 +90,7 @@ namespace Territories.GUI
             try
             {
                 frmConfig myForm = new frmConfig();
-                myForm.Show();
+                myForm.ShowDialog();
             }
             catch (Exception ex)
             {                
@@ -100,36 +100,6 @@ namespace Territories.GUI
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-
-            //string dbPath = AppDomain.CurrentDomain.BaseDirectory + "Territories.mdf";
-            string dbPath = @"C:\TerritoriesDB\Territories.mdf";
-            string connStr = "Data Source=.\\SQLEXPRESS;AttachDbFilename=" + dbPath + ";Integrated Security=True;Connect Timeout=30;User Instance=True";
-            string entityConnStr = @"metadata=res://*/TerritoriesModel.csdl|res://*/TerritoriesModel.ssdl|res://*/TerritoriesModel.msl;provider=System.Data.SqlClient;provider connection string='" + connStr + "'";
-
-            //Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-
-
-            //ConnectionStringSettings set = new ConnectionStringSettings("TerritoriesDataContext", entityConnStr);
-
-            //config.ConnectionStrings.ConnectionStrings.Add(set);
-
-            //config.Save(ConfigurationSaveMode.Modified, true);
-
-            //string hola = config.ConnectionStrings.ConnectionStrings["TerritoriesDataContext"].ConnectionString;
-
-            //ConnectionStringSettings conSet = new ConnectionStringSettings("TerritoriesDataContext", entityConnStr, "System.Data.EntityClient");
-
-            //var config = ConfigurationManager.OpenExeConfiguration(AppDomain.CurrentDomain.BaseDirectory + "/app.config");
-
-            //config.ConnectionStrings.ConnectionStrings.Add(conSet);
-            //config.SaveAs(AppDomain.CurrentDomain.BaseDirectory + "/app.config",ConfigurationSaveMode.Full, true);
-            
-            
-
-            //string hola = ConfigurationManager.ConnectionStrings["TerritoriesDataContext"].ConnectionString;
-
-
-            //Console.WriteLine(hola);
             LoadConfig();
 
         }

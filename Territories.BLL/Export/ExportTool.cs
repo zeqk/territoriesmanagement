@@ -18,7 +18,17 @@ namespace Territories.BLL.Export
 {
     public class ExportTool
     {
-        static public bool ExportToExcel(string path,string entity,string entitySet, string where, ObjectParameter[] parameters, string[] properties)
+        /// <summary>
+        /// Export a entity set to a excel file
+        /// </summary>
+        /// <param name="path">Excel file path</param>
+        /// <param name="entity">Entity name</param>
+        /// <param name="entitySet">Entity set name</param>
+        /// <param name="properties">Array of properties name</param>
+        /// <param name="where">Query string</param>
+        /// <param name="parameters">Query parameters</param>
+        /// <returns></returns>
+        static public bool ExportToExcel(string path,string entity,string entitySet, string[] properties, string where, params ObjectParameter[] parameters)
         {
             bool rv = true;
             Workbook book = new Workbook();
@@ -38,9 +48,6 @@ namespace Territories.BLL.Export
 
                 WorksheetRow firstRow = book.Worksheets[entitySet].Table.Rows.Add();
 
-                if (properties.Count() < 1 || properties == null)
-                    properties = entities[0].GetType().GetProperties().Select(p => p.Name).ToArray();
-
                 foreach (var propName in properties)
                 {
                     firstRow.Cells.Add(propName, CarlosAg.ExcelXmlWriter.DataType.String, "header");
@@ -56,12 +63,17 @@ namespace Territories.BLL.Export
                     {
                         string strValue = "";
                         if (!propName.Contains('.'))
-                            strValue = item.GetType().GetProperty(propName).GetValue(item, null).ToString();
+                        {
+                            object value = item.GetType().GetProperty(propName).GetValue(item, null);
+                            if (value != null)
+                                strValue = item.GetType().GetProperty(propName).GetValue(item, null).ToString();
+                        }
                         else
                         {
                             string[] subProperty = propName.Split('.');
                             object refProperty = item.GetType().GetProperty(subProperty[0]).GetValue(item, null);
-                            strValue = refProperty.GetType().GetProperty(subProperty[1]).GetValue(refProperty, null).ToString();
+                            if (refProperty != null)
+                                strValue = refProperty.GetType().GetProperty(subProperty[1]).GetValue(refProperty, null).ToString();
                         }
 
                         WorksheetCell cell = row.Cells.Add(strValue);

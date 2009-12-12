@@ -40,8 +40,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.MainMap = new System.Windows.Forms.GMapControl();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.tableLayoutPanel1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -203,22 +203,6 @@
             this.splitContainer3.SplitterDistance = 622;
             this.splitContainer3.TabIndex = 12;
             // 
-            // trackBar1
-            // 
-            this.trackBar1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.trackBar1.AutoSize = false;
-            this.trackBar1.LargeChange = 1;
-            this.trackBar1.Location = new System.Drawing.Point(3, 3);
-            this.trackBar1.Maximum = 17;
-            this.trackBar1.Minimum = 1;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar1.Size = new System.Drawing.Size(42, 432);
-            this.trackBar1.TabIndex = 30;
-            this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
-            this.trackBar1.Value = 12;
-            this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
-            // 
             // MainMap
             // 
             this.MainMap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -234,6 +218,23 @@
             this.MainMap.Size = new System.Drawing.Size(622, 440);
             this.MainMap.TabIndex = 12;
             this.MainMap.Zoom = 2;
+            this.MainMap.OnMapZoomChanged += new GMap.NET.MapZoomChanged(this.MainMap_OnMapZoomChanged);
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.trackBar1.AutoSize = false;
+            this.trackBar1.LargeChange = 1;
+            this.trackBar1.Location = new System.Drawing.Point(3, 3);
+            this.trackBar1.Maximum = 17;
+            this.trackBar1.Minimum = 1;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackBar1.Size = new System.Drawing.Size(42, 432);
+            this.trackBar1.TabIndex = 30;
+            this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
+            this.trackBar1.Value = 12;
+            this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
             // 
             // frmGeoPoint
             // 

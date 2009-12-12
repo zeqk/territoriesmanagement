@@ -25,7 +25,6 @@ namespace Territories.GUI
         public frmAddresses()
         {
             InitializeComponent();
-            _server.Search("");
 
         }
 
@@ -345,12 +344,14 @@ namespace Territories.GUI
 
         private void cboDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboDepartment.SelectedItem!=null)
-	        {
-    	         int idDepartment = (int)cboDepartment.SelectedValue;
-                 cboCity.DataSource = this._server.GetCitiesByDepartment(idDepartment);
-                 cboCity.SelectedItem = null;
-	        }
+            if (cboDepartment.SelectedItem != null)
+            {
+                int idDepartment = (int)cboDepartment.SelectedValue;
+                cboCity.DataSource = this._server.GetCitiesByDepartment(idDepartment);
+                cboCity.SelectedItem = null;
+            }
+            else
+                cboCity.DataSource = null;
            
         }
 
@@ -421,12 +422,14 @@ namespace Territories.GUI
             List<ObjectParameter> parameters = new List<ObjectParameter>();
             string strQuery = GetQuery(out parameters);
 
-            string path = Path.GetFullPath(sfdGMaps.FileName);
+            string path = Path.GetFullPath(sfdExcelDestiny.FileName);
 
             try
             {
+                BLL.DataBridge.Addresses address = new Territories.BLL.DataBridge.Addresses();
+                string[] properties = address.GetPropertyList().ToArray();
 
-                ExportTool.ExportToExcel(path, "Address","Addresses",strQuery,parameters.ToArray(),null);
+                ExportTool.ExportToExcel(path, "Address", "Addresses", properties, strQuery, parameters.ToArray());
             }
             catch (Exception ex)
             {

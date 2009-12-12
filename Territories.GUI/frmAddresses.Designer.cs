@@ -33,6 +33,7 @@
             this.btnAll = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnToExcel = new System.Windows.Forms.Button();
             this.btnToGMaps = new System.Windows.Forms.Button();
             this.btnViewMap = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -57,7 +58,6 @@
             this.copyGoogleMapsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sfdGMaps = new System.Windows.Forms.SaveFileDialog();
             this.sfdExcelDestiny = new System.Windows.Forms.SaveFileDialog();
-            this.btnToExcel = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
             this.panel2.SuspendLayout();
@@ -88,6 +88,13 @@
             this.panel1.Controls.Add(this.btnEdit);
             this.panel1.Controls.Add(this.btnNew);
             this.panel1.Name = "panel1";
+            // 
+            // btnToExcel
+            // 
+            resources.ApplyResources(this.btnToExcel, "btnToExcel");
+            this.btnToExcel.Name = "btnToExcel";
+            this.btnToExcel.UseVisualStyleBackColor = true;
+            this.btnToExcel.Click += new System.EventHandler(this.btnToExcel_Click);
             // 
             // btnToGMaps
             // 
@@ -255,13 +262,6 @@
             // 
             resources.ApplyResources(this.sfdExcelDestiny, "sfdExcelDestiny");
             this.sfdExcelDestiny.FileOk += new System.ComponentModel.CancelEventHandler(this.sfdExcelDestiny_FileOk);
-            // 
-            // btnToExcel
-            // 
-            resources.ApplyResources(this.btnToExcel, "btnToExcel");
-            this.btnToExcel.Name = "btnToExcel";
-            this.btnToExcel.UseVisualStyleBackColor = true;
-            this.btnToExcel.Click += new System.EventHandler(this.btnToExcel_Click);
             // 
             // frmAddresses
             // 

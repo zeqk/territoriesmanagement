@@ -38,9 +38,9 @@
             // 
             // btnAddress
             // 
-            this.btnAddress.Location = new System.Drawing.Point(115, 106);
+            this.btnAddress.Location = new System.Drawing.Point(178, 12);
             this.btnAddress.Name = "btnAddress";
-            this.btnAddress.Size = new System.Drawing.Size(175, 64);
+            this.btnAddress.Size = new System.Drawing.Size(247, 75);
             this.btnAddress.TabIndex = 0;
             this.btnAddress.Text = "Address";
             this.btnAddress.UseVisualStyleBackColor = true;
@@ -48,7 +48,7 @@
             // 
             // btnCities
             // 
-            this.btnCities.Location = new System.Drawing.Point(387, 54);
+            this.btnCities.Location = new System.Drawing.Point(14, 12);
             this.btnCities.Name = "btnCities";
             this.btnCities.Size = new System.Drawing.Size(138, 46);
             this.btnCities.TabIndex = 1;
@@ -58,7 +58,7 @@
             // 
             // btnDepartments
             // 
-            this.btnDepartments.Location = new System.Drawing.Point(387, 106);
+            this.btnDepartments.Location = new System.Drawing.Point(14, 64);
             this.btnDepartments.Name = "btnDepartments";
             this.btnDepartments.Size = new System.Drawing.Size(138, 46);
             this.btnDepartments.TabIndex = 2;
@@ -68,7 +68,7 @@
             // 
             // bntTerritories
             // 
-            this.bntTerritories.Location = new System.Drawing.Point(387, 158);
+            this.bntTerritories.Location = new System.Drawing.Point(14, 116);
             this.bntTerritories.Name = "bntTerritories";
             this.bntTerritories.Size = new System.Drawing.Size(138, 46);
             this.bntTerritories.TabIndex = 3;
@@ -78,7 +78,7 @@
             // 
             // btnInterop
             // 
-            this.btnInterop.Location = new System.Drawing.Point(573, 106);
+            this.btnInterop.Location = new System.Drawing.Point(451, 12);
             this.btnInterop.Name = "btnInterop";
             this.btnInterop.Size = new System.Drawing.Size(138, 46);
             this.btnInterop.TabIndex = 4;
@@ -88,7 +88,7 @@
             // 
             // btnConfiguration
             // 
-            this.btnConfiguration.Location = new System.Drawing.Point(573, 170);
+            this.btnConfiguration.Location = new System.Drawing.Point(451, 74);
             this.btnConfiguration.Name = "btnConfiguration";
             this.btnConfiguration.Size = new System.Drawing.Size(138, 46);
             this.btnConfiguration.TabIndex = 5;
@@ -100,7 +100,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(811, 290);
+            this.ClientSize = new System.Drawing.Size(603, 182);
             this.Controls.Add(this.btnConfiguration);
             this.Controls.Add(this.btnInterop);
             this.Controls.Add(this.bntTerritories);
@@ -108,7 +108,7 @@
             this.Controls.Add(this.btnCities);
             this.Controls.Add(this.btnAddress);
             this.Name = "frmMain";
-            this.Text = "Main";
+            this.Text = "Territories Management";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.ResumeLayout(false);
 

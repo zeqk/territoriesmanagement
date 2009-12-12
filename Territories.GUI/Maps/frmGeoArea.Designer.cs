@@ -100,6 +100,7 @@
             this.MainMap.Size = new System.Drawing.Size(585, 438);
             this.MainMap.TabIndex = 10;
             this.MainMap.Zoom = 2;
+            this.MainMap.OnMapZoomChanged += new GMap.NET.MapZoomChanged(this.MainMap_OnMapZoomChanged);
             // 
             // groupBox2
             // 
