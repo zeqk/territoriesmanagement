@@ -195,7 +195,9 @@ namespace Territories.GUI
                                    FromLatLngToLocal(info, rect.Height, rect.Width, customMark.Position.Lat, customMark.Position.Lng, out x, out y);
 
                                    gfx.DrawIcon(icon1, x, y);
-                                   gfx.DrawString(marker.Tag.ToString(), SystemFonts.DefaultFont, Brushes.Red, x + 10, y - 10);
+                                   Font font = new Font(FontFamily.GenericSansSerif, 15);                                 
+                                   
+                                   gfx.DrawString(marker.Tag.ToString(), font, Brushes.Red, x + 10, y - 10);
                                }
 
                                if (marker.GetType() == typeof(GMapMarkerPolygon))
@@ -211,7 +213,7 @@ namespace Territories.GUI
                                        points.Add(new System.Drawing.Point(x, y));
                                    }
                                    Pen pen = new Pen(Color.Blue, 4);
-                                   pen.DashStyle = DashStyle.DashDotDot;
+                                   pen.DashStyle = DashStyle.Dot;
 
                                    gfx.DrawPolygon(pen, points.ToArray());
                                }
