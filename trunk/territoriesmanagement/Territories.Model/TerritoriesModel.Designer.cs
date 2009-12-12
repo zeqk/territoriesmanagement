@@ -9,15 +9,15 @@
 //------------------------------------------------------------------------------
 
 [assembly: global::System.Data.Objects.DataClasses.EdmSchemaAttribute()]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_directions_cities", "Cities", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.City), "Addresses", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Address))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_directions_territories", "Territories", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Territories.Model.Territory), "Addresses", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Address))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_cities_departments", "Departments", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.Department), "Cities", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.City))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_publishers_cities", "Cities", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Territories.Model.City), "Publishers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Publisher))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_tours_publishers", "Publishers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Territories.Model.Publisher), "Tours", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Tour))]
-[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "FK_tours_territories", "Territories", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.Territory), "Tours", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Tour))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "ADDRESSESKEY0", "Cities", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.City), "Addresses", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Address))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "ADDRESSESKEY1", "Territories", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Territories.Model.Territory), "Addresses", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Address))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "CITIESKEY0", "Departments", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.Department), "Cities", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.City))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "PUBLISHERSKEY0", "Cities", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Territories.Model.City), "Publishers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Publisher))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "TOURSKEY0", "Publishers", global::System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Territories.Model.Publisher), "Tours", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Tour))]
+[assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "TOURSKEY1", "Territories", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Territories.Model.Territory), "Tours", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Territories.Model.Tour))]
 
 // Original file name:
-// Generation date: 08/10/2009 12:00:39
+// Generation date: 07/12/2009 16:02:22
 namespace Territories.Model
 {
     
@@ -184,75 +184,43 @@ namespace Territories.Model
             base.AddObject("Tours", tour);
         }
         /// <summary>
-        /// There are no comments for TerritoriesModel.address_GetById in the schema.
+        /// There are no comments for TerritoriesModel.addresses_GetAll in the schema.
         /// </summary>
-        public global::System.Data.Objects.ObjectResult<Address> address_GetById(global::System.Nullable<int> id)
+        public global::System.Data.Objects.ObjectResult<Address> addresses_GetAll()
         {
-            global::System.Data.Objects.ObjectParameter idParameter;
+            return base.ExecuteFunction<Address>("addresses_GetAll");
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.addresses_GetByCity in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<Address> addresses_GetByCity(global::System.Nullable<int> cITY)
+        {
+            global::System.Data.Objects.ObjectParameter cITYParameter;
+            if (cITY.HasValue)
+            {
+                cITYParameter = new global::System.Data.Objects.ObjectParameter("CITY", cITY);
+            }
+            else
+            {
+                cITYParameter = new global::System.Data.Objects.ObjectParameter("CITY", typeof(int));
+            }
+            return base.ExecuteFunction<Address>("addresses_GetByCity", cITYParameter);
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.addresses_GetById in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<Address> addresses_GetById(global::System.Nullable<int> id)
+        {
+            global::System.Data.Objects.ObjectParameter iDParameter;
             if (id.HasValue)
             {
-                idParameter = new global::System.Data.Objects.ObjectParameter("id", id);
+                iDParameter = new global::System.Data.Objects.ObjectParameter("ID", id);
             }
             else
             {
-                idParameter = new global::System.Data.Objects.ObjectParameter("id", typeof(int));
+                iDParameter = new global::System.Data.Objects.ObjectParameter("ID", typeof(int));
             }
-            return base.ExecuteFunction<Address>("address_GetById", idParameter);
-        }
-        /// <summary>
-        /// There are no comments for TerritoriesModel.address_GetByCity in the schema.
-        /// </summary>
-        public global::System.Data.Objects.ObjectResult<Address> address_GetByCity(global::System.Nullable<int> idCity)
-        {
-            global::System.Data.Objects.ObjectParameter idCityParameter;
-            if (idCity.HasValue)
-            {
-                idCityParameter = new global::System.Data.Objects.ObjectParameter("idCity", idCity);
-            }
-            else
-            {
-                idCityParameter = new global::System.Data.Objects.ObjectParameter("idCity", typeof(int));
-            }
-            return base.ExecuteFunction<Address>("address_GetByCity", idCityParameter);
-        }
-        /// <summary>
-        /// There are no comments for TerritoriesModel.address_GetAll in the schema.
-        /// </summary>
-        public global::System.Data.Objects.ObjectResult<Address> address_GetAll()
-        {
-            return base.ExecuteFunction<Address>("address_GetAll");
-        }
-        /// <summary>
-        /// There are no comments for TerritoriesModel.cities_GetByDepartment in the schema.
-        /// </summary>
-        public global::System.Data.Objects.ObjectResult<City> cities_GetByDepartment(global::System.Nullable<int> idDepartment)
-        {
-            global::System.Data.Objects.ObjectParameter idDepartmentParameter;
-            if (idDepartment.HasValue)
-            {
-                idDepartmentParameter = new global::System.Data.Objects.ObjectParameter("idDepartment", idDepartment);
-            }
-            else
-            {
-                idDepartmentParameter = new global::System.Data.Objects.ObjectParameter("idDepartment", typeof(int));
-            }
-            return base.ExecuteFunction<City>("cities_GetByDepartment", idDepartmentParameter);
-        }
-        /// <summary>
-        /// There are no comments for TerritoriesModel.cities_GetById in the schema.
-        /// </summary>
-        public global::System.Data.Objects.ObjectResult<City> cities_GetById(global::System.Nullable<int> id)
-        {
-            global::System.Data.Objects.ObjectParameter idParameter;
-            if (id.HasValue)
-            {
-                idParameter = new global::System.Data.Objects.ObjectParameter("id", id);
-            }
-            else
-            {
-                idParameter = new global::System.Data.Objects.ObjectParameter("id", typeof(int));
-            }
-            return base.ExecuteFunction<City>("cities_GetById", idParameter);
+            return base.ExecuteFunction<Address>("addresses_GetById", iDParameter);
         }
         /// <summary>
         /// There are no comments for TerritoriesModel.cities_GetAll in the schema.
@@ -260,6 +228,38 @@ namespace Territories.Model
         public global::System.Data.Objects.ObjectResult<City> cities_GetAll()
         {
             return base.ExecuteFunction<City>("cities_GetAll");
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.cities_GetByDepartment in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<City> cities_GetByDepartment(global::System.Nullable<int> dEPARTMENT)
+        {
+            global::System.Data.Objects.ObjectParameter dEPARTMENTParameter;
+            if (dEPARTMENT.HasValue)
+            {
+                dEPARTMENTParameter = new global::System.Data.Objects.ObjectParameter("DEPARTMENT", dEPARTMENT);
+            }
+            else
+            {
+                dEPARTMENTParameter = new global::System.Data.Objects.ObjectParameter("DEPARTMENT", typeof(int));
+            }
+            return base.ExecuteFunction<City>("cities_GetByDepartment", dEPARTMENTParameter);
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.cities_GetById in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<City> cities_GetById(global::System.Nullable<int> id)
+        {
+            global::System.Data.Objects.ObjectParameter iDParameter;
+            if (id.HasValue)
+            {
+                iDParameter = new global::System.Data.Objects.ObjectParameter("ID", id);
+            }
+            else
+            {
+                iDParameter = new global::System.Data.Objects.ObjectParameter("ID", typeof(int));
+            }
+            return base.ExecuteFunction<City>("cities_GetById", iDParameter);
         }
         /// <summary>
         /// There are no comments for TerritoriesModel.departments_GetAll in the schema.
@@ -273,16 +273,23 @@ namespace Territories.Model
         /// </summary>
         public global::System.Data.Objects.ObjectResult<Department> departments_GetById(global::System.Nullable<int> id)
         {
-            global::System.Data.Objects.ObjectParameter idParameter;
+            global::System.Data.Objects.ObjectParameter iDParameter;
             if (id.HasValue)
             {
-                idParameter = new global::System.Data.Objects.ObjectParameter("id", id);
+                iDParameter = new global::System.Data.Objects.ObjectParameter("ID", id);
             }
             else
             {
-                idParameter = new global::System.Data.Objects.ObjectParameter("id", typeof(int));
+                iDParameter = new global::System.Data.Objects.ObjectParameter("ID", typeof(int));
             }
-            return base.ExecuteFunction<Department>("departments_GetById", idParameter);
+            return base.ExecuteFunction<Department>("departments_GetById", iDParameter);
+        }
+        /// <summary>
+        /// There are no comments for TerritoriesModel.publishers_GetByCity in the schema.
+        /// </summary>
+        public global::System.Data.Objects.ObjectResult<Publisher> publishers_GetByCity()
+        {
+            return base.ExecuteFunction<Publisher>("publishers_GetByCity");
         }
         /// <summary>
         /// There are no comments for TerritoriesModel.territories_GetAll in the schema.
@@ -296,367 +303,23 @@ namespace Territories.Model
         /// </summary>
         public global::System.Data.Objects.ObjectResult<Territory> territories_GetById(global::System.Nullable<int> id)
         {
-            global::System.Data.Objects.ObjectParameter idParameter;
+            global::System.Data.Objects.ObjectParameter iDParameter;
             if (id.HasValue)
             {
-                idParameter = new global::System.Data.Objects.ObjectParameter("id", id);
+                iDParameter = new global::System.Data.Objects.ObjectParameter("ID", id);
             }
             else
             {
-                idParameter = new global::System.Data.Objects.ObjectParameter("id", typeof(int));
+                iDParameter = new global::System.Data.Objects.ObjectParameter("ID", typeof(int));
             }
-            return base.ExecuteFunction<Territory>("territories_GetById", idParameter);
-        }
-        /// <summary>
-        /// There are no comments for TerritoriesModel.address_Add in the schema.
-        /// </summary>
-        public global::System.Data.Objects.ObjectResult<Address> address_Add(
-                    string street, 
-                    string number, 
-                    string addressData, 
-                    string corner1, 
-                    string corner2, 
-                    string phone1, 
-                    string phone2, 
-                    string description, 
-                    string map1, 
-                    string map2, 
-                    global::System.Nullable<int> idTerritory, 
-                    global::System.Nullable<int> idCity, 
-                    string customField1, 
-                    string customField2, 
-                    global::System.Nullable<double> lat, 
-                    global::System.Nullable<double> lng)
-        {
-            global::System.Data.Objects.ObjectParameter streetParameter;
-            if ((street != null))
-            {
-                streetParameter = new global::System.Data.Objects.ObjectParameter("street", street);
-            }
-            else
-            {
-                streetParameter = new global::System.Data.Objects.ObjectParameter("street", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter numberParameter;
-            if ((number != null))
-            {
-                numberParameter = new global::System.Data.Objects.ObjectParameter("number", number);
-            }
-            else
-            {
-                numberParameter = new global::System.Data.Objects.ObjectParameter("number", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter addressDataParameter;
-            if ((addressData != null))
-            {
-                addressDataParameter = new global::System.Data.Objects.ObjectParameter("addressData", addressData);
-            }
-            else
-            {
-                addressDataParameter = new global::System.Data.Objects.ObjectParameter("addressData", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter corner1Parameter;
-            if ((corner1 != null))
-            {
-                corner1Parameter = new global::System.Data.Objects.ObjectParameter("corner1", corner1);
-            }
-            else
-            {
-                corner1Parameter = new global::System.Data.Objects.ObjectParameter("corner1", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter corner2Parameter;
-            if ((corner2 != null))
-            {
-                corner2Parameter = new global::System.Data.Objects.ObjectParameter("corner2", corner2);
-            }
-            else
-            {
-                corner2Parameter = new global::System.Data.Objects.ObjectParameter("corner2", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter phone1Parameter;
-            if ((phone1 != null))
-            {
-                phone1Parameter = new global::System.Data.Objects.ObjectParameter("phone1", phone1);
-            }
-            else
-            {
-                phone1Parameter = new global::System.Data.Objects.ObjectParameter("phone1", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter phone2Parameter;
-            if ((phone2 != null))
-            {
-                phone2Parameter = new global::System.Data.Objects.ObjectParameter("phone2", phone2);
-            }
-            else
-            {
-                phone2Parameter = new global::System.Data.Objects.ObjectParameter("phone2", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter descriptionParameter;
-            if ((description != null))
-            {
-                descriptionParameter = new global::System.Data.Objects.ObjectParameter("description", description);
-            }
-            else
-            {
-                descriptionParameter = new global::System.Data.Objects.ObjectParameter("description", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter map1Parameter;
-            if ((map1 != null))
-            {
-                map1Parameter = new global::System.Data.Objects.ObjectParameter("map1", map1);
-            }
-            else
-            {
-                map1Parameter = new global::System.Data.Objects.ObjectParameter("map1", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter map2Parameter;
-            if ((map2 != null))
-            {
-                map2Parameter = new global::System.Data.Objects.ObjectParameter("map2", map2);
-            }
-            else
-            {
-                map2Parameter = new global::System.Data.Objects.ObjectParameter("map2", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter idTerritoryParameter;
-            if (idTerritory.HasValue)
-            {
-                idTerritoryParameter = new global::System.Data.Objects.ObjectParameter("idTerritory", idTerritory);
-            }
-            else
-            {
-                idTerritoryParameter = new global::System.Data.Objects.ObjectParameter("idTerritory", typeof(int));
-            }
-            global::System.Data.Objects.ObjectParameter idCityParameter;
-            if (idCity.HasValue)
-            {
-                idCityParameter = new global::System.Data.Objects.ObjectParameter("idCity", idCity);
-            }
-            else
-            {
-                idCityParameter = new global::System.Data.Objects.ObjectParameter("idCity", typeof(int));
-            }
-            global::System.Data.Objects.ObjectParameter customField1Parameter;
-            if ((customField1 != null))
-            {
-                customField1Parameter = new global::System.Data.Objects.ObjectParameter("customField1", customField1);
-            }
-            else
-            {
-                customField1Parameter = new global::System.Data.Objects.ObjectParameter("customField1", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter customField2Parameter;
-            if ((customField2 != null))
-            {
-                customField2Parameter = new global::System.Data.Objects.ObjectParameter("customField2", customField2);
-            }
-            else
-            {
-                customField2Parameter = new global::System.Data.Objects.ObjectParameter("customField2", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter latParameter;
-            if (lat.HasValue)
-            {
-                latParameter = new global::System.Data.Objects.ObjectParameter("lat", lat);
-            }
-            else
-            {
-                latParameter = new global::System.Data.Objects.ObjectParameter("lat", typeof(double));
-            }
-            global::System.Data.Objects.ObjectParameter lngParameter;
-            if (lng.HasValue)
-            {
-                lngParameter = new global::System.Data.Objects.ObjectParameter("lng", lng);
-            }
-            else
-            {
-                lngParameter = new global::System.Data.Objects.ObjectParameter("lng", typeof(double));
-            }
-            return base.ExecuteFunction<Address>("address_Add", streetParameter, numberParameter, addressDataParameter, corner1Parameter, corner2Parameter, phone1Parameter, phone2Parameter, descriptionParameter, map1Parameter, map2Parameter, idTerritoryParameter, idCityParameter, customField1Parameter, customField2Parameter, latParameter, lngParameter);
-        }
-        /// <summary>
-        /// There are no comments for TerritoriesModel.address_AddWithPK in the schema.
-        /// </summary>
-        public global::System.Data.Objects.ObjectResult<Address> address_AddWithPK(
-                    global::System.Nullable<int> id, 
-                    string street, 
-                    string number, 
-                    string addressData, 
-                    string corner1, 
-                    string corner2, 
-                    string phone1, 
-                    string phone2, 
-                    string description, 
-                    string map1, 
-                    string map2, 
-                    global::System.Nullable<int> idTerritory, 
-                    global::System.Nullable<int> idCity, 
-                    string customField1, 
-                    string customField2, 
-                    global::System.Nullable<double> lat, 
-                    global::System.Nullable<double> lng)
-        {
-            global::System.Data.Objects.ObjectParameter idParameter;
-            if (id.HasValue)
-            {
-                idParameter = new global::System.Data.Objects.ObjectParameter("id", id);
-            }
-            else
-            {
-                idParameter = new global::System.Data.Objects.ObjectParameter("id", typeof(int));
-            }
-            global::System.Data.Objects.ObjectParameter streetParameter;
-            if ((street != null))
-            {
-                streetParameter = new global::System.Data.Objects.ObjectParameter("street", street);
-            }
-            else
-            {
-                streetParameter = new global::System.Data.Objects.ObjectParameter("street", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter numberParameter;
-            if ((number != null))
-            {
-                numberParameter = new global::System.Data.Objects.ObjectParameter("number", number);
-            }
-            else
-            {
-                numberParameter = new global::System.Data.Objects.ObjectParameter("number", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter addressDataParameter;
-            if ((addressData != null))
-            {
-                addressDataParameter = new global::System.Data.Objects.ObjectParameter("addressData", addressData);
-            }
-            else
-            {
-                addressDataParameter = new global::System.Data.Objects.ObjectParameter("addressData", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter corner1Parameter;
-            if ((corner1 != null))
-            {
-                corner1Parameter = new global::System.Data.Objects.ObjectParameter("corner1", corner1);
-            }
-            else
-            {
-                corner1Parameter = new global::System.Data.Objects.ObjectParameter("corner1", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter corner2Parameter;
-            if ((corner2 != null))
-            {
-                corner2Parameter = new global::System.Data.Objects.ObjectParameter("corner2", corner2);
-            }
-            else
-            {
-                corner2Parameter = new global::System.Data.Objects.ObjectParameter("corner2", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter phone1Parameter;
-            if ((phone1 != null))
-            {
-                phone1Parameter = new global::System.Data.Objects.ObjectParameter("phone1", phone1);
-            }
-            else
-            {
-                phone1Parameter = new global::System.Data.Objects.ObjectParameter("phone1", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter phone2Parameter;
-            if ((phone2 != null))
-            {
-                phone2Parameter = new global::System.Data.Objects.ObjectParameter("phone2", phone2);
-            }
-            else
-            {
-                phone2Parameter = new global::System.Data.Objects.ObjectParameter("phone2", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter descriptionParameter;
-            if ((description != null))
-            {
-                descriptionParameter = new global::System.Data.Objects.ObjectParameter("description", description);
-            }
-            else
-            {
-                descriptionParameter = new global::System.Data.Objects.ObjectParameter("description", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter map1Parameter;
-            if ((map1 != null))
-            {
-                map1Parameter = new global::System.Data.Objects.ObjectParameter("map1", map1);
-            }
-            else
-            {
-                map1Parameter = new global::System.Data.Objects.ObjectParameter("map1", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter map2Parameter;
-            if ((map2 != null))
-            {
-                map2Parameter = new global::System.Data.Objects.ObjectParameter("map2", map2);
-            }
-            else
-            {
-                map2Parameter = new global::System.Data.Objects.ObjectParameter("map2", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter idTerritoryParameter;
-            if (idTerritory.HasValue)
-            {
-                idTerritoryParameter = new global::System.Data.Objects.ObjectParameter("idTerritory", idTerritory);
-            }
-            else
-            {
-                idTerritoryParameter = new global::System.Data.Objects.ObjectParameter("idTerritory", typeof(int));
-            }
-            global::System.Data.Objects.ObjectParameter idCityParameter;
-            if (idCity.HasValue)
-            {
-                idCityParameter = new global::System.Data.Objects.ObjectParameter("idCity", idCity);
-            }
-            else
-            {
-                idCityParameter = new global::System.Data.Objects.ObjectParameter("idCity", typeof(int));
-            }
-            global::System.Data.Objects.ObjectParameter customField1Parameter;
-            if ((customField1 != null))
-            {
-                customField1Parameter = new global::System.Data.Objects.ObjectParameter("customField1", customField1);
-            }
-            else
-            {
-                customField1Parameter = new global::System.Data.Objects.ObjectParameter("customField1", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter customField2Parameter;
-            if ((customField2 != null))
-            {
-                customField2Parameter = new global::System.Data.Objects.ObjectParameter("customField2", customField2);
-            }
-            else
-            {
-                customField2Parameter = new global::System.Data.Objects.ObjectParameter("customField2", typeof(string));
-            }
-            global::System.Data.Objects.ObjectParameter latParameter;
-            if (lat.HasValue)
-            {
-                latParameter = new global::System.Data.Objects.ObjectParameter("lat", lat);
-            }
-            else
-            {
-                latParameter = new global::System.Data.Objects.ObjectParameter("lat", typeof(double));
-            }
-            global::System.Data.Objects.ObjectParameter lngParameter;
-            if (lng.HasValue)
-            {
-                lngParameter = new global::System.Data.Objects.ObjectParameter("lng", lng);
-            }
-            else
-            {
-                lngParameter = new global::System.Data.Objects.ObjectParameter("lng", typeof(double));
-            }
-            return base.ExecuteFunction<Address>("address_AddWithPK", idParameter, streetParameter, numberParameter, addressDataParameter, corner1Parameter, corner2Parameter, phone1Parameter, phone2Parameter, descriptionParameter, map1Parameter, map2Parameter, idTerritoryParameter, idCityParameter, customField1Parameter, customField2Parameter, latParameter, lngParameter);
+            return base.ExecuteFunction<Territory>("territories_GetById", iDParameter);
         }
     }
     /// <summary>
     /// There are no comments for TerritoriesModel.Address in the schema.
     /// </summary>
     /// <KeyProperties>
-    /// IdAddresses
+    /// IdAddress
     /// </KeyProperties>
     [global::System.Data.Objects.DataClasses.EdmEntityTypeAttribute(NamespaceName="TerritoriesModel", Name="Address")]
     [global::System.Runtime.Serialization.DataContractAttribute(IsReference=true)]
@@ -666,38 +329,84 @@ namespace Territories.Model
         /// <summary>
         /// Create a new Address object.
         /// </summary>
-        /// <param name="idAddresses">Initial value of IdAddresses.</param>
+        /// <param name="idAddress">Initial value of IdAddress.</param>
         /// <param name="street">Initial value of Street.</param>
-        public static Address CreateAddress(int idAddresses, string street)
+        public static Address CreateAddress(int idAddress, string street)
         {
             Address address = new Address();
-            address.IdAddresses = idAddresses;
+            address.IdAddress = idAddress;
             address.Street = street;
             return address;
         }
         /// <summary>
-        /// There are no comments for Property AddressData in the schema.
+        /// There are no comments for Property IdAddress in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string AddressData
+        public int IdAddress
         {
             get
             {
-                return this._AddressData;
+                return this._IdAddress;
             }
             set
             {
-                this.OnAddressDataChanging(value);
-                this.ReportPropertyChanging("AddressData");
-                this._AddressData = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("AddressData");
-                this.OnAddressDataChanged();
+                this.OnIdAddressChanging(value);
+                this.ReportPropertyChanging("IdAddress");
+                this._IdAddress = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("IdAddress");
+                this.OnIdAddressChanged();
             }
         }
-        private string _AddressData;
-        partial void OnAddressDataChanging(string value);
-        partial void OnAddressDataChanged();
+        private int _IdAddress;
+        partial void OnIdAddressChanging(int value);
+        partial void OnIdAddressChanged();
+        /// <summary>
+        /// There are no comments for Property Street in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Street
+        {
+            get
+            {
+                return this._Street;
+            }
+            set
+            {
+                this.OnStreetChanging(value);
+                this.ReportPropertyChanging("Street");
+                this._Street = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Street");
+                this.OnStreetChanged();
+            }
+        }
+        private string _Street;
+        partial void OnStreetChanging(string value);
+        partial void OnStreetChanged();
+        /// <summary>
+        /// There are no comments for Property Number in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Number
+        {
+            get
+            {
+                return this._Number;
+            }
+            set
+            {
+                this.OnNumberChanging(value);
+                this.ReportPropertyChanging("Number");
+                this._Number = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Number");
+                this.OnNumberChanged();
+            }
+        }
+        private string _Number;
+        partial void OnNumberChanging(string value);
+        partial void OnNumberChanged();
         /// <summary>
         /// There are no comments for Property Corner1 in the schema.
         /// </summary>
@@ -745,51 +454,51 @@ namespace Territories.Model
         partial void OnCorner2Changing(string value);
         partial void OnCorner2Changed();
         /// <summary>
-        /// There are no comments for Property CustomField1 in the schema.
+        /// There are no comments for Property Phone1 in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string CustomField1
+        public string Phone1
         {
             get
             {
-                return this._CustomField1;
+                return this._Phone1;
             }
             set
             {
-                this.OnCustomField1Changing(value);
-                this.ReportPropertyChanging("CustomField1");
-                this._CustomField1 = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("CustomField1");
-                this.OnCustomField1Changed();
+                this.OnPhone1Changing(value);
+                this.ReportPropertyChanging("Phone1");
+                this._Phone1 = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Phone1");
+                this.OnPhone1Changed();
             }
         }
-        private string _CustomField1;
-        partial void OnCustomField1Changing(string value);
-        partial void OnCustomField1Changed();
+        private string _Phone1;
+        partial void OnPhone1Changing(string value);
+        partial void OnPhone1Changed();
         /// <summary>
-        /// There are no comments for Property CustomField2 in the schema.
+        /// There are no comments for Property Phone2 in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string CustomField2
+        public string Phone2
         {
             get
             {
-                return this._CustomField2;
+                return this._Phone2;
             }
             set
             {
-                this.OnCustomField2Changing(value);
-                this.ReportPropertyChanging("CustomField2");
-                this._CustomField2 = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("CustomField2");
-                this.OnCustomField2Changed();
+                this.OnPhone2Changing(value);
+                this.ReportPropertyChanging("Phone2");
+                this._Phone2 = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Phone2");
+                this.OnPhone2Changed();
             }
         }
-        private string _CustomField2;
-        partial void OnCustomField2Changing(string value);
-        partial void OnCustomField2Changed();
+        private string _Phone2;
+        partial void OnPhone2Changing(string value);
+        partial void OnPhone2Changed();
         /// <summary>
         /// There are no comments for Property Description in the schema.
         /// </summary>
@@ -813,29 +522,6 @@ namespace Territories.Model
         private string _Description;
         partial void OnDescriptionChanging(string value);
         partial void OnDescriptionChanged();
-        /// <summary>
-        /// There are no comments for Property IdAddresses in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public int IdAddresses
-        {
-            get
-            {
-                return this._IdAddresses;
-            }
-            set
-            {
-                this.OnIdAddressesChanging(value);
-                this.ReportPropertyChanging("IdAddresses");
-                this._IdAddresses = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("IdAddresses");
-                this.OnIdAddressesChanged();
-            }
-        }
-        private int _IdAddresses;
-        partial void OnIdAddressesChanging(int value);
-        partial void OnIdAddressesChanged();
         /// <summary>
         /// There are no comments for Property Map1 in the schema.
         /// </summary>
@@ -883,97 +569,74 @@ namespace Territories.Model
         partial void OnMap2Changing(string value);
         partial void OnMap2Changed();
         /// <summary>
-        /// There are no comments for Property Number in the schema.
+        /// There are no comments for Property AddressData in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Number
+        public string AddressData
         {
             get
             {
-                return this._Number;
+                return this._AddressData;
             }
             set
             {
-                this.OnNumberChanging(value);
-                this.ReportPropertyChanging("Number");
-                this._Number = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("Number");
-                this.OnNumberChanged();
+                this.OnAddressDataChanging(value);
+                this.ReportPropertyChanging("AddressData");
+                this._AddressData = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("AddressData");
+                this.OnAddressDataChanged();
             }
         }
-        private string _Number;
-        partial void OnNumberChanging(string value);
-        partial void OnNumberChanged();
+        private string _AddressData;
+        partial void OnAddressDataChanging(string value);
+        partial void OnAddressDataChanged();
         /// <summary>
-        /// There are no comments for Property Phone1 in the schema.
+        /// There are no comments for Property CustomField1 in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Phone1
+        public string CustomField1
         {
             get
             {
-                return this._Phone1;
+                return this._CustomField1;
             }
             set
             {
-                this.OnPhone1Changing(value);
-                this.ReportPropertyChanging("Phone1");
-                this._Phone1 = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("Phone1");
-                this.OnPhone1Changed();
+                this.OnCustomField1Changing(value);
+                this.ReportPropertyChanging("CustomField1");
+                this._CustomField1 = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("CustomField1");
+                this.OnCustomField1Changed();
             }
         }
-        private string _Phone1;
-        partial void OnPhone1Changing(string value);
-        partial void OnPhone1Changed();
+        private string _CustomField1;
+        partial void OnCustomField1Changing(string value);
+        partial void OnCustomField1Changed();
         /// <summary>
-        /// There are no comments for Property Phone2 in the schema.
+        /// There are no comments for Property CustomField2 in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Phone2
+        public string CustomField2
         {
             get
             {
-                return this._Phone2;
+                return this._CustomField2;
             }
             set
             {
-                this.OnPhone2Changing(value);
-                this.ReportPropertyChanging("Phone2");
-                this._Phone2 = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("Phone2");
-                this.OnPhone2Changed();
+                this.OnCustomField2Changing(value);
+                this.ReportPropertyChanging("CustomField2");
+                this._CustomField2 = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("CustomField2");
+                this.OnCustomField2Changed();
             }
         }
-        private string _Phone2;
-        partial void OnPhone2Changing(string value);
-        partial void OnPhone2Changed();
-        /// <summary>
-        /// There are no comments for Property Street in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Street
-        {
-            get
-            {
-                return this._Street;
-            }
-            set
-            {
-                this.OnStreetChanging(value);
-                this.ReportPropertyChanging("Street");
-                this._Street = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("Street");
-                this.OnStreetChanged();
-            }
-        }
-        private string _Street;
-        partial void OnStreetChanging(string value);
-        partial void OnStreetChanged();
+        private string _CustomField2;
+        partial void OnCustomField2Changing(string value);
+        partial void OnCustomField2Changed();
         /// <summary>
         /// There are no comments for Property Lat in the schema.
         /// </summary>
@@ -1023,7 +686,7 @@ namespace Territories.Model
         /// <summary>
         /// There are no comments for City in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_directions_cities", "Cities")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "ADDRESSESKEY0", "Cities")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
@@ -1031,11 +694,11 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.FK_directions_cities", "Cities").Value;
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.ADDRESSESKEY0", "Cities").Value;
             }
             set
             {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.FK_directions_cities", "Cities").Value = value;
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.ADDRESSESKEY0", "Cities").Value = value;
             }
         }
         /// <summary>
@@ -1047,20 +710,20 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.FK_directions_cities", "Cities");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.ADDRESSESKEY0", "Cities");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<City>("TerritoriesModel.FK_directions_cities", "Cities", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<City>("TerritoriesModel.ADDRESSESKEY0", "Cities", value);
                 }
             }
         }
         /// <summary>
         /// There are no comments for Territory in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_directions_territories", "Territories")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "ADDRESSESKEY1", "Territories")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
@@ -1068,11 +731,11 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.FK_directions_territories", "Territories").Value;
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.ADDRESSESKEY1", "Territories").Value;
             }
             set
             {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.FK_directions_territories", "Territories").Value = value;
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.ADDRESSESKEY1", "Territories").Value = value;
             }
         }
         /// <summary>
@@ -1084,13 +747,13 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.FK_directions_territories", "Territories");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.ADDRESSESKEY1", "Territories");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Territory>("TerritoriesModel.FK_directions_territories", "Territories", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Territory>("TerritoriesModel.ADDRESSESKEY1", "Territories", value);
                 }
             }
         }
@@ -1118,29 +781,6 @@ namespace Territories.Model
             city.Name = name;
             return city;
         }
-        /// <summary>
-        /// There are no comments for Property Area in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Area
-        {
-            get
-            {
-                return this._Area;
-            }
-            set
-            {
-                this.OnAreaChanging(value);
-                this.ReportPropertyChanging("Area");
-                this._Area = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("Area");
-                this.OnAreaChanged();
-            }
-        }
-        private string _Area;
-        partial void OnAreaChanging(string value);
-        partial void OnAreaChanged();
         /// <summary>
         /// There are no comments for Property IdCity in the schema.
         /// </summary>
@@ -1188,9 +828,32 @@ namespace Territories.Model
         partial void OnNameChanging(string value);
         partial void OnNameChanged();
         /// <summary>
+        /// There are no comments for Property Area in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Area
+        {
+            get
+            {
+                return this._Area;
+            }
+            set
+            {
+                this.OnAreaChanging(value);
+                this.ReportPropertyChanging("Area");
+                this._Area = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Area");
+                this.OnAreaChanged();
+            }
+        }
+        private string _Area;
+        partial void OnAreaChanging(string value);
+        partial void OnAreaChanged();
+        /// <summary>
         /// There are no comments for Addresses in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_directions_cities", "Addresses")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "ADDRESSESKEY0", "Addresses")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
@@ -1198,20 +861,20 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Address>("TerritoriesModel.FK_directions_cities", "Addresses");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Address>("TerritoriesModel.ADDRESSESKEY0", "Addresses");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Address>("TerritoriesModel.FK_directions_cities", "Addresses", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Address>("TerritoriesModel.ADDRESSESKEY0", "Addresses", value);
                 }
             }
         }
         /// <summary>
         /// There are no comments for Department in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_cities_departments", "Departments")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "CITIESKEY0", "Departments")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
@@ -1219,11 +882,11 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Department>("TerritoriesModel.FK_cities_departments", "Departments").Value;
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Department>("TerritoriesModel.CITIESKEY0", "Departments").Value;
             }
             set
             {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Department>("TerritoriesModel.FK_cities_departments", "Departments").Value = value;
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Department>("TerritoriesModel.CITIESKEY0", "Departments").Value = value;
             }
         }
         /// <summary>
@@ -1235,20 +898,20 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Department>("TerritoriesModel.FK_cities_departments", "Departments");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Department>("TerritoriesModel.CITIESKEY0", "Departments");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Department>("TerritoriesModel.FK_cities_departments", "Departments", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Department>("TerritoriesModel.CITIESKEY0", "Departments", value);
                 }
             }
         }
         /// <summary>
         /// There are no comments for Publishers in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_publishers_cities", "Publishers")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "PUBLISHERSKEY0", "Publishers")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
@@ -1256,13 +919,13 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Publisher>("TerritoriesModel.FK_publishers_cities", "Publishers");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Publisher>("TerritoriesModel.PUBLISHERSKEY0", "Publishers");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Publisher>("TerritoriesModel.FK_publishers_cities", "Publishers", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Publisher>("TerritoriesModel.PUBLISHERSKEY0", "Publishers", value);
                 }
             }
         }
@@ -1290,29 +953,6 @@ namespace Territories.Model
             department.Name = name;
             return department;
         }
-        /// <summary>
-        /// There are no comments for Property Area in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Area
-        {
-            get
-            {
-                return this._Area;
-            }
-            set
-            {
-                this.OnAreaChanging(value);
-                this.ReportPropertyChanging("Area");
-                this._Area = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("Area");
-                this.OnAreaChanged();
-            }
-        }
-        private string _Area;
-        partial void OnAreaChanging(string value);
-        partial void OnAreaChanged();
         /// <summary>
         /// There are no comments for Property IdDepartment in the schema.
         /// </summary>
@@ -1360,9 +1000,32 @@ namespace Territories.Model
         partial void OnNameChanging(string value);
         partial void OnNameChanged();
         /// <summary>
+        /// There are no comments for Property Area in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Area
+        {
+            get
+            {
+                return this._Area;
+            }
+            set
+            {
+                this.OnAreaChanging(value);
+                this.ReportPropertyChanging("Area");
+                this._Area = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Area");
+                this.OnAreaChanged();
+            }
+        }
+        private string _Area;
+        partial void OnAreaChanging(string value);
+        partial void OnAreaChanged();
+        /// <summary>
         /// There are no comments for Cities in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_cities_departments", "Cities")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "CITIESKEY0", "Cities")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
@@ -1370,13 +1033,13 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<City>("TerritoriesModel.FK_cities_departments", "Cities");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<City>("TerritoriesModel.CITIESKEY0", "Cities");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<City>("TerritoriesModel.FK_cities_departments", "Cities", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<City>("TerritoriesModel.CITIESKEY0", "Cities", value);
                 }
             }
         }
@@ -1406,29 +1069,6 @@ namespace Territories.Model
             publisher.Notes = notes;
             return publisher;
         }
-        /// <summary>
-        /// There are no comments for Property Direction in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Direction
-        {
-            get
-            {
-                return this._Direction;
-            }
-            set
-            {
-                this.OnDirectionChanging(value);
-                this.ReportPropertyChanging("Direction");
-                this._Direction = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("Direction");
-                this.OnDirectionChanged();
-            }
-        }
-        private string _Direction;
-        partial void OnDirectionChanging(string value);
-        partial void OnDirectionChanged();
         /// <summary>
         /// There are no comments for Property IdPublisher in the schema.
         /// </summary>
@@ -1475,6 +1115,29 @@ namespace Territories.Model
         private string _Name;
         partial void OnNameChanging(string value);
         partial void OnNameChanged();
+        /// <summary>
+        /// There are no comments for Property Address in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address
+        {
+            get
+            {
+                return this._Address;
+            }
+            set
+            {
+                this.OnAddressChanging(value);
+                this.ReportPropertyChanging("Address");
+                this._Address = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Address");
+                this.OnAddressChanged();
+            }
+        }
+        private string _Address;
+        partial void OnAddressChanging(string value);
+        partial void OnAddressChanged();
         /// <summary>
         /// There are no comments for Property Notes in the schema.
         /// </summary>
@@ -1570,7 +1233,7 @@ namespace Territories.Model
         /// <summary>
         /// There are no comments for City in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_publishers_cities", "Cities")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "PUBLISHERSKEY0", "Cities")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
@@ -1578,11 +1241,11 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.FK_publishers_cities", "Cities").Value;
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.PUBLISHERSKEY0", "Cities").Value;
             }
             set
             {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.FK_publishers_cities", "Cities").Value = value;
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.PUBLISHERSKEY0", "Cities").Value = value;
             }
         }
         /// <summary>
@@ -1594,20 +1257,20 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.FK_publishers_cities", "Cities");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<City>("TerritoriesModel.PUBLISHERSKEY0", "Cities");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<City>("TerritoriesModel.FK_publishers_cities", "Cities", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<City>("TerritoriesModel.PUBLISHERSKEY0", "Cities", value);
                 }
             }
         }
         /// <summary>
         /// There are no comments for Tours in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_tours_publishers", "Tours")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "TOURSKEY0", "Tours")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
@@ -1615,13 +1278,13 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Tour>("TerritoriesModel.FK_tours_publishers", "Tours");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Tour>("TerritoriesModel.TOURSKEY0", "Tours");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Tour>("TerritoriesModel.FK_tours_publishers", "Tours", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Tour>("TerritoriesModel.TOURSKEY0", "Tours", value);
                 }
             }
         }
@@ -1650,29 +1313,6 @@ namespace Territories.Model
             return territory;
         }
         /// <summary>
-        /// There are no comments for Property Area in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Area
-        {
-            get
-            {
-                return this._Area;
-            }
-            set
-            {
-                this.OnAreaChanging(value);
-                this.ReportPropertyChanging("Area");
-                this._Area = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
-                this.ReportPropertyChanged("Area");
-                this.OnAreaChanged();
-            }
-        }
-        private string _Area;
-        partial void OnAreaChanging(string value);
-        partial void OnAreaChanged();
-        /// <summary>
         /// There are no comments for Property IdTerritory in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
@@ -1695,29 +1335,6 @@ namespace Territories.Model
         private int _IdTerritory;
         partial void OnIdTerritoryChanging(int value);
         partial void OnIdTerritoryChanged();
-        /// <summary>
-        /// There are no comments for Property Name in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name
-        {
-            get
-            {
-                return this._Name;
-            }
-            set
-            {
-                this.OnNameChanging(value);
-                this.ReportPropertyChanging("Name");
-                this._Name = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
-                this.ReportPropertyChanged("Name");
-                this.OnNameChanged();
-            }
-        }
-        private string _Name;
-        partial void OnNameChanging(string value);
-        partial void OnNameChanged();
         /// <summary>
         /// There are no comments for Property Number in the schema.
         /// </summary>
@@ -1742,9 +1359,55 @@ namespace Territories.Model
         partial void OnNumberChanging(global::System.Nullable<int> value);
         partial void OnNumberChanged();
         /// <summary>
+        /// There are no comments for Property Name in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name
+        {
+            get
+            {
+                return this._Name;
+            }
+            set
+            {
+                this.OnNameChanging(value);
+                this.ReportPropertyChanging("Name");
+                this._Name = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, false);
+                this.ReportPropertyChanged("Name");
+                this.OnNameChanged();
+            }
+        }
+        private string _Name;
+        partial void OnNameChanging(string value);
+        partial void OnNameChanged();
+        /// <summary>
+        /// There are no comments for Property Area in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute()]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public string Area
+        {
+            get
+            {
+                return this._Area;
+            }
+            set
+            {
+                this.OnAreaChanging(value);
+                this.ReportPropertyChanging("Area");
+                this._Area = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value, true);
+                this.ReportPropertyChanged("Area");
+                this.OnAreaChanged();
+            }
+        }
+        private string _Area;
+        partial void OnAreaChanging(string value);
+        partial void OnAreaChanged();
+        /// <summary>
         /// There are no comments for Addresses in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_directions_territories", "Addresses")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "ADDRESSESKEY1", "Addresses")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
@@ -1752,20 +1415,20 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Address>("TerritoriesModel.FK_directions_territories", "Addresses");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Address>("TerritoriesModel.ADDRESSESKEY1", "Addresses");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Address>("TerritoriesModel.FK_directions_territories", "Addresses", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Address>("TerritoriesModel.ADDRESSESKEY1", "Addresses", value);
                 }
             }
         }
         /// <summary>
         /// There are no comments for Tours in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_tours_territories", "Tours")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "TOURSKEY1", "Tours")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
@@ -1773,13 +1436,13 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Tour>("TerritoriesModel.FK_tours_territories", "Tours");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedCollection<Tour>("TerritoriesModel.TOURSKEY1", "Tours");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Tour>("TerritoriesModel.FK_tours_territories", "Tours", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedCollection<Tour>("TerritoriesModel.TOURSKEY1", "Tours", value);
                 }
             }
         }
@@ -1799,17 +1462,40 @@ namespace Territories.Model
         /// <summary>
         /// Create a new Tour object.
         /// </summary>
-        /// <param name="beginDate">Initial value of BeginDate.</param>
         /// <param name="idTerritory">Initial value of IdTerritory.</param>
+        /// <param name="beginDate">Initial value of BeginDate.</param>
         /// <param name="tourNumber">Initial value of TourNumber.</param>
-        public static Tour CreateTour(global::System.DateTime beginDate, int idTerritory, int tourNumber)
+        public static Tour CreateTour(int idTerritory, global::System.DateTime beginDate, int tourNumber)
         {
             Tour tour = new Tour();
-            tour.BeginDate = beginDate;
             tour.IdTerritory = idTerritory;
+            tour.BeginDate = beginDate;
             tour.TourNumber = tourNumber;
             return tour;
         }
+        /// <summary>
+        /// There are no comments for Property IdTerritory in the schema.
+        /// </summary>
+        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [global::System.Runtime.Serialization.DataMemberAttribute()]
+        public int IdTerritory
+        {
+            get
+            {
+                return this._IdTerritory;
+            }
+            set
+            {
+                this.OnIdTerritoryChanging(value);
+                this.ReportPropertyChanging("IdTerritory");
+                this._IdTerritory = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
+                this.ReportPropertyChanged("IdTerritory");
+                this.OnIdTerritoryChanged();
+            }
+        }
+        private int _IdTerritory;
+        partial void OnIdTerritoryChanging(int value);
+        partial void OnIdTerritoryChanged();
         /// <summary>
         /// There are no comments for Property BeginDate in the schema.
         /// </summary>
@@ -1857,29 +1543,6 @@ namespace Territories.Model
         partial void OnEndDateChanging(global::System.Nullable<global::System.DateTime> value);
         partial void OnEndDateChanged();
         /// <summary>
-        /// There are no comments for Property IdTerritory in the schema.
-        /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [global::System.Runtime.Serialization.DataMemberAttribute()]
-        public int IdTerritory
-        {
-            get
-            {
-                return this._IdTerritory;
-            }
-            set
-            {
-                this.OnIdTerritoryChanging(value);
-                this.ReportPropertyChanging("IdTerritory");
-                this._IdTerritory = global::System.Data.Objects.DataClasses.StructuralObject.SetValidValue(value);
-                this.ReportPropertyChanged("IdTerritory");
-                this.OnIdTerritoryChanged();
-            }
-        }
-        private int _IdTerritory;
-        partial void OnIdTerritoryChanging(int value);
-        partial void OnIdTerritoryChanged();
-        /// <summary>
         /// There are no comments for Property TourNumber in the schema.
         /// </summary>
         [global::System.Data.Objects.DataClasses.EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
@@ -1905,7 +1568,7 @@ namespace Territories.Model
         /// <summary>
         /// There are no comments for Publisher in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_tours_publishers", "Publishers")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "TOURSKEY0", "Publishers")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
@@ -1913,11 +1576,11 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Publisher>("TerritoriesModel.FK_tours_publishers", "Publishers").Value;
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Publisher>("TerritoriesModel.TOURSKEY0", "Publishers").Value;
             }
             set
             {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Publisher>("TerritoriesModel.FK_tours_publishers", "Publishers").Value = value;
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Publisher>("TerritoriesModel.TOURSKEY0", "Publishers").Value = value;
             }
         }
         /// <summary>
@@ -1929,20 +1592,20 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Publisher>("TerritoriesModel.FK_tours_publishers", "Publishers");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Publisher>("TerritoriesModel.TOURSKEY0", "Publishers");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Publisher>("TerritoriesModel.FK_tours_publishers", "Publishers", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Publisher>("TerritoriesModel.TOURSKEY0", "Publishers", value);
                 }
             }
         }
         /// <summary>
         /// There are no comments for Territory in the schema.
         /// </summary>
-        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "FK_tours_territories", "Territories")]
+        [global::System.Data.Objects.DataClasses.EdmRelationshipNavigationPropertyAttribute("TerritoriesModel", "TOURSKEY1", "Territories")]
         [global::System.Xml.Serialization.XmlIgnoreAttribute()]
         [global::System.Xml.Serialization.SoapIgnoreAttribute()]
         [global::System.Runtime.Serialization.DataMemberAttribute()]
@@ -1950,11 +1613,11 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.FK_tours_territories", "Territories").Value;
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.TOURSKEY1", "Territories").Value;
             }
             set
             {
-                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.FK_tours_territories", "Territories").Value = value;
+                ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.TOURSKEY1", "Territories").Value = value;
             }
         }
         /// <summary>
@@ -1966,13 +1629,13 @@ namespace Territories.Model
         {
             get
             {
-                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.FK_tours_territories", "Territories");
+                return ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.GetRelatedReference<Territory>("TerritoriesModel.TOURSKEY1", "Territories");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Territory>("TerritoriesModel.FK_tours_territories", "Territories", value);
+                    ((global::System.Data.Objects.DataClasses.IEntityWithRelationships)(this)).RelationshipManager.InitializeRelatedReference<Territory>("TerritoriesModel.TOURSKEY1", "Territories", value);
                 }
             }
         }

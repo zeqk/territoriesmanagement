@@ -9,6 +9,7 @@ using System.Text;
 using System.Collections.ObjectModel;
 using System.Data.Common;
 using System.Data.EntityClient;
+using FirebirdSql.Data.FirebirdClient;
 
 namespace Territories.Model
 {
@@ -196,7 +197,7 @@ namespace Territories.Model
                     cmd.Parameters.Add(descParam);
 
                     EntityParameter idParam = new EntityParameter("id", DbType.Int32);
-                    idParam.Value = v.IdAddresses;
+                    idParam.Value = v.IdAddress;
                     cmd.Parameters.Add(idParam);
 
                     EntityParameter map1Param = new EntityParameter("map1", DbType.String);
@@ -321,7 +322,7 @@ namespace Territories.Model
         /// <summary>
         /// There are no comments for TerritoriesModel.address_DeleteAll in the schema.
         /// </summary>
-        public void address_DeleteAll()
+        public void addresses_DeleteAll()
         {
             Collection<Int32> rv = new Collection<int>();
 
@@ -330,7 +331,7 @@ namespace Territories.Model
                 using (EntityConnection conn = new EntityConnection(this.Connection.ConnectionString))
                 {
                     EntityCommand cmd = conn.CreateCommand();
-                    cmd.CommandText = string.Format("{0}.{1}", this.DefaultContainerName, "address_DeleteAll");
+                    cmd.CommandText = string.Format("{0}.{1}", this.DefaultContainerName, "addresses_DeleteAll");
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     if (conn.State != ConnectionState.Open)
@@ -338,7 +339,7 @@ namespace Territories.Model
                         conn.Open();
                     }
 
-                    int count = cmd.ExecuteNonQuery();
+                    int count = (int)cmd.ExecuteScalar();
 
                 }
             }
@@ -368,7 +369,7 @@ namespace Territories.Model
                         conn.Open();
                     }
 
-                    int count = cmd.ExecuteNonQuery();
+                    int count = (int)cmd.ExecuteScalar();
 
                 }
             }
@@ -398,7 +399,7 @@ namespace Territories.Model
                         conn.Open();
                     }
 
-                    int count = cmd.ExecuteNonQuery();
+                    int count = (int) cmd.ExecuteScalar();
 
                 }
             }
@@ -428,7 +429,7 @@ namespace Territories.Model
                         conn.Open();
                     }
 
-                    int count = cmd.ExecuteNonQuery();
+                    int count = (int)cmd.ExecuteScalar();
 
                 }
             }
@@ -443,30 +444,24 @@ namespace Territories.Model
         /// <summary>
         /// There are no comments for TerritoriesModel.address_ResetId in the schema.
         /// </summary>
-        public void address_ResetId(int newId)
+        public void addresses_ResetId(int newId)
         {
             Collection<Int32> rv = new Collection<int>();
 
             try
             {
-                using (EntityConnection conn = new EntityConnection(this.Connection.ConnectionString))
+                string cmdText = "SET GENERATOR G_ADDRESSESIDADDRESSESGEN0 TO " + newId;
+
+                FbConnection con = ((FbConnection)((EntityConnection)(this.Connection)).StoreConnection);
+
+                FbCommand cmd = new FbCommand(cmdText, con);
+
+                if (con.State != ConnectionState.Open)
                 {
-                    EntityCommand cmd = conn.CreateCommand();
-                    cmd.CommandText = string.Format("{0}.{1}", this.DefaultContainerName, "address_ResetId");
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    EntityParameter newIdParam = new EntityParameter("newId", DbType.Int32);
-                    newIdParam.Value = newId;
-                    cmd.Parameters.Add(newIdParam);
-
-                    if (conn.State != ConnectionState.Open)
-                    {
-                        conn.Open();
-                    }
-
-                    int count = cmd.ExecuteNonQuery();
-
+                    con.Open();
                 }
+
+                cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -483,24 +478,18 @@ namespace Territories.Model
 
             try
             {
-                using (EntityConnection conn = new EntityConnection(this.Connection.ConnectionString))
+                string cmdText = "SET GENERATOR G_CITIESIDCITYGEN1 TO " + newId;
+
+                FbConnection con = ((FbConnection)((EntityConnection)(this.Connection)).StoreConnection);
+
+                FbCommand cmd = new FbCommand(cmdText, con);
+
+                if (con.State != ConnectionState.Open)
                 {
-                    EntityCommand cmd = conn.CreateCommand();
-                    cmd.CommandText = string.Format("{0}.{1}", this.DefaultContainerName, "cities_ResetId");
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    EntityParameter newIdParam = new EntityParameter("newId", DbType.Int32);
-                    newIdParam.Value = newId;
-                    cmd.Parameters.Add(newIdParam);
-
-                    if (conn.State != ConnectionState.Open)
-                    {
-                        conn.Open();
-                    }
-
-                    int count = cmd.ExecuteNonQuery();
-
+                    con.Open();
                 }
+
+                cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -517,24 +506,19 @@ namespace Territories.Model
 
             try
             {
-                using (EntityConnection conn = new EntityConnection(this.Connection.ConnectionString))
+                string cmdText = "SET GENERATOR G_DEPARTMENTSIDDEPARTMENTGEN2 TO " + newId;
+                
+                FbConnection con = ((FbConnection)((EntityConnection)(this.Connection)).StoreConnection);
+
+                FbCommand cmd = new FbCommand(cmdText, con);
+
+                if (con.State != ConnectionState.Open)
                 {
-                    EntityCommand cmd = conn.CreateCommand();
-                    cmd.CommandText = string.Format("{0}.{1}", this.DefaultContainerName, "departments_ResetId");
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    EntityParameter newIdParam = new EntityParameter("newId", DbType.Int32);
-                    newIdParam.Value = newId;
-                    cmd.Parameters.Add(newIdParam);
-
-                    if (conn.State != ConnectionState.Open)
-                    {
-                        conn.Open();
-                    }
-
-                    int count = cmd.ExecuteNonQuery();
-
+                    con.Open();
                 }
+
+                cmd.ExecuteNonQuery();
+                
             }
             catch (Exception ex)
             {
@@ -551,24 +535,18 @@ namespace Territories.Model
 
             try
             {
-                using (EntityConnection conn = new EntityConnection(this.Connection.ConnectionString))
+                string cmdText = "SET GENERATOR G_TERRITORIESIDTERRITORYGEN3 TO " + newId;
+
+                FbConnection con = ((FbConnection)((EntityConnection)(this.Connection)).StoreConnection);
+
+                FbCommand cmd = new FbCommand(cmdText, con);
+
+                if (con.State != ConnectionState.Open)
                 {
-                    EntityCommand cmd = conn.CreateCommand();
-                    cmd.CommandText = string.Format("{0}.{1}", this.DefaultContainerName, "territories_ResetId");
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    EntityParameter newIdParam = new EntityParameter("id", DbType.Int32);
-                    newIdParam.Value = newId;
-                    cmd.Parameters.Add(newIdParam);
-
-                    if (conn.State != ConnectionState.Open)
-                    {
-                        conn.Open();
-                    }
-
-                    int count = cmd.ExecuteNonQuery();
-
+                    con.Open();
                 }
+
+                cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -576,5 +554,6 @@ namespace Territories.Model
             }
         }
         #endregion
+
     }
 }

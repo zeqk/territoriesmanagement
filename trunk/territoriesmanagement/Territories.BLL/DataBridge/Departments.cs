@@ -14,10 +14,10 @@ using ZeqkTools.Internationalization;
 
 namespace Territories.BLL.DataBridge
 {
-    public class Departments : IDataBridge<Department>
+    public class Departments : IDataBridge<Model.Department>
     {
         private TerritoriesDataContext _dm;
-        private Func<TerritoriesDataContext, Department, IQueryable<Department>> _compiledSameDepartment;
+        private Func<TerritoriesDataContext, Model.Department, IQueryable<Model.Department>> _compiledSameDepartment;
         Globalization _gl;
 
         #region Constructors
@@ -44,12 +44,12 @@ namespace Territories.BLL.DataBridge
 
         #region IGenericServer<Department> Members
 
-        public Department Save(Department v)
+        public Model.Department Save(Model.Department v)
         {
             string invalidMessage = "";
             if (IsValid(v, ref invalidMessage))
             {
-                Department rv;
+                Model.Department rv;                
                 if (v.IdDepartment == 0)
                     rv = this.Insert(v);
                 else
@@ -60,7 +60,7 @@ namespace Territories.BLL.DataBridge
                 throw new Exception(invalidMessage); 
         }
 
-        public Department Insert(Department v)
+        public Model.Department Insert(Model.Department v)
         {
             try
             {
@@ -75,7 +75,7 @@ namespace Territories.BLL.DataBridge
             }
         }
 
-        public Department Update(Department v)
+        public Model.Department Update(Model.Department v)
         {
             try
             {
@@ -95,7 +95,7 @@ namespace Territories.BLL.DataBridge
         {
             try                
             {
-                Department dep = _dm.departments_GetById(id).First();
+                Model.Department dep = _dm.departments_GetById(id).First();
                 _dm.DeleteObject(dep);
                 _dm.SaveChanges();
             }
@@ -106,12 +106,12 @@ namespace Territories.BLL.DataBridge
             }
         }
 
-        public Department Load(int id)
+        public Model.Department Load(int id)
         {
             try
             {
                 _dm.Departments.MergeOption = MergeOption.NoTracking;
-                Department rv = _dm.departments_GetById(id).FirstOrDefault();
+                Model.Department rv = _dm.departments_GetById(id).FirstOrDefault();
                 return rv;
             }
             catch (Exception e)
@@ -124,13 +124,13 @@ namespace Territories.BLL.DataBridge
         {            
             try
             {
-                ObjectResult<Department> objectResults;
+                ObjectResult<Model.Department> objectResults;
                 string strQuery = "SELECT VALUE Department FROM TerritoriesDataContext.Departments AS Department";
 
                 if (strCriteria != "")
                     strQuery = strQuery + " WHERE " + strCriteria;
 
-                var query = _dm.CreateQuery<Department>(strQuery, parameters);
+                var query = _dm.CreateQuery<Model.Department>(strQuery, parameters);
                     objectResults = query.Execute(MergeOption.AppendOnly);
                 var results = from dep in objectResults
                               orderby dep.Name
@@ -143,7 +143,7 @@ namespace Territories.BLL.DataBridge
             }
         }
 
-        public bool IsValid(Department v, ref string message)
+        public bool IsValid(Model.Department v, ref string message)
         {
             bool rv = true;
             if (string.IsNullOrEmpty(v.Name))
@@ -161,9 +161,9 @@ namespace Territories.BLL.DataBridge
             return rv;
         }
 
-        public Department NewObject()
+        public Model.Department NewObject()
         {
-            Department rv = new Department();
+            Model.Department rv = new Model.Department();
             //rv.IdDepartment = 0;
             //rv.Name = "";
             //rv.Cities = new EntitySet<City>();
@@ -200,7 +200,7 @@ namespace Territories.BLL.DataBridge
         {
             List<string> propertyList = new List<string>();
 
-            System.Reflection.PropertyInfo[] properties = typeof(Department).GetProperties();
+            System.Reflection.PropertyInfo[] properties = typeof(Model.Department).GetProperties();
 
             foreach (var prop in properties)
             {
@@ -234,7 +234,7 @@ namespace Territories.BLL.DataBridge
             }
         }
 
-        private bool Exist(Department v)
+        private bool Exist(Model.Department v)
         {
             var found = _compiledSameDepartment(_dm, v).ToList();
 
@@ -246,7 +246,7 @@ namespace Territories.BLL.DataBridge
 
             _compiledSameDepartment = CompiledQuery.Compile
                 (
-                    (TerritoriesDataContext dm, Department v) => from dep in dm.Departments
+                    (TerritoriesDataContext dm, Model.Department v) => from dep in dm.Departments
                                                                  where dep.Name == v.Name && dep.IdDepartment != v.IdDepartment
                                                                  select dep
 

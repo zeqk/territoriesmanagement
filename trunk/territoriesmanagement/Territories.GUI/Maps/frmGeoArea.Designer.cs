@@ -29,16 +29,15 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.btnSaveScreen = new System.Windows.Forms.Button();
+            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.MainMap = new System.Windows.Forms.GMapControl();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.btnToStaticMap = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnGenImage = new System.Windows.Forms.Button();
             this.sfdSaveScreen = new System.Windows.Forms.SaveFileDialog();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.MainMap = new System.Windows.Forms.GMapControl();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
@@ -62,7 +61,6 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.btnSaveScreen);
             this.splitContainer1.Panel2.Controls.Add(this.btnToStaticMap);
             this.splitContainer1.Panel2.Controls.Add(this.btnCancel);
             this.splitContainer1.Panel2.Controls.Add(this.btnOk);
@@ -70,23 +68,72 @@
             this.splitContainer1.SplitterDistance = 438;
             this.splitContainer1.TabIndex = 0;
             // 
-            // btnSaveScreen
+            // splitContainer2
             // 
-            this.btnSaveScreen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer2.Name = "splitContainer2";
+            // 
+            // splitContainer2.Panel1
+            // 
+            this.splitContainer2.Panel1.Controls.Add(this.MainMap);
+            // 
+            // splitContainer2.Panel2
+            // 
+            this.splitContainer2.Panel2.Controls.Add(this.groupBox2);
+            this.splitContainer2.Size = new System.Drawing.Size(641, 438);
+            this.splitContainer2.SplitterDistance = 585;
+            this.splitContainer2.TabIndex = 0;
+            // 
+            // MainMap
+            // 
+            this.MainMap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MainMap.CacheLocation = "C:\\Users\\zeqk\\AppData\\Roaming\\GMap.NET\\";
+            this.MainMap.CanDragMap = true;
+            this.MainMap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainMap.Location = new System.Drawing.Point(0, 0);
+            this.MainMap.MapType = GMap.NET.MapType.GoogleMap;
+            this.MainMap.MarkersEnabled = true;
+            this.MainMap.Name = "MainMap";
+            this.MainMap.RoutesEnabled = true;
+            this.MainMap.ShowTileGridLines = false;
+            this.MainMap.Size = new System.Drawing.Size(585, 438);
+            this.MainMap.TabIndex = 10;
+            this.MainMap.Zoom = 2;
+            this.MainMap.OnMapZoomChanged += new GMap.NET.MapZoomChanged(this.MainMap_OnMapZoomChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSaveScreen.Location = new System.Drawing.Point(108, 3);
-            this.btnSaveScreen.Name = "btnSaveScreen";
-            this.btnSaveScreen.Size = new System.Drawing.Size(91, 28);
-            this.btnSaveScreen.TabIndex = 13;
-            this.btnSaveScreen.Text = "Save screen";
-            this.btnSaveScreen.UseVisualStyleBackColor = true;
-            this.btnSaveScreen.Click += new System.EventHandler(this.btnSaveScreen_Click);
+            this.groupBox2.Controls.Add(this.trackBar1);
+            this.groupBox2.Location = new System.Drawing.Point(2, -118);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(48, 553);
+            this.groupBox2.TabIndex = 31;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "zoom";
+            // 
+            // trackBar1
+            // 
+            this.trackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.trackBar1.AutoSize = false;
+            this.trackBar1.LargeChange = 1;
+            this.trackBar1.Location = new System.Drawing.Point(1, 118);
+            this.trackBar1.Maximum = 17;
+            this.trackBar1.Minimum = 1;
+            this.trackBar1.Name = "trackBar1";
+            this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
+            this.trackBar1.Size = new System.Drawing.Size(42, 432);
+            this.trackBar1.TabIndex = 29;
+            this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
+            this.trackBar1.Value = 12;
+            this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
             // 
             // btnToStaticMap
             // 
-            this.btnToStaticMap.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnToStaticMap.Location = new System.Drawing.Point(1, 3);
+            this.btnToStaticMap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnToStaticMap.Location = new System.Drawing.Point(12, 3);
             this.btnToStaticMap.Name = "btnToStaticMap";
             this.btnToStaticMap.Size = new System.Drawing.Size(91, 28);
             this.btnToStaticMap.TabIndex = 12;
@@ -130,67 +177,6 @@
             this.btnGenImage.UseVisualStyleBackColor = true;
             this.btnGenImage.Click += new System.EventHandler(this.btnGenImage_Click);
             // 
-            // splitContainer2
-            // 
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.Controls.Add(this.MainMap);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.Controls.Add(this.groupBox2);
-            this.splitContainer2.Size = new System.Drawing.Size(641, 438);
-            this.splitContainer2.SplitterDistance = 585;
-            this.splitContainer2.TabIndex = 0;
-            // 
-            // MainMap
-            // 
-            this.MainMap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.MainMap.CacheLocation = "C:\\Users\\zeqk\\AppData\\Roaming\\GMap.NET\\";
-            this.MainMap.CanDragMap = true;
-            this.MainMap.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainMap.Location = new System.Drawing.Point(0, 0);
-            this.MainMap.MapType = GMap.NET.MapType.GoogleMap;
-            this.MainMap.MarkersEnabled = true;
-            this.MainMap.Name = "MainMap";
-            this.MainMap.RoutesEnabled = true;
-            this.MainMap.ShowTileGridLines = false;
-            this.MainMap.Size = new System.Drawing.Size(585, 438);
-            this.MainMap.TabIndex = 10;
-            this.MainMap.Zoom = 2;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.trackBar1);
-            this.groupBox2.Location = new System.Drawing.Point(2, -118);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(48, 553);
-            this.groupBox2.TabIndex = 31;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "zoom";
-            // 
-            // trackBar1
-            // 
-            this.trackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.trackBar1.AutoSize = false;
-            this.trackBar1.LargeChange = 1;
-            this.trackBar1.Location = new System.Drawing.Point(1, 118);
-            this.trackBar1.Maximum = 17;
-            this.trackBar1.Minimum = 1;
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar1.Size = new System.Drawing.Size(42, 432);
-            this.trackBar1.TabIndex = 29;
-            this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
-            this.trackBar1.Value = 12;
-            this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
-            // 
             // frmGeoArea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -219,7 +205,6 @@
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnToStaticMap;
         private System.Windows.Forms.Button btnGenImage;
-        private System.Windows.Forms.Button btnSaveScreen;
         private System.Windows.Forms.SaveFileDialog sfdSaveScreen;
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.GMapControl MainMap;

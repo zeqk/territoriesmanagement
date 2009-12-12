@@ -262,7 +262,7 @@ namespace Territories.BLL.DataBridge
                                  orderby a.Street, a.Number
                                  select new 
                                  { 
-                                     Id = a.IdAddresses, 
+                                     Id = a.IdAddress, 
                                      Address = a.Street + " " + a.Number,
                                      Corners = a.Corner1
                                  };
@@ -292,11 +292,11 @@ namespace Territories.BLL.DataBridge
         public IList GetDepartments()
         {
             try
-            {                
+            {
                 var objectResults = _dm.departments_GetAll();
                 var results = from dep in objectResults
-                                  orderby dep.Name
-                                  select new {Id = dep.IdDepartment, Name = dep.Name };
+                              orderby dep.Name
+                              select new { Id = dep.IdDepartment, Name = dep.Name };
                 return results.ToList();
             }
             catch (Exception ex)
@@ -305,7 +305,7 @@ namespace Territories.BLL.DataBridge
             }                   
         }
 
-        public Department GetDepartmentById(int id)
+        public Model.Department GetDepartmentById(int id)
         {
             try 
 	        {

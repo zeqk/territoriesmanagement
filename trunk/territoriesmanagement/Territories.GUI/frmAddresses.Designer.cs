@@ -33,6 +33,9 @@
             this.btnAll = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnToExcel = new System.Windows.Forms.Button();
+            this.btnToGMaps = new System.Windows.Forms.Button();
+            this.btnViewMap = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
@@ -53,6 +56,8 @@
             this.cboDepartment = new System.Windows.Forms.ComboBox();
             this.ctxMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyGoogleMapsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sfdGMaps = new System.Windows.Forms.SaveFileDialog();
+            this.sfdExcelDestiny = new System.Windows.Forms.SaveFileDialog();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
             this.panel2.SuspendLayout();
@@ -61,107 +66,93 @@
             // 
             // btnAll
             // 
-            this.btnAll.AccessibleDescription = null;
-            this.btnAll.AccessibleName = null;
             resources.ApplyResources(this.btnAll, "btnAll");
-            this.btnAll.BackgroundImage = null;
-            this.btnAll.Font = null;
             this.btnAll.Name = "btnAll";
             this.btnAll.UseVisualStyleBackColor = true;
             this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
             // 
             // btnSearch
             // 
-            this.btnSearch.AccessibleDescription = null;
-            this.btnSearch.AccessibleName = null;
             resources.ApplyResources(this.btnSearch, "btnSearch");
-            this.btnSearch.BackgroundImage = null;
-            this.btnSearch.Font = null;
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // panel1
             // 
-            this.panel1.AccessibleDescription = null;
-            this.panel1.AccessibleName = null;
             resources.ApplyResources(this.panel1, "panel1");
-            this.panel1.BackgroundImage = null;
+            this.panel1.Controls.Add(this.btnToExcel);
+            this.panel1.Controls.Add(this.btnToGMaps);
+            this.panel1.Controls.Add(this.btnViewMap);
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.btnEdit);
             this.panel1.Controls.Add(this.btnNew);
-            this.panel1.Font = null;
             this.panel1.Name = "panel1";
+            // 
+            // btnToExcel
+            // 
+            resources.ApplyResources(this.btnToExcel, "btnToExcel");
+            this.btnToExcel.Name = "btnToExcel";
+            this.btnToExcel.UseVisualStyleBackColor = true;
+            this.btnToExcel.Click += new System.EventHandler(this.btnToExcel_Click);
+            // 
+            // btnToGMaps
+            // 
+            resources.ApplyResources(this.btnToGMaps, "btnToGMaps");
+            this.btnToGMaps.Name = "btnToGMaps";
+            this.btnToGMaps.UseVisualStyleBackColor = true;
+            this.btnToGMaps.Click += new System.EventHandler(this.btnToGMaps_Click);
+            // 
+            // btnViewMap
+            // 
+            resources.ApplyResources(this.btnViewMap, "btnViewMap");
+            this.btnViewMap.Name = "btnViewMap";
+            this.btnViewMap.UseVisualStyleBackColor = true;
+            this.btnViewMap.Click += new System.EventHandler(this.btnViewMap_Click);
             // 
             // btnDelete
             // 
-            this.btnDelete.AccessibleDescription = null;
-            this.btnDelete.AccessibleName = null;
             resources.ApplyResources(this.btnDelete, "btnDelete");
-            this.btnDelete.BackgroundImage = null;
-            this.btnDelete.Font = null;
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnEdit
             // 
-            this.btnEdit.AccessibleDescription = null;
-            this.btnEdit.AccessibleName = null;
             resources.ApplyResources(this.btnEdit, "btnEdit");
-            this.btnEdit.BackgroundImage = null;
-            this.btnEdit.Font = null;
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnNew
             // 
-            this.btnNew.AccessibleDescription = null;
-            this.btnNew.AccessibleName = null;
             resources.ApplyResources(this.btnNew, "btnNew");
-            this.btnNew.BackgroundImage = null;
-            this.btnNew.Font = null;
             this.btnNew.Name = "btnNew";
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
             // 
             // lblFiltered
             // 
-            this.lblFiltered.AccessibleDescription = null;
-            this.lblFiltered.AccessibleName = null;
             resources.ApplyResources(this.lblFiltered, "lblFiltered");
-            this.lblFiltered.Font = null;
             this.lblFiltered.Name = "lblFiltered";
             // 
             // lblResults
             // 
-            this.lblResults.AccessibleDescription = null;
-            this.lblResults.AccessibleName = null;
             resources.ApplyResources(this.lblResults, "lblResults");
-            this.lblResults.Font = null;
             this.lblResults.Name = "lblResults";
             // 
             // dgvResults
             // 
-            this.dgvResults.AccessibleDescription = null;
-            this.dgvResults.AccessibleName = null;
             this.dgvResults.AllowUserToAddRows = false;
             this.dgvResults.AllowUserToDeleteRows = false;
             resources.ApplyResources(this.dgvResults, "dgvResults");
-            this.dgvResults.BackgroundImage = null;
             this.dgvResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvResults.Font = null;
             this.dgvResults.Name = "dgvResults";
             this.dgvResults.ReadOnly = true;
             this.dgvResults.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvResults_MouseClick);
             // 
             // panel2
             // 
-            this.panel2.AccessibleDescription = null;
-            this.panel2.AccessibleName = null;
-            resources.ApplyResources(this.panel2, "panel2");
-            this.panel2.BackgroundImage = null;
             this.panel2.Controls.Add(this.chkDescription);
             this.panel2.Controls.Add(this.chkStreet);
             this.panel2.Controls.Add(this.chkCorners);
@@ -173,51 +164,35 @@
             this.panel2.Controls.Add(this.lblDepartment);
             this.panel2.Controls.Add(this.cboCity);
             this.panel2.Controls.Add(this.cboDepartment);
-            this.panel2.Font = null;
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
             // chkDescription
             // 
-            this.chkDescription.AccessibleDescription = null;
-            this.chkDescription.AccessibleName = null;
             resources.ApplyResources(this.chkDescription, "chkDescription");
-            this.chkDescription.BackgroundImage = null;
-            this.chkDescription.Font = null;
             this.chkDescription.Name = "chkDescription";
             this.chkDescription.UseVisualStyleBackColor = true;
             this.chkDescription.CheckedChanged += new System.EventHandler(this.fields_CheckedChanged);
             // 
             // chkStreet
             // 
-            this.chkStreet.AccessibleDescription = null;
-            this.chkStreet.AccessibleName = null;
             resources.ApplyResources(this.chkStreet, "chkStreet");
-            this.chkStreet.BackgroundImage = null;
-            this.chkStreet.Font = null;
             this.chkStreet.Name = "chkStreet";
             this.chkStreet.UseVisualStyleBackColor = true;
             this.chkStreet.CheckedChanged += new System.EventHandler(this.fields_CheckedChanged);
             // 
             // chkCorners
             // 
-            this.chkCorners.AccessibleDescription = null;
-            this.chkCorners.AccessibleName = null;
             resources.ApplyResources(this.chkCorners, "chkCorners");
-            this.chkCorners.BackgroundImage = null;
-            this.chkCorners.Font = null;
             this.chkCorners.Name = "chkCorners";
             this.chkCorners.UseVisualStyleBackColor = true;
             this.chkCorners.CheckedChanged += new System.EventHandler(this.fields_CheckedChanged);
             // 
             // schStreet
             // 
-            this.schStreet.AccessibleDescription = null;
-            this.schStreet.AccessibleName = null;
             resources.ApplyResources(this.schStreet, "schStreet");
-            this.schStreet.BackgroundImage = null;
             this.schStreet.Columns = null;
             this.schStreet.Criteria = ZeqkTools.Query.Enumerators.Criterias.EqualTo;
-            this.schStreet.Font = null;
             this.schStreet.Name = "schStreet";
             this.schStreet.Parameters = null;
             this.schStreet.Query = null;
@@ -225,98 +200,73 @@
             // 
             // lblTerritory
             // 
-            this.lblTerritory.AccessibleDescription = null;
-            this.lblTerritory.AccessibleName = null;
             resources.ApplyResources(this.lblTerritory, "lblTerritory");
-            this.lblTerritory.Font = null;
             this.lblTerritory.Name = "lblTerritory";
             // 
             // cboTerritory
             // 
-            this.cboTerritory.AccessibleDescription = null;
-            this.cboTerritory.AccessibleName = null;
-            resources.ApplyResources(this.cboTerritory, "cboTerritory");
-            this.cboTerritory.BackgroundImage = null;
             this.cboTerritory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTerritory.Font = null;
             this.cboTerritory.FormattingEnabled = true;
+            resources.ApplyResources(this.cboTerritory, "cboTerritory");
             this.cboTerritory.Name = "cboTerritory";
             // 
             // lblAddress
             // 
-            this.lblAddress.AccessibleDescription = null;
-            this.lblAddress.AccessibleName = null;
             resources.ApplyResources(this.lblAddress, "lblAddress");
-            this.lblAddress.Font = null;
             this.lblAddress.Name = "lblAddress";
             // 
             // lblCity
             // 
-            this.lblCity.AccessibleDescription = null;
-            this.lblCity.AccessibleName = null;
             resources.ApplyResources(this.lblCity, "lblCity");
-            this.lblCity.Font = null;
             this.lblCity.Name = "lblCity";
             // 
             // lblDepartment
             // 
-            this.lblDepartment.AccessibleDescription = null;
-            this.lblDepartment.AccessibleName = null;
             resources.ApplyResources(this.lblDepartment, "lblDepartment");
-            this.lblDepartment.Font = null;
             this.lblDepartment.Name = "lblDepartment";
             // 
             // cboCity
             // 
-            this.cboCity.AccessibleDescription = null;
-            this.cboCity.AccessibleName = null;
-            resources.ApplyResources(this.cboCity, "cboCity");
-            this.cboCity.BackgroundImage = null;
             this.cboCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCity.Font = null;
             this.cboCity.FormattingEnabled = true;
+            resources.ApplyResources(this.cboCity, "cboCity");
             this.cboCity.Name = "cboCity";
             // 
             // cboDepartment
             // 
-            this.cboDepartment.AccessibleDescription = null;
-            this.cboDepartment.AccessibleName = null;
-            resources.ApplyResources(this.cboDepartment, "cboDepartment");
-            this.cboDepartment.BackgroundImage = null;
             this.cboDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDepartment.Font = null;
             this.cboDepartment.FormattingEnabled = true;
+            resources.ApplyResources(this.cboDepartment, "cboDepartment");
             this.cboDepartment.Name = "cboDepartment";
             this.cboDepartment.SelectedIndexChanged += new System.EventHandler(this.cboDepartment_SelectedIndexChanged);
             // 
             // ctxMenu
             // 
-            this.ctxMenu.AccessibleDescription = null;
-            this.ctxMenu.AccessibleName = null;
-            resources.ApplyResources(this.ctxMenu, "ctxMenu");
-            this.ctxMenu.BackgroundImage = null;
-            this.ctxMenu.Font = null;
             this.ctxMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyGoogleMapsToolStripMenuItem});
             this.ctxMenu.Name = "ctxMenu";
+            resources.ApplyResources(this.ctxMenu, "ctxMenu");
             // 
             // copyGoogleMapsToolStripMenuItem
             // 
-            this.copyGoogleMapsToolStripMenuItem.AccessibleDescription = null;
-            this.copyGoogleMapsToolStripMenuItem.AccessibleName = null;
-            resources.ApplyResources(this.copyGoogleMapsToolStripMenuItem, "copyGoogleMapsToolStripMenuItem");
-            this.copyGoogleMapsToolStripMenuItem.BackgroundImage = null;
             this.copyGoogleMapsToolStripMenuItem.Name = "copyGoogleMapsToolStripMenuItem";
-            this.copyGoogleMapsToolStripMenuItem.ShortcutKeyDisplayString = null;
+            resources.ApplyResources(this.copyGoogleMapsToolStripMenuItem, "copyGoogleMapsToolStripMenuItem");
             this.copyGoogleMapsToolStripMenuItem.Click += new System.EventHandler(this.copyGoogleMapsToolStripMenuItem_Click);
+            // 
+            // sfdGMaps
+            // 
+            resources.ApplyResources(this.sfdGMaps, "sfdGMaps");
+            this.sfdGMaps.FileOk += new System.ComponentModel.CancelEventHandler(this.sfdGMaps_FileOk);
+            // 
+            // sfdExcelDestiny
+            // 
+            resources.ApplyResources(this.sfdExcelDestiny, "sfdExcelDestiny");
+            this.sfdExcelDestiny.FileOk += new System.ComponentModel.CancelEventHandler(this.sfdExcelDestiny_FileOk);
             // 
             // frmAddresses
             // 
-            this.AccessibleDescription = null;
-            this.AccessibleName = null;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = null;
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblResults);
@@ -324,8 +274,6 @@
             this.Controls.Add(this.dgvResults);
             this.Controls.Add(this.btnAll);
             this.Controls.Add(this.btnSearch);
-            this.Font = null;
-            this.Icon = null;
             this.Name = "frmAddresses";
             this.Load += new System.EventHandler(this.frmAddresses_Load);
             this.panel1.ResumeLayout(false);
@@ -363,6 +311,11 @@
         private System.Windows.Forms.ComboBox cboDepartment;
         private System.Windows.Forms.ContextMenuStrip ctxMenu;
         private System.Windows.Forms.ToolStripMenuItem copyGoogleMapsToolStripMenuItem;
+        private System.Windows.Forms.Button btnViewMap;
+        private System.Windows.Forms.Button btnToGMaps;
+        private System.Windows.Forms.SaveFileDialog sfdGMaps;
+        private System.Windows.Forms.Button btnToExcel;
+        private System.Windows.Forms.SaveFileDialog sfdExcelDestiny;
 
 
 

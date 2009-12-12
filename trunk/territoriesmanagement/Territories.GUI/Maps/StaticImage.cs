@@ -16,6 +16,8 @@ namespace Territories.GUI
 {
    public partial class StaticImage : Form
    {
+      public bool OnlyPoints = true;
+
       GMapControl MainMap;
       BackgroundWorker bg = new BackgroundWorker();
       readonly List<GMap.NET.Point> tileArea = new List<GMap.NET.Point>();
@@ -137,7 +139,7 @@ namespace Territories.GUI
                            rect.Size = new System.Drawing.Size(pxDelta.X, pxDelta.Y);
                            
                        }
-                       using (Font f = new Font(FontFamily.GenericSansSerif, 9, FontStyle.Bold))
+                       //using (Font f = new Font(FontFamily.GenericSansSerif, 9, FontStyle.Bold))
                        //using (Graphics gfx = Graphics.FromImage(bmpDestination))
                        //{
                        //    gfx.InterpolationMode = InterpolationMode.HighQualityBicubic;
@@ -160,7 +162,7 @@ namespace Territories.GUI
                        //        gfx.DrawString(rightBottom, f, p.Brush, rect.Right - s2.Width - s2.Height / 2, rect.Bottom - s2.Height - s2.Height / 2);
                        //    }
 
-                       //     draw scale
+                       //    // draw scale
                        //    using (Pen p = new Pen(Brushes.Blue, 1))
                        //    {
                        //        double rez = info.Projection.GetGroundResolution(info.Zoom, info.Area.Bottom);
@@ -175,7 +177,7 @@ namespace Territories.GUI
                        //        gfx.DrawString(leftBottom, f, p.Brush, rect.X + 10, rect.Bottom - s.Height - 20);
                        //    }
                        //}
-
+                       //bmpDestination.RotateFlip(RotateFlipType.Rotate270FlipNone);
                        using (Graphics gfx = Graphics.FromImage(bmpDestination))
                        {
                            gfx.InterpolationMode = InterpolationMode.HighQualityBicubic;
@@ -242,7 +244,7 @@ namespace Territories.GUI
                progressBar1.Value = 0;
                button1.Enabled = false;
 
-               bg.RunWorkerAsync(new MapInfo(MainMap.Projection, area, (int)numericUpDown1.Value, MainMap.MapType, MainMap.Overlays[1].Markers));
+               bg.RunWorkerAsync(new MapInfo(MainMap.Projection, area, (int)numericUpDown1.Value, MainMap.MapType, MainMap.Overlays[0].Markers));
             }
          }
          else
@@ -270,9 +272,20 @@ namespace Territories.GUI
 
           y = imageHeigth - y;
 
+          //al generar una gráfico los puntos se corren con respecto al mapa, nosé por qué?
           //calculo un 1% del tamaño de la imágen
-          int heigthPer = Convert.ToInt32(imageHeigth * 0.015);
-          int widthPer = Convert.ToInt32(imageWidth * 0.015);
+          int heigthPer = 0;
+          int widthPer = 0;
+          if (!OnlyPoints)
+          {
+              heigthPer = Convert.ToInt32(imageHeigth * 0.01);
+              widthPer = Convert.ToInt32(imageWidth * 0.01);
+          }
+          else //sí sólo tiene puntos, este es el ajuste necesario
+          {
+              heigthPer = Convert.ToInt32(imageHeigth * 0.32);
+              widthPer = Convert.ToInt32(imageWidth * 0.32);
+          }
           //le sumo un 1%
           y = y + heigthPer;
           x = x + heigthPer;

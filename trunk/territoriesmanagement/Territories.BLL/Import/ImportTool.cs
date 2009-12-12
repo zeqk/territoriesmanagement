@@ -27,7 +27,7 @@ namespace Territories.BLL.Import
         private Func<TerritoriesDataContext, string, IQueryable<int>> _compiledIdCityByName;
         private Func<TerritoriesDataContext, string, IQueryable<int>> _compiledIdTerritoryByName;
 
-        private Func<TerritoriesDataContext, Department, IQueryable<Department>> _compiledSameDepartment;
+        private Func<TerritoriesDataContext, Model.Department, IQueryable<Model.Department>> _compiledSameDepartment;
         private Func<TerritoriesDataContext, City, int,IQueryable<City>> _compiledSameCity;
         private Func<TerritoriesDataContext, Territory, IQueryable<Territory>> _compiledSameTerritory;
 
@@ -164,7 +164,7 @@ namespace Territories.BLL.Import
                     int count = 0;
                     foreach (DataRow row in dt.Rows)
                     {
-                        Department v;
+                        Model.Department v;
                         if(DataRowToDepartment(row,out v,ref message))
                             if (DepartmentIsValid(v, ref message))
                             {
@@ -249,17 +249,20 @@ namespace Territories.BLL.Import
                 {
                     Territory v; 
                     if(DataRowToTerritory(row,out v,ref message))
-                        if (TerritoryIsValid(v, ref message))
+                        if (!string.IsNullOrEmpty(v.Name)) //hay registros que no tienen territorio
                         {
-                            if (!_config.Territories.Fields.ContainsKey("IdTerritory"))
+                            if (TerritoryIsValid(v, ref message))
                             {
-                                _dm.AddToTerritories(v);
-                                count++;
-                            }
-                            else
-                            {
-                                _dm.territories_AddWithPK(v);
-                                count++;
+                                if (!_config.Territories.Fields.ContainsKey("IdTerritory"))
+                                {
+                                    _dm.AddToTerritories(v);
+                                    count++;
+                                }
+                                else
+                                {
+                                    _dm.territories_AddWithPK(v);
+                                    count++;
+                                }
                             }
                         }
                 }
@@ -323,10 +326,10 @@ namespace Territories.BLL.Import
         #region DataRowToEntity Methods
 
 
-        private bool DataRowToDepartment(DataRow row, out Department dep, ref string errorMsg)
+        private bool DataRowToDepartment(DataRow row, out Model.Department dep, ref string errorMsg)
         {
             bool rv = true;
-            dep = new Department();
+            dep = new Model.Department();
             try
             {
                 //Department.IdDepartment
@@ -384,11 +387,12 @@ namespace Territories.BLL.Import
                         string idColumn = _config.Cities.Fields["DepartmentId"];
                         idDepartment = Convert.ToInt32(row[idColumn].ToString());
                     }
-                    else
+                    else //valor por defecto
                         idDepartment = Convert.ToInt32(_config.Cities.DefaultFieldValues["DepartmentId"]);
                 }
                 //sólo si el id no está indicado se tratará de buscar por el nombre, si es que está indicado
-                if (idDepartment==0 && (_config.Cities.Fields.ContainsKey("DepartmentName") || _config.Cities.DefaultFieldValues.ContainsKey("DepartmentName"))) 
+                if (idDepartment == 0 && 
+                    (_config.Cities.Fields.ContainsKey("DepartmentName") || _config.Cities.DefaultFieldValues.ContainsKey("DepartmentName"))) 
                 {
                     string departmentName="";
                     if (_config.Cities.Fields.ContainsKey("DepartmentName"))
@@ -396,7 +400,7 @@ namespace Territories.BLL.Import
                         string nameColumn = _config.Cities.Fields["DepartmentName"];
                         departmentName = row[nameColumn].ToString();                    
                     }
-                    else
+                    else //valor por defecto
                         departmentName = _config.Cities.DefaultFieldValues["DepartmentName"].ToString();
 
                     idDepartment = _compiledIdDepartmentByName(_dm, departmentName).First();
@@ -439,6 +443,9 @@ namespace Territories.BLL.Import
                     string numColumn = _config.Territories.Fields["Number"];
                     t.Number = int.Parse(row[numColumn].ToString());
                 }
+                else //default value. TODO: comentar
+                    if (_config.Territories.DefaultFieldValues.ContainsKey("Number"))
+                        t.Number = int.Parse(_config.Territories.DefaultFieldValues["Number"].ToString());
                 //
             }
             catch (Exception)
@@ -460,7 +467,7 @@ namespace Territories.BLL.Import
                 if (_config.Addresses.Fields.ContainsKey("IdAddress"))
                 {
                     string idColumn = _config.Addresses.Fields["IdAddress"];
-                    a.IdAddresses = int.Parse(row[idColumn].ToString());
+                    a.IdAddress = int.Parse(row[idColumn].ToString());
                 }
                 //Address.Street
                 if (_config.Addresses.Fields.ContainsKey("Street"))
@@ -633,7 +640,7 @@ namespace Territories.BLL.Import
 
         #region IsValid Methods
 
-        public bool DepartmentIsValid(Department v, ref string message)
+        public bool DepartmentIsValid(Model.Department v, ref string message)
         {
             bool rv = true;
             string msg = "";
@@ -767,7 +774,7 @@ namespace Territories.BLL.Import
             //    }
             //}
 
-            if (AddressExist(v.IdAddresses))
+            if (AddressExist(v.IdAddress))
             {
                 msg += "\n  -Already exist. ";
                 rv = false;
@@ -775,7 +782,7 @@ namespace Territories.BLL.Import
 
             if (!rv)
             {
-                message += "\n-\"" + v.IdAddresses + " " + v.Street + "\" is invalid: " + msg;
+                message += "\n-\"" + v.IdAddress + " " + v.Street + "\" is invalid: " + msg;
             }
 
             return rv;
@@ -786,7 +793,7 @@ namespace Territories.BLL.Import
         #endregion
 
         #region EntityExist Methods
-        private bool DepartmentExist(Department v)
+        private bool DepartmentExist(Model.Department v)
         {
             int found = _compiledSameDepartment(_dm, v).Count();
             return (found > 0);
@@ -845,7 +852,7 @@ namespace Territories.BLL.Import
             int found = 0;
             if (id!=0)
             {
-                found = _dm.address_GetById(id).Count();
+                found = _dm.addresses_GetById(id).Count();
             }
 
             return found > 0;
@@ -963,7 +970,7 @@ namespace Territories.BLL.Import
 
             this._compiledSameDepartment = CompiledQuery.Compile
                 (
-                    (TerritoriesDataContext dm, Department v) => from d in dm.Departments
+                    (TerritoriesDataContext dm, Model.Department v) => from d in dm.Departments
                                                                  where d.Name == v.Name ||
                                                                        d.IdDepartment == v.IdDepartment
                                                                  select d
