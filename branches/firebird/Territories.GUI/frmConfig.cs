@@ -66,16 +66,23 @@ namespace Territories.GUI
 
             _config.LoadSavedConfig();
 
+            //cultures
             string[] cultures = { "en-US", "es-AR" };
 
             cmbCulture.DataSource = cultures;
 
             cmbCulture.SelectedText = Thread.CurrentThread.CurrentCulture.IetfLanguageTag;
+
+
+            //maps
+            cboMapType.DataSource = Enum.GetValues(typeof(GMap.NET.MapType));
+            cboMapType.SelectedItem = _config.MapType;
         }
 
         private void btnApply_Click(object sender, EventArgs e)
         {
             ApplyCultureChange();
+            ApplyMapsChange();
             _config.SaveConfig();
         }
 
@@ -87,6 +94,16 @@ namespace Territories.GUI
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cmbCulture.SelectedValue.ToString());
                 _config.CultureTag = Thread.CurrentThread.CurrentCulture.IetfLanguageTag;
             }
+        }
+
+        private void ApplyMapsChange()
+        {
+            _config.MapType = (GMap.NET.MapType)cboMapType.SelectedValue;
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

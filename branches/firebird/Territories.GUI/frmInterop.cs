@@ -358,7 +358,7 @@ namespace Territories.GUI
 
                 string[] properties = chkListAddresses.CheckedItems.Cast<string>().ToArray();
 
-                exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "Address", "Addresses", "", null, properties);
+                exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "Address", "Addresses",properties, "", null);
             }
 
 
@@ -366,21 +366,21 @@ namespace Territories.GUI
             {
                 string[] properties = chkListTerritories.CheckedItems.Cast<string>().ToArray();
 
-                exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "Territory", "Territories","",null, properties);
+                exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "Territory", "Territories",properties, "",null);
             }
 
             if (rdoCities.Checked)
             {
                 string[] properties = chkListCities.CheckedItems.Cast<string>().ToArray();
 
-                exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "City", "Cities", "", null, properties);
+                exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "City", "Cities",properties, "", null);
             }
 
             if (rdoDepartments.Checked)
             {
                 string[] properties = chkListDepartments.CheckedItems.Cast<string>().ToArray();
 
-                exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "Department", "Departments", "", null, properties);
+                exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "Department", "Departments", properties, "", null);
             }
 
             if (exported)

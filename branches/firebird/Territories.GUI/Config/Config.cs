@@ -14,9 +14,12 @@ namespace Territories.GUI.Config
         
         public string CultureTag;
 
+        public GMap.NET.MapType MapType;
+
         public Config()
         {
             CultureTag = "en-US";
+            MapType = GMap.NET.MapType.GoogleMap;
         }
 
         public void SaveConfig()
@@ -65,6 +68,7 @@ namespace Territories.GUI.Config
         private void SetConfig(Config config)
         {
             this.CultureTag = config.CultureTag;
+            this.MapType = config.MapType;
         }
 	
     }
