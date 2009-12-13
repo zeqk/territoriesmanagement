@@ -24,7 +24,10 @@ namespace Territories.GUI.Config
 
         public void SaveConfig()
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + "config.xml";
+            string configFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Territories Management\";
+            if (!Directory.Exists(configFolder))
+                Directory.CreateDirectory(configFolder);
+            string path = configFolder + "config.xml";
             SaveConfig(path);
         }
 
@@ -39,10 +42,10 @@ namespace Territories.GUI.Config
 
         }
 
-
         public void LoadSavedConfig()
         {
-            string path = AppDomain.CurrentDomain.BaseDirectory + "config.xml";
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Territories Management\config.xml";
+
             LoadSavedConfig(path);
         }
 

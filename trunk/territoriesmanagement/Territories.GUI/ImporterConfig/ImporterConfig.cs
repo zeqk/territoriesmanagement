@@ -85,6 +85,15 @@ namespace Territories.GUI.ImporterConfig
 
         #region Serialization methods
 
+        public void SaveConfig()
+        {
+            string configFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Territories Management\";
+            if (!Directory.Exists(configFolder))
+                Directory.CreateDirectory(configFolder);
+            string path = configFolder + "importConfig.xml";
+            SaveConfig(path);
+        }
+
         public void SaveConfig(string path)
         {
             using(StreamWriter sw = new StreamWriter(path,false,Encoding.UTF8))
@@ -93,6 +102,13 @@ namespace Territories.GUI.ImporterConfig
                 ser.Serialize(sw, this);
 	        }
             
+        }
+
+        public void LoadConfig()
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Territories Management\importConfig.xml";
+
+            LoadConfig(path);
         }
 
         public void LoadConfig(string path)
