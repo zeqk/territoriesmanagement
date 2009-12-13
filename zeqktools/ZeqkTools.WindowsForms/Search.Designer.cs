@@ -1,4 +1,4 @@
-﻿namespace ZeqkTools.Controls
+﻿namespace ZeqkTools.WindowsForms.Controls
 {
     partial class Search
     {
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.splitControl = new System.Windows.Forms.SplitContainer();
-            this.cmbCriteria = new System.Windows.Forms.ComboBox();
+            this.cboCriteria = new System.Windows.Forms.ComboBox();
             this.txtValue = new System.Windows.Forms.TextBox();
             this.splitControl.Panel1.SuspendLayout();
             this.splitControl.Panel2.SuspendLayout();
@@ -44,7 +44,7 @@
             // 
             // splitControl.Panel1
             // 
-            this.splitControl.Panel1.Controls.Add(this.cmbCriteria);
+            this.splitControl.Panel1.Controls.Add(this.cboCriteria);
             // 
             // splitControl.Panel2
             // 
@@ -53,15 +53,15 @@
             this.splitControl.SplitterDistance = 118;
             this.splitControl.TabIndex = 3;
             // 
-            // cmbCriteria
+            // cboCriteria
             // 
-            this.cmbCriteria.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.cmbCriteria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCriteria.FormattingEnabled = true;
-            this.cmbCriteria.Location = new System.Drawing.Point(0, 0);
-            this.cmbCriteria.Name = "cmbCriteria";
-            this.cmbCriteria.Size = new System.Drawing.Size(118, 21);
-            this.cmbCriteria.TabIndex = 1;
+            this.cboCriteria.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cboCriteria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCriteria.FormattingEnabled = true;
+            this.cboCriteria.Location = new System.Drawing.Point(0, 0);
+            this.cboCriteria.Name = "cboCriteria";
+            this.cboCriteria.Size = new System.Drawing.Size(118, 21);
+            this.cboCriteria.TabIndex = 1;
             // 
             // txtValue
             // 
@@ -91,7 +91,7 @@
         #endregion
 
         private System.Windows.Forms.SplitContainer splitControl;
-        private System.Windows.Forms.ComboBox cmbCriteria;
+        private System.Windows.Forms.ComboBox cboCriteria;
         private System.Windows.Forms.TextBox txtValue;
 
     }
