@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Territories.GUI")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("RinoxSoft")]
+[assembly: AssemblyCompany("Zeqk")]
 [assembly: AssemblyProduct("Territories.GUI")]
-[assembly: AssemblyCopyright("Copyright © RinoxSoft 2009")]
+[assembly: AssemblyCopyright("Copyright © Zeqk 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

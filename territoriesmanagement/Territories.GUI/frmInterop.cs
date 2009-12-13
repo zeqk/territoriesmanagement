@@ -20,7 +20,6 @@ namespace Territories.GUI
 
         GeoRssImportTool _geoRssImporter;
         ImportTool _importer;
-        string _configFile;
         bool _isDirty;
         ImporterConfig.ImporterConfig _config;
 
@@ -32,8 +31,6 @@ namespace Territories.GUI
             _isDirty = false;
             InitializeComponent();
 
-            _configFile = AppDomain.CurrentDomain.BaseDirectory + "importConfig.xml";
-
         }
 
         private void frmInterop_Load(object sender, EventArgs e)
@@ -42,7 +39,7 @@ namespace Territories.GUI
 
             _config = new ImporterConfig.ImporterConfig();
 
-            _config.LoadConfig(_configFile);
+            _config.LoadConfig();
 
             grdImportConfig.SelectedObject = _config;
 
@@ -57,7 +54,7 @@ namespace Territories.GUI
 
         private void frmInterop_FormClosing(object sender, FormClosingEventArgs e)
         {
-            _config.SaveConfig(_configFile);
+            _config.SaveConfig();
         }
 
         #region DataImport

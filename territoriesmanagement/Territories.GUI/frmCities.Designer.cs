@@ -43,7 +43,7 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.grdSearch = new System.Windows.Forms.GroupBox();
             this.lblFilterName = new System.Windows.Forms.Label();
-            this.schName = new ZeqkTools.Controls.Search();
+            this.schName = new ZeqkTools.WindowsForms.Controls.Search();
             this.lblFilterDepartment = new System.Windows.Forms.Label();
             this.cboFilterDepartment = new System.Windows.Forms.ComboBox();
             this.lblResult = new System.Windows.Forms.Label();
@@ -421,7 +421,7 @@
         private System.Windows.Forms.Label lblFilterDepartment;
         private System.Windows.Forms.ComboBox cboFilterDepartment;
         private System.Windows.Forms.BindingSource bsCity;
-        private ZeqkTools.Controls.Search schName;
+        private ZeqkTools.WindowsForms.Controls.Search schName;
         private System.Windows.Forms.Label lblFilterName;
     }
 }

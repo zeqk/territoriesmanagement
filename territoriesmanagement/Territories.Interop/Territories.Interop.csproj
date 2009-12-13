@@ -81,9 +81,9 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="ZeqkTools.Query, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="ZeqkTools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libs\ZeqkTools.Query.dll</HintPath>
+      <HintPath>..\libs\ZeqkTools.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

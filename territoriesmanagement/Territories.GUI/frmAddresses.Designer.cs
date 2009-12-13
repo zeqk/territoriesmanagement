@@ -46,7 +46,7 @@
             this.chkDescription = new System.Windows.Forms.CheckBox();
             this.chkStreet = new System.Windows.Forms.CheckBox();
             this.chkCorners = new System.Windows.Forms.CheckBox();
-            this.schStreet = new ZeqkTools.Controls.Search();
+            this.schStreet = new ZeqkTools.WindowsForms.Controls.Search();
             this.lblTerritory = new System.Windows.Forms.Label();
             this.cboTerritory = new System.Windows.Forms.ComboBox();
             this.lblAddress = new System.Windows.Forms.Label();
@@ -301,7 +301,7 @@
         private System.Windows.Forms.CheckBox chkDescription;
         private System.Windows.Forms.CheckBox chkStreet;
         private System.Windows.Forms.CheckBox chkCorners;
-        private ZeqkTools.Controls.Search schStreet;
+        private ZeqkTools.WindowsForms.Controls.Search schStreet;
         private System.Windows.Forms.Label lblTerritory;
         private System.Windows.Forms.ComboBox cboTerritory;
         private System.Windows.Forms.Label lblAddress;

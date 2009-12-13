@@ -32,13 +32,19 @@
             this.btnCities = new System.Windows.Forms.Button();
             this.btnDepartments = new System.Windows.Forms.Button();
             this.bntTerritories = new System.Windows.Forms.Button();
-            this.btnInterop = new System.Windows.Forms.Button();
-            this.btnConfiguration = new System.Windows.Forms.Button();
+            this.menu = new System.Windows.Forms.MenuStrip();
+            this.menuTools = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuInteroperabilty = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAddress
             // 
-            this.btnAddress.Location = new System.Drawing.Point(178, 12);
+            this.btnAddress.Location = new System.Drawing.Point(185, 64);
             this.btnAddress.Name = "btnAddress";
             this.btnAddress.Size = new System.Drawing.Size(247, 75);
             this.btnAddress.TabIndex = 0;
@@ -48,7 +54,7 @@
             // 
             // btnCities
             // 
-            this.btnCities.Location = new System.Drawing.Point(14, 12);
+            this.btnCities.Location = new System.Drawing.Point(16, 41);
             this.btnCities.Name = "btnCities";
             this.btnCities.Size = new System.Drawing.Size(138, 46);
             this.btnCities.TabIndex = 1;
@@ -58,7 +64,7 @@
             // 
             // btnDepartments
             // 
-            this.btnDepartments.Location = new System.Drawing.Point(14, 64);
+            this.btnDepartments.Location = new System.Drawing.Point(16, 93);
             this.btnDepartments.Name = "btnDepartments";
             this.btnDepartments.Size = new System.Drawing.Size(138, 46);
             this.btnDepartments.TabIndex = 2;
@@ -68,7 +74,7 @@
             // 
             // bntTerritories
             // 
-            this.bntTerritories.Location = new System.Drawing.Point(14, 116);
+            this.bntTerritories.Location = new System.Drawing.Point(16, 145);
             this.bntTerritories.Name = "bntTerritories";
             this.bntTerritories.Size = new System.Drawing.Size(138, 46);
             this.bntTerritories.TabIndex = 3;
@@ -76,41 +82,79 @@
             this.bntTerritories.UseVisualStyleBackColor = true;
             this.bntTerritories.Click += new System.EventHandler(this.bntTerritories_Click);
             // 
-            // btnInterop
+            // menu
             // 
-            this.btnInterop.Location = new System.Drawing.Point(451, 12);
-            this.btnInterop.Name = "btnInterop";
-            this.btnInterop.Size = new System.Drawing.Size(138, 46);
-            this.btnInterop.TabIndex = 4;
-            this.btnInterop.Text = "Interoperability";
-            this.btnInterop.UseVisualStyleBackColor = true;
-            this.btnInterop.Click += new System.EventHandler(this.btnInterop_Click);
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuTools,
+            this.helpToolStripMenuItem});
+            this.menu.Location = new System.Drawing.Point(0, 0);
+            this.menu.Name = "menu";
+            this.menu.Size = new System.Drawing.Size(453, 24);
+            this.menu.TabIndex = 6;
+            this.menu.Text = "menuStrip1";
             // 
-            // btnConfiguration
+            // menuTools
             // 
-            this.btnConfiguration.Location = new System.Drawing.Point(451, 74);
-            this.btnConfiguration.Name = "btnConfiguration";
-            this.btnConfiguration.Size = new System.Drawing.Size(138, 46);
-            this.btnConfiguration.TabIndex = 5;
-            this.btnConfiguration.Text = "Configuration";
-            this.btnConfiguration.UseVisualStyleBackColor = true;
-            this.btnConfiguration.Click += new System.EventHandler(this.btnConfiguration_Click);
+            this.menuTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuInteroperabilty,
+            this.toolStripSeparator1,
+            this.menuConfiguration});
+            this.menuTools.Name = "menuTools";
+            this.menuTools.Size = new System.Drawing.Size(48, 20);
+            this.menuTools.Text = "Tools";
+            // 
+            // menuConfiguration
+            // 
+            this.menuConfiguration.Name = "menuConfiguration";
+            this.menuConfiguration.Size = new System.Drawing.Size(152, 22);
+            this.menuConfiguration.Text = "Configuration";
+            this.menuConfiguration.Click += new System.EventHandler(this.menuConfiguration_Click);
+            // 
+            // menuInteroperabilty
+            // 
+            this.menuInteroperabilty.Name = "menuInteroperabilty";
+            this.menuInteroperabilty.Size = new System.Drawing.Size(152, 22);
+            this.menuInteroperabilty.Text = "Interoperabilty";
+            this.menuInteroperabilty.Click += new System.EventHandler(this.menuInteroperabilty_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuAbout});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // menuAbout
+            // 
+            this.menuAbout.Name = "menuAbout";
+            this.menuAbout.Size = new System.Drawing.Size(237, 22);
+            this.menuAbout.Text = "About Territories Management";
+            this.menuAbout.Click += new System.EventHandler(this.menuAbout_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(603, 182);
-            this.Controls.Add(this.btnConfiguration);
-            this.Controls.Add(this.btnInterop);
+            this.ClientSize = new System.Drawing.Size(453, 213);
             this.Controls.Add(this.bntTerritories);
             this.Controls.Add(this.btnDepartments);
             this.Controls.Add(this.btnCities);
             this.Controls.Add(this.btnAddress);
+            this.Controls.Add(this.menu);
+            this.MainMenuStrip = this.menu;
             this.Name = "frmMain";
             this.Text = "Territories Management";
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.menu.ResumeLayout(false);
+            this.menu.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -120,8 +164,13 @@
         private System.Windows.Forms.Button btnCities;
         private System.Windows.Forms.Button btnDepartments;
         private System.Windows.Forms.Button bntTerritories;
-        private System.Windows.Forms.Button btnInterop;
-        private System.Windows.Forms.Button btnConfiguration;
+        private System.Windows.Forms.MenuStrip menu;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuAbout;
+        private System.Windows.Forms.ToolStripMenuItem menuTools;
+        private System.Windows.Forms.ToolStripMenuItem menuConfiguration;
+        private System.Windows.Forms.ToolStripMenuItem menuInteroperabilty;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 
     }
 }

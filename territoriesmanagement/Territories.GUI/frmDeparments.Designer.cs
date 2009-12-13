@@ -43,7 +43,7 @@
             this.lblFilterName = new System.Windows.Forms.Label();
             this.lblResult = new System.Windows.Forms.Label();
             this.lblFiltered = new System.Windows.Forms.Label();
-            this.schName = new ZeqkTools.Controls.Search();
+            this.schName = new ZeqkTools.WindowsForms.Controls.Search();
             this.btnClearFilter = new System.Windows.Forms.Button();
             this.dgvResults = new System.Windows.Forms.DataGridView();
             this.btnFilter = new System.Windows.Forms.Button();
@@ -327,7 +327,7 @@
         private System.Windows.Forms.Button btnClearFilter;
         private System.Windows.Forms.Button btnFilter;
         private System.Windows.Forms.Button btnRelations;
-        private ZeqkTools.Controls.Search schName;
+        private ZeqkTools.WindowsForms.Controls.Search schName;
         private System.Windows.Forms.TabControl tabPanel;
         private System.Windows.Forms.TabPage tabCities;
         private System.Windows.Forms.Label lblId;
