@@ -9,7 +9,7 @@ using System.Data.Objects;
 using ZeqkTools.Query.Enumerators;
 using System.Windows.Forms;
 
-namespace ZeqkTools.Controls
+namespace ZeqkTools.WindowsForms.Controls
 {
     public partial class Search : UserControl
     {
@@ -54,8 +54,8 @@ namespace ZeqkTools.Controls
         /// </summary>
         public Criterias Criteria
         {
-            get { return (Criterias)this.cmbCriteria.SelectedIndex; }
-            set { this.cmbCriteria.SelectedIndex = (int)value; }
+            get { return (Criterias)this.cboCriteria.SelectedIndex; }
+            set { this.cboCriteria.SelectedIndex = (int)value; }
         }
 
         /// <summary>
@@ -118,14 +118,13 @@ namespace ZeqkTools.Controls
 
         private void Search_Load(object sender, EventArgs e)
         {
-
+            cboCriteria.SelectedItem = Criterias.Contains;
         }
 
         private void ConfigureCmbCriteria()
         {
-            string[] criterias = {"Equal to","Not equal to","Starts with","Ends with","Contains"};
 
-            cmbCriteria.DataSource = criterias;
+            cboCriteria.DataSource = Enum.GetValues(typeof(Query.Enumerators.Criterias));
         }
 
         public void MakeQuery()
