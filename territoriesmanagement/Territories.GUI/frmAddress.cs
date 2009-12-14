@@ -31,6 +31,12 @@ namespace Territories.GUI
                     rv.Territory.IdTerritory = (int)cboTerritory.SelectedValue;
                 }
 
+                if (!chkHaveGeoPos.Checked)
+                {
+                    rv.Lat = null;
+                    rv.Lng = null;
+                }
+
                 return rv;
             }
             set 
@@ -53,7 +59,11 @@ namespace Territories.GUI
                 if (value.Lat != null && value.Lng != null)
                     chkHaveGeoPos.Checked = true;
                 else
+                {
                     chkHaveGeoPos.Checked = false;
+                    txtLat.Enabled = false;
+                    txtLon.Enabled = false;
+                }
 
 
             }
