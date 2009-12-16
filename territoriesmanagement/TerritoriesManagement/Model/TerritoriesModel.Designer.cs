@@ -17,7 +17,7 @@
 [assembly: global::System.Data.Objects.DataClasses.EdmRelationshipAttribute("TerritoriesModel", "TOURSKEY1", "Territories", global::System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(TerritoriesManagement.Model.Territory), "Tours", global::System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(TerritoriesManagement.Model.Tour))]
 
 // Original file name:
-// Generation date: 16/12/2009 11:56:02
+// Generation date: 16/12/2009 14:18:11
 namespace TerritoriesManagement.Model
 {
     

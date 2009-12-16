@@ -296,10 +296,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TerritoriesManagement.Model\TerritoriesManagement.Model.csproj">
-      <Project>{E227CF22-352C-4A32-BEC8-ABD6202B79C3}</Project>
-      <Name>TerritoriesManagement.Model</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TerritoriesManagement\TerritoriesManagement.csproj">
       <Project>{2AF8144A-682F-4B8E-A3CF-4FD77816AD78}</Project>
       <Name>TerritoriesManagement</Name>
