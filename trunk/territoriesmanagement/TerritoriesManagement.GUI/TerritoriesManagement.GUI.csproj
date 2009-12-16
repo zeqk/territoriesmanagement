@@ -1,0 +1,357 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C11B3B79-AD1B-46F6-8404-1B580E454972}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TerritoriesManagement.GUI</RootNamespace>
+    <AssemblyName>TerritoriesManagement.GUI</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <StartupObject>TerritoriesManagement.GUI.Program</StartupObject>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'x86 CPU|AnyCPU' ">
+    <OutputPath>bin\x86 CPU\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>..\bin\last release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'x86 CPU|x86' ">
+    <OutputPath>bin\x86\x86 CPU\</OutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'x86 CPU|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\x86 CPU\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\WINDOWS\assembly\GAC_MSIL\CrystalDecisions.CrystalReports.Engine\10.5.3700.0__692fbea5521e1304\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Enterprise.Framework, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.Enterprise.InfoStore, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\WINDOWS\assembly\GAC_MSIL\CrystalDecisions.ReportSource\10.5.3700.0__692fbea5521e1304\CrystalDecisions.ReportSource.dll</HintPath>
+    </Reference>
+    <Reference Include="CrystalDecisions.Shared, Version=10.5.3700.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\WINDOWS\assembly\GAC_MSIL\CrystalDecisions.Shared\10.5.3700.0__692fbea5521e1304\CrystalDecisions.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.Core, Version=1.4.8.8, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\GMap.NET.WindowsForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=9.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Entity">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Services, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\WINDOWS\assembly\GAC_MSIL\System.Web.Services\2.0.0.0__b03f5f7f11d50a3a\System.Web.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ZeqkTools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\ZeqkTools.dll</HintPath>
+    </Reference>
+    <Reference Include="ZeqkTools.WindowsForms, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\ZeqkTools.WindowsForms.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config\Config.cs" />
+    <Compile Include="frmCities.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCities.Designer.cs">
+      <DependentUpon>frmCities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConfig.Designer.cs">
+      <DependentUpon>frmConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDeparments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDeparments.Designer.cs">
+      <DependentUpon>frmDeparments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddress.Designer.cs">
+      <DependentUpon>frmAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddresses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddresses.Designer.cs">
+      <DependentUpon>frmAddresses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maps\frmGeoArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maps\frmGeoArea.Designer.cs">
+      <DependentUpon>frmGeoArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Maps\frmGeoPoint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maps\frmGeoPoint.Designer.cs">
+      <DependentUpon>frmGeoPoint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmInterop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInterop.Designer.cs">
+      <DependentUpon>frmInterop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTerritories.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTerritories.Designer.cs">
+      <DependentUpon>frmTerritories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImporterConfig\CitiesTable.cs" />
+    <Compile Include="ImporterConfig\CitiesTableConverter.cs" />
+    <Compile Include="ImporterConfig\AddressesTable.cs" />
+    <Compile Include="ImporterConfig\AddressesTableConverter.cs" />
+    <Compile Include="ImporterConfig\TerritoriesTable.cs" />
+    <Compile Include="ImporterConfig\TerritoriesTableConverter.cs" />
+    <Compile Include="ImporterConfig\DepartmentsTable.cs" />
+    <Compile Include="ImporterConfig\Field.cs" />
+    <Compile Include="ImporterConfig\ImporterConfig.cs" />
+    <Compile Include="ImporterConfig\FieldConverter.cs" />
+    <Compile Include="ImporterConfig\DepartmentsTableConverter.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmAddress.en.resx">
+      <DependentUpon>frmAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddress.es-AR.resx">
+      <DependentUpon>frmAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddresses.es-AR.resx">
+      <DependentUpon>frmAddresses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCities.es-AR.resx">
+      <DependentUpon>frmCities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmCities.resx">
+      <DependentUpon>frmCities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConfig.resx">
+      <DependentUpon>frmConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDeparments.es-AR.resx">
+      <DependentUpon>frmDeparments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDeparments.resx">
+      <DependentUpon>frmDeparments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddress.resx">
+      <DependentUpon>frmAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddresses.resx">
+      <DependentUpon>frmAddresses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maps\frmGeoArea.resx">
+      <DependentUpon>frmGeoArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maps\frmGeoPoint.resx">
+      <DependentUpon>frmGeoPoint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInterop.resx">
+      <DependentUpon>frmInterop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTerritories.es-AR.resx">
+      <DependentUpon>frmTerritories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTerritories.resx">
+      <DependentUpon>frmTerritories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Maps\StaticImage.resx">
+      <DependentUpon>StaticImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Maps\StaticImage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Maps\StaticImage.Designer.cs">
+      <DependentUpon>StaticImage.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TerritoriesManagement.Model\TerritoriesManagement.Model.csproj">
+      <Project>{E227CF22-352C-4A32-BEC8-ABD6202B79C3}</Project>
+      <Name>TerritoriesManagement.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TerritoriesManagement\TerritoriesManagement.csproj">
+      <Project>{2AF8144A-682F-4B8E-A3CF-4FD77816AD78}</Project>
+      <Name>TerritoriesManagement</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\TerritoriesManagement.Model.Address.datasource" />
+    <None Include="Properties\DataSources\TerritoriesManagement.Model.City.datasource" />
+    <None Include="Properties\DataSources\TerritoriesManagement.Model.Department.datasource" />
+    <None Include="Properties\DataSources\TerritoriesManagement.Model.Territory.datasource" />
+    <None Include="Resources\marker99.png" />
+    <None Include="Resources\legend.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
