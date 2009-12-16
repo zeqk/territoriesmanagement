@@ -14,6 +14,7 @@ using GMap.NET;
 using GMap.NET.WindowsForms;
 using TerritoriesManagement.Export;
 using System.IO;
+using ZeqkTools.WindowsForms.Maps;
 
 
 namespace TerritoriesManagement.GUI
@@ -21,6 +22,7 @@ namespace TerritoriesManagement.GUI
     public partial class frmAddresses : Form
     {
         Addresses _server = new Addresses();
+        Config.Config _config;
         
         public frmAddresses()
         {
@@ -30,6 +32,9 @@ namespace TerritoriesManagement.GUI
 
         private void frmAddresses_Load(object sender, EventArgs e)
         {
+            _config = new Config.Config();
+            _config.LoadSavedConfig();
+
             chkStreet.Checked = true;
 
             ConfigGrids();
@@ -359,6 +364,7 @@ namespace TerritoriesManagement.GUI
         {
             using (frmGeoArea myForm = new frmGeoArea())
             {
+                myForm.MapType = _config.MapType;
                 if (dgvResults.SelectedRows.Count > 0)
                 {
                     var selectedRows = dgvResults.SelectedRows;

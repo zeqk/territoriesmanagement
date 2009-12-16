@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("territories.bll")]
+[assembly: AssemblyTitle("TerritoriesManagement")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("RinoxSoft")]
-[assembly: AssemblyProduct("territories.bll")]
+[assembly: AssemblyProduct("TerritoriesManagement")]
 [assembly: AssemblyCopyright("Copyright © RinoxSoft 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

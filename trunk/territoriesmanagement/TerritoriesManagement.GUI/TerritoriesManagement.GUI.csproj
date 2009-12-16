@@ -175,18 +175,6 @@
     <Compile Include="frmAddresses.Designer.cs">
       <DependentUpon>frmAddresses.cs</DependentUpon>
     </Compile>
-    <Compile Include="Maps\frmGeoArea.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Maps\frmGeoArea.Designer.cs">
-      <DependentUpon>frmGeoArea.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Maps\frmGeoPoint.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Maps\frmGeoPoint.Designer.cs">
-      <DependentUpon>frmGeoPoint.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmInterop.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -248,12 +236,6 @@
     <EmbeddedResource Include="frmAddresses.resx">
       <DependentUpon>frmAddresses.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Maps\frmGeoArea.resx">
-      <DependentUpon>frmGeoArea.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Maps\frmGeoPoint.resx">
-      <DependentUpon>frmGeoPoint.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmInterop.resx">
       <DependentUpon>frmInterop.cs</DependentUpon>
     </EmbeddedResource>
@@ -271,9 +253,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Maps\StaticImage.resx">
-      <DependentUpon>StaticImage.cs</DependentUpon>
-    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -287,12 +266,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <Compile Include="Maps\StaticImage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Maps\StaticImage.Designer.cs">
-      <DependentUpon>StaticImage.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
