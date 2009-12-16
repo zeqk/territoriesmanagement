@@ -10,6 +10,7 @@ using System.Data.Objects.DataClasses;
 using TerritoriesManagement.Model;
 using TerritoriesManagement.DataBridge;
 using System.Globalization;
+using ZeqkTools.WindowsForms.Maps;
 
 namespace TerritoriesManagement.GUI
 {
@@ -18,6 +19,7 @@ namespace TerritoriesManagement.GUI
         private Addresses _server;
         private bool _isDirty;
         private bool _haventTerritory;
+        Config.Config _config;
 
         public Address Address
         {
@@ -123,6 +125,9 @@ namespace TerritoriesManagement.GUI
 
         private void frmAddress_Load(object sender, EventArgs e)
         {
+            _config = new Config.Config();
+            _config.LoadSavedConfig();
+
             _isDirty = false;
         }
 
@@ -171,6 +176,7 @@ namespace TerritoriesManagement.GUI
         {
             using (frmGeoPoint myForm = new frmGeoPoint())
             {
+                myForm.MapType = _config.MapType;
                 Address a = this.Address;
                 if (a.Lat.HasValue && a.Lng.HasValue)
                 {

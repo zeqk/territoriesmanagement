@@ -14,6 +14,7 @@ using GMap.NET.WindowsForms;
 using GMap.NET;
 using GMap.NET.WindowsForms.Markers;
 using System.Globalization;
+using ZeqkTools.WindowsForms.Maps;
 
 namespace TerritoriesManagement.GUI
 {
@@ -22,6 +23,7 @@ namespace TerritoriesManagement.GUI
         static private bool _opened = false;
         private Territories _server = new Territories();
         private bool _isDirty;
+        Config.Config _config;
 
         public frmTerritories()
         {
@@ -34,6 +36,9 @@ namespace TerritoriesManagement.GUI
 
         private void frmTerritories_Load(object sender, EventArgs e)
         {
+            _config = new Config.Config();
+            _config.LoadSavedConfig();
+
             //string[] columns = { "Territory.Name","Territory.Number" };
             //string[] variables = { "name","number" };
             string[] columns = { "Territory.Name" };
@@ -344,6 +349,7 @@ namespace TerritoriesManagement.GUI
         {
             using (frmGeoArea myForm = new frmGeoArea())
             {
+                myForm.MapType = MapType.GoogleMap;
                 Territory t = FormToOject();
                 if (!string.IsNullOrEmpty(t.Area))
                 {

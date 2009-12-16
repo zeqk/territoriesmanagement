@@ -92,7 +92,7 @@ namespace TerritoriesManagement.GUI
             AboutBox ab = new AboutBox();
             ab.Text = "About Territories Management";
             ab.AppTitle = "Territories Management";
-            ab.AppDescription = "A program for organizing the special territories";
+            ab.AppDescription = "A program for organizing special territories";
             ab.AppVersion = "Version 0.8";
             ab.AppCopyright = "GNU GPL 2009  Zeqk";
             ab.AppMoreInfo = "Web site: http://sites.google.com/site/territoriesmanagement \n\n";
