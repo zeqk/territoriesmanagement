@@ -439,6 +439,26 @@ namespace TerritoriesManagement.GUI
             txtXmlDestiny.Text = Path.GetFullPath(sfdGMaps.FileName);
         }
 
+        private void tabProviders_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
         
 
 
