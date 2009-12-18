@@ -35,6 +35,7 @@ namespace ZeqkTools.Data
                     _importer = new ExcelExtractor();
                     break;
                 case DataProviders.MSAcces:
+                    _importer = new AccesExtractor();
                     break;
                 case DataProviders.Oracle:
                     break;
