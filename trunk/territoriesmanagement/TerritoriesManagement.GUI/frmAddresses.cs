@@ -359,40 +359,6 @@ namespace TerritoriesManagement.GUI
                 cboCity.DataSource = null;
            
         }
-
-        private void btnViewMap_Click(object sender, EventArgs e)
-        {
-            using (frmGeoArea myForm = new frmGeoArea())
-            {
-                myForm.MapType = _config.MapType;
-                if (dgvResults.SelectedRows.Count > 0)
-                {
-                    var selectedRows = dgvResults.SelectedRows;
-                    List<GMapMarker> marks = new List<GMapMarker>();
-                    for (int i = 0; i < selectedRows.Count; i++)
-                    {
-                        bool haveGeoPosition = (bool)selectedRows[i].Cells["HaveGeoPosition"].Value;
-                        if (haveGeoPosition)
-                        {
-                            double lat = (double)selectedRows[i].Cells["Lat"].Value;
-                            double lng = (double)selectedRows[i].Cells["Lng"].Value;
-                            string address = selectedRows[i].Cells["Address"].Value.ToString();
-                            int idAddres = (int)selectedRows[i].Cells["Id"].Value;
-
-                            GMapMarkerCustom marker = new GMapMarkerCustom(new PointLatLng(lat, lng));
-                            marker.Tag = idAddres;
-                            marker.ToolTipText = address;
-                            marker.Icon = Properties.Resources.legendIcon;
-                            marks.Add(marker);
-                        }                        
-                    }
-                    myForm.Points = marks;
-                }
-
-                myForm.ShowDialog();
-
-            }
-        }
         #region ToGMaps
         private void btnToGMaps_Click(object sender, EventArgs e)
         {
@@ -444,6 +410,37 @@ namespace TerritoriesManagement.GUI
         }
         #endregion
 
+        private void viewMapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgvResults.SelectedRows.Count > 0)
+            {
+                using (frmGeoArea myForm = new frmGeoArea())
+                {
+                
+                    var selectedRows = dgvResults.SelectedRows;
+                    List<GMapMarker> marks = new List<GMapMarker>();
+                    for (int i = 0; i < selectedRows.Count; i++)
+                    {
+                        bool haveGeoPosition = (bool)selectedRows[i].Cells["HaveGeoPosition"].Value;
+                        if (haveGeoPosition)
+                        {
+                            double lat = (double)selectedRows[i].Cells["Lat"].Value;
+                            double lng = (double)selectedRows[i].Cells["Lng"].Value;
+                            string address = selectedRows[i].Cells["Address"].Value.ToString();
+                            int idAddres = (int)selectedRows[i].Cells["Id"].Value;
+
+                            GMapMarkerCustom marker = new GMapMarkerCustom(new PointLatLng(lat, lng));
+                            marker.Tag = idAddres;
+                            marker.ToolTipText = address;
+                            marker.Icon = Properties.Resources.legendIcon;
+                            marks.Add(marker);
+                        }
+                    }
+                    myForm.Points = marks;
+                    myForm.ShowDialog();
+                }
+            }
+        }
         
     }
 }
