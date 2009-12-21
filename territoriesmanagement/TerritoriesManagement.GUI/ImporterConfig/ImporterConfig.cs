@@ -106,7 +106,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
 
         public void LoadConfig()
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Territories Management\importConfig.xml";
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Territories Management\importConfig.xml";
 
             LoadConfig(path);
         }

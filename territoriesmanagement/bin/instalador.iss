@@ -28,16 +28,17 @@ Name: "spanish"; MessagesFile: "compiler:Languages\Spanish.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "E:\documentos\zeqk\Visual Studio 2008\Projects\territoriesmanagement\bin\last release\TerritoriesManagement.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "E:\documentos\zeqk\Visual Studio 2008\Projects\territoriesmanagement\bin\last release\TerritoriesManagement.GUI.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "E:\documentos\zeqk\Visual Studio 2008\Projects\territoriesmanagement\bin\last release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
-Name: "{group}\Territories Management"; Filename: "{app}\TerritoriesManagement.exe"
-Name: "{commondesktop}\Territories Management"; Filename: "{app}\TerritoriesManagement.exe"; Tasks: desktopicon
+Name: "{group}\Territories Management"; Filename: "{app}\TerritoriesManagement.GUI.exe"
+Name: "{commondesktop}\Territories Management"; Filename: "{app}\TerritoriesManagement.GUI.exe"; Tasks: desktopicon
 
 [Run]
 Filename: "{app}\TerritoriesManagement.exe"; Description: "{cm:LaunchProgram,Territories Management}"; Flags: nowait postinstall skipifsilent
+
 
 
 

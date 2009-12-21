@@ -35,7 +35,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnToExcel = new System.Windows.Forms.Button();
             this.btnToGMaps = new System.Windows.Forms.Button();
-            this.btnViewMap = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
@@ -56,6 +55,7 @@
             this.cboDepartment = new System.Windows.Forms.ComboBox();
             this.ctxMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyGoogleMapsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sfdGMaps = new System.Windows.Forms.SaveFileDialog();
             this.sfdExcelDestiny = new System.Windows.Forms.SaveFileDialog();
             this.panel1.SuspendLayout();
@@ -83,7 +83,6 @@
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Controls.Add(this.btnToExcel);
             this.panel1.Controls.Add(this.btnToGMaps);
-            this.panel1.Controls.Add(this.btnViewMap);
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.btnEdit);
             this.panel1.Controls.Add(this.btnNew);
@@ -102,13 +101,6 @@
             this.btnToGMaps.Name = "btnToGMaps";
             this.btnToGMaps.UseVisualStyleBackColor = true;
             this.btnToGMaps.Click += new System.EventHandler(this.btnToGMaps_Click);
-            // 
-            // btnViewMap
-            // 
-            resources.ApplyResources(this.btnViewMap, "btnViewMap");
-            this.btnViewMap.Name = "btnViewMap";
-            this.btnViewMap.UseVisualStyleBackColor = true;
-            this.btnViewMap.Click += new System.EventHandler(this.btnViewMap_Click);
             // 
             // btnDelete
             // 
@@ -192,7 +184,7 @@
             // 
             resources.ApplyResources(this.schStreet, "schStreet");
             this.schStreet.Columns = null;
-            this.schStreet.Criteria = ZeqkTools.Query.Enumerators.Criterias.EqualTo;
+            this.schStreet.Criteria = ZeqkTools.Query.Enumerators.Criterias.Contains;
             this.schStreet.Name = "schStreet";
             this.schStreet.Parameters = null;
             this.schStreet.Query = null;
@@ -243,7 +235,8 @@
             // ctxMenu
             // 
             this.ctxMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyGoogleMapsToolStripMenuItem});
+            this.copyGoogleMapsToolStripMenuItem,
+            this.viewMapToolStripMenuItem});
             this.ctxMenu.Name = "ctxMenu";
             resources.ApplyResources(this.ctxMenu, "ctxMenu");
             // 
@@ -252,6 +245,12 @@
             this.copyGoogleMapsToolStripMenuItem.Name = "copyGoogleMapsToolStripMenuItem";
             resources.ApplyResources(this.copyGoogleMapsToolStripMenuItem, "copyGoogleMapsToolStripMenuItem");
             this.copyGoogleMapsToolStripMenuItem.Click += new System.EventHandler(this.copyGoogleMapsToolStripMenuItem_Click);
+            // 
+            // viewMapToolStripMenuItem
+            // 
+            this.viewMapToolStripMenuItem.Name = "viewMapToolStripMenuItem";
+            resources.ApplyResources(this.viewMapToolStripMenuItem, "viewMapToolStripMenuItem");
+            this.viewMapToolStripMenuItem.Click += new System.EventHandler(this.viewMapToolStripMenuItem_Click);
             // 
             // sfdGMaps
             // 
@@ -311,11 +310,12 @@
         private System.Windows.Forms.ComboBox cboDepartment;
         private System.Windows.Forms.ContextMenuStrip ctxMenu;
         private System.Windows.Forms.ToolStripMenuItem copyGoogleMapsToolStripMenuItem;
-        private System.Windows.Forms.Button btnViewMap;
+   
         private System.Windows.Forms.Button btnToGMaps;
         private System.Windows.Forms.SaveFileDialog sfdGMaps;
         private System.Windows.Forms.Button btnToExcel;
         private System.Windows.Forms.SaveFileDialog sfdExcelDestiny;
+        private System.Windows.Forms.ToolStripMenuItem viewMapToolStripMenuItem;
 
 
 

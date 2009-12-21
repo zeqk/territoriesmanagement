@@ -317,46 +317,13 @@
   <data name="&gt;&gt;btnToGMaps.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="btnViewMap.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left, Right</value>
-  </data>
-  <data name="btnViewMap.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnViewMap.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 326</value>
-  </data>
-  <data name="btnViewMap.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 26</value>
-  </data>
-  <data name="btnViewMap.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="btnViewMap.Text" xml:space="preserve">
-    <value>Map</value>
-  </data>
-  <data name="btnViewMap.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;btnViewMap.Name" xml:space="preserve">
-    <value>btnViewMap</value>
-  </data>
-  <data name="&gt;&gt;btnViewMap.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnViewMap.Parent" xml:space="preserve">
-    <value>panel1</value>
-  </data>
-  <data name="&gt;&gt;btnViewMap.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
   <data name="btnDelete.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
   <data name="btnDelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAGYktHRACNAI4AiyH0o34AAAAHdElNRQfWBhMPHQlIs8vG
+        YQUAAAAJcEhZcwAACxEAAAsRAX9kX5EAAAAGYktHRACNAI4AiyH0o34AAAAHdElNRQfWBhMPHQlIs8vG
         AAAAD3RFWHRDb21tZW50AGlkIGxvZ2+Gxne5AAAB60lEQVQ4T5WTW08aQRiG+Sne1z/SXjSxVya9bmw9
         oJKUlnpMDBUVWU6VXXaBpqnRqBzUC02EwAWxXQ72CgiUYlLTLssWZJuWxCXr1xnCboPLhUzyZCZfvveZ
         zc6MTtcdDhcRt6yb4T7gXiWnzjgoiiIIgqBSq9XgLjzPdzZRg0OPVpcQnSLHcVAoFCCfz/eQy+UAUyqV
@@ -397,7 +364,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;btnDelete.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="btnEdit.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -427,7 +394,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;btnEdit.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="btnNew.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
@@ -435,7 +402,7 @@
   <data name="btnNew.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxIAAAsSAdLdfvwAAAAGYktHRAD8AOkATzTXsQ0AAAAHdElNRQfVAhIOJhzTthkp
+        YQUAAAAJcEhZcwAACxEAAAsRAX9kX5EAAAAGYktHRAD8AOkATzTXsQ0AAAAHdElNRQfVAhIOJhzTthkp
         AAABe0lEQVQ4T6WTvUoDQRRGo1YRxDewCAo+QQSxECTpFB9AC7GIriCYQhubtJJKMIWRpLCyUQIqgoXP
         oH1ARCyyPzO7s0l0k83nnegsm+AmigMfO7Ccc+/MZWKlUuk8l8thUPL5Q5TLWVxdajBfk0cQ8RTE6GRM
         LgkOW45VRJNvw3OW0WRpz9VnbyEmNkgSDwSGYaBWq3Wj63oQbl4TrKHtzsNvbFE0tJwF/4NNXVAnc4Gg
@@ -473,7 +440,7 @@
     <value>panel1</value>
   </data>
   <data name="&gt;&gt;btnNew.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
     <value>839, 160</value>
@@ -677,7 +644,7 @@
     <value>schStreet</value>
   </data>
   <data name="&gt;&gt;schStreet.Type" xml:space="preserve">
-    <value>ZeqkTools.Controls.Search, ZeqkTools.Controls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>ZeqkTools.WindowsForms.Controls.Search, ZeqkTools.WindowsForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;schStreet.Parent" xml:space="preserve">
     <value>panel2</value>
@@ -886,8 +853,14 @@
   <data name="copyGoogleMapsToolStripMenuItem.Text" xml:space="preserve">
     <value>Copy (Google Maps)</value>
   </data>
+  <data name="viewMapToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>183, 22</value>
+  </data>
+  <data name="viewMapToolStripMenuItem.Text" xml:space="preserve">
+    <value>View map</value>
+  </data>
   <data name="ctxMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 26</value>
+    <value>184, 70</value>
   </data>
   <data name="&gt;&gt;ctxMenu.Name" xml:space="preserve">
     <value>ctxMenu</value>
@@ -923,6 +896,12 @@
     <value>copyGoogleMapsToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;copyGoogleMapsToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;viewMapToolStripMenuItem.Name" xml:space="preserve">
+    <value>viewMapToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;viewMapToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;sfdGMaps.Name" xml:space="preserve">
