@@ -78,7 +78,7 @@
             // grpCulture
             // 
             this.grpCulture.Controls.Add(this.cmbCulture);
-            this.grpCulture.Location = new System.Drawing.Point(46, 43);
+            this.grpCulture.Location = new System.Drawing.Point(48, 49);
             this.grpCulture.Name = "grpCulture";
             this.grpCulture.Size = new System.Drawing.Size(206, 59);
             this.grpCulture.TabIndex = 1;
