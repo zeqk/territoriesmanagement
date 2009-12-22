@@ -154,16 +154,21 @@ namespace TerritoriesManagement.GUI
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgvResults.SelectedRows.Count == 1)
+            if (dgvResults.SelectedRows.Count > 0)
             {
-                int idAddress = (int)dgvResults.SelectedRows[0].Cells["Id"].Value;
                 try
                 {
-                    _server.Delete(idAddress);
+                    for (int i = 0; i < dgvResults.SelectedRows.Count; i++)
+                    {
+                        int idAddress = (int)dgvResults.SelectedRows[i].Cells["Id"].Value;
+
+                        _server.Delete(idAddress);                       
+                    }
 
                     if (lblFiltered.Visible) Filter();
                     else ClearFilter();
-                }
+	            }
+                
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message, "Error");

@@ -283,6 +283,7 @@ namespace TerritoriesManagement.Import
 
         private int AddAddresses(DataTable dt)
         {
+            Address v;
             int rv = 0;
             string message = "";
             try
@@ -290,7 +291,7 @@ namespace TerritoriesManagement.Import
                 int count = 0;
                 foreach (DataRow row in dt.Rows)
                 {
-                    Address v;
+                   
                     if(DataRowToAddress(row,out v,ref message))
                         if (AddressIsValid(v, ref message))
                         {
@@ -655,6 +656,13 @@ namespace TerritoriesManagement.Import
                 rv = false;
             }
 
+            //lenght validation
+            if (v.Name.Length > 80)
+            {
+                msg += "\n  -Name lenght exceeds the allowed length (80). ";
+                rv = false;
+            }
+
             if (!rv)
             {
                 message += "\n-\"" + v.IdDepartment + " " + v.Name + "\" is invalid: " + msg;
@@ -696,7 +704,12 @@ namespace TerritoriesManagement.Import
                 }
             }
 
-            
+            //lenght validation
+            if(v.Name.Length > 80)
+            {
+                msg += "\n  -Name lenght exceeds the allowed length (80). ";
+                rv = false;
+            }
 
             if (!rv)
             {
@@ -718,6 +731,13 @@ namespace TerritoriesManagement.Import
             if (TerritoryExist(v))
             {
                 msg += "\n  -Already exist. ";
+                rv = false;
+            }
+
+            //lenght validation
+            if (v.Name.Length > 80)
+            {
+                msg += "\n  -Name lenght exceeds the allowed length (80). ";
                 rv = false;
             }
 
@@ -780,10 +800,66 @@ namespace TerritoriesManagement.Import
                 rv = false;
             }
 
+            //length validation
+            if (!string.IsNullOrEmpty(v.AddressData) && v.AddressData.Length > 50)
+            {
+                msg += "\n  -Address data lenght exceeds the allowed length (50). ";
+                rv = false;
+            }
+
+            if ((!string.IsNullOrEmpty(v.Corner1) && v.Corner1.Length > 80) ||
+                (!string.IsNullOrEmpty(v.Corner2) && v.Corner2.Length > 80))
+            {
+                msg += "\n  -Corners lenght exceeds the allowed length (80). ";
+                rv = false;
+            }
+
+            if((!string.IsNullOrEmpty(v.CustomField1) && v.CustomField1.Length > 200)
+                || (!string.IsNullOrEmpty(v.CustomField2) && v.CustomField2.Length > 200))
+            {
+                msg += "\n  -Custom fields lenght exceeds the allowed length (200). ";
+                rv = false;
+            }
+
+            if (!string.IsNullOrEmpty(v.Description) && v.Description.Length > 200)
+            {
+                msg += "\n  -Description lenght exceeds the allowed length (200). ";
+                rv = false;
+            }
+
+            if ((!string.IsNullOrEmpty(v.Map1) && v.Map1.Length > 30) ||
+                (!string.IsNullOrEmpty(v.Map2) && v.Map2.Length > 30))
+            {
+                msg += "\n  -Maps lenght exceeds the allowed length (30). ";
+                rv = false;
+            }
+
+            if (!string.IsNullOrEmpty(v.Number) && v.Number.Length > 50)
+            {
+                msg += "\n  -Number lenght exceeds the allowed length (50). ";
+                rv = false;
+            }
+
+            if ((!string.IsNullOrEmpty(v.Phone1) && v.Phone1.Length > 15) || 
+                (!string.IsNullOrEmpty(v.Phone2) && v.Phone2.Length > 15))
+            {
+                msg += "\n  -Phones lenght exceeds the allowed length (15). ";
+                rv = false;
+            }
+
+            if (v.Street.Length > 80)
+            {
+                msg += "\n  -Street lenght exceeds the allowed length (80). ";
+                rv = false;
+            }
+            //length validation end
+
             if (!rv)
             {
                 message += "\n-\"" + v.IdAddress + " " + v.Street + "\" is invalid: " + msg;
             }
+
+            
 
             return rv;
 
