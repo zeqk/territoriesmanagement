@@ -31,14 +31,9 @@
             this.odfRssSource = new System.Windows.Forms.OpenFileDialog();
             this.tabDataImport = new System.Windows.Forms.TabPage();
             this.grpConfig = new System.Windows.Forms.GroupBox();
-            this.lblProvider = new System.Windows.Forms.Label();
-            this.cboProvider = new System.Windows.Forms.ComboBox();
-            this.tabProviders = new System.Windows.Forms.TabControl();
-            this.tabMsExcel = new System.Windows.Forms.TabPage();
-            this.lblExcelFile = new System.Windows.Forms.Label();
-            this.btnSelectExcelFile = new System.Windows.Forms.Button();
-            this.txtExcelFile = new System.Windows.Forms.TextBox();
-            this.tabOther = new System.Windows.Forms.TabPage();
+            this.btnConfigureConnection = new System.Windows.Forms.Button();
+            this.lblConnecStr = new System.Windows.Forms.Label();
+            this.txtConnectStr = new System.Windows.Forms.TextBox();
             this.btnImport = new System.Windows.Forms.Button();
             this.grdImportConfig = new System.Windows.Forms.PropertyGrid();
             this.tabGeoRss = new System.Windows.Forms.TabPage();
@@ -67,27 +62,14 @@
             this.ofdFileSource = new System.Windows.Forms.OpenFileDialog();
             this.sfdExcelDestiny = new System.Windows.Forms.SaveFileDialog();
             this.sfdGMaps = new System.Windows.Forms.SaveFileDialog();
-            this.btnSetConnectStr = new System.Windows.Forms.Button();
-            this.lblConnecStr = new System.Windows.Forms.Label();
-            this.txtConnectStr = new System.Windows.Forms.TextBox();
-            this.tabMsAccess = new System.Windows.Forms.TabPage();
-            this.lbAccessFile = new System.Windows.Forms.Label();
-            this.btnSelectAccessFile = new System.Windows.Forms.Button();
-            this.txtAccesFile = new System.Windows.Forms.TextBox();
-            this.txtUser = new System.Windows.Forms.TextBox();
-            this.txtPass = new System.Windows.Forms.TextBox();
-            this.lblAccesUser = new System.Windows.Forms.Label();
             this.tabDataImport.SuspendLayout();
             this.grpConfig.SuspendLayout();
-            this.tabProviders.SuspendLayout();
-            this.tabMsExcel.SuspendLayout();
             this.tabGeoRss.SuspendLayout();
             this.grpGMapsExport.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tabMaps.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.grpExport.SuspendLayout();
-            this.tabMsAccess.SuspendLayout();
             this.SuspendLayout();
             // 
             // odfRssSource
@@ -103,112 +85,56 @@
             this.tabDataImport.Location = new System.Drawing.Point(4, 22);
             this.tabDataImport.Name = "tabDataImport";
             this.tabDataImport.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDataImport.Size = new System.Drawing.Size(578, 590);
+            this.tabDataImport.Size = new System.Drawing.Size(578, 423);
             this.tabDataImport.TabIndex = 2;
             this.tabDataImport.Text = "Data import";
             this.tabDataImport.UseVisualStyleBackColor = true;
             // 
             // grpConfig
             // 
-            this.grpConfig.Controls.Add(this.btnSetConnectStr);
+            this.grpConfig.Controls.Add(this.btnConfigureConnection);
             this.grpConfig.Controls.Add(this.lblConnecStr);
             this.grpConfig.Controls.Add(this.txtConnectStr);
-            this.grpConfig.Controls.Add(this.lblProvider);
-            this.grpConfig.Controls.Add(this.cboProvider);
-            this.grpConfig.Controls.Add(this.tabProviders);
             this.grpConfig.Controls.Add(this.btnImport);
             this.grpConfig.Location = new System.Drawing.Point(3, 6);
             this.grpConfig.Name = "grpConfig";
-            this.grpConfig.Size = new System.Drawing.Size(568, 310);
+            this.grpConfig.Size = new System.Drawing.Size(568, 164);
             this.grpConfig.TabIndex = 10;
             this.grpConfig.TabStop = false;
             this.grpConfig.Text = "Configure import properties";
             // 
-            // lblProvider
+            // btnConfigureConnection
             // 
-            this.lblProvider.AutoSize = true;
-            this.lblProvider.Location = new System.Drawing.Point(43, 26);
-            this.lblProvider.Name = "lblProvider";
-            this.lblProvider.Size = new System.Drawing.Size(102, 13);
-            this.lblProvider.TabIndex = 12;
-            this.lblProvider.Text = "Select data provider";
+            this.btnConfigureConnection.Location = new System.Drawing.Point(479, 53);
+            this.btnConfigureConnection.Name = "btnConfigureConnection";
+            this.btnConfigureConnection.Size = new System.Drawing.Size(83, 23);
+            this.btnConfigureConnection.TabIndex = 15;
+            this.btnConfigureConnection.Text = "Configure";
+            this.btnConfigureConnection.UseVisualStyleBackColor = true;
+            this.btnConfigureConnection.Click += new System.EventHandler(this.btnConfigureConnection_Click);
             // 
-            // cboProvider
+            // lblConnecStr
             // 
-            this.cboProvider.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboProvider.FormattingEnabled = true;
-            this.cboProvider.Location = new System.Drawing.Point(46, 42);
-            this.cboProvider.Name = "cboProvider";
-            this.cboProvider.Size = new System.Drawing.Size(342, 21);
-            this.cboProvider.TabIndex = 11;
+            this.lblConnecStr.AutoSize = true;
+            this.lblConnecStr.Location = new System.Drawing.Point(18, 22);
+            this.lblConnecStr.Name = "lblConnecStr";
+            this.lblConnecStr.Size = new System.Drawing.Size(89, 13);
+            this.lblConnecStr.TabIndex = 14;
+            this.lblConnecStr.Text = "Connection string";
             // 
-            // tabProviders
+            // txtConnectStr
             // 
-            this.tabProviders.Controls.Add(this.tabMsExcel);
-            this.tabProviders.Controls.Add(this.tabMsAccess);
-            this.tabProviders.Controls.Add(this.tabOther);
-            this.tabProviders.Location = new System.Drawing.Point(0, 171);
-            this.tabProviders.Name = "tabProviders";
-            this.tabProviders.SelectedIndex = 0;
-            this.tabProviders.Size = new System.Drawing.Size(568, 133);
-            this.tabProviders.TabIndex = 10;
-            this.tabProviders.SelectedIndexChanged += new System.EventHandler(this.tabProviders_SelectedIndexChanged);
-            // 
-            // tabMsExcel
-            // 
-            this.tabMsExcel.Controls.Add(this.lblExcelFile);
-            this.tabMsExcel.Controls.Add(this.btnSelectExcelFile);
-            this.tabMsExcel.Controls.Add(this.txtExcelFile);
-            this.tabMsExcel.Location = new System.Drawing.Point(4, 22);
-            this.tabMsExcel.Name = "tabMsExcel";
-            this.tabMsExcel.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMsExcel.Size = new System.Drawing.Size(560, 107);
-            this.tabMsExcel.TabIndex = 0;
-            this.tabMsExcel.Text = "MS Excel";
-            this.tabMsExcel.UseVisualStyleBackColor = true;
-            // 
-            // lblExcelFile
-            // 
-            this.lblExcelFile.AutoSize = true;
-            this.lblExcelFile.Location = new System.Drawing.Point(39, 10);
-            this.lblExcelFile.Name = "lblExcelFile";
-            this.lblExcelFile.Size = new System.Drawing.Size(49, 13);
-            this.lblExcelFile.TabIndex = 3;
-            this.lblExcelFile.Text = "Excel file";
-            // 
-            // btnSelectExcelFile
-            // 
-            this.btnSelectExcelFile.Location = new System.Drawing.Point(424, 24);
-            this.btnSelectExcelFile.Name = "btnSelectExcelFile";
-            this.btnSelectExcelFile.Size = new System.Drawing.Size(113, 23);
-            this.btnSelectExcelFile.TabIndex = 2;
-            this.btnSelectExcelFile.Text = "Select excel file";
-            this.btnSelectExcelFile.UseVisualStyleBackColor = true;
-            this.btnSelectExcelFile.Click += new System.EventHandler(this.btnSelectExcelFile_Click);
-            // 
-            // txtExcelFile
-            // 
-            this.txtExcelFile.Enabled = false;
-            this.txtExcelFile.Location = new System.Drawing.Point(42, 26);
-            this.txtExcelFile.Name = "txtExcelFile";
-            this.txtExcelFile.Size = new System.Drawing.Size(341, 20);
-            this.txtExcelFile.TabIndex = 0;
-            // 
-            // tabOther
-            // 
-            this.tabOther.Location = new System.Drawing.Point(4, 22);
-            this.tabOther.Name = "tabOther";
-            this.tabOther.Padding = new System.Windows.Forms.Padding(3);
-            this.tabOther.Size = new System.Drawing.Size(560, 107);
-            this.tabOther.TabIndex = 1;
-            this.tabOther.Text = "Other";
-            this.tabOther.UseVisualStyleBackColor = true;
+            this.txtConnectStr.Location = new System.Drawing.Point(21, 38);
+            this.txtConnectStr.Multiline = true;
+            this.txtConnectStr.Name = "txtConnectStr";
+            this.txtConnectStr.Size = new System.Drawing.Size(444, 52);
+            this.txtConnectStr.TabIndex = 13;
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(418, 40);
+            this.btnImport.Location = new System.Drawing.Point(112, 112);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(113, 23);
+            this.btnImport.Size = new System.Drawing.Size(344, 35);
             this.btnImport.TabIndex = 9;
             this.btnImport.Text = "Import";
             this.btnImport.UseVisualStyleBackColor = true;
@@ -216,10 +142,10 @@
             // 
             // grdImportConfig
             // 
-            this.grdImportConfig.Location = new System.Drawing.Point(3, 322);
+            this.grdImportConfig.Location = new System.Drawing.Point(3, 176);
             this.grdImportConfig.Name = "grdImportConfig";
             this.grdImportConfig.PropertySort = System.Windows.Forms.PropertySort.Categorized;
-            this.grdImportConfig.Size = new System.Drawing.Size(568, 261);
+            this.grdImportConfig.Size = new System.Drawing.Size(568, 241);
             this.grdImportConfig.TabIndex = 1;
             this.grdImportConfig.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.grdImportConfig_PropertyValueChanged);
             // 
@@ -230,7 +156,7 @@
             this.tabGeoRss.Location = new System.Drawing.Point(4, 22);
             this.tabGeoRss.Name = "tabGeoRss";
             this.tabGeoRss.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGeoRss.Size = new System.Drawing.Size(578, 590);
+            this.tabGeoRss.Size = new System.Drawing.Size(578, 423);
             this.tabGeoRss.TabIndex = 0;
             this.tabGeoRss.Text = "Maps";
             this.tabGeoRss.UseVisualStyleBackColor = true;
@@ -323,7 +249,7 @@
             this.tabMaps.Location = new System.Drawing.Point(8, 11);
             this.tabMaps.Name = "tabMaps";
             this.tabMaps.SelectedIndex = 0;
-            this.tabMaps.Size = new System.Drawing.Size(586, 616);
+            this.tabMaps.Size = new System.Drawing.Size(586, 449);
             this.tabMaps.TabIndex = 0;
             // 
             // tabPage1
@@ -332,7 +258,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(578, 590);
+            this.tabPage1.Size = new System.Drawing.Size(578, 423);
             this.tabPage1.TabIndex = 3;
             this.tabPage1.Text = "Data export";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -352,7 +278,7 @@
             this.grpExport.Controls.Add(this.btnSaveToExcel);
             this.grpExport.Location = new System.Drawing.Point(6, 25);
             this.grpExport.Name = "grpExport";
-            this.grpExport.Size = new System.Drawing.Size(566, 559);
+            this.grpExport.Size = new System.Drawing.Size(566, 383);
             this.grpExport.TabIndex = 16;
             this.grpExport.TabStop = false;
             this.grpExport.Text = "Export to excel file";
@@ -473,7 +399,6 @@
             // 
             this.ofdFileSource.FileName = "openFileDialog1";
             this.ofdFileSource.InitialDirectory = "C:\\\\";
-            this.ofdFileSource.FileOk += new System.ComponentModel.CancelEventHandler(this.ofdFileSource_FileOk);
             // 
             // sfdExcelDestiny
             // 
@@ -485,105 +410,11 @@
             this.sfdGMaps.Filter = "xml files (*.xml)|*.xml";
             this.sfdGMaps.FileOk += new System.ComponentModel.CancelEventHandler(this.sfdGMaps_FileOk);
             // 
-            // btnSetConnectStr
-            // 
-            this.btnSetConnectStr.Location = new System.Drawing.Point(418, 89);
-            this.btnSetConnectStr.Name = "btnSetConnectStr";
-            this.btnSetConnectStr.Size = new System.Drawing.Size(113, 37);
-            this.btnSetConnectStr.TabIndex = 15;
-            this.btnSetConnectStr.Text = "Set connection string";
-            this.btnSetConnectStr.UseVisualStyleBackColor = true;
-            // 
-            // lblConnecStr
-            // 
-            this.lblConnecStr.AutoSize = true;
-            this.lblConnecStr.Location = new System.Drawing.Point(43, 73);
-            this.lblConnecStr.Name = "lblConnecStr";
-            this.lblConnecStr.Size = new System.Drawing.Size(89, 13);
-            this.lblConnecStr.TabIndex = 14;
-            this.lblConnecStr.Text = "Connection string";
-            // 
-            // txtConnectStr
-            // 
-            this.txtConnectStr.Location = new System.Drawing.Point(46, 89);
-            this.txtConnectStr.Multiline = true;
-            this.txtConnectStr.Name = "txtConnectStr";
-            this.txtConnectStr.Size = new System.Drawing.Size(342, 70);
-            this.txtConnectStr.TabIndex = 13;
-            // 
-            // tabMsAccess
-            // 
-            this.tabMsAccess.Controls.Add(this.lblAccesUser);
-            this.tabMsAccess.Controls.Add(this.txtPass);
-            this.tabMsAccess.Controls.Add(this.txtUser);
-            this.tabMsAccess.Controls.Add(this.lbAccessFile);
-            this.tabMsAccess.Controls.Add(this.btnSelectAccessFile);
-            this.tabMsAccess.Controls.Add(this.txtAccesFile);
-            this.tabMsAccess.Location = new System.Drawing.Point(4, 22);
-            this.tabMsAccess.Name = "tabMsAccess";
-            this.tabMsAccess.Padding = new System.Windows.Forms.Padding(3);
-            this.tabMsAccess.Size = new System.Drawing.Size(560, 107);
-            this.tabMsAccess.TabIndex = 2;
-            this.tabMsAccess.Text = "MS Access";
-            this.tabMsAccess.UseVisualStyleBackColor = true;
-            // 
-            // lbAccessFile
-            // 
-            this.lbAccessFile.AutoSize = true;
-            this.lbAccessFile.Location = new System.Drawing.Point(39, 12);
-            this.lbAccessFile.Name = "lbAccessFile";
-            this.lbAccessFile.Size = new System.Drawing.Size(58, 13);
-            this.lbAccessFile.TabIndex = 6;
-            this.lbAccessFile.Text = "Access file";
-            this.lbAccessFile.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // btnSelectAccessFile
-            // 
-            this.btnSelectAccessFile.Location = new System.Drawing.Point(424, 26);
-            this.btnSelectAccessFile.Name = "btnSelectAccessFile";
-            this.btnSelectAccessFile.Size = new System.Drawing.Size(113, 23);
-            this.btnSelectAccessFile.TabIndex = 5;
-            this.btnSelectAccessFile.Text = "Select access file";
-            this.btnSelectAccessFile.UseVisualStyleBackColor = true;
-            this.btnSelectAccessFile.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // txtAccesFile
-            // 
-            this.txtAccesFile.Enabled = false;
-            this.txtAccesFile.Location = new System.Drawing.Point(42, 28);
-            this.txtAccesFile.Name = "txtAccesFile";
-            this.txtAccesFile.Size = new System.Drawing.Size(341, 20);
-            this.txtAccesFile.TabIndex = 4;
-            this.txtAccesFile.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
-            // txtUser
-            // 
-            this.txtUser.Location = new System.Drawing.Point(42, 67);
-            this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(124, 20);
-            this.txtUser.TabIndex = 7;
-            // 
-            // txtPass
-            // 
-            this.txtPass.Location = new System.Drawing.Point(194, 67);
-            this.txtPass.Name = "txtPass";
-            this.txtPass.Size = new System.Drawing.Size(124, 20);
-            this.txtPass.TabIndex = 8;
-            // 
-            // lblAccesUser
-            // 
-            this.lblAccesUser.AutoSize = true;
-            this.lblAccesUser.Location = new System.Drawing.Point(39, 51);
-            this.lblAccesUser.Name = "lblAccesUser";
-            this.lblAccesUser.Size = new System.Drawing.Size(35, 13);
-            this.lblAccesUser.TabIndex = 9;
-            this.lblAccesUser.Text = "label1";
-            // 
             // frmInterop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 632);
+            this.ClientSize = new System.Drawing.Size(600, 472);
             this.Controls.Add(this.tabMaps);
             this.Name = "frmInterop";
             this.Text = "Interoperability";
@@ -592,9 +423,6 @@
             this.tabDataImport.ResumeLayout(false);
             this.grpConfig.ResumeLayout(false);
             this.grpConfig.PerformLayout();
-            this.tabProviders.ResumeLayout(false);
-            this.tabMsExcel.ResumeLayout(false);
-            this.tabMsExcel.PerformLayout();
             this.tabGeoRss.ResumeLayout(false);
             this.grpGMapsExport.ResumeLayout(false);
             this.grpGMapsExport.PerformLayout();
@@ -604,8 +432,6 @@
             this.tabPage1.ResumeLayout(false);
             this.grpExport.ResumeLayout(false);
             this.grpExport.PerformLayout();
-            this.tabMsAccess.ResumeLayout(false);
-            this.tabMsAccess.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -615,14 +441,6 @@
         private System.Windows.Forms.OpenFileDialog odfRssSource;
         private System.Windows.Forms.TabPage tabDataImport;
         private System.Windows.Forms.GroupBox grpConfig;
-        private System.Windows.Forms.Label lblProvider;
-        private System.Windows.Forms.ComboBox cboProvider;
-        private System.Windows.Forms.TabControl tabProviders;
-        private System.Windows.Forms.TabPage tabMsExcel;
-        private System.Windows.Forms.Label lblExcelFile;
-        private System.Windows.Forms.Button btnSelectExcelFile;
-        private System.Windows.Forms.TextBox txtExcelFile;
-        private System.Windows.Forms.TabPage tabOther;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.PropertyGrid grdImportConfig;
         private System.Windows.Forms.TabPage tabGeoRss;
@@ -651,15 +469,8 @@
         private System.Windows.Forms.Button btnExportToGmaps;
         private System.Windows.Forms.Button btnSaveToGMaps;
         private System.Windows.Forms.SaveFileDialog sfdGMaps;
-        private System.Windows.Forms.Button btnSetConnectStr;
         private System.Windows.Forms.Label lblConnecStr;
         private System.Windows.Forms.TextBox txtConnectStr;
-        private System.Windows.Forms.TabPage tabMsAccess;
-        private System.Windows.Forms.Label lbAccessFile;
-        private System.Windows.Forms.Button btnSelectAccessFile;
-        private System.Windows.Forms.TextBox txtAccesFile;
-        private System.Windows.Forms.Label lblAccesUser;
-        private System.Windows.Forms.TextBox txtPass;
-        private System.Windows.Forms.TextBox txtUser;
+        private System.Windows.Forms.Button btnConfigureConnection;
     }
 }

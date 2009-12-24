@@ -10,7 +10,8 @@ using System.IO;
 using TerritoriesManagement.Import;
 using TerritoriesManagement.GUI;
 using TerritoriesManagement.GUI.ImporterConfig;
-using ZeqkTools.Query.Enumerators;
+using ZeqkTools.Data;
+using ZeqkTools.WindowsForms;
 using TerritoriesManagement.Export;
 using TerritoriesManagement.DataBridge;
 
@@ -36,16 +37,15 @@ namespace TerritoriesManagement.GUI
 
         private void frmInterop_Load(object sender, EventArgs e)
         {
-            cboProvider.DataSource = Enum.GetValues(typeof(DataProviders));
+            _importer = new ImportTool();
 
             _config = new ImporterConfig.ImporterConfig();
-
             _config.LoadConfig();
 
+            txtConnectStr.Text = _config.ConnectionString;
+            _importer.Config.ConnectionString = txtConnectStr.Text;
+            _importer.Config.Provider = _config.Provider;
             grdImportConfig.SelectedObject = _config;
-
-
-            
 
             LoadExportCheckList();
             
@@ -79,28 +79,6 @@ namespace TerritoriesManagement.GUI
             }
         }
 
-        private void btnSetConnectStr_Click(object sender, EventArgs e)
-        {
-            _config.ConnectionString = txtConnectStr.Text;
-        }
-
-        private void btnSelectExcelFile_Click(object sender, EventArgs e)
-        {
-            ofdFileSource.ShowDialog();
-        }
-
-        private void ofdFileSource_FileOk(object sender, CancelEventArgs e)
-        {
-            if (_config.Provider == DataProviders.MSExcel)
-            {
-                string file = Path.GetFullPath(ofdFileSource.FileName);
-                txtExcelFile.Text = file;
-                string connectStr = _importer.MakeConnectStr(new string[] { file });
-                txtConnectStr.Text = connectStr;
-                _config.ConnectionString = connectStr;
-            }
-        }
-
         private void grdImportConfig_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
         {
             _isDirty = true;
@@ -115,9 +93,6 @@ namespace TerritoriesManagement.GUI
         {
             if (_isDirty)
             {
-                _config.Provider = (DataProviders)cboProvider.SelectedItem;
-                _importer = new ImportTool();
-                _importer.Config.ConnectionString = _config.ConnectionString;
                 //Departments
                 if (_config.Departments.Import)
                 {
@@ -298,18 +273,6 @@ namespace TerritoriesManagement.GUI
 
         }
 
-        private void SetTabValuesConfig(ImporterConfig.ImporterConfig config)
-        {
-            cboProvider.SelectedItem = _config.Provider;
-            switch (config.Provider)
-            {
-                case DataProviders.MSExcel:
-                    txtConnectStr.Text = _config.ConnectionString;
-                    break;
-                default: break;
-            }
-        }
-
         #endregion
 
         #region GeoRSS Import
@@ -439,24 +402,21 @@ namespace TerritoriesManagement.GUI
             txtXmlDestiny.Text = Path.GetFullPath(sfdGMaps.FileName);
         }
 
-        private void tabProviders_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnConfigureConnection_Click(object sender, EventArgs e)
         {
+            using (ConnectionStringMaker myForm = new ConnectionStringMaker())
+            {
+                myForm.ConnectionString = _config.ConnectionString;
+                myForm.DataProvider = _config.Provider;
 
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+                myForm.ShowDialog();
+                if (myForm.DialogResult == DialogResult.OK)
+                {
+                    txtConnectStr.Text = myForm.ConnectionString;
+                    _config.ConnectionString = txtConnectStr.Text;
+                    _config.Provider = myForm.DataProvider;
+                }
+            }
         }
 
         
