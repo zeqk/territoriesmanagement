@@ -5,7 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using System.IO;
 using System.Xml.Serialization;
-using ZeqkTools.Query.Enumerators;
+using ZeqkTools.Data;
 
 namespace TerritoriesManagement.GUI.ImporterConfig
 {

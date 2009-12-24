@@ -986,12 +986,6 @@ namespace TerritoriesManagement.Import
 
                 _importer.Tables.Add(table);
             }
-
-        }
-
-        public string MakeConnectStr(string[] parameters)
-        {
-            return  _importer.MakeConnectStr(parameters);
         }
 
         private void SaveLog()
