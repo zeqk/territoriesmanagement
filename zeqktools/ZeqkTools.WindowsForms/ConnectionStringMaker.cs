@@ -14,12 +14,21 @@ namespace ZeqkTools.WindowsForms
 {
     public partial class ConnectionStringMaker : Form
     {
-        DbConnectionStringBuilder _sb;        
+        DbConnectionStringBuilder _sb;
+
+        private string _connectionString;
+
+        private DataProviders _dataProvider;
+
+        #region Properties
 
         public string ConnectionString
         {
             get { return _sb.ConnectionString; }
-            set { _sb.ConnectionString = value; }
+            set 
+            {
+                _connectionString = value;
+            }
         }        
 
         public DataProviders DataProvider
@@ -31,21 +40,24 @@ namespace ZeqkTools.WindowsForms
             }
             set 
             {
-                cboDataProvider.SelectedValue = value;
+                _dataProvider = value;
             }
         }
-	
+        #endregion
 
 
         public ConnectionStringMaker()
         {
             InitializeComponent();
+            cboDataProvider.DataSource = Enum.GetValues(typeof(DataProviders));  
+            cboDataProvider.SelectedItem = null;
         }
 
         private void ConnectionStringMaker_Load(object sender, EventArgs e)
         {
-            cboDataProvider.DataSource = Enum.GetValues(typeof(DataProviders));
-            cboDataProvider.SelectedItem = null;
+            cboDataProvider.SelectedItem = _dataProvider;
+            if (_sb != null) 
+                _sb.ConnectionString = _connectionString;
         }
 
         private void cboDataProvider_SelectedIndexChanged(object sender, EventArgs e)
@@ -60,9 +72,9 @@ namespace ZeqkTools.WindowsForms
                         btnSelectSource.Enabled = true;
                         _sb = new System.Data.OleDb.OleDbConnectionStringBuilder();
                         _sb["Provider"] = "Microsoft.Jet.Oledb.4.0";
-                        _sb["Extended Properties"] = "Excel 8.0;HDR=Yes;IMEX=1";
+                        _sb["Extended Properties"] = "Excel 8.0;HDR=Yes;IMEX=1";                        
                         break;
-                    case DataProviders.MSAcces: txtDataSource.Enabled = true;
+                    case DataProviders.MSAccess: txtDataSource.Enabled = true;
                         btnSelectSource.Enabled = true;
                         _sb = new System.Data.OleDb.OleDbConnectionStringBuilder();
                         _sb["Provider"] = "Microsoft.Jet.Oledb.4.0"; 

@@ -8,7 +8,7 @@ using System.Data;
 
 namespace ZeqkTools.Data
 {
-    class AccesExtractor : IExtractor
+    class AccessExtractor : IExtractor
     {
         #region Fields
 
@@ -21,7 +21,7 @@ namespace ZeqkTools.Data
         #endregion
 
         #region Constructors
-        public AccesExtractor()
+        public AccessExtractor()
         {
             _ds = new DataSet();
             _tables = new List<Table>();
