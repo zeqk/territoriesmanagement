@@ -41,18 +41,11 @@ namespace ZeqkTools.Data
         {
             get { return _connectionStr; }
             set { _connectionStr = value; }
-        }	
+        }
 
         #endregion
 
         #region Methods
-        public string MakeConnectStr(string[] parameters)
-        {
-            string connectionString = @"Provider=Microsoft.Jet.Oledb.4.0;Data Source=";
-            connectionString += parameters[0];
-            connectionString += @";Extended Properties=""Excel 8.0;HDR=Yes;IMEX=1""";
-            return connectionString;
-        }
 
         public DataSet GetData()
         {
@@ -68,8 +61,8 @@ namespace ZeqkTools.Data
                 {
                     string strFields = ListToStr(table.Fields);
                     string strCommand = "SELECT" + strFields +
-                        " FROM [" + table.TableName + "$]" +
-                        " GROUP BY " + strFields;
+                        " FROM [" + table.TableName + "$]" 
+                        + " GROUP BY " + strFields;
 
                     OleDbDataAdapter da = new OleDbDataAdapter(strCommand, connection);
 

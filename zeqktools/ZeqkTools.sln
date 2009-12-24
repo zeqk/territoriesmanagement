@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeqkTools", "ZeqkTools\Zeqk
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeqkTools.WindowsForms", "ZeqkTools.WindowsForms\ZeqkTools.WindowsForms.csproj", "{10B0ABBC-894E-4890-8988-18C4BA8A05BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeqkTools.Test", "ZeqkTools.Test\ZeqkTools.Test.csproj", "{52383A6F-436E-4B73-B5C0-84B18ABBBD0F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,15 @@ Global
 		{10B0ABBC-894E-4890-8988-18C4BA8A05BE}.x86 CPU|Any CPU.Build.0 = x86 CPU|Any CPU
 		{10B0ABBC-894E-4890-8988-18C4BA8A05BE}.x86 CPU|x86.ActiveCfg = x86 CPU|x86
 		{10B0ABBC-894E-4890-8988-18C4BA8A05BE}.x86 CPU|x86.Build.0 = x86 CPU|x86
+		{52383A6F-436E-4B73-B5C0-84B18ABBBD0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52383A6F-436E-4B73-B5C0-84B18ABBBD0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52383A6F-436E-4B73-B5C0-84B18ABBBD0F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{52383A6F-436E-4B73-B5C0-84B18ABBBD0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52383A6F-436E-4B73-B5C0-84B18ABBBD0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52383A6F-436E-4B73-B5C0-84B18ABBBD0F}.Release|x86.ActiveCfg = Release|Any CPU
+		{52383A6F-436E-4B73-B5C0-84B18ABBBD0F}.x86 CPU|Any CPU.ActiveCfg = Release|Any CPU
+		{52383A6F-436E-4B73-B5C0-84B18ABBBD0F}.x86 CPU|Any CPU.Build.0 = Release|Any CPU
+		{52383A6F-436E-4B73-B5C0-84B18ABBBD0F}.x86 CPU|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

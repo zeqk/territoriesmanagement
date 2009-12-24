@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ZeqkTools.Query.Enumerators
+namespace ZeqkTools.Data
 {
     public enum DataProviders
     {
         MSExcel,
         MSAcces,
-        Oracle,
+        OleDb,
+        Odbc,
         SQLServer
     }
 }
