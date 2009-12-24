@@ -46,20 +46,6 @@ namespace ZeqkTools.Data
         #endregion
 
         #region Methods
-        public string MakeConnectStr(string[] parameters)
-        {
-            string connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source=";
-            connectionString += parameters[0];
-            connectionString += @";";
-            if (parameters.Count() > 1)
-            {
-                connectionString += @"User Id=" + parameters[1] + "admin;Password=";
-                if (parameters.Count() > 2)
-                    connectionString += parameters[2];
-                connectionString += ";";
-            }
-            return connectionString;
-        }
 
         public DataSet GetData()
         {

@@ -88,6 +88,10 @@ namespace ZeqkTools.WindowsForms.Maps
             MainMap.MouseDown += new MouseEventHandler(MainMap_MouseDown);
             MainMap.MouseUp += new MouseEventHandler(MainMap_MouseUp);
 
+            // get zoom  
+            trackBar1.Minimum = MainMap.MinZoom;
+            trackBar1.Maximum = MainMap.MaxZoom;
+            trackBar1.Value = MainMap.Zoom;
 
             // map center
             //center = new GMapMarkerCross(MainMap.CurrentPosition);

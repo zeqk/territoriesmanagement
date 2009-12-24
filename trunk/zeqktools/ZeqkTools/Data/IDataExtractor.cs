@@ -8,7 +8,6 @@ namespace ZeqkTools.Data
 {
     public interface IExtractor
     {
-        string MakeConnectStr(string[] parameters);
         DataSet GetData();
         List<Table> Tables {get;set;}
         string ConnectionStr {get;set;}

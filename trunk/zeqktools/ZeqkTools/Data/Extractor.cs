@@ -9,6 +9,8 @@ namespace ZeqkTools.Data
 {
     public class Extractor
     {
+        
+
         private IExtractor _importer;
 
         public List<Table> Tables   
@@ -16,8 +18,7 @@ namespace ZeqkTools.Data
             get { return _importer.Tables; }
             set { _importer.Tables = value; }
         }
-
-
+	
 
 
         public string ConnectStr 
@@ -37,19 +38,13 @@ namespace ZeqkTools.Data
                 case DataProviders.MSAcces:
                     _importer = new AccesExtractor();
                     break;
-                case DataProviders.Oracle:
+                case DataProviders.OleDb:
                     break;
                 case DataProviders.SQLServer:
                     break;
                 default:
                     break;
             }
-        }
-
-
-        public string MakeConnectStr(string[] parameters)
-        {
-            return _importer.MakeConnectStr(parameters);
         }
 
         public DataSet GetData()
