@@ -8,7 +8,7 @@ namespace ZeqkTools.Data
     public enum DataProviders
     {
         MSExcel,
-        MSAcces,
+        MSAccess,
         OleDb,
         Odbc,
         SQLServer

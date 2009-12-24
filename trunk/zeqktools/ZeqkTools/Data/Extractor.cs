@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
-using ZeqkTools.Query.Enumerators;
 
 namespace ZeqkTools.Data
 {
@@ -35,8 +34,8 @@ namespace ZeqkTools.Data
                 case DataProviders.MSExcel:
                     _importer = new ExcelExtractor();
                     break;
-                case DataProviders.MSAcces:
-                    _importer = new AccesExtractor();
+                case DataProviders.MSAccess:
+                    _importer = new AccessExtractor();
                     break;
                 case DataProviders.OleDb:
                     break;
