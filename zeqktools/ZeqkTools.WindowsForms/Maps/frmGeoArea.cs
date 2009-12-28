@@ -187,7 +187,6 @@ namespace ZeqkTools.WindowsForms.Maps
 
         private void btnGenImage_Click(object sender, EventArgs e)
         {
-            bool onlyPoints = false;
             if (top.Markers[1].GetType() == typeof(GMapMarkerPolygon))
             {
                 GMapMarkerPolygon polygon = (GMapMarkerPolygon)top.Markers[1];
@@ -200,11 +199,9 @@ namespace ZeqkTools.WindowsForms.Maps
                 MainMap.SelectedArea = area;
             }
             else
-            {
                 MainMap.SelectedArea = CalculateRectangle(Points);
-                onlyPoints = true;
-            }
-            
+
+            MainMap.SelectedArea = AddMargin(MainMap.SelectedArea);
 
             if (!MainMap.SelectedArea.IsEmpty)
             {
@@ -216,6 +213,15 @@ namespace ZeqkTools.WindowsForms.Maps
             {
                 MessageBox.Show("Select map area holding ALT", "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
+        }
+
+        private RectLatLng AddMargin(RectLatLng rect)
+        {
+            rect.LocationTopLeft = new PointLatLng(rect.LocationTopLeft.Lat + 0.0009, rect.LocationTopLeft.Lng - 0.002);
+            rect.HeightLat = rect.HeightLat + 0.0018;            
+            rect.WidthLng = rect.WidthLng + 0.004;
+
+            return rect;
         }
 
         private void trackBar1_ValueChanged(object sender, EventArgs e)
