@@ -278,6 +278,7 @@
             this.Controls.Add(this.tabPanel);
             this.Controls.Add(this.grdSearch);
             this.Controls.Add(this.grpObject);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmCities";
             this.Load += new System.EventHandler(this.frmCities_Load);
             this.Shown += new System.EventHandler(this.frmCities_Shown);

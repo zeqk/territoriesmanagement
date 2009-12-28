@@ -239,6 +239,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.tabConfigs);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmConfig";
             this.Text = "Confguration";
             this.Load += new System.EventHandler(this.frmConfig_Load);

@@ -11,6 +11,8 @@ using TerritoriesManagement.Model;
 using ZeqkTools.Data;
 using ZeqkTools.Query.Enumerators;
 using System.Globalization;
+using System.ComponentModel;
+
 
 namespace TerritoriesManagement.Import
 {    
@@ -21,6 +23,15 @@ namespace TerritoriesManagement.Import
         Extractor _importer;
         private ImporterConfig _config;
 
+        public BackgroundWorker bg;
+        double _progressPercentage;        
+	
+
+        double _conversionProgressUnit;
+        double _saveChangesProgressUnit;
+        public string ImportMessage;
+        public bool SuccessfulImport;
+
         private string _log;
 
         private Func<TerritoriesDataContext, string, IQueryable<int>> _compiledIdDepartmentByName;
@@ -30,13 +41,20 @@ namespace TerritoriesManagement.Import
         private Func<TerritoriesDataContext, TerritoriesManagement.Model.Department, IQueryable<TerritoriesManagement.Model.Department>> _compiledSameDepartment;
         private Func<TerritoriesDataContext, City, int,IQueryable<City>> _compiledSameCity;
         private Func<TerritoriesDataContext, Territory, IQueryable<Territory>> _compiledSameTerritory;
+        
 
         public ImportTool()
 	    {
             _log = "";
             _dm = new TerritoriesDataContext();
-            _importer = new Extractor(DataProviders.MSExcel);
+            _importer = new Extractor(DataProviders.MSExcel);           
+
             _config = new ImporterConfig();
+
+            bg = new BackgroundWorker();
+            bg.WorkerSupportsCancellation = true;
+            bg.WorkerReportsProgress = true;
+            bg.DoWork += new DoWorkEventHandler(bg_DoWork);
 	    }
 
         public ImporterConfig Config
@@ -49,18 +67,26 @@ namespace TerritoriesManagement.Import
         {
             get { return _log; }
             set { _log = value; }
-        }	
+        }
 
 
-        public bool ExternalDataToModel(ref string importationMessage)
+        public void ImportData()
         {
-            bool rv = true;
+            bg.RunWorkerAsync();
+        }
+
+        void bg_DoWork(object sender, DoWorkEventArgs e)
+        {
+            SuccessfulImport = true;
             SetConfig();
 
             PreCompileQueries();
             try
             {
                 DataSet ds = _importer.GetData();
+                CalculateProcess(ds);
+                ReportDataGetting();
+
                 if (ds.Tables.Count > 0)
                 {
                     bool departmentsImported = true;
@@ -72,14 +98,14 @@ namespace TerritoriesManagement.Import
                         departmentsImported = count > 0;
                         if (departmentsImported)
                         {
-                            importationMessage += "\n" + count + " departments has been imported.\n";
+                            ImportMessage += "\n" + count + " departments has been imported.\n";
                             if (ds.Tables[departments].Rows.Count>count)
                             {
-                                importationMessage += "Some departments has not been imported successfully.\n";
+                                ImportMessage += "Some departments has not been imported successfully.\n";
                             }
                         }
                         else
-                            importationMessage += "\nNo department has been imported.\n";
+                            ImportMessage += "\nNo department has been imported.\n";
                     }
 
                     bool citiesImported = true;
@@ -90,14 +116,14 @@ namespace TerritoriesManagement.Import
                         citiesImported = count > 0;
                         if (citiesImported)
                         {
-                            importationMessage += "\n" + count + " cities has been imported.\n";
+                            ImportMessage += "\n" + count + " cities has been imported.\n";
                             if (ds.Tables[cities].Rows.Count > count)
                             {
-                                importationMessage += "Some cities has not been imported successfully.\n";
+                                ImportMessage += "Some cities has not been imported successfully.\n";
                             }
                         }
                         else
-                            importationMessage += "\nNo city has been imported.\n";
+                            ImportMessage += "\nNo city has been imported.\n";
                     }
 
                     bool territoriesImported = true;
@@ -108,14 +134,14 @@ namespace TerritoriesManagement.Import
                         territoriesImported = count > 0;
                         if (territoriesImported)
                         {
-                            importationMessage += "\n" + count + " territories has been imported.\n";
+                            ImportMessage += "\n" + count + " territories has been imported.\n";
                             if (ds.Tables[territories].Rows.Count > count)
                             {
-                                importationMessage += "Some territories has not been imported successfully.\n";
+                                ImportMessage += "Some territories has not been imported successfully.\n";
                             }
                         }
                         else
-                            importationMessage += "\nNo territory has been imported.\n";
+                            ImportMessage += "\nNo territory has been imported.\n";
                     }
 
                     bool addressesImported = true;
@@ -126,20 +152,20 @@ namespace TerritoriesManagement.Import
                         addressesImported =  count > 0;
                         if (addressesImported)
                         {
-                            importationMessage += "\n" + count + " addresses has been imported.\n";
+                            ImportMessage += "\n" + count + " addresses has been imported.\n";
                             if (ds.Tables[addresses].Rows.Count > count)
                             {
-                                importationMessage += "Some addresses has not been imported successfully.\n";
+                                ImportMessage += "Some addresses has not been imported successfully.\n";
                             }
                         }
                         else
-                            importationMessage += "\nNo address has been imported.\n";
+                            ImportMessage += "\nNo address has been imported.\n";
                     }
 
-                    rv = departmentsImported && citiesImported && territoriesImported && addressesImported;
+                    SuccessfulImport = departmentsImported && citiesImported && territoriesImported && addressesImported;
                 }
                 else
-                    rv = false;
+                    SuccessfulImport = false;
 
                 
             }
@@ -148,7 +174,41 @@ namespace TerritoriesManagement.Import
                 throw ex;
             }
             SaveLog();
-            return rv;
+        }
+
+        private void CalculateProcess(DataSet ds)
+        {
+            int tablesCount = ds.Tables.Count;
+            int rowsCount = 0;
+            foreach (DataTable table in ds.Tables)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    rowsCount++;
+                }
+            }
+
+            _conversionProgressUnit = 73.5 / rowsCount;
+
+            _saveChangesProgressUnit = 24.5 / tablesCount;           
+            
+        }
+
+        private void ReportAConversion()
+        {
+            _progressPercentage += _conversionProgressUnit;
+            bg.ReportProgress((int)_progressPercentage);
+        }
+
+        private void ReportASaveChanges()
+        {
+            _progressPercentage += _saveChangesProgressUnit;
+            bg.ReportProgress((int)_progressPercentage);
+        }
+
+        private void ReportDataGetting()
+        {
+            bg.ReportProgress(2);
         }
 
         #region AddEntity Methods
@@ -165,7 +225,8 @@ namespace TerritoriesManagement.Import
                     foreach (DataRow row in dt.Rows)
                     {
                         Model.Department v;
-                        if(DataRowToDepartment(row,out v,ref message))
+                        if (DataRowToDepartment(row, out v, ref message))
+                        {
                             if (DepartmentIsValid(v, ref message))
                             {
                                 if (!_config.Departments.Fields.ContainsKey("IdDepartment"))
@@ -179,8 +240,11 @@ namespace TerritoriesManagement.Import
                                     count++;
                                 }
                             }
+                            ReportAConversion();
+                        }
                     }
                     _dm.SaveChanges();
+                    ReportASaveChanges();
                     rv = count;
                 }
             }
@@ -208,7 +272,8 @@ namespace TerritoriesManagement.Import
                 {
                     
                     City v;
-                    if(DataRowToCity(row,out v, ref message))
+                    if (DataRowToCity(row, out v, ref message))
+                    {
                         if (CityIsValid(v, ref message))
                         {
                             if (!_config.Cities.Fields.ContainsKey("IdCity"))
@@ -222,8 +287,11 @@ namespace TerritoriesManagement.Import
                                 count++;
                             }
                         }
+                        ReportAConversion();
+                    }
                 }
                 _dm.SaveChanges();
+                ReportASaveChanges();
                 rv = count;
             }
             catch (Exception ex)
@@ -247,8 +315,8 @@ namespace TerritoriesManagement.Import
                 int count = 0;
                 foreach (DataRow row in dt.Rows)
                 {
-                    Territory v; 
-                    if(DataRowToTerritory(row,out v,ref message))
+                    Territory v;
+                    if (DataRowToTerritory(row, out v, ref message))
                         if (!string.IsNullOrEmpty(v.Name)) //hay registros que no tienen territorio
                         {
                             if (TerritoryIsValid(v, ref message))
@@ -264,9 +332,11 @@ namespace TerritoriesManagement.Import
                                     count++;
                                 }
                             }
+                            ReportAConversion();
                         }
                 }
                 _dm.SaveChanges();
+                ReportASaveChanges();
                 rv = count;
             }
             catch (Exception ex)
@@ -291,8 +361,9 @@ namespace TerritoriesManagement.Import
                 int count = 0;
                 foreach (DataRow row in dt.Rows)
                 {
-                   
-                    if(DataRowToAddress(row,out v,ref message))
+
+                    if (DataRowToAddress(row, out v, ref message))
+                    {
                         if (AddressIsValid(v, ref message))
                         {
                             if (!_config.Addresses.Fields.ContainsKey("IdAddress"))
@@ -306,8 +377,11 @@ namespace TerritoriesManagement.Import
                                 count++;
                             }
                         }
+                        ReportAConversion();
+                    }
                 }
                 _dm.SaveChanges();
+                ReportASaveChanges();
                 rv = count;
             }
             catch (Exception ex)
@@ -940,6 +1014,8 @@ namespace TerritoriesManagement.Import
         private void SetConfig()
         {
             _importer.ConnectStr = _config.ConnectionString;
+
+            _progressPercentage = 0;
 
             _importer.Tables = new List<Table>();
 

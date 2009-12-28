@@ -24,7 +24,7 @@ namespace TerritoriesManagement.GUI.Config
 
         public void SaveConfig()
         {
-            string configFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Territories Management\";
+            string configFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Territories Management\";
             if (!Directory.Exists(configFolder))
                 Directory.CreateDirectory(configFolder);
             string path = configFolder + "config.xml";

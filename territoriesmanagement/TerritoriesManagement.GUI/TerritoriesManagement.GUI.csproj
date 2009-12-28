@@ -88,7 +88,7 @@
     </Reference>
     <Reference Include="GMap.NET.WindowsForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libs\GMap.NET.WindowsForms.dll</HintPath>
+      <HintPath>..\..\ZeqkTools\bin\GMap.NET.WindowsForms.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
