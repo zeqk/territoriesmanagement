@@ -22,7 +22,7 @@ namespace TerritoriesManagement.GUI
         public frmDepartments()
         {
             if (_opened)
-                throw new Exception("The window is already opened.");
+                throw new Exception(GetString("The window is already opened."));
             else
                 _opened = true;   
             InitializeComponent();

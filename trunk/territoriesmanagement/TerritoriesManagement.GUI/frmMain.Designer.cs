@@ -34,11 +34,11 @@
             this.bntTerritories = new System.Windows.Forms.Button();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menuTools = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
             this.menuInteroperabilty = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.menuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -100,42 +100,42 @@
             this.toolStripSeparator1,
             this.menuConfiguration});
             this.menuTools.Name = "menuTools";
-            this.menuTools.Size = new System.Drawing.Size(48, 20);
+            this.menuTools.Size = new System.Drawing.Size(44, 20);
             this.menuTools.Text = "Tools";
-            // 
-            // menuConfiguration
-            // 
-            this.menuConfiguration.Name = "menuConfiguration";
-            this.menuConfiguration.Size = new System.Drawing.Size(152, 22);
-            this.menuConfiguration.Text = "Configuration";
-            this.menuConfiguration.Click += new System.EventHandler(this.menuConfiguration_Click);
             // 
             // menuInteroperabilty
             // 
             this.menuInteroperabilty.Name = "menuInteroperabilty";
-            this.menuInteroperabilty.Size = new System.Drawing.Size(152, 22);
+            this.menuInteroperabilty.Size = new System.Drawing.Size(146, 22);
             this.menuInteroperabilty.Text = "Interoperabilty";
             this.menuInteroperabilty.Click += new System.EventHandler(this.menuInteroperabilty_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
+            // 
+            // menuConfiguration
+            // 
+            this.menuConfiguration.Name = "menuConfiguration";
+            this.menuConfiguration.Size = new System.Drawing.Size(146, 22);
+            this.menuConfiguration.Text = "Configuration";
+            this.menuConfiguration.Click += new System.EventHandler(this.menuConfiguration_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuAbout});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // menuAbout
             // 
             this.menuAbout.Name = "menuAbout";
-            this.menuAbout.Size = new System.Drawing.Size(237, 22);
+            this.menuAbout.Size = new System.Drawing.Size(220, 22);
             this.menuAbout.Text = "About Territories Management";
             this.menuAbout.Click += new System.EventHandler(this.menuAbout_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // frmMain
             // 
@@ -147,6 +147,7 @@
             this.Controls.Add(this.btnCities);
             this.Controls.Add(this.btnAddress);
             this.Controls.Add(this.menu);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menu;
             this.Name = "frmMain";
             this.Text = "Territories Management";

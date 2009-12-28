@@ -31,6 +31,7 @@
             this.odfRssSource = new System.Windows.Forms.OpenFileDialog();
             this.tabDataImport = new System.Windows.Forms.TabPage();
             this.grpConfig = new System.Windows.Forms.GroupBox();
+            this.prbDataImport = new System.Windows.Forms.ProgressBar();
             this.btnConfigureConnection = new System.Windows.Forms.Button();
             this.lblConnecStr = new System.Windows.Forms.Label();
             this.txtConnectStr = new System.Windows.Forms.TextBox();
@@ -92,6 +93,7 @@
             // 
             // grpConfig
             // 
+            this.grpConfig.Controls.Add(this.prbDataImport);
             this.grpConfig.Controls.Add(this.btnConfigureConnection);
             this.grpConfig.Controls.Add(this.lblConnecStr);
             this.grpConfig.Controls.Add(this.txtConnectStr);
@@ -102,6 +104,13 @@
             this.grpConfig.TabIndex = 10;
             this.grpConfig.TabStop = false;
             this.grpConfig.Text = "Configure import properties";
+            // 
+            // prbDataImport
+            // 
+            this.prbDataImport.Location = new System.Drawing.Point(305, 112);
+            this.prbDataImport.Name = "prbDataImport";
+            this.prbDataImport.Size = new System.Drawing.Size(246, 24);
+            this.prbDataImport.TabIndex = 16;
             // 
             // btnConfigureConnection
             // 
@@ -132,9 +141,9 @@
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(112, 112);
+            this.btnImport.Location = new System.Drawing.Point(21, 107);
             this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(344, 35);
+            this.btnImport.Size = new System.Drawing.Size(243, 35);
             this.btnImport.TabIndex = 9;
             this.btnImport.Text = "Import";
             this.btnImport.UseVisualStyleBackColor = true;
@@ -416,6 +425,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 472);
             this.Controls.Add(this.tabMaps);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmInterop";
             this.Text = "Interoperability";
             this.Load += new System.EventHandler(this.frmInterop_Load);
@@ -472,5 +482,6 @@
         private System.Windows.Forms.Label lblConnecStr;
         private System.Windows.Forms.TextBox txtConnectStr;
         private System.Windows.Forms.Button btnConfigureConnection;
+        private System.Windows.Forms.ProgressBar prbDataImport;
     }
 }

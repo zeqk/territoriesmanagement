@@ -25,6 +25,9 @@ namespace TerritoriesManagement.GUI
         bool _isDirty;
         ImporterConfig.ImporterConfig _config;
 
+        string importMessage;
+        bool successfulImport;
+
         public frmInterop()
         {
             _geoRssImporter = new GeoRssImportTool();
@@ -38,6 +41,8 @@ namespace TerritoriesManagement.GUI
         private void frmInterop_Load(object sender, EventArgs e)
         {
             _importer = new ImportTool();
+            _importer.bg.RunWorkerCompleted += new RunWorkerCompletedEventHandler(ImportCompleted);
+            _importer.bg.ProgressChanged += new ProgressChangedEventHandler(ImportProgressChanged);
 
             _config = new ImporterConfig.ImporterConfig();
             _config.LoadConfig();
@@ -59,24 +64,32 @@ namespace TerritoriesManagement.GUI
         }
 
         #region DataImport
+
+
+
+        private void ImportCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (_importer.SuccessfulImport)
+                MessageBox.Show("The importation has been successful.\n" + _importer.ImportMessage);
+            else
+                MessageBox.Show("The importation have problems. Check the settings and see the log.\n" + _importer.ImportMessage);
+
+            btnImport.Enabled = true;
+        }
+
         private void btnImport_Click(object sender, EventArgs e)
         {
             SetConfig();
             try
             {
-                string importationMessage = "";
-                bool ok = _importer.ExternalDataToModel(ref importationMessage);
-                if (ok)
-                    MessageBox.Show("The importation has been successful.\n" + importationMessage);
-                else
-                    MessageBox.Show("The importation have problems. Check the settings and see the log.\n" + importationMessage);
-
-
+                _importer.ImportData();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error");
             }
+
+            btnImport.Enabled = false;
         }
 
         private void grdImportConfig_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
@@ -418,6 +431,13 @@ namespace TerritoriesManagement.GUI
                 }
             }
         }
+
+        private void ImportProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            prbDataImport.Value = e.ProgressPercentage;
+        }
+
+ 
 
         
 

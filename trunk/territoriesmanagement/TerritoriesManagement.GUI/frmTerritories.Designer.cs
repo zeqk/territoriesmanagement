@@ -270,6 +270,7 @@
             this.Controls.Add(this.tabPanel);
             this.Controls.Add(this.grdSearch);
             this.Controls.Add(this.grpObject);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmTerritories";
             this.Load += new System.EventHandler(this.frmTerritories_Load);
             this.Shown += new System.EventHandler(this.frmTerritories_Shown);
