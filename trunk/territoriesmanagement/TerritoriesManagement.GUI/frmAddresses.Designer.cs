@@ -58,6 +58,7 @@
             this.viewMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sfdGMaps = new System.Windows.Forms.SaveFileDialog();
             this.sfdExcelDestiny = new System.Windows.Forms.SaveFileDialog();
+            this.lblResultsCount = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
             this.panel2.SuspendLayout();
@@ -262,10 +263,16 @@
             resources.ApplyResources(this.sfdExcelDestiny, "sfdExcelDestiny");
             this.sfdExcelDestiny.FileOk += new System.ComponentModel.CancelEventHandler(this.sfdExcelDestiny_FileOk);
             // 
+            // lblResultsCount
+            // 
+            resources.ApplyResources(this.lblResultsCount, "lblResultsCount");
+            this.lblResultsCount.Name = "lblResultsCount";
+            // 
             // frmAddresses
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.lblResultsCount);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.lblResults);
@@ -316,6 +323,7 @@
         private System.Windows.Forms.Button btnToExcel;
         private System.Windows.Forms.SaveFileDialog sfdExcelDestiny;
         private System.Windows.Forms.ToolStripMenuItem viewMapToolStripMenuItem;
+        private System.Windows.Forms.Label lblResultsCount;
 
 
 
