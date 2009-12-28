@@ -184,6 +184,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAddress.en.resx">
       <DependentUpon>frmAddress.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddress.es-AR.resx">
       <DependentUpon>frmAddress.cs</DependentUpon>
@@ -208,6 +209,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddress.resx">
       <DependentUpon>frmAddress.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddresses.resx">
       <DependentUpon>frmAddresses.cs</DependentUpon>

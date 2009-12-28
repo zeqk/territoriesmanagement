@@ -84,28 +84,20 @@
             // 
             // grpMaps
             // 
-            this.grpMaps.AccessibleDescription = null;
-            this.grpMaps.AccessibleName = null;
-            resources.ApplyResources(this.grpMaps, "grpMaps");
-            this.grpMaps.BackgroundImage = null;
             this.grpMaps.Controls.Add(this.txtId);
             this.grpMaps.Controls.Add(this.grpGeoLocation);
             this.grpMaps.Controls.Add(this.lblMap2);
             this.grpMaps.Controls.Add(this.txtMap2);
             this.grpMaps.Controls.Add(this.lblMap1);
             this.grpMaps.Controls.Add(this.txtMap1);
-            this.grpMaps.Font = null;
+            resources.ApplyResources(this.grpMaps, "grpMaps");
             this.grpMaps.Name = "grpMaps";
             this.grpMaps.TabStop = false;
             // 
             // txtId
             // 
-            this.txtId.AccessibleDescription = null;
-            this.txtId.AccessibleName = null;
-            resources.ApplyResources(this.txtId, "txtId");
-            this.txtId.BackgroundImage = null;
             this.txtId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "IdAddress", true));
-            this.txtId.Font = null;
+            resources.ApplyResources(this.txtId, "txtId");
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
             // 
@@ -116,212 +108,135 @@
             // 
             // grpGeoLocation
             // 
-            this.grpGeoLocation.AccessibleDescription = null;
-            this.grpGeoLocation.AccessibleName = null;
-            resources.ApplyResources(this.grpGeoLocation, "grpGeoLocation");
-            this.grpGeoLocation.BackgroundImage = null;
             this.grpGeoLocation.Controls.Add(this.btnSearchGeoPos);
             this.grpGeoLocation.Controls.Add(this.chkHaveGeoPos);
             this.grpGeoLocation.Controls.Add(this.lblLon);
             this.grpGeoLocation.Controls.Add(this.lblLat);
             this.grpGeoLocation.Controls.Add(this.txtLon);
             this.grpGeoLocation.Controls.Add(this.txtLat);
-            this.grpGeoLocation.Font = null;
+            resources.ApplyResources(this.grpGeoLocation, "grpGeoLocation");
             this.grpGeoLocation.Name = "grpGeoLocation";
             this.grpGeoLocation.TabStop = false;
             // 
             // btnSearchGeoPos
             // 
-            this.btnSearchGeoPos.AccessibleDescription = null;
-            this.btnSearchGeoPos.AccessibleName = null;
             resources.ApplyResources(this.btnSearchGeoPos, "btnSearchGeoPos");
-            this.btnSearchGeoPos.BackgroundImage = null;
-            this.btnSearchGeoPos.Font = null;
             this.btnSearchGeoPos.Name = "btnSearchGeoPos";
             this.btnSearchGeoPos.UseVisualStyleBackColor = true;
             this.btnSearchGeoPos.Click += new System.EventHandler(this.btnSearchGeoPos_Click);
             // 
             // chkHaveGeoPos
             // 
-            this.chkHaveGeoPos.AccessibleDescription = null;
-            this.chkHaveGeoPos.AccessibleName = null;
             resources.ApplyResources(this.chkHaveGeoPos, "chkHaveGeoPos");
-            this.chkHaveGeoPos.BackgroundImage = null;
-            this.chkHaveGeoPos.Font = null;
             this.chkHaveGeoPos.Name = "chkHaveGeoPos";
             this.chkHaveGeoPos.UseVisualStyleBackColor = true;
             this.chkHaveGeoPos.CheckedChanged += new System.EventHandler(this.chkHaveGeoPos_CheckedChanged);
             // 
             // lblLon
             // 
-            this.lblLon.AccessibleDescription = null;
-            this.lblLon.AccessibleName = null;
             resources.ApplyResources(this.lblLon, "lblLon");
-            this.lblLon.Font = null;
             this.lblLon.Name = "lblLon";
             // 
             // lblLat
             // 
-            this.lblLat.AccessibleDescription = null;
-            this.lblLat.AccessibleName = null;
             resources.ApplyResources(this.lblLat, "lblLat");
-            this.lblLat.Font = null;
             this.lblLat.Name = "lblLat";
             // 
             // txtLon
             // 
-            this.txtLon.AccessibleDescription = null;
-            this.txtLon.AccessibleName = null;
-            resources.ApplyResources(this.txtLon, "txtLon");
-            this.txtLon.BackgroundImage = null;
             this.txtLon.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Lng", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtLon.Font = null;
+            resources.ApplyResources(this.txtLon, "txtLon");
             this.txtLon.Name = "txtLon";
             this.txtLon.TextChanged += new System.EventHandler(this.HaveChanges);
             // 
             // txtLat
             // 
-            this.txtLat.AccessibleDescription = null;
-            this.txtLat.AccessibleName = null;
-            resources.ApplyResources(this.txtLat, "txtLat");
-            this.txtLat.BackgroundImage = null;
             this.txtLat.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Lat", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.txtLat.Font = null;
+            resources.ApplyResources(this.txtLat, "txtLat");
             this.txtLat.Name = "txtLat";
             this.txtLat.TextChanged += new System.EventHandler(this.HaveChanges);
             // 
             // lblMap2
             // 
-            this.lblMap2.AccessibleDescription = null;
-            this.lblMap2.AccessibleName = null;
             resources.ApplyResources(this.lblMap2, "lblMap2");
-            this.lblMap2.Font = null;
             this.lblMap2.Name = "lblMap2";
             // 
             // txtMap2
             // 
-            this.txtMap2.AccessibleDescription = null;
-            this.txtMap2.AccessibleName = null;
-            resources.ApplyResources(this.txtMap2, "txtMap2");
-            this.txtMap2.BackgroundImage = null;
             this.txtMap2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Map2", true));
-            this.txtMap2.Font = null;
+            resources.ApplyResources(this.txtMap2, "txtMap2");
             this.txtMap2.Name = "txtMap2";
             // 
             // lblMap1
             // 
-            this.lblMap1.AccessibleDescription = null;
-            this.lblMap1.AccessibleName = null;
             resources.ApplyResources(this.lblMap1, "lblMap1");
-            this.lblMap1.Font = null;
             this.lblMap1.Name = "lblMap1";
             // 
             // txtMap1
             // 
-            this.txtMap1.AccessibleDescription = null;
-            this.txtMap1.AccessibleName = null;
-            resources.ApplyResources(this.txtMap1, "txtMap1");
-            this.txtMap1.BackgroundImage = null;
             this.txtMap1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Map1", true));
-            this.txtMap1.Font = null;
+            resources.ApplyResources(this.txtMap1, "txtMap1");
             this.txtMap1.Name = "txtMap1";
             // 
             // lblDescription
             // 
-            this.lblDescription.AccessibleDescription = null;
-            this.lblDescription.AccessibleName = null;
             resources.ApplyResources(this.lblDescription, "lblDescription");
-            this.lblDescription.Font = null;
             this.lblDescription.Name = "lblDescription";
             // 
             // txtDescription
             // 
-            this.txtDescription.AccessibleDescription = null;
-            this.txtDescription.AccessibleName = null;
-            resources.ApplyResources(this.txtDescription, "txtDescription");
-            this.txtDescription.BackgroundImage = null;
             this.txtDescription.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Description", true));
-            this.txtDescription.Font = null;
+            resources.ApplyResources(this.txtDescription, "txtDescription");
             this.txtDescription.Name = "txtDescription";
             // 
             // grpPhones
             // 
-            this.grpPhones.AccessibleDescription = null;
-            this.grpPhones.AccessibleName = null;
-            resources.ApplyResources(this.grpPhones, "grpPhones");
-            this.grpPhones.BackgroundImage = null;
             this.grpPhones.Controls.Add(this.lblPhone2);
             this.grpPhones.Controls.Add(this.lblPhone1);
             this.grpPhones.Controls.Add(this.txtPhone2);
             this.grpPhones.Controls.Add(this.txtPhone1);
-            this.grpPhones.Font = null;
+            resources.ApplyResources(this.grpPhones, "grpPhones");
             this.grpPhones.Name = "grpPhones";
             this.grpPhones.TabStop = false;
             // 
             // lblPhone2
             // 
-            this.lblPhone2.AccessibleDescription = null;
-            this.lblPhone2.AccessibleName = null;
             resources.ApplyResources(this.lblPhone2, "lblPhone2");
-            this.lblPhone2.Font = null;
             this.lblPhone2.Name = "lblPhone2";
             // 
             // lblPhone1
             // 
-            this.lblPhone1.AccessibleDescription = null;
-            this.lblPhone1.AccessibleName = null;
             resources.ApplyResources(this.lblPhone1, "lblPhone1");
-            this.lblPhone1.Font = null;
             this.lblPhone1.Name = "lblPhone1";
             // 
             // txtPhone2
             // 
-            this.txtPhone2.AccessibleDescription = null;
-            this.txtPhone2.AccessibleName = null;
-            resources.ApplyResources(this.txtPhone2, "txtPhone2");
-            this.txtPhone2.BackgroundImage = null;
             this.txtPhone2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Phone2", true));
-            this.txtPhone2.Font = null;
+            resources.ApplyResources(this.txtPhone2, "txtPhone2");
             this.txtPhone2.Name = "txtPhone2";
             // 
             // txtPhone1
             // 
-            this.txtPhone1.AccessibleDescription = null;
-            this.txtPhone1.AccessibleName = null;
-            resources.ApplyResources(this.txtPhone1, "txtPhone1");
-            this.txtPhone1.BackgroundImage = null;
             this.txtPhone1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Phone1", true));
-            this.txtPhone1.Font = null;
+            resources.ApplyResources(this.txtPhone1, "txtPhone1");
             this.txtPhone1.Name = "txtPhone1";
             // 
             // btnSave
             // 
-            this.btnSave.AccessibleDescription = null;
-            this.btnSave.AccessibleName = null;
             resources.ApplyResources(this.btnSave, "btnSave");
-            this.btnSave.BackgroundImage = null;
-            this.btnSave.Font = null;
             this.btnSave.Name = "btnSave";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
-            this.btnCancel.AccessibleDescription = null;
-            this.btnCancel.AccessibleName = null;
             resources.ApplyResources(this.btnCancel, "btnCancel");
-            this.btnCancel.BackgroundImage = null;
-            this.btnCancel.Font = null;
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // grpUbication
             // 
-            this.grpUbication.AccessibleDescription = null;
-            this.grpUbication.AccessibleName = null;
-            resources.ApplyResources(this.grpUbication, "grpUbication");
-            this.grpUbication.BackgroundImage = null;
             this.grpUbication.Controls.Add(this.lblAddressData);
             this.grpUbication.Controls.Add(this.txtAddressData);
             this.grpUbication.Controls.Add(this.lblNumber);
@@ -336,206 +251,135 @@
             this.grpUbication.Controls.Add(this.cboCity);
             this.grpUbication.Controls.Add(this.cboDepartment);
             this.grpUbication.Controls.Add(this.txtStreet);
-            this.grpUbication.Font = null;
+            resources.ApplyResources(this.grpUbication, "grpUbication");
             this.grpUbication.Name = "grpUbication";
             this.grpUbication.TabStop = false;
             // 
             // lblAddressData
             // 
-            this.lblAddressData.AccessibleDescription = null;
-            this.lblAddressData.AccessibleName = null;
             resources.ApplyResources(this.lblAddressData, "lblAddressData");
-            this.lblAddressData.Font = null;
             this.lblAddressData.Name = "lblAddressData";
             // 
             // txtAddressData
             // 
-            this.txtAddressData.AccessibleDescription = null;
-            this.txtAddressData.AccessibleName = null;
-            resources.ApplyResources(this.txtAddressData, "txtAddressData");
-            this.txtAddressData.BackgroundImage = null;
             this.txtAddressData.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "AddressData", true));
-            this.txtAddressData.Font = null;
+            resources.ApplyResources(this.txtAddressData, "txtAddressData");
             this.txtAddressData.Name = "txtAddressData";
             // 
             // lblNumber
             // 
-            this.lblNumber.AccessibleDescription = null;
-            this.lblNumber.AccessibleName = null;
             resources.ApplyResources(this.lblNumber, "lblNumber");
-            this.lblNumber.Font = null;
             this.lblNumber.Name = "lblNumber";
             // 
             // lblCity
             // 
-            this.lblCity.AccessibleDescription = null;
-            this.lblCity.AccessibleName = null;
             resources.ApplyResources(this.lblCity, "lblCity");
-            this.lblCity.Font = null;
             this.lblCity.Name = "lblCity";
             // 
             // lblDepartment
             // 
-            this.lblDepartment.AccessibleDescription = null;
-            this.lblDepartment.AccessibleName = null;
             resources.ApplyResources(this.lblDepartment, "lblDepartment");
-            this.lblDepartment.Font = null;
             this.lblDepartment.Name = "lblDepartment";
             // 
             // lblCorner2
             // 
-            this.lblCorner2.AccessibleDescription = null;
-            this.lblCorner2.AccessibleName = null;
             resources.ApplyResources(this.lblCorner2, "lblCorner2");
-            this.lblCorner2.Font = null;
             this.lblCorner2.Name = "lblCorner2";
             // 
             // lblCorner1
             // 
-            this.lblCorner1.AccessibleDescription = null;
-            this.lblCorner1.AccessibleName = null;
             resources.ApplyResources(this.lblCorner1, "lblCorner1");
-            this.lblCorner1.Font = null;
             this.lblCorner1.Name = "lblCorner1";
             // 
             // lblStreet
             // 
-            this.lblStreet.AccessibleDescription = null;
-            this.lblStreet.AccessibleName = null;
             resources.ApplyResources(this.lblStreet, "lblStreet");
-            this.lblStreet.Font = null;
             this.lblStreet.Name = "lblStreet";
             // 
             // txtCorner2
             // 
-            this.txtCorner2.AccessibleDescription = null;
-            this.txtCorner2.AccessibleName = null;
-            resources.ApplyResources(this.txtCorner2, "txtCorner2");
-            this.txtCorner2.BackgroundImage = null;
             this.txtCorner2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Corner2", true));
-            this.txtCorner2.Font = null;
+            resources.ApplyResources(this.txtCorner2, "txtCorner2");
             this.txtCorner2.Name = "txtCorner2";
             // 
             // txtCorner1
             // 
-            this.txtCorner1.AccessibleDescription = null;
-            this.txtCorner1.AccessibleName = null;
-            resources.ApplyResources(this.txtCorner1, "txtCorner1");
-            this.txtCorner1.BackgroundImage = null;
             this.txtCorner1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Corner1", true));
-            this.txtCorner1.Font = null;
+            resources.ApplyResources(this.txtCorner1, "txtCorner1");
             this.txtCorner1.Name = "txtCorner1";
             // 
             // txtNumber
             // 
-            this.txtNumber.AccessibleDescription = null;
-            this.txtNumber.AccessibleName = null;
-            resources.ApplyResources(this.txtNumber, "txtNumber");
-            this.txtNumber.BackgroundImage = null;
             this.txtNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Number", true));
-            this.txtNumber.Font = null;
+            resources.ApplyResources(this.txtNumber, "txtNumber");
             this.txtNumber.Name = "txtNumber";
             // 
             // cboCity
             // 
-            this.cboCity.AccessibleDescription = null;
-            this.cboCity.AccessibleName = null;
-            resources.ApplyResources(this.cboCity, "cboCity");
-            this.cboCity.BackgroundImage = null;
             this.cboCity.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsAddress, "City.IdCity", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cboCity.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "City.Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cboCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCity.Font = null;
             this.cboCity.FormattingEnabled = true;
+            resources.ApplyResources(this.cboCity, "cboCity");
             this.cboCity.Name = "cboCity";
             this.cboCity.SelectedIndexChanged += new System.EventHandler(this.HaveChanges);
             // 
             // cboDepartment
             // 
-            this.cboDepartment.AccessibleDescription = null;
-            this.cboDepartment.AccessibleName = null;
-            resources.ApplyResources(this.cboDepartment, "cboDepartment");
-            this.cboDepartment.BackgroundImage = null;
             this.cboDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDepartment.Font = null;
+            resources.ApplyResources(this.cboDepartment, "cboDepartment");
             this.cboDepartment.FormattingEnabled = true;
             this.cboDepartment.Name = "cboDepartment";
             this.cboDepartment.SelectedIndexChanged += new System.EventHandler(this.cboDepartment_SelectedIndexChanged);
             // 
             // txtStreet
             // 
-            this.txtStreet.AccessibleDescription = null;
-            this.txtStreet.AccessibleName = null;
-            resources.ApplyResources(this.txtStreet, "txtStreet");
-            this.txtStreet.BackgroundImage = null;
             this.txtStreet.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Street", true));
-            this.txtStreet.Font = null;
+            resources.ApplyResources(this.txtStreet, "txtStreet");
             this.txtStreet.Name = "txtStreet";
             // 
             // txtField1
             // 
-            this.txtField1.AccessibleDescription = null;
-            this.txtField1.AccessibleName = null;
-            resources.ApplyResources(this.txtField1, "txtField1");
-            this.txtField1.BackgroundImage = null;
             this.txtField1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "CustomField1", true));
-            this.txtField1.Font = null;
+            resources.ApplyResources(this.txtField1, "txtField1");
             this.txtField1.Name = "txtField1";
             // 
             // lblField1
             // 
-            this.lblField1.AccessibleDescription = null;
-            this.lblField1.AccessibleName = null;
             resources.ApplyResources(this.lblField1, "lblField1");
-            this.lblField1.Font = null;
             this.lblField1.Name = "lblField1";
             // 
             // grpTerritory
             // 
-            this.grpTerritory.AccessibleDescription = null;
-            this.grpTerritory.AccessibleName = null;
-            resources.ApplyResources(this.grpTerritory, "grpTerritory");
-            this.grpTerritory.BackgroundImage = null;
             this.grpTerritory.Controls.Add(this.cboTerritory);
-            this.grpTerritory.Font = null;
+            resources.ApplyResources(this.grpTerritory, "grpTerritory");
             this.grpTerritory.Name = "grpTerritory";
             this.grpTerritory.TabStop = false;
             // 
             // cboTerritory
             // 
-            this.cboTerritory.AccessibleDescription = null;
-            this.cboTerritory.AccessibleName = null;
-            resources.ApplyResources(this.cboTerritory, "cboTerritory");
-            this.cboTerritory.BackgroundImage = null;
             this.cboTerritory.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsAddress, "Territory.IdTerritory", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cboTerritory.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Territory.Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cboTerritory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTerritory.Font = null;
             this.cboTerritory.FormattingEnabled = true;
+            resources.ApplyResources(this.cboTerritory, "cboTerritory");
             this.cboTerritory.Name = "cboTerritory";
             this.cboTerritory.SelectedIndexChanged += new System.EventHandler(this.HaveChanges);
             // 
             // grpAdditional
             // 
-            this.grpAdditional.AccessibleDescription = null;
-            this.grpAdditional.AccessibleName = null;
-            resources.ApplyResources(this.grpAdditional, "grpAdditional");
-            this.grpAdditional.BackgroundImage = null;
             this.grpAdditional.Controls.Add(this.lblDescription);
             this.grpAdditional.Controls.Add(this.txtDescription);
             this.grpAdditional.Controls.Add(this.lblField1);
             this.grpAdditional.Controls.Add(this.txtField1);
-            this.grpAdditional.Font = null;
+            resources.ApplyResources(this.grpAdditional, "grpAdditional");
             this.grpAdditional.Name = "grpAdditional";
             this.grpAdditional.TabStop = false;
             // 
             // frmAddress
             // 
-            this.AccessibleDescription = null;
-            this.AccessibleName = null;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = null;
             this.Controls.Add(this.grpAdditional);
             this.Controls.Add(this.grpTerritory);
             this.Controls.Add(this.grpUbication);
@@ -543,8 +387,6 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.grpPhones);
             this.Controls.Add(this.grpMaps);
-            this.Font = null;
-            this.Icon = null;
             this.Name = "frmAddress";
             this.Load += new System.EventHandler(this.frmAddress_Load);
             this.grpMaps.ResumeLayout(false);

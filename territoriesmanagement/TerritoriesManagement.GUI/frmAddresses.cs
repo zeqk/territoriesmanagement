@@ -183,7 +183,9 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
-                dgvResults.DataSource = this._server.Search(query);
+                var addresses = this._server.Search(query);
+                dgvResults.DataSource = addresses;
+                lblResultsCount.Text = addresses.Count.ToString();
                 dgvResults.ClearSelection();
             }
             catch (Exception ex)
@@ -258,7 +260,9 @@ namespace TerritoriesManagement.GUI
                 string strQuery = GetQuery(out parameters);
                 if (!string.IsNullOrEmpty(strQuery))
                 {
-                    dgvResults.DataSource = this._server.Search(strQuery, parameters.ToArray<ObjectParameter>());
+                    var addresses = this._server.Search(strQuery, parameters.ToArray<ObjectParameter>());
+                    dgvResults.DataSource = addresses;
+                    lblResultsCount.Text = addresses.Count.ToString();
                     lblFiltered.Visible = true;
                 }
                 else

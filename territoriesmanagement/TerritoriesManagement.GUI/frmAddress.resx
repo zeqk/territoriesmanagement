@@ -117,1090 +117,1176 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <metadata name="bsAddress.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="lblMap1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 13</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="txtMap1.MaxLength" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;grpTerritory.Name" xml:space="preserve">
-    <value>grpTerritory</value>
-  </data>
-  <data name="&gt;&gt;lblField1.Name" xml:space="preserve">
-    <value>lblField1</value>
-  </data>
-  <data name="grpMaps.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;cboTerritory.Parent" xml:space="preserve">
-    <value>grpTerritory</value>
-  </data>
-  <data name="lblLon.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;grpMaps.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="btnSave.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="txtAddressData.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
   <data name="txtId.Location" type="System.Drawing.Point, System.Drawing">
     <value>249, 0</value>
   </data>
-  <data name="&gt;&gt;grpAdditional.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblCorner2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="grpTerritory.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;lblMap1.Name" xml:space="preserve">
-    <value>lblMap1</value>
-  </data>
-  <data name="lblPhone1.Text" xml:space="preserve">
-    <value>Phone 1</value>
-  </data>
-  <data name="txtField1.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblLon.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="lblNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 147</value>
-  </data>
-  <data name="lblField1.Text" xml:space="preserve">
-    <value>Custom field 1</value>
-  </data>
-  <data name="&gt;&gt;chkHaveGeoPos.Name" xml:space="preserve">
-    <value>chkHaveGeoPos</value>
-  </data>
-  <data name="txtDescription.MaxLength" type="System.Int32, mscorlib">
-    <value>200</value>
-  </data>
-  <data name="lblPhone2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 13</value>
-  </data>
-  <data name="&gt;&gt;lblCity.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtLat.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;lblStreet.Parent" xml:space="preserve">
-    <value>grpUbication</value>
-  </data>
-  <data name="lblMap2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;lblPhone2.Parent" xml:space="preserve">
-    <value>grpPhones</value>
-  </data>
-  <data name="txtField1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 197</value>
-  </data>
-  <data name="txtMap2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 81</value>
-  </data>
-  <data name="grpGeoLocation.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="lblField1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="txtCorner2.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="txtLat.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="grpGeoLocation.Text" xml:space="preserve">
-    <value>Geo location</value>
-  </data>
-  <data name="&gt;&gt;lblLon.Parent" xml:space="preserve">
-    <value>grpGeoLocation</value>
-  </data>
-  <data name="&gt;&gt;cboDepartment.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtId.Name" xml:space="preserve">
-    <value>txtId</value>
-  </data>
-  <data name="txtPhone1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>304, 20</value>
-  </data>
-  <data name="&gt;&gt;lblField1.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lblStreet.Name" xml:space="preserve">
-    <value>lblStreet</value>
-  </data>
-  <data name="lblAddressData.Text" xml:space="preserve">
-    <value>Address data</value>
-  </data>
-  <data name="lblNumber.Text" xml:space="preserve">
-    <value>Number</value>
-  </data>
-  <data name="&gt;&gt;txtPhone2.Name" xml:space="preserve">
-    <value>txtPhone2</value>
-  </data>
-  <data name="&gt;&gt;txtCorner1.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="lblCorner1.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="lblCorner1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 190</value>
-  </data>
-  <data name="lblNumber.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;grpPhones.Name" xml:space="preserve">
-    <value>grpPhones</value>
-  </data>
-  <data name="txtStreet.MaxLength" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <data name="txtLon.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="lblDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 13</value>
-  </data>
-  <data name="&gt;&gt;lblPhone1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="lblCity.Text" xml:space="preserve">
-    <value>City</value>
-  </data>
-  <data name="&gt;&gt;lblDescription.Name" xml:space="preserve">
-    <value>lblDescription</value>
-  </data>
-  <data name="txtPhone2.MaxLength" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="btnSave.Location" type="System.Drawing.Point, System.Drawing">
-    <value>560, 517</value>
-  </data>
-  <data name="lblAddressData.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;grpPhones.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblMap2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtPhone1.Parent" xml:space="preserve">
-    <value>grpPhones</value>
-  </data>
-  <data name="lblStreet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 104</value>
-  </data>
-  <data name="lblMap2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>37, 13</value>
-  </data>
-  <data name="&gt;&gt;btnSave.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;lblDepartment.Parent" xml:space="preserve">
-    <value>grpUbication</value>
-  </data>
-  <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 55</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;grpGeoLocation.Name" xml:space="preserve">
-    <value>grpGeoLocation</value>
-  </data>
-  <data name="lblLat.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 24</value>
-  </data>
-  <data name="&gt;&gt;txtId.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblField1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="txtPhone1.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;txtCorner2.Parent" xml:space="preserve">
-    <value>grpUbication</value>
-  </data>
-  <data name="txtPhone2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 83</value>
+  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="txtId.MaxLength" type="System.Int32, mscorlib">
+    <value>50</value>
   </data>
   <data name="txtId.Size" type="System.Drawing.Size, System.Drawing">
     <value>100, 20</value>
   </data>
-  <data name="cboTerritory.TabIndex" type="System.Int32, mscorlib">
+  <data name="txtId.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="txtId.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;txtId.Name" xml:space="preserve">
+    <value>txtId</value>
+  </data>
+  <data name="&gt;&gt;txtId.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtId.Parent" xml:space="preserve">
+    <value>grpMaps</value>
+  </data>
+  <data name="&gt;&gt;txtId.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="btnSearchGeoPos.Location" type="System.Drawing.Point, System.Drawing">
+    <value>259, 59</value>
+  </data>
+  <data name="btnSearchGeoPos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 23</value>
+  </data>
+  <data name="btnSearchGeoPos.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="btnSearchGeoPos.Text" xml:space="preserve">
+    <value>...</value>
+  </data>
+  <data name="&gt;&gt;btnSearchGeoPos.Name" xml:space="preserve">
+    <value>btnSearchGeoPos</value>
+  </data>
+  <data name="&gt;&gt;btnSearchGeoPos.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSearchGeoPos.Parent" xml:space="preserve">
+    <value>grpGeoLocation</value>
+  </data>
+  <data name="&gt;&gt;btnSearchGeoPos.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chkHaveGeoPos.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkHaveGeoPos.Location" type="System.Drawing.Point, System.Drawing">
+    <value>189, 17</value>
+  </data>
+  <data name="chkHaveGeoPos.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 17</value>
+  </data>
+  <data name="chkHaveGeoPos.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="chkHaveGeoPos.Text" xml:space="preserve">
+    <value>Have geoposition</value>
+  </data>
+  <data name="&gt;&gt;chkHaveGeoPos.Name" xml:space="preserve">
+    <value>chkHaveGeoPos</value>
+  </data>
+  <data name="&gt;&gt;chkHaveGeoPos.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkHaveGeoPos.Parent" xml:space="preserve">
+    <value>grpGeoLocation</value>
+  </data>
+  <data name="&gt;&gt;chkHaveGeoPos.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblLon.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblLon.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 64</value>
+  </data>
+  <data name="lblLon.Size" type="System.Drawing.Size, System.Drawing">
+    <value>54, 13</value>
+  </data>
+  <data name="lblLon.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="lblLon.Text" xml:space="preserve">
+    <value>Longitude</value>
+  </data>
+  <data name="&gt;&gt;lblLon.Name" xml:space="preserve">
+    <value>lblLon</value>
+  </data>
+  <data name="&gt;&gt;lblLon.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblLon.Parent" xml:space="preserve">
+    <value>grpGeoLocation</value>
+  </data>
+  <data name="&gt;&gt;lblLon.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lblLat.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblLat.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 24</value>
+  </data>
+  <data name="lblLat.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 13</value>
+  </data>
+  <data name="lblLat.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="lblLat.Text" xml:space="preserve">
+    <value>Latitude</value>
+  </data>
+  <data name="&gt;&gt;lblLat.Name" xml:space="preserve">
+    <value>lblLat</value>
+  </data>
+  <data name="&gt;&gt;lblLat.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblLat.Parent" xml:space="preserve">
+    <value>grpGeoLocation</value>
+  </data>
+  <data name="&gt;&gt;lblLat.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="txtLon.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 80</value>
+  </data>
+  <data name="txtLon.Size" type="System.Drawing.Size, System.Drawing">
+    <value>217, 20</value>
+  </data>
+  <data name="txtLon.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;txtLon.Name" xml:space="preserve">
+    <value>txtLon</value>
+  </data>
+  <data name="&gt;&gt;txtLon.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtLon.Parent" xml:space="preserve">
+    <value>grpGeoLocation</value>
+  </data>
+  <data name="&gt;&gt;txtLon.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="txtLat.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 40</value>
+  </data>
+  <data name="txtLat.Size" type="System.Drawing.Size, System.Drawing">
+    <value>217, 20</value>
+  </data>
+  <data name="txtLat.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;txtLat.Name" xml:space="preserve">
+    <value>txtLat</value>
+  </data>
+  <data name="&gt;&gt;txtLat.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtLat.Parent" xml:space="preserve">
+    <value>grpGeoLocation</value>
+  </data>
+  <data name="&gt;&gt;txtLat.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="grpGeoLocation.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 113</value>
+  </data>
+  <data name="grpGeoLocation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>304, 115</value>
+  </data>
+  <data name="grpGeoLocation.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="grpGeoLocation.Text" xml:space="preserve">
+    <value>Geo location</value>
+  </data>
+  <data name="&gt;&gt;grpGeoLocation.Name" xml:space="preserve">
+    <value>grpGeoLocation</value>
+  </data>
+  <data name="&gt;&gt;grpGeoLocation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpGeoLocation.Parent" xml:space="preserve">
+    <value>grpMaps</value>
+  </data>
+  <data name="&gt;&gt;grpGeoLocation.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblMap2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblMap2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 65</value>
+  </data>
+  <data name="lblMap2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 13</value>
+  </data>
+  <data name="lblMap2.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="lblMap2.Text" xml:space="preserve">
+    <value>Map 2</value>
+  </data>
+  <data name="&gt;&gt;lblMap2.Name" xml:space="preserve">
+    <value>lblMap2</value>
+  </data>
+  <data name="&gt;&gt;lblMap2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblMap2.Parent" xml:space="preserve">
+    <value>grpMaps</value>
+  </data>
+  <data name="&gt;&gt;lblMap2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="txtMap2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 81</value>
+  </data>
+  <data name="txtMap2.MaxLength" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="txtMap2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>304, 20</value>
+  </data>
+  <data name="txtMap2.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;txtMap2.Name" xml:space="preserve">
+    <value>txtMap2</value>
+  </data>
+  <data name="&gt;&gt;txtMap2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtMap2.Parent" xml:space="preserve">
+    <value>grpMaps</value>
+  </data>
+  <data name="&gt;&gt;txtMap2.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lblMap1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblMap1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 21</value>
+  </data>
+  <data name="lblMap1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>37, 13</value>
+  </data>
+  <data name="lblMap1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="lblMap1.Text" xml:space="preserve">
+    <value>Map 1</value>
+  </data>
+  <data name="&gt;&gt;lblMap1.Name" xml:space="preserve">
+    <value>lblMap1</value>
+  </data>
+  <data name="&gt;&gt;lblMap1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblMap1.Parent" xml:space="preserve">
+    <value>grpMaps</value>
+  </data>
+  <data name="&gt;&gt;lblMap1.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="txtMap1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 37</value>
+  </data>
+  <data name="txtMap1.MaxLength" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="txtMap1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>304, 20</value>
+  </data>
+  <data name="txtMap1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;txtMap1.Name" xml:space="preserve">
+    <value>txtMap1</value>
+  </data>
+  <data name="&gt;&gt;txtMap1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtMap1.Parent" xml:space="preserve">
+    <value>grpMaps</value>
+  </data>
+  <data name="&gt;&gt;txtMap1.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="grpMaps.Location" type="System.Drawing.Point, System.Drawing">
+    <value>383, 12</value>
+  </data>
+  <data name="grpMaps.Size" type="System.Drawing.Size, System.Drawing">
+    <value>355, 255</value>
+  </data>
+  <data name="grpMaps.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="grpMaps.Text" xml:space="preserve">
+    <value>Maps</value>
+  </data>
+  <data name="&gt;&gt;grpMaps.Name" xml:space="preserve">
+    <value>grpMaps</value>
+  </data>
+  <data name="&gt;&gt;grpMaps.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpMaps.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grpMaps.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="lblDescription.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblDescription.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 20</value>
+  </data>
+  <data name="lblDescription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 13</value>
+  </data>
+  <data name="lblDescription.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblDescription.Text" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="&gt;&gt;lblDescription.Name" xml:space="preserve">
+    <value>lblDescription</value>
+  </data>
+  <data name="&gt;&gt;lblDescription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDescription.Parent" xml:space="preserve">
+    <value>grpAdditional</value>
+  </data>
+  <data name="&gt;&gt;lblDescription.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="txtDescription.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 36</value>
+  </data>
+  <data name="txtDescription.MaxLength" type="System.Int32, mscorlib">
+    <value>200</value>
+  </data>
+  <data name="txtDescription.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtDescription.Size" type="System.Drawing.Size, System.Drawing">
+    <value>316, 135</value>
+  </data>
+  <data name="txtDescription.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtDescription.Name" xml:space="preserve">
+    <value>txtDescription</value>
+  </data>
+  <data name="&gt;&gt;txtDescription.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtDescription.Parent" xml:space="preserve">
+    <value>grpAdditional</value>
+  </data>
+  <data name="&gt;&gt;txtDescription.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblPhone2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblPhone2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 67</value>
+  </data>
+  <data name="lblPhone2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 13</value>
+  </data>
+  <data name="lblPhone2.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="lblPhone2.Text" xml:space="preserve">
+    <value>Phone 2</value>
+  </data>
+  <data name="&gt;&gt;lblPhone2.Name" xml:space="preserve">
+    <value>lblPhone2</value>
+  </data>
+  <data name="&gt;&gt;lblPhone2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblPhone2.Parent" xml:space="preserve">
+    <value>grpPhones</value>
+  </data>
+  <data name="&gt;&gt;lblPhone2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="lblPhone1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblPhone1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>23, 23</value>
+  </data>
+  <data name="lblPhone1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 13</value>
+  </data>
+  <data name="lblPhone1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblPhone1.Text" xml:space="preserve">
+    <value>Phone 1</value>
+  </data>
+  <data name="&gt;&gt;lblPhone1.Name" xml:space="preserve">
+    <value>lblPhone1</value>
+  </data>
+  <data name="&gt;&gt;lblPhone1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblPhone1.Parent" xml:space="preserve">
+    <value>grpPhones</value>
+  </data>
+  <data name="&gt;&gt;lblPhone1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="txtPhone2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 83</value>
+  </data>
+  <data name="txtPhone2.MaxLength" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="txtPhone2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>304, 20</value>
+  </data>
+  <data name="txtPhone2.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;txtPhone2.Name" xml:space="preserve">
+    <value>txtPhone2</value>
+  </data>
+  <data name="&gt;&gt;txtPhone2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtPhone2.Parent" xml:space="preserve">
+    <value>grpPhones</value>
+  </data>
+  <data name="&gt;&gt;txtPhone2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="txtPhone1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 39</value>
+  </data>
+  <data name="txtPhone1.MaxLength" type="System.Int32, mscorlib">
+    <value>15</value>
+  </data>
+  <data name="txtPhone1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>304, 20</value>
+  </data>
+  <data name="txtPhone1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;txtPhone1.Name" xml:space="preserve">
+    <value>txtPhone1</value>
+  </data>
+  <data name="&gt;&gt;txtPhone1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtPhone1.Parent" xml:space="preserve">
+    <value>grpPhones</value>
+  </data>
+  <data name="&gt;&gt;txtPhone1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="grpPhones.Location" type="System.Drawing.Point, System.Drawing">
+    <value>383, 365</value>
+  </data>
+  <data name="grpPhones.Size" type="System.Drawing.Size, System.Drawing">
+    <value>355, 124</value>
+  </data>
+  <data name="grpPhones.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="grpPhones.Text" xml:space="preserve">
+    <value>Phones</value>
+  </data>
+  <data name="&gt;&gt;grpPhones.Name" xml:space="preserve">
+    <value>grpPhones</value>
+  </data>
+  <data name="&gt;&gt;grpPhones.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpPhones.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grpPhones.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="btnSave.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <data name="btnSave.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
+  </data>
+  <data name="btnSave.Location" type="System.Drawing.Point, System.Drawing">
+    <value>560, 517</value>
+  </data>
+  <data name="btnSave.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 55</value>
+  </data>
+  <data name="btnSave.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="btnSave.Text" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="btnSave.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
+  <data name="&gt;&gt;btnSave.Name" xml:space="preserve">
+    <value>btnSave</value>
+  </data>
+  <data name="&gt;&gt;btnSave.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSave.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnSave.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="btnCancel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+        RK5CYII=
+</value>
+  </data>
+  <data name="btnCancel.ImageAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopCenter</value>
+  </data>
+  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>652, 517</value>
+  </data>
+  <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>86, 55</value>
+  </data>
+  <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnCancel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>BottomCenter</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
+    <value>btnCancel</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lblAddressData.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblAddressData.Location" type="System.Drawing.Point, System.Drawing">
+    <value>134, 147</value>
+  </data>
+  <data name="lblAddressData.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 13</value>
+  </data>
+  <data name="lblAddressData.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="lblAddressData.Text" xml:space="preserve">
+    <value>Address data</value>
+  </data>
+  <data name="&gt;&gt;lblAddressData.Name" xml:space="preserve">
+    <value>lblAddressData</value>
+  </data>
+  <data name="&gt;&gt;lblAddressData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblAddressData.Parent" xml:space="preserve">
+    <value>grpUbication</value>
+  </data>
+  <data name="&gt;&gt;lblAddressData.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="txtAddressData.Location" type="System.Drawing.Point, System.Drawing">
+    <value>137, 163</value>
+  </data>
+  <data name="txtAddressData.MaxLength" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="txtAddressData.Size" type="System.Drawing.Size, System.Drawing">
+    <value>197, 20</value>
+  </data>
+  <data name="txtAddressData.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;txtAddressData.Name" xml:space="preserve">
+    <value>txtAddressData</value>
+  </data>
+  <data name="&gt;&gt;txtAddressData.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtAddressData.Parent" xml:space="preserve">
+    <value>grpUbication</value>
+  </data>
+  <data name="&gt;&gt;txtAddressData.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="lblNumber.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblNumber.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 147</value>
+  </data>
+  <data name="lblNumber.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 13</value>
+  </data>
+  <data name="lblNumber.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="lblNumber.Text" xml:space="preserve">
+    <value>Number</value>
   </data>
   <data name="&gt;&gt;lblNumber.Name" xml:space="preserve">
     <value>lblNumber</value>
   </data>
-  <data name="cboDepartment.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 34</value>
+  <data name="&gt;&gt;lblNumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblNumber.Parent" xml:space="preserve">
+    <value>grpUbication</value>
+  </data>
+  <data name="&gt;&gt;lblNumber.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="lblCity.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCity.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 60</value>
+  </data>
+  <data name="lblCity.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 13</value>
   </data>
   <data name="lblCity.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
+  <data name="lblCity.Text" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="&gt;&gt;lblCity.Name" xml:space="preserve">
+    <value>lblCity</value>
+  </data>
+  <data name="&gt;&gt;lblCity.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblCity.Parent" xml:space="preserve">
+    <value>grpUbication</value>
+  </data>
+  <data name="&gt;&gt;lblCity.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lblDepartment.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblDepartment.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 16</value>
+  </data>
+  <data name="lblDepartment.Size" type="System.Drawing.Size, System.Drawing">
+    <value>62, 13</value>
+  </data>
+  <data name="lblDepartment.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblDepartment.Text" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="&gt;&gt;lblDepartment.Name" xml:space="preserve">
+    <value>lblDepartment</value>
+  </data>
+  <data name="&gt;&gt;lblDepartment.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblDepartment.Parent" xml:space="preserve">
+    <value>grpUbication</value>
+  </data>
+  <data name="&gt;&gt;lblDepartment.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="lblCorner2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCorner2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 233</value>
+  </data>
+  <data name="lblCorner2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 13</value>
+  </data>
+  <data name="lblCorner2.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="lblCorner2.Text" xml:space="preserve">
+    <value>Corner 2</value>
+  </data>
+  <data name="&gt;&gt;lblCorner2.Name" xml:space="preserve">
+    <value>lblCorner2</value>
+  </data>
+  <data name="&gt;&gt;lblCorner2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblCorner2.Parent" xml:space="preserve">
+    <value>grpUbication</value>
+  </data>
+  <data name="&gt;&gt;lblCorner2.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="lblCorner1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCorner1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 190</value>
+  </data>
+  <data name="lblCorner1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 13</value>
+  </data>
+  <data name="lblCorner1.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="lblCorner1.Text" xml:space="preserve">
+    <value>Corner 1</value>
+  </data>
+  <data name="&gt;&gt;lblCorner1.Name" xml:space="preserve">
+    <value>lblCorner1</value>
+  </data>
+  <data name="&gt;&gt;lblCorner1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblCorner1.Parent" xml:space="preserve">
+    <value>grpUbication</value>
+  </data>
+  <data name="&gt;&gt;lblCorner1.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="lblStreet.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblStreet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 104</value>
+  </data>
+  <data name="lblStreet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 13</value>
+  </data>
+  <data name="lblStreet.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="lblStreet.Text" xml:space="preserve">
+    <value>Street</value>
+  </data>
+  <data name="&gt;&gt;lblStreet.Name" xml:space="preserve">
+    <value>lblStreet</value>
+  </data>
   <data name="&gt;&gt;lblStreet.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblStreet.Parent" xml:space="preserve">
+    <value>grpUbication</value>
+  </data>
+  <data name="&gt;&gt;lblStreet.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="txtCorner2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 251</value>
+  </data>
+  <data name="txtCorner2.MaxLength" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="txtCorner2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>316, 20</value>
+  </data>
+  <data name="txtCorner2.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;txtCorner2.Name" xml:space="preserve">
+    <value>txtCorner2</value>
+  </data>
+  <data name="&gt;&gt;txtCorner2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtCorner2.Parent" xml:space="preserve">
+    <value>grpUbication</value>
+  </data>
+  <data name="&gt;&gt;txtCorner2.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="txtCorner1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 208</value>
+  </data>
+  <data name="txtCorner1.MaxLength" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="txtCorner1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>316, 20</value>
+  </data>
+  <data name="txtCorner1.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;txtCorner1.Name" xml:space="preserve">
+    <value>txtCorner1</value>
+  </data>
+  <data name="&gt;&gt;txtCorner1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtCorner1.Parent" xml:space="preserve">
+    <value>grpUbication</value>
+  </data>
+  <data name="&gt;&gt;txtCorner1.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="txtNumber.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 163</value>
+  </data>
+  <data name="txtNumber.MaxLength" type="System.Int32, mscorlib">
+    <value>50</value>
+  </data>
+  <data name="txtNumber.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 20</value>
+  </data>
+  <data name="txtNumber.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;txtNumber.Name" xml:space="preserve">
+    <value>txtNumber</value>
+  </data>
+  <data name="&gt;&gt;txtNumber.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtNumber.Parent" xml:space="preserve">
+    <value>grpUbication</value>
+  </data>
+  <data name="&gt;&gt;txtNumber.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="cboCity.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 78</value>
+  </data>
+  <data name="cboCity.Size" type="System.Drawing.Size, System.Drawing">
+    <value>316, 21</value>
+  </data>
+  <data name="cboCity.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;cboCity.Name" xml:space="preserve">
+    <value>cboCity</value>
+  </data>
+  <data name="&gt;&gt;cboCity.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboCity.Parent" xml:space="preserve">
+    <value>grpUbication</value>
+  </data>
+  <data name="&gt;&gt;cboCity.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="cboDepartment.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>System</value>
+  </data>
+  <data name="cboDepartment.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 34</value>
+  </data>
+  <data name="cboDepartment.Size" type="System.Drawing.Size, System.Drawing">
+    <value>316, 21</value>
+  </data>
+  <data name="cboDepartment.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;cboDepartment.Name" xml:space="preserve">
+    <value>cboDepartment</value>
+  </data>
+  <data name="&gt;&gt;cboDepartment.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;cboDepartment.Parent" xml:space="preserve">
+    <value>grpUbication</value>
+  </data>
+  <data name="&gt;&gt;cboDepartment.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="txtStreet.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 122</value>
+  </data>
+  <data name="txtStreet.MaxLength" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="txtStreet.Size" type="System.Drawing.Size, System.Drawing">
+    <value>316, 20</value>
+  </data>
+  <data name="txtStreet.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;txtStreet.Name" xml:space="preserve">
+    <value>txtStreet</value>
+  </data>
+  <data name="&gt;&gt;txtStreet.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtStreet.Parent" xml:space="preserve">
+    <value>grpUbication</value>
+  </data>
+  <data name="&gt;&gt;txtStreet.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="grpUbication.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 12</value>
+  </data>
+  <data name="grpUbication.Size" type="System.Drawing.Size, System.Drawing">
+    <value>355, 291</value>
+  </data>
+  <data name="grpUbication.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="grpUbication.Text" xml:space="preserve">
+    <value>Ubication</value>
+  </data>
+  <data name="&gt;&gt;grpUbication.Name" xml:space="preserve">
+    <value>grpUbication</value>
+  </data>
+  <data name="&gt;&gt;grpUbication.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;grpUbication.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;grpUbication.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="txtField1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 197</value>
+  </data>
+  <data name="txtField1.MaxLength" type="System.Int32, mscorlib">
+    <value>200</value>
+  </data>
+  <data name="txtField1.Multiline" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtField1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>316, 43</value>
+  </data>
+  <data name="txtField1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;txtField1.Name" xml:space="preserve">
+    <value>txtField1</value>
+  </data>
+  <data name="&gt;&gt;txtField1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtField1.Parent" xml:space="preserve">
+    <value>grpAdditional</value>
+  </data>
+  <data name="&gt;&gt;txtField1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="lblField1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblField1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>15, 181</value>
+  </data>
+  <data name="lblField1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>73, 13</value>
+  </data>
+  <data name="lblField1.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="lblField1.Text" xml:space="preserve">
+    <value>Custom field 1</value>
+  </data>
+  <data name="&gt;&gt;lblField1.Name" xml:space="preserve">
+    <value>lblField1</value>
+  </data>
+  <data name="&gt;&gt;lblField1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblField1.Parent" xml:space="preserve">
     <value>grpAdditional</value>
   </data>
-  <data name="txtPhone1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 39</value>
-  </data>
-  <data name="&gt;&gt;lblNumber.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="grpUbication.Text" xml:space="preserve">
-    <value>Ubication</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 13</value>
-  </data>
-  <data name="lblMap2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 65</value>
-  </data>
-  <data name="lblDescription.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="txtNumber.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 20</value>
-  </data>
-  <data name="btnSearchGeoPos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 23</value>
-  </data>
-  <data name="lblField1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>73, 13</value>
-  </data>
-  <data name="btnSave.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 55</value>
-  </data>
-  <data name="&gt;&gt;lblAddressData.Parent" xml:space="preserve">
-    <value>grpUbication</value>
-  </data>
-  <data name="&gt;&gt;txtId.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="cboDepartment.Size" type="System.Drawing.Size, System.Drawing">
-    <value>316, 21</value>
-  </data>
-  <data name="&gt;&gt;txtLon.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="txtDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 36</value>
-  </data>
-  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>652, 517</value>
-  </data>
-  <data name="&gt;&gt;btnSave.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;btnSearchGeoPos.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="cboDepartment.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnSearchGeoPos.Parent" xml:space="preserve">
-    <value>grpGeoLocation</value>
-  </data>
-  <data name="lblDepartment.Text" xml:space="preserve">
-    <value>Department</value>
-  </data>
-  <data name="lblCorner1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 13</value>
-  </data>
-  <data name="&gt;&gt;btnSearchGeoPos.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="lblNumber.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 13</value>
-  </data>
-  <data name="&gt;&gt;lblDescription.Parent" xml:space="preserve">
-    <value>grpAdditional</value>
-  </data>
-  <data name="&gt;&gt;cboCity.Parent" xml:space="preserve">
-    <value>grpUbication</value>
-  </data>
-  <data name="&gt;&gt;lblAddressData.Name" xml:space="preserve">
-    <value>lblAddressData</value>
-  </data>
-  <data name="txtDescription.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="txtField1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="grpGeoLocation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>304, 115</value>
-  </data>
-  <data name="lblLat.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 13</value>
-  </data>
-  <data name="txtId.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnSave.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtNumber.Parent" xml:space="preserve">
-    <value>grpUbication</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="cboDepartment.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>System</value>
-  </data>
-  <data name="&gt;&gt;txtMap2.Name" xml:space="preserve">
-    <value>txtMap2</value>
-  </data>
-  <data name="&gt;&gt;grpAdditional.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtMap1.Parent" xml:space="preserve">
-    <value>grpMaps</value>
-  </data>
-  <data name="&gt;&gt;txtMap1.Name" xml:space="preserve">
-    <value>txtMap1</value>
-  </data>
-  <data name="chkHaveGeoPos.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;lblCity.Parent" xml:space="preserve">
-    <value>grpUbication</value>
-  </data>
-  <data name="&gt;&gt;cboDepartment.Name" xml:space="preserve">
-    <value>cboDepartment</value>
-  </data>
-  <data name="txtCorner1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>316, 20</value>
-  </data>
-  <data name="&gt;&gt;grpUbication.Name" xml:space="preserve">
-    <value>grpUbication</value>
-  </data>
-  <data name="lblMap2.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="lblLat.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="chkHaveGeoPos.Location" type="System.Drawing.Point, System.Drawing">
-    <value>189, 17</value>
-  </data>
-  <data name="&gt;&gt;txtPhone2.Parent" xml:space="preserve">
-    <value>grpPhones</value>
-  </data>
-  <data name="txtCorner2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>316, 20</value>
-  </data>
-  <data name="lblCorner1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;txtField1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="grpAdditional.Text" xml:space="preserve">
-    <value>Additional data</value>
-  </data>
-  <data name="&gt;&gt;grpGeoLocation.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="grpUbication.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="txtStreet.Size" type="System.Drawing.Size, System.Drawing">
-    <value>316, 20</value>
-  </data>
-  <data name="btnSave.Text" xml:space="preserve">
-    <value>Save</value>
-  </data>
-  <data name="&gt;&gt;lblMap1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtMap2.Parent" xml:space="preserve">
-    <value>grpMaps</value>
-  </data>
-  <data name="lblLon.Text" xml:space="preserve">
-    <value>Longitude</value>
-  </data>
-  <data name="txtId.MaxLength" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="lblMap1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;txtLon.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="lblPhone2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;grpMaps.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;txtCorner1.Parent" xml:space="preserve">
-    <value>grpUbication</value>
-  </data>
-  <data name="lblPhone2.Text" xml:space="preserve">
-    <value>Phone 2</value>
-  </data>
-  <data name="&gt;&gt;txtAddressData.Parent" xml:space="preserve">
-    <value>grpUbication</value>
-  </data>
-  <data name="&gt;&gt;txtLat.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblCity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 60</value>
-  </data>
-  <data name="&gt;&gt;txtAddressData.Name" xml:space="preserve">
-    <value>txtAddressData</value>
-  </data>
-  <data name="txtDescription.Size" type="System.Drawing.Size, System.Drawing">
-    <value>316, 135</value>
-  </data>
-  <data name="grpUbication.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 12</value>
-  </data>
-  <data name="&gt;&gt;grpAdditional.Name" xml:space="preserve">
-    <value>grpAdditional</value>
-  </data>
-  <data name="chkHaveGeoPos.Text" xml:space="preserve">
-    <value>Have geoposition</value>
-  </data>
-  <data name="lblCorner2.Text" xml:space="preserve">
-    <value>Corner 2</value>
-  </data>
-  <data name="&gt;&gt;lblLat.Parent" xml:space="preserve">
-    <value>grpGeoLocation</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="btnSearchGeoPos.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="lblPhone2.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;lblField1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="&gt;&gt;grpTerritory.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="cboTerritory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 29</value>
   </data>
-  <data name="&gt;&gt;grpAdditional.ZOrder" xml:space="preserve">
+  <data name="cboTerritory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>304, 21</value>
+  </data>
+  <data name="cboTerritory.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;txtLat.Parent" xml:space="preserve">
-    <value>grpGeoLocation</value>
+  <data name="&gt;&gt;cboTerritory.Name" xml:space="preserve">
+    <value>cboTerritory</value>
   </data>
-  <data name="&gt;&gt;chkHaveGeoPos.Parent" xml:space="preserve">
-    <value>grpGeoLocation</value>
-  </data>
-  <data name="cboCity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 78</value>
-  </data>
-  <data name="&gt;&gt;txtStreet.Parent" xml:space="preserve">
-    <value>grpUbication</value>
-  </data>
-  <data name="lblAddressData.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="txtPhone2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>304, 20</value>
-  </data>
-  <data name="txtAddressData.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 20</value>
-  </data>
-  <data name="lblPhone2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 67</value>
-  </data>
-  <data name="txtMap1.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;grpUbication.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblCity.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 13</value>
-  </data>
-  <data name="&gt;&gt;lblCorner1.Parent" xml:space="preserve">
-    <value>grpUbication</value>
-  </data>
-  <data name="&gt;&gt;cboCity.Type" xml:space="preserve">
+  <data name="&gt;&gt;cboTerritory.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="lblAddressData.Location" type="System.Drawing.Point, System.Drawing">
-    <value>134, 147</value>
+  <data name="&gt;&gt;cboTerritory.Parent" xml:space="preserve">
+    <value>grpTerritory</value>
+  </data>
+  <data name="&gt;&gt;cboTerritory.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="grpTerritory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>383, 278</value>
   </data>
   <data name="grpTerritory.Size" type="System.Drawing.Size, System.Drawing">
     <value>355, 71</value>
   </data>
-  <data name="&gt;&gt;txtCorner2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="grpAdditional.Size" type="System.Drawing.Size, System.Drawing">
-    <value>355, 256</value>
-  </data>
-  <data name="&gt;&gt;lblCorner1.Name" xml:space="preserve">
-    <value>lblCorner1</value>
-  </data>
-  <data name="&gt;&gt;txtCorner1.Name" xml:space="preserve">
-    <value>txtCorner1</value>
-  </data>
-  <data name="txtLon.Size" type="System.Drawing.Size, System.Drawing">
-    <value>217, 20</value>
-  </data>
-  <data name="txtCorner1.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;grpUbication.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;txtStreet.Name" xml:space="preserve">
-    <value>txtStreet</value>
-  </data>
-  <data name="&gt;&gt;txtMap1.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;lblPhone1.Parent" xml:space="preserve">
-    <value>grpPhones</value>
-  </data>
-  <data name="grpMaps.Text" xml:space="preserve">
-    <value>Maps</value>
-  </data>
-  <data name="grpMaps.Size" type="System.Drawing.Size, System.Drawing">
-    <value>355, 255</value>
-  </data>
-  <data name="&gt;&gt;grpUbication.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;grpGeoLocation.Parent" xml:space="preserve">
-    <value>grpMaps</value>
-  </data>
-  <data name="&gt;&gt;lblPhone2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;lblCorner1.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;chkHaveGeoPos.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblStreet.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="txtNumber.MaxLength" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="grpMaps.Location" type="System.Drawing.Point, System.Drawing">
-    <value>383, 12</value>
-  </data>
-  <data name="&gt;&gt;lblPhone2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblDepartment.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>frmAddress</value>
-  </data>
-  <data name="&gt;&gt;bsAddress.Name" xml:space="preserve">
-    <value>bsAddress</value>
-  </data>
-  <data name="grpGeoLocation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 113</value>
-  </data>
-  <data name="txtMap1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>304, 20</value>
-  </data>
-  <data name="&gt;&gt;cboDepartment.Parent" xml:space="preserve">
-    <value>grpUbication</value>
-  </data>
-  <data name="txtAddressData.Location" type="System.Drawing.Point, System.Drawing">
-    <value>137, 163</value>
-  </data>
-  <data name="&gt;&gt;lblLon.Name" xml:space="preserve">
-    <value>lblLon</value>
-  </data>
-  <data name="&gt;&gt;txtMap2.ZOrder" xml:space="preserve">
+  <data name="grpTerritory.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="lblPhone1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="grpTerritory.Text" xml:space="preserve">
+    <value>Territory</value>
   </data>
-  <data name="cboCity.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="&gt;&gt;grpTerritory.Name" xml:space="preserve">
+    <value>grpTerritory</value>
   </data>
-  <data name="lblCorner1.Text" xml:space="preserve">
-    <value>Corner 1</value>
+  <data name="&gt;&gt;grpTerritory.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;grpTerritory.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;grpTerritory.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <data name="lblCorner2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;txtAddressData.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblField1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblCorner2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 233</value>
-  </data>
-  <data name="txtCorner2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 251</value>
-  </data>
-  <data name="lblDescription.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 20</value>
-  </data>
-  <data name="lblDepartment.Size" type="System.Drawing.Size, System.Drawing">
-    <value>62, 13</value>
-  </data>
-  <data name="&gt;&gt;grpMaps.Name" xml:space="preserve">
-    <value>grpMaps</value>
-  </data>
-  <data name="lblDescription.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;txtPhone2.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="txtMap2.MaxLength" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;lblDepartment.Name" xml:space="preserve">
-    <value>lblDepartment</value>
-  </data>
-  <data name="txtLat.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 40</value>
-  </data>
-  <data name="&gt;&gt;txtLon.Name" xml:space="preserve">
-    <value>txtLon</value>
-  </data>
-  <data name="&gt;&gt;lblLat.Name" xml:space="preserve">
-    <value>lblLat</value>
-  </data>
-  <data name="&gt;&gt;lblCity.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="lblLon.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 64</value>
-  </data>
-  <data name="grpUbication.Size" type="System.Drawing.Size, System.Drawing">
-    <value>355, 291</value>
-  </data>
-  <data name="&gt;&gt;txtCorner2.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;lblPhone2.Name" xml:space="preserve">
-    <value>lblPhone2</value>
-  </data>
-  <data name="&gt;&gt;txtField1.Parent" xml:space="preserve">
-    <value>grpAdditional</value>
-  </data>
-  <data name="&gt;&gt;lblLat.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="txtMap2.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="grpTerritory.Text" xml:space="preserve">
-    <value>Territory</value>
-  </data>
-  <data name="txtId.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="&gt;&gt;lblCorner2.Parent" xml:space="preserve">
-    <value>grpUbication</value>
-  </data>
-  <data name="&gt;&gt;grpPhones.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="grpPhones.Location" type="System.Drawing.Point, System.Drawing">
-    <value>383, 365</value>
-  </data>
-  <data name="&gt;&gt;lblCorner1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtField1.Name" xml:space="preserve">
-    <value>txtField1</value>
-  </data>
-  <data name="cboCity.Size" type="System.Drawing.Size, System.Drawing">
-    <value>316, 21</value>
-  </data>
-  <data name="lblPhone1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 13</value>
-  </data>
-  <data name="lblStreet.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="cboTerritory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 29</value>
-  </data>
-  <data name="lblDescription.Text" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="&gt;&gt;chkHaveGeoPos.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="btnSearchGeoPos.Text" xml:space="preserve">
-    <value>...</value>
-  </data>
-  <data name="&gt;&gt;lblCorner2.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;lblMap1.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;grpGeoLocation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtId.Parent" xml:space="preserve">
-    <value>grpMaps</value>
-  </data>
-  <data name="&gt;&gt;txtLon.Parent" xml:space="preserve">
-    <value>grpGeoLocation</value>
-  </data>
-  <data name="&gt;&gt;txtPhone1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="lblAddressData.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 13</value>
-  </data>
-  <data name="&gt;&gt;lblNumber.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;txtStreet.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtPhone1.Name" xml:space="preserve">
-    <value>txtPhone1</value>
-  </data>
-  <data name="txtStreet.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="grpPhones.Text" xml:space="preserve">
-    <value>Phones</value>
-  </data>
-  <data name="&gt;&gt;txtPhone2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="grpPhones.Size" type="System.Drawing.Size, System.Drawing">
-    <value>355, 124</value>
-  </data>
-  <data name="chkHaveGeoPos.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="txtStreet.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 122</value>
-  </data>
-  <data name="&gt;&gt;lblMap2.Parent" xml:space="preserve">
-    <value>grpMaps</value>
-  </data>
-  <data name="txtPhone2.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="lblMap1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 21</value>
-  </data>
-  <data name="lblCity.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="lblDepartment.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="chkHaveGeoPos.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 17</value>
-  </data>
-  <data name="lblCorner2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 13</value>
-  </data>
-  <data name="lblLat.Text" xml:space="preserve">
-    <value>Latitude</value>
-  </data>
-  <data name="lblStreet.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 13</value>
-  </data>
-  <data name="&gt;&gt;bsAddress.Type" xml:space="preserve">
-    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblLon.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 13</value>
-  </data>
-  <data name="&gt;&gt;lblLon.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;txtCorner2.Name" xml:space="preserve">
-    <value>txtCorner2</value>
-  </data>
-  <data name="cboTerritory.Size" type="System.Drawing.Size, System.Drawing">
-    <value>304, 21</value>
-  </data>
-  <data name="&gt;&gt;cboTerritory.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;cboDepartment.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;lblMap2.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;txtCorner1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblField1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 181</value>
-  </data>
-  <data name="&gt;&gt;lblDepartment.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtAddressData.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="txtCorner1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 208</value>
-  </data>
-  <data name="txtNumber.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;lblMap2.Name" xml:space="preserve">
-    <value>lblMap2</value>
-  </data>
-  <data name="txtCorner1.MaxLength" type="System.Int32, mscorlib">
-    <value>80</value>
+  <data name="grpAdditional.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 316</value>
+  </data>
+  <data name="grpAdditional.Size" type="System.Drawing.Size, System.Drawing">
+    <value>355, 256</value>
   </data>
   <data name="grpAdditional.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
-  <data name="&gt;&gt;txtField1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="grpAdditional.Text" xml:space="preserve">
+    <value>Additional data</value>
   </data>
-  <data name="&gt;&gt;lblNumber.Parent" xml:space="preserve">
-    <value>grpUbication</value>
-  </data>
-  <data name="&gt;&gt;txtLat.Name" xml:space="preserve">
-    <value>txtLat</value>
-  </data>
-  <data name="&gt;&gt;lblPhone1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="grpAdditional.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 316</value>
-  </data>
-  <data name="&gt;&gt;lblLon.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtDescription.Parent" xml:space="preserve">
+  <data name="&gt;&gt;grpAdditional.Name" xml:space="preserve">
     <value>grpAdditional</value>
   </data>
-  <data name="&gt;&gt;lblDepartment.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="lblPhone1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 23</value>
-  </data>
-  <data name="grpTerritory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>383, 278</value>
-  </data>
-  <data name="&gt;&gt;lblMap1.Parent" xml:space="preserve">
-    <value>grpMaps</value>
-  </data>
-  <data name="&gt;&gt;txtPhone1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtDescription.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblCorner2.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="lblStreet.Text" xml:space="preserve">
-    <value>Street</value>
-  </data>
-  <data name="&gt;&gt;txtMap1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtNumber.Name" xml:space="preserve">
-    <value>txtNumber</value>
-  </data>
-  <data name="txtMap2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>304, 20</value>
-  </data>
-  <data name="&gt;&gt;lblAddressData.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="lblMap1.Text" xml:space="preserve">
-    <value>Map 1</value>
-  </data>
-  <data name="&gt;&gt;grpPhones.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>757, 595</value>
-  </data>
-  <data name="&gt;&gt;grpMaps.Type" xml:space="preserve">
+  <data name="&gt;&gt;grpAdditional.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblLat.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCorner2.Name" xml:space="preserve">
-    <value>lblCorner2</value>
-  </data>
-  <data name="&gt;&gt;lblAddressData.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;grpTerritory.Parent" xml:space="preserve">
+  <data name="&gt;&gt;grpAdditional.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;cboCity.Name" xml:space="preserve">
-    <value>cboCity</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>Address</value>
-  </data>
-  <data name="txtField1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>316, 43</value>
-  </data>
-  <data name="txtPhone1.MaxLength" type="System.Int32, mscorlib">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;txtNumber.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="txtField1.MaxLength" type="System.Int32, mscorlib">
-    <value>200</value>
-  </data>
-  <data name="lblMap1.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="btnSearchGeoPos.Location" type="System.Drawing.Point, System.Drawing">
-    <value>259, 59</value>
-  </data>
-  <data name="&gt;&gt;lblDescription.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;grpAdditional.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="txtLon.Location" type="System.Drawing.Point, System.Drawing">
-    <value>23, 80</value>
-  </data>
-  <data name="lblDepartment.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 16</value>
-  </data>
-  <data name="&gt;&gt;txtMap2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnCancel.Text" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="&gt;&gt;btnSearchGeoPos.Name" xml:space="preserve">
-    <value>btnSearchGeoPos</value>
-  </data>
-  <data name="&gt;&gt;btnSave.Name" xml:space="preserve">
-    <value>btnSave</value>
-  </data>
-  <data name="lblPhone1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="lblStreet.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="txtAddressData.MaxLength" type="System.Int32, mscorlib">
-    <value>50</value>
-  </data>
-  <data name="txtNumber.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 163</value>
-  </data>
-  <data name="lblMap2.Text" xml:space="preserve">
-    <value>Map 2</value>
-  </data>
-  <data name="txtMap1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>26, 37</value>
-  </data>
-  <data name="&gt;&gt;txtDescription.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="txtDescription.Multiline" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;cboTerritory.Name" xml:space="preserve">
-    <value>cboTerritory</value>
-  </data>
-  <data name="&gt;&gt;lblDescription.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboCity.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;lblPhone1.Name" xml:space="preserve">
-    <value>lblPhone1</value>
-  </data>
-  <data name="lblNumber.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
-    <value>btnCancel</value>
-  </data>
-  <data name="&gt;&gt;lblCity.Name" xml:space="preserve">
-    <value>lblCity</value>
-  </data>
-  <data name="txtCorner2.MaxLength" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <data name="&gt;&gt;txtStreet.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="txtLat.Size" type="System.Drawing.Size, System.Drawing">
-    <value>217, 20</value>
-  </data>
-  <data name="&gt;&gt;txtDescription.Name" xml:space="preserve">
-    <value>txtDescription</value>
-  </data>
-  <data name="lblLat.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;txtNumber.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="grpPhones.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;cboTerritory.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="bsAddress.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>English</value>
-  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 13</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>757, 595</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="&gt;&gt;bsAddress.Name" xml:space="preserve">
+    <value>bsAddress</value>
+  </data>
+  <data name="&gt;&gt;bsAddress.Type" xml:space="preserve">
+    <value>System.Windows.Forms.BindingSource, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>frmAddress</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>
