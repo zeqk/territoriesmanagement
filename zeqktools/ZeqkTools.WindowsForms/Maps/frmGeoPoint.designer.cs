@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.txtAddress = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnGo = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
@@ -42,6 +42,8 @@
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.MainMap = new System.Windows.Forms.GMapControl();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
+            this.cboMapType = new System.Windows.Forms.ComboBox();
+            this.lblMapType = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -58,21 +60,22 @@
             // txtAddress
             // 
             this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAddress.Location = new System.Drawing.Point(3, 9);
+            this.txtAddress.Location = new System.Drawing.Point(3, 6);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(555, 20);
+            this.txtAddress.Size = new System.Drawing.Size(480, 20);
             this.txtAddress.TabIndex = 3;
+            this.txtAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAddress_KeyDown);
             // 
-            // btnSearch
+            // btnGo
             // 
-            this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearch.Location = new System.Drawing.Point(12, 9);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(74, 21);
-            this.btnSearch.TabIndex = 4;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            this.btnGo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGo.Location = new System.Drawing.Point(22, 2);
+            this.btnGo.Name = "btnGo";
+            this.btnGo.Size = new System.Drawing.Size(42, 27);
+            this.btnGo.TabIndex = 4;
+            this.btnGo.Text = "Go";
+            this.btnGo.UseVisualStyleBackColor = true;
+            this.btnGo.Click += new System.EventHandler(this.btnGo_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -87,9 +90,9 @@
             this.tableLayoutPanel1.RowCount = 3;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.255533F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.74447F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 76F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(679, 568);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(592, 485);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // splitContainer1
@@ -104,19 +107,21 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.btnSearch);
-            this.splitContainer1.Size = new System.Drawing.Size(673, 39);
-            this.splitContainer1.SplitterDistance = 574;
+            this.splitContainer1.Panel2.Controls.Add(this.btnGo);
+            this.splitContainer1.Size = new System.Drawing.Size(586, 33);
+            this.splitContainer1.SplitterDistance = 499;
             this.splitContainer1.TabIndex = 5;
             // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(3, 494);
+            this.splitContainer2.Location = new System.Drawing.Point(3, 431);
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
             // 
+            this.splitContainer2.Panel1.Controls.Add(this.lblMapType);
+            this.splitContainer2.Panel1.Controls.Add(this.cboMapType);
             this.splitContainer2.Panel1.Controls.Add(this.lblLng);
             this.splitContainer2.Panel1.Controls.Add(this.txtLng);
             this.splitContainer2.Panel1.Controls.Add(this.lblLat);
@@ -126,14 +131,15 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.btnCancel);
             this.splitContainer2.Panel2.Controls.Add(this.btnOk);
-            this.splitContainer2.Size = new System.Drawing.Size(673, 71);
-            this.splitContainer2.SplitterDistance = 492;
+            this.splitContainer2.Size = new System.Drawing.Size(586, 51);
+            this.splitContainer2.SplitterDistance = 428;
             this.splitContainer2.TabIndex = 11;
             // 
             // lblLng
             // 
+            this.lblLng.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblLng.AutoSize = true;
-            this.lblLng.Location = new System.Drawing.Point(144, 12);
+            this.lblLng.Location = new System.Drawing.Point(112, 6);
             this.lblLng.Name = "lblLng";
             this.lblLng.Size = new System.Drawing.Size(25, 13);
             this.lblLng.TabIndex = 3;
@@ -141,15 +147,17 @@
             // 
             // txtLng
             // 
-            this.txtLng.Location = new System.Drawing.Point(147, 30);
+            this.txtLng.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtLng.Location = new System.Drawing.Point(115, 22);
             this.txtLng.Name = "txtLng";
             this.txtLng.Size = new System.Drawing.Size(100, 20);
             this.txtLng.TabIndex = 2;
             // 
             // lblLat
             // 
+            this.lblLat.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblLat.AutoSize = true;
-            this.lblLat.Location = new System.Drawing.Point(19, 12);
+            this.lblLat.Location = new System.Drawing.Point(9, 6);
             this.lblLat.Name = "lblLat";
             this.lblLat.Size = new System.Drawing.Size(22, 13);
             this.lblLat.TabIndex = 1;
@@ -157,16 +165,16 @@
             // 
             // txtLat
             // 
-            this.txtLat.Location = new System.Drawing.Point(22, 30);
+            this.txtLat.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtLat.Location = new System.Drawing.Point(9, 22);
             this.txtLat.Name = "txtLat";
             this.txtLat.Size = new System.Drawing.Size(100, 20);
             this.txtLat.TabIndex = 0;
             // 
             // btnCancel
             // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(11, 35);
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnCancel.Location = new System.Drawing.Point(10, 13);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(60, 27);
             this.btnCancel.TabIndex = 13;
@@ -176,9 +184,8 @@
             // 
             // btnOk
             // 
-            this.btnOk.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOk.Location = new System.Drawing.Point(114, 35);
+            this.btnOk.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnOk.Location = new System.Drawing.Point(85, 13);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(60, 27);
             this.btnOk.TabIndex = 12;
@@ -189,7 +196,7 @@
             // splitContainer3
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer3.Location = new System.Drawing.Point(3, 48);
+            this.splitContainer3.Location = new System.Drawing.Point(3, 42);
             this.splitContainer3.Name = "splitContainer3";
             // 
             // splitContainer3.Panel1
@@ -199,8 +206,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.trackBar1);
-            this.splitContainer3.Size = new System.Drawing.Size(673, 440);
-            this.splitContainer3.SplitterDistance = 622;
+            this.splitContainer3.Size = new System.Drawing.Size(586, 383);
+            this.splitContainer3.SplitterDistance = 541;
             this.splitContainer3.TabIndex = 12;
             // 
             // MainMap
@@ -215,7 +222,7 @@
             this.MainMap.Name = "MainMap";
             this.MainMap.RoutesEnabled = true;
             this.MainMap.ShowTileGridLines = false;
-            this.MainMap.Size = new System.Drawing.Size(622, 440);
+            this.MainMap.Size = new System.Drawing.Size(541, 383);
             this.MainMap.TabIndex = 12;
             this.MainMap.Zoom = 2;
             this.MainMap.OnMapZoomChanged += new GMap.NET.MapZoomChanged(this.MainMap_OnMapZoomChanged);
@@ -225,25 +232,43 @@
             this.trackBar1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.trackBar1.AutoSize = false;
             this.trackBar1.LargeChange = 1;
-            this.trackBar1.Location = new System.Drawing.Point(3, 3);
+            this.trackBar1.Location = new System.Drawing.Point(0, 3);
             this.trackBar1.Maximum = 17;
             this.trackBar1.Minimum = 1;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar1.Size = new System.Drawing.Size(42, 432);
+            this.trackBar1.Size = new System.Drawing.Size(42, 409);
             this.trackBar1.TabIndex = 30;
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             this.trackBar1.Value = 12;
             this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
             // 
+            // cboMapType
+            // 
+            this.cboMapType.FormattingEnabled = true;
+            this.cboMapType.Location = new System.Drawing.Point(277, 21);
+            this.cboMapType.Name = "cboMapType";
+            this.cboMapType.Size = new System.Drawing.Size(121, 21);
+            this.cboMapType.TabIndex = 4;
+            this.cboMapType.SelectedIndexChanged += new System.EventHandler(this.cboMapType_SelectedIndexChanged);
+            // 
+            // lblMapType
+            // 
+            this.lblMapType.AutoSize = true;
+            this.lblMapType.Location = new System.Drawing.Point(274, 6);
+            this.lblMapType.Name = "lblMapType";
+            this.lblMapType.Size = new System.Drawing.Size(51, 13);
+            this.lblMapType.TabIndex = 5;
+            this.lblMapType.Text = "Map type";
+            // 
             // frmGeoPoint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(679, 568);
+            this.ClientSize = new System.Drawing.Size(592, 485);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "frmGeoPoint";
-            this.Text = "Geo point";
+            this.Text = "Geo position";
             this.Load += new System.EventHandler(this.frmGeoPoint_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -265,7 +290,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtAddress;
-        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnGo;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.SplitContainer splitContainer2;
@@ -278,5 +303,7 @@
         private System.Windows.Forms.SplitContainer splitContainer3;
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.GMapControl MainMap;
+        private System.Windows.Forms.Label lblMapType;
+        private System.Windows.Forms.ComboBox cboMapType;
     }
 }

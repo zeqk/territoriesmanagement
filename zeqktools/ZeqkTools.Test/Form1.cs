@@ -25,28 +25,11 @@ namespace ZeqkTools.Test
             
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            System.Data.Odbc.OdbcConnectionStringBuilder odbc = new System.Data.Odbc.OdbcConnectionStringBuilder();
-           
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            System.Data.SqlClient.SqlConnectionStringBuilder sql = new System.Data.SqlClient.SqlConnectionStringBuilder();
-            
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            System.Data.OleDb.OleDbConnectionStringBuilder oledb = new System.Data.OleDb.OleDbConnectionStringBuilder();
-            
-        }
-
         private void button4_Click(object sender, EventArgs e)
         {
-            ConnectionStringMaker form = new ConnectionStringMaker();
-            form.ShowDialog();
+            ZeqkTools.WindowsForms.Maps.frmGeoPoint myForm = new ZeqkTools.WindowsForms.Maps.frmGeoPoint();
+            myForm.Address = "claypole";
+            myForm.ShowDialog();
         }
     }
 }
