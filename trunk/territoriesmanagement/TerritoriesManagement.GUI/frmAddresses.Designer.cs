@@ -283,6 +283,7 @@
             this.Name = "frmAddresses";
             this.Load += new System.EventHandler(this.frmAddresses_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

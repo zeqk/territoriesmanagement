@@ -387,6 +387,7 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.grpPhones);
             this.Controls.Add(this.grpMaps);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmAddress";
             this.Load += new System.EventHandler(this.frmAddress_Load);
             this.grpMaps.ResumeLayout(false);
