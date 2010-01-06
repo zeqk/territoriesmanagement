@@ -51,7 +51,7 @@ namespace ZeqkTools.WindowsForms.Maps
 
         
 
-        private void btnSearch_Click(object sender, EventArgs e)
+        private void btnGo_Click(object sender, EventArgs e)
         {            
             GoToAddress(txtAddress.Text);
         }
@@ -114,6 +114,9 @@ namespace ZeqkTools.WindowsForms.Maps
 
         private void frmGeoPoint_Load(object sender, EventArgs e)
         {
+            cboMapType.DataSource = Enum.GetValues(typeof(GMap.NET.MapType));
+            cboMapType.SelectedItem = MapType;
+
             ConfigMap();
 
             if (!GeoPosition.IsEmpty)
@@ -229,6 +232,17 @@ namespace ZeqkTools.WindowsForms.Maps
         private void MainMap_OnMapZoomChanged()
         {
             trackBar1.Value = MainMap.Zoom;
+        }
+
+        private void txtAddress_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                GoToAddress(txtAddress.Text);
+        }
+
+        private void cboMapType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MainMap.MapType = (MapType) cboMapType.SelectedValue;
         }
         
     }
