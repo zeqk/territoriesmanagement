@@ -258,13 +258,16 @@
     <value>True</value>
   </data>
   <data name="btnToExcel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left, Right</value>
+    <value>Left, Right</value>
+  </data>
+  <data name="btnToExcel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="btnToExcel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnToExcel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 262</value>
+    <value>17, 262</value>
   </data>
   <data name="btnToExcel.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 26</value>
@@ -288,13 +291,16 @@
     <value>0</value>
   </data>
   <data name="btnToGMaps.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Left, Right</value>
+    <value>Left, Right</value>
+  </data>
+  <data name="btnToGMaps.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="btnToGMaps.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnToGMaps.Location" type="System.Drawing.Point, System.Drawing">
-    <value>22, 294</value>
+    <value>17, 294</value>
   </data>
   <data name="btnToGMaps.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 26</value>
@@ -323,7 +329,7 @@
   <data name="btnDelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxAAAAsQAa0jvXUAAAAGYktHRACNAI4AiyH0o34AAAAHdElNRQfWBhMPHQlIs8vG
+        YQUAAAAJcEhZcwAACw8AAAsPAZL5A6UAAAAGYktHRACNAI4AiyH0o34AAAAHdElNRQfWBhMPHQlIs8vG
         AAAAD3RFWHRDb21tZW50AGlkIGxvZ2+Gxne5AAAB60lEQVQ4T5WTW08aQRiG+Sne1z/SXjSxVya9bmw9
         oJKUlnpMDBUVWU6VXXaBpqnRqBzUC02EwAWxXQ72CgiUYlLTLssWZJuWxCXr1xnCboPLhUzyZCZfvveZ
         zc6MTtcdDhcRt6yb4T7gXiWnzjgoiiIIgqBSq9XgLjzPdzZRg0OPVpcQnSLHcVAoFCCfz/eQy+UAUyqV
@@ -402,7 +408,7 @@
   <data name="btnNew.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACxAAAAsQAa0jvXUAAAAGYktHRAD8AOkATzTXsQ0AAAAHdElNRQfVAhIOJhzTthkp
+        YQUAAAAJcEhZcwAACw8AAAsPAZL5A6UAAAAGYktHRAD8AOkATzTXsQ0AAAAHdElNRQfVAhIOJhzTthkp
         AAABe0lEQVQ4T6WTvUoDQRRGo1YRxDewCAo+QQSxECTpFB9AC7GIriCYQhubtJJKMIWRpLCyUQIqgoXP
         oH1ARCyyPzO7s0l0k83nnegsm+AmigMfO7Ccc+/MZWKlUuk8l8thUPL5Q5TLWVxdajBfk0cQ8RTE6GRM
         LgkOW45VRJNvw3OW0WRpz9VnbyEmNkgSDwSGYaBWq3Wj63oQbl4TrKHtzsNvbFE0tJwF/4NNXVAnc4Gg
@@ -902,7 +908,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;lblResultsCount.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
