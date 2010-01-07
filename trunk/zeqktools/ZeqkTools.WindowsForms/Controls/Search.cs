@@ -198,5 +198,17 @@ namespace ZeqkTools.WindowsForms.Controls
             return rv;
         }
 #endregion
+
+        private void cboCriteria_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                txtValue.Focus();
+        }
+
+        private void txtValue_KeyDown(object sender, KeyEventArgs e)
+        {
+            base.OnKeyDown(e);
+        }
+       
     }
 }

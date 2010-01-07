@@ -84,6 +84,10 @@
       <Project>{10B0ABBC-894E-4890-8988-18C4BA8A05BE}</Project>
       <Name>ZeqkTools.WindowsForms</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ZeqkTools\ZeqkTools.csproj">
+      <Project>{CFC9DC5B-B9FD-4B73-B3C5-8159EC8ADFC7}</Project>
+      <Name>ZeqkTools</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

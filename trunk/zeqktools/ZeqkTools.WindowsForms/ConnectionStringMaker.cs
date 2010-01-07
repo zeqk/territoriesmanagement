@@ -35,7 +35,7 @@ namespace ZeqkTools.WindowsForms
         {
             get 
             {
-                return (DataProviders)cboDataProvider.SelectedValue;                
+                return ((DataProviderItem)cboDataProvider.SelectedValue).Provider;                
             
             }
             set 
@@ -49,7 +49,16 @@ namespace ZeqkTools.WindowsForms
         public ConnectionStringMaker()
         {
             InitializeComponent();
-            cboDataProvider.DataSource = Enum.GetValues(typeof(DataProviders));  
+
+            List<DataProviderItem> items = new List<DataProviderItem>();
+            items.Add(new DataProviderItem("MS Excel", DataProviders.OleDb));
+            items.Add(new DataProviderItem("MS Access", DataProviders.OleDb));
+            items.Add(new DataProviderItem("OleDb", DataProviders.OleDb));
+            items.Add(new DataProviderItem("Odbc", DataProviders.Odbc));
+            items.Add(new DataProviderItem("SQL Server", DataProviders.SQLServer));
+            cboDataProvider.ValueMember = "Provider";
+            cboDataProvider.DisplayMember = "Name";
+            cboDataProvider.DataSource = items;
             cboDataProvider.SelectedItem = null;
         }
 
@@ -66,28 +75,28 @@ namespace ZeqkTools.WindowsForms
             grpConnection.Enabled = true;
             if (cboDataProvider.SelectedItem != null)
             {
-                switch ((DataProviders)cboDataProvider.SelectedValue)
+                switch (((DataProviderItem) cboDataProvider.SelectedItem).Name)
                 {
-                    case DataProviders.MSExcel: txtDataSource.Enabled = true;
+                    case "MS Excel": txtDataSource.Enabled = true;
                         btnSelectSource.Enabled = true;
                         _sb = new System.Data.OleDb.OleDbConnectionStringBuilder();
                         _sb["Provider"] = "Microsoft.Jet.Oledb.4.0";
                         _sb["Extended Properties"] = "Excel 8.0;HDR=Yes;IMEX=1";                        
                         break;
-                    case DataProviders.MSAccess: txtDataSource.Enabled = true;
+                    case "MS Access": txtDataSource.Enabled = true;
                         btnSelectSource.Enabled = true;
                         _sb = new System.Data.OleDb.OleDbConnectionStringBuilder();
                         _sb["Provider"] = "Microsoft.Jet.Oledb.4.0"; 
                         break;
-                    case DataProviders.OleDb: txtDataSource.Enabled = true;
+                    case "OleDb": txtDataSource.Enabled = true;
                         btnSelectSource.Enabled = true;
                         _sb = new System.Data.OleDb.OleDbConnectionStringBuilder();                        
                         break;
-                    case DataProviders.Odbc: txtDataSource.Enabled = false;
+                    case "Odbc": txtDataSource.Enabled = false;
                         btnSelectSource.Enabled = false;
                         _sb = new System.Data.Odbc.OdbcConnectionStringBuilder();
                         break;
-                    case DataProviders.SQLServer: txtDataSource.Enabled = false;
+                    case "SQL Server": txtDataSource.Enabled = false;
                         btnSelectSource.Enabled = false;
                         _sb = new System.Data.SqlClient.SqlConnectionStringBuilder();                 
                         break;
@@ -129,5 +138,29 @@ namespace ZeqkTools.WindowsForms
         {
             this.DialogResult = DialogResult.Cancel;
         }
+    }
+
+    public class DataProviderItem
+    {
+        public string Name;
+        public DataProviders Provider;
+
+
+        public DataProviderItem()
+        {
+        
+        }
+
+        public DataProviderItem(string name, DataProviders provider)
+        {
+            this.Name = name;
+            this.Provider = provider;
+        }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
     }
 }

@@ -8,7 +8,7 @@ using System.Data;
 
 namespace ZeqkTools.Data
 {
-    class AccessExtractor : IExtractor
+    class OleDbExtractor : IExtractor
     {
         #region Fields
 
@@ -21,7 +21,7 @@ namespace ZeqkTools.Data
         #endregion
 
         #region Constructors
-        public AccessExtractor()
+        public OleDbExtractor()
         {
             _ds = new DataSet();
             _tables = new List<Table>();
@@ -41,7 +41,7 @@ namespace ZeqkTools.Data
         {
             get { return _connectionStr; }
             set { _connectionStr = value; }
-        }	
+        }
 
         #endregion
 
@@ -61,8 +61,8 @@ namespace ZeqkTools.Data
                 {
                     string strFields = ListToStr(table.Fields);
                     string strCommand = "SELECT" + strFields +
-                        " FROM [" + table.TableName + "$]" +
-                        " GROUP BY " + strFields;
+                        " FROM [" + table.TableName + "$]" 
+                        + " GROUP BY " + strFields;
 
                     OleDbDataAdapter da = new OleDbDataAdapter(strCommand, connection);
 

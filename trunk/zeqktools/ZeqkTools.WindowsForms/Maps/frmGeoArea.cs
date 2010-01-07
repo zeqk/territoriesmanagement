@@ -35,12 +35,12 @@ namespace ZeqkTools.WindowsForms.Maps
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            this.Close();
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();
+
         }
 
         private void frmGeoArea_Load(object sender, EventArgs e)
@@ -232,6 +232,13 @@ namespace ZeqkTools.WindowsForms.Maps
         private void MainMap_OnMapZoomChanged()
         {
             trackBar1.Value = MainMap.Zoom;
+        }
+
+
+
+        private void cboMapType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MainMap.MapType = (MapType)cboMapType.SelectedValue;
         }
     }
 }

@@ -31,13 +31,8 @@ namespace ZeqkTools.Data
         {
             switch (provider)
             {
-                case DataProviders.MSExcel:
-                    _importer = new ExcelExtractor();
-                    break;
-                case DataProviders.MSAccess:
-                    _importer = new AccessExtractor();
-                    break;
                 case DataProviders.OleDb:
+                    _importer = new OleDbExtractor();
                     break;
                 case DataProviders.SQLServer:
                     break;

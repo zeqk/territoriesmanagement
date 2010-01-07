@@ -41,8 +41,7 @@
   </Target>
   -->
   <ItemGroup>
-    <Compile Include="Data\AccessExtractor.cs" />
-    <Compile Include="Data\ExcelExtractor.cs" />
+    <Compile Include="Data\OleDbExtractor.cs" />
     <Compile Include="Data\IDataExtractor.cs" />
     <Compile Include="Data\Extractor.cs" />
     <Compile Include="Data\Table.cs" />
