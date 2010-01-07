@@ -62,6 +62,7 @@
             this.cboCriteria.Name = "cboCriteria";
             this.cboCriteria.Size = new System.Drawing.Size(118, 21);
             this.cboCriteria.TabIndex = 1;
+            this.cboCriteria.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cboCriteria_KeyDown);
             // 
             // txtValue
             // 
@@ -70,6 +71,7 @@
             this.txtValue.Name = "txtValue";
             this.txtValue.Size = new System.Drawing.Size(232, 20);
             this.txtValue.TabIndex = 2;
+            this.txtValue.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValue_KeyDown);
             // 
             // Search
             // 

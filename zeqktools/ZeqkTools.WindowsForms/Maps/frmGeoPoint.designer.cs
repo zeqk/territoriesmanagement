@@ -33,6 +33,8 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
+            this.lblMapType = new System.Windows.Forms.Label();
+            this.cboMapType = new System.Windows.Forms.ComboBox();
             this.lblLng = new System.Windows.Forms.Label();
             this.txtLng = new System.Windows.Forms.TextBox();
             this.lblLat = new System.Windows.Forms.Label();
@@ -42,8 +44,6 @@
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             this.MainMap = new System.Windows.Forms.GMapControl();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.cboMapType = new System.Windows.Forms.ComboBox();
-            this.lblMapType = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -60,18 +60,20 @@
             // txtAddress
             // 
             this.txtAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtAddress.Location = new System.Drawing.Point(3, 6);
+            this.txtAddress.Location = new System.Drawing.Point(3, 3);
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Size = new System.Drawing.Size(480, 20);
+            this.txtAddress.Size = new System.Drawing.Size(481, 20);
             this.txtAddress.TabIndex = 3;
             this.txtAddress.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtAddress_KeyDown);
             // 
             // btnGo
             // 
-            this.btnGo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGo.Location = new System.Drawing.Point(22, 2);
+            this.btnGo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGo.Location = new System.Drawing.Point(22, -1);
             this.btnGo.Name = "btnGo";
-            this.btnGo.Size = new System.Drawing.Size(42, 27);
+            this.btnGo.Size = new System.Drawing.Size(48, 28);
             this.btnGo.TabIndex = 4;
             this.btnGo.Text = "Go";
             this.btnGo.UseVisualStyleBackColor = true;
@@ -81,6 +83,8 @@
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.splitContainer1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.splitContainer2, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.splitContainer3, 0, 1);
@@ -92,7 +96,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.74447F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 56F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(592, 485);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(580, 413);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // splitContainer1
@@ -108,14 +112,14 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.btnGo);
-            this.splitContainer1.Size = new System.Drawing.Size(586, 33);
-            this.splitContainer1.SplitterDistance = 499;
+            this.splitContainer1.Size = new System.Drawing.Size(574, 27);
+            this.splitContainer1.SplitterDistance = 487;
             this.splitContainer1.TabIndex = 5;
             // 
             // splitContainer2
             // 
             this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(3, 431);
+            this.splitContainer2.Location = new System.Drawing.Point(3, 359);
             this.splitContainer2.Name = "splitContainer2";
             // 
             // splitContainer2.Panel1
@@ -131,13 +135,33 @@
             // 
             this.splitContainer2.Panel2.Controls.Add(this.btnCancel);
             this.splitContainer2.Panel2.Controls.Add(this.btnOk);
-            this.splitContainer2.Size = new System.Drawing.Size(586, 51);
-            this.splitContainer2.SplitterDistance = 428;
+            this.splitContainer2.Size = new System.Drawing.Size(574, 51);
+            this.splitContainer2.SplitterDistance = 418;
             this.splitContainer2.TabIndex = 11;
+            // 
+            // lblMapType
+            // 
+            this.lblMapType.AutoSize = true;
+            this.lblMapType.Location = new System.Drawing.Point(257, 6);
+            this.lblMapType.Name = "lblMapType";
+            this.lblMapType.Size = new System.Drawing.Size(51, 13);
+            this.lblMapType.TabIndex = 5;
+            this.lblMapType.Text = "Map type";
+            // 
+            // cboMapType
+            // 
+            this.cboMapType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboMapType.FormattingEnabled = true;
+            this.cboMapType.Location = new System.Drawing.Point(260, 21);
+            this.cboMapType.Name = "cboMapType";
+            this.cboMapType.Size = new System.Drawing.Size(145, 21);
+            this.cboMapType.TabIndex = 4;
+            this.cboMapType.SelectedIndexChanged += new System.EventHandler(this.cboMapType_SelectedIndexChanged);
             // 
             // lblLng
             // 
-            this.lblLng.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblLng.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblLng.AutoSize = true;
             this.lblLng.Location = new System.Drawing.Point(112, 6);
             this.lblLng.Name = "lblLng";
@@ -147,7 +171,7 @@
             // 
             // txtLng
             // 
-            this.txtLng.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtLng.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtLng.Location = new System.Drawing.Point(115, 22);
             this.txtLng.Name = "txtLng";
             this.txtLng.Size = new System.Drawing.Size(100, 20);
@@ -155,7 +179,7 @@
             // 
             // lblLat
             // 
-            this.lblLat.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lblLat.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblLat.AutoSize = true;
             this.lblLat.Location = new System.Drawing.Point(9, 6);
             this.lblLat.Name = "lblLat";
@@ -165,7 +189,7 @@
             // 
             // txtLat
             // 
-            this.txtLat.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtLat.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.txtLat.Location = new System.Drawing.Point(9, 22);
             this.txtLat.Name = "txtLat";
             this.txtLat.Size = new System.Drawing.Size(100, 20);
@@ -174,7 +198,7 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnCancel.Location = new System.Drawing.Point(10, 13);
+            this.btnCancel.Location = new System.Drawing.Point(9, 12);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(60, 27);
             this.btnCancel.TabIndex = 13;
@@ -185,7 +209,7 @@
             // btnOk
             // 
             this.btnOk.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnOk.Location = new System.Drawing.Point(85, 13);
+            this.btnOk.Location = new System.Drawing.Point(84, 12);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(60, 27);
             this.btnOk.TabIndex = 12;
@@ -196,7 +220,7 @@
             // splitContainer3
             // 
             this.splitContainer3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer3.Location = new System.Drawing.Point(3, 42);
+            this.splitContainer3.Location = new System.Drawing.Point(3, 36);
             this.splitContainer3.Name = "splitContainer3";
             // 
             // splitContainer3.Panel1
@@ -206,8 +230,8 @@
             // splitContainer3.Panel2
             // 
             this.splitContainer3.Panel2.Controls.Add(this.trackBar1);
-            this.splitContainer3.Size = new System.Drawing.Size(586, 383);
-            this.splitContainer3.SplitterDistance = 541;
+            this.splitContainer3.Size = new System.Drawing.Size(574, 317);
+            this.splitContainer3.SplitterDistance = 529;
             this.splitContainer3.TabIndex = 12;
             // 
             // MainMap
@@ -222,53 +246,37 @@
             this.MainMap.Name = "MainMap";
             this.MainMap.RoutesEnabled = true;
             this.MainMap.ShowTileGridLines = false;
-            this.MainMap.Size = new System.Drawing.Size(541, 383);
+            this.MainMap.Size = new System.Drawing.Size(529, 317);
             this.MainMap.TabIndex = 12;
             this.MainMap.Zoom = 2;
             this.MainMap.OnMapZoomChanged += new GMap.NET.MapZoomChanged(this.MainMap_OnMapZoomChanged);
             // 
             // trackBar1
             // 
-            this.trackBar1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.trackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.trackBar1.AutoSize = false;
             this.trackBar1.LargeChange = 1;
-            this.trackBar1.Location = new System.Drawing.Point(0, 3);
+            this.trackBar1.Location = new System.Drawing.Point(1, 3);
             this.trackBar1.Maximum = 17;
             this.trackBar1.Minimum = 1;
             this.trackBar1.Name = "trackBar1";
             this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
-            this.trackBar1.Size = new System.Drawing.Size(42, 409);
+            this.trackBar1.Size = new System.Drawing.Size(42, 314);
             this.trackBar1.TabIndex = 30;
             this.trackBar1.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             this.trackBar1.Value = 12;
             this.trackBar1.ValueChanged += new System.EventHandler(this.trackBar1_ValueChanged);
             // 
-            // cboMapType
-            // 
-            this.cboMapType.FormattingEnabled = true;
-            this.cboMapType.Location = new System.Drawing.Point(277, 21);
-            this.cboMapType.Name = "cboMapType";
-            this.cboMapType.Size = new System.Drawing.Size(121, 21);
-            this.cboMapType.TabIndex = 4;
-            this.cboMapType.SelectedIndexChanged += new System.EventHandler(this.cboMapType_SelectedIndexChanged);
-            // 
-            // lblMapType
-            // 
-            this.lblMapType.AutoSize = true;
-            this.lblMapType.Location = new System.Drawing.Point(274, 6);
-            this.lblMapType.Name = "lblMapType";
-            this.lblMapType.Size = new System.Drawing.Size(51, 13);
-            this.lblMapType.TabIndex = 5;
-            this.lblMapType.Text = "Map type";
-            // 
             // frmGeoPoint
             // 
+            this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(592, 485);
+            this.CancelButton = this.btnCancel;
+            this.ClientSize = new System.Drawing.Size(580, 413);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "frmGeoPoint";
-            this.Text = "Geo position";
+            this.Text = "Position";
             this.Load += new System.EventHandler(this.frmGeoPoint_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
