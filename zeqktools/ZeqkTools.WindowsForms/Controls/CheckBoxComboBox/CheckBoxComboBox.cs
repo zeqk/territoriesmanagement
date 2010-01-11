@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using System.Reflection;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.Linq;
 
 namespace ZeqkTools.WindowsForms.Controls
 {
@@ -173,6 +174,47 @@ namespace ZeqkTools.WindowsForms.Controls
             get { return base.Items; }
         }
 
+        [Browsable(false)]
+        public List<CheckBoxComboBoxItem> SelectedCheckBoxItems
+        {
+            get
+            {
+                var items = this.CheckBoxItems;
+
+                List<CheckBoxComboBoxItem> rv = new List<CheckBoxComboBoxItem>();
+                foreach (var item in items)
+                {
+                    if (item.Checked)
+                        rv.Add(item);
+                    
+                }
+                
+                return rv;
+                
+            }
+        }
+
+        [Browsable(false)]
+        public List<object> SelectedItems
+        {
+            get
+            {
+                var items = this.CheckBoxItems;
+
+                List<object> rv = new List<object>();
+                foreach (var checkBoxItem in items)
+                {
+                    if (checkBoxItem.Checked)
+                    {
+                        object item = checkBoxItem.ComboBoxItem.GetType().GetProperty("Item").GetValue(checkBoxItem.ComboBoxItem, null);
+                        rv.Add(item);
+                    }
+                }
+
+                return rv;
+
+            }
+        }
         #endregion
 
         #region EVENTS & EVENT HANDLERS

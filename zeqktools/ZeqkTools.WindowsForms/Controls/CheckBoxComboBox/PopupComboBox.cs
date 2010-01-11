@@ -22,6 +22,7 @@ namespace ZeqkTools.WindowsForms.Controls
         public PopupComboBox()
         {
             InitializeComponent();
+            
             base.DropDownHeight = base.DropDownWidth = 1;
             base.IntegralHeight = false;
         }
