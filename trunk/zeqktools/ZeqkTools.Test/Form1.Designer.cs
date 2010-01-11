@@ -28,39 +28,48 @@
         /// </summary>
         private void InitializeComponent()
         {
-            ZeqkTools.WindowsForms.Controls.CheckBoxProperties checkBoxProperties1 = new ZeqkTools.WindowsForms.Controls.CheckBoxProperties();
-            this.button4 = new System.Windows.Forms.Button();
-            this.cboTest = new ZeqkTools.WindowsForms.Controls.CheckBoxComboBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.checkedComboBox1 = new ZeqkTools.WindowsForms.Controls.CheckedComboBox();
+            this.userControl11 = new ZeqkTools.WindowsForms.Controls.UserControl1();
             this.SuspendLayout();
             // 
-            // button4
+            // comboBox1
             // 
-            this.button4.Location = new System.Drawing.Point(296, 61);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "uno",
+            "dos",
+            "tres"});
+            this.comboBox1.Location = new System.Drawing.Point(51, 88);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 0;
             // 
-            // cboTest
+            // checkedComboBox1
             // 
-            checkBoxProperties1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.cboTest.CheckBoxProperties = checkBoxProperties1;
-            this.cboTest.DisplayMemberSingleItem = "";
-            this.cboTest.FormattingEnabled = true;
-            this.cboTest.Location = new System.Drawing.Point(76, 63);
-            this.cboTest.Name = "cboTest";
-            this.cboTest.Size = new System.Drawing.Size(145, 21);
-            this.cboTest.TabIndex = 4;
+            this.checkedComboBox1.DataSource = ((object)(resources.GetObject("checkedComboBox1.DataSource")));
+            this.checkedComboBox1.FormattingEnabled = true;
+            this.checkedComboBox1.Location = new System.Drawing.Point(180, 239);
+            this.checkedComboBox1.Name = "checkedComboBox1";
+            this.checkedComboBox1.Size = new System.Drawing.Size(179, 21);
+            this.checkedComboBox1.TabIndex = 1;
+            // 
+            // userControl11
+            // 
+            this.userControl11.Location = new System.Drawing.Point(236, 134);
+            this.userControl11.Name = "userControl11";
+            this.userControl11.Size = new System.Drawing.Size(236, 28);
+            this.userControl11.TabIndex = 2;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(474, 459);
-            this.Controls.Add(this.cboTest);
-            this.Controls.Add(this.button4);
+            this.ClientSize = new System.Drawing.Size(554, 394);
+            this.Controls.Add(this.userControl11);
+            this.Controls.Add(this.checkedComboBox1);
+            this.Controls.Add(this.comboBox1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -70,8 +79,8 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button4;
-        private ZeqkTools.WindowsForms.Controls.CheckBoxComboBox cboTest;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private ZeqkTools.WindowsForms.Controls.CheckedComboBox checkedComboBox1;
+        private ZeqkTools.WindowsForms.Controls.UserControl1 userControl11;
     }
 }
-
