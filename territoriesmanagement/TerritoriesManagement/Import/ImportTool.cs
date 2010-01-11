@@ -47,7 +47,7 @@ namespace TerritoriesManagement.Import
 	    {
             _log = "";
             _dm = new TerritoriesDataContext();
-            _importer = new Extractor(DataProviders.MSExcel);           
+            _importer = new Extractor(DataProviders.OleDb);           
 
             _config = new ImporterConfig();
 

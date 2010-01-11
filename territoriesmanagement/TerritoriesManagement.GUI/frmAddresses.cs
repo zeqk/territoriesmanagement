@@ -15,6 +15,7 @@ using GMap.NET.WindowsForms;
 using TerritoriesManagement.Export;
 using System.IO;
 using ZeqkTools.WindowsForms.Maps;
+using ZeqkTools.WindowsForms.Controls;
 
 
 namespace TerritoriesManagement.GUI
@@ -53,6 +54,10 @@ namespace TerritoriesManagement.GUI
             cboTerritory.ValueMember = "Id";
             cboTerritory.DataSource = _server.GetTerritories();
             cboTerritory.SelectedItem = null;
+
+            ListSelectionWrapper<object>
+
+            checkBoxComboBox1
 
 
         }
