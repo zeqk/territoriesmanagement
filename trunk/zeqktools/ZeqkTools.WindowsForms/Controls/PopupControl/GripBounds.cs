@@ -3,9 +3,6 @@ using System.Drawing;
 
 namespace ZeqkTools.WindowsForms.Controls
 {
-    /// <summary>
-    /// CodeProject.com "Simple pop-up control" "http://www.codeproject.com/cs/miscctrl/simplepopup.asp".
-    /// </summary>
     internal struct GripBounds
     {
         private const int GripSize = 6;

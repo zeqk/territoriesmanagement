@@ -93,39 +93,32 @@
     <Compile Include="ConnectionStringMaker.Designer.cs">
       <DependentUpon>ConnectionStringMaker.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CheckBoxComboBox\CheckBoxComboBox.cs">
+    <Compile Include="Controls\CheckedListComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\CheckBoxComboBox\CheckBoxComboBox.Designer.cs">
-      <DependentUpon>CheckBoxComboBox.cs</DependentUpon>
+    <Compile Include="Controls\CheckedListComboBox.Designer.cs">
+      <DependentUpon>CheckedListComboBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CheckBoxComboBox\GripBounds.cs" />
-    <Compile Include="Controls\CheckBoxComboBox\NativeMethods.cs" />
-    <Compile Include="Controls\CheckBoxComboBox\Popup.cs">
+    <Compile Include="Controls\PopupControl\GripBounds.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\PopupControl\NativeMethods.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\PopupControl\Popup.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\CheckBoxComboBox\Popup.Designer.cs">
+    <Compile Include="Controls\PopupControl\Popup.Designer.cs">
       <DependentUpon>Popup.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\CheckBoxComboBox\PopupComboBox.cs">
+    <Compile Include="Controls\PopupControl\PopupAnimation.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\PopupControl\PopupComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Controls\CheckBoxComboBox\PopupComboBox.Designer.cs">
+    <Compile Include="Controls\PopupControl\PopupComboBox.Designer.cs">
       <DependentUpon>PopupComboBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\CheckBoxComboBox\Selection Wrappers\ListSelectionWrapper.cs" />
-    <Compile Include="Controls\CheckBoxComboBox\Selection Wrappers\ObjectSelectionWrapper.cs" />
-    <Compile Include="Controls\CheckedComboBox.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Controls\CheckedComboBox.Designer.cs">
-      <DependentUpon>CheckedComboBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\UserControl1.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\UserControl1.Designer.cs">
-      <DependentUpon>UserControl1.cs</DependentUpon>
     </Compile>
     <Compile Include="Maps\frmGeoArea.cs">
       <SubType>Form</SubType>
@@ -172,14 +165,8 @@
     <EmbeddedResource Include="ConnectionStringMaker.resx">
       <DependentUpon>ConnectionStringMaker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\CheckBoxComboBox\PopupComboBox.resx">
-      <DependentUpon>PopupComboBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\CheckedComboBox.resx">
-      <DependentUpon>CheckedComboBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Controls\UserControl1.resx">
-      <DependentUpon>UserControl1.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\CheckedListComboBox.resx">
+      <DependentUpon>CheckedListComboBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Maps\frmGeoArea.resx">
       <DependentUpon>frmGeoArea.cs</DependentUpon>
@@ -202,6 +189,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Controls\PopupControl\PopupControl.snk" />
     <None Include="Resources\legend.png" />
   </ItemGroup>
   <ItemGroup>

@@ -22,12 +22,23 @@ namespace ZeqkTools.Test
             list.Add(new Item(1, "uno"));
             list.Add(new Item(2, "dos"));
             list.Add(new Item(3, "tres"));
+            list.Add(new Item(1, "uno"));
+            //list.Add(new Item(2, "dos"));
+            //list.Add(new Item(3, "tres"));
+            //list.Add(new Item(1, "uno"));
+            //list.Add(new Item(2, "dos"));
+            //list.Add(new Item(3, "tres"));
+            //list.Add(new Item(1, "uno"));
+            //list.Add(new Item(2, "dos"));
+            //list.Add(new Item(3, "tres"));
+            checkedListComboBox1.DisplayMember = "Name";
+            checkedListComboBox1.DataSource = list;
 
-            
-            //checkedComboBox1.DisplayMember = "Name";
-            //checkedComboBox1.ValueMember = "Id";
-            checkedComboBox1.DataSource = list;
-            userControl11.DataSource = list;
+
+        }
+
+        private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
 
         }
 
