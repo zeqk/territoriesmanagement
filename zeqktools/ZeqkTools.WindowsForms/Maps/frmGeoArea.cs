@@ -50,8 +50,8 @@ namespace ZeqkTools.WindowsForms.Maps
             PointLatLng middle = new PointLatLng(0, 0);
             if (Area.Count > 0)
             {
-                List<Point> points = Area.Select(p => new Point(p.Lat, p.Lng)).ToList();
-                Point point = Functions.CalculateMiddlePoint(points);
+                List<GeoPoint> points = Area.Select(p => new GeoPoint(p.Lat, p.Lng)).ToList();
+                GeoPoint point = Functions.CalculateMiddlePoint(points);
                 middle.Lat = point.Lat;
                 middle.Lng = point.Lng;
             }
@@ -136,7 +136,7 @@ namespace ZeqkTools.WindowsForms.Maps
 
         private PointLatLng CalculateMiddlePoint(List<GMapMarker> marks)
         {
-            var points = marks.Select(m => new Point(m.Position.Lat,m.Position.Lng));
+            var points = marks.Select(m => new GeoPoint(m.Position.Lat,m.Position.Lng));
 
             var aux = Functions.CalculateMiddlePoint(points.ToList());
             PointLatLng point = new PointLatLng(aux.Lat, aux.Lng);

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Text;
 using System.Windows.Forms;
 using System.Security.Permissions;
@@ -16,7 +17,6 @@ using VS = System.Windows.Forms.VisualStyles;
 namespace ZeqkTools.WindowsForms.Controls
 {
     /// <summary>
-    /// CodeProject.com "Simple pop-up control" "http://www.codeproject.com/cs/miscctrl/simplepopup.asp".
     /// Represents a pop-up window.
     /// </summary>
     [CLSCompliant(true), ToolboxItem(false)]
@@ -33,25 +33,39 @@ namespace ZeqkTools.WindowsForms.Controls
             get { return content; }
         }
 
-        private bool fade;
+        private PopupAnimations showingAnimation;
         /// <summary>
-        /// Gets a value indicating whether the <see cref="PopupControl.Popup"/> uses the fade effect.
+        /// Determines which animation to use while showing the pop-up window.
         /// </summary>
-        /// <value><c>true</c> if pop-up uses the fade effect; otherwise, <c>false</c>.</value>
-        /// <remarks>To use the fade effect, the FocusOnOpen property also has to be set to <c>true</c>.</remarks>
-        public bool UseFadeEffect
+        public PopupAnimations ShowingAnimation
         {
-            get { return fade; }
-            set
-            {
-                if (fade == value) return;
-                fade = value;
-            }
+            get { return showingAnimation; }
+            set { if (showingAnimation != value) showingAnimation = value; }
+        }
+
+        private PopupAnimations hidingAnimation;
+        /// <summary>
+        /// Determines which animation to use while hiding the pop-up window.
+        /// </summary>
+        public PopupAnimations HidingAnimation
+        {
+            get { return hidingAnimation; }
+            set { if (hidingAnimation != value) hidingAnimation = value; }
+        }
+
+        private int animationDuration;
+        /// <summary>
+        /// Determines the duration of the animation.
+        /// </summary>
+        public int AnimationDuration
+        {
+            get { return animationDuration; }
+            set { if (animationDuration != value) animationDuration = value; }
         }
 
         private bool focusOnOpen = true;
         /// <summary>
-        /// Gets or sets a value indicating whether to focus the content after the pop-up has been opened.
+        /// Gets or sets a value indicating whether the content should receive the focus after the pop-up has been opened.
         /// </summary>
         /// <value><c>true</c> if the content should be focused after the pop-up has been opened; otherwise, <c>false</c>.</value>
         /// <remarks>If the FocusOnOpen property is set to <c>false</c>, then pop-up cannot use the fade effect.</remarks>
@@ -72,18 +86,21 @@ namespace ZeqkTools.WindowsForms.Controls
             set { acceptAlt = value; }
         }
 
+        private Control opener;
         private Popup ownerPopup;
         private Popup childPopup;
+        private bool resizableTop;
+        private bool resizableLeft;
 
-        private bool _resizable;
+        private bool isChildPopupOpened;
         private bool resizable;
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="PopupControl.Popup" /> is resizable.
+        /// Gets or sets a value indicating whether the <see cref="PopupControl.Popup" /> is resizable.
         /// </summary>
         /// <value><c>true</c> if resizable; otherwise, <c>false</c>.</value>
         public bool Resizable
         {
-            get { return resizable && _resizable; }
+            get { return resizable && !isChildPopupOpened; }
             set { resizable = value; }
         }
 
@@ -91,7 +108,7 @@ namespace ZeqkTools.WindowsForms.Controls
 
         private Size minSize;
         /// <summary>
-        /// Gets or sets the size that is the lower limit that <see cref="M:System.Windows.Forms.Control.GetPreferredSize(System.Drawing.Size)" /> can specify.
+        /// Gets or sets a minimum size of the pop-up.
         /// </summary>
         /// <returns>An ordered pair of type <see cref="T:System.Drawing.Size" /> representing the width and height of a rectangle.</returns>
         public new Size MinimumSize
@@ -102,7 +119,7 @@ namespace ZeqkTools.WindowsForms.Controls
 
         private Size maxSize;
         /// <summary>
-        /// Gets or sets the size that is the upper limit that <see cref="M:System.Windows.Forms.Control.GetPreferredSize(System.Drawing.Size)" /> can specify.
+        /// Gets or sets a maximum size of the pop-up.
         /// </summary>
         /// <returns>An ordered pair of type <see cref="T:System.Drawing.Size" /> representing the width and height of a rectangle.</returns>
         public new Size MaximumSize
@@ -145,8 +162,10 @@ namespace ZeqkTools.WindowsForms.Controls
                 throw new ArgumentNullException("content");
             }
             this.content = content;
-            this.fade = SystemInformation.IsMenuAnimationEnabled && SystemInformation.IsMenuFadeEnabled;
-            this._resizable = true;
+            this.showingAnimation = PopupAnimations.SystemDefault;
+            this.hidingAnimation = PopupAnimations.None;
+            this.animationDuration = 100;
+            this.isChildPopupOpened = false;
             InitializeComponent();
             AutoSize = false;
             DoubleBuffered = true;
@@ -158,7 +177,8 @@ namespace ZeqkTools.WindowsForms.Controls
             MaximumSize = content.MaximumSize;
             content.MaximumSize = content.Size;
             Size = content.Size;
-            content.Location = System.Drawing.Point.Empty;
+            TabStop = content.TabStop = true;
+            content.Location = Point.Empty;
             Items.Add(host);
             content.Disposed += delegate(object sender, EventArgs e)
             {
@@ -181,16 +201,94 @@ namespace ZeqkTools.WindowsForms.Controls
         #region " Methods "
 
         /// <summary>
+        /// Raises the <see cref="E:System.Windows.Forms.ToolStripItem.VisibleChanged"/> event.
+        /// </summary>
+        /// <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        protected override void OnVisibleChanged(EventArgs e)
+        {
+            base.OnVisibleChanged(e);
+            if ((Visible && ShowingAnimation == PopupAnimations.None) || (!Visible && HidingAnimation == PopupAnimations.None))
+            {
+                return;
+            }
+            NativeMethods.AnimationFlags flags = Visible ? NativeMethods.AnimationFlags.Roll : NativeMethods.AnimationFlags.Hide;
+            PopupAnimations _flags = Visible ? ShowingAnimation : HidingAnimation;
+            if (_flags == PopupAnimations.SystemDefault)
+            {
+                if (SystemInformation.IsMenuAnimationEnabled)
+                {
+                    if (SystemInformation.IsMenuFadeEnabled)
+                    {
+                        _flags = PopupAnimations.Blend;
+                    }
+                    else
+                    {
+                        _flags = PopupAnimations.Slide | (Visible ? PopupAnimations.TopToBottom : PopupAnimations.BottomToTop);
+                    }
+                }
+                else
+                {
+                    _flags = PopupAnimations.None;
+                }
+            }
+            if ((_flags & (PopupAnimations.Blend | PopupAnimations.Center | PopupAnimations.Roll | PopupAnimations.Slide)) == PopupAnimations.None)
+            {
+                return;
+            }
+            if (resizableTop) // popup is “inverted”, so the animation must be
+            {
+                if ((_flags & PopupAnimations.BottomToTop) != PopupAnimations.None)
+                {
+                    _flags = (_flags & ~PopupAnimations.BottomToTop) | PopupAnimations.TopToBottom;
+                }
+                else if ((_flags & PopupAnimations.TopToBottom) != PopupAnimations.None)
+                {
+                    _flags = (_flags & ~PopupAnimations.TopToBottom) | PopupAnimations.BottomToTop;
+                }
+            }
+            if (resizableLeft) // popup is “inverted”, so the animation must be
+            {
+                if ((_flags & PopupAnimations.RightToLeft) != PopupAnimations.None)
+                {
+                    _flags = (_flags & ~PopupAnimations.RightToLeft) | PopupAnimations.LeftToRight;
+                }
+                else if ((_flags & PopupAnimations.LeftToRight) != PopupAnimations.None)
+                {
+                    _flags = (_flags & ~PopupAnimations.LeftToRight) | PopupAnimations.RightToLeft;
+                }
+            }
+            flags = flags | (NativeMethods.AnimationFlags.Mask & (NativeMethods.AnimationFlags)(int)_flags);
+            NativeMethods.AnimateWindow(this, AnimationDuration, flags);
+        }
+
+        /// <summary>
         /// Processes a dialog box key.
         /// </summary>
         /// <param name="keyData">One of the <see cref="T:System.Windows.Forms.Keys" /> values that represents the key to process.</param>
         /// <returns>
         /// true if the key was processed by the control; otherwise, false.
         /// </returns>
+        [UIPermission(SecurityAction.LinkDemand, Window = UIPermissionWindow.AllWindows)]
         protected override bool ProcessDialogKey(Keys keyData)
         {
-            if (acceptAlt && ((keyData & Keys.Alt) == Keys.Alt)) return false;
-            return base.ProcessDialogKey(keyData);
+            if (acceptAlt && ((keyData & Keys.Alt) == Keys.Alt))
+            {
+                if ((keyData & Keys.F4) != Keys.F4)
+                {
+                    return false;
+                }
+                else
+                {
+                    this.Close();
+                }
+            }
+            bool processed = base.ProcessDialogKey(keyData);
+            if (!processed && (keyData == Keys.Tab || keyData == (Keys.Tab | Keys.Shift)))
+            {
+                bool backward = (keyData & Keys.Shift) == Keys.Shift;
+                this.Content.SelectNextControl(null, !backward, true, true, true);
+            }
+            return processed;
         }
 
         /// <summary>
@@ -210,7 +308,7 @@ namespace ZeqkTools.WindowsForms.Controls
         }
 
         /// <summary>
-        /// Shows pop-up window below the specified control.
+        /// Shows the pop-up window below the specified control.
         /// </summary>
         /// <param name="control">The control below which the pop-up will be shown.</param>
         /// <remarks>
@@ -223,12 +321,11 @@ namespace ZeqkTools.WindowsForms.Controls
             {
                 throw new ArgumentNullException("control");
             }
-            SetOwnerItem(control);
             Show(control, control.ClientRectangle);
         }
 
         /// <summary>
-        /// Shows pop-up window below the specified area of specified control.
+        /// Shows the pop-up window below the specified area of the specified control.
         /// </summary>
         /// <param name="control">The control used to compute screen location of specified area.</param>
         /// <param name="area">The area of control below which the pop-up will be shown.</param>
@@ -243,49 +340,23 @@ namespace ZeqkTools.WindowsForms.Controls
                 throw new ArgumentNullException("control");
             }
             SetOwnerItem(control);
-            resizableTop = resizableRight = false;
-            System.Drawing.Point location = control.PointToScreen(new System.Drawing.Point(area.Left, area.Top + area.Height));
-            Rectangle screen = Screen.FromControl(control).WorkingArea;
-            if (location.X + Size.Width > (screen.Left + screen.Width))
-            {
-                resizableRight = true;
-                location.X = (screen.Left + screen.Width) - Size.Width;
-            }
-            if (location.Y + Size.Height > (screen.Top + screen.Height))
-            {
-                resizableTop = true;
-                location.Y -= Size.Height + area.Height;
-            }
-            location = control.PointToClient(location);
-            Show(control, location, ToolStripDropDownDirection.BelowRight);
-        }
 
-        private const int frames = 1;
-        private const int totalduration = 0; // ML : 2007-11-05 : was 100 but caused a flicker.
-        private const int frameduration = totalduration / frames;
-        /// <summary>
-        /// Adjusts the size of the owner <see cref="T:System.Windows.Forms.ToolStrip" /> to accommodate the <see cref="T:System.Windows.Forms.ToolStripDropDown" /> if the owner <see cref="T:System.Windows.Forms.ToolStrip" /> is currently displayed, or clears and resets active <see cref="T:System.Windows.Forms.ToolStripDropDown" /> child controls of the <see cref="T:System.Windows.Forms.ToolStrip" /> if the <see cref="T:System.Windows.Forms.ToolStrip" /> is not currently displayed.
-        /// </summary>
-        /// <param name="visible">true if the owner <see cref="T:System.Windows.Forms.ToolStrip" /> is currently displayed; otherwise, false.</param>
-        protected override void SetVisibleCore(bool visible)
-        {
-            double opacity = Opacity;
-            if (visible && fade && focusOnOpen) Opacity = 0;
-            base.SetVisibleCore(visible);
-            if (!visible || !fade || !focusOnOpen) return;
-            for (int i = 1; i <= frames; i++)
-            {
-                if (i > 1)
+                resizableTop = resizableLeft = false;
+                Point location = control.PointToScreen(new Point(area.Left, area.Top + area.Height));
+                Rectangle screen = Screen.FromControl(control).WorkingArea;
+                if (location.X + Size.Width > (screen.Left + screen.Width))
                 {
-                    System.Threading.Thread.Sleep(frameduration);
+                    resizableLeft = true;
+                    location.X = (screen.Left + screen.Width) - Size.Width;
                 }
-                Opacity = opacity * (double)i / (double)frames;
-            }
-            Opacity = opacity;
+                if (location.Y + Size.Height > (screen.Top + screen.Height))
+                {
+                    resizableTop = true;
+                    location.Y -= Size.Height + area.Height;
+                }
+                location = control.PointToClient(location);
+                Show(control, location, ToolStripDropDownDirection.BelowRight);
         }
-
-        private bool resizableTop;
-        private bool resizableRight;
 
         private void SetOwnerItem(Control control)
         {
@@ -300,6 +371,10 @@ namespace ZeqkTools.WindowsForms.Controls
                 ownerPopup.childPopup = this;
                 OwnerItem = popupControl.Items[0];
                 return;
+            }
+            else if (opener == null)
+            {
+                opener = control;
             }
             if (control.Parent != null)
             {
@@ -316,7 +391,7 @@ namespace ZeqkTools.WindowsForms.Controls
             content.MinimumSize = Size;
             content.MaximumSize = Size;
             content.Size = Size;
-            content.Location = System.Drawing.Point.Empty;
+            content.Location = Point.Empty;
             base.OnSizeChanged(e);
         }
 
@@ -343,7 +418,7 @@ namespace ZeqkTools.WindowsForms.Controls
         {
             if (ownerPopup != null)
             {
-                ownerPopup._resizable = false;
+                ownerPopup.isChildPopupOpened = true;
             }
             if (focusOnOpen)
             {
@@ -352,22 +427,18 @@ namespace ZeqkTools.WindowsForms.Controls
             base.OnOpened(e);
         }
 
+        /// <summary>
+        /// Raises the <see cref="E:System.Windows.Forms.ToolStripDropDown.Closed"/> event.
+        /// </summary>
+        /// <param name="e">A <see cref="T:System.Windows.Forms.ToolStripDropDownClosedEventArgs"/> that contains the event data.</param>
         protected override void OnClosed(ToolStripDropDownClosedEventArgs e)
         {
+            opener = null;
             if (ownerPopup != null)
             {
-                ownerPopup._resizable = true;
+                ownerPopup.isChildPopupOpened = false;
             }
             base.OnClosed(e);
-        }
-
-        public DateTime LastClosedTimeStamp = DateTime.Now;
-
-        protected override void OnVisibleChanged(EventArgs e)
-        {
-            if (Visible == false)
-                LastClosedTimeStamp = DateTime.Now;
-            base.OnVisibleChanged(e);
         }
 
         #endregion
@@ -381,6 +452,10 @@ namespace ZeqkTools.WindowsForms.Controls
         [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.UnmanagedCode)]
         protected override void WndProc(ref Message m)
         {
+            //if (m.Msg == NativeMethods.WM_PRINT && !Visible)
+            //{
+            //    Visible = true;
+            //}
             if (InternalProcessResizing(ref m, false))
             {
                 return;
@@ -425,7 +500,10 @@ namespace ZeqkTools.WindowsForms.Controls
         private bool OnGetMinMaxInfo(ref Message m)
         {
             NativeMethods.MINMAXINFO minmax = (NativeMethods.MINMAXINFO)Marshal.PtrToStructure(m.LParam, typeof(NativeMethods.MINMAXINFO));
-            minmax.maxTrackSize = this.MaximumSize;
+            if (!this.MaximumSize.IsEmpty)
+            {
+                minmax.maxTrackSize = this.MaximumSize;
+            }
             minmax.minTrackSize = this.MinimumSize;
             Marshal.StructureToPtr(minmax, m.LParam, false);
             return true;
@@ -435,19 +513,19 @@ namespace ZeqkTools.WindowsForms.Controls
         {
             int x = NativeMethods.LOWORD(m.LParam);
             int y = NativeMethods.HIWORD(m.LParam);
-            System.Drawing.Point clientLocation = PointToClient(new System.Drawing.Point(x, y));
+            Point clientLocation = PointToClient(new Point(x, y));
 
             GripBounds gripBouns = new GripBounds(contentControl ? content.ClientRectangle : ClientRectangle);
             IntPtr transparent = new IntPtr(NativeMethods.HTTRANSPARENT);
 
             if (resizableTop)
             {
-                if (resizableRight && gripBouns.TopLeft.Contains(clientLocation))
+                if (resizableLeft && gripBouns.TopLeft.Contains(clientLocation))
                 {
                     m.Result = contentControl ? transparent : (IntPtr)NativeMethods.HTTOPLEFT;
                     return true;
                 }
-                if (!resizableRight && gripBouns.TopRight.Contains(clientLocation))
+                if (!resizableLeft && gripBouns.TopRight.Contains(clientLocation))
                 {
                     m.Result = contentControl ? transparent : (IntPtr)NativeMethods.HTTOPRIGHT;
                     return true;
@@ -460,12 +538,12 @@ namespace ZeqkTools.WindowsForms.Controls
             }
             else
             {
-                if (resizableRight && gripBouns.BottomLeft.Contains(clientLocation))
+                if (resizableLeft && gripBouns.BottomLeft.Contains(clientLocation))
                 {
                     m.Result = contentControl ? transparent : (IntPtr)NativeMethods.HTBOTTOMLEFT;
                     return true;
                 }
-                if (!resizableRight && gripBouns.BottomRight.Contains(clientLocation))
+                if (!resizableLeft && gripBouns.BottomRight.Contains(clientLocation))
                 {
                     m.Result = contentControl ? transparent : (IntPtr)NativeMethods.HTBOTTOMRIGHT;
                     return true;
@@ -476,12 +554,12 @@ namespace ZeqkTools.WindowsForms.Controls
                     return true;
                 }
             }
-            if (resizableRight && gripBouns.Left.Contains(clientLocation))
+            if (resizableLeft && gripBouns.Left.Contains(clientLocation))
             {
                 m.Result = contentControl ? transparent : (IntPtr)NativeMethods.HTLEFT;
                 return true;
             }
-            if (!resizableRight && gripBouns.Right.Contains(clientLocation))
+            if (!resizableLeft && gripBouns.Right.Contains(clientLocation))
             {
                 m.Result = contentControl ? transparent : (IntPtr)NativeMethods.HTRIGHT;
                 return true;
@@ -491,7 +569,7 @@ namespace ZeqkTools.WindowsForms.Controls
 
         private VS.VisualStyleRenderer sizeGripRenderer;
         /// <summary>
-        /// Paints the size grip.
+        /// Paints the sizing grip.
         /// </summary>
         /// <param name="e">The <see cref="System.Windows.Forms.PaintEventArgs" /> instance containing the event data.</param>
         public void PaintSizeGrip(PaintEventArgs e)
@@ -501,17 +579,45 @@ namespace ZeqkTools.WindowsForms.Controls
                 return;
             }
             Size clientSize = content.ClientSize;
-            if (Application.RenderWithVisualStyles)
+            using (Bitmap gripImage = new Bitmap(0x10, 0x10))
             {
-                if (this.sizeGripRenderer == null)
+                using (Graphics g = Graphics.FromImage(gripImage))
                 {
-                    this.sizeGripRenderer = new VS.VisualStyleRenderer(VS.VisualStyleElement.Status.Gripper.Normal);
+                    if (Application.RenderWithVisualStyles)
+                    {
+                        if (this.sizeGripRenderer == null)
+                        {
+                            this.sizeGripRenderer = new VS.VisualStyleRenderer(VS.VisualStyleElement.Status.Gripper.Normal);
+                        }
+                        this.sizeGripRenderer.DrawBackground(g, new Rectangle(0, 0, 0x10, 0x10));
+                    }
+                    else
+                    {
+                        ControlPaint.DrawSizeGrip(g, content.BackColor, 0, 0, 0x10, 0x10);
+                    }
                 }
-                this.sizeGripRenderer.DrawBackground(e.Graphics, new Rectangle(clientSize.Width - 0x10, clientSize.Height - 0x10, 0x10, 0x10));
-            }
-            else
-            {
-                ControlPaint.DrawSizeGrip(e.Graphics, content.BackColor, clientSize.Width - 0x10, clientSize.Height - 0x10, 0x10, 0x10);
+                GraphicsState gs = e.Graphics.Save();
+                e.Graphics.ResetTransform();
+                if (resizableTop)
+                {
+                    if (resizableLeft)
+                    {
+                        e.Graphics.RotateTransform(180);
+                        e.Graphics.TranslateTransform(-clientSize.Width, -clientSize.Height);
+                    }
+                    else
+                    {
+                        e.Graphics.ScaleTransform(1, -1);
+                        e.Graphics.TranslateTransform(0, -clientSize.Height);
+                    }
+                }
+                else if (resizableLeft)
+                {
+                    e.Graphics.ScaleTransform(-1, 1);
+                    e.Graphics.TranslateTransform(-clientSize.Width, 0);
+                }
+                e.Graphics.DrawImage(gripImage, clientSize.Width - 0x10, clientSize.Height - 0x10 + 1, 0x10, 0x10);
+                e.Graphics.Restore(gs);
             }
         }
 

@@ -7,7 +7,7 @@ namespace ZeqkTools
 {
     public class Functions
     {
-        static public Point CalculateMiddlePoint(List<Point> points)
+        static public GeoPoint CalculateMiddlePoint(List<GeoPoint> points)
         {
 
             double lat = 0;
@@ -24,18 +24,18 @@ namespace ZeqkTools
             double auxLng = lngDistance / 2;
             lng = points.Min(p => p.Lng) + auxLng;
 
-            Point point = new Point(lat, lng);
+            GeoPoint point = new GeoPoint(lat, lng);
 
             return point;
 
         }
     }
 
-    public struct Point
+    public struct GeoPoint
     {
         public double Lat, Lng;
 
-        public Point(double lat, double lng)
+        public GeoPoint(double lat, double lng)
         {
             this.Lat = lat;
             this.Lng = lng;

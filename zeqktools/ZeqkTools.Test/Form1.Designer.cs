@@ -28,48 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.checkedComboBox1 = new ZeqkTools.WindowsForms.Controls.CheckedComboBox();
-            this.userControl11 = new ZeqkTools.WindowsForms.Controls.UserControl1();
+            this.components = new System.ComponentModel.Container();
+            this.checkedListComboBox1 = new ZeqkTools.WindowsForms.Controls.CheckedListComboBox(this.components);
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // checkedListComboBox1
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "uno",
-            "dos",
-            "tres"});
-            this.comboBox1.Location = new System.Drawing.Point(51, 88);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 0;
+            this.checkedListComboBox1.FormattingEnabled = true;
+            this.checkedListComboBox1.Location = new System.Drawing.Point(153, 157);
+            this.checkedListComboBox1.Name = "checkedListComboBox1";
+            this.checkedListComboBox1.Size = new System.Drawing.Size(260, 21);
+            this.checkedListComboBox1.TabIndex = 1;
             // 
-            // checkedComboBox1
+            // checkedListBox1
             // 
-            this.checkedComboBox1.DataSource = ((object)(resources.GetObject("checkedComboBox1.DataSource")));
-            this.checkedComboBox1.FormattingEnabled = true;
-            this.checkedComboBox1.Location = new System.Drawing.Point(180, 239);
-            this.checkedComboBox1.Name = "checkedComboBox1";
-            this.checkedComboBox1.Size = new System.Drawing.Size(179, 21);
-            this.checkedComboBox1.TabIndex = 1;
-            // 
-            // userControl11
-            // 
-            this.userControl11.Location = new System.Drawing.Point(236, 134);
-            this.userControl11.Name = "userControl11";
-            this.userControl11.Size = new System.Drawing.Size(236, 28);
-            this.userControl11.TabIndex = 2;
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(224, 274);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(120, 94);
+            this.checkedListBox1.TabIndex = 2;
+            this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(554, 394);
-            this.Controls.Add(this.userControl11);
-            this.Controls.Add(this.checkedComboBox1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.checkedListComboBox1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -79,8 +66,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
-        private ZeqkTools.WindowsForms.Controls.CheckedComboBox checkedComboBox1;
-        private ZeqkTools.WindowsForms.Controls.UserControl1 userControl11;
+        private ZeqkTools.WindowsForms.Controls.CheckedListComboBox checkedListComboBox1;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }
