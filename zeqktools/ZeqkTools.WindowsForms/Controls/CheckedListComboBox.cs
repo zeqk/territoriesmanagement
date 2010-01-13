@@ -23,8 +23,29 @@ namespace ZeqkTools.WindowsForms.Controls
             get { return checkedListBox.Items; }
             set 
             {
+
+                
+                int h = 0;
+                //1-4
+                if (Enumerable.Range(1, 4).Contains(value.Count))
+                    h = 20 * value.Count;
+                else
+                    h = 17 * value.Count;
+                //////5-20
+                ////if (Enumerable.Range(5, 16).Contains(value.Count) && h == 0)
+                ////    h = 17 * value.Count;
+                ////20-
+                //if (Enumerable.Range(21, 100).Contains(value.Count) && h == 0)
+                //    h = 16 * value.Count;
+
+                //if (Enumerable.Range(15, 5).Contains(value.Count) && h == 0)
+                //    h = 16 * value.Count;
+                
+                ResizeCheckedListBox(this.Width, h);
+
                 foreach (var item in value)
                     checkedListBox.Items.Add(item);
+                int aux = checkedListBox.ItemHeight;
             }
         }
 
@@ -73,12 +94,13 @@ namespace ZeqkTools.WindowsForms.Controls
                 checkedListBox.Width = w.Value;
             if (h.HasValue)
                 checkedListBox.Height = h.Value;
-
+            checkedListBox.AutoSize = true;
+            checkedListBox.DrawMode = DrawMode.OwnerDrawVariable;
             checkedListBox.DisplayMember = _displayMember;
-
+            
+            
             checkedListBox.CheckOnClick = true;
-            checkedListBox.ItemCheck += new ItemCheckEventHandler(this.checkedListBox_ItemCheck);
-
+            checkedListBox.ItemCheck += new ItemCheckEventHandler(this.checkedListBox_ItemCheck);            
             this.DropDownControl = checkedListBox;
         }
 
@@ -109,6 +131,33 @@ namespace ZeqkTools.WindowsForms.Controls
                 this.Text = this.Text.Remove(index, checkedStr.Length);
             }
             
+        }
+
+        private void ListBox1_MeasureItem(object sender, MeasureItemEventArgs e)
+        {
+            e.ItemHeight = 100;
+
+            //// Cast the sender object back to ListBox type.
+            //ListBox theListBox = (ListBox)sender;
+
+            //// Get the string contained in each item.
+            //string itemString = (string)theListBox.Items[e.Index];
+
+            //// Split the string at the " . "  character.
+            //string[] resultStrings = itemString.Split('.');
+
+            //// If the string contains more than one period, increase the 
+            //// height by ten pixels; otherwise, increase the height by 
+            //// five pixels.
+            //if (resultStrings.Length > 2)
+            //{
+            //    e.ItemHeight += 10;
+            //}
+            //else
+            //{
+            //    e.ItemHeight += 5;
+            //}
+
         }
     }
 }

@@ -19,18 +19,10 @@ namespace ZeqkTools.Test
         private void Form1_Load(object sender, EventArgs e)
         {
             List<Item> list = new List<Item>();
-            list.Add(new Item(1, "uno"));
-            list.Add(new Item(2, "dos"));
-            list.Add(new Item(3, "tres"));
-            list.Add(new Item(1, "uno"));
-            //list.Add(new Item(2, "dos"));
-            //list.Add(new Item(3, "tres"));
-            //list.Add(new Item(1, "uno"));
-            //list.Add(new Item(2, "dos"));
-            //list.Add(new Item(3, "tres"));
-            //list.Add(new Item(1, "uno"));
-            //list.Add(new Item(2, "dos"));
-            //list.Add(new Item(3, "tres"));
+            for (int i = 0; i < 40; i++)
+            {
+                list.Add(new Item(i,i.ToString()));
+            }
             checkedListComboBox1.DisplayMember = "Name";
             checkedListComboBox1.DataSource = list;
 
