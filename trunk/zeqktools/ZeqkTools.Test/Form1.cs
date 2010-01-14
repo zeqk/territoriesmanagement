@@ -18,13 +18,7 @@ namespace ZeqkTools.Test
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            List<Item> list = new List<Item>();
-            for (int i = 0; i < 40; i++)
-            {
-                list.Add(new Item(i,i.ToString()));
-            }
             checkedListComboBox1.DisplayMember = "Name";
-            checkedListComboBox1.DataSource = list;
 
 
         }
@@ -32,6 +26,18 @@ namespace ZeqkTools.Test
         private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+             int total = (int) numericUpDown1.Value;
+
+             List<Item> list = new List<Item>();
+             for (int i = 0; i < total; i++)
+             {
+                 list.Add(new Item(i, i.ToString()));
+             }
+             checkedListComboBox1.DataSource = list;
         }
 
 

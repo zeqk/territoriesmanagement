@@ -13,7 +13,8 @@ namespace ZeqkTools.WindowsForms.Controls
     {
         #region Fields
         private string _concatChar;
-        private string _displayMember;    
+        private string _displayMember;
+        private string _valueMember;   
 	
         #endregion
 
@@ -23,14 +24,12 @@ namespace ZeqkTools.WindowsForms.Controls
             get { return checkedListBox.Items; }
             set 
             {
-
                 
-                int h = 0;
-                //1-4
-                if (Enumerable.Range(1, 4).Contains(value.Count))
-                    h = 20 * value.Count;
-                else
-                    h = 17 * value.Count;
+                ////1-4
+                //if (Enumerable.Range(1, 4).Contains(value.Count))
+                //    h = 20 * value.Count;
+                //else
+                //    h = 17 * value.Count;
                 //////5-20
                 ////if (Enumerable.Range(5, 16).Contains(value.Count) && h == 0)
                 ////    h = 17 * value.Count;
@@ -40,7 +39,9 @@ namespace ZeqkTools.WindowsForms.Controls
 
                 //if (Enumerable.Range(15, 5).Contains(value.Count) && h == 0)
                 //    h = 16 * value.Count;
-                
+
+                int h = 20 * value.Count;
+
                 ResizeCheckedListBox(this.Width, h);
 
                 foreach (var item in value)
@@ -54,6 +55,36 @@ namespace ZeqkTools.WindowsForms.Controls
             get { return _displayMember; }
             set { _displayMember = value; }
         }
+
+        public string ValueMember
+        {
+            get { return _valueMember; }
+            set { _valueMember = value; }
+        }
+
+        public CheckedListBox.CheckedItemCollection CheckedItems
+        {
+            get { return checkedListBox.CheckedItems; }
+        }
+
+        public List<object> CheckedItemsValues
+        {
+            get 
+            {
+                List<object> rv = new List<object>();
+                if(!string.IsNullOrEmpty(_valueMember))
+                {
+                    foreach (var item in checkedListBox.CheckedItems)
+                    {
+                        object value;
+                        value = item.GetType().GetProperty(_valueMember).GetValue(item, null);
+                        rv.Add(value);
+                    }
+                }
+                return rv; 
+            }
+        }
+	
 
         /// <summary>
         /// A character to concatenate the list of checked items. Default value: comma
@@ -93,7 +124,12 @@ namespace ZeqkTools.WindowsForms.Controls
             if (w.HasValue)
                 checkedListBox.Width = w.Value;
             if (h.HasValue)
+            {
+                if (h.Value >= SystemInformation.PrimaryMonitorSize.Height)
+                    h = SystemInformation.PrimaryMonitorSize.Height - SystemInformation.PrimaryMonitorSize.Height / 2;
+
                 checkedListBox.Height = h.Value;
+            }
             checkedListBox.AutoSize = true;
             checkedListBox.DrawMode = DrawMode.OwnerDrawVariable;
             checkedListBox.DisplayMember = _displayMember;
@@ -124,10 +160,16 @@ namespace ZeqkTools.WindowsForms.Controls
 
             if (e.NewValue == CheckState.Unchecked)
             {
-                if (this.Text.Contains(_concatChar))
-                    checkedStr = _concatChar + checkedStr;
+                int index = -1;
 
-                int index = this.Text.IndexOf(checkedStr);
+                index = this.Text.IndexOf(_concatChar + checkedStr);
+
+                if (index < 0)
+                    index = this.Text.IndexOf(checkedStr +_concatChar);
+
+                if(index < 0)
+                    index = this.Text.IndexOf(checkedStr);
+
                 this.Text = this.Text.Remove(index, checkedStr.Length);
             }
             
