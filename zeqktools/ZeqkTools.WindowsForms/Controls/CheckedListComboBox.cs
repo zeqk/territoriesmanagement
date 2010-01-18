@@ -162,15 +162,20 @@ namespace ZeqkTools.WindowsForms.Controls
             {
                 int index = -1;
 
-                index = this.Text.IndexOf(_concatChar + checkedStr);
+                string textToRemove = _concatChar + checkedStr;
+                index = this.Text.IndexOf(textToRemove);
 
                 if (index < 0)
-                    index = this.Text.IndexOf(checkedStr +_concatChar);
-
-                if(index < 0)
+                {
+                    textToRemove = checkedStr + _concatChar;
+                    index = this.Text.IndexOf(textToRemove);
+                }
+                if (index < 0)
+                {
+                    textToRemove = checkedStr;
                     index = this.Text.IndexOf(checkedStr);
-
-                this.Text = this.Text.Remove(index, checkedStr.Length);
+                }
+                this.Text = this.Text.Remove(index, textToRemove.Length);
             }
             
         }
