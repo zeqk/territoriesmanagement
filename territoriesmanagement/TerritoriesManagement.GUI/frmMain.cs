@@ -90,11 +90,11 @@ namespace TerritoriesManagement.GUI
         private void menuAbout_Click(object sender, EventArgs e)
         {
             AboutBox ab = new AboutBox();
-            ab.Text = "About Territories Management";
+            ab.Text = "About Territories Management " + Application.ProductVersion;
             ab.AppTitle = "Territories Management";
             ab.AppDescription = "A program for organizing special territories";
-            ab.AppVersion = "Version 0.8";
-            ab.AppCopyright = "GNU GPL 2009  Zeqk";
+            ab.AppVersion = Application.ProductVersion;
+            ab.AppCopyright = "GNU GPL 2010  Zeqk";
             ab.AppMoreInfo = "Web site: http://sites.google.com/site/territoriesmanagement \n\n";
             ab.AppMoreInfo += "This program uses GMap.NET (http://greatmaps.codeplex.com/), ";
             ab.AppMoreInfo += "CarlosAg Excel Xml Writer Library (http://www.carlosag.net/Tools/ExcelXmlWriter/) and ";
