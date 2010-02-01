@@ -19,28 +19,14 @@ namespace ZeqkTools.WindowsForms.Controls
         #endregion
 
         #region Properties
+
         public ICollection DataSource
         {
             get { return checkedListBox.Items; }
             set 
             {
-                
-                ////1-4
-                //if (Enumerable.Range(1, 4).Contains(value.Count))
-                //    h = 20 * value.Count;
-                //else
-                //    h = 17 * value.Count;
-                //////5-20
-                ////if (Enumerable.Range(5, 16).Contains(value.Count) && h == 0)
-                ////    h = 17 * value.Count;
-                ////20-
-                //if (Enumerable.Range(21, 100).Contains(value.Count) && h == 0)
-                //    h = 16 * value.Count;
-
-                //if (Enumerable.Range(15, 5).Contains(value.Count) && h == 0)
-                //    h = 16 * value.Count;
-
-                int h = 20 * value.Count;
+                UncheckAllItems();
+                int h = 22 * value.Count;
 
                 ResizeCheckedListBox(this.Width, h);
 
@@ -55,7 +41,7 @@ namespace ZeqkTools.WindowsForms.Controls
             get { return _displayMember; }
             set { _displayMember = value; }
         }
-
+        
         public string ValueMember
         {
             get { return _valueMember; }
@@ -67,10 +53,15 @@ namespace ZeqkTools.WindowsForms.Controls
             get { return checkedListBox.CheckedItems; }
         }
 
+        public CheckedListBox.ObjectCollection Items
+        {
+            get { return checkedListBox.Items; }
+        }
+
         public List<object> CheckedItemsValues
         {
             get 
-            {
+            {         
                 List<object> rv = new List<object>();
                 if(!string.IsNullOrEmpty(_valueMember))
                 {
@@ -82,6 +73,24 @@ namespace ZeqkTools.WindowsForms.Controls
                     }
                 }
                 return rv; 
+            }
+        }
+
+        public List<object> ItemsValues
+        {
+            get
+            {
+                List<object> rv = new List<object>();
+                if (!string.IsNullOrEmpty(_valueMember))
+                {
+                    foreach (var item in checkedListBox.Items)
+                    {
+                        object value;
+                        value = item.GetType().GetProperty(_valueMember).GetValue(item, null);
+                        rv.Add(value);
+                    }
+                }
+                return rv;
             }
         }
 	
@@ -117,6 +126,44 @@ namespace ZeqkTools.WindowsForms.Controls
         }
         #endregion
 
+        #region Events
+        public event ItemCheckEventHandler ItemCheck;
+
+        protected virtual void OnItemCheck(ItemCheckEventArgs e)
+        {
+            // Make a temporary copy of the event to avoid possibility of
+            // a race condition if the last subscriber unsubscribes
+            // immediately after the null check and before the event is raised.
+            ItemCheckEventHandler handler = ItemCheck;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+
+        #endregion
+
+
+        #region Public methods
+
+        public void CheckAllItems()
+        {
+            for (int i = 0; i < checkedListBox.Items.Count; i++)
+            {
+                checkedListBox.SetItemChecked(i, true);
+            }
+        }
+
+        public void UncheckAllItems()
+        {
+            for (int i = 0; i < checkedListBox.Items.Count; i++)
+            {
+                checkedListBox.SetItemCheckState(i, CheckState.Unchecked);
+            }
+        }
+
+        #endregion
 
         private void ResizeCheckedListBox(int? w, int? h)
         {
@@ -176,8 +223,9 @@ namespace ZeqkTools.WindowsForms.Controls
                     index = this.Text.IndexOf(checkedStr);
                 }
                 this.Text = this.Text.Remove(index, textToRemove.Length);
-            }
-            
+            }           
+
+            this.OnItemCheck(e);
         }
 
         private void ListBox1_MeasureItem(object sender, MeasureItemEventArgs e)
@@ -205,6 +253,12 @@ namespace ZeqkTools.WindowsForms.Controls
             //    e.ItemHeight += 5;
             //}
 
+        }
+
+        //Text property non editable
+        private void CheckedListComboBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }

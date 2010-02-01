@@ -58,6 +58,7 @@ namespace ZeqkTools.WindowsForms.Maps
 
         private void ConfigMap()
         {
+            cboMapType.DataSource = Enum.GetValues(MapType.GetType());
 
             isMouseDown = false;
             // config gmaps
@@ -240,9 +241,9 @@ namespace ZeqkTools.WindowsForms.Maps
                 GoToAddress(txtAddress.Text);
         }
 
-        private void cboMapType_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboMapType_SelectedValueChanged(object sender, EventArgs e)
         {
-            MainMap.MapType = (MapType) cboMapType.SelectedValue;
+            MainMap.MapType = (MapType)cboMapType.SelectedValue;
         }
         
     }

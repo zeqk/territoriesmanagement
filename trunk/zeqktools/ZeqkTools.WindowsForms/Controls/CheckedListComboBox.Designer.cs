@@ -43,6 +43,8 @@
             // CheckedListComboBox
             // 
             this.Resize += new System.EventHandler(this.CheckedListComboBox_Resize);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.CheckedListComboBox_KeyPress);
+            
             this.ResumeLayout(false);
 
         }
