@@ -45,6 +45,8 @@ namespace ZeqkTools.WindowsForms.Maps
 
         private void frmGeoArea_Load(object sender, EventArgs e)
         {
+            cboMapType.DataSource = Enum.GetValues(MapType.GetType());
+
             ConfigMap();
             //Seteo el centro del mapa
             PointLatLng middle = new PointLatLng(0, 0);
@@ -234,9 +236,7 @@ namespace ZeqkTools.WindowsForms.Maps
             trackBar1.Value = MainMap.Zoom;
         }
 
-
-
-        private void cboMapType_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboMapType_SelectedValueChanged(object sender, EventArgs e)
         {
             MainMap.MapType = (MapType)cboMapType.SelectedValue;
         }
