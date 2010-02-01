@@ -327,35 +327,44 @@ namespace TerritoriesManagement.GUI
         private void btnExport_Click(object sender, EventArgs e)
         {
             bool exported = true;
-            if (rdoAddresses.Checked)
+
+            try
             {
+                if (rdoAddresses.Checked)
+                {
 
-                string[] properties = chkListAddresses.CheckedItems.Cast<string>().ToArray();
+                    string[] properties = chkListAddresses.CheckedItems.Cast<string>().ToArray();
 
-                exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "Address", "Addresses",properties, "", null);
+                    exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "Address", "Addresses", properties, "", null);
+                }
+
+
+                if (rdoTerritories.Checked)
+                {
+                    string[] properties = chkListTerritories.CheckedItems.Cast<string>().ToArray();
+
+                    exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "Territory", "Territories", properties, "", null);
+                }
+
+                if (rdoCities.Checked)
+                {
+                    string[] properties = chkListCities.CheckedItems.Cast<string>().ToArray();
+
+                    exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "City", "Cities", properties, "", null);
+                }
+
+                if (rdoDepartments.Checked)
+                {
+                    string[] properties = chkListDepartments.CheckedItems.Cast<string>().ToArray();
+
+                    exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "Department", "Departments", properties, "", null);
+                }
             }
-
-
-            if (rdoTerritories.Checked)
+            catch (Exception ex)
             {
-                string[] properties = chkListTerritories.CheckedItems.Cast<string>().ToArray();
-
-                exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "Territory", "Territories",properties, "",null);
+                
             }
-
-            if (rdoCities.Checked)
-            {
-                string[] properties = chkListCities.CheckedItems.Cast<string>().ToArray();
-
-                exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "City", "Cities",properties, "", null);
-            }
-
-            if (rdoDepartments.Checked)
-            {
-                string[] properties = chkListDepartments.CheckedItems.Cast<string>().ToArray();
-
-                exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "Department", "Departments", properties, "", null);
-            }
+            
 
             if (exported)
                 MessageBox.Show("The exportation has been successful.\n");

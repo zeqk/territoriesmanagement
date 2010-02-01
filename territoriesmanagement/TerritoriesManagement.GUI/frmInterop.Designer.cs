@@ -342,6 +342,7 @@
             // 
             // chkListDepartments
             // 
+            this.chkListDepartments.CheckOnClick = true;
             this.chkListDepartments.Enabled = false;
             this.chkListDepartments.FormattingEnabled = true;
             this.chkListDepartments.Location = new System.Drawing.Point(420, 193);
@@ -351,6 +352,7 @@
             // 
             // chkListTerritories
             // 
+            this.chkListTerritories.CheckOnClick = true;
             this.chkListTerritories.Enabled = false;
             this.chkListTerritories.FormattingEnabled = true;
             this.chkListTerritories.Location = new System.Drawing.Point(285, 193);
@@ -360,6 +362,7 @@
             // 
             // chkListCities
             // 
+            this.chkListCities.CheckOnClick = true;
             this.chkListCities.Enabled = false;
             this.chkListCities.FormattingEnabled = true;
             this.chkListCities.Location = new System.Drawing.Point(150, 193);
@@ -369,6 +372,7 @@
             // 
             // chkListAddresses
             // 
+            this.chkListAddresses.CheckOnClick = true;
             this.chkListAddresses.Enabled = false;
             this.chkListAddresses.FormattingEnabled = true;
             this.chkListAddresses.Location = new System.Drawing.Point(15, 193);

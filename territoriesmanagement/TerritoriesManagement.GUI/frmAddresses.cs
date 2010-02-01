@@ -16,6 +16,7 @@ using TerritoriesManagement.Export;
 using System.IO;
 using ZeqkTools.WindowsForms.Maps;
 using ZeqkTools.WindowsForms.Controls;
+using System.Collections;
 
 
 namespace TerritoriesManagement.GUI
@@ -24,7 +25,9 @@ namespace TerritoriesManagement.GUI
     {
         Addresses _server = new Addresses();
         Config.Config _config;
-        
+
+        bool _isGettingAll = false;
+
         public frmAddresses()
         {
             InitializeComponent();
@@ -40,36 +43,32 @@ namespace TerritoriesManagement.GUI
 
             ConfigGrids();
 
-            
-            cboDepartment.DisplayMember = "Name";
-            cboDepartment.ValueMember = "Id";
-            cboDepartment.DataSource = this._server.GetDepartments();
-            cboDepartment.SelectedItem = null;
-            
-            cboCity.DisplayMember = "Name";
-            cboCity.ValueMember = "Id";
-            cboCity.SelectedItem = null;
-            
-            cboTerritory.DisplayMember = "Name";
-            cboTerritory.ValueMember = "Id";
-            cboTerritory.DataSource = _server.GetTerritories();
-            cboTerritory.SelectedItem = null;
+            var departments = this._server.GetDepartments();
 
-            ListSelectionWrapper<object>
+            chklstDepartment.DisplayMember = "Name";
+            chklstDepartment.ValueMember = "Id";
+            chklstDepartment.DataSource = departments;
 
-            checkBoxComboBox1
+            var cities = this._server.GetCities();
+            chklstCity.DisplayMember = "Name";
+            chklstCity.ValueMember = "Id";
+            chklstCity.DataSource = cities;
 
+            var territories = _server.GetTerritories();
+            chklstTerritory.DisplayMember = "Name";
+            chklstTerritory.ValueMember = "Id";
+            chklstTerritory.DataSource = territories;
 
         }
 
         private void btnAll_Click(object sender, EventArgs e)
         {
-            ClearFilter();
+            GetAll();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            Filter();
+            Search();
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -83,8 +82,8 @@ namespace TerritoriesManagement.GUI
 
                     myForm.ShowDialog();
 
-                    if (lblFiltered.Visible) Filter();
-                    else ClearFilter();
+                    if (lblFiltered.Visible) Search();
+                    else GetAll();
 
                 }
                 catch (Exception ex)
@@ -109,8 +108,8 @@ namespace TerritoriesManagement.GUI
                         myForm.Address = v;
                         myForm.ShowDialog();
 
-                        if (lblFiltered.Visible) Filter();
-                        else ClearFilter();
+                        if (lblFiltered.Visible) Search();
+                        else GetAll();
                     }
                     catch (Exception ex)
                     {
@@ -170,8 +169,8 @@ namespace TerritoriesManagement.GUI
                         _server.Delete(idAddress);                       
                     }
 
-                    if (lblFiltered.Visible) Filter();
-                    else ClearFilter();
+                    if (lblFiltered.Visible) Search();
+                    else GetAll();
 	            }
                 
                 catch (Exception ex)
@@ -247,16 +246,20 @@ namespace TerritoriesManagement.GUI
 
         }
 
-        private void ClearFilter()
+        private void GetAll()
         {
+            _isGettingAll = true;
             schStreet.Clear();
-            cboDepartment.SelectedItem = null;
-            cboTerritory.SelectedItem = null;
+            chklstDepartment.CheckAllItems();
+            chklstCity.DataSource = this._server.GetCities();
+            chklstCity.CheckAllItems();
+            chklstTerritory.CheckAllItems();
             LoadResults("");
             lblFiltered.Visible = false;
+            _isGettingAll = false;
         }
 
-        private void Filter()
+        private void Search()
         {
             try
             {
@@ -276,8 +279,8 @@ namespace TerritoriesManagement.GUI
                 
             }
             catch (Exception ex)
-            {                
-                throw ex;
+            {
+                MessageBox.Show(ex.Message);
             }  
         }
 
@@ -285,58 +288,109 @@ namespace TerritoriesManagement.GUI
         {
             List<ObjectParameter> auxParameters = new List<ObjectParameter>();
             schStreet.MakeQuery();
-            string strQuery = "";
+            string queryStr = "";
 
             if (!schStreet.IsClean())
             {
-                strQuery = schStreet.Query;
+                queryStr = schStreet.Query;
                 schStreet.Parameters.ForEach(delegate(ObjectParameter param)
                 {
                     auxParameters.Add(param);
                 });
             }
 
-            if (cboCity.SelectedValue != null)
+            //chklstTerritory
+            if (chklstTerritory.CheckedItems.Count > 0)
             {
                 if (auxParameters.Count > 0)
-                    strQuery += " AND ";
+                    queryStr += " AND ";
 
-                strQuery += "Address.City.IdCity = @IdCity";
-                ObjectParameter cityPar = new ObjectParameter("IdCity", (int)cboCity.SelectedValue);
+                var territories = chklstTerritory.CheckedItemsValues;
+                string auxQueryStr = "";
+                for (int i = 0; i < territories.Count; i++)
+			    {
+                    if (auxQueryStr != "")
+                         auxQueryStr += " OR ";
 
-                auxParameters.Add(cityPar);
+                     if ((int)territories[i] != 0)
+                     {
+                         string varName = "IdTerritory" + i.ToString();
+                         auxQueryStr += "Address.Territory.IdTerritory = @" + varName;
+                         ObjectParameter param = new ObjectParameter(varName, territories[i]);
+                         auxParameters.Add(param);
+                     }
+                     else
+                         auxQueryStr += "Address.Territory IS NULL";
+			    }
+                queryStr += "(" + auxQueryStr + ")";
             }
-            else
-                if (cboDepartment.SelectedValue != null)
-                {
-                    if (auxParameters.Count > 0)
-                        strQuery += " AND ";
 
-                    strQuery += "Address.City.Department.IdDepartment = @IdDepartment";
-                    ObjectParameter depPar = new ObjectParameter("IdDepartment", (int)cboDepartment.SelectedValue);
-
-                    auxParameters.Add(depPar);
-                }
-
-            if (cboTerritory.SelectedValue != null)
+            //chklstCity
+            if (chklstCity.CheckedItems.Count > 0)
             {
                 if (auxParameters.Count > 0)
-                    strQuery += " AND ";
+                    queryStr += " AND ";
 
-                int idTerritory = (int)cboTerritory.SelectedValue;
+                var cities = chklstCity.CheckedItemsValues;
+                string auxQueryStr = "";
+                for (int i = 0; i < cities.Count; i++)
+			    {
+                    if (auxQueryStr != "")
+                         auxQueryStr += " OR ";
 
-                if (idTerritory != 0)
-                {
-                    strQuery += "Address.Territory.IdTerritory = @IdTerritory";
-                    ObjectParameter terrPar = new ObjectParameter("IdTerritory", idTerritory);
-                    auxParameters.Add(terrPar);
-                }
-                else
-                    strQuery += "Address.Territory IS NULL";
+                     string varName = "IdCity" + i.ToString();
+                     auxQueryStr += "Address.City.IdCity = @" + varName;
+                     ObjectParameter param = new ObjectParameter(varName, cities[i]);
+                     auxParameters.Add(param);
+			    }
+                queryStr += "(" + auxQueryStr + ")";
             }
+
+            //chklstDepartment
+            if (chklstDepartment.CheckedItems.Count > 0)
+            {
+                if (auxParameters.Count > 0)
+                    queryStr += " AND ";
+
+                var cities = chklstDepartment.CheckedItemsValues;
+                string auxQueryStr = "";
+                for (int i = 0; i < cities.Count; i++)
+                {
+                    if (auxQueryStr != "")
+                        auxQueryStr += " OR ";
+
+                    string varName = "IdDepartment" + i.ToString();
+                    auxQueryStr += "Address.City.Department.IdDepartment = @" + varName;
+                    ObjectParameter param = new ObjectParameter(varName, cities[i]);
+                    auxParameters.Add(param);
+                }
+                queryStr += "(" + auxQueryStr + ")";
+            }
+
+            //if (cboCity.SelectedValue != null)
+            //{
+            //    if (auxParameters.Count > 0)
+            //        queryStr += " AND ";
+
+            //    queryStr += "Address.City.IdCity = @IdCity";
+            //    ObjectParameter cityPar = new ObjectParameter("IdCity", (int)cboCity.SelectedValue);
+
+            //    auxParameters.Add(cityPar);
+            //}
+            //else
+            //    if (cboDepartment.SelectedValue != null)
+            //    {
+            //        if (auxParameters.Count > 0)
+            //            queryStr += " AND ";
+
+            //        queryStr += "Address.City.Department.IdDepartment = @IdDepartment";
+            //        ObjectParameter depPar = new ObjectParameter("IdDepartment", (int)cboDepartment.SelectedValue);
+
+            //        auxParameters.Add(depPar);
+            //    }
 
             parameters = auxParameters;
-            return strQuery;
+            return queryStr;
         }
 
         private void dgvResults_MouseClick(object sender, MouseEventArgs e)
@@ -359,19 +413,6 @@ namespace TerritoriesManagement.GUI
 
                 Clipboard.SetText(text);
             }
-        }
-
-        private void cboDepartment_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cboDepartment.SelectedItem != null)
-            {
-                int idDepartment = (int)cboDepartment.SelectedValue;
-                cboCity.DataSource = this._server.GetCitiesByDepartment(idDepartment);
-                cboCity.SelectedItem = null;
-            }
-            else
-                cboCity.DataSource = null;
-           
         }
         #region ToGMaps
         private void btnToGMaps_Click(object sender, EventArgs e)
@@ -453,6 +494,24 @@ namespace TerritoriesManagement.GUI
                     myForm.Points = marks;
                     myForm.ShowDialog();
                 }
+            }
+        }
+
+        private void chklstDepartment_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+            if (!_isGettingAll)
+            {
+                var departments = chklstDepartment.CheckedItemsValues;
+
+                if (e.CurrentValue == CheckState.Unchecked && e.NewValue == CheckState.Checked)
+                    departments.Add(chklstDepartment.ItemsValues[e.Index]);
+
+                if (e.CurrentValue == CheckState.Checked && e.NewValue == CheckState.Unchecked)
+                    departments.Remove(chklstDepartment.ItemsValues[e.Index]);
+
+                var cities = this._server.GetCitiesByDepartments(departments.Cast<int>().ToArray());                
+                chklstCity.DataSource = cities;
+
             }
         }
         

@@ -291,6 +291,22 @@ namespace TerritoriesManagement.DataBridge
             }
         }
 
+        public IList GetCities()
+        {
+            try
+            {
+                var objectResults = _dm.cities_GetAll();
+                var results = from city in objectResults
+                              orderby city.Name
+                              select new { Id = city.IdCity, Name = city.Name };
+                return results.ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public IList GetCitiesByDepartment(int idDepartment)
         {
             try
@@ -302,6 +318,44 @@ namespace TerritoriesManagement.DataBridge
                 var rv = results.ToList();
                 rv.Add(new { Id = 0, Name = "" });
                 return rv.OrderBy(a => a.Name).ToList() ;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IList GetCitiesByDepartments(int[] ids)
+        {
+            try
+            {
+                IList rv = null;
+                if (ids.Length > 0)
+                {
+                    
+                    var objectResults = _dm.cities_GetByDepartment(ids[0]);
+                    var results = from c in objectResults
+                                  select new { Id = c.IdCity, Name = c.Name };
+
+                    
+                    var auxRv = results.ToList();
+
+                    if (ids.Length > 1)
+                    {
+                        for (int i = 0; i < ids.Length; i++)
+                            if (i != 0)
+                            {
+                                objectResults = _dm.cities_GetByDepartment(ids[i]);
+                                results = from c in objectResults
+                                              select new { Id = c.IdCity, Name = c.Name };
+                                auxRv.AddRange(results.ToList());
+                            }
+                    }
+
+                    auxRv.Add(new { Id = 0, Name = "" });
+                    rv = auxRv.OrderBy(a => a.Name).ToList();
+                }
+                return rv;
             }
             catch (Exception ex)
             {

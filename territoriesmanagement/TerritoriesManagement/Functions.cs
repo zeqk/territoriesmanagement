@@ -19,6 +19,11 @@ namespace TerritoriesManagement
             if (where != "")
                 strQuery = strQuery + " WHERE " + where;
 
+            if (parameters == null)
+            {
+                parameters = new ObjectParameter[0];
+            }
+
             TerritoriesDataContext dm = new TerritoriesDataContext();
             try
             {
