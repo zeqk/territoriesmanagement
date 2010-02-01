@@ -42,17 +42,17 @@
             this.lblResults = new System.Windows.Forms.Label();
             this.dgvResults = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.chklstDepartment = new ZeqkTools.WindowsForms.Controls.CheckedListComboBox(this.components);
+            this.chklstCity = new ZeqkTools.WindowsForms.Controls.CheckedListComboBox(this.components);
+            this.chklstTerritory = new ZeqkTools.WindowsForms.Controls.CheckedListComboBox(this.components);
             this.chkDescription = new System.Windows.Forms.CheckBox();
             this.chkStreet = new System.Windows.Forms.CheckBox();
             this.chkCorners = new System.Windows.Forms.CheckBox();
             this.schStreet = new ZeqkTools.WindowsForms.Controls.Search();
             this.lblTerritory = new System.Windows.Forms.Label();
-            this.cboTerritory = new System.Windows.Forms.ComboBox();
             this.lblAddress = new System.Windows.Forms.Label();
             this.lblCity = new System.Windows.Forms.Label();
             this.lblDepartment = new System.Windows.Forms.Label();
-            this.cboCity = new System.Windows.Forms.ComboBox();
-            this.cboDepartment = new System.Windows.Forms.ComboBox();
             this.ctxMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyGoogleMapsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -146,19 +146,47 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.chklstDepartment);
+            this.panel2.Controls.Add(this.chklstCity);
+            this.panel2.Controls.Add(this.chklstTerritory);
             this.panel2.Controls.Add(this.chkDescription);
             this.panel2.Controls.Add(this.chkStreet);
             this.panel2.Controls.Add(this.chkCorners);
             this.panel2.Controls.Add(this.schStreet);
             this.panel2.Controls.Add(this.lblTerritory);
-            this.panel2.Controls.Add(this.cboTerritory);
             this.panel2.Controls.Add(this.lblAddress);
             this.panel2.Controls.Add(this.lblCity);
             this.panel2.Controls.Add(this.lblDepartment);
-            this.panel2.Controls.Add(this.cboCity);
-            this.panel2.Controls.Add(this.cboDepartment);
             resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
+            // 
+            // chklstDepartment
+            // 
+            this.chklstDepartment.ConcatChar = ", ";
+            this.chklstDepartment.DisplayMember = null;
+            this.chklstDepartment.FormattingEnabled = true;
+            resources.ApplyResources(this.chklstDepartment, "chklstDepartment");
+            this.chklstDepartment.Name = "chklstDepartment";
+            this.chklstDepartment.ValueMember = null;
+            this.chklstDepartment.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chklstDepartment_ItemCheck);
+            // 
+            // chklstCity
+            // 
+            this.chklstCity.ConcatChar = ", ";
+            this.chklstCity.DisplayMember = null;
+            this.chklstCity.FormattingEnabled = true;
+            resources.ApplyResources(this.chklstCity, "chklstCity");
+            this.chklstCity.Name = "chklstCity";
+            this.chklstCity.ValueMember = null;
+            // 
+            // chklstTerritory
+            // 
+            this.chklstTerritory.ConcatChar = ", ";
+            this.chklstTerritory.DisplayMember = null;
+            this.chklstTerritory.FormattingEnabled = true;
+            resources.ApplyResources(this.chklstTerritory, "chklstTerritory");
+            this.chklstTerritory.Name = "chklstTerritory";
+            this.chklstTerritory.ValueMember = null;
             // 
             // chkDescription
             // 
@@ -196,13 +224,6 @@
             resources.ApplyResources(this.lblTerritory, "lblTerritory");
             this.lblTerritory.Name = "lblTerritory";
             // 
-            // cboTerritory
-            // 
-            this.cboTerritory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTerritory.FormattingEnabled = true;
-            resources.ApplyResources(this.cboTerritory, "cboTerritory");
-            this.cboTerritory.Name = "cboTerritory";
-            // 
             // lblAddress
             // 
             resources.ApplyResources(this.lblAddress, "lblAddress");
@@ -217,21 +238,6 @@
             // 
             resources.ApplyResources(this.lblDepartment, "lblDepartment");
             this.lblDepartment.Name = "lblDepartment";
-            // 
-            // cboCity
-            // 
-            this.cboCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCity.FormattingEnabled = true;
-            resources.ApplyResources(this.cboCity, "cboCity");
-            this.cboCity.Name = "cboCity";
-            // 
-            // cboDepartment
-            // 
-            this.cboDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDepartment.FormattingEnabled = true;
-            resources.ApplyResources(this.cboDepartment, "cboDepartment");
-            this.cboDepartment.Name = "cboDepartment";
-            this.cboDepartment.SelectedIndexChanged += new System.EventHandler(this.cboDepartment_SelectedIndexChanged);
             // 
             // ctxMenu
             // 
@@ -310,12 +316,9 @@
         private System.Windows.Forms.CheckBox chkCorners;
         private ZeqkTools.WindowsForms.Controls.Search schStreet;
         private System.Windows.Forms.Label lblTerritory;
-        private System.Windows.Forms.ComboBox cboTerritory;
         private System.Windows.Forms.Label lblAddress;
         private System.Windows.Forms.Label lblCity;
         private System.Windows.Forms.Label lblDepartment;
-        private System.Windows.Forms.ComboBox cboCity;
-        private System.Windows.Forms.ComboBox cboDepartment;
         private System.Windows.Forms.ContextMenuStrip ctxMenu;
         private System.Windows.Forms.ToolStripMenuItem copyGoogleMapsToolStripMenuItem;
    
@@ -325,6 +328,9 @@
         private System.Windows.Forms.SaveFileDialog sfdExcelDestiny;
         private System.Windows.Forms.ToolStripMenuItem viewMapToolStripMenuItem;
         private System.Windows.Forms.Label lblResultsCount;
+        private ZeqkTools.WindowsForms.Controls.CheckedListComboBox chklstTerritory;
+        private ZeqkTools.WindowsForms.Controls.CheckedListComboBox chklstCity;
+        private ZeqkTools.WindowsForms.Controls.CheckedListComboBox chklstDepartment;
 
 
 

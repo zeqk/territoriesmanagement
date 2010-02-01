@@ -329,7 +329,7 @@
   <data name="btnDelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACw4AAAsOAUC+4UEAAAAGYktHRACNAI4AiyH0o34AAAAHdElNRQfWBhMPHQlIs8vG
+        YQUAAAAJcEhZcwAACwwAAAsMAT9AIsgAAAAGYktHRACNAI4AiyH0o34AAAAHdElNRQfWBhMPHQlIs8vG
         AAAAD3RFWHRDb21tZW50AGlkIGxvZ2+Gxne5AAAB60lEQVQ4T5WTW08aQRiG+Sne1z/SXjSxVya9bmw9
         oJKUlnpMDBUVWU6VXXaBpqnRqBzUC02EwAWxXQ72CgiUYlLTLssWZJuWxCXr1xnCboPLhUzyZCZfvveZ
         zc6MTtcdDhcRt6yb4T7gXiWnzjgoiiIIgqBSq9XgLjzPdzZRg0OPVpcQnSLHcVAoFCCfz/eQy+UAUyqV
@@ -408,7 +408,7 @@
   <data name="btnNew.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAACw4AAAsOAUC+4UEAAAAGYktHRAD8AOkATzTXsQ0AAAAHdElNRQfVAhIOJhzTthkp
+        YQUAAAAJcEhZcwAACwwAAAsMAT9AIsgAAAAGYktHRAD8AOkATzTXsQ0AAAAHdElNRQfVAhIOJhzTthkp
         AAABe0lEQVQ4T6WTvUoDQRRGo1YRxDewCAo+QQSxECTpFB9AC7GIriCYQhubtJJKMIWRpLCyUQIqgoXP
         oH1ARCyyPzO7s0l0k83nnegsm+AmigMfO7Ccc+/MZWKlUuk8l8thUPL5Q5TLWVxdajBfk0cQ8RTE6GRM
         LgkOW45VRJNvw3OW0WRpz9VnbyEmNkgSDwSGYaBWq3Wj63oQbl4TrKHtzsNvbFE0tJwF/4NNXVAnc4Gg
@@ -553,6 +553,69 @@
   <data name="&gt;&gt;dgvResults.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <data name="chklstDepartment.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 63</value>
+  </data>
+  <data name="chklstDepartment.Size" type="System.Drawing.Size, System.Drawing">
+    <value>360, 21</value>
+  </data>
+  <data name="chklstDepartment.TabIndex" type="System.Int32, mscorlib">
+    <value>67</value>
+  </data>
+  <data name="&gt;&gt;chklstDepartment.Name" xml:space="preserve">
+    <value>chklstDepartment</value>
+  </data>
+  <data name="&gt;&gt;chklstDepartment.Type" xml:space="preserve">
+    <value>ZeqkTools.WindowsForms.Controls.CheckedListComboBox, ZeqkTools.WindowsForms, Version=1.10.1.31, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;chklstDepartment.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;chklstDepartment.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chklstCity.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 104</value>
+  </data>
+  <data name="chklstCity.Size" type="System.Drawing.Size, System.Drawing">
+    <value>360, 21</value>
+  </data>
+  <data name="chklstCity.TabIndex" type="System.Int32, mscorlib">
+    <value>66</value>
+  </data>
+  <data name="&gt;&gt;chklstCity.Name" xml:space="preserve">
+    <value>chklstCity</value>
+  </data>
+  <data name="&gt;&gt;chklstCity.Type" xml:space="preserve">
+    <value>ZeqkTools.WindowsForms.Controls.CheckedListComboBox, ZeqkTools.WindowsForms, Version=1.10.1.31, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;chklstCity.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;chklstCity.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="chklstTerritory.Location" type="System.Drawing.Point, System.Drawing">
+    <value>399, 63</value>
+  </data>
+  <data name="chklstTerritory.Size" type="System.Drawing.Size, System.Drawing">
+    <value>360, 21</value>
+  </data>
+  <data name="chklstTerritory.TabIndex" type="System.Int32, mscorlib">
+    <value>65</value>
+  </data>
+  <data name="&gt;&gt;chklstTerritory.Name" xml:space="preserve">
+    <value>chklstTerritory</value>
+  </data>
+  <data name="&gt;&gt;chklstTerritory.Type" xml:space="preserve">
+    <value>ZeqkTools.WindowsForms.Controls.CheckedListComboBox, ZeqkTools.WindowsForms, Version=1.10.1.31, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;chklstTerritory.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;chklstTerritory.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="chkDescription.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -578,7 +641,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;chkDescription.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>3</value>
   </data>
   <data name="chkStreet.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -605,7 +668,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;chkStreet.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>4</value>
   </data>
   <data name="chkCorners.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -632,7 +695,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;chkCorners.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>5</value>
   </data>
   <data name="schStreet.AutoSizeMode" type="System.Windows.Forms.AutoSizeMode, System.Windows.Forms">
     <value>GrowAndShrink</value>
@@ -650,13 +713,13 @@
     <value>schStreet</value>
   </data>
   <data name="&gt;&gt;schStreet.Type" xml:space="preserve">
-    <value>ZeqkTools.WindowsForms.Controls.Search, ZeqkTools.WindowsForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+    <value>ZeqkTools.WindowsForms.Controls.Search, ZeqkTools.WindowsForms, Version=1.10.1.31, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;schStreet.Parent" xml:space="preserve">
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;schStreet.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>6</value>
   </data>
   <data name="lblTerritory.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -683,28 +746,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;lblTerritory.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="cboTerritory.Location" type="System.Drawing.Point, System.Drawing">
-    <value>399, 63</value>
-  </data>
-  <data name="cboTerritory.Size" type="System.Drawing.Size, System.Drawing">
-    <value>360, 21</value>
-  </data>
-  <data name="cboTerritory.TabIndex" type="System.Int32, mscorlib">
-    <value>60</value>
-  </data>
-  <data name="&gt;&gt;cboTerritory.Name" xml:space="preserve">
-    <value>cboTerritory</value>
-  </data>
-  <data name="&gt;&gt;cboTerritory.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboTerritory.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;cboTerritory.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="lblAddress.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -731,7 +773,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;lblAddress.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="lblCity.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -758,7 +800,7 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;lblCity.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="lblDepartment.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -785,48 +827,6 @@
     <value>panel2</value>
   </data>
   <data name="&gt;&gt;lblDepartment.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="cboCity.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 103</value>
-  </data>
-  <data name="cboCity.Size" type="System.Drawing.Size, System.Drawing">
-    <value>360, 21</value>
-  </data>
-  <data name="cboCity.TabIndex" type="System.Int32, mscorlib">
-    <value>56</value>
-  </data>
-  <data name="&gt;&gt;cboCity.Name" xml:space="preserve">
-    <value>cboCity</value>
-  </data>
-  <data name="&gt;&gt;cboCity.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboCity.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;cboCity.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="cboDepartment.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 63</value>
-  </data>
-  <data name="cboDepartment.Size" type="System.Drawing.Size, System.Drawing">
-    <value>360, 21</value>
-  </data>
-  <data name="cboDepartment.TabIndex" type="System.Int32, mscorlib">
-    <value>57</value>
-  </data>
-  <data name="&gt;&gt;cboDepartment.Name" xml:space="preserve">
-    <value>cboDepartment</value>
-  </data>
-  <data name="&gt;&gt;cboDepartment.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;cboDepartment.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;cboDepartment.ZOrder" xml:space="preserve">
     <value>10</value>
   </data>
   <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
