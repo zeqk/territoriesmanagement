@@ -82,6 +82,11 @@
     <OutputPath>bin\x64\x86 CPU\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=2.5.1.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="GMap.NET.Core, Version=1.4.9.3, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\GMap.NET.Core.dll</HintPath>
@@ -114,7 +119,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\ZeqkTools.dll</HintPath>
     </Reference>
-    <Reference Include="ZeqkTools.WindowsForms, Version=1.10.2.7, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="ZeqkTools.WindowsForms, Version=1.10.2.14, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\ZeqkTools.WindowsForms.dll</HintPath>
     </Reference>

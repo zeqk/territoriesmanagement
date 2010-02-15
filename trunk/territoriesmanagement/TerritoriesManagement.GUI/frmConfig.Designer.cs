@@ -45,12 +45,16 @@
             this.btnReset = new System.Windows.Forms.Button();
             this.btnApply = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.grpPlace = new System.Windows.Forms.GroupBox();
+            this.txtPlace = new System.Windows.Forms.TextBox();
+            this.lblPlace = new System.Windows.Forms.Label();
             this.tabConfigs.SuspendLayout();
             this.tabCultures.SuspendLayout();
             this.grpCulture.SuspendLayout();
             this.tabMaps.SuspendLayout();
             this.grpMaps.SuspendLayout();
             this.tabData.SuspendLayout();
+            this.grpPlace.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabConfigs
@@ -61,16 +65,17 @@
             this.tabConfigs.Location = new System.Drawing.Point(7, 12);
             this.tabConfigs.Name = "tabConfigs";
             this.tabConfigs.SelectedIndex = 0;
-            this.tabConfigs.Size = new System.Drawing.Size(316, 189);
+            this.tabConfigs.Size = new System.Drawing.Size(316, 206);
             this.tabConfigs.TabIndex = 3;
             // 
             // tabCultures
             // 
+            this.tabCultures.Controls.Add(this.grpPlace);
             this.tabCultures.Controls.Add(this.grpCulture);
             this.tabCultures.Location = new System.Drawing.Point(4, 22);
             this.tabCultures.Name = "tabCultures";
             this.tabCultures.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCultures.Size = new System.Drawing.Size(308, 163);
+            this.tabCultures.Size = new System.Drawing.Size(308, 180);
             this.tabCultures.TabIndex = 1;
             this.tabCultures.Text = "Cultures";
             this.tabCultures.UseVisualStyleBackColor = true;
@@ -78,7 +83,7 @@
             // grpCulture
             // 
             this.grpCulture.Controls.Add(this.cmbCulture);
-            this.grpCulture.Location = new System.Drawing.Point(48, 49);
+            this.grpCulture.Location = new System.Drawing.Point(44, 12);
             this.grpCulture.Name = "grpCulture";
             this.grpCulture.Size = new System.Drawing.Size(206, 59);
             this.grpCulture.TabIndex = 1;
@@ -213,7 +218,7 @@
             // 
             // btnApply
             // 
-            this.btnApply.Location = new System.Drawing.Point(140, 210);
+            this.btnApply.Location = new System.Drawing.Point(143, 224);
             this.btnApply.Name = "btnApply";
             this.btnApply.Size = new System.Drawing.Size(87, 29);
             this.btnApply.TabIndex = 4;
@@ -223,7 +228,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(233, 210);
+            this.btnCancel.Location = new System.Drawing.Point(236, 224);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(87, 29);
             this.btnCancel.TabIndex = 5;
@@ -231,11 +236,38 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // grpPlace
+            // 
+            this.grpPlace.Controls.Add(this.lblPlace);
+            this.grpPlace.Controls.Add(this.txtPlace);
+            this.grpPlace.Location = new System.Drawing.Point(44, 77);
+            this.grpPlace.Name = "grpPlace";
+            this.grpPlace.Size = new System.Drawing.Size(206, 86);
+            this.grpPlace.TabIndex = 2;
+            this.grpPlace.TabStop = false;
+            this.grpPlace.Text = "Place";
+            // 
+            // txtPlace
+            // 
+            this.txtPlace.Location = new System.Drawing.Point(28, 39);
+            this.txtPlace.Name = "txtPlace";
+            this.txtPlace.Size = new System.Drawing.Size(147, 20);
+            this.txtPlace.TabIndex = 0;
+            // 
+            // lblPlace
+            // 
+            this.lblPlace.AutoSize = true;
+            this.lblPlace.Location = new System.Drawing.Point(25, 23);
+            this.lblPlace.Name = "lblPlace";
+            this.lblPlace.Size = new System.Drawing.Size(83, 13);
+            this.lblPlace.TabIndex = 1;
+            this.lblPlace.Text = "Region, Country";
+            // 
             // frmConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(328, 251);
+            this.ClientSize = new System.Drawing.Size(328, 263);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnApply);
             this.Controls.Add(this.tabConfigs);
@@ -250,6 +282,8 @@
             this.grpMaps.ResumeLayout(false);
             this.tabData.ResumeLayout(false);
             this.tabData.PerformLayout();
+            this.grpPlace.ResumeLayout(false);
+            this.grpPlace.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -273,6 +307,9 @@
         private System.Windows.Forms.TabPage tabMaps;
         private System.Windows.Forms.GroupBox grpMaps;
         private System.Windows.Forms.ComboBox cboMapType;
+        private System.Windows.Forms.GroupBox grpPlace;
+        private System.Windows.Forms.Label lblPlace;
+        private System.Windows.Forms.TextBox txtPlace;
 
 
     }
