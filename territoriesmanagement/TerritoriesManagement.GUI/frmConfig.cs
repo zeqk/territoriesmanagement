@@ -71,7 +71,9 @@ namespace TerritoriesManagement.GUI
 
             cmbCulture.DataSource = cultures;
 
-            cmbCulture.SelectedText = Thread.CurrentThread.CurrentCulture.IetfLanguageTag;
+            cmbCulture.SelectedItem = Thread.CurrentThread.CurrentCulture.IetfLanguageTag;
+
+            txtPlace.Text = _config.Place;
 
 
             //maps
@@ -94,6 +96,9 @@ namespace TerritoriesManagement.GUI
                 Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cmbCulture.SelectedValue.ToString());
                 _config.CultureTag = Thread.CurrentThread.CurrentCulture.IetfLanguageTag;
             }
+
+            if (!string.IsNullOrEmpty(txtPlace.Text))
+                _config.Place = txtPlace.Text;
         }
 
         private void ApplyMapsChange()

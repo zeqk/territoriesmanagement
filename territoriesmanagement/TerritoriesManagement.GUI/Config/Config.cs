@@ -14,6 +14,8 @@ namespace TerritoriesManagement.GUI.Config
         
         public string CultureTag;
 
+        public string Place;
+
         public GMap.NET.MapType MapType;
 
         public Config()
@@ -72,6 +74,7 @@ namespace TerritoriesManagement.GUI.Config
         {
             this.CultureTag = config.CultureTag;
             this.MapType = config.MapType;
+            this.Place = config.Place;
         }
 	
     }

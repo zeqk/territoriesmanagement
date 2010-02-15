@@ -217,10 +217,6 @@ namespace TerritoriesManagement.GUI
         private void ObjectToForm(Territory v)
         {
             this.bsTerritory.DataSource = v;
-            if (!string.IsNullOrEmpty(v.Area))
-                btnViewMap.Enabled = true;
-            else
-                btnViewMap.Enabled = false;
         }
 
         private void ClearData()
@@ -349,32 +345,49 @@ namespace TerritoriesManagement.GUI
         {
             using (frmGeoArea myForm = new frmGeoArea())
             {
-                myForm.MapType = MapType.GoogleMap;
+                myForm.Address = _config.Place;
+                myForm.MapType = _config.MapType;
                 Territory t = FormToOject();
                 if (!string.IsNullOrEmpty(t.Area))
                 {
                     string[] strPoints = t.Area.Split('\n');
-                    myForm.Area = StrPointsToPointsLatLng(strPoints);
-                    if (t.Addresses.Count > 0)
-                    {
-                        List<GMapMarker> marks = new List<GMapMarker>();
-                        foreach (var item in t.Addresses)
-                        {
-                            if (item.Lat.HasValue && item.Lng.HasValue)
-                            {
-
-                                GMapMarkerCustom marker = new GMapMarkerCustom(new PointLatLng(item.Lat.Value, item.Lng.Value));
-                                marker.Tag = item.IdAddress;
-                                marker.ToolTipText = item.Street + item.Number;
-                                marker.Icon = Properties.Resources.legendIcon;
-                                marks.Add(marker);
-                            }
-                        }
-                        myForm.Points = marks;
-                    }
+                    myForm.Polygon = StrPointsToPointsLatLng(strPoints);
+                    
                 }
 
-                myForm.ShowDialog();
+                if (t.Addresses.Count > 0)
+                {
+                    List<GMapMarker> marks = new List<GMapMarker>();
+                    foreach (var item in t.Addresses)
+                    {
+                        if (item.Lat.HasValue && item.Lng.HasValue)
+                        {
+
+                            GMapMarkerCustom marker = new GMapMarkerCustom(new PointLatLng(item.Lat.Value, item.Lng.Value));
+                            marker.Tag = item.IdAddress;
+                            marker.ToolTipText = item.Street + item.Number;
+                            marker.Icon = Properties.Resources.legendIcon;
+                            marks.Add(marker);
+                        }
+                    }
+                    myForm.Points = marks;
+                }
+
+                if (myForm.ShowDialog() == DialogResult.OK)
+                {
+                    string area = "";
+
+                    var polygon = myForm.Polygon;
+                    foreach (PointLatLng item in polygon)
+                    {
+                        if (!string.IsNullOrEmpty(area))
+                            area += Environment.NewLine;
+                        area += item.Lat + " " + item.Lng;
+                    }
+
+                    t.Area = area;
+                    ObjectToForm(t);
+                }
 
             }
         }
