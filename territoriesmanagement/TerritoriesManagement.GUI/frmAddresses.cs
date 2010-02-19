@@ -7,17 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.Objects;
-using TerritoriesManagement.DataBridge;
-using TerritoriesManagement.Model;
-using GMap.NET.WindowsForms.Markers;
+using System.IO;
+using System.Collections;
+using System.Resources;
 using GMap.NET;
 using GMap.NET.WindowsForms;
-using TerritoriesManagement.Export;
-using System.IO;
+using GMap.NET.WindowsForms.Markers;
 using ZeqkTools.WindowsForms.Maps;
 using ZeqkTools.WindowsForms.Controls;
-using System.Collections;
-
+using TerritoriesManagement.DataBridge;
+using TerritoriesManagement.Model;
+using TerritoriesManagement.Export;
 
 namespace TerritoriesManagement.GUI
 {
@@ -25,13 +25,21 @@ namespace TerritoriesManagement.GUI
     {
         Addresses _server = new Addresses();
         Config.Config _config;
+        ResourceManager _rm;
 
         bool _isGettingAll = false;
 
         public frmAddresses()
         {
+            _rm = new ResourceManager(this.GetType());
             InitializeComponent();
 
+        }
+
+        private string GetString(string text)
+        {
+            //return _rm.GetString(text, Thread.CurrentThread.CurrentCulture);
+            return text;
         }
 
         private void frmAddresses_Load(object sender, EventArgs e)
@@ -118,7 +126,7 @@ namespace TerritoriesManagement.GUI
                 }
             }
             else
-                MessageBox.Show("Select one address.");
+                MessageBox.Show(GetString("You must select any address."));
         }
 
         private void fields_CheckedChanged(object sender, EventArgs e)
@@ -151,7 +159,7 @@ namespace TerritoriesManagement.GUI
             }
             else
             {
-                MessageBox.Show("You must select at least one search criteria.");
+                MessageBox.Show(GetString("You must select at least one search criteria."));
                 ((CheckBox)sender).Checked = true;
             }
         }
@@ -175,11 +183,11 @@ namespace TerritoriesManagement.GUI
                 
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error");
+                    MessageBox.Show(ex.Message, GetString("Error"));
                 }
             }
             else
-                MessageBox.Show("Select one address.");
+                MessageBox.Show(GetString("You must select any address."));
 
         }
 
@@ -203,17 +211,17 @@ namespace TerritoriesManagement.GUI
         {
             dgvResults.RowHeadersVisible = false;
 
-            dgvResults.Columns.Add("Id", "Id");            
-            dgvResults.Columns.Add("DepartmentName", "Department");
-            dgvResults.Columns.Add("CityName", "City");
-            dgvResults.Columns.Add("Territory", "Territory");
-            dgvResults.Columns.Add("Address", "Street and Nº");
-            dgvResults.Columns.Add("Corner1", "Corner1");
-            dgvResults.Columns.Add("Corner2", "Corner2");
-            dgvResults.Columns.Add("Description", "Description");
-            dgvResults.Columns.Add("HaveGeoPosition", "GEO");
-            dgvResults.Columns.Add("Lat", "Lat");
-            dgvResults.Columns.Add("Lng", "Lng");
+            dgvResults.Columns.Add("Id", GetString("Id");            
+            dgvResults.Columns.Add("DepartmentName",GetString("Department"));
+            dgvResults.Columns.Add("CityName", GetString("City"));
+            dgvResults.Columns.Add("Territory", GetString("Territory"));
+            dgvResults.Columns.Add("Address", GetString("Street and Nº"));
+            dgvResults.Columns.Add("Corner1", GetString("Corner1"));
+            dgvResults.Columns.Add("Corner2", GetString("Corner2"));
+            dgvResults.Columns.Add("Description", GetString("Description"));
+            dgvResults.Columns.Add("HaveGeoPosition", GetString("GEO"));
+            dgvResults.Columns.Add("Lat", GetString("Lat"));
+            dgvResults.Columns.Add("Lng", GetString("Lng"));
             dgvResults.Columns.Add("blank", "");
 
             dgvResults.Columns["Id"].Visible = false;
@@ -274,7 +282,7 @@ namespace TerritoriesManagement.GUI
                     lblFiltered.Visible = true;
                 }
                 else
-                    MessageBox.Show("You must select at least one search criteria.");
+                    MessageBox.Show(GetString("You must select at least one search criteria."));
 
                 
             }
@@ -366,28 +374,6 @@ namespace TerritoriesManagement.GUI
                 }
                 queryStr += "(" + auxQueryStr + ")";
             }
-
-            //if (cboCity.SelectedValue != null)
-            //{
-            //    if (auxParameters.Count > 0)
-            //        queryStr += " AND ";
-
-            //    queryStr += "Address.City.IdCity = @IdCity";
-            //    ObjectParameter cityPar = new ObjectParameter("IdCity", (int)cboCity.SelectedValue);
-
-            //    auxParameters.Add(cityPar);
-            //}
-            //else
-            //    if (cboDepartment.SelectedValue != null)
-            //    {
-            //        if (auxParameters.Count > 0)
-            //            queryStr += " AND ";
-
-            //        queryStr += "Address.City.Department.IdDepartment = @IdDepartment";
-            //        ObjectParameter depPar = new ObjectParameter("IdDepartment", (int)cboDepartment.SelectedValue);
-
-            //        auxParameters.Add(depPar);
-            //    }
 
             parameters = auxParameters;
             return queryStr;

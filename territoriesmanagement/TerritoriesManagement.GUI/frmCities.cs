@@ -30,7 +30,7 @@ namespace TerritoriesManagement.GUI
             _rm = new ResourceManager(this.GetType());
             
             if (_opened)
-                throw new Exception("The window is already opened.");
+                throw new Exception(GetString("The window is already opened."));
             else
                 _opened = true;
 
@@ -188,9 +188,9 @@ namespace TerritoriesManagement.GUI
             dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvResults.MultiSelect = false;
 
-            dgvAddresses.Columns.Add("Id", "Id");
-            dgvAddresses.Columns.Add("Address", "Address");
-            dgvAddresses.Columns.Add("Corners", "Between");
+            dgvAddresses.Columns.Add("Id", GetString("Id"));
+            dgvAddresses.Columns.Add("Address", GetString("Address"));
+            dgvAddresses.Columns.Add("Corners", GetString("Between"));
             dgvAddresses.Columns.Add("blank", "");
 
             dgvAddresses.Columns["Id"].Visible = false;
@@ -204,8 +204,8 @@ namespace TerritoriesManagement.GUI
             dgvAddresses.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvAddresses.MultiSelect = false;
 
-            dgvPublishers.Columns.Add("Id", "Id");
-            dgvPublishers.Columns.Add("Name", "Publisher");
+            dgvPublishers.Columns.Add("Id", GetString("Id"));
+            dgvPublishers.Columns.Add("Name", GetString("Publisher"));
             dgvPublishers.Columns.Add("blank", "");
 
             dgvPublishers.Columns["Id"].Visible = false;

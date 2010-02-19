@@ -8,13 +8,14 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Globalization;
+using System.Resources;
+using GMap.NET;
+using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
+using ZeqkTools.WindowsForms.Maps;
 using TerritoriesManagement.Model;
 using TerritoriesManagement.DataBridge;
-using GMap.NET.WindowsForms;
-using GMap.NET;
-using GMap.NET.WindowsForms.Markers;
-using System.Globalization;
-using ZeqkTools.WindowsForms.Maps;
 
 namespace TerritoriesManagement.GUI
 {
@@ -24,14 +25,23 @@ namespace TerritoriesManagement.GUI
         private Territories _server = new Territories();
         private bool _isDirty;
         Config.Config _config;
+        ResourceManager _rm;
 
         public frmTerritories()
         {
+            _rm = new ResourceManager(this.GetType());
+
             if (_opened)
-                throw new Exception("The window is already opened.");
+                throw new Exception(GetString("The window is already opened."));
             else
                 _opened = true;
             InitializeComponent();
+        }
+
+        private string GetString(string text)
+        {
+            //return _rm.GetString(text, Thread.CurrentThread.CurrentCulture);
+            return text;
         }
 
         private void frmTerritories_Load(object sender, EventArgs e)
@@ -114,19 +124,19 @@ namespace TerritoriesManagement.GUI
             if (tabPanel.Visible == true)
             {
                 tabPanel.Visible = false;
-                btnRelations.Text = "View relations";
+                btnRelations.Text = GetString("View relations");
             }
             else
             {
                 if (lblId.Text != "0")
                 {
                     tabPanel.Visible = true;
-                    btnRelations.Text = "Hide relations";
+                    btnRelations.Text = GetString("Hide relations");
 
                     LoadRelations((Territory)bsTerritory.DataSource);
                 }
                 else
-                    MessageBox.Show("You must select any territory");
+                    MessageBox.Show(GetString("You must select any territory."));
             }
         }
 
@@ -156,9 +166,9 @@ namespace TerritoriesManagement.GUI
 
         private void ConfigGrids()
         {
-            dgvResults.Columns.Add("Id", "Id");
-            dgvResults.Columns.Add("Name", "Territory");
-            dgvResults.Columns.Add("Number", "Number");
+            dgvResults.Columns.Add("Id", GetString("Id"));
+            dgvResults.Columns.Add("Name", GetString("Territory"));
+            dgvResults.Columns.Add("Number", GetString("Number"));
             dgvResults.Columns.Add("blank", "");
 
             dgvResults.Columns["Id"].Visible = false;
@@ -172,9 +182,9 @@ namespace TerritoriesManagement.GUI
             dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvResults.MultiSelect = false;
 
-            dgvAddresses.Columns.Add("Id", "Id");
-            dgvAddresses.Columns.Add("Address", "Address");
-            dgvAddresses.Columns.Add("Corners", "Between");
+            dgvAddresses.Columns.Add("Id", GetString("Id"));
+            dgvAddresses.Columns.Add("Address", GetString("Address"));
+            dgvAddresses.Columns.Add("Corners", GetString("Between"));
             dgvAddresses.Columns.Add("blank", "");
 
             dgvAddresses.Columns["Id"].Visible = false;
@@ -188,10 +198,10 @@ namespace TerritoriesManagement.GUI
             dgvAddresses.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvAddresses.MultiSelect = false;
 
-            dgvTours.Columns.Add("Id", "Id");
-            dgvTours.Columns.Add("Number", "Tour Nº");
-            dgvTours.Columns.Add("BeginDate", "Begin");
-            dgvTours.Columns.Add("EndDate", "End");
+            dgvTours.Columns.Add("Id", GetString("Id"));
+            dgvTours.Columns.Add("Number", GetString("Tour Nº"));
+            dgvTours.Columns.Add("BeginDate", GetString("Begin"));
+            dgvTours.Columns.Add("EndDate", GetString("End"));
             dgvTours.Columns.Add("blank", "");
 
             dgvTours.Columns["Id"].Visible = false;
@@ -231,7 +241,7 @@ namespace TerritoriesManagement.GUI
         {
             bool yes = true;
             if (_isDirty)
-                if (MessageBox.Show("Desea continuar?", "Mensaje", MessageBoxButtons.YesNo) == DialogResult.No)
+                if (MessageBox.Show(GetString("There is some unsaved data. Do you want to continue?"), GetString("Message"), MessageBoxButtons.YesNo) == DialogResult.No)
                 {
                     yes = false;
                     txtName.Focus();
@@ -261,11 +271,11 @@ namespace TerritoriesManagement.GUI
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message, "Error");
+                    MessageBox.Show(ex.Message, GetString("Error"));
                 }
             }
             else
-                MessageBox.Show("The data is incomplete");
+                MessageBox.Show(GetString("The data is incomplete"));
         }
 
         private bool IsComplete()
@@ -304,7 +314,7 @@ namespace TerritoriesManagement.GUI
                     lblFiltered.Visible = true;
                 }
                 else
-                    MessageBox.Show("Debe llenar al menos 1 campo de búsqueda");
+                    MessageBox.Show(GetString("You must complete at least 1 search field"));
 
                 dgvResults.ClearSelection();
 
@@ -312,7 +322,7 @@ namespace TerritoriesManagement.GUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show(ex.Message, GetString("Error"));
             }
 
 
@@ -384,8 +394,11 @@ namespace TerritoriesManagement.GUI
                             area += Environment.NewLine;
                         area += item.Lat + " " + item.Lng;
                     }
+                    if (string.IsNullOrEmpty(area))
+                        t.Area = null;
+                    else
+                        t.Area = area;
 
-                    t.Area = area;
                     ObjectToForm(t);
                 }
 
