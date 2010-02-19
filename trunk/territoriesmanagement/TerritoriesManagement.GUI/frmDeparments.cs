@@ -8,6 +8,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Resources;
 using TerritoriesManagement.Model;
 using TerritoriesManagement.DataBridge;
 
@@ -18,14 +19,24 @@ namespace TerritoriesManagement.GUI
         static private bool _opened = false;
         private Departments _server = new Departments();
         private bool _isDirty;
+        ResourceManager _rm;
 
         public frmDepartments()
         {
+            _rm = new ResourceManager(this.GetType());
+
             if (_opened)
                 throw new Exception(GetString("The window is already opened."));
             else
-                _opened = true;   
+                _opened = true;  
+ 
             InitializeComponent();
+        }
+
+        private string GetString(string text)
+        {
+            //return _rm.GetString(text, Thread.CurrentThread.CurrentCulture);
+            return text;
         }
 
         private void frmDepartments_Load(object sender, EventArgs e)
@@ -163,8 +174,8 @@ namespace TerritoriesManagement.GUI
             dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvResults.MultiSelect = false;
 
-            dgvCities.Columns.Add("Id", "Id");
-            dgvCities.Columns.Add("Name", "City");            
+            dgvCities.Columns.Add("Id", GetString("Id"));
+            dgvCities.Columns.Add("Name", GetString("City"));            
             dgvCities.Columns.Add("blank", "");
 
             dgvCities.Columns["Id"].Visible = false;
@@ -295,29 +306,6 @@ namespace TerritoriesManagement.GUI
 
             dgvCities.RowHeadersVisible = false;
 
-        }
-        private string GetString(string text)
-        {
-            return text;
-        }
-
-        private void Internationalize()
-        {
-            //this.lblDepartment.Text = GetString("Department");
-            //this.btnRelations.Text = GetString("View relations");
-            //this.btnDelete.Text = GetString("Delete");
-            //this.btnSave.Text = GetString("Save");
-            //this.btnNew.Text = GetString("New");
-            //this.lblName.Text = GetString("Name");
-            //this.grdSearch.Text = GetString("Search");
-            //this.lblFilterName.Text = GetString("Filter for city name");
-            //this.lblFilterDepartment.Text = GetString("Filter for department");
-            //this.lblResult.Text = GetString("Result:");
-            //this.lblFiltered.Text = GetString("Filtered");
-            //this.tabAddresses.Text = GetString("Addresses");
-            //this.tabPublishers.Text = GetString("Publishers");
-            //this.Text = GetString("Cities");
-            //this.grpObject.Text = GetString("City");
         }
 
         

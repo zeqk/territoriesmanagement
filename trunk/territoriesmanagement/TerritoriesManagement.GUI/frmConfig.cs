@@ -6,9 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using TerritoriesManagement.DataBridge;
 using System.Globalization;
 using System.Threading;
+using TerritoriesManagement.DataBridge;
 
 namespace TerritoriesManagement.GUI
 {

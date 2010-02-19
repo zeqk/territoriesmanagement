@@ -7,11 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Resources;
+using ZeqkTools.Data;
+using ZeqkTools.WindowsForms;
 using TerritoriesManagement.Import;
 using TerritoriesManagement.GUI;
 using TerritoriesManagement.GUI.ImporterConfig;
-using ZeqkTools.Data;
-using ZeqkTools.WindowsForms;
 using TerritoriesManagement.Export;
 using TerritoriesManagement.DataBridge;
 
@@ -24,18 +25,27 @@ namespace TerritoriesManagement.GUI
         ImportTool _importer;
         bool _isDirty;
         ImporterConfig.ImporterConfig _config;
+        ResourceManager _rm;
 
         string importMessage;
         bool successfulImport;
 
         public frmInterop()
         {
+
+            _rm = new ResourceManager(this.GetType());
             _geoRssImporter = new GeoRssImportTool();
             _importer = new ImportTool();
             _config = new TerritoriesManagement.GUI.ImporterConfig.ImporterConfig();
             _isDirty = false;
             InitializeComponent();
 
+        }
+
+        private string GetString(string text)
+        {
+            //return _rm.GetString(text, Thread.CurrentThread.CurrentCulture);
+            return text;
         }
 
         private void frmInterop_Load(object sender, EventArgs e)
@@ -70,9 +80,9 @@ namespace TerritoriesManagement.GUI
         private void ImportCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (_importer.SuccessfulImport)
-                MessageBox.Show("The importation has been successful.\n" + _importer.ImportMessage);
+                MessageBox.Show(GetString("The importation has been successful.\n") + _importer.ImportMessage);
             else
-                MessageBox.Show("The importation have problems. Check the settings and see the log.\n" + _importer.ImportMessage);
+                MessageBox.Show(GetString("The importation have problems. Check the settings and see the log.\n") + _importer.ImportMessage);
 
             btnImport.Enabled = true;
         }
@@ -86,7 +96,7 @@ namespace TerritoriesManagement.GUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show(ex.Message, GetString("Error"));
             }
 
             btnImport.Enabled = false;
@@ -304,7 +314,7 @@ namespace TerritoriesManagement.GUI
         {
             if (txtRssSource.Text == "")
             {
-                MessageBox.Show("Select source and destiny files. ");
+                MessageBox.Show(GetString("Select source and destiny files."));
             }
             else
             {
@@ -312,7 +322,7 @@ namespace TerritoriesManagement.GUI
                 {
                     string importMessage = "";
                     _geoRssImporter.ImportGeoRss(txtRssSource.Text, ref importMessage, false, false, true, false);
-                    MessageBox.Show("Geo data has been imported.");
+                    MessageBox.Show(GetString("Geo data has been imported."));
                 }
                 catch (Exception ex)
                 {
@@ -362,14 +372,14 @@ namespace TerritoriesManagement.GUI
             }
             catch (Exception ex)
             {
-                
+                exported = false;
             }
             
 
             if (exported)
-                MessageBox.Show("The exportation has been successful.\n");
+                MessageBox.Show(GetString("The exportation has been successful.\n"));
             else
-                MessageBox.Show("The exportation have problems. Check the settings and see the log.\n");
+                MessageBox.Show(GetString("The exportation have problems. Check the settings and see the log.\n"));
         }
 
         private void LoadExportCheckList()
