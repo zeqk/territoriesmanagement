@@ -343,7 +343,7 @@ namespace TerritoriesManagement.GUI
 
         private void btnViewMap_Click(object sender, EventArgs e)
         {
-            using (frmGeoArea myForm = new frmGeoArea())
+            using (frmGeoPolygon myForm = new frmGeoPolygon())
             {
                 myForm.Address = _config.Place;
                 myForm.MapType = _config.MapType;
@@ -370,7 +370,7 @@ namespace TerritoriesManagement.GUI
                             marks.Add(marker);
                         }
                     }
-                    myForm.Points = marks;
+                    myForm.SecondaryMarkers = marks;
                 }
 
                 if (myForm.ShowDialog() == DialogResult.OK)

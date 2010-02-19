@@ -119,7 +119,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\ZeqkTools.dll</HintPath>
     </Reference>
-    <Reference Include="ZeqkTools.WindowsForms, Version=1.10.2.14, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="ZeqkTools.Maps, Version=1.10.2.16, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\ZeqkTools.Maps.dll</HintPath>
+    </Reference>
+    <Reference Include="ZeqkTools.WindowsForms, Version=1.10.2.16, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\ZeqkTools.WindowsForms.dll</HintPath>
     </Reference>
@@ -252,12 +256,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TerritoriesManagement\TerritoriesManagement.csproj">
-      <Project>{2AF8144A-682F-4B8E-A3CF-4FD77816AD78}</Project>
-      <Name>TerritoriesManagement</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
       <Visible>False</Visible>
       <ProductName>.NET Framework Client Profile</ProductName>
@@ -297,6 +295,12 @@
     <None Include="Properties\DataSources\TerritoriesManagement.Model.Territory.datasource" />
     <None Include="Resources\marker99.png" />
     <None Include="Resources\legend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TerritoriesManagement\TerritoriesManagement.csproj">
+      <Project>{2AF8144A-682F-4B8E-A3CF-4FD77816AD78}</Project>
+      <Name>TerritoriesManagement</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

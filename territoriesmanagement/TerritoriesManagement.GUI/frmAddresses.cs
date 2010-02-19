@@ -469,7 +469,7 @@ namespace TerritoriesManagement.GUI
         {
             if (dgvResults.SelectedRows.Count > 0)
             {
-                using (frmGeoArea myForm = new frmGeoArea())
+                using (frmGeoPolygon myForm = new frmGeoPolygon())
                 {
                 
                     var selectedRows = dgvResults.SelectedRows;
@@ -491,7 +491,7 @@ namespace TerritoriesManagement.GUI
                             marks.Add(marker);
                         }
                     }
-                    myForm.Points = marks;
+                    myForm.SecondaryMarkers = marks;
                     myForm.ShowDialog();
                 }
             }
