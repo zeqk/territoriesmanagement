@@ -7,7 +7,7 @@
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
 AppId={{A9EE670B-0A80-474E-A3B3-083DCB6D2A88}
 AppName=Territories Management
-AppVerName=Territories Management 0.8
+AppVerName=Territories Management 1.10.2
 AppPublisher=Zeqk
 AppPublisherURL=http://sites.google.com/site/territoriesmanagement/
 AppSupportURL=http://sites.google.com/site/territoriesmanagement/
@@ -16,7 +16,7 @@ DefaultDirName={pf}\Territories Management
 DefaultGroupName=Territories Management
 LicenseFile=E:\documentos\zeqk\Visual Studio 2008\Projects\territoriesmanagement\bin\last release\License EN.txt
 OutputDir=E:\documentos\zeqk\Visual Studio 2008\Projects\territoriesmanagement\bin
-OutputBaseFilename=tm08setup
+OutputBaseFilename=tm11002setup
 Compression=lzma
 SolidCompression=yes
 
@@ -30,6 +30,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "E:\documentos\zeqk\Visual Studio 2008\Projects\territoriesmanagement\bin\last release\TerritoriesManagement.GUI.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "E:\documentos\zeqk\Visual Studio 2008\Projects\territoriesmanagement\bin\last release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "E:\documentos\zeqk\Visual Studio 2008\Projects\territoriesmanagement\bin\last release\TERRITORIESDB.FDB"; DestDir: {app}; Permissions: users-modify
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
@@ -37,7 +38,8 @@ Name: "{group}\Territories Management"; Filename: "{app}\TerritoriesManagement.G
 Name: "{commondesktop}\Territories Management"; Filename: "{app}\TerritoriesManagement.GUI.exe"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\TerritoriesManagement.exe"; Description: "{cm:LaunchProgram,Territories Management}"; Flags: nowait postinstall skipifsilent
+Filename: "{app}\TerritoriesManagement.GUI.exe"; Description: "{cm:LaunchProgram,Territories Management}"; Flags: nowait postinstall skipifsilent
+
 
 
 
