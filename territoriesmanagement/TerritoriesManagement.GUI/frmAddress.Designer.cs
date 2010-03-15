@@ -104,7 +104,7 @@
             // bsAddress
             // 
             this.bsAddress.DataSource = typeof(TerritoriesManagement.Model.Address);
-            this.bsAddress.CurrentItemChanged += new System.EventHandler(this.HaveChanges);
+            this.bsAddress.CurrentItemChanged += new System.EventHandler(this.HasChanges);
             // 
             // grpGeoLocation
             // 
@@ -130,7 +130,7 @@
             resources.ApplyResources(this.chkHaveGeoPos, "chkHaveGeoPos");
             this.chkHaveGeoPos.Name = "chkHaveGeoPos";
             this.chkHaveGeoPos.UseVisualStyleBackColor = true;
-            this.chkHaveGeoPos.CheckedChanged += new System.EventHandler(this.chkHaveGeoPos_CheckedChanged);
+            this.chkHaveGeoPos.CheckedChanged += new System.EventHandler(this.chkHasGeoPos_CheckedChanged);
             // 
             // lblLon
             // 
@@ -147,14 +147,14 @@
             this.txtLon.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Lng", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.txtLon, "txtLon");
             this.txtLon.Name = "txtLon";
-            this.txtLon.TextChanged += new System.EventHandler(this.HaveChanges);
+            this.txtLon.TextChanged += new System.EventHandler(this.HasChanges);
             // 
             // txtLat
             // 
             this.txtLat.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Lat", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             resources.ApplyResources(this.txtLat, "txtLat");
             this.txtLat.Name = "txtLat";
-            this.txtLat.TextChanged += new System.EventHandler(this.HaveChanges);
+            this.txtLat.TextChanged += new System.EventHandler(this.HasChanges);
             // 
             // lblMap2
             // 
@@ -322,7 +322,7 @@
             this.cboCity.FormattingEnabled = true;
             resources.ApplyResources(this.cboCity, "cboCity");
             this.cboCity.Name = "cboCity";
-            this.cboCity.SelectedIndexChanged += new System.EventHandler(this.HaveChanges);
+            this.cboCity.SelectedIndexChanged += new System.EventHandler(this.HasChanges);
             // 
             // cboDepartment
             // 
@@ -364,7 +364,7 @@
             this.cboTerritory.FormattingEnabled = true;
             resources.ApplyResources(this.cboTerritory, "cboTerritory");
             this.cboTerritory.Name = "cboTerritory";
-            this.cboTerritory.SelectedIndexChanged += new System.EventHandler(this.HaveChanges);
+            this.cboTerritory.SelectedIndexChanged += new System.EventHandler(this.HasChanges);
             // 
             // grpAdditional
             // 

@@ -32,7 +32,7 @@ namespace TerritoriesManagement.GUI
             _rm = new ResourceManager(this.GetType());
 
             if (_opened)
-                throw new Exception(GetString("The window is already opened."));
+                throw new Exception(GetString("The window is already open."));
             else
                 _opened = true;
             InitializeComponent();

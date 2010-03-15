@@ -219,7 +219,7 @@ namespace TerritoriesManagement.GUI
             dgvResults.Columns.Add("Corner1", GetString("Corner1"));
             dgvResults.Columns.Add("Corner2", GetString("Corner2"));
             dgvResults.Columns.Add("Description", GetString("Description"));
-            dgvResults.Columns.Add("HaveGeoPosition", GetString("GEO"));
+            dgvResults.Columns.Add("HasGeoPosition", GetString("GEO"));
             dgvResults.Columns.Add("Lat", GetString("Lat"));
             dgvResults.Columns.Add("Lng", GetString("Lng"));
             dgvResults.Columns.Add("blank", "");
@@ -240,8 +240,8 @@ namespace TerritoriesManagement.GUI
             dgvResults.Columns["Corner2"].DataPropertyName = "Corner2";
             dgvResults.Columns["Description"].Width = 160;
             dgvResults.Columns["Description"].DataPropertyName = "Description";
-            dgvResults.Columns["HaveGeoPosition"].Width = 40;
-            dgvResults.Columns["HaveGeoPosition"].DataPropertyName = "HaveGeoPosition";
+            dgvResults.Columns["HasGeoPosition"].Width = 40;
+            dgvResults.Columns["HasGeoPosition"].DataPropertyName = "HasGeoPosition";
             dgvResults.Columns["Lat"].Visible = false;
             dgvResults.Columns["Lat"].DataPropertyName = "Lat";
             dgvResults.Columns["Lng"].Visible = false;
@@ -462,8 +462,8 @@ namespace TerritoriesManagement.GUI
                     List<GMapMarker> marks = new List<GMapMarker>();
                     for (int i = 0; i < selectedRows.Count; i++)
                     {
-                        bool haveGeoPosition = (bool)selectedRows[i].Cells["HaveGeoPosition"].Value;
-                        if (haveGeoPosition)
+                        bool hasGeoPosition = (bool)selectedRows[i].Cells["HasGeoPosition"].Value;
+                        if (hasGeoPosition)
                         {
                             double lat = (double)selectedRows[i].Cells["Lat"].Value;
                             double lng = (double)selectedRows[i].Cells["Lng"].Value;

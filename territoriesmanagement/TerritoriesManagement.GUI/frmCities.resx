@@ -433,7 +433,7 @@
     <value>18</value>
   </data>
   <data name="lblFilterName.Text" xml:space="preserve">
-    <value>Filter for city name</value>
+    <value>Filter by city name</value>
   </data>
   <data name="&gt;&gt;lblFilterName.Name" xml:space="preserve">
     <value>lblFilterName</value>
@@ -484,7 +484,7 @@
     <value>16</value>
   </data>
   <data name="lblFilterDepartment.Text" xml:space="preserve">
-    <value>Filter for department</value>
+    <value>Filter by department</value>
   </data>
   <data name="&gt;&gt;lblFilterDepartment.Name" xml:space="preserve">
     <value>lblFilterDepartment</value>

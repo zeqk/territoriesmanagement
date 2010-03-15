@@ -75,7 +75,7 @@ namespace TerritoriesManagement.Import
 
                     }
                     else
-                        message += "\nMark: " + point.Guid + " " + point.Description + " " + " haven't address id.";
+                        message += "\nMark: " + point.Guid + " " + point.Description + " " + " hasn't address id.";
                 }
                 catch (Exception ex)
                 {
@@ -122,7 +122,7 @@ namespace TerritoriesManagement.Import
 
                         }
                         else
-                            message += "\nMark: " + polygon.Guid + " " + polygon.Description + " " + " haven't territory id";
+                            message += "\nMark: " + polygon.Guid + " " + polygon.Description + " " + " hasn't territory id";
                     }
                     
                 }

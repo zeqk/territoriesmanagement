@@ -726,7 +726,7 @@ namespace TerritoriesManagement.Import
             }
             if (DepartmentExist(v))
             {
-                msg += "\n  -Already exist. ";
+                msg += "\n  -Already exists. ";
                 rv = false;
             }
 
@@ -759,7 +759,7 @@ namespace TerritoriesManagement.Import
             if (v.DepartmentReference.EntityKey == null ||
                 (int) v.DepartmentReference.EntityKey.EntityKeyValues[0].Value == 0 )
             {
-                msg += "\n  -Haven't department. ";
+                msg += "\n  -There is no department. ";
                 rv = false;
             }
             else
@@ -767,13 +767,13 @@ namespace TerritoriesManagement.Import
                 int idDepartment = (int)v.DepartmentReference.EntityKey.EntityKeyValues[0].Value;
                 if (!DepartmentExist(idDepartment))
                 {
-                    msg += "\n  -Department don't exist. ";
+                    msg += "\n  -Department doesn't exist. ";
                     rv = false;
                     
                 }                
                 else if(CityExist(v))
                 {
-                    msg += "\n  -Already exist. ";
+                    msg += "\n  -Already exists. ";
                     rv = false;
                 }
             }
@@ -804,7 +804,7 @@ namespace TerritoriesManagement.Import
             }
             if (TerritoryExist(v))
             {
-                msg += "\n  -Already exist. ";
+                msg += "\n  -Already exists. ";
                 rv = false;
             }
 
@@ -836,7 +836,7 @@ namespace TerritoriesManagement.Import
             if (v.CityReference.EntityKey==null ||
                 (int)v.CityReference.EntityKey.EntityKeyValues[0].Value==0)
             {
-                msg += "\n  -Haven't city. ";
+                msg += "\n  -There is no city. ";
                 rv = false;
             }
             else
@@ -844,7 +844,7 @@ namespace TerritoriesManagement.Import
                 int idCity = (int)v.CityReference.EntityKey.EntityKeyValues[0].Value;
                 if (!CityExist(idCity))
                 {
-                    msg += "\n  -City don't exist. ";
+                    msg += "\n  -City doesn't exist. ";
                     rv = false;
 
                 }
@@ -854,7 +854,7 @@ namespace TerritoriesManagement.Import
             //if (v.TerritoryReference.EntityKey == null ||
             //    (int)v.TerritoryReference.EntityKey.EntityKeyValues[0].Value == 0)
             //{
-            //    msg += "\n  -Haven't territory. ";
+            //    msg += "\n  -There is no territory. ";
             //    rv = false;
             //}
             //else
@@ -862,7 +862,7 @@ namespace TerritoriesManagement.Import
             //    int idTerritory = (int)v.TerritoryReference.EntityKey.EntityKeyValues[0].Value;
             //    if (!TerritoryExist(idTerritory))
             //    {
-            //        msg += "\n  -Territory don't exist. ";
+            //        msg += "\n  -Territory doesn't exist. ";
             //        rv = false;
 
             //    }
@@ -870,7 +870,7 @@ namespace TerritoriesManagement.Import
 
             if (AddressExist(v.IdAddress))
             {
-                msg += "\n  -Already exist. ";
+                msg += "\n  -Already exists. ";
                 rv = false;
             }
 
@@ -917,7 +917,7 @@ namespace TerritoriesManagement.Import
             if ((!string.IsNullOrEmpty(v.Phone1) && v.Phone1.Length > 15) || 
                 (!string.IsNullOrEmpty(v.Phone2) && v.Phone2.Length > 15))
             {
-                msg += "\n  -Phones lenght exceeds the allowed length (15). ";
+                msg += "\n  -Phone numbers lenght exceeds the allowed length (15). ";
                 rv = false;
             }
 
