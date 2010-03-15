@@ -385,7 +385,7 @@
     <value>19</value>
   </data>
   <data name="lblFilterName.Text" xml:space="preserve">
-    <value>Filter for department name</value>
+    <value>Filter by department name</value>
   </data>
   <data name="&gt;&gt;lblFilterName.Name" xml:space="preserve">
     <value>lblFilterName</value>

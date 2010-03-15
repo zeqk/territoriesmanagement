@@ -683,7 +683,7 @@
     <value>62</value>
   </data>
   <data name="chkCorners.Text" xml:space="preserve">
-    <value>Corns</value>
+    <value>Corners</value>
   </data>
   <data name="&gt;&gt;chkCorners.Name" xml:space="preserve">
     <value>chkCorners</value>

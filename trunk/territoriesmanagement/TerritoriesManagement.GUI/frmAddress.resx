@@ -187,7 +187,7 @@
     <value>0</value>
   </data>
   <data name="chkHaveGeoPos.Text" xml:space="preserve">
-    <value>Have geoposition</value>
+    <value>Has geoposition</value>
   </data>
   <data name="&gt;&gt;chkHaveGeoPos.Name" xml:space="preserve">
     <value>chkHaveGeoPos</value>
@@ -613,7 +613,7 @@
     <value>4</value>
   </data>
   <data name="grpPhones.Text" xml:space="preserve">
-    <value>Phones</value>
+    <value>Phone numbers</value>
   </data>
   <data name="&gt;&gt;grpPhones.Name" xml:space="preserve">
     <value>grpPhones</value>
@@ -1128,7 +1128,7 @@
     <value>0</value>
   </data>
   <data name="grpUbication.Text" xml:space="preserve">
-    <value>Ubication</value>
+    <value>Location</value>
   </data>
   <data name="&gt;&gt;grpUbication.Name" xml:space="preserve">
     <value>grpUbication</value>
@@ -1251,7 +1251,7 @@
     <value>1</value>
   </data>
   <data name="grpAdditional.Text" xml:space="preserve">
-    <value>Additional data</value>
+    <value>Additional information</value>
   </data>
   <data name="&gt;&gt;grpAdditional.Name" xml:space="preserve">
     <value>grpAdditional</value>

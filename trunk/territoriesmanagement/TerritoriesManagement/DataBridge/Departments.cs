@@ -155,7 +155,7 @@ namespace TerritoriesManagement.DataBridge
             {
                 if (!rv)
                     message += "\n";
-                message += "The department already exist. Correct and retrieve.";
+                message += "The department already exists. Correct and retrieve.";
                 rv = false;
             }
             return rv;

@@ -463,7 +463,7 @@
     <value>18</value>
   </data>
   <data name="lblFilterName.Text" xml:space="preserve">
-    <value>Filter for territory name</value>
+    <value>Filter by territory name</value>
   </data>
   <data name="&gt;&gt;lblFilterName.Name" xml:space="preserve">
     <value>lblFilterName</value>

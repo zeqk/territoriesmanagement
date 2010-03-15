@@ -82,7 +82,7 @@ namespace TerritoriesManagement.GUI
             if (_importer.SuccessfulImport)
                 MessageBox.Show(GetString("The importation has been successful.\n") + _importer.ImportMessage);
             else
-                MessageBox.Show(GetString("The importation have problems. Check the settings and see the log.\n") + _importer.ImportMessage);
+                MessageBox.Show(GetString("The importation has problems. Check the settings and see the log.\n") + _importer.ImportMessage);
 
             btnImport.Enabled = true;
         }
@@ -314,7 +314,7 @@ namespace TerritoriesManagement.GUI
         {
             if (txtRssSource.Text == "")
             {
-                MessageBox.Show(GetString("Select source and destiny files."));
+                MessageBox.Show(GetString("Select source and destination files."));
             }
             else
             {
@@ -379,7 +379,7 @@ namespace TerritoriesManagement.GUI
             if (exported)
                 MessageBox.Show(GetString("The exportation has been successful.\n"));
             else
-                MessageBox.Show(GetString("The exportation have problems. Check the settings and see the log.\n"));
+                MessageBox.Show(GetString("The exportation has problems. Check the settings and see the log.\n"));
         }
 
         private void LoadExportCheckList()

@@ -189,7 +189,7 @@ namespace TerritoriesManagement.DataBridge
 
             if (Exist(v))
             {
-                message += "The territory already exist.";
+                message += "The territory already exists.";
                 rv = false;
             }
 

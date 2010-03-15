@@ -235,7 +235,7 @@ namespace TerritoriesManagement.DataBridge
             {
                 if (!rv)
                     message += "\n";
-                message += "The city already exist. Correct and retrieve.";
+                message += "The city already exists. Correct and retrieve.";
                 rv = false;
             }
             if (v.Department == null || v.Department.IdDepartment==0)

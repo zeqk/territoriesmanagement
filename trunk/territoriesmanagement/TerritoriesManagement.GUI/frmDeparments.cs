@@ -26,7 +26,7 @@ namespace TerritoriesManagement.GUI
             _rm = new ResourceManager(this.GetType());
 
             if (_opened)
-                throw new Exception(GetString("The window is already opened."));
+                throw new Exception(GetString("The window is already open."));
             else
                 _opened = true;  
  
@@ -130,7 +130,7 @@ namespace TerritoriesManagement.GUI
                     LoadRelations((Model.Department)bsDepartment.DataSource);
                 }
                 else
-                    MessageBox.Show(GetString("You must select some department"));
+                    MessageBox.Show(GetString("You must select a department"));
             }
         }
 

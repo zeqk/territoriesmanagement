@@ -30,7 +30,7 @@ namespace TerritoriesManagement.GUI
             _rm = new ResourceManager(this.GetType());
             
             if (_opened)
-                throw new Exception(GetString("The window is already opened."));
+                throw new Exception(GetString("The window is already open."));
             else
                 _opened = true;
 
@@ -136,7 +136,7 @@ namespace TerritoriesManagement.GUI
                     LoadRelations((City)bsCity.DataSource);
                 }
                 else
-                    MessageBox.Show(GetString("You must select some city"));
+                    MessageBox.Show(GetString("You must select a city"));
             }
         }
 

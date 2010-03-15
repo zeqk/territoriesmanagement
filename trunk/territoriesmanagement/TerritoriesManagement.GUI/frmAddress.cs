@@ -18,7 +18,7 @@ namespace TerritoriesManagement.GUI
     {
         private Addresses _server;
         private bool _isDirty;
-        private bool _haventTerritory;
+        private bool _hasntTerritory;
         Config.Config _config;
 
         public Address Address
@@ -27,7 +27,7 @@ namespace TerritoriesManagement.GUI
             {
                 Address rv = (Address)bsAddress.DataSource;
 
-                if (_haventTerritory && cboTerritory.SelectedItem != null)
+                if (_hasntTerritory && cboTerritory.SelectedItem != null)
                 {
                     rv.Territory = new Territory();
                     rv.Territory.IdTerritory = (int)cboTerritory.SelectedValue;
@@ -53,10 +53,10 @@ namespace TerritoriesManagement.GUI
                 if (value.Territory == null)
                 {
                     //cboTerritory.SelectedItem = null;
-                    _haventTerritory = true;
+                    _hasntTerritory = true;
                 }
                 else
-                    _haventTerritory = false;
+                    _hasntTerritory = false;
 
                 if (value.Lat != null && value.Lng != null)
                     chkHaveGeoPos.Checked = true;
@@ -139,7 +139,7 @@ namespace TerritoriesManagement.GUI
             txtLon.Enabled = false;
         }
 
-        private void chkHaveGeoPos_CheckedChanged(object sender, EventArgs e)
+        private void chkHasGeoPos_CheckedChanged(object sender, EventArgs e)
         {
             txtLat.Enabled = chkHaveGeoPos.Checked;
             txtLon.Enabled = chkHaveGeoPos.Checked;
@@ -162,12 +162,12 @@ namespace TerritoriesManagement.GUI
             cboTerritory.SelectedItem = null;
         }
 
-        private void HaveChanges(object sender, EventArgs e)
+        private void HasChanges(object sender, EventArgs e)
         {
             _isDirty = true;
         }
 
-        private void GeoPositionHaveChanges(object sender, EventArgs e)
+        private void GeoPositionHasChanges(object sender, EventArgs e)
         {
             _isDirty = true;
         }
