@@ -4,6 +4,7 @@ using System.Collections;
 using System.Linq;
 using System.Text;
 using System.Data.Entity;
+using TerritoriesManagement.Model;
 //using Territories.BLL;
 
 namespace TestConsole
@@ -12,13 +13,11 @@ namespace TestConsole
     {
         static void Main(string[] args)
         {
-            string[] array = { "linea 1", "linea 2" };
+            TerritoriesManagement.Model.TerritoriesDataContext dm = new TerritoriesDataContext();
 
-            Console.ReadKey();
-            Console.WriteLine(array.ToString());
-            Console.WriteLine("Fausto");
-            IDictionary dic = new Hashtable();
-            dic.Add("larala", 1);
+            List<Territory> list1 = dm.Territories.ToList();
+            TerritoriesManagement.Functions.Serialize(list1, @"E:\documentos\zeqk\Visual Studio 2008\Projects\territoriesmanagement\TestConsole\bin\x86\Debug\list.xml", true);
+            List<Territory> list = (List<Territory>)TerritoriesManagement.Functions.Deserialize(typeof(List<Territory>), @"E:\documentos\zeqk\Visual Studio 2008\Projects\territoriesmanagement\TestConsole\bin\x86\Debug\list.xml");
             Console.ReadKey();
 
         }

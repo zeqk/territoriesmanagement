@@ -105,9 +105,9 @@ namespace TerritoriesManagement.GUI
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (dgvResults.SelectedRows.Count == 1)
+            if (dgvResult.SelectedRows.Count == 1)
             {
-                var v = _server.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
+                var v = _server.Load((int)dgvResult.SelectedRows[0].Cells["Id"].Value);
 
                 using (frmAddress myForm = new frmAddress(_server))
                 {
@@ -126,7 +126,7 @@ namespace TerritoriesManagement.GUI
                 }
             }
             else
-                MessageBox.Show(GetString("You must select any address."));
+                MessageBox.Show(GetString("You must select some address."));
         }
 
         private void fields_CheckedChanged(object sender, EventArgs e)
@@ -159,20 +159,20 @@ namespace TerritoriesManagement.GUI
             }
             else
             {
-                MessageBox.Show(GetString("You must select at least one search criteria."));
+                MessageBox.Show(GetString("You must select at least one search field."));
                 ((CheckBox)sender).Checked = true;
             }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            if (dgvResults.SelectedRows.Count > 0)
+            if (dgvResult.SelectedRows.Count > 0)
             {
                 try
                 {
-                    for (int i = 0; i < dgvResults.SelectedRows.Count; i++)
+                    for (int i = 0; i < dgvResult.SelectedRows.Count; i++)
                     {
-                        int idAddress = (int)dgvResults.SelectedRows[i].Cells["Id"].Value;
+                        int idAddress = (int)dgvResult.SelectedRows[i].Cells["Id"].Value;
 
                         _server.Delete(idAddress);                       
                     }
@@ -187,70 +187,69 @@ namespace TerritoriesManagement.GUI
                 }
             }
             else
-                MessageBox.Show(GetString("You must select any address."));
+                MessageBox.Show(GetString("You must select some address."));
 
         }
 
-        private void LoadResults(string query)
+        private void LoadResult(string query)
         {
             try
             {
                 var addresses = this._server.Search(query);
-                dgvResults.DataSource = addresses;
-                lblResultsCount.Text = addresses.Count.ToString();
-                dgvResults.ClearSelection();
+                dgvResult.DataSource = addresses;
+                lblResultCount.Text = addresses.Count.ToString();
+                dgvResult.ClearSelection();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show(ex.Message, GetString("Error"));
             }
             lblFiltered.Visible = false;
         }
 
         private void ConfigGrids()
         {
-            dgvResults.RowHeadersVisible = false;
+            dgvResult.RowHeadersVisible = false;
+            dgvResult.Columns.Add("Id", GetString("Id"));            
+            dgvResult.Columns.Add("DepartmentName",GetString("Department"));
+            dgvResult.Columns.Add("CityName", GetString("City"));
+            dgvResult.Columns.Add("Territory", GetString("Territory"));
+            dgvResult.Columns.Add("Address", GetString("Street and Nº"));
+            dgvResult.Columns.Add("Corner1", GetString("Corner1"));
+            dgvResult.Columns.Add("Corner2", GetString("Corner2"));
+            dgvResult.Columns.Add("Description", GetString("Description"));
+            dgvResult.Columns.Add("HasGeoPosition", GetString("GEO"));
+            dgvResult.Columns.Add("Lat", GetString("Lat"));
+            dgvResult.Columns.Add("Lng", GetString("Lng"));
+            dgvResult.Columns.Add("blank", "");
 
-            dgvResults.Columns.Add("Id", GetString("Id");            
-            dgvResults.Columns.Add("DepartmentName",GetString("Department"));
-            dgvResults.Columns.Add("CityName", GetString("City"));
-            dgvResults.Columns.Add("Territory", GetString("Territory"));
-            dgvResults.Columns.Add("Address", GetString("Street and Nº"));
-            dgvResults.Columns.Add("Corner1", GetString("Corner1"));
-            dgvResults.Columns.Add("Corner2", GetString("Corner2"));
-            dgvResults.Columns.Add("Description", GetString("Description"));
-            dgvResults.Columns.Add("HasGeoPosition", GetString("GEO"));
-            dgvResults.Columns.Add("Lat", GetString("Lat"));
-            dgvResults.Columns.Add("Lng", GetString("Lng"));
-            dgvResults.Columns.Add("blank", "");
+            dgvResult.Columns["Id"].Visible = false;
+            dgvResult.Columns["Id"].DataPropertyName = "Id";
+            dgvResult.Columns["DepartmentName"].Width = 100;
+            dgvResult.Columns["DepartmentName"].DataPropertyName = "DepartmentName";
+            dgvResult.Columns["CityName"].Width = 100;
+            dgvResult.Columns["CityName"].DataPropertyName = "CityName";
+            dgvResult.Columns["Territory"].Width = 100;
+            dgvResult.Columns["Territory"].DataPropertyName = "Territory";
+            dgvResult.Columns["Address"].Width = 100;
+            dgvResult.Columns["Address"].DataPropertyName = "Address";
+            dgvResult.Columns["Corner1"].Width = 100;
+            dgvResult.Columns["Corner1"].DataPropertyName = "Corner1";
+            dgvResult.Columns["Corner2"].Width = 100;
+            dgvResult.Columns["Corner2"].DataPropertyName = "Corner2";
+            dgvResult.Columns["Description"].Width = 160;
+            dgvResult.Columns["Description"].DataPropertyName = "Description";
+            dgvResult.Columns["HasGeoPosition"].Width = 40;
+            dgvResult.Columns["HasGeoPosition"].DataPropertyName = "HasGeoPosition";
+            dgvResult.Columns["Lat"].Visible = false;
+            dgvResult.Columns["Lat"].DataPropertyName = "Lat";
+            dgvResult.Columns["Lng"].Visible = false;
+            dgvResult.Columns["Lng"].DataPropertyName = "Lng";
 
-            dgvResults.Columns["Id"].Visible = false;
-            dgvResults.Columns["Id"].DataPropertyName = "Id";
-            dgvResults.Columns["DepartmentName"].Width = 100;
-            dgvResults.Columns["DepartmentName"].DataPropertyName = "DepartmentName";
-            dgvResults.Columns["CityName"].Width = 100;
-            dgvResults.Columns["CityName"].DataPropertyName = "CityName";
-            dgvResults.Columns["Territory"].Width = 100;
-            dgvResults.Columns["Territory"].DataPropertyName = "Territory";
-            dgvResults.Columns["Address"].Width = 100;
-            dgvResults.Columns["Address"].DataPropertyName = "Address";
-            dgvResults.Columns["Corner1"].Width = 100;
-            dgvResults.Columns["Corner1"].DataPropertyName = "Corner1";
-            dgvResults.Columns["Corner2"].Width = 100;
-            dgvResults.Columns["Corner2"].DataPropertyName = "Corner2";
-            dgvResults.Columns["Description"].Width = 160;
-            dgvResults.Columns["Description"].DataPropertyName = "Description";
-            dgvResults.Columns["HasGeoPosition"].Width = 40;
-            dgvResults.Columns["HasGeoPosition"].DataPropertyName = "HasGeoPosition";
-            dgvResults.Columns["Lat"].Visible = false;
-            dgvResults.Columns["Lat"].DataPropertyName = "Lat";
-            dgvResults.Columns["Lng"].Visible = false;
-            dgvResults.Columns["Lng"].DataPropertyName = "Lng";
+            dgvResult.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            dgvResults.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-
-            dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvResults.MultiSelect = true;
+            dgvResult.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvResult.MultiSelect = true;
 
         }
 
@@ -262,7 +261,7 @@ namespace TerritoriesManagement.GUI
             chklstCity.DataSource = this._server.GetCities();
             chklstCity.CheckAllItems();
             chklstTerritory.CheckAllItems();
-            LoadResults("");
+            LoadResult("");
             lblFiltered.Visible = false;
             _isGettingAll = false;
         }
@@ -277,8 +276,8 @@ namespace TerritoriesManagement.GUI
                 if (!string.IsNullOrEmpty(strQuery))
                 {
                     var addresses = this._server.Search(strQuery, parameters.ToArray<ObjectParameter>());
-                    dgvResults.DataSource = addresses;
-                    lblResultsCount.Text = addresses.Count.ToString();
+                    dgvResult.DataSource = addresses;
+                    lblResultCount.Text = addresses.Count.ToString();
                     lblFiltered.Visible = true;
                 }
                 else
@@ -379,19 +378,19 @@ namespace TerritoriesManagement.GUI
             return queryStr;
         }
 
-        private void dgvResults_MouseClick(object sender, MouseEventArgs e)
+        private void dgvResult_MouseClick(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
-                ctxMenu.Show(dgvResults, e.Location);
+                ctxMenu.Show(dgvResult, e.Location);
             }
         }
 
         private void copyGoogleMapsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (dgvResults.SelectedRows.Count!=0)
+            if (dgvResult.SelectedRows.Count!=0)
             {
-                DataGridViewRow row = dgvResults.SelectedRows[0];
+                DataGridViewRow row = dgvResult.SelectedRows[0];
 
                 string text = row.Cells["Address"].Value.ToString() + ", " + 
                     row.Cells["CityName"].Value.ToString() + ", " + 
@@ -453,12 +452,12 @@ namespace TerritoriesManagement.GUI
 
         private void viewMapToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (dgvResults.SelectedRows.Count > 0)
+            if (dgvResult.SelectedRows.Count > 0)
             {
                 using (frmGeoPolygon myForm = new frmGeoPolygon())
                 {
                 
-                    var selectedRows = dgvResults.SelectedRows;
+                    var selectedRows = dgvResult.SelectedRows;
                     List<GMapMarker> marks = new List<GMapMarker>();
                     for (int i = 0; i < selectedRows.Count; i++)
                     {

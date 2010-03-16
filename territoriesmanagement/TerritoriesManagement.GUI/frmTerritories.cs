@@ -59,11 +59,11 @@ namespace TerritoriesManagement.GUI
             ClearFilter();
         }
 
-        private void dgvResults_SelectionChanged(object sender, EventArgs e)
+        private void dgvResult_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvResults.SelectedRows.Count != 0)
+            if (dgvResult.SelectedRows.Count != 0)
             {
-                var v = _server.Load((int)dgvResults.SelectedRows[0].Cells["Id"].Value);
+                var v = _server.Load((int)dgvResult.SelectedRows[0].Cells["Id"].Value);
                 ObjectToForm(v);
                 if (tabPanel.Visible)
                     LoadRelations(v);
@@ -136,7 +136,7 @@ namespace TerritoriesManagement.GUI
                     LoadRelations((Territory)bsTerritory.DataSource);
                 }
                 else
-                    MessageBox.Show(GetString("You must select any territory."));
+                    MessageBox.Show(GetString("You must select some territory."));
             }
         }
 
@@ -151,11 +151,11 @@ namespace TerritoriesManagement.GUI
         }
 
 
-        private void LoadResults(string query)
+        private void LoadResult(string query)
         {
             try
             {
-                dgvResults.DataSource = this._server.Search(query);
+                dgvResult.DataSource = this._server.Search(query);
             }
             catch (Exception ex)
             {
@@ -166,21 +166,21 @@ namespace TerritoriesManagement.GUI
 
         private void ConfigGrids()
         {
-            dgvResults.Columns.Add("Id", GetString("Id"));
-            dgvResults.Columns.Add("Name", GetString("Territory"));
-            dgvResults.Columns.Add("Number", GetString("Number"));
-            dgvResults.Columns.Add("blank", "");
+            dgvResult.Columns.Add("Id", GetString("Id"));
+            dgvResult.Columns.Add("Name", GetString("Territory"));
+            dgvResult.Columns.Add("Number", GetString("Number"));
+            dgvResult.Columns.Add("blank", "");
 
-            dgvResults.Columns["Id"].Visible = false;
-            dgvResults.Columns["Id"].DataPropertyName = "Id";
-            dgvResults.Columns["Name"].Width = 150;
-            dgvResults.Columns["Name"].DataPropertyName = "Name";
-            dgvResults.Columns["Number"].Width = 100;
-            dgvResults.Columns["Number"].DataPropertyName = "Number";
-            dgvResults.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dgvResult.Columns["Id"].Visible = false;
+            dgvResult.Columns["Id"].DataPropertyName = "Id";
+            dgvResult.Columns["Name"].Width = 150;
+            dgvResult.Columns["Name"].DataPropertyName = "Name";
+            dgvResult.Columns["Number"].Width = 100;
+            dgvResult.Columns["Number"].DataPropertyName = "Number";
+            dgvResult.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            dgvResults.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvResults.MultiSelect = false;
+            dgvResult.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvResult.MultiSelect = false;
 
             dgvAddresses.Columns.Add("Id", GetString("Id"));
             dgvAddresses.Columns.Add("Address", GetString("Address"));
@@ -275,7 +275,7 @@ namespace TerritoriesManagement.GUI
                 }
             }
             else
-                MessageBox.Show(GetString("The data is incomplete"));
+                MessageBox.Show(GetString("The data is incomplete."));
         }
 
         private bool IsComplete()
@@ -310,13 +310,13 @@ namespace TerritoriesManagement.GUI
 
                 if (!string.IsNullOrEmpty(strQuery))
                 {
-                    dgvResults.DataSource = this._server.Search(strQuery, parameters.ToArray<ObjectParameter>());
+                    dgvResult.DataSource = this._server.Search(strQuery, parameters.ToArray<ObjectParameter>());
                     lblFiltered.Visible = true;
                 }
                 else
-                    MessageBox.Show(GetString("You must complete at least 1 search field"));
+                    MessageBox.Show(GetString("You must complete at least one search criteria."));
 
-                dgvResults.ClearSelection();
+                dgvResult.ClearSelection();
 
                 ObjectToForm(v);
             }
@@ -331,9 +331,9 @@ namespace TerritoriesManagement.GUI
         private void ClearFilter()
         {
             schName.Clear();
-            LoadResults("");
+            LoadResult("");
             lblFiltered.Visible = false;
-            dgvResults.ClearSelection();
+            dgvResult.ClearSelection();
         }        
 
         private void LoadRelations(Territory v)

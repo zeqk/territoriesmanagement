@@ -80,9 +80,9 @@ namespace TerritoriesManagement.GUI
         private void ImportCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (_importer.SuccessfulImport)
-                MessageBox.Show(GetString("The importation has been successful.\n") + _importer.ImportMessage);
+                MessageBox.Show(GetString("The importation has been successful.") + Environment.NewLine + _importer.ImportMessage);
             else
-                MessageBox.Show(GetString("The importation has problems. Check the settings and see the log.\n") + _importer.ImportMessage);
+                MessageBox.Show(GetString("The importation has problems. Check the settings and see the log.") + Environment.NewLine + _importer.ImportMessage);
 
             btnImport.Enabled = true;
         }

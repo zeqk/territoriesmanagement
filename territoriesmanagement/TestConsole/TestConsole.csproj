@@ -87,7 +87,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\territories.bll\Territories.BLL.csproj">
+    <ProjectReference Include="..\TerritoriesManagement\TerritoriesManagement.csproj">
       <Project>{2AF8144A-682F-4B8E-A3CF-4FD77816AD78}</Project>
       <Name>Territories.BLL</Name>
     </ProjectReference>

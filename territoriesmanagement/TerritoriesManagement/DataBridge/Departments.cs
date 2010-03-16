@@ -9,8 +9,8 @@ using System.Data.EntityModel;
 using System.Data.Objects;
 using System.Linq;
 using System.Text;
+using System.Resources;
 using TerritoriesManagement.Model;
-using ZeqkTools.Internationalization;
 
 namespace TerritoriesManagement.DataBridge
 {
@@ -18,29 +18,34 @@ namespace TerritoriesManagement.DataBridge
     {
         private TerritoriesDataContext _dm;
         private Func<TerritoriesDataContext, TerritoriesManagement.Model.Department, IQueryable<TerritoriesManagement.Model.Department>> _compiledSameDepartment;
-        Globalization _gl;
-        
+
+        ResourceManager _rm;
+
         #region Constructors
         public Departments()        
         {
             _dm = new TerritoriesDataContext();
             PreCompileQueries();
-            _gl = new Globalization();
         }
 
         public Departments(EntityConnection conection)
         {
             _dm = new TerritoriesDataContext(conection);
             PreCompileQueries();
-            _gl = new Globalization();
         }
 
-        internal Departments(TerritoriesDataContext dm)
+        public Departments(TerritoriesDataContext dm)
         {
             _dm = dm;
             PreCompileQueries();
         }
         #endregion
+
+        private string GetString(string text)
+        {
+            //return _rm.GetString(text, Thread.CurrentThread.CurrentCulture);
+            return text;
+        }
 
         #region IGenericServer<Department> Members
 
@@ -148,14 +153,15 @@ namespace TerritoriesManagement.DataBridge
             bool rv = true;
             if (string.IsNullOrEmpty(v.Name))
             {
-                message += "Enter department name.";
+                message += GetString("Enter department name.");
                 rv = false;
             }
             if (Exist(v))
             {
                 if (!rv)
-                    message += "\n";
-                message += "The department already exists. Correct and retrieve.";
+                    message += Environment.NewLine;
+
+                message += GetString("The department already exists. Correct and retrieve.");
                 rv = false;
             }
             return rv;
@@ -251,13 +257,6 @@ namespace TerritoriesManagement.DataBridge
                                                                  select dep
 
                 );
-        }
-
-
-        public string GetString(Type type, string text, string culture)
-        {
-            _gl.Culture = new System.Globalization.CultureInfo(culture);
-            return _gl.GetString(type, text);
         }
         
     }

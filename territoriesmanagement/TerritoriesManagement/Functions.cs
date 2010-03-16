@@ -6,6 +6,9 @@ using System.Collections;
 using TerritoriesManagement.Model;
 using GMap.NET;
 using System.Data.Objects;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace TerritoriesManagement
 {
@@ -64,6 +67,41 @@ namespace TerritoriesManagement
             return rv;
 
 
+        }
+
+        static public void Serialize(object obj, string path, bool overwrite)
+        {
+            try
+            {
+
+                XmlSerializer serializer = new XmlSerializer(obj.GetType());
+                TextWriter sw = new StreamWriter(path, !overwrite);
+
+                serializer.Serialize(sw, obj);
+                sw.Close();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        static public object Deserialize(Type type, string path)
+        {
+            try
+            {
+                object rv;
+
+                XmlSerializer serializer = new XmlSerializer(type);
+                TextReader sr = new StreamReader(path);
+                rv = serializer.Deserialize(sr);
+                sr.Close();
+                return rv;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

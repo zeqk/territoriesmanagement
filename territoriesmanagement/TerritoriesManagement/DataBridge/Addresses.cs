@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
+using System.Resources;
 using TerritoriesManagement.Model;
 
 namespace TerritoriesManagement.DataBridge
@@ -17,20 +18,31 @@ namespace TerritoriesManagement.DataBridge
         private Func<TerritoriesDataContext, int, IQueryable<Address>> _compiledLoadAddress;
         private Func<TerritoriesDataContext, IQueryable<Address>> _compiledGetAllAddresses;
 
+        ResourceManager _rm;
+
         #region Contructors
         public Addresses()
         {
+            _rm = new ResourceManager(this.GetType());
             _dm = new TerritoriesDataContext();
             PreCompileQueries();
         }
 
         public Addresses(EntityConnection connection)
         {
+
+            _rm = new ResourceManager(this.GetType());
             _dm = new TerritoriesDataContext(connection);
             PreCompileQueries();
         }
 
         #endregion
+
+        private string GetString(string text)
+        {
+            //return _rm.GetString(text, Thread.CurrentThread.CurrentCulture);
+            return text;
+        }
 
         #region IDataBridge<Address> Members
 
@@ -242,32 +254,24 @@ namespace TerritoriesManagement.DataBridge
             if (string.IsNullOrEmpty(v.Street))
             {
                 if (!rv)
-                    message += "\n";
-                message += "Enter the street.";
+                    message += Environment.NewLine;
+                message += GetString("Enter the street.");
                 rv = false;
             }
 
             if (string.IsNullOrEmpty(v.Number) && string.IsNullOrEmpty(v.Corner1))
             {
                 if (!rv)
-                    message += "\n";
-                message += "Enter the number or the corner.";
+                    message += Environment.NewLine;
+                message += GetString("Enter the number or the corner.");
                 rv = false;
             }
-
-            //if (v.Territory == null || v.Territory.IdTerritory == 0)
-            //{
-            //    if (!rv)
-            //        message += "\n";
-            //    message += "Select any territory.";
-            //    rv = false;
-            //}
 
             if (v.City == null || v.City.IdCity == 0)
             {
                 if (!rv)
-                    message += "\n";
-                message += "Select any city.";
+                    message += Environment.NewLine;
+                message += GetString("Select some city.");
                 rv = false;
             }
 
@@ -372,7 +376,7 @@ namespace TerritoriesManagement.DataBridge
                               select new { Id = t.IdTerritory, Name = t.Number + " - " + t.Name };
 
                 var rv = results.ToList();
-                rv.Add(new { Id = 0, Name = "(no territory)" });
+                rv.Add(new { Id = 0, Name = GetString("(no territory)") });
                 return rv.OrderBy(a=>a.Name).ToList();
             }
             catch (Exception ex)

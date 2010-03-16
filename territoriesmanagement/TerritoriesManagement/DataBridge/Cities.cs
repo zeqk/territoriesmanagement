@@ -9,8 +9,8 @@ using System.Data.Objects;
 using System.Data.Objects.DataClasses;
 using System.Linq;
 using System.Text;
+using System.Resources;
 using TerritoriesManagement.Model;
-using ZeqkTools.Internationalization;
 
 namespace TerritoriesManagement.DataBridge
 {                
@@ -20,43 +20,31 @@ namespace TerritoriesManagement.DataBridge
         private Func<TerritoriesDataContext, City, IQueryable<City>> _compiledSameCity;
         private Func<TerritoriesDataContext, int, IQueryable<City>> _compileLoadCity;
         private Func<TerritoriesDataContext, IQueryable<City>> _compileGetAllCities;
-        private Globalization _gl;
-
-        public string Globalization
-        {
-            get 
-            { 
-                return _gl.Culture.IetfLanguageTag; 
-            }
-            set 
-            { 
-                _gl = new Globalization(value); 
-            }
-        }
+        
+        ResourceManager _rm;
 	
         #region Constructors
-        public Cities()        
+        public Cities()
         {
+            _rm = new ResourceManager(this.GetType());
             _dm = new TerritoriesDataContext();
-            PreCompileQueries();
-            _gl = new Globalization("en-US");            
-        }
-
-        public Cities(string culture)
-        {
-            _dm = new TerritoriesDataContext();
-            PreCompileQueries();
-            _gl = new Globalization(culture);
+            PreCompileQueries();      
         }
 
         public Cities(EntityConnection conection)
         {
+            _rm = new ResourceManager(this.GetType());
             _dm = new TerritoriesDataContext(conection);
             PreCompileQueries();
-            _gl = new Globalization();
 
         }
         #endregion
+
+        private string GetString(string text)
+        {
+            //return _rm.GetString(text, Thread.CurrentThread.CurrentCulture);
+            return text;
+        }
 
         #region IGenericServer<City> Members
 
@@ -228,21 +216,22 @@ namespace TerritoriesManagement.DataBridge
             bool rv = true;
             if (string.IsNullOrEmpty(v.Name))
             {
-                message += "Enter city name.";
+                message += GetString("Enter city name.");
                 rv = false;
             }
             if (Exist(v))
             {
                 if (!rv)
-                    message += "\n";
-                message += "The city already exists. Correct and retrieve.";
+                    message += Environment.NewLine;
+
+                message += GetString("The city already exist. Correct and try again.");
                 rv = false;
             }
             if (v.Department == null || v.Department.IdDepartment==0)
             {
                 if (!rv)
-                    message += "\n";
-                message += "Select any department.";
+                    message += Environment.NewLine;
+                message += GetString("Select some department.");
                 rv = false;
             }
             return rv;
@@ -341,12 +330,6 @@ namespace TerritoriesManagement.DataBridge
                     (TerritoriesDataContext dm) => dm.Cities.Include("Department").AsQueryable()
                 );
             
-        }
-
-        public string GetString(Type type, string text, string culture)
-        {
-            _gl.Culture = new System.Globalization.CultureInfo(culture);
-            return _gl.GetString(type, text);
         }
     }
 }
