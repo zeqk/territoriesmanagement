@@ -7,6 +7,7 @@ using System.Data.Objects;
 using System.Data.Objects.DataClasses;
 using System.Data.EntityClient;
 using System.Collections;
+using System.Resources;
 using TerritoriesManagement.Model;
 
 namespace TerritoriesManagement.DataBridge
@@ -14,24 +15,33 @@ namespace TerritoriesManagement.DataBridge
     public class Territories : IDataBridge<Territory>
     {
         private TerritoriesDataContext _dm;
-
         private Func<TerritoriesDataContext, int, IQueryable<Territory>> _compileLoadTerritory;
         private Func<TerritoriesDataContext, Territory, IQueryable<Territory>> _compileSameTerritory;
+        
+        ResourceManager _rm;
 
         #region Constructors
-        public Territories()        
+        public Territories()
         {
+            _rm = new ResourceManager(this.GetType());
             _dm = new TerritoriesDataContext();
             PreCompileQueries();
         }
 
         public Territories(EntityConnection conection)
         {
+            _rm = new ResourceManager(this.GetType());
             _dm = new TerritoriesDataContext(conection);
             PreCompileQueries();
 
         }
         #endregion
+
+        private string GetString(string text)
+        {
+            //return _rm.GetString(text, Thread.CurrentThread.CurrentCulture);
+            return text;
+        }
 
         #region IDataBridge<Territory> Members
 
@@ -177,19 +187,13 @@ namespace TerritoriesManagement.DataBridge
             bool rv = true;
             if (string.IsNullOrEmpty(v.Name))
             {
-                message += "Enter territory name.";
+                message += GetString("Enter territory name.");
                 rv = false;
             }
-            
-            //if (v.Number==0)
-            //{
-            //    message += "Enter territory number.";
-            //    rv = false;
-            //}
 
             if (Exist(v))
             {
-                message += "The territory already exists.";
+                message += GetString("The territory already exists. Correct and try again.");
                 rv = false;
             }
 
@@ -248,14 +252,14 @@ namespace TerritoriesManagement.DataBridge
             this._compileSameTerritory = CompiledQuery.Compile
                 (
                     (TerritoriesDataContext dm, Territory v) => from t in dm.Territories
-                                                                where (t.Name ==v.Name || t.Number ==v.Number) && t.IdTerritory != v.IdTerritory
+                                                                where (t.Name == v.Name || t.Number == v.Number) && t.IdTerritory != v.IdTerritory
                                                                 select t
                 );
 
             this._compileLoadTerritory = CompiledQuery.Compile
                 (
                     (TerritoriesDataContext dm, int id) => from t in dm.Territories
-                                                           where t.IdTerritory ==id
+                                                           where t.IdTerritory == id
                                                            select t
                 );
         }

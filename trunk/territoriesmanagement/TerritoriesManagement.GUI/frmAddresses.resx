@@ -502,55 +502,55 @@
   <data name="&gt;&gt;lblFiltered.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="lblResults.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblResult.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblResults.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="lblResult.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 147</value>
   </data>
-  <data name="lblResults.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lblResult.Size" type="System.Drawing.Size, System.Drawing">
     <value>42, 13</value>
   </data>
-  <data name="lblResults.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblResult.TabIndex" type="System.Int32, mscorlib">
     <value>56</value>
   </data>
-  <data name="lblResults.Text" xml:space="preserve">
-    <value>Results</value>
+  <data name="lblResult.Text" xml:space="preserve">
+    <value>Result</value>
   </data>
-  <data name="&gt;&gt;lblResults.Name" xml:space="preserve">
-    <value>lblResults</value>
+  <data name="&gt;&gt;lblResult.Name" xml:space="preserve">
+    <value>lblResult</value>
   </data>
-  <data name="&gt;&gt;lblResults.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblResult.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblResults.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblResult.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;lblResults.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblResult.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <data name="dgvResults.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="dgvResult.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="dgvResults.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="dgvResult.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 163</value>
   </data>
-  <data name="dgvResults.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="dgvResult.Size" type="System.Drawing.Size, System.Drawing">
     <value>831, 354</value>
   </data>
-  <data name="dgvResults.TabIndex" type="System.Int32, mscorlib">
+  <data name="dgvResult.TabIndex" type="System.Int32, mscorlib">
     <value>55</value>
   </data>
-  <data name="&gt;&gt;dgvResults.Name" xml:space="preserve">
-    <value>dgvResults</value>
+  <data name="&gt;&gt;dgvResult.Name" xml:space="preserve">
+    <value>dgvResult</value>
   </data>
-  <data name="&gt;&gt;dgvResults.Type" xml:space="preserve">
+  <data name="&gt;&gt;dgvResult.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridView, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;dgvResults.Parent" xml:space="preserve">
+  <data name="&gt;&gt;dgvResult.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;dgvResults.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;dgvResult.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
   <data name="chklstDepartment.Location" type="System.Drawing.Point, System.Drawing">
@@ -566,7 +566,7 @@
     <value>chklstDepartment</value>
   </data>
   <data name="&gt;&gt;chklstDepartment.Type" xml:space="preserve">
-    <value>ZeqkTools.WindowsForms.Controls.CheckedListComboBox, ZeqkTools.WindowsForms, Version=1.10.1.31, Culture=neutral, PublicKeyToken=null</value>
+    <value>ZeqkTools.WindowsForms.Controls.CheckedListComboBox, ZeqkTools.WindowsForms, Version=1.10.2.16, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;chklstDepartment.Parent" xml:space="preserve">
     <value>panel2</value>
@@ -587,7 +587,7 @@
     <value>chklstCity</value>
   </data>
   <data name="&gt;&gt;chklstCity.Type" xml:space="preserve">
-    <value>ZeqkTools.WindowsForms.Controls.CheckedListComboBox, ZeqkTools.WindowsForms, Version=1.10.1.31, Culture=neutral, PublicKeyToken=null</value>
+    <value>ZeqkTools.WindowsForms.Controls.CheckedListComboBox, ZeqkTools.WindowsForms, Version=1.10.2.16, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;chklstCity.Parent" xml:space="preserve">
     <value>panel2</value>
@@ -608,7 +608,7 @@
     <value>chklstTerritory</value>
   </data>
   <data name="&gt;&gt;chklstTerritory.Type" xml:space="preserve">
-    <value>ZeqkTools.WindowsForms.Controls.CheckedListComboBox, ZeqkTools.WindowsForms, Version=1.10.1.31, Culture=neutral, PublicKeyToken=null</value>
+    <value>ZeqkTools.WindowsForms.Controls.CheckedListComboBox, ZeqkTools.WindowsForms, Version=1.10.2.16, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;chklstTerritory.Parent" xml:space="preserve">
     <value>panel2</value>
@@ -713,7 +713,7 @@
     <value>schStreet</value>
   </data>
   <data name="&gt;&gt;schStreet.Type" xml:space="preserve">
-    <value>ZeqkTools.WindowsForms.Controls.Search, ZeqkTools.WindowsForms, Version=1.10.1.31, Culture=neutral, PublicKeyToken=null</value>
+    <value>ZeqkTools.WindowsForms.Controls.Search, ZeqkTools.WindowsForms, Version=1.10.2.16, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;schStreet.Parent" xml:space="preserve">
     <value>panel2</value>
@@ -886,28 +886,28 @@
   <data name="sfdExcelDestiny.Filter" xml:space="preserve">
     <value>Excel files (*.xls)|*.xls</value>
   </data>
-  <data name="lblResultsCount.AutoSize" type="System.Boolean, mscorlib">
+  <data name="lblResultCount.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="lblResultsCount.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="lblResultCount.Location" type="System.Drawing.Point, System.Drawing">
     <value>46, 147</value>
   </data>
-  <data name="lblResultsCount.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="lblResultCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>0, 13</value>
   </data>
-  <data name="lblResultsCount.TabIndex" type="System.Int32, mscorlib">
+  <data name="lblResultCount.TabIndex" type="System.Int32, mscorlib">
     <value>59</value>
   </data>
-  <data name="&gt;&gt;lblResultsCount.Name" xml:space="preserve">
-    <value>lblResultsCount</value>
+  <data name="&gt;&gt;lblResultCount.Name" xml:space="preserve">
+    <value>lblResultCount</value>
   </data>
-  <data name="&gt;&gt;lblResultsCount.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblResultCount.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;lblResultsCount.Parent" xml:space="preserve">
+  <data name="&gt;&gt;lblResultCount.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;lblResultsCount.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;lblResultCount.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">

@@ -7,11 +7,12 @@ using System.Data;
 using System.Data.Objects;
 using System.Data.EntityClient;
 using System.IO;
-using TerritoriesManagement.Model;
-using ZeqkTools.Data;
-using ZeqkTools.Query.Enumerators;
 using System.Globalization;
 using System.ComponentModel;
+using System.Resources;
+using ZeqkTools.Data;
+using ZeqkTools.Query.Enumerators;
+using TerritoriesManagement.Model;
 
 
 namespace TerritoriesManagement.Import
@@ -41,7 +42,8 @@ namespace TerritoriesManagement.Import
         private Func<TerritoriesDataContext, TerritoriesManagement.Model.Department, IQueryable<TerritoriesManagement.Model.Department>> _compiledSameDepartment;
         private Func<TerritoriesDataContext, City, int,IQueryable<City>> _compiledSameCity;
         private Func<TerritoriesDataContext, Territory, IQueryable<Territory>> _compiledSameTerritory;
-        
+
+        ResourceManager _rm;
 
         public ImportTool()
 	    {
@@ -56,6 +58,21 @@ namespace TerritoriesManagement.Import
             bg.WorkerReportsProgress = true;
             bg.DoWork += new DoWorkEventHandler(bg_DoWork);
 	    }
+
+
+        private string GetString(string text)
+        {
+            //return _rm.GetString(text, Thread.CurrentThread.CurrentCulture);
+            return text;
+        }
+
+        private string GetString(string text,params object[] parameters)
+        {
+            
+            //return _rm.GetString(text, Thread.CurrentThread.CurrentCulture);
+            return string.Format(text,parameters);
+        }
+
 
         public ImporterConfig Config
         {
@@ -98,14 +115,14 @@ namespace TerritoriesManagement.Import
                         departmentsImported = count > 0;
                         if (departmentsImported)
                         {
-                            ImportMessage += "\n" + count + " departments has been imported.\n";
+                            ImportMessage += Environment.NewLine + GetString("{0} departments has been imported.", count) + Environment.NewLine;
                             if (ds.Tables[departments].Rows.Count>count)
                             {
-                                ImportMessage += "Some departments has not been imported successfully.\n";
+                                ImportMessage += GetString("Some departments has not been imported successfully.") +Environment.NewLine;
                             }
                         }
                         else
-                            ImportMessage += "\nNo department has been imported.\n";
+                            ImportMessage += Environment.NewLine + GetString("No department has been imported.") + Environment.NewLine;
                     }
 
                     bool citiesImported = true;
@@ -116,14 +133,14 @@ namespace TerritoriesManagement.Import
                         citiesImported = count > 0;
                         if (citiesImported)
                         {
-                            ImportMessage += "\n" + count + " cities has been imported.\n";
+                            ImportMessage += Environment.NewLine + GetString("{0} cities has been imported.", count) + Environment.NewLine;
                             if (ds.Tables[cities].Rows.Count > count)
                             {
-                                ImportMessage += "Some cities has not been imported successfully.\n";
+                                ImportMessage += Environment.NewLine + GetString("Some cities has not been imported successfully.") + Environment.NewLine;
                             }
                         }
                         else
-                            ImportMessage += "\nNo city has been imported.\n";
+                            ImportMessage += Environment.NewLine + GetString("No city has been imported.") + Environment.NewLine;
                     }
 
                     bool territoriesImported = true;
@@ -134,14 +151,14 @@ namespace TerritoriesManagement.Import
                         territoriesImported = count > 0;
                         if (territoriesImported)
                         {
-                            ImportMessage += "\n" + count + " territories has been imported.\n";
+                            ImportMessage += Environment.NewLine + GetString("{0} territories has been imported.", count) + Environment.NewLine;
                             if (ds.Tables[territories].Rows.Count > count)
                             {
-                                ImportMessage += "Some territories has not been imported successfully.\n";
+                                ImportMessage += Environment.NewLine + GetString("Some territories has not been imported successfully.") + Environment.NewLine;
                             }
                         }
                         else
-                            ImportMessage += "\nNo territory has been imported.\n";
+                            ImportMessage += Environment.NewLine + GetString("No territory has been imported.") + Environment.NewLine;
                     }
 
                     bool addressesImported = true;
@@ -152,14 +169,14 @@ namespace TerritoriesManagement.Import
                         addressesImported =  count > 0;
                         if (addressesImported)
                         {
-                            ImportMessage += "\n" + count + " addresses has been imported.\n";
+                            ImportMessage += Environment.NewLine + GetString("{0} addresses has been imported.", count) + Environment.NewLine;
                             if (ds.Tables[addresses].Rows.Count > count)
                             {
-                                ImportMessage += "Some addresses has not been imported successfully.\n";
+                                ImportMessage += GetString("Some addresses has not been imported successfully.") + Environment.NewLine;
                             }
                         }
                         else
-                            ImportMessage += "\nNo address has been imported.\n";
+                            ImportMessage += Environment.NewLine + GetString("No address has been imported.") + Environment.NewLine;
                     }
 
                     SuccessfulImport = departmentsImported && citiesImported && territoriesImported && addressesImported;
@@ -254,7 +271,7 @@ namespace TerritoriesManagement.Import
             }
             finally
             {
-                _log += "\nIMPORT DEPARTMENTS ERRORS: " + message;
+                _log += Environment.NewLine + GetString("IMPORT DEPARTMENTS ERRORS: ") + message;
             }
 
             return rv;
@@ -296,11 +313,11 @@ namespace TerritoriesManagement.Import
             }
             catch (Exception ex)
             {
-                message += "\n-Error: " + ex.Message + " ";
+                message += Environment.NewLine + GetString("-Error: ") + ex.Message + " ";
             }
             finally
             {
-                _log += "\nIMPORT CITIES ERRORS: " + message;
+                _log += Environment.NewLine + GetString("IMPORT CITIES ERRORS: ") + message;
             }
 
             return rv;
@@ -341,11 +358,11 @@ namespace TerritoriesManagement.Import
             }
             catch (Exception ex)
             {
-                message +=  "\n-Error: "+ ex.Message+ " ";
+                message +=  Environment.NewLine + GetString("-Error: ") + ex.Message+ " ";
             }
             finally
             {
-                _log += "\nIMPORT TERRITORIES ERRORS: " + message;
+                _log += Environment.NewLine + GetString("IMPORT TERRITORIES ERRORS: ") + message;
             }
 
             return rv;
@@ -386,11 +403,11 @@ namespace TerritoriesManagement.Import
             }
             catch (Exception ex)
             {
-                message += "\n-Error: " + ex.Message + " ";
+                message += Environment.NewLine + GetString("-Error: ") + ex.Message + " ";
             }
             finally
             {
-                _log += "\nIMPORT ADDRESSES ERRORS:" + message;
+                _log += Environment.NewLine + GetString("IMPORT ADDRESSES ERRORS: ") + message;
             }            
 
             return rv;
@@ -426,7 +443,7 @@ namespace TerritoriesManagement.Import
             {
                 rv = false;
                 int index = row.Table.Rows.IndexOf(row);
-                errorMsg += "\n-Conversion error. (Row values: " + RowToStr(row) +")";
+                errorMsg += Environment.NewLine + GetString("-Conversion error. (Row values: {0})", RowToStr(row));
             }
             
             return rv;
@@ -488,7 +505,7 @@ namespace TerritoriesManagement.Import
 	        {
         		rv = false;
                 int index = row.Table.Rows.IndexOf(row);
-                errorMsg += "\n-Conversion error. (Row values: " + RowToStr(row) +")";
+                errorMsg += Environment.NewLine + GetString("-Conversion error. (Row values: {0})", RowToStr(row));
 	        }
             return rv;
         }
@@ -527,7 +544,7 @@ namespace TerritoriesManagement.Import
             {
                 rv = false;
                 int index = row.Table.Rows.IndexOf(row);
-                errorMsg += "\n-Conversion error. (Row values: " + RowToStr(row) +")";
+                errorMsg += Environment.NewLine + GetString("-Conversion error. (Row values: {0})", RowToStr(row));
             }
             return rv;
         }
@@ -706,7 +723,7 @@ namespace TerritoriesManagement.Import
             {
                 rv = false;
                 int index = row.Table.Rows.IndexOf(row);
-                errorMsg += "\n-Conversion error. (Row values: " + RowToStr(row) +")";
+                errorMsg += Environment.NewLine + GetString("-Conversion error. (Row values: {0})", RowToStr(row));
             }
             return rv;
         }
@@ -721,25 +738,25 @@ namespace TerritoriesManagement.Import
             string msg = "";
             if (string.IsNullOrEmpty(v.Name))
             {
-                msg +=  "\n  -Name is blank or null. ";
+                msg +=  Environment.NewLine + GetString("  -Name is blank or null. ");
                 rv = false;
             }
             if (DepartmentExist(v))
             {
-                msg += "\n  -Already exists. ";
+                msg += Environment.NewLine + GetString("  -Already exists. ");
                 rv = false;
             }
 
             //lenght validation
             if (v.Name.Length > 80)
             {
-                msg += "\n  -Name lenght exceeds the allowed length (80). ";
+                msg += Environment.NewLine + GetString("  -Name lenght exceeds the allowed length ({0}). ", 80);
                 rv = false;
             }
 
             if (!rv)
             {
-                message += "\n-\"" + v.IdDepartment + " " + v.Name + "\" is invalid: " + msg;
+                message += Environment.NewLine + GetString("-\"{0} {1}\" is invalid: ",v.IdDepartment,v.Name) + msg;
             }
 
             return rv;
@@ -751,7 +768,7 @@ namespace TerritoriesManagement.Import
             string msg = "";
             if (string.IsNullOrEmpty(v.Name))
             {
-                msg += "\n  -Name is blank or null. ";
+                msg += Environment.NewLine + GetString("  -Name is blank or null. ");
                 rv = false;
             }
 
@@ -759,7 +776,7 @@ namespace TerritoriesManagement.Import
             if (v.DepartmentReference.EntityKey == null ||
                 (int) v.DepartmentReference.EntityKey.EntityKeyValues[0].Value == 0 )
             {
-                msg += "\n  -There is no department. ";
+                msg += Environment.NewLine + GetString("  -There is not department. ");
                 rv = false;
             }
             else
@@ -767,13 +784,13 @@ namespace TerritoriesManagement.Import
                 int idDepartment = (int)v.DepartmentReference.EntityKey.EntityKeyValues[0].Value;
                 if (!DepartmentExist(idDepartment))
                 {
-                    msg += "\n  -Department doesn't exist. ";
+                    msg += Environment.NewLine + GetString("  -Department doesn't exist. ");
                     rv = false;
                     
                 }                
                 else if(CityExist(v))
                 {
-                    msg += "\n  -Already exists. ";
+                    msg += Environment.NewLine + GetString("  -Already exists. ");
                     rv = false;
                 }
             }
@@ -781,13 +798,13 @@ namespace TerritoriesManagement.Import
             //lenght validation
             if(v.Name.Length > 80)
             {
-                msg += "\n  -Name lenght exceeds the allowed length (80). ";
+                msg += Environment.NewLine + GetString("  -Name lenght exceeds the allowed length ({80}). ", 80);
                 rv = false;
             }
 
             if (!rv)
             {
-                message += "\n-\"" + v.IdCity + " " + v.Name + "\" is invalid: " + msg;
+                message += Environment.NewLine + GetString("-\"{0} {1}\" is invalid: ",v.IdCity, v.Name) + msg;
             }
 
             return rv;
@@ -799,25 +816,25 @@ namespace TerritoriesManagement.Import
             string msg = "";
             if (string.IsNullOrEmpty(v.Name))
             {
-                msg += "\n  -Name is blank or null. ";
+                msg += Environment.NewLine + GetString("   -Name is blank or null. ");
                 rv = false;
             }
             if (TerritoryExist(v))
             {
-                msg += "\n  -Already exists. ";
+                msg += Environment.NewLine + GetString("   -Already exists. ");
                 rv = false;
             }
 
             //lenght validation
             if (v.Name.Length > 80)
             {
-                msg += "\n  -Name lenght exceeds the allowed length (80). ";
+                msg += Environment.NewLine + GetString("   -Name lenght exceeds the allowed length ({0}). ", 80);
                 rv = false;
             }
 
             if (!rv)
             {
-                message += "\n-\"" + v.IdTerritory + " " + v.Name + "\" is invalid: " + msg;
+                message += Environment.NewLine + GetString("-\"{0} {1}\" is invalid: ", v.IdTerritory, v.Name) + msg;
             }
 
             return rv;
@@ -830,13 +847,13 @@ namespace TerritoriesManagement.Import
 
             if (string.IsNullOrEmpty(v.Street))
             {
-                msg += "\n  -The street is blank or null. ";
+                msg += Environment.NewLine + GetString("  -The street is blank or null. ");
                 rv = false;
             }
             if (v.CityReference.EntityKey==null ||
                 (int)v.CityReference.EntityKey.EntityKeyValues[0].Value==0)
             {
-                msg += "\n  -There is no city. ";
+                msg += Environment.NewLine + GetString("  -There is no city. ");
                 rv = false;
             }
             else
@@ -844,96 +861,75 @@ namespace TerritoriesManagement.Import
                 int idCity = (int)v.CityReference.EntityKey.EntityKeyValues[0].Value;
                 if (!CityExist(idCity))
                 {
-                    msg += "\n  -City doesn't exist. ";
+                    msg += Environment.NewLine + GetString("  -City doesn't exist. ");
                     rv = false;
 
                 }
             }
-
-
-            //if (v.TerritoryReference.EntityKey == null ||
-            //    (int)v.TerritoryReference.EntityKey.EntityKeyValues[0].Value == 0)
-            //{
-            //    msg += "\n  -There is no territory. ";
-            //    rv = false;
-            //}
-            //else
-            //{
-            //    int idTerritory = (int)v.TerritoryReference.EntityKey.EntityKeyValues[0].Value;
-            //    if (!TerritoryExist(idTerritory))
-            //    {
-            //        msg += "\n  -Territory doesn't exist. ";
-            //        rv = false;
-
-            //    }
-            //}
-
             if (AddressExist(v.IdAddress))
             {
-                msg += "\n  -Already exists. ";
+                msg += Environment.NewLine + GetString("  -Already exists. ");
                 rv = false;
             }
 
             //length validation
             if (!string.IsNullOrEmpty(v.AddressData) && v.AddressData.Length > 50)
             {
-                msg += "\n  -Address data lenght exceeds the allowed length (50). ";
+                msg += Environment.NewLine + GetString("  -Address data lenght exceeds the allowed length ({0}). ", 50);
                 rv = false;
             }
 
             if ((!string.IsNullOrEmpty(v.Corner1) && v.Corner1.Length > 80) ||
                 (!string.IsNullOrEmpty(v.Corner2) && v.Corner2.Length > 80))
             {
-                msg += "\n  -Corners lenght exceeds the allowed length (80). ";
+                msg += Environment.NewLine + GetString("  -Corners lenght exceeds the allowed length ({0}). ", 80);
                 rv = false;
             }
 
             if((!string.IsNullOrEmpty(v.CustomField1) && v.CustomField1.Length > 200)
                 || (!string.IsNullOrEmpty(v.CustomField2) && v.CustomField2.Length > 200))
             {
-                msg += "\n  -Custom fields lenght exceeds the allowed length (200). ";
+                msg += Environment.NewLine + GetString("  -Custom fields lenght exceeds the allowed length ({0}). ", 200);
                 rv = false;
             }
 
             if (!string.IsNullOrEmpty(v.Description) && v.Description.Length > 200)
             {
-                msg += "\n  -Description lenght exceeds the allowed length (200). ";
+                msg += Environment.NewLine + GetString("  -Description lenght exceeds the allowed length ({0}). ", 200);
                 rv = false;
             }
 
             if ((!string.IsNullOrEmpty(v.Map1) && v.Map1.Length > 30) ||
                 (!string.IsNullOrEmpty(v.Map2) && v.Map2.Length > 30))
             {
-                msg += "\n  -Maps lenght exceeds the allowed length (30). ";
+                msg += Environment.NewLine + GetString("  -Maps lenght exceeds the allowed length ({0}). ", 30);
                 rv = false;
             }
 
             if (!string.IsNullOrEmpty(v.Number) && v.Number.Length > 50)
             {
-                msg += "\n  -Number lenght exceeds the allowed length (50). ";
+                msg += Environment.NewLine + GetString("  -Number lenght exceeds the allowed length ({0}). ", 50);
                 rv = false;
             }
 
             if ((!string.IsNullOrEmpty(v.Phone1) && v.Phone1.Length > 15) || 
                 (!string.IsNullOrEmpty(v.Phone2) && v.Phone2.Length > 15))
             {
-                msg += "\n  -Phone numbers lenght exceeds the allowed length (15). ";
+                msg += Environment.NewLine + GetString("  -Phone numbers lenght exceeds the allowed length ({0}). ", 15);
                 rv = false;
             }
 
             if (v.Street.Length > 80)
             {
-                msg += "\n  -Street lenght exceeds the allowed length (80). ";
+                msg += Environment.NewLine + GetString("  -Street lenght exceeds the allowed length ({0}). ", 80);
                 rv = false;
             }
             //length validation end
 
             if (!rv)
             {
-                message += "\n-\"" + v.IdAddress + " " + v.Street + "\" is invalid: " + msg;
-            }
-
-            
+                message += Environment.NewLine + GetString("-\"{0} {1}\" is invalid: ", v.IdAddress, v.Street) + msg;
+            }            
 
             return rv;
 

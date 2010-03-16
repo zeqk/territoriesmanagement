@@ -49,7 +49,7 @@
             this.lblResult = new System.Windows.Forms.Label();
             this.lblFiltered = new System.Windows.Forms.Label();
             this.btnClearFilter = new System.Windows.Forms.Button();
-            this.dgvResults = new System.Windows.Forms.DataGridView();
+            this.dgvResult = new System.Windows.Forms.DataGridView();
             this.btnFilter = new System.Windows.Forms.Button();
             this.tabPanel = new System.Windows.Forms.TabControl();
             this.tabAddresses = new System.Windows.Forms.TabPage();
@@ -59,7 +59,7 @@
             this.grpObject.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsCity)).BeginInit();
             this.grdSearch.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).BeginInit();
             this.tabPanel.SuspendLayout();
             this.tabAddresses.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddresses)).BeginInit();
@@ -154,7 +154,7 @@
             this.grdSearch.Controls.Add(this.lblResult);
             this.grdSearch.Controls.Add(this.lblFiltered);
             this.grdSearch.Controls.Add(this.btnClearFilter);
-            this.grdSearch.Controls.Add(this.dgvResults);
+            this.grdSearch.Controls.Add(this.dgvResult);
             this.grdSearch.Controls.Add(this.btnFilter);
             resources.ApplyResources(this.grdSearch, "grdSearch");
             this.grdSearch.Name = "grdSearch";
@@ -205,18 +205,18 @@
             this.btnClearFilter.UseVisualStyleBackColor = true;
             this.btnClearFilter.Click += new System.EventHandler(this.btnClearFilter_Click);
             // 
-            // dgvResults
+            // dgvResult
             // 
-            this.dgvResults.AllowUserToAddRows = false;
-            this.dgvResults.AllowUserToDeleteRows = false;
-            this.dgvResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            resources.ApplyResources(this.dgvResults, "dgvResults");
-            this.dgvResults.Name = "dgvResults";
-            this.dgvResults.ReadOnly = true;
-            this.dgvResults.RowHeadersVisible = false;
-            this.dgvResults.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvResults.VirtualMode = true;
-            this.dgvResults.SelectionChanged += new System.EventHandler(this.dgvResults_SelectionChanged);
+            this.dgvResult.AllowUserToAddRows = false;
+            this.dgvResult.AllowUserToDeleteRows = false;
+            this.dgvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            resources.ApplyResources(this.dgvResult, "dgvResult");
+            this.dgvResult.Name = "dgvResult";
+            this.dgvResult.ReadOnly = true;
+            this.dgvResult.RowHeadersVisible = false;
+            this.dgvResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgvResult.VirtualMode = true;
+            this.dgvResult.SelectionChanged += new System.EventHandler(this.dgvResult_SelectionChanged);
             // 
             // btnFilter
             // 
@@ -288,7 +288,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bsCity)).EndInit();
             this.grdSearch.ResumeLayout(false);
             this.grdSearch.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).EndInit();
             this.tabPanel.ResumeLayout(false);
             this.tabAddresses.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddresses)).EndInit();
@@ -304,7 +304,7 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox txtName;
         private System.Windows.Forms.GroupBox grdSearch;
-        protected System.Windows.Forms.DataGridView dgvResults;
+        protected System.Windows.Forms.DataGridView dgvResult;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnNew;

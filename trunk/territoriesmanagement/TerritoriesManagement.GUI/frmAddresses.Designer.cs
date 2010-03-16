@@ -39,8 +39,8 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
             this.lblFiltered = new System.Windows.Forms.Label();
-            this.lblResults = new System.Windows.Forms.Label();
-            this.dgvResults = new System.Windows.Forms.DataGridView();
+            this.lblResult = new System.Windows.Forms.Label();
+            this.dgvResult = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.chklstDepartment = new ZeqkTools.WindowsForms.Controls.CheckedListComboBox(this.components);
             this.chklstCity = new ZeqkTools.WindowsForms.Controls.CheckedListComboBox(this.components);
@@ -58,9 +58,9 @@
             this.viewMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sfdGMaps = new System.Windows.Forms.SaveFileDialog();
             this.sfdExcelDestiny = new System.Windows.Forms.SaveFileDialog();
-            this.lblResultsCount = new System.Windows.Forms.Label();
+            this.lblResultCount = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).BeginInit();
             this.panel2.SuspendLayout();
             this.ctxMenu.SuspendLayout();
             this.SuspendLayout();
@@ -129,20 +129,20 @@
             resources.ApplyResources(this.lblFiltered, "lblFiltered");
             this.lblFiltered.Name = "lblFiltered";
             // 
-            // lblResults
+            // lblResult
             // 
-            resources.ApplyResources(this.lblResults, "lblResults");
-            this.lblResults.Name = "lblResults";
+            resources.ApplyResources(this.lblResult, "lblResult");
+            this.lblResult.Name = "lblResult";
             // 
-            // dgvResults
+            // dgvResult
             // 
-            this.dgvResults.AllowUserToAddRows = false;
-            this.dgvResults.AllowUserToDeleteRows = false;
-            resources.ApplyResources(this.dgvResults, "dgvResults");
-            this.dgvResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvResults.Name = "dgvResults";
-            this.dgvResults.ReadOnly = true;
-            this.dgvResults.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvResults_MouseClick);
+            this.dgvResult.AllowUserToAddRows = false;
+            this.dgvResult.AllowUserToDeleteRows = false;
+            resources.ApplyResources(this.dgvResult, "dgvResult");
+            this.dgvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvResult.Name = "dgvResult";
+            this.dgvResult.ReadOnly = true;
+            this.dgvResult.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvResult_MouseClick);
             // 
             // panel2
             // 
@@ -269,28 +269,28 @@
             resources.ApplyResources(this.sfdExcelDestiny, "sfdExcelDestiny");
             this.sfdExcelDestiny.FileOk += new System.ComponentModel.CancelEventHandler(this.sfdExcelDestiny_FileOk);
             // 
-            // lblResultsCount
+            // lblResultCount
             // 
-            resources.ApplyResources(this.lblResultsCount, "lblResultsCount");
-            this.lblResultsCount.Name = "lblResultsCount";
+            resources.ApplyResources(this.lblResultCount, "lblResultCount");
+            this.lblResultCount.Name = "lblResultCount";
             // 
             // frmAddresses
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lblResultsCount);
+            this.Controls.Add(this.lblResultCount);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.lblResults);
+            this.Controls.Add(this.lblResult);
             this.Controls.Add(this.lblFiltered);
-            this.Controls.Add(this.dgvResults);
+            this.Controls.Add(this.dgvResult);
             this.Controls.Add(this.btnAll);
             this.Controls.Add(this.btnSearch);
             this.Name = "frmAddresses";
             this.Load += new System.EventHandler(this.frmAddresses_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvResults)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ctxMenu.ResumeLayout(false);
@@ -308,8 +308,8 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnNew;
         private System.Windows.Forms.Label lblFiltered;
-        private System.Windows.Forms.Label lblResults;
-        private System.Windows.Forms.DataGridView dgvResults;
+        private System.Windows.Forms.Label lblResult;
+        private System.Windows.Forms.DataGridView dgvResult;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.CheckBox chkDescription;
         private System.Windows.Forms.CheckBox chkStreet;
@@ -327,7 +327,7 @@
         private System.Windows.Forms.Button btnToExcel;
         private System.Windows.Forms.SaveFileDialog sfdExcelDestiny;
         private System.Windows.Forms.ToolStripMenuItem viewMapToolStripMenuItem;
-        private System.Windows.Forms.Label lblResultsCount;
+        private System.Windows.Forms.Label lblResultCount;
         private ZeqkTools.WindowsForms.Controls.CheckedListComboBox chklstTerritory;
         private ZeqkTools.WindowsForms.Controls.CheckedListComboBox chklstCity;
         private ZeqkTools.WindowsForms.Controls.CheckedListComboBox chklstDepartment;
