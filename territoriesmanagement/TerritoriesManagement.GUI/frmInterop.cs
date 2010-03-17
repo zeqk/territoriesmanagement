@@ -345,7 +345,7 @@ namespace TerritoriesManagement.GUI
 
                     string[] properties = chkListAddresses.CheckedItems.Cast<string>().ToArray();
 
-                    exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "Address", "Addresses", properties, "", null);
+                    exported = ExportTool.ExportToExcel(txtExcelDestination.Text, "Address", "Addresses", properties, "", null);
                 }
 
 
@@ -353,21 +353,21 @@ namespace TerritoriesManagement.GUI
                 {
                     string[] properties = chkListTerritories.CheckedItems.Cast<string>().ToArray();
 
-                    exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "Territory", "Territories", properties, "", null);
+                    exported = ExportTool.ExportToExcel(txtExcelDestination.Text, "Territory", "Territories", properties, "", null);
                 }
 
                 if (rdoCities.Checked)
                 {
                     string[] properties = chkListCities.CheckedItems.Cast<string>().ToArray();
 
-                    exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "City", "Cities", properties, "", null);
+                    exported = ExportTool.ExportToExcel(txtExcelDestination.Text, "City", "Cities", properties, "", null);
                 }
 
                 if (rdoDepartments.Checked)
                 {
                     string[] properties = chkListDepartments.CheckedItems.Cast<string>().ToArray();
 
-                    exported = ExportTool.ExportToExcel(txtExcelDestiny.Text, "Department", "Departments", properties, "", null);
+                    exported = ExportTool.ExportToExcel(txtExcelDestination.Text, "Department", "Departments", properties, "", null);
                 }
             }
             catch (Exception ex)
@@ -408,12 +408,12 @@ namespace TerritoriesManagement.GUI
 
         private void btnSaveToExcel_Click(object sender, EventArgs e)
         {
-            sfdExcelDestiny.ShowDialog();
+            sfdExcelDestination.ShowDialog();
         }
 
         private void sfdExcelDestiny_FileOk(object sender, CancelEventArgs e)
         {
-            txtExcelDestiny.Text = Path.GetFullPath(sfdExcelDestiny.FileName);
+            txtExcelDestination.Text = Path.GetFullPath(sfdExcelDestination.FileName);
         }
 
         #endregion
@@ -426,12 +426,12 @@ namespace TerritoriesManagement.GUI
         private void btnExportToGmaps_Click(object sender, EventArgs e)
         {        
             ExportTool tool = new ExportTool();
-            tool.ExportToGMap(txtXmlDestiny.Text, "");
+            tool.ExportToGMap(txtXmlDestination.Text, "");
         }
 
         private void sfdGMaps_FileOk(object sender, CancelEventArgs e)
         {
-            txtXmlDestiny.Text = Path.GetFullPath(sfdGMaps.FileName);
+            txtXmlDestination.Text = Path.GetFullPath(sfdGMaps.FileName);
         }
 
         private void btnConfigureConnection_Click(object sender, EventArgs e)
