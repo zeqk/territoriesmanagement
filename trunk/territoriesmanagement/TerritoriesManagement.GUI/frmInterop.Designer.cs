@@ -30,24 +30,14 @@
         {
             this.odfRssSource = new System.Windows.Forms.OpenFileDialog();
             this.tabDataImport = new System.Windows.Forms.TabPage();
-            this.grpConfig = new System.Windows.Forms.GroupBox();
-            this.prbDataImport = new System.Windows.Forms.ProgressBar();
-            this.btnConfigureConnection = new System.Windows.Forms.Button();
-            this.lblConnecStr = new System.Windows.Forms.Label();
-            this.txtConnectStr = new System.Windows.Forms.TextBox();
-            this.btnImport = new System.Windows.Forms.Button();
-            this.grdImportConfig = new System.Windows.Forms.PropertyGrid();
-            this.tabGeoRss = new System.Windows.Forms.TabPage();
-            this.grpGMapsExport = new System.Windows.Forms.GroupBox();
-            this.txtXmlDestiny = new System.Windows.Forms.TextBox();
-            this.btnExportToGmaps = new System.Windows.Forms.Button();
-            this.btnSaveToGMaps = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtRssSource = new System.Windows.Forms.TextBox();
-            this.btnImportGeoRss = new System.Windows.Forms.Button();
-            this.btnSelectRssSource = new System.Windows.Forms.Button();
-            this.tabMaps = new System.Windows.Forms.TabControl();
+            this.tabMain = new System.Windows.Forms.TabControl();
+            this.tabExport = new System.Windows.Forms.TabPage();
+            this.ofdFileSource = new System.Windows.Forms.OpenFileDialog();
+            this.sfdExcelDestination = new System.Windows.Forms.SaveFileDialog();
+            this.sfdGMaps = new System.Windows.Forms.SaveFileDialog();
+            this.tabExportPanel = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabExportMaps = new System.Windows.Forms.TabPage();
             this.grpExport = new System.Windows.Forms.GroupBox();
             this.rdoDepartments = new System.Windows.Forms.RadioButton();
             this.rdoTerritories = new System.Windows.Forms.RadioButton();
@@ -57,20 +47,40 @@
             this.chkListTerritories = new System.Windows.Forms.CheckedListBox();
             this.chkListCities = new System.Windows.Forms.CheckedListBox();
             this.chkListAddresses = new System.Windows.Forms.CheckedListBox();
-            this.txtExcelDestiny = new System.Windows.Forms.TextBox();
+            this.txtExcelDestination = new System.Windows.Forms.TextBox();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnSaveToExcel = new System.Windows.Forms.Button();
-            this.ofdFileSource = new System.Windows.Forms.OpenFileDialog();
-            this.sfdExcelDestiny = new System.Windows.Forms.SaveFileDialog();
-            this.sfdGMaps = new System.Windows.Forms.SaveFileDialog();
+            this.grpGMapsExport = new System.Windows.Forms.GroupBox();
+            this.txtXmlDestination = new System.Windows.Forms.TextBox();
+            this.btnExportToGmaps = new System.Windows.Forms.Button();
+            this.btnSaveToGMaps = new System.Windows.Forms.Button();
+            this.tabImportPanel = new System.Windows.Forms.TabControl();
+            this.tabImportData = new System.Windows.Forms.TabPage();
+            this.tabImportMaps = new System.Windows.Forms.TabPage();
+            this.grpConfig = new System.Windows.Forms.GroupBox();
+            this.prbDataImport = new System.Windows.Forms.ProgressBar();
+            this.btnConfigureConnection = new System.Windows.Forms.Button();
+            this.lblConnecStr = new System.Windows.Forms.Label();
+            this.txtConnectStr = new System.Windows.Forms.TextBox();
+            this.btnImport = new System.Windows.Forms.Button();
+            this.grdImportConfig = new System.Windows.Forms.PropertyGrid();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtRssSource = new System.Windows.Forms.TextBox();
+            this.btnImportGeoRss = new System.Windows.Forms.Button();
+            this.btnSelectRssSource = new System.Windows.Forms.Button();
             this.tabDataImport.SuspendLayout();
-            this.grpConfig.SuspendLayout();
-            this.tabGeoRss.SuspendLayout();
-            this.grpGMapsExport.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.tabMaps.SuspendLayout();
+            this.tabMain.SuspendLayout();
+            this.tabExport.SuspendLayout();
+            this.tabExportPanel.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabExportMaps.SuspendLayout();
             this.grpExport.SuspendLayout();
+            this.grpGMapsExport.SuspendLayout();
+            this.tabImportPanel.SuspendLayout();
+            this.tabImportData.SuspendLayout();
+            this.tabImportMaps.SuspendLayout();
+            this.grpConfig.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // odfRssSource
@@ -81,8 +91,7 @@
             // 
             // tabDataImport
             // 
-            this.tabDataImport.Controls.Add(this.grpConfig);
-            this.tabDataImport.Controls.Add(this.grdImportConfig);
+            this.tabDataImport.Controls.Add(this.tabImportPanel);
             this.tabDataImport.Location = new System.Drawing.Point(4, 22);
             this.tabDataImport.Name = "tabDataImport";
             this.tabDataImport.Padding = new System.Windows.Forms.Padding(3);
@@ -91,175 +100,52 @@
             this.tabDataImport.Text = "Data import";
             this.tabDataImport.UseVisualStyleBackColor = true;
             // 
-            // grpConfig
+            // tabMain
             // 
-            this.grpConfig.Controls.Add(this.prbDataImport);
-            this.grpConfig.Controls.Add(this.btnConfigureConnection);
-            this.grpConfig.Controls.Add(this.lblConnecStr);
-            this.grpConfig.Controls.Add(this.txtConnectStr);
-            this.grpConfig.Controls.Add(this.btnImport);
-            this.grpConfig.Location = new System.Drawing.Point(3, 6);
-            this.grpConfig.Name = "grpConfig";
-            this.grpConfig.Size = new System.Drawing.Size(568, 164);
-            this.grpConfig.TabIndex = 10;
-            this.grpConfig.TabStop = false;
-            this.grpConfig.Text = "Configure import properties";
+            this.tabMain.Controls.Add(this.tabDataImport);
+            this.tabMain.Controls.Add(this.tabExport);
+            this.tabMain.Location = new System.Drawing.Point(8, 11);
+            this.tabMain.Name = "tabMain";
+            this.tabMain.SelectedIndex = 0;
+            this.tabMain.Size = new System.Drawing.Size(586, 449);
+            this.tabMain.TabIndex = 0;
             // 
-            // prbDataImport
+            // tabExport
             // 
-            this.prbDataImport.Location = new System.Drawing.Point(305, 112);
-            this.prbDataImport.Name = "prbDataImport";
-            this.prbDataImport.Size = new System.Drawing.Size(246, 24);
-            this.prbDataImport.TabIndex = 16;
+            this.tabExport.Controls.Add(this.tabExportPanel);
+            this.tabExport.Location = new System.Drawing.Point(4, 22);
+            this.tabExport.Name = "tabExport";
+            this.tabExport.Padding = new System.Windows.Forms.Padding(3);
+            this.tabExport.Size = new System.Drawing.Size(578, 423);
+            this.tabExport.TabIndex = 3;
+            this.tabExport.Text = "Data export";
+            this.tabExport.UseVisualStyleBackColor = true;
             // 
-            // btnConfigureConnection
+            // ofdFileSource
             // 
-            this.btnConfigureConnection.Location = new System.Drawing.Point(479, 53);
-            this.btnConfigureConnection.Name = "btnConfigureConnection";
-            this.btnConfigureConnection.Size = new System.Drawing.Size(83, 23);
-            this.btnConfigureConnection.TabIndex = 15;
-            this.btnConfigureConnection.Text = "Configure";
-            this.btnConfigureConnection.UseVisualStyleBackColor = true;
-            this.btnConfigureConnection.Click += new System.EventHandler(this.btnConfigureConnection_Click);
+            this.ofdFileSource.FileName = "openFileDialog1";
+            this.ofdFileSource.InitialDirectory = "C:\\\\";
             // 
-            // lblConnecStr
+            // sfdExcelDestination
             // 
-            this.lblConnecStr.AutoSize = true;
-            this.lblConnecStr.Location = new System.Drawing.Point(18, 22);
-            this.lblConnecStr.Name = "lblConnecStr";
-            this.lblConnecStr.Size = new System.Drawing.Size(89, 13);
-            this.lblConnecStr.TabIndex = 14;
-            this.lblConnecStr.Text = "Connection string";
+            this.sfdExcelDestination.Filter = "Excel files (*.xls)|*.xls";
+            this.sfdExcelDestination.FileOk += new System.ComponentModel.CancelEventHandler(this.sfdExcelDestiny_FileOk);
             // 
-            // txtConnectStr
+            // sfdGMaps
             // 
-            this.txtConnectStr.Location = new System.Drawing.Point(21, 38);
-            this.txtConnectStr.Multiline = true;
-            this.txtConnectStr.Name = "txtConnectStr";
-            this.txtConnectStr.Size = new System.Drawing.Size(444, 52);
-            this.txtConnectStr.TabIndex = 13;
+            this.sfdGMaps.Filter = "xml files (*.xml)|*.xml";
+            this.sfdGMaps.FileOk += new System.ComponentModel.CancelEventHandler(this.sfdGMaps_FileOk);
             // 
-            // btnImport
+            // tabExportPanel
             // 
-            this.btnImport.Location = new System.Drawing.Point(21, 107);
-            this.btnImport.Name = "btnImport";
-            this.btnImport.Size = new System.Drawing.Size(243, 35);
-            this.btnImport.TabIndex = 9;
-            this.btnImport.Text = "Import";
-            this.btnImport.UseVisualStyleBackColor = true;
-            this.btnImport.Click += new System.EventHandler(this.btnImport_Click);
-            // 
-            // grdImportConfig
-            // 
-            this.grdImportConfig.Location = new System.Drawing.Point(3, 176);
-            this.grdImportConfig.Name = "grdImportConfig";
-            this.grdImportConfig.PropertySort = System.Windows.Forms.PropertySort.Categorized;
-            this.grdImportConfig.Size = new System.Drawing.Size(568, 241);
-            this.grdImportConfig.TabIndex = 1;
-            this.grdImportConfig.PropertyValueChanged += new System.Windows.Forms.PropertyValueChangedEventHandler(this.grdImportConfig_PropertyValueChanged);
-            // 
-            // tabGeoRss
-            // 
-            this.tabGeoRss.Controls.Add(this.grpGMapsExport);
-            this.tabGeoRss.Controls.Add(this.groupBox1);
-            this.tabGeoRss.Location = new System.Drawing.Point(4, 22);
-            this.tabGeoRss.Name = "tabGeoRss";
-            this.tabGeoRss.Padding = new System.Windows.Forms.Padding(3);
-            this.tabGeoRss.Size = new System.Drawing.Size(578, 423);
-            this.tabGeoRss.TabIndex = 0;
-            this.tabGeoRss.Text = "Maps";
-            this.tabGeoRss.UseVisualStyleBackColor = true;
-            // 
-            // grpGMapsExport
-            // 
-            this.grpGMapsExport.Controls.Add(this.txtXmlDestiny);
-            this.grpGMapsExport.Controls.Add(this.btnExportToGmaps);
-            this.grpGMapsExport.Controls.Add(this.btnSaveToGMaps);
-            this.grpGMapsExport.Location = new System.Drawing.Point(6, 180);
-            this.grpGMapsExport.Name = "grpGMapsExport";
-            this.grpGMapsExport.Size = new System.Drawing.Size(566, 127);
-            this.grpGMapsExport.TabIndex = 17;
-            this.grpGMapsExport.TabStop = false;
-            this.grpGMapsExport.Text = "Export to Gmaps";
-            // 
-            // txtXmlDestiny
-            // 
-            this.txtXmlDestiny.Location = new System.Drawing.Point(15, 30);
-            this.txtXmlDestiny.Name = "txtXmlDestiny";
-            this.txtXmlDestiny.ReadOnly = true;
-            this.txtXmlDestiny.Size = new System.Drawing.Size(379, 20);
-            this.txtXmlDestiny.TabIndex = 12;
-            // 
-            // btnExportToGmaps
-            // 
-            this.btnExportToGmaps.Location = new System.Drawing.Point(104, 68);
-            this.btnExportToGmaps.Name = "btnExportToGmaps";
-            this.btnExportToGmaps.Size = new System.Drawing.Size(344, 35);
-            this.btnExportToGmaps.TabIndex = 13;
-            this.btnExportToGmaps.Text = "Export";
-            this.btnExportToGmaps.UseVisualStyleBackColor = true;
-            this.btnExportToGmaps.Click += new System.EventHandler(this.btnExportToGmaps_Click);
-            // 
-            // btnSaveToGMaps
-            // 
-            this.btnSaveToGMaps.Location = new System.Drawing.Point(420, 27);
-            this.btnSaveToGMaps.Name = "btnSaveToGMaps";
-            this.btnSaveToGMaps.Size = new System.Drawing.Size(118, 24);
-            this.btnSaveToGMaps.TabIndex = 11;
-            this.btnSaveToGMaps.Text = "Save";
-            this.btnSaveToGMaps.UseVisualStyleBackColor = true;
-            this.btnSaveToGMaps.Click += new System.EventHandler(this.btnSaveToGMaps_Click);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.txtRssSource);
-            this.groupBox1.Controls.Add(this.btnImportGeoRss);
-            this.groupBox1.Controls.Add(this.btnSelectRssSource);
-            this.groupBox1.Location = new System.Drawing.Point(6, 25);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(566, 127);
-            this.groupBox1.TabIndex = 15;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Import from GeoRss file";
-            // 
-            // txtRssSource
-            // 
-            this.txtRssSource.Location = new System.Drawing.Point(15, 30);
-            this.txtRssSource.Name = "txtRssSource";
-            this.txtRssSource.ReadOnly = true;
-            this.txtRssSource.Size = new System.Drawing.Size(379, 20);
-            this.txtRssSource.TabIndex = 12;
-            // 
-            // btnImportGeoRss
-            // 
-            this.btnImportGeoRss.Location = new System.Drawing.Point(104, 68);
-            this.btnImportGeoRss.Name = "btnImportGeoRss";
-            this.btnImportGeoRss.Size = new System.Drawing.Size(344, 35);
-            this.btnImportGeoRss.TabIndex = 13;
-            this.btnImportGeoRss.Text = "Import";
-            this.btnImportGeoRss.UseVisualStyleBackColor = true;
-            this.btnImportGeoRss.Click += new System.EventHandler(this.btnImportGeoRss_Click);
-            // 
-            // btnSelectRssSource
-            // 
-            this.btnSelectRssSource.Location = new System.Drawing.Point(420, 27);
-            this.btnSelectRssSource.Name = "btnSelectRssSource";
-            this.btnSelectRssSource.Size = new System.Drawing.Size(118, 24);
-            this.btnSelectRssSource.TabIndex = 11;
-            this.btnSelectRssSource.Text = "Select";
-            this.btnSelectRssSource.UseVisualStyleBackColor = true;
-            this.btnSelectRssSource.Click += new System.EventHandler(this.btnSelectRssSource_Click);
-            // 
-            // tabMaps
-            // 
-            this.tabMaps.Controls.Add(this.tabDataImport);
-            this.tabMaps.Controls.Add(this.tabGeoRss);
-            this.tabMaps.Controls.Add(this.tabPage1);
-            this.tabMaps.Location = new System.Drawing.Point(8, 11);
-            this.tabMaps.Name = "tabMaps";
-            this.tabMaps.SelectedIndex = 0;
-            this.tabMaps.Size = new System.Drawing.Size(586, 449);
-            this.tabMaps.TabIndex = 0;
+            this.tabExportPanel.Controls.Add(this.tabPage1);
+            this.tabExportPanel.Controls.Add(this.tabExportMaps);
+            this.tabExportPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabExportPanel.Location = new System.Drawing.Point(3, 3);
+            this.tabExportPanel.Name = "tabExportPanel";
+            this.tabExportPanel.SelectedIndex = 0;
+            this.tabExportPanel.Size = new System.Drawing.Size(572, 417);
+            this.tabExportPanel.TabIndex = 0;
             // 
             // tabPage1
             // 
@@ -267,10 +153,21 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(578, 423);
-            this.tabPage1.TabIndex = 3;
-            this.tabPage1.Text = "Data export";
+            this.tabPage1.Size = new System.Drawing.Size(564, 391);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Excel";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // tabExportMaps
+            // 
+            this.tabExportMaps.Controls.Add(this.grpGMapsExport);
+            this.tabExportMaps.Location = new System.Drawing.Point(4, 22);
+            this.tabExportMaps.Name = "tabExportMaps";
+            this.tabExportMaps.Padding = new System.Windows.Forms.Padding(3);
+            this.tabExportMaps.Size = new System.Drawing.Size(564, 391);
+            this.tabExportMaps.TabIndex = 1;
+            this.tabExportMaps.Text = "Maps";
+            this.tabExportMaps.UseVisualStyleBackColor = true;
             // 
             // grpExport
             // 
@@ -282,13 +179,13 @@
             this.grpExport.Controls.Add(this.chkListTerritories);
             this.grpExport.Controls.Add(this.chkListCities);
             this.grpExport.Controls.Add(this.chkListAddresses);
-            this.grpExport.Controls.Add(this.txtExcelDestiny);
+            this.grpExport.Controls.Add(this.txtExcelDestination);
             this.grpExport.Controls.Add(this.btnExport);
             this.grpExport.Controls.Add(this.btnSaveToExcel);
-            this.grpExport.Location = new System.Drawing.Point(6, 25);
+            this.grpExport.Location = new System.Drawing.Point(-1, 4);
             this.grpExport.Name = "grpExport";
             this.grpExport.Size = new System.Drawing.Size(566, 383);
-            this.grpExport.TabIndex = 16;
+            this.grpExport.TabIndex = 17;
             this.grpExport.TabStop = false;
             this.grpExport.Text = "Export to excel file";
             // 
@@ -302,7 +199,6 @@
             this.rdoDepartments.TabStop = true;
             this.rdoDepartments.Text = "Departments";
             this.rdoDepartments.UseVisualStyleBackColor = true;
-            this.rdoDepartments.CheckedChanged += new System.EventHandler(this.rdo_CheckedChanged);
             // 
             // rdoTerritories
             // 
@@ -314,7 +210,6 @@
             this.rdoTerritories.TabStop = true;
             this.rdoTerritories.Text = "Territories";
             this.rdoTerritories.UseVisualStyleBackColor = true;
-            this.rdoTerritories.CheckedChanged += new System.EventHandler(this.rdo_CheckedChanged);
             // 
             // rdoCities
             // 
@@ -326,7 +221,6 @@
             this.rdoCities.TabStop = true;
             this.rdoCities.Text = "Cities";
             this.rdoCities.UseVisualStyleBackColor = true;
-            this.rdoCities.CheckedChanged += new System.EventHandler(this.rdo_CheckedChanged);
             // 
             // rdoAddresses
             // 
@@ -338,7 +232,6 @@
             this.rdoAddresses.TabStop = true;
             this.rdoAddresses.Text = "Addresses";
             this.rdoAddresses.UseVisualStyleBackColor = true;
-            this.rdoAddresses.CheckedChanged += new System.EventHandler(this.rdo_CheckedChanged);
             // 
             // chkListDepartments
             // 
@@ -380,13 +273,13 @@
             this.chkListAddresses.Size = new System.Drawing.Size(127, 169);
             this.chkListAddresses.TabIndex = 14;
             // 
-            // txtExcelDestiny
+            // txtExcelDestination
             // 
-            this.txtExcelDestiny.Location = new System.Drawing.Point(15, 30);
-            this.txtExcelDestiny.Name = "txtExcelDestiny";
-            this.txtExcelDestiny.ReadOnly = true;
-            this.txtExcelDestiny.Size = new System.Drawing.Size(379, 20);
-            this.txtExcelDestiny.TabIndex = 12;
+            this.txtExcelDestination.Location = new System.Drawing.Point(15, 30);
+            this.txtExcelDestination.Name = "txtExcelDestination";
+            this.txtExcelDestination.ReadOnly = true;
+            this.txtExcelDestination.Size = new System.Drawing.Size(379, 20);
+            this.txtExcelDestination.TabIndex = 12;
             // 
             // btnExport
             // 
@@ -396,7 +289,6 @@
             this.btnExport.TabIndex = 13;
             this.btnExport.Text = "Export";
             this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // btnSaveToExcel
             // 
@@ -406,46 +298,209 @@
             this.btnSaveToExcel.TabIndex = 11;
             this.btnSaveToExcel.Text = "Save";
             this.btnSaveToExcel.UseVisualStyleBackColor = true;
-            this.btnSaveToExcel.Click += new System.EventHandler(this.btnSaveToExcel_Click);
             // 
-            // ofdFileSource
+            // grpGMapsExport
             // 
-            this.ofdFileSource.FileName = "openFileDialog1";
-            this.ofdFileSource.InitialDirectory = "C:\\\\";
+            this.grpGMapsExport.Controls.Add(this.txtXmlDestination);
+            this.grpGMapsExport.Controls.Add(this.btnExportToGmaps);
+            this.grpGMapsExport.Controls.Add(this.btnSaveToGMaps);
+            this.grpGMapsExport.Location = new System.Drawing.Point(3, 15);
+            this.grpGMapsExport.Name = "grpGMapsExport";
+            this.grpGMapsExport.Size = new System.Drawing.Size(566, 127);
+            this.grpGMapsExport.TabIndex = 18;
+            this.grpGMapsExport.TabStop = false;
+            this.grpGMapsExport.Text = "Export to Gmaps";
             // 
-            // sfdExcelDestiny
+            // txtXmlDestination
             // 
-            this.sfdExcelDestiny.Filter = "Excel files (*.xls)|*.xls";
-            this.sfdExcelDestiny.FileOk += new System.ComponentModel.CancelEventHandler(this.sfdExcelDestiny_FileOk);
+            this.txtXmlDestination.Location = new System.Drawing.Point(15, 30);
+            this.txtXmlDestination.Name = "txtXmlDestination";
+            this.txtXmlDestination.ReadOnly = true;
+            this.txtXmlDestination.Size = new System.Drawing.Size(379, 20);
+            this.txtXmlDestination.TabIndex = 12;
             // 
-            // sfdGMaps
+            // btnExportToGmaps
             // 
-            this.sfdGMaps.Filter = "xml files (*.xml)|*.xml";
-            this.sfdGMaps.FileOk += new System.ComponentModel.CancelEventHandler(this.sfdGMaps_FileOk);
+            this.btnExportToGmaps.Location = new System.Drawing.Point(104, 68);
+            this.btnExportToGmaps.Name = "btnExportToGmaps";
+            this.btnExportToGmaps.Size = new System.Drawing.Size(344, 35);
+            this.btnExportToGmaps.TabIndex = 13;
+            this.btnExportToGmaps.Text = "Export";
+            this.btnExportToGmaps.UseVisualStyleBackColor = true;
+            // 
+            // btnSaveToGMaps
+            // 
+            this.btnSaveToGMaps.Location = new System.Drawing.Point(420, 27);
+            this.btnSaveToGMaps.Name = "btnSaveToGMaps";
+            this.btnSaveToGMaps.Size = new System.Drawing.Size(118, 24);
+            this.btnSaveToGMaps.TabIndex = 11;
+            this.btnSaveToGMaps.Text = "Save";
+            this.btnSaveToGMaps.UseVisualStyleBackColor = true;
+            // 
+            // tabImportPanel
+            // 
+            this.tabImportPanel.Controls.Add(this.tabImportData);
+            this.tabImportPanel.Controls.Add(this.tabImportMaps);
+            this.tabImportPanel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabImportPanel.Location = new System.Drawing.Point(3, 3);
+            this.tabImportPanel.Name = "tabImportPanel";
+            this.tabImportPanel.SelectedIndex = 0;
+            this.tabImportPanel.Size = new System.Drawing.Size(572, 417);
+            this.tabImportPanel.TabIndex = 0;
+            // 
+            // tabImportData
+            // 
+            this.tabImportData.Controls.Add(this.grpConfig);
+            this.tabImportData.Controls.Add(this.grdImportConfig);
+            this.tabImportData.Location = new System.Drawing.Point(4, 22);
+            this.tabImportData.Name = "tabImportData";
+            this.tabImportData.Padding = new System.Windows.Forms.Padding(3);
+            this.tabImportData.Size = new System.Drawing.Size(564, 391);
+            this.tabImportData.TabIndex = 0;
+            this.tabImportData.Text = "Data";
+            this.tabImportData.UseVisualStyleBackColor = true;
+            // 
+            // tabImportMaps
+            // 
+            this.tabImportMaps.Controls.Add(this.groupBox1);
+            this.tabImportMaps.Location = new System.Drawing.Point(4, 22);
+            this.tabImportMaps.Name = "tabImportMaps";
+            this.tabImportMaps.Padding = new System.Windows.Forms.Padding(3);
+            this.tabImportMaps.Size = new System.Drawing.Size(564, 391);
+            this.tabImportMaps.TabIndex = 1;
+            this.tabImportMaps.Text = "Maps";
+            this.tabImportMaps.UseVisualStyleBackColor = true;
+            // 
+            // grpConfig
+            // 
+            this.grpConfig.Controls.Add(this.prbDataImport);
+            this.grpConfig.Controls.Add(this.btnConfigureConnection);
+            this.grpConfig.Controls.Add(this.lblConnecStr);
+            this.grpConfig.Controls.Add(this.txtConnectStr);
+            this.grpConfig.Controls.Add(this.btnImport);
+            this.grpConfig.Location = new System.Drawing.Point(3, 6);
+            this.grpConfig.Name = "grpConfig";
+            this.grpConfig.Size = new System.Drawing.Size(568, 164);
+            this.grpConfig.TabIndex = 12;
+            this.grpConfig.TabStop = false;
+            this.grpConfig.Text = "Configure import properties";
+            // 
+            // prbDataImport
+            // 
+            this.prbDataImport.Location = new System.Drawing.Point(305, 112);
+            this.prbDataImport.Name = "prbDataImport";
+            this.prbDataImport.Size = new System.Drawing.Size(246, 24);
+            this.prbDataImport.TabIndex = 16;
+            // 
+            // btnConfigureConnection
+            // 
+            this.btnConfigureConnection.Location = new System.Drawing.Point(479, 53);
+            this.btnConfigureConnection.Name = "btnConfigureConnection";
+            this.btnConfigureConnection.Size = new System.Drawing.Size(83, 23);
+            this.btnConfigureConnection.TabIndex = 15;
+            this.btnConfigureConnection.Text = "Configure";
+            this.btnConfigureConnection.UseVisualStyleBackColor = true;
+            // 
+            // lblConnecStr
+            // 
+            this.lblConnecStr.AutoSize = true;
+            this.lblConnecStr.Location = new System.Drawing.Point(18, 22);
+            this.lblConnecStr.Name = "lblConnecStr";
+            this.lblConnecStr.Size = new System.Drawing.Size(89, 13);
+            this.lblConnecStr.TabIndex = 14;
+            this.lblConnecStr.Text = "Connection string";
+            // 
+            // txtConnectStr
+            // 
+            this.txtConnectStr.Location = new System.Drawing.Point(21, 38);
+            this.txtConnectStr.Multiline = true;
+            this.txtConnectStr.Name = "txtConnectStr";
+            this.txtConnectStr.Size = new System.Drawing.Size(444, 52);
+            this.txtConnectStr.TabIndex = 13;
+            // 
+            // btnImport
+            // 
+            this.btnImport.Location = new System.Drawing.Point(21, 107);
+            this.btnImport.Name = "btnImport";
+            this.btnImport.Size = new System.Drawing.Size(243, 35);
+            this.btnImport.TabIndex = 9;
+            this.btnImport.Text = "Import";
+            this.btnImport.UseVisualStyleBackColor = true;
+            // 
+            // grdImportConfig
+            // 
+            this.grdImportConfig.Location = new System.Drawing.Point(-2, 176);
+            this.grdImportConfig.Name = "grdImportConfig";
+            this.grdImportConfig.PropertySort = System.Windows.Forms.PropertySort.Categorized;
+            this.grdImportConfig.Size = new System.Drawing.Size(568, 225);
+            this.grdImportConfig.TabIndex = 11;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtRssSource);
+            this.groupBox1.Controls.Add(this.btnImportGeoRss);
+            this.groupBox1.Controls.Add(this.btnSelectRssSource);
+            this.groupBox1.Location = new System.Drawing.Point(3, 32);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(566, 127);
+            this.groupBox1.TabIndex = 16;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Import from GeoRss file";
+            // 
+            // txtRssSource
+            // 
+            this.txtRssSource.Location = new System.Drawing.Point(15, 30);
+            this.txtRssSource.Name = "txtRssSource";
+            this.txtRssSource.ReadOnly = true;
+            this.txtRssSource.Size = new System.Drawing.Size(379, 20);
+            this.txtRssSource.TabIndex = 12;
+            // 
+            // btnImportGeoRss
+            // 
+            this.btnImportGeoRss.Location = new System.Drawing.Point(104, 68);
+            this.btnImportGeoRss.Name = "btnImportGeoRss";
+            this.btnImportGeoRss.Size = new System.Drawing.Size(344, 35);
+            this.btnImportGeoRss.TabIndex = 13;
+            this.btnImportGeoRss.Text = "Import";
+            this.btnImportGeoRss.UseVisualStyleBackColor = true;
+            // 
+            // btnSelectRssSource
+            // 
+            this.btnSelectRssSource.Location = new System.Drawing.Point(420, 27);
+            this.btnSelectRssSource.Name = "btnSelectRssSource";
+            this.btnSelectRssSource.Size = new System.Drawing.Size(118, 24);
+            this.btnSelectRssSource.TabIndex = 11;
+            this.btnSelectRssSource.Text = "Select";
+            this.btnSelectRssSource.UseVisualStyleBackColor = true;
             // 
             // frmInterop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 472);
-            this.Controls.Add(this.tabMaps);
+            this.Controls.Add(this.tabMain);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmInterop";
             this.Text = "Interoperability";
             this.Load += new System.EventHandler(this.frmInterop_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmInterop_FormClosing);
             this.tabDataImport.ResumeLayout(false);
-            this.grpConfig.ResumeLayout(false);
-            this.grpConfig.PerformLayout();
-            this.tabGeoRss.ResumeLayout(false);
-            this.grpGMapsExport.ResumeLayout(false);
-            this.grpGMapsExport.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.tabMaps.ResumeLayout(false);
+            this.tabMain.ResumeLayout(false);
+            this.tabExport.ResumeLayout(false);
+            this.tabExportPanel.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabExportMaps.ResumeLayout(false);
             this.grpExport.ResumeLayout(false);
             this.grpExport.PerformLayout();
+            this.grpGMapsExport.ResumeLayout(false);
+            this.grpGMapsExport.PerformLayout();
+            this.tabImportPanel.ResumeLayout(false);
+            this.tabImportData.ResumeLayout(false);
+            this.tabImportMaps.ResumeLayout(false);
+            this.grpConfig.ResumeLayout(false);
+            this.grpConfig.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -454,38 +509,43 @@
 
         private System.Windows.Forms.OpenFileDialog odfRssSource;
         private System.Windows.Forms.TabPage tabDataImport;
-        private System.Windows.Forms.GroupBox grpConfig;
-        private System.Windows.Forms.Button btnImport;
-        private System.Windows.Forms.PropertyGrid grdImportConfig;
-        private System.Windows.Forms.TabPage tabGeoRss;
-        private System.Windows.Forms.Button btnImportGeoRss;
-        private System.Windows.Forms.TextBox txtRssSource;
-        private System.Windows.Forms.Button btnSelectRssSource;
-        private System.Windows.Forms.TabControl tabMaps;
+        private System.Windows.Forms.TabControl tabMain;
         private System.Windows.Forms.OpenFileDialog ofdFileSource;
+        private System.Windows.Forms.TabPage tabExport;
+        private System.Windows.Forms.SaveFileDialog sfdExcelDestination;
+        private System.Windows.Forms.SaveFileDialog sfdGMaps;
+        private System.Windows.Forms.TabControl tabExportPanel;
         private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox grpExport;
-        private System.Windows.Forms.TextBox txtExcelDestiny;
-        private System.Windows.Forms.Button btnExport;
-        private System.Windows.Forms.Button btnSaveToExcel;
-        private System.Windows.Forms.SaveFileDialog sfdExcelDestiny;
-        private System.Windows.Forms.CheckedListBox chkListAddresses;
+        private System.Windows.Forms.RadioButton rdoDepartments;
+        private System.Windows.Forms.RadioButton rdoTerritories;
+        private System.Windows.Forms.RadioButton rdoCities;
         private System.Windows.Forms.RadioButton rdoAddresses;
         private System.Windows.Forms.CheckedListBox chkListDepartments;
         private System.Windows.Forms.CheckedListBox chkListTerritories;
         private System.Windows.Forms.CheckedListBox chkListCities;
-        private System.Windows.Forms.RadioButton rdoDepartments;
-        private System.Windows.Forms.RadioButton rdoTerritories;
-        private System.Windows.Forms.RadioButton rdoCities;
+        private System.Windows.Forms.CheckedListBox chkListAddresses;
+        private System.Windows.Forms.TextBox txtExcelDestination;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Button btnSaveToExcel;
+        private System.Windows.Forms.TabPage tabExportMaps;
         private System.Windows.Forms.GroupBox grpGMapsExport;
-        private System.Windows.Forms.TextBox txtXmlDestiny;
+        private System.Windows.Forms.TextBox txtXmlDestination;
         private System.Windows.Forms.Button btnExportToGmaps;
         private System.Windows.Forms.Button btnSaveToGMaps;
-        private System.Windows.Forms.SaveFileDialog sfdGMaps;
+        private System.Windows.Forms.TabControl tabImportPanel;
+        private System.Windows.Forms.TabPage tabImportData;
+        private System.Windows.Forms.GroupBox grpConfig;
+        private System.Windows.Forms.ProgressBar prbDataImport;
+        private System.Windows.Forms.Button btnConfigureConnection;
         private System.Windows.Forms.Label lblConnecStr;
         private System.Windows.Forms.TextBox txtConnectStr;
-        private System.Windows.Forms.Button btnConfigureConnection;
-        private System.Windows.Forms.ProgressBar prbDataImport;
+        private System.Windows.Forms.Button btnImport;
+        private System.Windows.Forms.PropertyGrid grdImportConfig;
+        private System.Windows.Forms.TabPage tabImportMaps;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.TextBox txtRssSource;
+        private System.Windows.Forms.Button btnImportGeoRss;
+        private System.Windows.Forms.Button btnSelectRssSource;
     }
 }
