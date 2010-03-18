@@ -489,10 +489,16 @@ namespace TerritoriesManagement.GUI
                 var departments = chklstDepartment.CheckedItemsValues;
 
                 if (e.CurrentValue == CheckState.Unchecked && e.NewValue == CheckState.Checked)
-                    departments.Add(chklstDepartment.ItemsValues[e.Index]);
+                {
+                    if (chklstDepartment.ItemsValues.Contains(e.Index))
+                        departments.Add(chklstDepartment.ItemsValues[e.Index]);
+                }
 
                 if (e.CurrentValue == CheckState.Checked && e.NewValue == CheckState.Unchecked)
-                    departments.Remove(chklstDepartment.ItemsValues[e.Index]);
+                {
+                    if (chklstDepartment.ItemsValues.Contains(e.Index))
+                        departments.Remove(chklstDepartment.ItemsValues[e.Index]);
+                }
 
                 var cities = this._server.GetCitiesByDepartments(departments.Cast<int>().ToArray());                
                 chklstCity.DataSource = cities;
