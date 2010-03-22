@@ -9,12 +9,13 @@ using System.Data.Objects;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Xml.Serialization;
+using System.Reflection;
 
 namespace TerritoriesManagement
 {
     public class Functions
     {
-        static public IList GetEntities(string entity, string entitySet, string where, params ObjectParameter[] parameters)
+        static public IList GetEntities(TerritoriesDataContext dm, string entity, string entitySet, string where, params ObjectParameter[] parameters)
         {            
             IList rv = null;
             string strQuery = "SELECT VALUE " + entity + " FROM TerritoriesDataContext." + entitySet + " AS " + entity;
@@ -26,8 +27,6 @@ namespace TerritoriesManagement
             {
                 parameters = new ObjectParameter[0];
             }
-            
-            TerritoriesDataContext dm = new TerritoriesDataContext();
 
            
             try
@@ -108,11 +107,11 @@ namespace TerritoriesManagement
 
         #region GetProperties
 
-        static public List<string> GetPropertyListByType(Type type)
+        static public List<Property> GetPropertyListByType(Type type)
         {
-            List<string> propertyList = new List<string>();
+            List<Property> propertyList = new List<Property>();
 
-            System.Reflection.PropertyInfo[] properties = type.GetProperties();
+            PropertyInfo[] properties = type.GetProperties();
 
             if (type == typeof(City))
             {
@@ -120,11 +119,11 @@ namespace TerritoriesManagement
                 {
                     if (!prop.Name.Contains("Department") && !prop.Name.Contains("Addresses")
                         && !prop.Name.Contains("Entity") && !prop.Name.Contains("Publishers"))
-                        propertyList.Add(prop.Name);
+                        propertyList.Add(new Property(prop.Name,prop.PropertyType));
                 }
 
-                propertyList.Add("Department.IdDepartment");
-                propertyList.Add("Department.Name");
+                propertyList.Add(new Property("Department.IdDepartment",typeof(int)));
+                propertyList.Add(new Property("Department.Name",typeof(string)));
             }
 
             if(type == typeof(Address))
@@ -132,13 +131,14 @@ namespace TerritoriesManagement
                 foreach (var prop in properties)
                 {
                     if (!prop.Name.Contains("City") && !prop.Name.Contains("Territory") && !prop.Name.Contains("Entity"))
-                        propertyList.Add(prop.Name);
+                        propertyList.Add(new Property(prop.Name,prop.PropertyType));
                 }
 
-                propertyList.Add("Territory.IdTerritory");
-                propertyList.Add("Territory.Name");
-                propertyList.Add("City.IdCity");
-                propertyList.Add("City.Name");
+                propertyList.Add(new Property("Territory.IdTerritory",typeof(int)));
+                propertyList.Add(new Property("Territory.Name",typeof(string)));
+
+                propertyList.Add(new Property("City.IdCity",typeof(int)));
+                propertyList.Add(new Property("City.Name",typeof(string)));
             }
 
             if (type == typeof(Department))
@@ -146,7 +146,7 @@ namespace TerritoriesManagement
                 foreach (var prop in properties)
                 {
                     if (!prop.Name.Contains("Cities") && !prop.Name.Contains("Entity"))
-                        propertyList.Add(prop.Name);
+                        propertyList.Add(new Property(prop.Name,prop.PropertyType));
                 }
             }
 
@@ -155,7 +155,7 @@ namespace TerritoriesManagement
                 foreach (var prop in properties)
                 {
                     if (!prop.Name.Contains("Tours") && !prop.Name.Contains("Addresses") && !prop.Name.Contains("Entity"))
-                        propertyList.Add(prop.Name);
+                        propertyList.Add(new Property(prop.Name,prop.PropertyType));
                 }
             }
 
@@ -164,5 +164,19 @@ namespace TerritoriesManagement
 
         }
         #endregion
+
+        static public bool IsNullableType(Type type)
+        {
+            return type.IsGenericType && type.GetGenericTypeDefinition().Equals(typeof(Nullable<>));
+        }
+
+        static public Type NullableToType(Type type)
+        {
+            System.ComponentModel.NullableConverter nc = new System.ComponentModel.NullableConverter(type);
+            Type underlyingType = nc.UnderlyingType;
+            return underlyingType;
+        }
     }
+
+    
 }

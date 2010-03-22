@@ -480,7 +480,7 @@ namespace TerritoriesManagement.GUI
                 list.Add("Address");
 
             if (list.Count > 0)
-                _importer.ImportData(txtImportDataFile.Text, list);
+                _importer.ImportExchangeData(txtImportDataFile.Text, list);
             
         }
 
