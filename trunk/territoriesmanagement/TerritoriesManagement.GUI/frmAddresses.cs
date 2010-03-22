@@ -477,6 +477,7 @@ namespace TerritoriesManagement.GUI
                         }
                     }
                     myForm.SecondaryMarkers = marks;
+                    myForm.AllowDrawPolygon = false;
                     myForm.ShowDialog();
                 }
             }
@@ -490,13 +491,13 @@ namespace TerritoriesManagement.GUI
 
                 if (e.CurrentValue == CheckState.Unchecked && e.NewValue == CheckState.Checked)
                 {
-                    if (chklstDepartment.ItemsValues.Contains(e.Index))
+                    if (chklstDepartment.ItemsValues.Count < e.Index)
                         departments.Add(chklstDepartment.ItemsValues[e.Index]);
                 }
 
                 if (e.CurrentValue == CheckState.Checked && e.NewValue == CheckState.Unchecked)
                 {
-                    if (chklstDepartment.ItemsValues.Contains(e.Index))
+                    if (chklstDepartment.ItemsValues.Count < e.Index)
                         departments.Remove(chklstDepartment.ItemsValues[e.Index]);
                 }
 

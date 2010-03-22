@@ -13,6 +13,11 @@ using System.Resources;
 using ZeqkTools.Data;
 using ZeqkTools.Query.Enumerators;
 using TerritoriesManagement.Model;
+using System.Xml.Serialization;
+using System.Data.Objects.DataClasses;
+using System.Xml;
+using System.Runtime.Serialization;
+using System.Reflection;
 
 
 namespace TerritoriesManagement.Import
@@ -1136,7 +1141,115 @@ namespace TerritoriesManagement.Import
                 );
         }
 
+        #region Export data
+        public int ImportData(string path, List<string> entityList)
+        {
+            int count = 0;
+            try
+            {
+                PreCompileQueries();
 
+                foreach (var entityName in entityList)
+                {
+                    Type entityType = Functions.GetEntityTypeByEntityName(entityName);
+                    string entitySetName = Functions.GetEntitySetNameByEntityName(entityName);
+                    string keyProperty = "Id" + entityName;
+
+                    XmlReader xr = XmlDictionaryReader.Create(path);
+                    DataContractSerializer dcs = new DataContractSerializer(typeof(List<Hashtable>));
+                    List<Hashtable> records = (List<Hashtable>)dcs.ReadObject(xr);
+
+                    xr.Close();
+
+                    foreach (Hashtable record in records)
+                    {
+                        if (count == 155)
+                        {
+                            int hola = 1;
+                        }
+                        //esto comprueba q el registro sea o no del tipo a importar
+                        if (record.ContainsKey(keyProperty) && !record.ContainsKey("."))
+                        {
+                            object recordObj = HashtableToObject(record, entityType);
+                            _dm.AddObject(entitySetName, recordObj);
+                            count++;
+                        }
+                    }
+
+                }
+                _dm.SaveChanges();
+
+               
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return count;
+        }
+
+        private Object HashtableToObject(Hashtable record, Type entityType)
+        {
+            object entityObj = Activator.CreateInstance(entityType);
+
+            List<string> propLst = Functions.GetPropertyListByType(entityType);
+            foreach (string item in propLst)
+            {
+                if (record.ContainsKey(item))
+                {
+                    if (!item.Contains("."))
+                    {
+                        if(item.Contains("Id"))
+                            entityType.GetProperty(item).SetValue(entityObj, 0, null);
+                        else
+                        {
+                            object value = record[item];
+                            entityType.GetProperty(item).SetValue(entityObj, value, null);
+                        }
+                    }
+                    else
+                    {
+                        //manejo de la referencias
+                        if (item.Contains("City.Name"))
+                        {
+                            int id = _compiledIdCityByName(_dm, record[item].ToString()).First();
+                            EntityKey key = new EntityKey("TerritoriesDataContext.Cities", "IdCity", id);
+                            object reference = entityType.GetProperty("CityReference").GetValue(entityObj, null);
+                            reference.GetType().GetProperty("EntityKey").SetValue(reference, key, null);
+
+                        }
+
+                        if (item.Contains("Department.Name"))
+                        {
+                            int id = _compiledIdDepartmentByName(_dm, record[item].ToString()).First();
+                            EntityKey key = new EntityKey("TerritoriesDataContext.Departments", "IdDepartment", id);
+                            object reference = entityType.GetProperty("DepartmentReference").GetValue(entityObj, null);
+                            reference.GetType().GetProperty("EntityKey").SetValue(reference, key, null);
+                        }
+
+                        if (item.Contains("Territory.Name"))
+                        {
+                            if (record[item] != null)
+                            {
+                                int id = _compiledIdTerritoryByName(_dm, record[item].ToString()).First();
+                                EntityKey key = new EntityKey("TerritoriesDataContext.Territories", "IdTerritory", id);
+                                object reference = entityType.GetProperty("TerritoryReference").GetValue(entityObj, null);
+                                reference.GetType().GetProperty("EntityKey").SetValue(reference, key, null);
+                            }
+                        }
+                        
+                    }
+                    
+                }
+            }
+            return entityObj;
+
+        }
+
+        
+        
+        #endregion
 
     }
 }

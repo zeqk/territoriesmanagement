@@ -15,7 +15,7 @@ namespace TerritoriesManagement
     public class Functions
     {
         static public IList GetEntities(string entity, string entitySet, string where, params ObjectParameter[] parameters)
-        {
+        {            
             IList rv = null;
             string strQuery = "SELECT VALUE " + entity + " FROM TerritoriesDataContext." + entitySet + " AS " + entity;
 
@@ -26,8 +26,10 @@ namespace TerritoriesManagement
             {
                 parameters = new ObjectParameter[0];
             }
-
+            
             TerritoriesDataContext dm = new TerritoriesDataContext();
+
+           
             try
             {
                 if (entitySet.Equals("Addresses"))
@@ -69,39 +71,98 @@ namespace TerritoriesManagement
 
         }
 
-        static public void Serialize(object obj, string path, bool overwrite)
+        static public string GetEntitySetNameByEntityName(string entityName)
         {
-            try
-            {
+            Dictionary<string, string> rv = new Dictionary<string, string>();
+            rv.Add("Department", "Departments");
+            rv.Add("City", "Cities");
+            rv.Add("Address", "Addresses");
+            rv.Add("Publisher", "Publishers");
+            rv.Add("Tour", "Tours");
+            rv.Add("Territory", "Territories");
 
-                XmlSerializer serializer = new XmlSerializer(obj.GetType());
-                TextWriter sw = new StreamWriter(path, !overwrite);
-
-                serializer.Serialize(sw, obj);
-                sw.Close();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            return rv[entityName];
         }
 
-        static public object Deserialize(Type type, string path)
+        static public Type GetEntityTypeByEntityName(string entityName)
         {
-            try
-            {
-                object rv;
-
-                XmlSerializer serializer = new XmlSerializer(type);
-                TextReader sr = new StreamReader(path);
-                rv = serializer.Deserialize(sr);
-                sr.Close();
-                return rv;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            return Type.GetType("TerritoriesManagement.Model." + entityName);
         }
+
+
+        static public object GetPropertyValue(object obj, string propertyName)
+        {
+            object value = null;
+
+            if (!propertyName.Contains('.'))
+                value = obj.GetType().GetProperty(propertyName).GetValue(obj, null);
+            else
+            {
+                string[] subProperty = propertyName.Split('.');
+                object refProperty = obj.GetType().GetProperty(subProperty[0]).GetValue(obj, null);
+                if (refProperty != null)
+                    value = refProperty.GetType().GetProperty(subProperty[1]).GetValue(refProperty, null);
+            }
+            return value;
+        }
+
+        #region GetProperties
+
+        static public List<string> GetPropertyListByType(Type type)
+        {
+            List<string> propertyList = new List<string>();
+
+            System.Reflection.PropertyInfo[] properties = type.GetProperties();
+
+            if (type == typeof(City))
+            {
+                foreach (var prop in properties)
+                {
+                    if (!prop.Name.Contains("Department") && !prop.Name.Contains("Addresses")
+                        && !prop.Name.Contains("Entity") && !prop.Name.Contains("Publishers"))
+                        propertyList.Add(prop.Name);
+                }
+
+                propertyList.Add("Department.IdDepartment");
+                propertyList.Add("Department.Name");
+            }
+
+            if(type == typeof(Address))
+            {
+                foreach (var prop in properties)
+                {
+                    if (!prop.Name.Contains("City") && !prop.Name.Contains("Territory") && !prop.Name.Contains("Entity"))
+                        propertyList.Add(prop.Name);
+                }
+
+                propertyList.Add("Territory.IdTerritory");
+                propertyList.Add("Territory.Name");
+                propertyList.Add("City.IdCity");
+                propertyList.Add("City.Name");
+            }
+
+            if (type == typeof(Department))
+            {
+                foreach (var prop in properties)
+                {
+                    if (!prop.Name.Contains("Cities") && !prop.Name.Contains("Entity"))
+                        propertyList.Add(prop.Name);
+                }
+            }
+
+            if (type == typeof(Territory))
+            {
+                foreach (var prop in properties)
+                {
+                    if (!prop.Name.Contains("Tours") && !prop.Name.Contains("Addresses") && !prop.Name.Contains("Entity"))
+                        propertyList.Add(prop.Name);
+                }
+            }
+
+
+            return propertyList;
+
+        }
+        #endregion
     }
 }
