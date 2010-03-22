@@ -13,6 +13,8 @@ using System.Xml;
 using System.Globalization;
 using GMap.NET;
 using System.Data.Objects;
+using System.Xml.Serialization;
+using System.Runtime.Serialization;
 
 namespace TerritoriesManagement.Export
 {
@@ -61,20 +63,7 @@ namespace TerritoriesManagement.Export
 
                     foreach (var propName in properties)
                     {
-                        string strValue = "";
-                        if (!propName.Contains('.'))
-                        {
-                            object value = item.GetType().GetProperty(propName).GetValue(item, null);
-                            if (value != null)
-                                strValue = item.GetType().GetProperty(propName).GetValue(item, null).ToString();
-                        }
-                        else
-                        {
-                            string[] subProperty = propName.Split('.');
-                            object refProperty = item.GetType().GetProperty(subProperty[0]).GetValue(item, null);
-                            if (refProperty != null)
-                                strValue = refProperty.GetType().GetProperty(subProperty[1]).GetValue(refProperty, null).ToString();
-                        }
+                        string strValue = Functions.GetPropertyValue(item, propName).ToString();
 
                         WorksheetCell cell = row.Cells.Add(strValue);
                     }
@@ -91,9 +80,9 @@ namespace TerritoriesManagement.Export
             return rv;
         }
 
-        public void ExportToGMap(string pathOut, string where, params ObjectParameter[] parameters)
+        public void ExportToGMap(string path, string where, params ObjectParameter[] parameters)
         {
-            StreamWriter sw = new StreamWriter(pathOut, false, Encoding.UTF8, 512);
+            StreamWriter sw = new StreamWriter(path, false, Encoding.UTF8, 512);
             using (XmlTextWriter xw = new XmlTextWriter(sw))
             {
                 xw.Formatting = Formatting.Indented;
@@ -145,6 +134,64 @@ namespace TerritoriesManagement.Export
                 sw.Close();
             }
 
+        }
+
+        static public void ExportData(string path, List<string> entityList)
+        {
+            try
+            {
+                XmlWriterSettings setting = new XmlWriterSettings();
+                setting.Indent = true;                    
+                XmlWriter xtw = XmlTextWriter.Create(path, setting);
+                XmlDictionaryWriter xdw = XmlDictionaryWriter.CreateDictionaryWriter(xtw);
+                DataContractSerializer dcs = new DataContractSerializer(typeof(List<Hashtable>));
+
+                foreach (var entityName in entityList)
+                {
+                    string entitySetName = Functions.GetEntitySetNameByEntityName(entityName);
+
+                    IList records = Functions.GetEntities(entityName,entitySetName,"");
+                    
+                    IList tmxLst = RecordsToTmxFormat(records);
+                    dcs.WriteObject(xdw, tmxLst);
+                    xtw.Close();
+                }
+
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        static private IList RecordsToTmxFormat(IList records)
+        {
+            IList rv = new List<Hashtable>();
+
+            foreach (object item in records)
+            {
+                rv.Add(ObjToTmxFormat(item));
+            }
+
+            return rv;
+        }
+
+
+        static private Hashtable ObjToTmxFormat(object obj)
+        {
+            Hashtable rv = new Hashtable();
+
+            List<string> propLst = Functions.GetPropertyListByType(obj.GetType());
+
+            foreach (string propName in propLst)
+            {
+                object value = Functions.GetPropertyValue(obj, propName);
+                rv.Add(propName, value);
+            }
+
+
+            return rv;
         }
         
 

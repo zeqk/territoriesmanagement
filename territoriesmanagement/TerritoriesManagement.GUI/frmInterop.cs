@@ -408,12 +408,9 @@ namespace TerritoriesManagement.GUI
 
         private void btnSaveToExcel_Click(object sender, EventArgs e)
         {
-            sfdExcelDestination.ShowDialog();
-        }
-
-        private void sfdExcelDestiny_FileOk(object sender, CancelEventArgs e)
-        {
-            txtExcelDestination.Text = Path.GetFullPath(sfdExcelDestination.FileName);
+            sfdDestinationFile.Filter = "Excel files (*.xls)|*.xls";
+            if(sfdDestinationFile.ShowDialog() == DialogResult.OK)
+                txtExcelDestination.Text = Path.GetFullPath(sfdDestinationFile.FileName);
         }
 
         #endregion
@@ -456,9 +453,72 @@ namespace TerritoriesManagement.GUI
             prbDataImport.Value = e.ProgressPercentage;
         }
 
- 
+        #region ImportData
+        private void btnImportDataSelectFile_Click(object sender, EventArgs e)
+        {
+            ofdSourceFile.Filter = "Territories management exchange file(*.tmx)|*.tmx";
+            if (ofdSourceFile.ShowDialog() == DialogResult.OK)
+                txtImportDataFile.Text = Path.GetFullPath(ofdSourceFile.FileName);
+        }
+
+
+
+        private void btnImportData_Click(object sender, EventArgs e)
+        {
+            List<string> list = new List<string>();
+            if (chkImportDataDepartments.Checked)
+                list.Add("Department");
+            if (chkImportDataCities.Checked)
+                list.Add("City");
+            if (chkImportDataPublishers.Checked)
+                list.Add("Publisher");
+            if (chkImportDataTerritories.Checked)
+                list.Add("Territory");
+            if (chkImportDataTours.Checked)
+                list.Add("Tuor");
+            if (chkImportDataAddresses.Checked)
+                list.Add("Address");
+
+            if (list.Count > 0)
+                _importer.ImportData(txtImportDataFile.Text, list);
+            
+        }
+
+        #endregion
+        #region Data exportation
+        private void btnDataExportSave_Click(object sender, EventArgs e)
+        {
+            sfdDestinationFile.Filter = "Territories management exchange file(*.tmx)|*.tmx";
+            if (sfdDestinationFile.ShowDialog() == DialogResult.OK)
+                txtDataExportFile.Text = Path.GetFullPath(sfdDestinationFile.FileName);
+        }
+
+        private void btnExportData_Click(object sender, EventArgs e)
+        {
+            List<string> list = new List<string>();
+            if (chkDataExportDepartments.Checked)
+                list.Add("Department");
+            if (chkDataExportCities.Checked)
+                list.Add("City");
+            if (chkDataExportPublishers.Checked)
+                list.Add("Publisher");
+            if (chkDataExportTerritories.Checked)
+                list.Add("Territory");
+            if (chkDataExportTours.Checked)
+                list.Add("Tuor");
+            if (chkDataExportAddresses.Checked)
+                list.Add("Address");
+
+            if (list.Count > 0)
+                ExportTool.ExportData(txtDataExportFile.Text, list);
+        }
+        #endregion
 
         
+
+
+
+
 
 
 
