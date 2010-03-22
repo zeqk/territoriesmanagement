@@ -149,6 +149,11 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
+                Export.ExportTool tool = new TerritoriesManagement.Export.ExportTool();
+                List<string> entities = new List<string>();
+                entities.Add("Address");
+                tool.ExportData("C:\\hola.tmx", entities);
+
                 dgvResult.DataSource = this._server.Search(query);                
             }
             catch (Exception ex)

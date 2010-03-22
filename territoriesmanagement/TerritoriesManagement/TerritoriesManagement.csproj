@@ -66,10 +66,6 @@
     <OutputPath>bin\x64\x86 CPU\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CarlosAg.ExcelXmlWriter, Version=1.0.0.6, Culture=neutral, PublicKeyToken=eac822d9c4196ba1">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libs\CarlosAg.ExcelXmlWriter.dll</HintPath>
-    </Reference>
     <Reference Include="FirebirdSql.Data.FirebirdClient, Version=2.5.1.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\FirebirdSql.Data.FirebirdClient.dll</HintPath>

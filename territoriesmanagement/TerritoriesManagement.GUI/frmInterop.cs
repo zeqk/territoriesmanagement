@@ -15,6 +15,7 @@ using TerritoriesManagement.GUI;
 using TerritoriesManagement.GUI.ImporterConfig;
 using TerritoriesManagement.Export;
 using TerritoriesManagement.DataBridge;
+using TerritoriesManagement.Model;
 
 namespace TerritoriesManagement.GUI
 {
@@ -63,6 +64,11 @@ namespace TerritoriesManagement.GUI
             grdImportConfig.SelectedObject = _config;
 
             LoadExportCheckList();
+
+            //Export.ExportTool tool = new TerritoriesManagement.Export.ExportTool();
+            //List<string> entities = new List<string>();
+            //entities.Add("Address");
+            //tool.ExportData("C:\\hola.tmx", entities);
             
         }
 
@@ -337,7 +343,7 @@ namespace TerritoriesManagement.GUI
         private void btnExport_Click(object sender, EventArgs e)
         {
             bool exported = true;
-
+            ExportTool tool = new ExportTool();
             try
             {
                 if (rdoAddresses.Checked)
@@ -345,7 +351,7 @@ namespace TerritoriesManagement.GUI
 
                     string[] properties = chkListAddresses.CheckedItems.Cast<string>().ToArray();
 
-                    exported = ExportTool.ExportToExcel(txtExcelDestination.Text, "Address", "Addresses", properties, "", null);
+                    exported = tool.ExportToExcel(txtExcelDestination.Text, "Address", "Addresses", properties, "", null);
                 }
 
 
@@ -353,21 +359,21 @@ namespace TerritoriesManagement.GUI
                 {
                     string[] properties = chkListTerritories.CheckedItems.Cast<string>().ToArray();
 
-                    exported = ExportTool.ExportToExcel(txtExcelDestination.Text, "Territory", "Territories", properties, "", null);
+                    exported = tool.ExportToExcel(txtExcelDestination.Text, "Territory", "Territories", properties, "", null);
                 }
 
                 if (rdoCities.Checked)
                 {
                     string[] properties = chkListCities.CheckedItems.Cast<string>().ToArray();
 
-                    exported = ExportTool.ExportToExcel(txtExcelDestination.Text, "City", "Cities", properties, "", null);
+                    exported = tool.ExportToExcel(txtExcelDestination.Text, "City", "Cities", properties, "", null);
                 }
 
                 if (rdoDepartments.Checked)
                 {
                     string[] properties = chkListDepartments.CheckedItems.Cast<string>().ToArray();
 
-                    exported = ExportTool.ExportToExcel(txtExcelDestination.Text, "Department", "Departments", properties, "", null);
+                    exported = tool.ExportToExcel(txtExcelDestination.Text, "Department", "Departments", properties, "", null);
                 }
             }
             catch (Exception ex)
@@ -385,17 +391,13 @@ namespace TerritoriesManagement.GUI
         private void LoadExportCheckList()
         {
             //Export
-            Addresses address = new Addresses();
-            chkListAddresses.Items.AddRange(address.GetPropertyList().ToArray());
-
-            Territories territories = new Territories();
-            chkListTerritories.Items.AddRange(territories.GetPropertyList().ToArray());
-
-            Cities cities = new Cities();
-            chkListCities.Items.AddRange(cities.GetPropertyList().ToArray());
-
-            Departments departments = new Departments();
-            chkListDepartments.Items.AddRange(departments.GetPropertyList().ToArray());
+            chkListAddresses.Items.AddRange(Functions.GetPropertyStrListByTypeName("Address").ToArray());
+                        
+            chkListTerritories.Items.AddRange(Functions.GetPropertyStrListByTypeName("Territory").ToArray());
+                        
+            chkListCities.Items.AddRange(Functions.GetPropertyStrListByTypeName("City").ToArray());
+                        
+            chkListDepartments.Items.AddRange(Functions.GetPropertyStrListByTypeName("Department").ToArray());
         }
 
         private void rdo_CheckedChanged(object sender, EventArgs e)
@@ -510,7 +512,12 @@ namespace TerritoriesManagement.GUI
                 list.Add("Address");
 
             if (list.Count > 0)
-                ExportTool.ExportData(txtDataExportFile.Text, list);
+            {
+                string path = txtDataExportFile.Text;
+                //string path = "C:\\hola.tmx";
+                ExportTool tool = new ExportTool();
+                tool.ExportData(path, list);
+            }
         }
         #endregion
 

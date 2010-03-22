@@ -27,7 +27,6 @@ namespace TerritoriesManagement
             {
                 parameters = new ObjectParameter[0];
             }
-
            
             try
             {
@@ -42,20 +41,20 @@ namespace TerritoriesManagement
 
                 if (entitySet.Equals("Territories"))
                 {
-                    var res = dm.CreateQuery<Territory>(strQuery, parameters).Execute(System.Data.Objects.MergeOption.AppendOnly);
+                    var res = dm.CreateQuery<Territory>(strQuery, parameters).Execute(MergeOption.AppendOnly);
                     rv = res.ToList();
                 }
 
                 if (entitySet.Equals("Cities"))
                 {
                     var res = dm.CreateQuery<City>(strQuery, parameters).Include("Department")
-                                                                        .Execute(System.Data.Objects.MergeOption.AppendOnly);
+                                                                        .Execute(MergeOption.AppendOnly);
                     rv = res.ToList();
                 }
 
                 if (entitySet.Equals("Departments"))
                 {
-                    var res = dm.CreateQuery<Department>(strQuery, parameters).Execute(System.Data.Objects.MergeOption.AppendOnly);
+                    var res = dm.CreateQuery<Department>(strQuery, parameters).Execute(MergeOption.AppendOnly);
                     rv = res.ToList();
                 }
             }
@@ -68,7 +67,7 @@ namespace TerritoriesManagement
             return rv;
 
 
-        }
+        }       
 
         static public string GetEntitySetNameByEntityName(string entityName)
         {
@@ -87,8 +86,7 @@ namespace TerritoriesManagement
         {
             return Type.GetType("TerritoriesManagement.Model." + entityName);
         }
-
-
+        
         static public object GetPropertyValue(object obj, string propertyName)
         {
             object value = null;
@@ -104,9 +102,7 @@ namespace TerritoriesManagement
             }
             return value;
         }
-
-        #region GetProperties
-
+        
         static public List<Property> GetPropertyListByType(Type type)
         {
             List<Property> propertyList = new List<Property>();
@@ -163,7 +159,16 @@ namespace TerritoriesManagement
             return propertyList;
 
         }
-        #endregion
+
+        static public List<string> GetPropertyStrListByTypeName(string typeName)
+        {
+            Type type = Type.GetType("TerritoriesManagement.Model." + typeName);
+            List<string> propertyList = GetPropertyListByType(type).Select(P => P.Name).ToList();
+
+
+            return propertyList;
+
+        }        
 
         static public bool IsNullableType(Type type)
         {
@@ -175,6 +180,21 @@ namespace TerritoriesManagement
             System.ComponentModel.NullableConverter nc = new System.ComponentModel.NullableConverter(type);
             Type underlyingType = nc.UnderlyingType;
             return underlyingType;
+        }
+
+        static public bool TestConnection()
+        {
+            try
+            {
+                bool rv = true;
+                TerritoriesDataContext dm = new TerritoriesDataContext();
+                dm.Departments.First();
+                return rv;
+            }
+            catch (Exception ex)
+            {                
+                throw ex;
+            }
         }
     }
 

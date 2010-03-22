@@ -440,8 +440,8 @@ namespace TerritoriesManagement.GUI
             {
                 Addresses address = new Addresses();
                 string[] properties = address.GetPropertyList().ToArray();
-
-                ExportTool.ExportToExcel(path, "Address", "Addresses", properties, strQuery, parameters.ToArray());
+                ExportTool tool = new ExportTool();
+                tool.ExportToExcel(path, "Address", "Addresses", properties, strQuery, parameters.ToArray());
             }
             catch (Exception ex)
             {

@@ -17,6 +17,5 @@ namespace TerritoriesManagement.DataBridge
         IList Search(string strCriteria, params ObjectParameter[] parameters);
         T NewObject();
         void DeleteAll();
-        List<string> GetPropertyList();
     }
 }
