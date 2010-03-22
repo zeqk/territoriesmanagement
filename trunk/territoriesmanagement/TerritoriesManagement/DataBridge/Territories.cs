@@ -164,22 +164,6 @@ namespace TerritoriesManagement.DataBridge
             }
         }
 
-        public List<string> GetPropertyList()
-        {
-            List<string> propertyList = new List<string>();
-
-            System.Reflection.PropertyInfo[] properties = typeof(Territory).GetProperties();
-
-            foreach (var prop in properties)
-            {
-                if (!prop.Name.Contains("Tours") && !prop.Name.Contains("Addresses") && !prop.Name.Contains("Entity"))
-                    propertyList.Add(prop.Name);
-            }
-
-            return propertyList;
-
-        }
-
         #endregion
 
         private bool IsValid(Territory v, ref string message)

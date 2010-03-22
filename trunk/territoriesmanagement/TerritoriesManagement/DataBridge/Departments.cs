@@ -202,22 +202,6 @@ namespace TerritoriesManagement.DataBridge
             }
         }
 
-        public List<string> GetPropertyList()
-        {
-            List<string> propertyList = new List<string>();
-
-            System.Reflection.PropertyInfo[] properties = typeof(Model.Department).GetProperties();
-
-            foreach (var prop in properties)
-            {
-                if (!prop.Name.Contains("Cities") && !prop.Name.Contains("Entity"))
-                    propertyList.Add(prop.Name);
-            }
-
-            return propertyList;
-
-        }
-
         #endregion
 
 

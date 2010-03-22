@@ -4,20 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Data.EntityClient;
 using System.Data.Common;
-using CarlosAg.ExcelXmlWriter;
-using TerritoriesManagement.Model;
 using System.Collections;
 using System.Drawing;
 using System.IO;
-using System.Xml;
 using System.Globalization;
 using System.Data.Objects;
-using System.Xml.Serialization;
-using System.Runtime.Serialization;
 using System.Data;
+using System.Xml;
 using System.Web.UI.WebControls;
 using System.Web.UI;
 using GMap.NET;
+using TerritoriesManagement.Model;
 
 namespace TerritoriesManagement.Export
 {
@@ -33,7 +30,7 @@ namespace TerritoriesManagement.Export
         /// <param name="where">Query string</param>
         /// <param name="parameters">Query parameters</param>
         /// <returns></returns>
-        static public bool ExportToExcel(string path,string entity,string entitySet, string[] properties, string where, params ObjectParameter[] parameters)
+        public bool ExportToExcel(string path,string entity,string entitySet, string[] properties, string where, params ObjectParameter[] parameters)
         {
             bool rv = true;
             try
@@ -67,29 +64,6 @@ namespace TerritoriesManagement.Export
             return rv;
         }
 
-
-        static public void ToExcel(IList list, List<string> propertyList)
-        {
-            // create the DataGrid and perform the databinding
-
-            System.Web.UI.WebControls.DataGrid grid =
-                        new System.Web.UI.WebControls.DataGrid();
-            grid.HeaderStyle.Font.Bold = true;
-            grid.DataSource = list;
-
-            grid.DataBind();
-
-            // render the DataGrid control to a file
-
-            using (StreamWriter sw = new StreamWriter("c:\\test.xls"))
-            {
-                using (System.Web.UI.HtmlTextWriter hw = new System.Web.UI.HtmlTextWriter(sw))
-                {
-                    
-                    grid.RenderControl(hw);
-                }
-            }
-        }
         public void ExportToGMap(string path, string where, params ObjectParameter[] parameters)
         {
             try
@@ -157,7 +131,7 @@ namespace TerritoriesManagement.Export
 
 
         #region ExportData
-        static public void ExportData(string path, List<string> entityList)
+        public void ExportData(string path, List<string> entityList)
         {
             try
             {
@@ -166,9 +140,8 @@ namespace TerritoriesManagement.Export
                 
                 foreach (var entityName in entityList)
                 {
-                    string entitySetName = Functions.GetEntitySetNameByEntityName(entityName);
-
-                    IList records = Functions.GetEntities(dm, entityName,entitySetName,"");
+                    string entitySetName = Functions.GetEntitySetNameByEntityName(entityName);                    
+                    IList records = Functions.GetEntities(dm, entityName, entitySetName, "");
                     List<Property> propLst = Functions.GetPropertyListByType(records[0].GetType());
                     DataTable dt = RecordsToDataTable(records, propLst);
                     dt.TableName = entitySetName;
@@ -183,7 +156,7 @@ namespace TerritoriesManagement.Export
             }
         }
 
-        static private DataTable RecordsToDataTable(IList records, List<Property> propLst)
+        private DataTable RecordsToDataTable(IList records, List<Property> propLst)
         {
             DataTable dt = new DataTable();
             
@@ -207,7 +180,7 @@ namespace TerritoriesManagement.Export
             return dt;
         }
 
-        static private DataTable RecordsToDataTable(IList records, List<string> propLst)
+        private DataTable RecordsToDataTable(IList records, List<string> propLst)
         {
             DataTable dt = new DataTable();
 
@@ -228,7 +201,7 @@ namespace TerritoriesManagement.Export
             return dt;
         }
 
-        static private DataRow ObjToDataRow(object obj, DataRow row)
+        private DataRow ObjToDataRow(object obj, DataRow row)
         {
             foreach (DataColumn column in row.Table.Columns)
             {

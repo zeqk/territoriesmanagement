@@ -39,7 +39,11 @@
             this.menuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.lblConnectionStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblConnectionStatusValue = new System.Windows.Forms.ToolStripStatusLabel();
             this.menu.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAddress
@@ -137,11 +141,34 @@
             this.menuAbout.Text = "About Territories Management";
             this.menuAbout.Click += new System.EventHandler(this.menuAbout_Click);
             // 
+            // statusStrip
+            // 
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblConnectionStatus,
+            this.lblConnectionStatusValue});
+            this.statusStrip.Location = new System.Drawing.Point(0, 202);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(453, 22);
+            this.statusStrip.TabIndex = 7;
+            this.statusStrip.Text = "statusStrip1";
+            // 
+            // lblConnectionStatus
+            // 
+            this.lblConnectionStatus.Name = "lblConnectionStatus";
+            this.lblConnectionStatus.Size = new System.Drawing.Size(98, 17);
+            this.lblConnectionStatus.Text = "Connection status:";
+            // 
+            // lblConnectionStatusValue
+            // 
+            this.lblConnectionStatusValue.Name = "lblConnectionStatusValue";
+            this.lblConnectionStatusValue.Size = new System.Drawing.Size(0, 17);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(453, 213);
+            this.ClientSize = new System.Drawing.Size(453, 224);
+            this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.bntTerritories);
             this.Controls.Add(this.btnDepartments);
             this.Controls.Add(this.btnCities);
@@ -154,6 +181,8 @@
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -172,6 +201,9 @@
         private System.Windows.Forms.ToolStripMenuItem menuConfiguration;
         private System.Windows.Forms.ToolStripMenuItem menuInteroperabilty;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.StatusStrip statusStrip;
+        private System.Windows.Forms.ToolStripStatusLabel lblConnectionStatus;
+        private System.Windows.Forms.ToolStripStatusLabel lblConnectionStatusValue;
 
     }
 }
