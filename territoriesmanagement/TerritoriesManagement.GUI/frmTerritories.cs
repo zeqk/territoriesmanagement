@@ -155,7 +155,7 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
-                dgvResult.DataSource = this._server.Search(query);
+                dgvResult.DataSource = this._server.Search2(query);
             }
             catch (Exception ex)
             {
@@ -310,7 +310,7 @@ namespace TerritoriesManagement.GUI
 
                 if (!string.IsNullOrEmpty(strQuery))
                 {
-                    dgvResult.DataSource = this._server.Search(strQuery, parameters.ToArray<ObjectParameter>());
+                    dgvResult.DataSource = this._server.Search2(strQuery, parameters.ToArray<ObjectParameter>());
                     lblFiltered.Visible = true;
                 }
                 else
@@ -353,51 +353,32 @@ namespace TerritoriesManagement.GUI
 
         private void btnViewMap_Click(object sender, EventArgs e)
         {
-            using (frmGeoPolygon myForm = new frmGeoPolygon())
+            using (frmConfigureMap myForm = new frmConfigureMap())
             {
-                myForm.Address = _config.Place;
-                myForm.MapType = _config.MapType;
                 Territory t = FormToOject();
-                if (!string.IsNullOrEmpty(t.Area))
-                {
-                    string[] strPoints = t.Area.Split('\n');
-                    myForm.Polygon = StrPointsToPointsLatLng(strPoints);
-                    
-                }
 
-                if (t.Addresses.Count > 0)
-                {
-                    List<GMapMarker> marks = new List<GMapMarker>();
-                    foreach (var item in t.Addresses)
-                    {
-                        if (item.Lat.HasValue && item.Lng.HasValue)
-                        {
-
-                            GMapMarkerCustom marker = new GMapMarkerCustom(new PointLatLng(item.Lat.Value, item.Lng.Value));
-                            marker.Tag = item.IdAddress;
-                            marker.ToolTipText = item.Street + item.Number;
-                            marker.Icon = Properties.Resources.legendIcon;
-                            marks.Add(marker);
-                        }
-                    }
-                    myForm.SecondaryMarkers = marks;
-                }
+                myForm.Object = t;
 
                 if (myForm.ShowDialog() == DialogResult.OK)
                 {
                     string area = "";
 
                     var polygon = myForm.Polygon;
-                    foreach (PointLatLng item in polygon)
+                    if (polygon != null)
                     {
-                        if (!string.IsNullOrEmpty(area))
-                            area += Environment.NewLine;
-                        area += item.Lat + " " + item.Lng;
+                        foreach (PointLatLng item in polygon)
+                        {
+                            if (!string.IsNullOrEmpty(area))
+                                area += Environment.NewLine;
+                            area += item.Lat + " " + item.Lng;
+                        }
+                        if (string.IsNullOrEmpty(area))
+                            t.Area = null;
+                        else
+                            t.Area = area;
                     }
-                    if (string.IsNullOrEmpty(area))
-                        t.Area = null;
                     else
-                        t.Area = area;
+                        t.Area = null;
 
                     ObjectToForm(t);
                 }

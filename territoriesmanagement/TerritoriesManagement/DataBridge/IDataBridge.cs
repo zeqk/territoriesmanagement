@@ -14,7 +14,7 @@ namespace TerritoriesManagement.DataBridge
         T Update(T v);
         void Delete(int id);
         T Load(int id);
-        IList Search(string strCriteria, params ObjectParameter[] parameters);
+        IList Search2(string strCriteria, params ObjectParameter[] parameters);
         T NewObject();
         void DeleteAll();
     }

@@ -121,7 +121,27 @@ namespace TerritoriesManagement.DataBridge
             }
         }
 
-        public IList Search(string strCriteria, params ObjectParameter[] parameters)
+        public List<Territory> Search(string strCriteria, params ObjectParameter[] parameters)
+        {
+            try
+            {
+                ObjectResult<Territory> objectResults;
+                string strQuery = "SELECT VALUE Territory FROM TerritoriesDataContext.Territories AS Territory";
+
+                if (strCriteria != "")
+                    strQuery = strQuery + " WHERE " + strCriteria;
+
+                var query = _dm.CreateQuery<Territory>(strQuery, parameters);
+                objectResults = query.Execute(MergeOption.AppendOnly);
+                return objectResults.ToList<Territory>();
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public IList Search2(string strCriteria, params ObjectParameter[] parameters)
         {
             try
             {

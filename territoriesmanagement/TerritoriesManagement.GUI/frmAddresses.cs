@@ -195,7 +195,7 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
-                var addresses = this._server.Search(query);
+                var addresses = this._server.Search2(query);
                 dgvResult.DataSource = addresses;
                 lblResultCount.Text = addresses.Count.ToString();
                 dgvResult.ClearSelection();
@@ -275,7 +275,7 @@ namespace TerritoriesManagement.GUI
                 string strQuery = GetQuery(out parameters);
                 if (!string.IsNullOrEmpty(strQuery))
                 {
-                    var addresses = this._server.Search(strQuery, parameters.ToArray<ObjectParameter>());
+                    var addresses = this._server.Search2(strQuery, parameters.ToArray<ObjectParameter>());
                     dgvResult.DataSource = addresses;
                     lblResultCount.Text = addresses.Count.ToString();
                     lblFiltered.Visible = true;
@@ -439,7 +439,7 @@ namespace TerritoriesManagement.GUI
             try
             {
                 Addresses address = new Addresses();
-                string[] properties = address.GetPropertyList().ToArray();
+                string[] properties = Functions.GetPropertyStrListByTypeName("Address").ToArray();
                 ExportTool tool = new ExportTool();
                 tool.ExportToExcel(path, "Address", "Addresses", properties, strQuery, parameters.ToArray());
             }
