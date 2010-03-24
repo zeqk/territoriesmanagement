@@ -106,12 +106,15 @@ namespace TerritoriesManagement.Export
                             vacios++;
 
                     }
-                    List<ZeqkTools.GeoPoint> points = addressList.Where(a => a.Lat.HasValue && a.Lng.HasValue)
-                                                          .Select(a => new ZeqkTools.GeoPoint(a.Lat.Value, a.Lng.Value)).ToList();
+
+                    //TODO: calcular punto medio
+                    //List<PointLatLng> points = addressList.Where(a => a.Lat.HasValue && a.Lng.HasValue)
+                    //                                      .Select(a => new PointLatLng(a.Lat.Value, a.Lng.Value)).ToList();
 
                    
-                    var aux = ZeqkTools.Functions.CalculateMiddlePoint(points);
-                    PointLatLng point = new PointLatLng(aux.Lat, aux.Lng);
+                    //var aux = ZeqkTools.Functions.CalculateMiddlePoint(points);
+                    //PointLatLng point = new PointLatLng(aux.Lat, aux.Lng);
+                    PointLatLng point = new PointLatLng(0, 0);
                     xw.WriteStartElement("centerPoint");
                     xw.WriteAttributeString("lat", point.Lat.ToString(new CultureInfo("en-US")));
                     xw.WriteAttributeString("lng", point.Lng.ToString(new CultureInfo("en-US")));

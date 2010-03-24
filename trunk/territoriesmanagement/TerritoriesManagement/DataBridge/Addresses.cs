@@ -156,7 +156,7 @@ namespace TerritoriesManagement.DataBridge
             }
         }
 
-        public IList Search(string strCriteria, params ObjectParameter[] parameters)
+        public List<Address> Search(string strCriteria, params ObjectParameter[] parameters)
         {
             try
             {
@@ -165,7 +165,29 @@ namespace TerritoriesManagement.DataBridge
 
                 if (!string.IsNullOrEmpty(strCriteria))
                     strQuery += " WHERE " + strCriteria;
-                
+
+                var query = _dm.CreateQuery<Address>(strQuery, parameters).Include("City"); ;
+                objectResults = query.Execute(MergeOption.AppendOnly);
+                return objectResults.ToList<Address>();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
+        public IList Search2(string strCriteria, params ObjectParameter[] parameters)
+        {
+            try
+            {
+                ObjectResult<Address> objectResults;
+                string strQuery = "SELECT VALUE Address FROM TerritoriesDataContext.Addresses AS Address";
+
+                if (!string.IsNullOrEmpty(strCriteria))
+                    strQuery += " WHERE " + strCriteria;
+
                 var query = _dm.CreateQuery<Address>(strQuery, parameters).Include("City"); ;
                 objectResults = query.Execute(MergeOption.AppendOnly);
                 var results = from a in objectResults
@@ -181,13 +203,14 @@ namespace TerritoriesManagement.DataBridge
                                   Corner2 = a.Corner2,
                                   Description = a.Description,
                                   HasGeoposition = a.Lat != null && a.Lng != null,
-                                  Lat = a.Lat, Lng = a.Lng
+                                  Lat = a.Lat,
+                                  Lng = a.Lng
                               };
                 return results.ToList();
             }
             catch (Exception ex)
             {
-                
+
                 throw ex;
             }
         }
