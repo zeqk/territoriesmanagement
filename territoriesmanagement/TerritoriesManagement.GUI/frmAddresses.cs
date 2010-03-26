@@ -195,7 +195,7 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
-                var addresses = this._server.Search2(query);
+                var addresses = this._server.Search(query);
                 dgvResult.DataSource = addresses;
                 lblResultCount.Text = addresses.Count.ToString();
                 dgvResult.ClearSelection();
@@ -275,7 +275,7 @@ namespace TerritoriesManagement.GUI
                 string strQuery = GetQuery(out parameters);
                 if (!string.IsNullOrEmpty(strQuery))
                 {
-                    var addresses = this._server.Search2(strQuery, parameters.ToArray<ObjectParameter>());
+                    var addresses = this._server.Search(strQuery, parameters.ToArray<ObjectParameter>());
                     dgvResult.DataSource = addresses;
                     lblResultCount.Text = addresses.Count.ToString();
                     lblFiltered.Visible = true;
@@ -470,6 +470,7 @@ namespace TerritoriesManagement.GUI
                             int idAddres = (int)selectedRows[i].Cells["Id"].Value;
 
                             GMapMarkerCustom marker = new GMapMarkerCustom(new PointLatLng(lat, lng));
+                            marker.Size = new System.Drawing.Size(4, 4);
                             marker.Tag = idAddres;
                             marker.ToolTipText = address;
                             marker.Icon = Properties.Resources.legendIcon;
@@ -491,14 +492,14 @@ namespace TerritoriesManagement.GUI
 
                 if (e.CurrentValue == CheckState.Unchecked && e.NewValue == CheckState.Checked)
                 {
-                    if (chklstDepartment.ItemsValues.Count < e.Index)
-                        departments.Add(chklstDepartment.ItemsValues[e.Index]);
+                    if (e.Index < chklstDepartment.ItemsValues.Count)
+                        departments.Add(chklstDepartment.ItemsValues[e.Index - 1]);
                 }
 
                 if (e.CurrentValue == CheckState.Checked && e.NewValue == CheckState.Unchecked)
                 {
-                    if (chklstDepartment.ItemsValues.Count < e.Index)
-                        departments.Remove(chklstDepartment.ItemsValues[e.Index]);
+                    if (e.Index < chklstDepartment.ItemsValues.Count)
+                        departments.Remove(chklstDepartment.ItemsValues[e.Index - 1]);
                 }
 
                 var cities = this._server.GetCitiesByDepartments(departments.Cast<int>().ToArray());                

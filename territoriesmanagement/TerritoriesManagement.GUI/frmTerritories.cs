@@ -155,7 +155,7 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
-                dgvResult.DataSource = this._server.Search2(query);
+                dgvResult.DataSource = this._server.Search(query);
             }
             catch (Exception ex)
             {
@@ -169,6 +169,7 @@ namespace TerritoriesManagement.GUI
             dgvResult.Columns.Add("Id", GetString("Id"));
             dgvResult.Columns.Add("Name", GetString("Territory"));
             dgvResult.Columns.Add("Number", GetString("Number"));
+            dgvResult.Columns.Add("Area", GetString("Area"));
             dgvResult.Columns.Add("blank", "");
 
             dgvResult.Columns["Id"].Visible = false;
@@ -177,6 +178,8 @@ namespace TerritoriesManagement.GUI
             dgvResult.Columns["Name"].DataPropertyName = "Name";
             dgvResult.Columns["Number"].Width = 100;
             dgvResult.Columns["Number"].DataPropertyName = "Number";
+            dgvResult.Columns["Area"].DataPropertyName = "Area";
+            dgvResult.Columns["Area"].Visible = false;
             dgvResult.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dgvResult.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -310,7 +313,7 @@ namespace TerritoriesManagement.GUI
 
                 if (!string.IsNullOrEmpty(strQuery))
                 {
-                    dgvResult.DataSource = this._server.Search2(strQuery, parameters.ToArray<ObjectParameter>());
+                    dgvResult.DataSource = this._server.Search(strQuery, parameters.ToArray<ObjectParameter>());
                     lblFiltered.Visible = true;
                 }
                 else

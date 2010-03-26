@@ -121,27 +121,7 @@ namespace TerritoriesManagement.DataBridge
             }
         }
 
-        public List<Territory> Search(string strCriteria, params ObjectParameter[] parameters)
-        {
-            try
-            {
-                ObjectResult<Territory> objectResults;
-                string strQuery = "SELECT VALUE Territory FROM TerritoriesDataContext.Territories AS Territory";
-
-                if (strCriteria != "")
-                    strQuery = strQuery + " WHERE " + strCriteria;
-
-                var query = _dm.CreateQuery<Territory>(strQuery, parameters);
-                objectResults = query.Execute(MergeOption.AppendOnly);
-                return objectResults.ToList<Territory>();
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-        }
-
-        public IList Search2(string strCriteria, params ObjectParameter[] parameters)
+        public IList Search(string strCriteria, params ObjectParameter[] parameters)
         {
             try
             {
@@ -155,7 +135,7 @@ namespace TerritoriesManagement.DataBridge
                 objectResults = query.Execute(MergeOption.AppendOnly);
                 var results = from t in objectResults
                               orderby t.Name, t.Number
-                              select new { Id = t.IdTerritory, Name = t.Name, Number = t.Number };
+                              select new { Id = t.IdTerritory, Name = t.Name, Number = t.Number, Area = t.Area };
                 return results.ToList();
             }
             catch (Exception e)

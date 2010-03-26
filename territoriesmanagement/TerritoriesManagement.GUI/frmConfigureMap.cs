@@ -97,32 +97,36 @@ namespace TerritoriesManagement.GUI
 
                 List<GMapMarker> marks = new List<GMapMarker>();
 
-                List<Address> addressesToShow = GetAddressToShow();
+                IList addressesToShow = GetAddressToShow();
 
-                if (addressesToShow.Count > 0)
+                if (addressesToShow != null)
                 {                    
                     foreach (var item in addressesToShow)
                     {
-                        if (item.Lat.HasValue && item.Lng.HasValue)
+                        double? lat = (double?)Functions.GetPropertyValue(item, "Lat");
+                        double? lng = (double?)Functions.GetPropertyValue(item, "Lng");
+                        if (lat.HasValue && lng.HasValue)
                         {
-
-                            GMapMarkerCustom marker = new GMapMarkerCustom(new PointLatLng(item.Lat.Value, item.Lng.Value));
-                            marker.Tag = item.IdAddress;
-                            marker.ToolTipText = item.Street + item.Number;
+                            GMapMarkerCustom marker = new GMapMarkerCustom(new PointLatLng(lat.Value, lng.Value));
+                            marker.Tag = Functions.GetPropertyValue(item, "Id").ToString();                            
+                            marker.ToolTipText = Functions.GetPropertyValue(item, "Address").ToString();
+                            marker.Size = new System.Drawing.Size(4, 4);
+                            marker.TooltipMode = MarkerTooltipMode.OnMouseOver;
                             marker.Icon = Properties.Resources.legendIcon;
                             marks.Add(marker);
                         }
                     }                    
                 }
 
-                List<Territory> territoriesToShow = GetTerritoriesToShow();
-                if (territoriesToShow.Count > 0)
+                IList territoriesToShow = GetTerritoriesToShow();
+                if (territoriesToShow != null)
                 {
                     foreach (var item in territoriesToShow)
                     {
-                        if (item.Area != null)
+                        string areaStr = (string)Functions.GetPropertyValue(item, "Area");
+                        if (areaStr != null)
                         {
-                            List<PointLatLng> vertices = StrPointsToPointsLatLng(item.Area.Split('\n'));
+                            List<PointLatLng> vertices = StrPointsToPointsLatLng(areaStr.Split('\n'));
                             PointLatLng middlePoint = ZeqkTools.Functions.CalculateMiddlePoint(vertices);
                             Pen pen = new Pen(Brushes.Aqua, 4);
                             pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
@@ -144,15 +148,15 @@ namespace TerritoriesManagement.GUI
             }
         }
 
-        private List<Territory> GetTerritoriesToShow()
+        private IList GetTerritoriesToShow()
         {
-            List<Territory> rv = new List<Territory>();
+            IList rv = null;
 
             List<ObjectParameter> auxParameters = new List<ObjectParameter>();
             string queryStr = "";
 
 
-            int currentId = 0;
+            int currentId = -1;
 
             if (_object.GetType() == typeof(Territory))
                 currentId = (int)_object.GetType().GetProperty("IdTerritory").GetValue(_object, null);
@@ -195,9 +199,9 @@ namespace TerritoriesManagement.GUI
             return rv;
         }
 
-        private List<Address> GetAddressToShow()
+        private IList GetAddressToShow()
         {
-            List<Address> rv = new List<Address>();
+            IList rv = null;
 
             List<ObjectParameter> parameters = new List<ObjectParameter>();
             string queryStr = GetAddressQuery(out parameters);
@@ -221,24 +225,32 @@ namespace TerritoriesManagement.GUI
                 if (auxParameters.Count > 0)
                     queryStr += " AND ";
 
+                int currentId = -1;
+                if (_object.GetType() == typeof(Territory))
+                    currentId = (int)_object.GetType().GetProperty("IdTerritory").GetValue(_object, null);
+
                 var territories = chklstTerritory.CheckedItemsValues;
                 string auxQueryStr = "";
                 for (int i = 0; i < territories.Count; i++)
                 {
-                    if (auxQueryStr != "")
-                        auxQueryStr += " OR ";
-
-                    if ((int)territories[i] != 0)
+                    if ((int)territories[i] != currentId)
                     {
-                        string varName = "IdTerritory" + i.ToString();
-                        auxQueryStr += "Address.Territory.IdTerritory = @" + varName;
-                        ObjectParameter param = new ObjectParameter(varName, territories[i]);
-                        auxParameters.Add(param);
+                        if (auxQueryStr != "")
+                            auxQueryStr += " OR ";
+
+                        if ((int)territories[i] != 0)
+                        {
+                            string varName = "IdTerritory" + i.ToString();
+                            auxQueryStr += "Address.Territory.IdTerritory = @" + varName;
+                            ObjectParameter param = new ObjectParameter(varName, territories[i]);
+                            auxParameters.Add(param);
+                        }
+                        else
+                            auxQueryStr += "Address.Territory IS NULL";
                     }
-                    else
-                        auxQueryStr += "Address.Territory IS NULL";
                 }
-                queryStr += "(" + auxQueryStr + ")";
+                if(!string.IsNullOrEmpty(auxQueryStr))
+                    queryStr += "(" + auxQueryStr + ")";
             }
 
             //chklstCity
