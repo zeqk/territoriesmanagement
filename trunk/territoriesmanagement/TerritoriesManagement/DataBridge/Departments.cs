@@ -125,7 +125,7 @@ namespace TerritoriesManagement.DataBridge
             }
         }
 
-        public IList Search2(string strCriteria, params ObjectParameter[] parameters) 
+        public IList Search(string strCriteria, params ObjectParameter[] parameters) 
         {            
             try
             {

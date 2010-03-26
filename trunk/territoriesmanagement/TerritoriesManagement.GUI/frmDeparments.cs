@@ -154,7 +154,7 @@ namespace TerritoriesManagement.GUI
                 entities.Add("Address");
                 tool.ExportData("C:\\hola.tmx", entities);
 
-                dgvResult.DataSource = this._server.Search2(query);                
+                dgvResult.DataSource = this._server.Search(query);                
             }
             catch (Exception ex)
             {                
@@ -278,7 +278,7 @@ namespace TerritoriesManagement.GUI
 
                 if (!string.IsNullOrEmpty(strQuery))
                 {
-                    dgvResult.DataSource = this._server.Search2(strQuery, parameters.ToArray<ObjectParameter>());
+                    dgvResult.DataSource = this._server.Search(strQuery, parameters.ToArray<ObjectParameter>());
                     lblFiltered.Visible = true;
                 }
                 else

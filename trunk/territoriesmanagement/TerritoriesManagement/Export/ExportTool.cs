@@ -47,7 +47,7 @@ namespace TerritoriesManagement.Export
 
                 // render the DataGrid control to a file
 
-                using (StreamWriter sw = new StreamWriter("c:\\test.xls"))
+                using (StreamWriter sw = new StreamWriter(path))
                 {
                     using (HtmlTextWriter hw = new HtmlTextWriter(sw))
                     {

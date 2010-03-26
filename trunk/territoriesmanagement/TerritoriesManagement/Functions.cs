@@ -188,7 +188,7 @@ namespace TerritoriesManagement
             {
                 bool rv = true;
                 TerritoriesDataContext dm = new TerritoriesDataContext();
-                dm.Departments.First();
+                dm.Departments.Count();
                 return rv;
             }
             catch (Exception ex)

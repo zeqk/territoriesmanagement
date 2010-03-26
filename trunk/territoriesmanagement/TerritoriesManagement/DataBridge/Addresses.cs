@@ -156,29 +156,7 @@ namespace TerritoriesManagement.DataBridge
             }
         }
 
-        public List<Address> Search(string strCriteria, params ObjectParameter[] parameters)
-        {
-            try
-            {
-                ObjectResult<Address> objectResults;
-                string strQuery = "SELECT VALUE Address FROM TerritoriesDataContext.Addresses AS Address";
-
-                if (!string.IsNullOrEmpty(strCriteria))
-                    strQuery += " WHERE " + strCriteria;
-
-                var query = _dm.CreateQuery<Address>(strQuery, parameters).Include("City"); ;
-                objectResults = query.Execute(MergeOption.AppendOnly);
-                return objectResults.ToList<Address>();
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
-
-
-        public IList Search2(string strCriteria, params ObjectParameter[] parameters)
+        public IList Search(string strCriteria, params ObjectParameter[] parameters)
         {
             try
             {
