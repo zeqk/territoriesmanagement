@@ -492,13 +492,13 @@ namespace TerritoriesManagement.GUI
 
                 if (e.CurrentValue == CheckState.Unchecked && e.NewValue == CheckState.Checked)
                 {
-                    if (e.Index < chklstDepartment.ItemsValues.Count)
+                    if (e.Index < chklstDepartment.ItemsValues.Count && e.Index > 0)
                         departments.Add(chklstDepartment.ItemsValues[e.Index - 1]);
                 }
 
                 if (e.CurrentValue == CheckState.Checked && e.NewValue == CheckState.Unchecked)
                 {
-                    if (e.Index < chklstDepartment.ItemsValues.Count)
+                    if (e.Index < chklstDepartment.ItemsValues.Count && e.Index > 0)
                         departments.Remove(chklstDepartment.ItemsValues[e.Index - 1]);
                 }
 
