@@ -366,10 +366,10 @@ namespace TerritoriesManagement.GUI
                 {
                     string area = "";
 
-                    var polygon = myForm.Polygon;
+                    GMapPolygon polygon = myForm.Polygon;
                     if (polygon != null)
                     {
-                        foreach (PointLatLng item in polygon)
+                        foreach (PointLatLng item in polygon.Points)
                         {
                             if (!string.IsNullOrEmpty(area))
                                 area += Environment.NewLine;

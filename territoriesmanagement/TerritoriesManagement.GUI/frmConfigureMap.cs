@@ -28,13 +28,13 @@ namespace TerritoriesManagement.GUI
         Config.Config config;
 
         #region Fields
-        private List<PointLatLng> _polygon;
+        private GMapPolygon _polygon;
         private object _object;
         #endregion
 
         #region Properties
 
-        public List<PointLatLng> Polygon
+        public GMapPolygon Polygon
         {
             get { return _polygon; }
             set { _polygon = value; }
@@ -91,7 +91,8 @@ namespace TerritoriesManagement.GUI
                 {
                     string areaStr = area.ToString();
                     string[] strPoints = areaStr.Split('\n');
-                    myForm.Polygon = StrPointsToPointsLatLng(strPoints);
+                    GMapPolygon polygon = new GMapPolygon(StrPointsToPointsLatLng(strPoints),"Territory polygon");
+                    myForm.Polygon = polygon;
 
                 }
 
@@ -117,6 +118,7 @@ namespace TerritoriesManagement.GUI
                         }
                     }                    
                 }
+                List<GMapPolygon> polygons = new List<GMapPolygon>();
 
                 IList territoriesToShow = GetTerritoriesToShow();
                 if (territoriesToShow != null)
@@ -127,18 +129,15 @@ namespace TerritoriesManagement.GUI
                         if (areaStr != null)
                         {
                             List<PointLatLng> vertices = StrPointsToPointsLatLng(areaStr.Split('\n'));
-                            PointLatLng middlePoint = ZeqkTools.Functions.CalculateMiddlePoint(vertices);
-                            Pen pen = new Pen(Brushes.Aqua, 4);
-                            pen.DashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-                            GMapMarkerPolygon polygon = new GMapMarkerPolygon(middlePoint, vertices, pen);
-                            marks.Add(polygon);
+                            string terrName = (string)Functions.GetPropertyValue(item,"Name");
+                            GMapPolygon polygon = new GMapPolygon(vertices, terrName);
+                            polygons.Add(polygon);
                         }
                     }
                 }
 
-
                 myForm.SecondaryMarkers = marks;
-
+                myForm.SecondaryPolygons = polygons;
 
                 if (myForm.ShowDialog() == DialogResult.OK)
                 {
