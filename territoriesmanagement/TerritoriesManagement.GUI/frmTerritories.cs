@@ -1,21 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections;
-using System.ComponentModel;
-using System.Data;
+using System.Collections.Generic;
 using System.Data.Objects;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using System.Globalization;
 using System.Resources;
+using System.Windows.Forms;
 using GMap.NET;
 using GMap.NET.WindowsForms;
-using GMap.NET.WindowsForms.Markers;
-using ZeqkTools.WindowsForms.Maps;
-using TerritoriesManagement.Model;
 using TerritoriesManagement.DataBridge;
+using TerritoriesManagement.Model;
 
 namespace TerritoriesManagement.GUI
 {
@@ -49,8 +42,6 @@ namespace TerritoriesManagement.GUI
             _config = new Config.Config();
             _config.LoadSavedConfig();
 
-            //string[] columns = { "Territory.Name","Territory.Number" };
-            //string[] variables = { "name","number" };
             string[] columns = { "Territory.Name" };
             string[] variables = { "name" };
             schName.SetProperties(columns, variables);
@@ -286,9 +277,6 @@ namespace TerritoriesManagement.GUI
             bool rv = true;
             if (string.IsNullOrEmpty(txtName.Text))
                 rv = false;
-            //if (string.IsNullOrEmpty(txtNumber.Text))
-            //    rv = false;
-
             return rv;
         }
 
@@ -389,32 +377,7 @@ namespace TerritoriesManagement.GUI
             }
         }
 
-        private List<PointLatLng> StrPointsToPointsLatLng(string[] strPoints)
-        {
-            List<PointLatLng> points = new List<PointLatLng>();
-
-            for (int i = 0; i < strPoints.Length; i++)
-            {
-
-                string[] strArray = strPoints[i].Split(' ');
-                bool canParse = true;
-                double lat = 0;
-                double lng = 0;
-                if (!double.TryParse(strArray[0], NumberStyles.Any, new CultureInfo("en-US"), out lat))
-                    canParse = false;
-
-                if (!double.TryParse(strArray[1], NumberStyles.Any, new CultureInfo("en-US"), out lng))
-                    canParse = false;
-
-                if (canParse)
-                {
-                    PointLatLng point = new PointLatLng(lat, lng);
-                    points.Add(point);
-                }
-            }
-
-            return points;
-        }
+        
 
         
 

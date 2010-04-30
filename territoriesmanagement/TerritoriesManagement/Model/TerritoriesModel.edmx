@@ -58,6 +58,7 @@
           <Property Name="CustomField2" Type="varchar" MaxLength="200" />
           <Property Name="Lat" Type="double" />
           <Property Name="Lng" Type="double" />
+          <Property Name="InternalTerritoryNumber" Type="int" />
         </EntityType>
         <EntityType Name="Cities">
           <Key>
@@ -198,6 +199,7 @@
           <Parameter Name="CUSTOMFIELD2" Type="varchar" Mode="In" />
           <Parameter Name="LAT" Type="double" Mode="In" />
           <Parameter Name="LNG" Type="double" Mode="In" />
+          <Parameter Name="INTERNALTERRITORYNUMBER" Type="int" Mode="In" />
         </Function>
         <Function Name="ADDRESSES_ADDWITHPK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="IDADDRESS" Type="int" Mode="In" />
@@ -217,6 +219,7 @@
           <Parameter Name="CUSTOMFIELD2" Type="varchar" Mode="In" />
           <Parameter Name="LAT" Type="double" Mode="In" />
           <Parameter Name="LNG" Type="double" Mode="In" />
+          <Parameter Name="INTERNALTERRITORYNUMBER" Type="int" Mode="In" />
         </Function>
         <Function Name="ADDRESSES_DELETEALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird"/>        
         <Function Name="ADDRESSES_DELETEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
@@ -252,6 +255,7 @@
           <Parameter Name="CUSTOMFIELD2" Type="varchar" Mode="In" />
           <Parameter Name="LAT" Type="double" Mode="In" />
           <Parameter Name="LNG" Type="double" Mode="In" />
+          <Parameter Name="INTERNALTERRITORYNUMBER" Type="int" Mode="In" />
         </Function>
         <Function Name="CITIES_ADD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
           <Parameter Name="NAME" Type="varchar" Mode="In" />          
@@ -421,9 +425,10 @@
           <Property Name="CustomField2" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
           <Property Name="Lat" Type="Double" />
           <Property Name="Lng" Type="Double" />
+          <Property Name="InternalTerritoryNumber" Type="Int32" Nullable="true" />
           <NavigationProperty Name="City" Relationship="TerritoriesModel.ADDRESSESKEY0" FromRole="Addresses" ToRole="Cities" />
           <NavigationProperty Name="Territory" Relationship="TerritoriesModel.ADDRESSESKEY1" FromRole="Addresses" ToRole="Territories" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="IdCity" />
@@ -522,6 +527,7 @@
           <EntitySetMapping Name="Addresses">
             <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.Address)">
               <MappingFragment StoreEntitySet="Addresses">
+                <ScalarProperty Name="InternalTerritoryNumber" ColumnName="InternalTerritoryNumber" />
                 <ScalarProperty Name="IdAddress" ColumnName="IdAddress" />
                 <ScalarProperty Name="Street" ColumnName="Street" />
                 <ScalarProperty Name="Number" ColumnName="Number" />
@@ -536,7 +542,7 @@
                 <ScalarProperty Name="CustomField1" ColumnName="CustomField1" />
                 <ScalarProperty Name="CustomField2" ColumnName="CustomField2" />
                 <ScalarProperty Name="Lat" ColumnName="Lat" />
-                <ScalarProperty Name="Lng" ColumnName="Lng" />
+                <ScalarProperty Name="Lng" ColumnName="Lng" />                
               </MappingFragment>
             </EntityTypeMapping>
             <EntityTypeMapping TypeName="TerritoriesModel.Address">
@@ -546,6 +552,7 @@
                     <ScalarProperty Name="IdCity" ParameterName="IDCITY" /></AssociationEnd>
                   <AssociationEnd AssociationSet="ADDRESSESKEY1" From="Addresses" To="Territories">
                     <ScalarProperty Name="IdTerritory" ParameterName="IDTERRITORY" /></AssociationEnd>
+                  <ScalarProperty Name="InternalTerritoryNumber" ParameterName="INTERNALTERRITORYNUMBER" />
                   <ScalarProperty Name="Lng" ParameterName="LNG" />
                   <ScalarProperty Name="Lat" ParameterName="LAT" />
                   <ScalarProperty Name="CustomField2" ParameterName="CUSTOMFIELD2" />
@@ -566,6 +573,7 @@
                     <ScalarProperty Name="IdCity" ParameterName="IDCITY" Version="Current" /></AssociationEnd>
                   <AssociationEnd AssociationSet="ADDRESSESKEY1" From="Addresses" To="Territories">
                     <ScalarProperty Name="IdTerritory" ParameterName="IDTERRITORY" Version="Current" /></AssociationEnd>
+                  <ScalarProperty Name="InternalTerritoryNumber" ParameterName="INTERNALTERRITORYNUMBER" Version="Current" />
                   <ScalarProperty Name="Lng" ParameterName="LNG" Version="Current" />
                   <ScalarProperty Name="Lat" ParameterName="LAT" Version="Current" />
                   <ScalarProperty Name="CustomField2" ParameterName="CUSTOMFIELD2" Version="Current" />
@@ -767,20 +775,20 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="TerritoriesDataContext">
-        <EntityTypeShape EntityType="TerritoriesModel.Address" Width="1.5" PointX="2.125" PointY="0.875" Height="3.7288216145833326" IsExpanded="true" />
+      <Diagram Name="TerritoriesDataContext" ZoomLevel="82">
+        <EntityTypeShape EntityType="TerritoriesModel.Address" Width="2" PointX="2.125" PointY="0.875" Height="3.8931689453124987" IsExpanded="true" />
         <EntityTypeShape EntityType="TerritoriesModel.City" Width="1.5" PointX="3" PointY="5.625" Height="1.9210009765624996" IsExpanded="true" />
         <EntityTypeShape EntityType="TerritoriesModel.Department" Width="1.5" PointX="0.5" PointY="7.625" Height="1.7879850260416665" IsExpanded="true" />
         <EntityTypeShape EntityType="TerritoriesModel.Publisher" Width="1.5" PointX="6.875" PointY="5.125" Height="2.7494921874999996" IsExpanded="true" />
         <EntityTypeShape EntityType="TerritoriesModel.Territory" Width="1.5" PointX="5.125" PointY="1.625" Height="1.9210009765625005" IsExpanded="true" />
         <EntityTypeShape EntityType="TerritoriesModel.Tour" Width="1.5" PointX="9.125" PointY="5.375" Height="2.1725878906249996" IsExpanded="true" />
         <AssociationConnector Association="TerritoriesModel.ADDRESSESKEY0" ManuallyRouted="false">
-          <ConnectorPoint PointX="3.3125" PointY="5.625" />
-          <ConnectorPoint PointX="3.3125" PointY="4.6038216145833326" />
+          <ConnectorPoint PointX="3.5625" PointY="5.625" />
+          <ConnectorPoint PointX="3.5625" PointY="4.7681689453124987" />
           </AssociationConnector>
         <AssociationConnector Association="TerritoriesModel.ADDRESSESKEY1" ManuallyRouted="false">
           <ConnectorPoint PointX="5.125" PointY="2.5855004882812502" />
-          <ConnectorPoint PointX="3.625" PointY="2.5855004882812502" />
+          <ConnectorPoint PointX="4.125" PointY="2.5855004882812502" />
           </AssociationConnector>
         <AssociationConnector Association="TerritoriesModel.CITIESKEY0" ManuallyRouted="false">
           <ConnectorPoint PointX="2" PointY="8.605286958333334" />

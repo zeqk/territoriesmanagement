@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections;
-using System.ComponentModel;
-using System.Data;
+using System.Collections.Generic;
 using System.Data.Objects;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using TerritoriesManagement.Model;
-using TerritoriesManagement.DataBridge;
-using System.Threading;
-using System.Globalization;
 using System.Resources;
+using System.Windows.Forms;
+using TerritoriesManagement.DataBridge;
+using TerritoriesManagement.Model;
 
 namespace TerritoriesManagement.GUI
 {

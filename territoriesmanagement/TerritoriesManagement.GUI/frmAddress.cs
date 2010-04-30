@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using System.Data.Objects.DataClasses;
-using TerritoriesManagement.Model;
+using GMap.NET;
 using TerritoriesManagement.DataBridge;
-using System.Globalization;
+using TerritoriesManagement.Model;
 using ZeqkTools.WindowsForms.Maps;
 
 namespace TerritoriesManagement.GUI
@@ -205,6 +198,17 @@ namespace TerritoriesManagement.GUI
                 rv = cboDepartment.SelectedItem.GetType().GetProperty("Name").GetValue(cboDepartment.SelectedItem, null).ToString();
 
             return rv;
+        }
+
+        private void btnFindTerritory_Click(object sender, EventArgs e)
+        {
+            if (this.Address.Lat.HasValue && this.Address.Lng.HasValue)
+            {
+                PointLatLng point = new PointLatLng(this.Address.Lat.Value, this.Address.Lng.Value);
+                Territory terr = _server.FindTerritory(point);
+                if(terr != null)
+                    cboTerritory.SelectedValue = terr.IdTerritory;
+            }
         }
 
         

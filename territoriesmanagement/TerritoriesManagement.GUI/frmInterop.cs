@@ -1,21 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.IO;
+using System.Linq;
 using System.Resources;
-using ZeqkTools.Data;
-using ZeqkTools.WindowsForms;
-using TerritoriesManagement.Import;
-using TerritoriesManagement.GUI;
-using TerritoriesManagement.GUI.ImporterConfig;
+using System.Windows.Forms;
 using TerritoriesManagement.Export;
-using TerritoriesManagement.DataBridge;
-using TerritoriesManagement.Model;
+using TerritoriesManagement.Import;
+using ZeqkTools.WindowsForms;
 
 namespace TerritoriesManagement.GUI
 {
