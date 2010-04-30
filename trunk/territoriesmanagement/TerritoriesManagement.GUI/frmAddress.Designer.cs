@@ -71,8 +71,11 @@
             this.txtField1 = new System.Windows.Forms.TextBox();
             this.lblField1 = new System.Windows.Forms.Label();
             this.grpTerritory = new System.Windows.Forms.GroupBox();
+            this.lblInternalNumber = new System.Windows.Forms.Label();
+            this.btnFindTerritory = new System.Windows.Forms.Button();
             this.cboTerritory = new System.Windows.Forms.ComboBox();
             this.grpAdditional = new System.Windows.Forms.GroupBox();
+            this.txtInternalNumber = new System.Windows.Forms.MaskedTextBox();
             this.grpMaps.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsAddress)).BeginInit();
             this.grpGeoLocation.SuspendLayout();
@@ -351,10 +354,25 @@
             // 
             // grpTerritory
             // 
+            this.grpTerritory.Controls.Add(this.txtInternalNumber);
+            this.grpTerritory.Controls.Add(this.lblInternalNumber);
+            this.grpTerritory.Controls.Add(this.btnFindTerritory);
             this.grpTerritory.Controls.Add(this.cboTerritory);
             resources.ApplyResources(this.grpTerritory, "grpTerritory");
             this.grpTerritory.Name = "grpTerritory";
             this.grpTerritory.TabStop = false;
+            // 
+            // lblInternalNumber
+            // 
+            resources.ApplyResources(this.lblInternalNumber, "lblInternalNumber");
+            this.lblInternalNumber.Name = "lblInternalNumber";
+            // 
+            // btnFindTerritory
+            // 
+            resources.ApplyResources(this.btnFindTerritory, "btnFindTerritory");
+            this.btnFindTerritory.Name = "btnFindTerritory";
+            this.btnFindTerritory.UseVisualStyleBackColor = true;
+            this.btnFindTerritory.Click += new System.EventHandler(this.btnFindTerritory_Click);
             // 
             // cboTerritory
             // 
@@ -375,6 +393,13 @@
             resources.ApplyResources(this.grpAdditional, "grpAdditional");
             this.grpAdditional.Name = "grpAdditional";
             this.grpAdditional.TabStop = false;
+            // 
+            // txtInternalNumber
+            // 
+            this.txtInternalNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "InternalTerritoryNumber", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N0"));
+            resources.ApplyResources(this.txtInternalNumber, "txtInternalNumber");
+            this.txtInternalNumber.Name = "txtInternalNumber";
+            this.txtInternalNumber.ValidatingType = typeof(int);
             // 
             // frmAddress
             // 
@@ -400,6 +425,7 @@
             this.grpUbication.ResumeLayout(false);
             this.grpUbication.PerformLayout();
             this.grpTerritory.ResumeLayout(false);
+            this.grpTerritory.PerformLayout();
             this.grpAdditional.ResumeLayout(false);
             this.grpAdditional.PerformLayout();
             this.ResumeLayout(false);
@@ -451,6 +477,9 @@
         private System.Windows.Forms.CheckBox chkHaveGeoPos;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Button btnSearchGeoPos;
+        private System.Windows.Forms.Button btnFindTerritory;
+        private System.Windows.Forms.Label lblInternalNumber;
+        private System.Windows.Forms.MaskedTextBox txtInternalNumber;
 
 
     }

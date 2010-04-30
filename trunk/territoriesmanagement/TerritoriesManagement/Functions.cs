@@ -10,6 +10,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Xml.Serialization;
 using System.Reflection;
+using System.Globalization;
 
 namespace TerritoriesManagement
 {
@@ -196,6 +197,35 @@ namespace TerritoriesManagement
                 throw ex;
             }
         }
+
+        #region Maps methods
+        static public List<PointLatLng> StrPointsToPointsLatLng(string[] strPoints)
+        {
+            List<PointLatLng> points = new List<PointLatLng>();
+
+            for (int i = 0; i < strPoints.Length; i++)
+            {
+
+                string[] strArray = strPoints[i].Split(' ');
+                bool canParse = true;
+                double lat = 0;
+                double lng = 0;
+                if (!double.TryParse(strArray[0], NumberStyles.Any, new CultureInfo("en-US"), out lat))
+                    canParse = false;
+
+                if (!double.TryParse(strArray[1], NumberStyles.Any, new CultureInfo("en-US"), out lng))
+                    canParse = false;
+
+                if (canParse)
+                {
+                    PointLatLng point = new PointLatLng(lat, lng);
+                    points.Add(point);
+                }
+            }
+
+            return points;
+        }
+        #endregion
     }
 
     

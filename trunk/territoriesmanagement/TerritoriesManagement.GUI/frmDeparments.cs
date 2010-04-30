@@ -1,15 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections;
-using System.ComponentModel;
-using System.Data;
 using System.Data.Objects;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.Resources;
-using TerritoriesManagement.Model;
+using System.Windows.Forms;
 using TerritoriesManagement.DataBridge;
 
 namespace TerritoriesManagement.GUI
@@ -149,11 +143,6 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
-                Export.ExportTool tool = new TerritoriesManagement.Export.ExportTool();
-                List<string> entities = new List<string>();
-                entities.Add("Address");
-                tool.ExportData("C:\\hola.tmx", entities);
-
                 dgvResult.DataSource = this._server.Search(query);                
             }
             catch (Exception ex)

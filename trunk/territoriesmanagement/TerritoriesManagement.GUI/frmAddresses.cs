@@ -1,23 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
 using System.Data.Objects;
 using System.IO;
-using System.Collections;
+using System.Linq;
 using System.Resources;
+using System.Windows.Forms;
 using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
-using ZeqkTools.WindowsForms.Maps;
-using ZeqkTools.WindowsForms.Controls;
 using TerritoriesManagement.DataBridge;
-using TerritoriesManagement.Model;
 using TerritoriesManagement.Export;
+using ZeqkTools.WindowsForms.Maps;
 
 namespace TerritoriesManagement.GUI
 {
