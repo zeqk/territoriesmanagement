@@ -283,7 +283,6 @@
     <None Include="Properties\DataSources\TerritoriesManagement.Model.City.datasource" />
     <None Include="Properties\DataSources\TerritoriesManagement.Model.Department.datasource" />
     <None Include="Properties\DataSources\TerritoriesManagement.Model.Territory.datasource" />
-    <None Include="Resources\marker99.png" />
     <None Include="Resources\legend.png" />
   </ItemGroup>
   <ItemGroup>

@@ -200,7 +200,7 @@ namespace TerritoriesManagement.GUI
             return rv;
         }
 
-        private void btnFindTerritory_Click(object sender, EventArgs e)
+        private void btnAutoselectTerritory_Click(object sender, EventArgs e)
         {
             if (this.Address.Lat.HasValue && this.Address.Lng.HasValue)
             {

@@ -73,7 +73,7 @@
             this.grpTerritory = new System.Windows.Forms.GroupBox();
             this.txtInternalNumber = new System.Windows.Forms.MaskedTextBox();
             this.lblInternalNumber = new System.Windows.Forms.Label();
-            this.btnFindTerritory = new System.Windows.Forms.Button();
+            this.btnAutoselectTerritory = new System.Windows.Forms.Button();
             this.cboTerritory = new System.Windows.Forms.ComboBox();
             this.grpAdditional = new System.Windows.Forms.GroupBox();
             this.grpMaps.SuspendLayout();
@@ -495,7 +495,7 @@
             // 
             this.grpTerritory.Controls.Add(this.txtInternalNumber);
             this.grpTerritory.Controls.Add(this.lblInternalNumber);
-            this.grpTerritory.Controls.Add(this.btnFindTerritory);
+            this.grpTerritory.Controls.Add(this.btnAutoselectTerritory);
             this.grpTerritory.Controls.Add(this.cboTerritory);
             this.grpTerritory.Location = new System.Drawing.Point(383, 278);
             this.grpTerritory.Name = "grpTerritory";
@@ -525,16 +525,16 @@
             this.lblInternalNumber.TabIndex = 8;
             this.lblInternalNumber.Text = "Internal number";
             // 
-            // btnFindTerritory
+            // btnAutoselectTerritory
             // 
-            this.btnFindTerritory.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnFindTerritory.Location = new System.Drawing.Point(278, 27);
-            this.btnFindTerritory.Name = "btnFindTerritory";
-            this.btnFindTerritory.Size = new System.Drawing.Size(58, 23);
-            this.btnFindTerritory.TabIndex = 6;
-            this.btnFindTerritory.Text = "Find";
-            this.btnFindTerritory.UseVisualStyleBackColor = true;
-            this.btnFindTerritory.Click += new System.EventHandler(this.btnFindTerritory_Click);
+            this.btnAutoselectTerritory.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.btnAutoselectTerritory.Location = new System.Drawing.Point(264, 27);
+            this.btnAutoselectTerritory.Name = "btnAutoselectTerritory";
+            this.btnAutoselectTerritory.Size = new System.Drawing.Size(80, 23);
+            this.btnAutoselectTerritory.TabIndex = 6;
+            this.btnAutoselectTerritory.Text = "Autoselect";
+            this.btnAutoselectTerritory.UseVisualStyleBackColor = true;
+            this.btnAutoselectTerritory.Click += new System.EventHandler(this.btnAutoselectTerritory_Click);
             // 
             // cboTerritory
             // 
@@ -544,7 +544,7 @@
             this.cboTerritory.FormattingEnabled = true;
             this.cboTerritory.Location = new System.Drawing.Point(26, 29);
             this.cboTerritory.Name = "cboTerritory";
-            this.cboTerritory.Size = new System.Drawing.Size(240, 21);
+            this.cboTerritory.Size = new System.Drawing.Size(226, 21);
             this.cboTerritory.TabIndex = 0;
             this.cboTerritory.SelectedIndexChanged += new System.EventHandler(this.HasChanges);
             // 
@@ -639,7 +639,7 @@
         private System.Windows.Forms.CheckBox chkHaveGeoPos;
         private System.Windows.Forms.TextBox txtId;
         private System.Windows.Forms.Button btnSearchGeoPos;
-        private System.Windows.Forms.Button btnFindTerritory;
+        private System.Windows.Forms.Button btnAutoselectTerritory;
         private System.Windows.Forms.Label lblInternalNumber;
         private System.Windows.Forms.MaskedTextBox txtInternalNumber;
 
