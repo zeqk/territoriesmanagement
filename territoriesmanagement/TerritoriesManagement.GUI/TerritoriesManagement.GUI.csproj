@@ -197,19 +197,6 @@
     <Compile Include="ImporterConfig\DepartmentsTableConverter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmAddress.en.resx">
-      <DependentUpon>frmAddress.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAddress.es-AR.resx">
-      <DependentUpon>frmAddress.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmAddresses.es-AR.resx">
-      <DependentUpon>frmAddresses.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmCities.es-AR.resx">
-      <DependentUpon>frmCities.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmCities.resx">
       <DependentUpon>frmCities.cs</DependentUpon>
     </EmbeddedResource>
@@ -219,12 +206,6 @@
     <EmbeddedResource Include="frmConfigureMap.resx">
       <DependentUpon>frmConfigureMap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmDeparments.es-AR.resx">
-      <DependentUpon>frmDeparments.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmDeparments.resx">
-      <DependentUpon>frmDeparments.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmAddress.resx">
       <DependentUpon>frmAddress.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -232,14 +213,14 @@
     <EmbeddedResource Include="frmAddresses.resx">
       <DependentUpon>frmAddresses.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDeparments.resx">
+      <DependentUpon>frmDeparments.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmInterop.resx">
       <DependentUpon>frmInterop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmTerritories.es-AR.resx">
-      <DependentUpon>frmTerritories.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTerritories.resx">
       <DependentUpon>frmTerritories.cs</DependentUpon>
