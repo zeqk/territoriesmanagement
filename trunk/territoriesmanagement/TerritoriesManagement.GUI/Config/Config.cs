@@ -8,7 +8,8 @@ namespace TerritoriesManagement.GUI.Config
     [Serializable]
     public class Config
     {
-        
+        private string configFile = AppDomain.CurrentDomain.BaseDirectory + "config.xml";
+
         public string CultureTag;
 
         public string Place;
@@ -23,11 +24,7 @@ namespace TerritoriesManagement.GUI.Config
 
         public void SaveConfig()
         {
-            string configFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Territories Management\";
-            if (!Directory.Exists(configFolder))
-                Directory.CreateDirectory(configFolder);
-            string path = configFolder + "config.xml";
-            SaveConfig(path);
+            SaveConfig(configFile);
         }
 
         public void SaveConfig(string path)
@@ -43,9 +40,7 @@ namespace TerritoriesManagement.GUI.Config
 
         public void LoadSavedConfig()
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\Territories Management\config.xml";
-
-            LoadSavedConfig(path);
+            LoadSavedConfig(configFile);
         }
 
         public void LoadSavedConfig(string path)

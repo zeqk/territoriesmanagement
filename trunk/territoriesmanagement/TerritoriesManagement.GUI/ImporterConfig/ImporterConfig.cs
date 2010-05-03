@@ -12,6 +12,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
     [Serializable]
     public class ImporterConfig
     {
+        private string configFile = AppDomain.CurrentDomain.BaseDirectory + "importConfig.xml";
 
         #region Fields
 
@@ -28,8 +29,6 @@ namespace TerritoriesManagement.GUI.ImporterConfig
         private AddressesTable _addresses;
 
         #endregion
-
-
 
         public ImporterConfig()
         {
@@ -87,11 +86,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
 
         public void SaveConfig()
         {
-            string configFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Territories Management\";
-            if (!Directory.Exists(configFolder))
-                Directory.CreateDirectory(configFolder);
-            string path = configFolder + "importConfig.xml";
-            SaveConfig(path);
+            SaveConfig(configFile);
         }
 
         public void SaveConfig(string path)
@@ -106,9 +101,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
 
         public void LoadConfig()
         {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\Territories Management\importConfig.xml";
-
-            LoadConfig(path);
+            LoadConfig(configFile);
         }
 
         public void LoadConfig(string path)
