@@ -183,14 +183,13 @@ namespace TerritoriesManagement
             return underlyingType;
         }
 
-        static public bool TestConnection()
+        static public DateTime GetLastModDate()
         {
             try
             {
-                bool rv = true;
                 TerritoriesDataContext dm = new TerritoriesDataContext();
-                dm.Departments.Count();
-                return rv;
+                DateTime last = dm.autids_getLastModification().First();
+                return last;
             }
             catch (Exception ex)
             {                

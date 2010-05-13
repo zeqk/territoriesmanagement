@@ -75,11 +75,10 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
-                if (Functions.TestConnection())
-                {
-                    lblConnectionStatusValue.Text = "OK";
-                    lblConnectionStatusValue.ForeColor = Color.Green;
-                }
+                DateTime lastModification = Functions.GetLastModDate();
+                lblConnectionStatusValue.Text = "OK. Last modification date: " + lastModification.ToString();
+                lblConnectionStatusValue.ForeColor = Color.Green;
+                
             }
             catch (Exception ex)
             {
