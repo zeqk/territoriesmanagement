@@ -556,7 +556,37 @@ namespace TerritoriesManagement.Model
         #endregion
 
 
-       
+        public Collection<DateTime> autids_getLastModification()
+        {
+            Collection<DateTime> rv = new Collection<DateTime>();
+
+            try
+            {
+                string cmdText = "AUDITS_GETLAST";
+
+                FbConnection con = ((FbConnection)((EntityConnection)(this.Connection)).StoreConnection);
+
+                FbCommand cmd = new FbCommand(cmdText, con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                if (con.State != ConnectionState.Open)
+                {
+                    con.Open();
+                }
+
+                var reader = cmd.ExecuteReader(CommandBehavior.SequentialAccess);
+                while (reader.Read())
+                {
+                    rv.Add(reader.GetDateTime(1));
+                }
+
+                return rv;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }
