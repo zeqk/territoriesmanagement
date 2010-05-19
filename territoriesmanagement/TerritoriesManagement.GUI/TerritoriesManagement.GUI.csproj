@@ -95,6 +95,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\GMap.NET.WindowsForms.dll</HintPath>
     </Reference>
+    <Reference Include="Localizer, Version=1.0.3789.28344, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\Localizer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -119,7 +123,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\ZeqkTools.dll</HintPath>
     </Reference>
-    <Reference Include="ZeqkTools.Maps, Version=1.10.5.10, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="ZeqkTools.Maps, Version=1.10.5.14, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\ZeqkTools.Maps.dll</HintPath>
     </Reference>
@@ -165,6 +169,12 @@
     </Compile>
     <Compile Include="frmAddresses.Designer.cs">
       <DependentUpon>frmAddresses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMap.designer.cs">
+      <DependentUpon>frmMap.cs</DependentUpon>
     </Compile>
     <Compile Include="frmInterop.cs">
       <SubType>Form</SubType>
@@ -215,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDeparments.resx">
       <DependentUpon>frmDeparments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMap.resx">
+      <DependentUpon>frmMap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmInterop.resx">
       <DependentUpon>frmInterop.cs</DependentUpon>

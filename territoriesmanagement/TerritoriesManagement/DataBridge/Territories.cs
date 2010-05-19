@@ -9,6 +9,7 @@ using System.Data.EntityClient;
 using System.Collections;
 using System.Resources;
 using TerritoriesManagement.Model;
+using GMap.NET;
 
 namespace TerritoriesManagement.DataBridge
 {
@@ -162,7 +163,7 @@ namespace TerritoriesManagement.DataBridge
             {                
                 throw ex;
             }
-        }
+        }       
 
         #endregion
 

@@ -110,7 +110,7 @@ namespace TerritoriesManagement.GUI
                                 marker.Tag = internalNumber.Value;
                             marker.ToolTipText = Functions.GetPropertyValue(item, "Address").ToString();
                             marker.Size = new System.Drawing.Size(4, 4);
-                            marker.TooltipMode = MarkerTooltipMode.OnMouseOver;
+                            marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
                             marker.Icon = Properties.Resources.legendIcon;
                             marks.Add(marker);
                         }

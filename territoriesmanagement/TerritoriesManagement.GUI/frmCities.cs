@@ -7,6 +7,8 @@ using System.Resources;
 using System.Windows.Forms;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.Model;
+using Localizer;
+using System.Threading;
 
 namespace TerritoriesManagement.GUI
 {
@@ -14,14 +16,13 @@ namespace TerritoriesManagement.GUI
     {
         static private bool _opened = false;
         private Cities _server = new Cities();
-        ResourceManager _rm;
 
         
         private bool _isDirty;
 
         public frmCities()
-        { 
-            _rm = new ResourceManager(this.GetType());
+        {
+            Globalization.SetCurrentLanguage(Thread.CurrentThread.CurrentCulture.IetfLanguageTag);
             
             if (_opened)
                 throw new Exception(GetString("The window is already open."));
@@ -370,8 +371,7 @@ namespace TerritoriesManagement.GUI
 
         private string GetString(string text)
         {
-            //return _rm.GetString(text, Thread.CurrentThread.CurrentCulture);
-            return text;
+            return Globalization.GetString(text);            
         }
 
     }
