@@ -169,6 +169,7 @@ namespace TerritoriesManagement.DataBridge
 
                 var query = _dm.CreateQuery<Address>(strQuery, parameters).Include("City"); ;
                 objectResults = query.Execute(MergeOption.AppendOnly);
+                //var results1 = objectResults.ToList();
                 var results = from a in objectResults
                               orderby a.Street, a.City.Name
                               select new
@@ -177,7 +178,7 @@ namespace TerritoriesManagement.DataBridge
                                   DepartmentName = a.City.Department.Name,
                                   CityName = a.City.Name,
                                   Territory = GetTerritoryStr(a.Territory),
-                                  InternalTerritoryNumber = a.InternalTerritoryNumber, 
+                                  InternalTerritoryNumber = a.InternalTerritoryNumber,
                                   Address = a.Street + " " + a.Number,
                                   Corner1 = a.Corner1,
                                   Corner2 = a.Corner2,

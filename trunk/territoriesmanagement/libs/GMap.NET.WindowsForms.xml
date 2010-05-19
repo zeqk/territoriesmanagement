@@ -4,380 +4,24 @@
         <name>GMap.NET.WindowsForms</name>
     </assembly>
     <members>
-        <member name="T:GMap.NET.WindowsForms.GMapMarker">
-            <summary>
-            GMap.NET marker
-            </summary>
-        </member>
-        <member name="T:System.Windows.Forms.GMapControl">
-            <summary>
-            GMap.NET control for Windows Forms
-            </summary>   
-        </member>
-        <member name="F:System.Windows.Forms.GMapControl.Overlays">
-            <summary>
-            list of overlays, should be thread safe
-            </summary>
-        </member>
-        <member name="F:System.Windows.Forms.GMapControl.EmptyTileText">
-            <summary>
-            text on empty tiles
-            </summary>
-        </member>
-        <member name="F:System.Windows.Forms.GMapControl.EmptyTileBorders">
-            <summary>
-            pen for empty tile borders
-            </summary>
-        </member>
-        <member name="F:System.Windows.Forms.GMapControl.ScalePen">
-            <summary>
-            pen for scale info
-            </summary>
-        </member>
-        <member name="F:System.Windows.Forms.GMapControl.SelectionPen">
-            <summary>
-            area selection pen
-            </summary>
-        </member>
-        <member name="F:System.Windows.Forms.GMapControl.EmptytileBrush">
-            <summary>
-            pen for empty tile background
-            </summary>
-        </member>
-        <member name="F:System.Windows.Forms.GMapControl.MapScaleInfoEnabled">
-            <summary>
-            show map scale info
-            </summary>
-        </member>
-        <member name="F:System.Windows.Forms.GMapControl.DragButton">
-            <summary>
-            map dragg button
-            </summary>
-        </member>
-        <member name="F:System.Windows.Forms.GMapControl.selectedArea">
-            <summary>
-            current selected area in map
-            </summary>
-        </member>
-        <member name="F:System.Windows.Forms.GMapControl.BoundsOfMap">
-            <summary>
-            map boundaries
-            </summary>
-        </member>
-        <member name="F:System.Windows.Forms.GMapControl.ForceDoubleBuffer">
-            <summary>
-            enables integrated DoubleBuffer for best performance
-            if using a lot objets on map or running on windows mobile
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.#ctor">
-            <summary>
-            construct
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.GMap_OnMapDrag">
-            <summary>
-            update objects when map is draged
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.Core_OnNeedInvalidation">
-            <summary>
-            thread safe invalidation
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.DrawMapGDIplus(System.Drawing.Graphics)">
-            <summary>
-            render map in GDI+
-            </summary>
-            <param name="g"></param>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.UpdateRouteLocalPosition(GMap.NET.WindowsForms.GMapRoute)">
-            <summary>
-            updates routes local position
-            </summary>
-            <param name="route"></param>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.UpdatePolygonLocalPosition(GMap.NET.WindowsForms.GMapPolygon)">
-            <summary>
-            updates polygons local position
-            </summary>
-            <param name="polygon"></param>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.SetZoomToFitRect(GMap.NET.RectLatLng)">
-            <summary>
-            sets zoom to max to fit rect
-            </summary>
-            <param name="rect"></param>
-            <returns></returns>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.ZoomAndCenterMarkers(System.String)">
-            <summary>
-            sets to max zoom to fit all markers and centers them in map
-            </summary>
-            <param name="overlayId">overlay id or null to check all</param>
-            <returns></returns>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.ZoomAndCenterRoutes(System.String)">
-            <summary>
-            zooms and centers all route
-            </summary>
-            <param name="overlayId">overlay id or null to check all</param>
-            <returns></returns>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.ZoomAndCenterRoute(GMap.NET.MapRoute)">
-            <summary>
-            zooms and centers route 
-            </summary>
-            <param name="route"></param>
-            <returns></returns>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.GetRectOfAllMarkers(System.String)">
-            <summary>
-            gets rectangle with all objects inside
-            </summary>
-            <param name="overlayId">overlay id or null to check all</param>
-            <returns></returns>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.GetRectOfAllRoutes(System.String)">
-            <summary>
-            gets rectangle with all objects inside
-            </summary>
-            <param name="overlayId">overlay id or null to check all</param>
-            <returns></returns>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.GetRectOfRoute(GMap.NET.MapRoute)">
-            <summary>
-            gets rect of route
-            </summary>
-            <param name="route"></param>
-            <returns></returns>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.ToImage">
-            <summary>
-            gets image of the current view
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.Offset(System.Int32,System.Int32)">
-            <summary>
-            offset position in pixels
-            </summary>
-            <param name="x"></param>
-            <param name="y"></param>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.ReloadMap">
-            <summary>
-            reloads the map
-            </summary>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.SetCurrentPositionByKeywords(System.String)">
-            <summary>
-            set current position using keywords
-            </summary>
-            <param name="keys"></param>
-            <returns>true if successfull</returns>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.FromLocalToLatLng(System.Int32,System.Int32)">
-            <summary>
-            gets world coordinate from local control coordinate 
-            </summary>
-            <param name="x"></param>
-            <param name="y"></param>
-            <returns></returns>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.FromLatLngToLocal(GMap.NET.PointLatLng)">
-            <summary>
-            gets local coordinate from world coordinate
-            </summary>
-            <param name="point"></param>
-            <returns></returns>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.ShowExportDialog">
-            <summary>
-            shows map db export dialog
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:System.Windows.Forms.GMapControl.ShowImportDialog">
-            <summary>
-            shows map dbimport dialog
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="F:System.Windows.Forms.GMapControl.IsMouseOverMarker">
-            <summary>
-            is mouse over marker
-            </summary>
-        </member>
-        <member name="E:System.Windows.Forms.GMapControl.OnMarkerClick">
-            <summary>
-            occurs when clicked on marker
-            </summary>
-        </member>
-        <member name="E:System.Windows.Forms.GMapControl.OnMarkerEnter">
-            <summary>
-            occurs on mouse enters marker area
-            </summary>
-        </member>
-        <member name="E:System.Windows.Forms.GMapControl.OnMarkerLeave">
-            <summary>
-            occurs on mouse leaves marker area
-            </summary>
-        </member>
-        <member name="E:System.Windows.Forms.GMapControl.OnEmptyTileError">
-            <summary>
-            occurs on empty tile displayed
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.GMapControl.MaxZoom">
-            <summary>
-            max zoom
-            </summary>         
-        </member>
-        <member name="P:System.Windows.Forms.GMapControl.MinZoom">
-            <summary>
-            min zoom
-            </summary>      
-        </member>
-        <member name="P:System.Windows.Forms.GMapControl.MouseWheelZoomType">
-            <summary>
-            map zooming type for mouse wheel
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.GMapControl.ShowTileGridLines">
-            <summary>
-            shows tile gridlines
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.GMapControl.ZoomStep">
-            <summary>
-            map zoom level
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.GMapControl.CurrentPosition">
-            <summary>
-            current map center position
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.GMapControl.CurrentPositionGPixel">
-            <summary>
-            current marker position in pixel coordinates
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.GMapControl.CacheLocation">
-            <summary>
-            location of cache
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.GMapControl.IsDragging">
-            <summary>
-            is user dragging map
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.GMapControl.CurrentViewArea">
-            <summary>
-            gets current map view top/left coordinate, width in Lng, height in Lat
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.GMapControl.TooltipTextPadding">
-            <summary>
-            for tooltip text padding
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.GMapControl.MapType">
-            <summary>
-            type of map
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.GMapControl.Projection">
-            <summary>
-            map projection
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.GMapControl.RoutesEnabled">
-            <summary>
-            is routes enabled
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.GMapControl.PolygonsEnabled">
-            <summary>
-            is polygons enabled
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.GMapControl.MarkersEnabled">
-            <summary>
-            is markers enabled
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.GMapControl.CanDragMap">
-            <summary>
-            can user drag map
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.GMapControl.RenderMode">
-            <summary>
-            map render mode
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.GMapControl.Manager">
-            <summary>
-            gets map manager
-            </summary>
-        </member>
-        <member name="E:System.Windows.Forms.GMapControl.OnCurrentPositionChanged">
-            <summary>
-            occurs when current position is changed
-            </summary>
-        </member>
-        <member name="E:System.Windows.Forms.GMapControl.OnTileLoadComplete">
-            <summary>
-            occurs when tile set load is complete
-            </summary>
-        </member>
-        <member name="E:System.Windows.Forms.GMapControl.OnTileLoadStart">
-            <summary>
-            occurs when tile set is starting to load
-            </summary>
-        </member>
-        <member name="E:System.Windows.Forms.GMapControl.OnMapDrag">
-            <summary>
-            occurs on map drag
-            </summary>
-        </member>
-        <member name="E:System.Windows.Forms.GMapControl.OnMapZoomChanged">
-            <summary>
-            occurs on map zoom changed
-            </summary>
-        </member>
-        <member name="E:System.Windows.Forms.GMapControl.OnMapTypeChanged">
-            <summary>
-            occures on map type changed
-            </summary>
-        </member>
         <member name="T:GMap.NET.WindowsForms.GMapRoute">
             <summary>
             GMap.NET route
             </summary>
         </member>
-        <member name="F:GMap.NET.WindowsForms.GMapRoute.Color">
+        <member name="F:GMap.NET.WindowsForms.GMapRoute.Stroke">
             <summary>
-            the color of route
+            specifies how the outline is painted
             </summary>
         </member>
-        <member name="T:System.Windows.Forms.Properties.Resources">
+        <member name="T:GMap.NET.WindowsForms.WindowsFormsImage">
             <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
+            image abstraction
             </summary>
         </member>
-        <member name="P:System.Windows.Forms.Properties.Resources.ResourceManager">
+        <member name="T:GMap.NET.WindowsForms.WindowsFormsImageProxy">
             <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.Properties.Resources.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
+            image abstraction proxy
             </summary>
         </member>
         <member name="T:GMap.NET.TilePrefetcher">
@@ -402,14 +46,34 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="T:GMap.NET.WindowsForms.WindowsFormsImage">
+        <member name="T:GMap.NET.WindowsForms.ToolTips.GMapBaloonToolTip">
             <summary>
-            image abstraction
+            GMap.NET marker
             </summary>
         </member>
-        <member name="T:GMap.NET.WindowsForms.WindowsFormsImageProxy">
+        <member name="T:GMap.NET.WindowsForms.GMapToolTip">
             <summary>
-            image abstraction proxy
+            GMap.NET marker
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapToolTip.Format">
+            <summary>
+            string format
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapToolTip.Font">
+            <summary>
+            font
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapToolTip.Stroke">
+            <summary>
+            specifies how the outline is painted
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapToolTip.Fill">
+            <summary>
+            background color
             </summary>
         </member>
         <member name="T:GMap.NET.WindowsForms.GMapOverlay">
@@ -442,45 +106,6 @@
             list of polygons, should be thread safe
             </summary>
         </member>
-        <member name="F:GMap.NET.WindowsForms.GMapOverlay.TooltipFont">
-            <summary>
-            font for markers tooltip
-            </summary>
-        </member>
-        <member name="F:GMap.NET.WindowsForms.GMapOverlay.TooltipPen">
-            <summary>
-            tooltip pen
-            </summary>
-        </member>
-        <member name="F:GMap.NET.WindowsForms.GMapOverlay.TooltipBackground">
-            <summary>
-            tooltip background color
-            </summary>
-        </member>
-        <member name="F:GMap.NET.WindowsForms.GMapOverlay.PolygonBackground">
-            <summary>
-            Polygon background color
-            </summary>
-        </member>
-        <member name="F:GMap.NET.WindowsForms.GMapOverlay.TooltipFormat">
-            <summary>
-            tooltip string format
-            </summary>
-        </member>
-        <member name="F:GMap.NET.WindowsForms.GMapOverlay.RoutePen">
-            <summary>
-            pen for routes, be aware that the color is adjusted in each GMapRoute
-            </summary>
-        </member>
-        <member name="M:GMap.NET.WindowsForms.GMapOverlay.DrawToolTip(System.Drawing.Graphics,GMap.NET.WindowsForms.GMapMarker,System.Int32,System.Int32)">
-            <summary>
-            draws tooltip, override to draw custom
-            </summary>
-            <param name="g"></param>
-            <param name="m"></param>
-            <param name="x"></param>
-            <param name="y"></param>
-        </member>
         <member name="M:GMap.NET.WindowsForms.GMapOverlay.DrawRoutes(System.Drawing.Graphics)">
             <summary>
             draw routes, override to draw custom
@@ -499,9 +124,30 @@
             </summary>
             <param name="g"></param>
         </member>
-        <member name="T:GMap.NET.WindowsForms.MarkerTooltipMode">
+        <member name="T:GMap.NET.WindowsForms.ToolTips.GMapRoundedToolTip">
             <summary>
-            modeof tooltip
+            GMap.NET marker
+            </summary>
+        </member>
+        <member name="T:System.Windows.Forms.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:GMap.NET.WindowsForms.GMapMarker">
+            <summary>
+            GMap.NET marker
             </summary>
         </member>
         <member name="T:GMap.NET.WindowsForms.GMapPolygon">
@@ -509,9 +155,375 @@
             GMap.NET polygon
             </summary>
         </member>
-        <member name="F:GMap.NET.WindowsForms.GMapPolygon.Color">
+        <member name="F:GMap.NET.WindowsForms.GMapPolygon.Stroke">
             <summary>
-            the color of route
+            specifies how the outline is painted
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapPolygon.Fill">
+            <summary>
+            background color
+            </summary>
+        </member>
+        <member name="T:GMap.NET.WindowsForms.GMapControl">
+            <summary>
+            GMap.NET control for Windows Forms
+            </summary>   
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapControl.Overlays">
+            <summary>
+            list of overlays, should be thread safe
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapControl.EmptyTileText">
+            <summary>
+            text on empty tiles
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapControl.EmptyTileBorders">
+            <summary>
+            pen for empty tile borders
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapControl.ScalePen">
+            <summary>
+            pen for scale info
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapControl.SelectionPen">
+            <summary>
+            area selection pen
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapControl.EmptytileBrush">
+            <summary>
+            pen for empty tile background
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapControl.MapScaleInfoEnabled">
+            <summary>
+            show map scale info
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapControl.DragButton">
+            <summary>
+            map dragg button
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapControl.selectedArea">
+            <summary>
+            current selected area in map
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapControl.BoundsOfMap">
+            <summary>
+            map boundaries
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapControl.ForceDoubleBuffer">
+            <summary>
+            enables integrated DoubleBuffer for best performance
+            if using a lot objets on map or running on windows mobile
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapControl.HoldInvalidation">
+            <summary>
+            stops immediate marker/route/polygon invalidations;
+            call Refresh to perform single refresh and reset invalidation state
+            </summary>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.Refresh">
+            <summary>
+            call this to stop HoldInvalidation and perform single refresh 
+            </summary>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.#ctor">
+            <summary>
+            construct
+            </summary>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.GMap_OnMapDrag">
+            <summary>
+            update objects when map is draged
+            </summary>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.Core_OnNeedInvalidation">
+            <summary>
+            thread safe invalidation
+            </summary>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.DrawMapGDIplus(System.Drawing.Graphics)">
+            <summary>
+            render map in GDI+
+            </summary>
+            <param name="g"></param>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.UpdateRouteLocalPosition(GMap.NET.WindowsForms.GMapRoute)">
+            <summary>
+            updates routes local position
+            </summary>
+            <param name="route"></param>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.UpdatePolygonLocalPosition(GMap.NET.WindowsForms.GMapPolygon)">
+            <summary>
+            updates polygons local position
+            </summary>
+            <param name="polygon"></param>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.SetZoomToFitRect(GMap.NET.RectLatLng)">
+            <summary>
+            sets zoom to max to fit rect
+            </summary>
+            <param name="rect"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.ZoomAndCenterMarkers(System.String)">
+            <summary>
+            sets to max zoom to fit all markers and centers them in map
+            </summary>
+            <param name="overlayId">overlay id or null to check all</param>
+            <returns></returns>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.ZoomAndCenterRoutes(System.String)">
+            <summary>
+            zooms and centers all route
+            </summary>
+            <param name="overlayId">overlay id or null to check all</param>
+            <returns></returns>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.ZoomAndCenterRoute(GMap.NET.MapRoute)">
+            <summary>
+            zooms and centers route 
+            </summary>
+            <param name="route"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.GetRectOfAllMarkers(System.String)">
+            <summary>
+            gets rectangle with all objects inside
+            </summary>
+            <param name="overlayId">overlay id or null to check all</param>
+            <returns></returns>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.GetRectOfAllRoutes(System.String)">
+            <summary>
+            gets rectangle with all objects inside
+            </summary>
+            <param name="overlayId">overlay id or null to check all</param>
+            <returns></returns>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.GetRectOfRoute(GMap.NET.MapRoute)">
+            <summary>
+            gets rect of route
+            </summary>
+            <param name="route"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.ToImage">
+            <summary>
+            gets image of the current view
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.Offset(System.Int32,System.Int32)">
+            <summary>
+            offset position in pixels
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.ReloadMap">
+            <summary>
+            reloads the map
+            </summary>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.SetCurrentPositionByKeywords(System.String)">
+            <summary>
+            set current position using keywords
+            </summary>
+            <param name="keys"></param>
+            <returns>true if successfull</returns>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.FromLocalToLatLng(System.Int32,System.Int32)">
+            <summary>
+            gets world coordinate from local control coordinate 
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.FromLatLngToLocal(GMap.NET.PointLatLng)">
+            <summary>
+            gets local coordinate from world coordinate
+            </summary>
+            <param name="point"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.ShowExportDialog">
+            <summary>
+            shows map db export dialog
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.ShowImportDialog">
+            <summary>
+            shows map dbimport dialog
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="E:GMap.NET.WindowsForms.GMapControl.OnMarkerClick">
+            <summary>
+            occurs when clicked on marker
+            </summary>
+        </member>
+        <member name="E:GMap.NET.WindowsForms.GMapControl.OnMarkerEnter">
+            <summary>
+            occurs on mouse enters marker area
+            </summary>
+        </member>
+        <member name="E:GMap.NET.WindowsForms.GMapControl.OnMarkerLeave">
+            <summary>
+            occurs on mouse leaves marker area
+            </summary>
+        </member>
+        <member name="E:GMap.NET.WindowsForms.GMapControl.OnEmptyTileError">
+            <summary>
+            occurs on empty tile displayed
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.MaxZoom">
+            <summary>
+            max zoom
+            </summary>         
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.MinZoom">
+            <summary>
+            min zoom
+            </summary>      
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.MouseWheelZoomType">
+            <summary>
+            map zooming type for mouse wheel
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.ShowTileGridLines">
+            <summary>
+            shows tile gridlines
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.ZoomStep">
+            <summary>
+            map zoom level
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.CurrentPosition">
+            <summary>
+            current map center position
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.CurrentPositionGPixel">
+            <summary>
+            current marker position in pixel coordinates
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.CacheLocation">
+            <summary>
+            location of cache
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.IsDragging">
+            <summary>
+            is user dragging map
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.IsMouseOverMarker">
+            <summary>
+            is mouse over marker
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.CurrentViewArea">
+            <summary>
+            gets current map view top/left coordinate, width in Lng, height in Lat
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.TooltipTextPadding">
+            <summary>
+            for tooltip text padding
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.MapType">
+            <summary>
+            type of map
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.Projection">
+            <summary>
+            map projection
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.RoutesEnabled">
+            <summary>
+            is routes enabled
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.PolygonsEnabled">
+            <summary>
+            is polygons enabled
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.MarkersEnabled">
+            <summary>
+            is markers enabled
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.CanDragMap">
+            <summary>
+            can user drag map
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.RenderMode">
+            <summary>
+            map render mode
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.Manager">
+            <summary>
+            gets map manager
+            </summary>
+        </member>
+        <member name="E:GMap.NET.WindowsForms.GMapControl.OnCurrentPositionChanged">
+            <summary>
+            occurs when current position is changed
+            </summary>
+        </member>
+        <member name="E:GMap.NET.WindowsForms.GMapControl.OnTileLoadComplete">
+            <summary>
+            occurs when tile set load is complete
+            </summary>
+        </member>
+        <member name="E:GMap.NET.WindowsForms.GMapControl.OnTileLoadStart">
+            <summary>
+            occurs when tile set is starting to load
+            </summary>
+        </member>
+        <member name="E:GMap.NET.WindowsForms.GMapControl.OnMapDrag">
+            <summary>
+            occurs on map drag
+            </summary>
+        </member>
+        <member name="E:GMap.NET.WindowsForms.GMapControl.OnMapZoomChanged">
+            <summary>
+            occurs on map zoom changed
+            </summary>
+        </member>
+        <member name="E:GMap.NET.WindowsForms.GMapControl.OnMapTypeChanged">
+            <summary>
+            occures on map type changed
+            </summary>
+        </member>
+        <member name="T:GMap.NET.WindowsForms.MarkerTooltipMode">
+            <summary>
+            modeof tooltip
             </summary>
         </member>
     </members>

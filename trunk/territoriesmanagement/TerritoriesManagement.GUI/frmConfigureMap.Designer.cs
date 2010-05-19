@@ -126,9 +126,9 @@
             // 
             this.grpTerritories.Controls.Add(this.lblTerritories2);
             this.grpTerritories.Controls.Add(this.chklstTerritory2);
-            this.grpTerritories.Location = new System.Drawing.Point(12, 295);
+            this.grpTerritories.Location = new System.Drawing.Point(12, 338);
             this.grpTerritories.Name = "grpTerritories";
-            this.grpTerritories.Size = new System.Drawing.Size(405, 100);
+            this.grpTerritories.Size = new System.Drawing.Size(405, 57);
             this.grpTerritories.TabIndex = 72;
             this.grpTerritories.TabStop = false;
             this.grpTerritories.Text = "Select territories polygons to see";
@@ -136,7 +136,7 @@
             // lblTerritories2
             // 
             this.lblTerritories2.AutoSize = true;
-            this.lblTerritories2.Location = new System.Drawing.Point(18, 31);
+            this.lblTerritories2.Location = new System.Drawing.Point(18, 14);
             this.lblTerritories2.Name = "lblTerritories2";
             this.lblTerritories2.Size = new System.Drawing.Size(53, 13);
             this.lblTerritories2.TabIndex = 76;
@@ -147,7 +147,7 @@
             this.chklstTerritory2.ConcatChar = ", ";
             this.chklstTerritory2.DisplayMember = null;
             this.chklstTerritory2.FormattingEnabled = true;
-            this.chklstTerritory2.Location = new System.Drawing.Point(21, 47);
+            this.chklstTerritory2.Location = new System.Drawing.Point(21, 30);
             this.chklstTerritory2.Name = "chklstTerritory2";
             this.chklstTerritory2.Size = new System.Drawing.Size(360, 21);
             this.chklstTerritory2.TabIndex = 71;

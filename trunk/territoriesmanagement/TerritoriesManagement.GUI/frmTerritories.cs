@@ -9,6 +9,8 @@ using GMap.NET;
 using GMap.NET.WindowsForms;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.Model;
+using Localizer;
+using System.Threading;
 
 namespace TerritoriesManagement.GUI
 {
@@ -18,11 +20,10 @@ namespace TerritoriesManagement.GUI
         private Territories _server = new Territories();
         private bool _isDirty;
         Config.Config _config;
-        ResourceManager _rm;
 
         public frmTerritories()
         {
-            _rm = new ResourceManager(this.GetType());
+            Globalization.SetCurrentLanguage(Thread.CurrentThread.CurrentCulture.IetfLanguageTag);
 
             if (_opened)
                 throw new Exception(GetString("The window is already open."));
@@ -33,8 +34,7 @@ namespace TerritoriesManagement.GUI
 
         private string GetString(string text)
         {
-            //return _rm.GetString(text, Thread.CurrentThread.CurrentCulture);
-            return text;
+            return Globalization.GetString(text);
         }
 
         private void frmTerritories_Load(object sender, EventArgs e)
@@ -150,7 +150,7 @@ namespace TerritoriesManagement.GUI
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error");
+                MessageBox.Show(ex.Message, GetString("Error"));
             }
             lblFiltered.Visible = false;
         }
@@ -348,7 +348,7 @@ namespace TerritoriesManagement.GUI
             {
                 Territory t = FormToOject();
 
-                myForm.Object = t;
+                myForm.Object = t;                
 
                 if (myForm.ShowDialog() == DialogResult.OK)
                 {
@@ -374,6 +374,41 @@ namespace TerritoriesManagement.GUI
                     ObjectToForm(t);
                 }
 
+            }
+        }
+
+        private void btnViewMap_Click_1(object sender, EventArgs e)
+        {
+            using (frmMap myForm = new frmMap())
+            {
+                myForm.AllowDrawPolygon = true;
+                myForm.Address = "Buenos Aires, Argentina";
+                Territory t = FormToOject();
+                myForm.Object = t;
+
+                if (myForm.ShowDialog() == DialogResult.OK)
+                {
+                    string area = "";
+
+                    GMapPolygon polygon = myForm.Polygon;
+                    if (polygon != null)
+                    {
+                        foreach (PointLatLng item in polygon.Points)
+                        {
+                            if (!string.IsNullOrEmpty(area))
+                                area += Environment.NewLine;
+                            area += item.Lat + " " + item.Lng;
+                        }
+                        if (string.IsNullOrEmpty(area))
+                            t.Area = null;
+                        else
+                            t.Area = area;
+                    }
+                    else
+                        t.Area = null;
+
+                    ObjectToForm(t);
+                }
             }
         }
 

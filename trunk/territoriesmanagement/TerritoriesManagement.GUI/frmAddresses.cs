@@ -4,11 +4,12 @@ using System.ComponentModel;
 using System.Data.Objects;
 using System.IO;
 using System.Linq;
-using System.Resources;
+using System.Threading;
 using System.Windows.Forms;
 using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
+using Localizer;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.Export;
 using ZeqkTools.WindowsForms.Maps;
@@ -19,20 +20,19 @@ namespace TerritoriesManagement.GUI
     {
         Addresses _server = new Addresses();
         Config.Config _config;
-        ResourceManager _rm;
 
         bool _isGettingAll = false;
 
         public frmAddresses()
         {
-            _rm = new ResourceManager(this.GetType());
+            Globalization.SetCurrentLanguage(Thread.CurrentThread.CurrentCulture.IetfLanguageTag);
             InitializeComponent();
 
         }
 
         private string GetString(string text)
         {
-            //return _rm.GetString(text, Thread.CurrentThread.CurrentCulture);
+            Localizer.Globalization.GetString(text);            
             return text;
         }
 

@@ -3,6 +3,8 @@ using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 using ZeqkTools.WindowsForms;
+using System.Threading;
+using Localizer;
 
 namespace TerritoriesManagement.GUI
 {
@@ -76,17 +78,22 @@ namespace TerritoriesManagement.GUI
             try
             {
                 DateTime lastModification = Functions.GetLastModDate();
-                lblConnectionStatusValue.Text = "OK. Last modification date: " + lastModification.ToString();
+                lblConnectionStatusValue.Text = GetString("OK. Last modification date: ") + lastModification.ToString(Thread.CurrentThread.CurrentCulture.DateTimeFormat);
                 lblConnectionStatusValue.ForeColor = Color.Green;
                 
             }
             catch (Exception ex)
             {
-                lblConnectionStatusValue.Text = "Error. " + ex.Message;
+                lblConnectionStatusValue.Text = GetString("Error. ") + ex.Message;
                 lblConnectionStatusValue.ForeColor = Color.Red;
             }
             
 
+        }
+
+        private string GetString(string text)
+        {
+            return Globalization.GetString(text);
         }
 
 
