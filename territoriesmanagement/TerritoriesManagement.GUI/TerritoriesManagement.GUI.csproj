@@ -119,7 +119,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\ZeqkTools.dll</HintPath>
     </Reference>
-    <Reference Include="ZeqkTools.Maps, Version=1.10.4.26, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="ZeqkTools.Maps, Version=1.10.5.10, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\ZeqkTools.Maps.dll</HintPath>
     </Reference>

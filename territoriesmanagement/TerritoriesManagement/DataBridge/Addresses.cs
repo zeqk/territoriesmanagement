@@ -177,6 +177,7 @@ namespace TerritoriesManagement.DataBridge
                                   DepartmentName = a.City.Department.Name,
                                   CityName = a.City.Name,
                                   Territory = GetTerritoryStr(a.Territory),
+                                  InternalTerritoryNumber = a.InternalTerritoryNumber, 
                                   Address = a.Street + " " + a.Number,
                                   Corner1 = a.Corner1,
                                   Corner2 = a.Corner2,

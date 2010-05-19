@@ -105,7 +105,9 @@ namespace TerritoriesManagement.GUI
                         if (lat.HasValue && lng.HasValue)
                         {
                             GMapMarkerCustom marker = new GMapMarkerCustom(new PointLatLng(lat.Value, lng.Value));
-                            marker.Tag = Functions.GetPropertyValue(item, "Id").ToString();                            
+                            int? internalNumber = (int?)Functions.GetPropertyValue(item, "InternalTerritoryNumber");
+                            if (internalNumber.HasValue)
+                                marker.Tag = internalNumber.Value;
                             marker.ToolTipText = Functions.GetPropertyValue(item, "Address").ToString();
                             marker.Size = new System.Drawing.Size(4, 4);
                             marker.TooltipMode = MarkerTooltipMode.OnMouseOver;
@@ -228,8 +230,8 @@ namespace TerritoriesManagement.GUI
                 string auxQueryStr = "";
                 for (int i = 0; i < territories.Count; i++)
                 {
-                    if ((int)territories[i] != currentId)
-                    {
+                    //if ((int)territories[i] != currentId)
+                    //{
                         if (auxQueryStr != "")
                             auxQueryStr += " OR ";
 
@@ -242,7 +244,7 @@ namespace TerritoriesManagement.GUI
                         }
                         else
                             auxQueryStr += "Address.Territory IS NULL";
-                    }
+                    //}
                 }
                 if(!string.IsNullOrEmpty(auxQueryStr))
                     queryStr += "(" + auxQueryStr + ")";

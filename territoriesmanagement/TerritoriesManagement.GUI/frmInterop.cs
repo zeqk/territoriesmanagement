@@ -499,7 +499,7 @@ namespace TerritoriesManagement.GUI
             if (chkDataExportTerritories.Checked)
                 list.Add("Territory");
             if (chkDataExportTours.Checked)
-                list.Add("Tuor");
+                list.Add("Tour");
             if (chkDataExportAddresses.Checked)
                 list.Add("Address");
 
