@@ -131,6 +131,7 @@ namespace TerritoriesManagement
                         propertyList.Add(new Property(prop.Name,prop.PropertyType));
                 }
 
+                propertyList.Add(new Property("InternalTerritoryNumber", typeof(int)));
                 propertyList.Add(new Property("Territory.IdTerritory",typeof(int)));
                 propertyList.Add(new Property("Territory.Name",typeof(string)));
 

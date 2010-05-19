@@ -215,6 +215,7 @@ namespace TerritoriesManagement.GUI
             dgvResult.Columns.Add("HasGeoPosition", GetString("GEO"));
             dgvResult.Columns.Add("Lat", GetString("Lat"));
             dgvResult.Columns.Add("Lng", GetString("Lng"));
+            dgvResult.Columns.Add("InternalTerritoryNumber", GetString("Number"));
             dgvResult.Columns.Add("blank", "");
 
             dgvResult.Columns["Id"].Visible = false;
@@ -239,6 +240,8 @@ namespace TerritoriesManagement.GUI
             dgvResult.Columns["Lat"].DataPropertyName = "Lat";
             dgvResult.Columns["Lng"].Visible = false;
             dgvResult.Columns["Lng"].DataPropertyName = "Lng";
+            dgvResult.Columns["InternalTerritoryNumber"].Visible = false;
+            dgvResult.Columns["InternalTerritoryNumber"].DataPropertyName = "InternalTerritoryNumber";
 
             dgvResult.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
@@ -461,11 +464,13 @@ namespace TerritoriesManagement.GUI
                             double lat = (double)selectedRows[i].Cells["Lat"].Value;
                             double lng = (double)selectedRows[i].Cells["Lng"].Value;
                             string address = selectedRows[i].Cells["Address"].Value.ToString();
-                            int idAddres = (int)selectedRows[i].Cells["Id"].Value;
+
+                            int? internalNumber = (int?)selectedRows[i].Cells["InternalTerritoryNumber"].Value;
 
                             GMapMarkerCustom marker = new GMapMarkerCustom(new PointLatLng(lat, lng));
                             marker.Size = new System.Drawing.Size(4, 4);
-                            marker.Tag = idAddres;
+                            if(internalNumber.HasValue)
+                                marker.Tag = internalNumber.Value;
                             marker.ToolTipText = address;
                             marker.Icon = Properties.Resources.legendIcon;
                             marks.Add(marker);
