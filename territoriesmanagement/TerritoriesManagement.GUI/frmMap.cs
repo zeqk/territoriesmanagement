@@ -24,17 +24,17 @@ namespace TerritoriesManagement.GUI
 
         Addresses server = new Addresses();
         #region Fields
+        public object Object;
+
         private MapType _mapType;
         private int _mapZoom;
-        private bool _allowDrawPolygon;     
-               
-        private GMapPolygon currentPolygon;
-
-        public object Object;
+        private bool _allowDrawPolygon;                   
+        
         #endregion
 
         #region Internal variables  
 
+        GMapPolygon currentPolygon;
         // markers
         GMapMarker center;
         GMapMarker currentMarker;
@@ -50,15 +50,22 @@ namespace TerritoriesManagement.GUI
         /// <summary>
         /// Get set the main polygon
         /// </summary>
-        public GMapPolygon Polygon
+        public GMapPolygon MainPolygon
         {
             get 
             {                
                 return currentPolygon;            
             }
-            private set
+        }
+
+        /// <summary>
+        /// Get set the main marker
+        /// </summary>
+        public GMapMarker MainMarker
+        {
+            get
             {
-                currentPolygon = value;
+                return currentMarker;
             }
         }
 
@@ -99,7 +106,8 @@ namespace TerritoriesManagement.GUI
             _mapZoom = 15;
 
             currentPolygon = new GMapPolygon(new List<PointLatLng>(), "MyPolygon");
-            
+            currentMarker = new GMapMarkerGoogleRed(new PointLatLng());
+
             InitializeComponent();
         }
         #endregion
@@ -111,13 +119,19 @@ namespace TerritoriesManagement.GUI
 
             //Config map
             ConfigMap();
-                        
-            string areaStr = (string)Functions.GetPropertyValue(Object,"Area");
-            if(areaStr != null)
+
+            if (Object.GetType() == typeof(Territory))
             {
-                List<PointLatLng> auxPoints = Functions.StrPointsToPointsLatLng(areaStr.Split('\n'));
-                currentPolygon.Points.AddRange(auxPoints);
+                string areaStr = (string)Functions.GetPropertyValue(Object, "Area");
+                if (areaStr != null)
+                {
+                    List<PointLatLng> auxPoints = Functions.StrPointsToPointsLatLng(areaStr.Split('\n'));
+                    currentPolygon.Points.AddRange(auxPoints);
+
+                    currentPolygon.Name = (string)Functions.GetPropertyValue(Object, "Name");
+                }
             }
+
             //get the center of the markers
             PointLatLng? middle = null;
             if (currentPolygon.Points.Count > 0)                
@@ -133,7 +147,7 @@ namespace TerritoriesManagement.GUI
                 // set current marker
                 if (!_allowDrawPolygon)
                 {
-                    currentMarker = new GMapMarkerGoogleRed(MainMap.CurrentPosition);
+                    currentMarker.Position = MainMap.CurrentPosition;
                     top.Markers.Add(currentMarker);
                 }
             }
@@ -145,7 +159,9 @@ namespace TerritoriesManagement.GUI
                 MainMap.SetDrawingPolygon(currentPolygon);
 
             if (center == null)
-                GoToAddress(Address);            
+                GoToAddress(Address);
+            
+            viewAddresses();
 
         }
 
@@ -203,11 +219,8 @@ namespace TerritoriesManagement.GUI
             // set current marker
             if (!_allowDrawPolygon)
             {
-                if (currentMarker == null)
-                {
-                    currentMarker = new GMapMarkerGoogleRed(new PointLatLng());
+                if (!top.Markers.Contains(currentMarker))
                     top.Markers.Add(currentMarker);
-                }
 
                 currentMarker.Position = MainMap.CurrentPosition;
             }
@@ -413,15 +426,17 @@ namespace TerritoriesManagement.GUI
         {
 
             var territoryList = server.GetTerritories();
+            var departmentList = server.GetDepartments();
 
+            //grpTerritories
             chklstTerritories.DisplayMember = "Name";
             chklstTerritories.ValueMember = "Id";
             chklstTerritories.DataSource = territoryList;
             grpTerritories.Visible = false;
 
 
-            var departmentList = server.GetDepartments();
-
+            
+            //grpAddresses
             chklstDepartment.DisplayMember = "Name";
             chklstDepartment.ValueMember = "Id";
             chklstDepartment.DataSource = departmentList;
@@ -433,6 +448,16 @@ namespace TerritoriesManagement.GUI
             chklstTerritory.ValueMember = "Id";
             chklstTerritory.DataSource = territoryList;
             grpAddresses.Visible = false;
+
+            if (Object.GetType() == typeof(Territory))
+            {
+                int id = (int)Functions.GetPropertyValue(Object,"IdTerritory");
+                if (id != 0)
+                {
+                    chklstTerritories.Check(id, "Id");
+                    chklstTerritory.Check(id, "Id");
+                }
+            }
 
         }
 
@@ -532,7 +557,15 @@ namespace TerritoriesManagement.GUI
 
         private void btnViewAddresses_Click(object sender, EventArgs e)
         {
+            viewAddresses();
+        }
+
+        void viewAddresses()
+        {
             IList addressesToShow = GetAddressToShow();
+
+            top.Markers.Clear();
+            top.Markers.Add(currentMarker);
 
             if (addressesToShow != null)
             {
@@ -587,31 +620,27 @@ namespace TerritoriesManagement.GUI
             if (chklstTerritory.CheckedItems.Count > 0)
             {
                 if (auxParameters.Count > 0)
-                    queryStr += " AND ";
+                    queryStr += " AND ";                                
 
-                //int currentId = -1;
-                //if (Object.GetType() == typeof(Territory))
-                //    currentId = (int)Functions.GetPropertyValue(Object, "IdTerritory");
-
-                var territories = chklstTerritory.CheckedItemsValues;
+                var territoriesIds = chklstTerritory.CheckedItemsValues;
                 string auxQueryStr = "";
-                for (int i = 0; i < territories.Count; i++)
+                for (int i = 0; i < territoriesIds.Count; i++)
                 {
-                    //if ((int)territories[i] != currentId)
-                    //{
                     if (auxQueryStr != "")
                         auxQueryStr += " OR ";
-
-                    if ((int)territories[i] != 0)
+                                        
+                    if ((int)territoriesIds[i] != -1) //el id -1 representa al null
                     {
-                        string varName = "IdTerritory" + i.ToString();
-                        auxQueryStr += "Address.Territory.IdTerritory = @" + varName;
-                        ObjectParameter param = new ObjectParameter(varName, territories[i]);
-                        auxParameters.Add(param);
+                        if ((int)territoriesIds[i] != 0) //el id 0 es el nuevo
+                        {
+                            string varName = "IdTerritory" + i.ToString();
+                            auxQueryStr += "Address.Territory.IdTerritory = @" + varName;
+                            ObjectParameter param = new ObjectParameter(varName, territoriesIds[i]);
+                            auxParameters.Add(param);
+                        }
                     }
                     else
                         auxQueryStr += "Address.Territory IS NULL";
-                    //}
                 }
                 if (!string.IsNullOrEmpty(auxQueryStr))
                     queryStr += "(" + auxQueryStr + ")";
@@ -620,7 +649,7 @@ namespace TerritoriesManagement.GUI
             //chklstCity
             if (chklstCity.CheckedItems.Count > 0)
             {
-                if (auxParameters.Count > 0)
+                if (auxParameters.Count > 0 || queryStr.Contains("IS NULL"))
                     queryStr += " AND ";
 
                 var cities = chklstCity.CheckedItemsValues;
@@ -642,7 +671,7 @@ namespace TerritoriesManagement.GUI
                 //chklstDepartment
                 if (chklstDepartment.CheckedItems.Count > 0)
                 {
-                    if (auxParameters.Count > 0)
+                    if (auxParameters.Count > 0 || queryStr.Contains("IS NULL"))
                         queryStr += " AND ";
 
                     var cities = chklstDepartment.CheckedItemsValues;

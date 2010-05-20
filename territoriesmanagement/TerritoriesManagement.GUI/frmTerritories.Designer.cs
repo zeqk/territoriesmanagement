@@ -93,7 +93,7 @@
             this.btnViewMap.TabIndex = 24;
             this.btnViewMap.Text = "View map";
             this.btnViewMap.UseVisualStyleBackColor = true;
-            this.btnViewMap.Click += new System.EventHandler(this.btnViewMap_Click_1);
+            this.btnViewMap.Click += new System.EventHandler(this.btnViewMap_Click);
             // 
             // txtNumber
             // 

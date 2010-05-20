@@ -14,20 +14,19 @@ namespace TerritoriesManagement.GUI
 {
     public partial class frmCities : Form
     {
-        static private bool _opened = false;
-        private Cities _server = new Cities();
-
+        static private bool opened = false;
+        private Cities server = new Cities();
         
-        private bool _isDirty;
+        private bool isDirty;
 
         public frmCities()
         {
             Globalization.SetCurrentLanguage(Thread.CurrentThread.CurrentCulture.IetfLanguageTag);
             
-            if (_opened)
+            if (opened)
                 throw new Exception(GetString("The window is already open."));
             else
-                _opened = true;
+                opened = true;
 
             InitializeComponent();
         }
@@ -39,16 +38,16 @@ namespace TerritoriesManagement.GUI
             schName.SetProperties(columns, variables);
             ConfigGrids();
 
-            cboDepartment.DataSource = this._server.GetDepartments();
+            cboDepartment.DataSource = this.server.GetDepartments();
             cboDepartment.DisplayMember = "Name";
             cboDepartment.ValueMember = "Id";
 
-            cboFilterDepartment.DataSource = this._server.GetDepartments();
+            cboFilterDepartment.DataSource = this.server.GetDepartments();
             cboFilterDepartment.DisplayMember = "Name";
             cboFilterDepartment.ValueMember = "Id";
             cboFilterDepartment.SelectedItem = null;
 
-            _isDirty = false; //porque al cargar los datos del combo el isDirty sepone en true
+            isDirty = false; //porque al cargar los datos del combo el isDirty sepone en true
             ClearFilter();
         }
 
@@ -56,18 +55,18 @@ namespace TerritoriesManagement.GUI
         {
             if (dgvResult.SelectedRows.Count != 0)
             {
-                var v = _server.Load((int)dgvResult.SelectedRows[0].Cells["Id"].Value);
+                var v = server.Load((int)dgvResult.SelectedRows[0].Cells["Id"].Value);
                 ObjectToForm(v);
                 if (tabPanel.Visible)
                     LoadRelations(v);
 
-                this._isDirty = false;
+                this.isDirty = false;
             }
         }
 
         private void txtName_TextChanged(object sender, EventArgs e)
         {
-            this._isDirty = true;
+            this.isDirty = true;
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -85,7 +84,7 @@ namespace TerritoriesManagement.GUI
             var v = FormToOject();
             try
             {
-                this._server.Delete(v.IdCity);
+                this.server.Delete(v.IdCity);
 
                 //traigo los datos actualizados
                 if (lblFiltered.Visible) Filter();
@@ -110,7 +109,7 @@ namespace TerritoriesManagement.GUI
             var v = FormToOject();
             ClearFilter();
             ObjectToForm(v);
-            _isDirty = false;
+            isDirty = false;
             txtName.Focus();
         }
 
@@ -142,12 +141,12 @@ namespace TerritoriesManagement.GUI
 
         private void frmCities_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _opened = false;
+            opened = false;
         }
 
         private void cboDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _isDirty = true;
+            isDirty = true;
         }
 
 
@@ -155,7 +154,7 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
-                dgvResult.DataSource = this._server.Search(query);
+                dgvResult.DataSource = this.server.Search(query);
             }
             catch (Exception ex)
             {
@@ -236,16 +235,16 @@ namespace TerritoriesManagement.GUI
 
         private void ClearData()
         {            
-            var v = this._server.NewObject();
+            var v = this.server.NewObject();
             ObjectToForm(v);
             txtName.Focus();
-            this._isDirty = false;
+            this.isDirty = false;
         }
 
         private void New()
         {
             bool yes = true;
-            if (_isDirty)
+            if (isDirty)
                 if (MessageBox.Show(GetString("There is some unsaved data. Do you want to continue?"), GetString("Message"), MessageBoxButtons.YesNo) == DialogResult.No)
                 {
                     yes = false;
@@ -265,13 +264,13 @@ namespace TerritoriesManagement.GUI
 
                 try
                 {
-                    v = this._server.Save(v);
+                    v = this.server.Save(v);
 
                     //traigo los datos
                     if (lblFiltered.Visible) Filter();
                     else ClearFilter();
 
-                    _isDirty = false;
+                    isDirty = false;
                     txtName.Focus();
                 }
                 catch (Exception ex)
@@ -327,7 +326,7 @@ namespace TerritoriesManagement.GUI
 
                 if (!string.IsNullOrEmpty(strQuery))
                 {
-                    dgvResult.DataSource = this._server.Search(strQuery, parameters.ToArray<ObjectParameter>());
+                    dgvResult.DataSource = this.server.Search(strQuery, parameters.ToArray<ObjectParameter>());
                     lblFiltered.Visible = true;
                 }
                 else
@@ -356,7 +355,7 @@ namespace TerritoriesManagement.GUI
 
         private void LoadRelations(City v)
         {
-            IDictionary relations = this._server.LoadRelations(v.IdCity);
+            IDictionary relations = this.server.LoadRelations(v.IdCity);
             dgvAddresses.DataSource = relations["Addresses"];
             dgvAddresses.Refresh();
 

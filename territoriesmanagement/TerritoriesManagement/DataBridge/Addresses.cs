@@ -359,7 +359,7 @@ namespace TerritoriesManagement.DataBridge
                               select new { Id = t.IdTerritory, Name = t.Number + " - " + t.Name };
 
                 var rv = results.ToList();
-                rv.Add(new { Id = 0, Name = GetString("(no territory)") });
+                rv.Add(new { Id = -1, Name = GetString("(no territory)") });
                 return rv.OrderBy(a=>a.Name).ToList();
             }
             catch (Exception ex)
