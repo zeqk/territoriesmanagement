@@ -16,19 +16,19 @@ namespace TerritoriesManagement.GUI
 {
     public partial class frmTerritories : Form
     {
-        static private bool _opened = false;
-        private Territories _server = new Territories();
-        private bool _isDirty;
-        Config.Config _config;
+        static private bool opened = false;
+        private Territories server = new Territories();
+        private bool isDirty;
+        Config.Config config;
 
         public frmTerritories()
         {
             Globalization.SetCurrentLanguage(Thread.CurrentThread.CurrentCulture.IetfLanguageTag);
 
-            if (_opened)
+            if (opened)
                 throw new Exception(GetString("The window is already open."));
             else
-                _opened = true;
+                opened = true;
             InitializeComponent();
         }
 
@@ -39,8 +39,8 @@ namespace TerritoriesManagement.GUI
 
         private void frmTerritories_Load(object sender, EventArgs e)
         {
-            _config = new Config.Config();
-            _config.LoadSavedConfig();
+            config = new Config.Config();
+            config.LoadSavedConfig();
 
             string[] columns = { "Territory.Name" };
             string[] variables = { "name" };
@@ -54,18 +54,18 @@ namespace TerritoriesManagement.GUI
         {
             if (dgvResult.SelectedRows.Count != 0)
             {
-                var v = _server.Load((int)dgvResult.SelectedRows[0].Cells["Id"].Value);
+                var v = server.Load((int)dgvResult.SelectedRows[0].Cells["Id"].Value);
                 ObjectToForm(v);
                 if (tabPanel.Visible)
                     LoadRelations(v);
 
-                this._isDirty = false;
+                this.isDirty = false;
             }
         }
 
         private void txtName_TextChanged(object sender, EventArgs e)
         {
-            this._isDirty = true;
+            this.isDirty = true;
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -83,7 +83,7 @@ namespace TerritoriesManagement.GUI
             var v = FormToOject();
             try
             {
-                this._server.Delete(v.IdTerritory);
+                this.server.Delete(v.IdTerritory);
 
                 if (lblFiltered.Visible) Filter();
                 else ClearFilter();
@@ -106,7 +106,7 @@ namespace TerritoriesManagement.GUI
             var v = FormToOject();
             ClearFilter();
             ObjectToForm(v);
-            _isDirty = false;
+            isDirty = false;
             txtName.Focus();
         }
 
@@ -138,7 +138,7 @@ namespace TerritoriesManagement.GUI
 
         private void frmTerritories_FormClosed_1(object sender, FormClosedEventArgs e)
         {
-            _opened = false;
+            opened = false;
         }
 
 
@@ -146,7 +146,7 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
-                dgvResult.DataSource = this._server.Search(query);
+                dgvResult.DataSource = this.server.Search(query);
             }
             catch (Exception ex)
             {
@@ -225,16 +225,16 @@ namespace TerritoriesManagement.GUI
 
         private void ClearData()
         {
-            var v = this._server.NewObject();
+            var v = this.server.NewObject();
             ObjectToForm(v);
             txtName.Focus();
-            this._isDirty = false;
+            this.isDirty = false;
         }        
 
         private void New()
         {
             bool yes = true;
-            if (_isDirty)
+            if (isDirty)
                 if (MessageBox.Show(GetString("There is some unsaved data. Do you want to continue?"), GetString("Message"), MessageBoxButtons.YesNo) == DialogResult.No)
                 {
                     yes = false;
@@ -254,13 +254,13 @@ namespace TerritoriesManagement.GUI
 
                 try
                 {
-                    v =this._server.Save(v);
+                    v = this.server.Save(v);
 
                     //traigo los datos
                     if (lblFiltered.Visible) Filter();
                     else ClearFilter();
 
-                    _isDirty = false;
+                    isDirty = false;
                     txtName.Focus();
                 }
                 catch (Exception ex)
@@ -301,7 +301,7 @@ namespace TerritoriesManagement.GUI
 
                 if (!string.IsNullOrEmpty(strQuery))
                 {
-                    dgvResult.DataSource = this._server.Search(strQuery, parameters.ToArray<ObjectParameter>());
+                    dgvResult.DataSource = this.server.Search(strQuery, parameters.ToArray<ObjectParameter>());
                     lblFiltered.Visible = true;
                 }
                 else
@@ -329,7 +329,7 @@ namespace TerritoriesManagement.GUI
 
         private void LoadRelations(Territory v)
         {
-            IDictionary relations = this._server.LoadRelations(v.IdTerritory);
+            IDictionary relations = this.server.LoadRelations(v.IdTerritory);
             dgvAddresses.DataSource = relations["Addresses"];
             dgvAddresses.Refresh();
 
@@ -340,49 +340,14 @@ namespace TerritoriesManagement.GUI
 
             dgvTours.RowHeadersVisible = false;
 
-        }
+        }        
 
         private void btnViewMap_Click(object sender, EventArgs e)
-        {
-            using (frmConfigureMap myForm = new frmConfigureMap())
-            {
-                Territory t = FormToOject();
-
-                myForm.Object = t;                
-
-                if (myForm.ShowDialog() == DialogResult.OK)
-                {
-                    string area = "";
-
-                    GMapPolygon polygon = myForm.Polygon;
-                    if (polygon != null)
-                    {
-                        foreach (PointLatLng item in polygon.Points)
-                        {
-                            if (!string.IsNullOrEmpty(area))
-                                area += Environment.NewLine;
-                            area += item.Lat + " " + item.Lng;
-                        }
-                        if (string.IsNullOrEmpty(area))
-                            t.Area = null;
-                        else
-                            t.Area = area;
-                    }
-                    else
-                        t.Area = null;
-
-                    ObjectToForm(t);
-                }
-
-            }
-        }
-
-        private void btnViewMap_Click_1(object sender, EventArgs e)
         {
             using (frmMap myForm = new frmMap())
             {
                 myForm.AllowDrawPolygon = true;
-                myForm.Address = "Buenos Aires, Argentina";
+                myForm.Address = config.Place;
                 Territory t = FormToOject();
                 myForm.Object = t;
 
@@ -390,7 +355,7 @@ namespace TerritoriesManagement.GUI
                 {
                     string area = "";
 
-                    GMapPolygon polygon = myForm.Polygon;
+                    GMapPolygon polygon = myForm.MainPolygon;
                     if (polygon != null)
                     {
                         foreach (PointLatLng item in polygon.Points)

@@ -12,18 +12,18 @@ namespace TerritoriesManagement.GUI
 {
     public partial class frmDepartments : Form
     {
-        static private bool _opened = false;
-        private Departments _server = new Departments();
-        private bool _isDirty;
+        static private bool opened = false;
+        private Departments server = new Departments();
+        private bool isDirty;
 
         public frmDepartments()
         {
             Globalization.SetCurrentLanguage(Thread.CurrentThread.CurrentCulture.IetfLanguageTag);
 
-            if (_opened)
+            if (opened)
                 throw new Exception(GetString("The window is already open."));
             else
-                _opened = true;  
+                opened = true;  
  
             InitializeComponent();
         }
@@ -49,18 +49,18 @@ namespace TerritoriesManagement.GUI
         {
             if (dgvResult.SelectedRows.Count != 0)
             {
-                var v = _server.Load((int)dgvResult.SelectedRows[0].Cells["Id"].Value);
+                var v = server.Load((int)dgvResult.SelectedRows[0].Cells["Id"].Value);
                 ObjectToForm(v);
                 if (tabPanel.Visible)
                     LoadRelations(v);
 
-                this._isDirty = false;
+                this.isDirty = false;
             }
         }
 
         private void txtName_TextChanged(object sender, EventArgs e)
         {
-            this._isDirty = true;
+            this.isDirty = true;
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -78,7 +78,7 @@ namespace TerritoriesManagement.GUI
             var v = FormToOject();
             try
             {
-                this._server.Delete(v.IdDepartment);
+                this.server.Delete(v.IdDepartment);
 
                 //traigo los datos actualizados
                 if (lblFiltered.Visible) Filter();
@@ -103,7 +103,7 @@ namespace TerritoriesManagement.GUI
             var v = FormToOject();
             ClearFilter();
             ObjectToForm(v);
-            _isDirty = false;
+            isDirty = false;
             txtName.Focus();
         }
 
@@ -135,7 +135,7 @@ namespace TerritoriesManagement.GUI
 
         private void frmDepartments_FormClosed(object sender, FormClosedEventArgs e)
         {
-            _opened = false;
+            opened = false;
         }
 
 
@@ -143,7 +143,7 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
-                dgvResult.DataSource = this._server.Search(query);                
+                dgvResult.DataSource = this.server.Search(query);                
             }
             catch (Exception ex)
             {                
@@ -195,16 +195,16 @@ namespace TerritoriesManagement.GUI
 
         private void ClearData()
         {
-            var v = this._server.NewObject();
+            var v = this.server.NewObject();
             ObjectToForm(v);
             txtName.Focus();
-            this._isDirty = false;
+            this.isDirty = false;
         }
 
         private void New()
         {
             bool yes = true;
-            if (_isDirty)
+            if (isDirty)
                 if (MessageBox.Show(GetString("There is some unsaved data. Do you want to continue?"), GetString("Message"), MessageBoxButtons.YesNo) == DialogResult.No)
                 {
                     yes = false;
@@ -223,13 +223,13 @@ namespace TerritoriesManagement.GUI
             {
                 try
                 {                    
-                    v = this._server.Save(v);
+                    v = this.server.Save(v);
 
                     //traigo los datos
                     if (lblFiltered.Visible) Filter();
                     else ClearFilter();
 
-                    _isDirty = false;
+                    isDirty = false;
                     txtName.Focus();
                 }
                 catch (Exception ex)
@@ -267,7 +267,7 @@ namespace TerritoriesManagement.GUI
 
                 if (!string.IsNullOrEmpty(strQuery))
                 {
-                    dgvResult.DataSource = this._server.Search(strQuery, parameters.ToArray<ObjectParameter>());
+                    dgvResult.DataSource = this.server.Search(strQuery, parameters.ToArray<ObjectParameter>());
                     lblFiltered.Visible = true;
                 }
                 else
@@ -295,7 +295,7 @@ namespace TerritoriesManagement.GUI
 
         private void LoadRelations(Model.Department v)
         {
-            dgvCities.DataSource = this._server.LoadRelations(v.IdDepartment)["Cities"];
+            dgvCities.DataSource = this.server.LoadRelations(v.IdDepartment)["Cities"];
             dgvCities.Refresh();
 
             dgvCities.RowHeadersVisible = false;

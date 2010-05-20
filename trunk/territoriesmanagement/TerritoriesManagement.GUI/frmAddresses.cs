@@ -18,10 +18,10 @@ namespace TerritoriesManagement.GUI
 {
     public partial class frmAddresses : Form
     {
-        Addresses _server = new Addresses();
-        Config.Config _config;
+        Addresses server = new Addresses();
+        Config.Config config;
 
-        bool _isGettingAll = false;
+        bool isGettingAll = false;
 
         public frmAddresses()
         {
@@ -38,25 +38,25 @@ namespace TerritoriesManagement.GUI
 
         private void frmAddresses_Load(object sender, EventArgs e)
         {
-            _config = new Config.Config();
-            _config.LoadSavedConfig();
+            config = new Config.Config();
+            config.LoadSavedConfig();
 
             chkStreet.Checked = true;
 
             ConfigGrids();
 
-            var departments = this._server.GetDepartments();
+            var departments = this.server.GetDepartments();
 
             chklstDepartment.DisplayMember = "Name";
             chklstDepartment.ValueMember = "Id";
             chklstDepartment.DataSource = departments;
 
-            var cities = this._server.GetCities();
+            var cities = this.server.GetCities();
             chklstCity.DisplayMember = "Name";
             chklstCity.ValueMember = "Id";
             chklstCity.DataSource = cities;
 
-            var territories = _server.GetTerritories();
+            var territories = server.GetTerritories();
             chklstTerritory.DisplayMember = "Name";
             chklstTerritory.ValueMember = "Id";
             chklstTerritory.DataSource = territories;
@@ -75,11 +75,11 @@ namespace TerritoriesManagement.GUI
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            using (frmAddress myForm = new frmAddress(_server))
+            using (frmAddress myForm = new frmAddress(server))
             {
                 try
                 {
-                    var address = _server.NewObject();
+                    var address = server.NewObject();
                     myForm.Address = address;
 
                     myForm.ShowDialog();
@@ -101,9 +101,9 @@ namespace TerritoriesManagement.GUI
         {
             if (dgvResult.SelectedRows.Count == 1)
             {
-                var v = _server.Load((int)dgvResult.SelectedRows[0].Cells["Id"].Value);
+                var v = server.Load((int)dgvResult.SelectedRows[0].Cells["Id"].Value);
 
-                using (frmAddress myForm = new frmAddress(_server))
+                using (frmAddress myForm = new frmAddress(server))
                 {
                     try
                     {
@@ -168,7 +168,7 @@ namespace TerritoriesManagement.GUI
                     {
                         int idAddress = (int)dgvResult.SelectedRows[i].Cells["Id"].Value;
 
-                        _server.Delete(idAddress);                       
+                        server.Delete(idAddress);                       
                     }
 
                     if (lblFiltered.Visible) Search();
@@ -189,7 +189,7 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
-                var addresses = this._server.Search(query);
+                var addresses = this.server.Search(query);
                 dgvResult.DataSource = addresses;
                 lblResultCount.Text = addresses.Count.ToString();
                 dgvResult.ClearSelection();
@@ -252,15 +252,15 @@ namespace TerritoriesManagement.GUI
 
         private void GetAll()
         {
-            _isGettingAll = true;
+            isGettingAll = true;
             schStreet.Clear();
             chklstDepartment.CheckAllItems();
-            chklstCity.DataSource = this._server.GetCities();
+            chklstCity.DataSource = this.server.GetCities();
             chklstCity.CheckAllItems();
             chklstTerritory.CheckAllItems();
             LoadResult("");
             lblFiltered.Visible = false;
-            _isGettingAll = false;
+            isGettingAll = false;
         }
 
         private void Search()
@@ -272,7 +272,7 @@ namespace TerritoriesManagement.GUI
                 string strQuery = GetQuery(out parameters);
                 if (!string.IsNullOrEmpty(strQuery))
                 {
-                    var addresses = this._server.Search(strQuery, parameters.ToArray<ObjectParameter>());
+                    var addresses = this.server.Search(strQuery, parameters.ToArray<ObjectParameter>());
                     dgvResult.DataSource = addresses;
                     lblResultCount.Text = addresses.Count.ToString();
                     lblFiltered.Visible = true;
@@ -308,23 +308,25 @@ namespace TerritoriesManagement.GUI
             {
                 if (auxParameters.Count > 0)
                     queryStr += " AND ";
-
-                var territories = chklstTerritory.CheckedItemsValues;
+                
+                //obtengo la lista de ids de los territorios seleccionados
+                var territoriesIds = chklstTerritory.CheckedItemsValues;
                 string auxQueryStr = "";
-                for (int i = 0; i < territories.Count; i++)
+                //por cada id seleccionado creo un parámetro (ObjectParameter) de búsqueda
+                for (int i = 0; i < territoriesIds.Count; i++)
 			    {
                     if (auxQueryStr != "")
                          auxQueryStr += " OR ";
 
-                     if ((int)territories[i] != 0)
-                     {
-                         string varName = "IdTerritory" + i.ToString();
-                         auxQueryStr += "Address.Territory.IdTerritory = @" + varName;
-                         ObjectParameter param = new ObjectParameter(varName, territories[i]);
-                         auxParameters.Add(param);
-                     }
-                     else
-                         auxQueryStr += "Address.Territory IS NULL";
+                    if ((int)territoriesIds[i] != -1) //el id -1 representa al null
+                    {
+                        string varName = "IdTerritory" + i.ToString();
+                        auxQueryStr += "Address.Territory.IdTerritory = @" + varName;
+                        ObjectParameter param = new ObjectParameter(varName, territoriesIds[i]);
+                        auxParameters.Add(param);
+                    }
+                    else
+                        auxQueryStr += "Address.Territory IS NULL";
 			    }
                 queryStr += "(" + auxQueryStr + ")";
             }
@@ -332,19 +334,19 @@ namespace TerritoriesManagement.GUI
             //chklstCity
             if (chklstCity.CheckedItems.Count > 0)
             {
-                if (auxParameters.Count > 0)
+                if (auxParameters.Count > 0 || queryStr.Contains("IS NULL"))
                     queryStr += " AND ";
 
-                var cities = chklstCity.CheckedItemsValues;
+                var citiesIds = chklstCity.CheckedItemsValues;
                 string auxQueryStr = "";
-                for (int i = 0; i < cities.Count; i++)
+                for (int i = 0; i < citiesIds.Count; i++)
 			    {
                     if (auxQueryStr != "")
                          auxQueryStr += " OR ";
 
                      string varName = "IdCity" + i.ToString();
                      auxQueryStr += "Address.City.IdCity = @" + varName;
-                     ObjectParameter param = new ObjectParameter(varName, cities[i]);
+                     ObjectParameter param = new ObjectParameter(varName, citiesIds[i]);
                      auxParameters.Add(param);
 			    }
                 queryStr += "(" + auxQueryStr + ")";
@@ -353,7 +355,7 @@ namespace TerritoriesManagement.GUI
             //chklstDepartment
             if (chklstDepartment.CheckedItems.Count > 0)
             {
-                if (auxParameters.Count > 0)
+                if (auxParameters.Count > 0 || queryStr.Contains("IS NULL"))
                     queryStr += " AND ";
 
                 var cities = chklstDepartment.CheckedItemsValues;
@@ -454,6 +456,7 @@ namespace TerritoriesManagement.GUI
                 using (frmGeoPolygon myForm = new frmGeoPolygon())
                 {
                 
+                    
                     var selectedRows = dgvResult.SelectedRows;
                     List<GMapMarker> marks = new List<GMapMarker>();
                     for (int i = 0; i < selectedRows.Count; i++)
@@ -483,9 +486,35 @@ namespace TerritoriesManagement.GUI
             }
         }
 
+        private void viewMapToolStripMenuItem_Click2(object sender, EventArgs e)
+        { //TODO: terminar
+            if (dgvResult.SelectedRows.Count > 0)
+            {
+                using (frmGeoPolygon myForm = new frmGeoPolygon())
+                {
+
+
+                    var selectedRows = dgvResult.SelectedRows;
+                    var addresses = from r in selectedRows.Cast<DataGridViewRow>()
+                                    where (bool)r.Cells["HasGeoposition"].Value
+                                    select new
+                                    {
+                                        Id = (int)r.Cells["Id"].Value,
+                                        Address = (string)r.Cells["Address"].Value,
+                                        InternalTerritoryNumber = (int?)r.Cells["InternalTerritoryNumber"].Value,
+                                        Lat = (double?)r.Cells["Lat"].Value,
+                                        Lng = (double?)r.Cells["Lng"].Value
+                                    };           
+
+                    myForm.AllowDrawPolygon = false;
+                    myForm.ShowDialog();
+                }
+            }
+        }
+
         private void chklstDepartment_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            if (!_isGettingAll)
+            if (!isGettingAll)
             {
                 var departments = chklstDepartment.CheckedItemsValues;
 
@@ -501,7 +530,7 @@ namespace TerritoriesManagement.GUI
                         departments.Remove(chklstDepartment.ItemsValues[e.Index - 1]);
                 }
 
-                var cities = this._server.GetCitiesByDepartments(departments.Cast<int>().ToArray());                
+                var cities = this.server.GetCitiesByDepartments(departments.Cast<int>().ToArray());                
                 chklstCity.DataSource = cities;
 
             }

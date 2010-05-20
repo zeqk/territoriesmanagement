@@ -9,10 +9,10 @@ namespace TerritoriesManagement.GUI
 {
     public partial class frmAddress : Form
     {
-        private Addresses _server;
-        private bool _isDirty;
-        private bool _hasntTerritory;
-        Config.Config _config;
+        private Addresses server;
+        private bool isDirty;
+        private bool hasntTerritory;
+        Config.Config config;
 
         public Address Address
         {
@@ -20,7 +20,7 @@ namespace TerritoriesManagement.GUI
             {
                 Address rv = (Address)bsAddress.DataSource;
 
-                if (_hasntTerritory && cboTerritory.SelectedItem != null)
+                if (hasntTerritory && cboTerritory.SelectedItem != null)
                 {
                     rv.Territory = new Territory();
                     rv.Territory.IdTerritory = (int)cboTerritory.SelectedValue;
@@ -46,10 +46,10 @@ namespace TerritoriesManagement.GUI
                 if (value.Territory == null)
                 {
                     //cboTerritory.SelectedItem = null;
-                    _hasntTerritory = true;
+                    hasntTerritory = true;
                 }
                 else
-                    _hasntTerritory = false;
+                    hasntTerritory = false;
 
                 if (value.Lat != null && value.Lng != null)
                     chkHaveGeoPos.Checked = true;
@@ -66,25 +66,25 @@ namespace TerritoriesManagement.GUI
 
         public frmAddress(Addresses server)
         {
-            _server = server;            
+            this.server = server;            
             InitializeComponent();
             ConfigureMenus();
         }
 
         public frmAddress()
         {
-            _server = new Addresses();
+            this.server = new Addresses();
             InitializeComponent(); 
             ConfigureMenus();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (_isDirty)
+            if (isDirty)
             {                
                 try
                 {
-                    _server.Save(this.Address);
+                    server.Save(this.Address);
                     this.DialogResult = DialogResult.OK;
                 }
                 catch (Exception ex)
@@ -108,7 +108,7 @@ namespace TerritoriesManagement.GUI
             if (((ComboBox)sender).SelectedValue != null)
             {
                 int idDepartment = (int)cboDepartment.SelectedValue;
-                cboCity.DataSource = _server.GetCitiesByDepartment(idDepartment);
+                cboCity.DataSource = server.GetCitiesByDepartment(idDepartment);
                 //cboCity.SelectedValue = 0;
             }
             else
@@ -118,10 +118,10 @@ namespace TerritoriesManagement.GUI
 
         private void frmAddress_Load(object sender, EventArgs e)
         {
-            _config = new Config.Config();
-            _config.LoadSavedConfig();
+            config = new Config.Config();
+            config.LoadSavedConfig();
 
-            _isDirty = false;
+            isDirty = false;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -136,14 +136,14 @@ namespace TerritoriesManagement.GUI
         {
             txtLat.Enabled = chkHaveGeoPos.Checked;
             txtLon.Enabled = chkHaveGeoPos.Checked;
-            _isDirty = true;
+            isDirty = true;
         }
 
         private void ConfigureMenus()
         {
             cboDepartment.DisplayMember = "Name";            
             cboDepartment.ValueMember = "Id";
-            cboDepartment.DataSource = _server.GetDepartments();            
+            cboDepartment.DataSource = server.GetDepartments();            
             cboDepartment.SelectedItem = null;
 
             cboCity.DisplayMember = "Name";
@@ -151,30 +151,30 @@ namespace TerritoriesManagement.GUI
 
             cboTerritory.DisplayMember = "Name";
             cboTerritory.ValueMember = "Id";
-            cboTerritory.DataSource = _server.GetTerritories();
+            cboTerritory.DataSource = server.GetTerritories();
             cboTerritory.SelectedItem = null;
         }
 
         private void HasChanges(object sender, EventArgs e)
         {
-            _isDirty = true;
+            isDirty = true;
         }
 
         private void GeoPositionHasChanges(object sender, EventArgs e)
         {
-            _isDirty = true;
+            isDirty = true;
         }
 
         private void btnSearchGeoPos_Click(object sender, EventArgs e)
         {
-            using (frmGeoPoint myForm = new frmGeoPoint())
+            using (frmMap myForm = new frmMap())
             {
-                myForm.MapType = _config.MapType;
+                myForm.MapType = config.MapType;
+                myForm.Address = config.Place;
+
                 Address a = this.Address;
-                if (a.Lat.HasValue && a.Lng.HasValue)
-                {
-                    myForm.GeoPosition = new GMap.NET.PointLatLng(a.Lat.Value, a.Lng.Value);
-                }
+
+                myForm.Object = a;
 
                 myForm.Address = a.Street + " " + a.Number + ", " + a.City.Name + ", " + GetDepartmentName();
 
@@ -184,8 +184,8 @@ namespace TerritoriesManagement.GUI
                 {
                     chkHaveGeoPos.Checked = true;
 
-                    txtLat.Text = myForm.GeoPosition.Lat.ToString();
-                    txtLon.Text = myForm.GeoPosition.Lng.ToString();
+                    txtLat.Text = myForm.MainMarker.Position.Lat.ToString();
+                    txtLon.Text = myForm.MainMarker.Position.Lng.ToString();
                 }
 
             }
@@ -205,7 +205,7 @@ namespace TerritoriesManagement.GUI
             if (this.Address.Lat.HasValue && this.Address.Lng.HasValue)
             {
                 PointLatLng point = new PointLatLng(this.Address.Lat.Value, this.Address.Lng.Value);
-                Territory terr = _server.FindTerritory(point);
+                Territory terr = server.FindTerritory(point);
                 if(terr != null)
                     cboTerritory.SelectedValue = terr.IdTerritory;
             }

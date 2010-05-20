@@ -20,9 +20,6 @@ namespace TerritoriesManagement.GUI
         ImporterConfig.ImporterConfig _config;
         ResourceManager _rm;
 
-        string importMessage;
-        bool successfulImport;
-
         public frmInterop()
         {
 

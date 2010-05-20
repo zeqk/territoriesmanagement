@@ -118,9 +118,8 @@ namespace TerritoriesManagement.GUI.ImporterConfig
                 }
             }
             catch (Exception ex)
-            {
-                
-                throw;
+            {                
+                throw ex;
             }
             
         }
