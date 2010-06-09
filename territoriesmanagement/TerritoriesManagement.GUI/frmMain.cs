@@ -146,7 +146,7 @@ namespace TerritoriesManagement.GUI
             }
         }
 
-        private void menuInteroperabilty_Click(object sender, EventArgs e)
+        private void menuInteroperability_Click(object sender, EventArgs e)
         {
             try
             {

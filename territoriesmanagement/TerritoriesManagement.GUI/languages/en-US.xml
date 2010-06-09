@@ -1,0 +1,490 @@
+<Localizer language="en-US">
+  <String>
+    <Original>...</Original>
+    <Translated>...</Translated>
+  </String>
+  <String>
+    <Original>About Territories Management</Original>
+    <Translated>About Territories Management</Translated>
+  </String>
+  <String>
+    <Original>Additional information</Original>
+    <Translated>Additional information</Translated>
+  </String>
+  <String>
+    <Original>Address</Original>
+    <Translated>Address</Translated>
+  </String>
+  <String>
+    <Original>Address data</Original>
+    <Translated>Address data</Translated>
+  </String>
+  <String>
+    <Original>Addresses</Original>
+    <Translated>Addresses</Translated>
+  </String>
+  <String>
+    <Original>Apply</Original>
+    <Translated>Apply</Translated>
+  </String>
+  <String>
+    <Original>Area</Original>
+    <Translated>Area</Translated>
+  </String>
+  <String>
+    <Original>Autoselect</Original>
+    <Translated>Autoselect</Translated>
+  </String>
+  <String>
+    <Original>Begin</Original>
+    <Translated>Begin</Translated>
+  </String>
+  <String>
+    <Original>Between</Original>
+    <Translated>Between</Translated>
+  </String>
+  <String>
+    <Original>Cancel</Original>
+    <Translated>Cancel</Translated>
+  </String>
+  <String>
+    <Original>Cities</Original>
+    <Translated>Cities</Translated>
+  </String>
+  <String>
+    <Original>City</Original>
+    <Translated>City</Translated>
+  </String>
+  <String>
+    <Original>Clear area</Original>
+    <Translated>Clear area</Translated>
+  </String>
+  <String>
+    <Original>Configuration</Original>
+    <Translated>Configuration</Translated>
+  </String>
+  <String>
+    <Original>Configure</Original>
+    <Translated>Configure</Translated>
+  </String>
+  <String>
+    <Original>Configure import properties</Original>
+    <Translated>Configure import properties</Translated>
+  </String>
+  <String>
+    <Original>Connection status:</Original>
+    <Translated>Connection status:</Translated>
+  </String>
+  <String>
+    <Original>Connection string</Original>
+    <Translated>Connection string</Translated>
+  </String>
+  <String>
+    <Original>Copy (Google Maps)</Original>
+    <Translated>Copy (Google Maps)</Translated>
+  </String>
+  <String>
+    <Original>Corner 1</Original>
+    <Translated>Corner 1</Translated>
+  </String>
+  <String>
+    <Original>Corner 2</Original>
+    <Translated>Corner 2</Translated>
+  </String>
+  <String>
+    <Original>Corners</Original>
+    <Translated>Corners</Translated>
+  </String>
+  <String>
+    <Original>Cultures</Original>
+    <Translated>Cultures</Translated>
+  </String>
+  <String>
+    <Original>Custom field 1</Original>
+    <Translated>Custom field 1</Translated>
+  </String>
+  <String>
+    <Original>Data</Original>
+    <Translated>Data</Translated>
+  </String>
+  <String>
+    <Original>Data export</Original>
+    <Translated>Data export</Translated>
+  </String>
+  <String>
+    <Original>Data import</Original>
+    <Translated>Data import</Translated>
+  </String>
+  <String>
+    <Original>Delete</Original>
+    <Translated>Delete</Translated>
+  </String>
+  <String>
+    <Original>Department</Original>
+    <Translated>Department</Translated>
+  </String>
+  <String>
+    <Original>Departments</Original>
+    <Translated>Departments</Translated>
+  </String>
+  <String>
+    <Original>Description</Original>
+    <Translated>Description</Translated>
+  </String>
+  <String>
+    <Original>Edit</Original>
+    <Translated>Edit</Translated>
+  </String>
+  <String>
+    <Original>End</Original>
+    <Translated>End</Translated>
+  </String>
+  <String>
+    <Original>Error</Original>
+    <Translated>Error</Translated>
+  </String>
+  <String>
+    <Original>Error. </Original>
+    <Translated>Error. </Translated>
+  </String>
+  <String>
+    <Original>Export</Original>
+    <Translated>Export</Translated>
+  </String>
+  <String>
+    <Original>Export data</Original>
+    <Translated>Export data</Translated>
+  </String>
+  <String>
+    <Original>Export records</Original>
+    <Translated>Export records</Translated>
+  </String>
+  <String>
+    <Original>Export to excel file</Original>
+    <Translated>Export to excel file</Translated>
+  </String>
+  <String>
+    <Original>Export to Gmaps</Original>
+    <Translated>Export to Gmaps</Translated>
+  </String>
+  <String>
+    <Original>External data</Original>
+    <Translated>External data</Translated>
+  </String>
+  <String>
+    <Original>Filter by city name</Original>
+    <Translated>Filter by city name</Translated>
+  </String>
+  <String>
+    <Original>Filter by department</Original>
+    <Translated>Filter by department</Translated>
+  </String>
+  <String>
+    <Original>Filter by department name</Original>
+    <Translated>Filter by department name</Translated>
+  </String>
+  <String>
+    <Original>Filter by territory name</Original>
+    <Translated>Filter by territory name</Translated>
+  </String>
+  <String>
+    <Original>Filtered</Original>
+    <Translated>Filtered</Translated>
+  </String>
+  <String>
+    <Original>GEO</Original>
+    <Translated>GEO</Translated>
+  </String>
+  <String>
+    <Original>Geo data has been imported.</Original>
+    <Translated>Geo data has been imported.</Translated>
+  </String>
+  <String>
+    <Original>Geo location</Original>
+    <Translated>Geo location</Translated>
+  </String>
+  <String>
+    <Original>Go</Original>
+    <Translated>Go</Translated>
+  </String>
+  <String>
+    <Original>Has geoposition</Original>
+    <Translated>Has geoposition</Translated>
+  </String>
+  <String>
+    <Original>Help</Original>
+    <Translated>Help</Translated>
+  </String>
+  <String>
+    <Original>Hide relations</Original>
+    <Translated>Hide relations</Translated>
+  </String>
+  <String>
+    <Original>Id</Original>
+    <Translated>Id</Translated>
+  </String>
+  <String>
+    <Original>Import</Original>
+    <Translated>Import</Translated>
+  </String>
+  <String>
+    <Original>Import from GeoRss file</Original>
+    <Translated>Import from GeoRss file</Translated>
+  </String>
+  <String>
+    <Original>Import records</Original>
+    <Translated>Import records</Translated>
+  </String>
+  <String>
+    <Original>Internal number</Original>
+    <Translated>Internal number</Translated>
+  </String>
+  <String>
+    <Original>Interoperability</Original>
+    <Translated>Interoperability</Translated>
+  </String>
+  <String>
+    <Original>Lat</Original>
+    <Translated>Lat</Translated>
+  </String>
+  <String>
+    <Original>Latitude</Original>
+    <Translated>Latitude</Translated>
+  </String>
+  <String>
+    <Original>Lng</Original>
+    <Translated>Lng</Translated>
+  </String>
+  <String>
+    <Original>Location</Original>
+    <Translated>Location</Translated>
+  </String>
+  <String>
+    <Original>Longitude</Original>
+    <Translated>Longitude</Translated>
+  </String>
+  <String>
+    <Original>Map 1</Original>
+    <Translated>Map 1</Translated>
+  </String>
+  <String>
+    <Original>Map 2</Original>
+    <Translated>Map 2</Translated>
+  </String>
+  <String>
+    <Original>Map type</Original>
+    <Translated>Map type</Translated>
+  </String>
+  <String>
+    <Original>Maps</Original>
+    <Translated>Maps</Translated>
+  </String>
+  <String>
+    <Original>Menu</Original>
+    <Translated>Menu</Translated>
+  </String>
+  <String>
+    <Original>Name</Original>
+    <Translated>Name</Translated>
+  </String>
+  <String>
+    <Original>New</Original>
+    <Translated>New</Translated>
+  </String>
+  <String>
+    <Original>Number</Original>
+    <Translated>Number</Translated>
+  </String>
+  <String>
+    <Original>Ok</Original>
+    <Translated>Ok</Translated>
+  </String>
+  <String>
+    <Original>OK. Last modification date: </Original>
+    <Translated>OK. Last modification date: </Translated>
+  </String>
+  <String>
+    <Original>Phone 1</Original>
+    <Translated>Phone 1</Translated>
+  </String>
+  <String>
+    <Original>Phone 2</Original>
+    <Translated>Phone 2</Translated>
+  </String>
+  <String>
+    <Original>Phone numbers</Original>
+    <Translated>Phone numbers</Translated>
+  </String>
+  <String>
+    <Original>Place</Original>
+    <Translated>Place</Translated>
+  </String>
+  <String>
+    <Original>Publisher</Original>
+    <Translated>Publisher</Translated>
+  </String>
+  <String>
+    <Original>Publishers</Original>
+    <Translated>Publishers</Translated>
+  </String>
+  <String>
+    <Original>Region, Country</Original>
+    <Translated>Region, Country</Translated>
+  </String>
+  <String>
+    <Original>Reset</Original>
+    <Translated>Reset</Translated>
+  </String>
+  <String>
+    <Original>Result</Original>
+    <Translated>Result</Translated>
+  </String>
+  <String>
+    <Original>Result:</Original>
+    <Translated>Result:</Translated>
+  </String>
+  <String>
+    <Original>Save</Original>
+    <Translated>Save</Translated>
+  </String>
+  <String>
+    <Original>Search</Original>
+    <Translated>Search</Translated>
+  </String>
+  <String>
+    <Original>Select</Original>
+    <Translated>Select</Translated>
+  </String>
+  <String>
+    <Original>Select culture</Original>
+    <Translated>Select culture</Translated>
+  </String>
+  <String>
+    <Original>Select map type</Original>
+    <Translated>Select map type</Translated>
+  </String>
+  <String>
+    <Original>Select source and destination files.</Original>
+    <Translated>Select source and destination files.</Translated>
+  </String>
+  <String>
+    <Original>statusStrip1</Original>
+    <Translated>statusStrip1</Translated>
+  </String>
+  <String>
+    <Original>Street</Original>
+    <Translated>Street</Translated>
+  </String>
+  <String>
+    <Original>Street and Nº</Original>
+    <Translated>Street and Nº</Translated>
+  </String>
+  <String>
+    <Original>Territories</Original>
+    <Translated>Territories</Translated>
+  </String>
+  <String>
+    <Original>Territories Management</Original>
+    <Translated>Territories Management</Translated>
+  </String>
+  <String>
+    <Original>Territory</Original>
+    <Translated>Territory</Translated>
+  </String>
+  <String>
+    <Original>The data is incomplete.</Original>
+    <Translated>The data is incomplete.</Translated>
+  </String>
+  <String>
+    <Original>The exportation has been successful.\n</Original>
+    <Translated>The exportation has been successful.\n</Translated>
+  </String>
+  <String>
+    <Original>The exportation has problems. Check the settings and see the log.\n</Original>
+    <Translated>The exportation has problems. Check the settings and see the log.\n</Translated>
+  </String>
+  <String>
+    <Original>The importation has been successful.</Original>
+    <Translated>The importation has been successful.</Translated>
+  </String>
+  <String>
+    <Original>The importation has problems. Check the settings and see the log.</Original>
+    <Translated>The importation has problems. Check the settings and see the log.</Translated>
+  </String>
+  <String>
+    <Original>The window is already open.</Original>
+    <Translated>The window is already open.</Translated>
+  </String>
+  <String>
+    <Original>There is some unsaved data. Do you want to continue?</Original>
+    <Translated>There is some unsaved data. Do you want to continue?</Translated>
+  </String>
+  <String>
+    <Original>To Excel</Original>
+    <Translated>To Excel</Translated>
+  </String>
+  <String>
+    <Original>To GMap</Original>
+    <Translated>To GMap</Translated>
+  </String>
+  <String>
+    <Original>To image</Original>
+    <Translated>To image</Translated>
+  </String>
+  <String>
+    <Original>Tools</Original>
+    <Translated>Tools</Translated>
+  </String>
+  <String>
+    <Original>Tour Nº</Original>
+    <Translated>Tour Nº</Translated>
+  </String>
+  <String>
+    <Original>Tours</Original>
+    <Translated>Tours</Translated>
+  </String>
+  <String>
+    <Original>Update</Original>
+    <Translated>Update</Translated>
+  </String>
+  <String>
+    <Original>View</Original>
+    <Translated>View</Translated>
+  </String>
+  <String>
+    <Original>View map</Original>
+    <Translated>View map</Translated>
+  </String>
+  <String>
+    <Original>View relations</Original>
+    <Translated>View relations</Translated>
+  </String>
+  <String>
+    <Original>You must complete at least one search criteria.</Original>
+    <Translated>You must complete at least one search criteria.</Translated>
+  </String>
+  <String>
+    <Original>You must select a city</Original>
+    <Translated>You must select a city</Translated>
+  </String>
+  <String>
+    <Original>You must select a department</Original>
+    <Translated>You must select a department</Translated>
+  </String>
+  <String>
+    <Original>You must select at least one search criteria.</Original>
+    <Translated>You must select at least one search criteria.</Translated>
+  </String>
+  <String>
+    <Original>You must select at least one search field.</Original>
+    <Translated>You must select at least one search field.</Translated>
+  </String>
+  <String>
+    <Original>You must select some address.</Original>
+    <Translated>You must select some address.</Translated>
+  </String>
+  <String>
+    <Original>You must select some territory.</Original>
+    <Translated>You must select some territory.</Translated>
+  </String>
+</Localizer>

@@ -34,7 +34,7 @@
             this.bntTerritories = new System.Windows.Forms.Button();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menuTools = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuInteroperabilty = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuInteroperability = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,24 +95,24 @@
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(453, 24);
             this.menu.TabIndex = 6;
-            this.menu.Text = "menuStrip1";
+            this.menu.Text = "Menu";
             // 
             // menuTools
             // 
             this.menuTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuInteroperabilty,
+            this.menuInteroperability,
             this.toolStripSeparator1,
             this.menuConfiguration});
             this.menuTools.Name = "menuTools";
             this.menuTools.Size = new System.Drawing.Size(44, 20);
             this.menuTools.Text = "Tools";
             // 
-            // menuInteroperabilty
+            // menuInteroperability
             // 
-            this.menuInteroperabilty.Name = "menuInteroperabilty";
-            this.menuInteroperabilty.Size = new System.Drawing.Size(146, 22);
-            this.menuInteroperabilty.Text = "Interoperabilty";
-            this.menuInteroperabilty.Click += new System.EventHandler(this.menuInteroperabilty_Click);
+            this.menuInteroperability.Name = "menuInteroperability";
+            this.menuInteroperability.Size = new System.Drawing.Size(146, 22);
+            this.menuInteroperability.Text = "Interoperability";
+            this.menuInteroperability.Click += new System.EventHandler(this.menuInteroperability_Click);
             // 
             // toolStripSeparator1
             // 
@@ -150,7 +150,7 @@
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(453, 22);
             this.statusStrip.TabIndex = 7;
-            this.statusStrip.Text = "statusStrip1";
+            this.statusStrip.Text = "";
             // 
             // lblConnectionStatus
             // 
@@ -199,7 +199,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuAbout;
         private System.Windows.Forms.ToolStripMenuItem menuTools;
         private System.Windows.Forms.ToolStripMenuItem menuConfiguration;
-        private System.Windows.Forms.ToolStripMenuItem menuInteroperabilty;
+        private System.Windows.Forms.ToolStripMenuItem menuInteroperability;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel lblConnectionStatus;

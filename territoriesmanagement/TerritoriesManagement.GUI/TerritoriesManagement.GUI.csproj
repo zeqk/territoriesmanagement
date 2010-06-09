@@ -146,12 +146,6 @@
     <Compile Include="frmConfig.Designer.cs">
       <DependentUpon>frmConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmConfigureMap.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmConfigureMap.Designer.cs">
-      <DependentUpon>frmConfigureMap.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmDeparments.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,9 +206,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmConfig.resx">
       <DependentUpon>frmConfig.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmConfigureMap.resx">
-      <DependentUpon>frmConfigureMap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddress.resx">
       <DependentUpon>frmAddress.cs</DependentUpon>
@@ -303,6 +294,10 @@
       <Project>{2AF8144A-682F-4B8E-A3CF-4FD77816AD78}</Project>
       <Name>TerritoriesManagement</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="languages\en-US.xml" />
+    <Content Include="languages\es-AR.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

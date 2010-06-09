@@ -68,7 +68,7 @@
             this.tableButtons = new System.Windows.Forms.TableLayoutPanel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
-            this.grpAdData = new System.Windows.Forms.GroupBox();
+            this.grpAddInformation = new System.Windows.Forms.GroupBox();
             this.btnDepartments = new System.Windows.Forms.Button();
             this.btnCities = new System.Windows.Forms.Button();
             this.btnTerritories = new System.Windows.Forms.Button();
@@ -86,7 +86,7 @@
             this.splitLatLng.Panel2.SuspendLayout();
             this.splitLatLng.SuspendLayout();
             this.tableButtons.SuspendLayout();
-            this.grpAdData.SuspendLayout();
+            this.grpAddInformation.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGenImage
@@ -169,7 +169,7 @@
             this.tableBase.Controls.Add(this.tableMap, 0, 2);
             this.tableBase.Controls.Add(this.tableMapActions, 0, 3);
             this.tableBase.Controls.Add(this.tableButtons, 0, 4);
-            this.tableBase.Controls.Add(this.grpAdData, 0, 0);
+            this.tableBase.Controls.Add(this.grpAddInformation, 0, 0);
             this.tableBase.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableBase.Location = new System.Drawing.Point(0, 0);
             this.tableBase.Name = "tableBase";
@@ -422,7 +422,7 @@
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(75, 38);
             this.btnClear.TabIndex = 16;
-            this.btnClear.Text = "Clear polygon";
+            this.btnClear.Text = "Clear area";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
@@ -550,19 +550,19 @@
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // grpAdData
+            // grpAddInformation
             // 
-            this.grpAdData.Controls.Add(this.btnDepartments);
-            this.grpAdData.Controls.Add(this.btnCities);
-            this.grpAdData.Controls.Add(this.btnTerritories);
-            this.grpAdData.Controls.Add(this.btnAddresses);
-            this.grpAdData.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grpAdData.Location = new System.Drawing.Point(3, 3);
-            this.grpAdData.Name = "grpAdData";
-            this.grpAdData.Size = new System.Drawing.Size(806, 64);
-            this.grpAdData.TabIndex = 38;
-            this.grpAdData.TabStop = false;
-            this.grpAdData.Text = "Additional data";
+            this.grpAddInformation.Controls.Add(this.btnDepartments);
+            this.grpAddInformation.Controls.Add(this.btnCities);
+            this.grpAddInformation.Controls.Add(this.btnTerritories);
+            this.grpAddInformation.Controls.Add(this.btnAddresses);
+            this.grpAddInformation.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grpAddInformation.Location = new System.Drawing.Point(3, 3);
+            this.grpAddInformation.Name = "grpAddInformation";
+            this.grpAddInformation.Size = new System.Drawing.Size(806, 64);
+            this.grpAddInformation.TabIndex = 38;
+            this.grpAddInformation.TabStop = false;
+            this.grpAddInformation.Text = "Additional information";
             // 
             // btnDepartments
             // 
@@ -632,7 +632,7 @@
             this.splitLatLng.Panel2.PerformLayout();
             this.splitLatLng.ResumeLayout(false);
             this.tableButtons.ResumeLayout(false);
-            this.grpAdData.ResumeLayout(false);
+            this.grpAddInformation.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -663,7 +663,7 @@
         private System.Windows.Forms.Label lblLat;
         private System.Windows.Forms.Label lblLng;
         private System.Windows.Forms.TextBox txtLng;
-        private System.Windows.Forms.GroupBox grpAdData;
+        private System.Windows.Forms.GroupBox grpAddInformation;
         private System.Windows.Forms.Button btnDepartments;
         private System.Windows.Forms.Button btnCities;
         private System.Windows.Forms.Button btnTerritories;

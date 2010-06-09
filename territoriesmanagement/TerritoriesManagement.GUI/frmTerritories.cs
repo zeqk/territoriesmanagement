@@ -127,7 +127,7 @@ namespace TerritoriesManagement.GUI
                     LoadRelations((Territory)bsTerritory.DataSource);
                 }
                 else
-                    MessageBox.Show(GetString("You must select some territory."));
+                    MessageBox.Show(GetString("You must select a territory."));
             }
         }
 
