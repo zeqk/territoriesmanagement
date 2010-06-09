@@ -120,7 +120,7 @@ namespace TerritoriesManagement.GUI
                 }
             }
             else
-                MessageBox.Show(GetString("You must select some address."));
+                MessageBox.Show(GetString("You must select an address."));
         }
 
         private void fields_CheckedChanged(object sender, EventArgs e)
@@ -181,7 +181,7 @@ namespace TerritoriesManagement.GUI
                 }
             }
             else
-                MessageBox.Show(GetString("You must select some address."));
+                MessageBox.Show(GetString("You must select an address."));
 
         }
 
@@ -209,8 +209,8 @@ namespace TerritoriesManagement.GUI
             dgvResult.Columns.Add("CityName", GetString("City"));
             dgvResult.Columns.Add("Territory", GetString("Territory"));
             dgvResult.Columns.Add("Address", GetString("Street and Nº"));
-            dgvResult.Columns.Add("Corner1", GetString("Corner1"));
-            dgvResult.Columns.Add("Corner2", GetString("Corner2"));
+            dgvResult.Columns.Add("Corner1", GetString("Corner 1"));
+            dgvResult.Columns.Add("Corner2", GetString("Corner 2"));
             dgvResult.Columns.Add("Description", GetString("Description"));
             dgvResult.Columns.Add("HasGeoPosition", GetString("GEO"));
             dgvResult.Columns.Add("Lat", GetString("Lat"));

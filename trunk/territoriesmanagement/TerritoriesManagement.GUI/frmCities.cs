@@ -29,6 +29,8 @@ namespace TerritoriesManagement.GUI
                 opened = true;
 
             InitializeComponent();
+
+            Globalization.RefreshUI();
         }
 
         private void frmCities_Load(object sender, EventArgs e)
