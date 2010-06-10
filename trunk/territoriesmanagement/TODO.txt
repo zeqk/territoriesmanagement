@@ -3,3 +3,5 @@ TODO:
 - iconos
 - recursos
 - traductor de aplicaciones
+- grilla autoredimensionable
+- qe al guardar siga seleccionado el mismo item en la grilla
