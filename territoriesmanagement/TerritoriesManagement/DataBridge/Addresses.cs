@@ -98,7 +98,7 @@ namespace TerritoriesManagement.DataBridge
             {
                 //copio las propiedades de navegación
                 int idCity = v.City.IdCity;
-                int idTerritory = 0;
+                int idTerritory = -1;
                 if(v.Territory != null)
                     idTerritory = v.Territory.IdTerritory;
 
@@ -114,7 +114,7 @@ namespace TerritoriesManagement.DataBridge
                 original.City = null;
                 original.Territory = null;
                 original.CityReference.EntityKey = new EntityKey("TerritoriesDataContext.Cities", "IdCity", idCity);
-                if(idTerritory != 0)
+                if (idTerritory != -1)
                     original.TerritoryReference.EntityKey = new EntityKey("TerritoriesDataContext.Territories", "IdTerritory", idTerritory);                                
 
                 _dm.SaveChanges();
