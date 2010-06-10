@@ -4,7 +4,6 @@ using System.ComponentModel;
 using System.Data.Objects;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Windows.Forms;
 using GMap.NET;
 using GMap.NET.WindowsForms;
@@ -19,14 +18,13 @@ namespace TerritoriesManagement.GUI
     public partial class frmAddresses : Form
     {
         Addresses server = new Addresses();
-        Config.Config config;
 
         bool isGettingAll = false;
 
         public frmAddresses()
         {
-            Globalization.SetCurrentLanguage(Thread.CurrentThread.CurrentCulture.IetfLanguageTag);
             InitializeComponent();
+            Globalization.RefreshUI(this);
 
         }
 
@@ -38,9 +36,6 @@ namespace TerritoriesManagement.GUI
 
         private void frmAddresses_Load(object sender, EventArgs e)
         {
-            config = new Config.Config();
-            config.LoadSavedConfig();
-
             chkStreet.Checked = true;
 
             ConfigGrids();

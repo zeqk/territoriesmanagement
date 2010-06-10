@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Data.Objects;
 using System.Linq;
-using System.Resources;
 using System.Windows.Forms;
-using TerritoriesManagement.DataBridge;
 using Localizer;
-using System.Threading;
+using TerritoriesManagement.DataBridge;
 
 namespace TerritoriesManagement.GUI
 {
@@ -18,14 +16,14 @@ namespace TerritoriesManagement.GUI
 
         public frmDepartments()
         {
-            Globalization.SetCurrentLanguage(Thread.CurrentThread.CurrentCulture.IetfLanguageTag);
-
             if (opened)
                 throw new Exception(GetString("The window is already open."));
             else
                 opened = true;  
  
             InitializeComponent();
+
+            Globalization.RefreshUI(this);
         }
 
         private string GetString(string text)

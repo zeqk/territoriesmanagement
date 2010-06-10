@@ -2,14 +2,15 @@
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
-using ZeqkTools.WindowsForms;
-using System.Threading;
 using Localizer;
+using ZeqkTools.WindowsForms;
 
 namespace TerritoriesManagement.GUI
 {
     public partial class frmMain : Form
     {
+        Config.Config config = new Config.Config();
+
         public frmMain()
         {
             InitializeComponent();
@@ -69,7 +70,9 @@ namespace TerritoriesManagement.GUI
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            LoadConfig();
+            config.LoadSavedConfig();
+            Globalization.SetCurrentLanguage(config.Language);
+            Globalization.RefreshUI();
             TestConnection();
         }
 
@@ -78,7 +81,8 @@ namespace TerritoriesManagement.GUI
             try
             {
                 DateTime lastModification = Functions.GetLastModDate();
-                lblConnectionStatusValue.Text = GetString("OK. Last modification date: ") + lastModification.ToString(Thread.CurrentThread.CurrentCulture.DateTimeFormat);
+                CultureInfo info = CultureInfo.GetCultureInfo(Globalization.CurrentAssociatedCulture);
+                lblConnectionStatusValue.Text = GetString("OK. Last modification date: ") + lastModification.ToString(info.DateTimeFormat);
                 lblConnectionStatusValue.ForeColor = Color.Green;
                 
             }
@@ -94,15 +98,6 @@ namespace TerritoriesManagement.GUI
         private string GetString(string text)
         {
             return Globalization.GetString(text);
-        }
-
-
-        private void LoadConfig()
-        {
-            Config.Config config = new TerritoriesManagement.GUI.Config.Config();
-            config.LoadSavedConfig();
-            System.Threading.Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(config.CultureTag);
-            System.Threading.Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(config.CultureTag);
         }
 
         private void menuAbout_Click(object sender, EventArgs e)

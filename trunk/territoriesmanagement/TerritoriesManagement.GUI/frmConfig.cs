@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Globalization;
-using System.Threading;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using Localizer;
 using TerritoriesManagement.DataBridge;
 
 namespace TerritoriesManagement.GUI
@@ -61,11 +61,12 @@ namespace TerritoriesManagement.GUI
             _config.LoadSavedConfig();
 
             //cultures
-            string[] cultures = { "en-US", "es-AR" };
+            List<string> cultures = Globalization.LanguagesList;
 
             cmbCulture.DataSource = cultures;
 
-            cmbCulture.SelectedItem = Thread.CurrentThread.CurrentCulture.IetfLanguageTag;
+            if(cultures.Contains( _config.Language))
+                cmbCulture.SelectedText = _config.Language;
 
             txtPlace.Text = _config.Place;
 
@@ -86,9 +87,7 @@ namespace TerritoriesManagement.GUI
         {
             if (cmbCulture.SelectedValue != null)
             {
-                Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(cmbCulture.SelectedValue.ToString());
-                Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(cmbCulture.SelectedValue.ToString());
-                _config.CultureTag = Thread.CurrentThread.CurrentCulture.IetfLanguageTag;
+                _config.Language = (string) cmbCulture.SelectedItem;
             }
 
             if (!string.IsNullOrEmpty(txtPlace.Text))

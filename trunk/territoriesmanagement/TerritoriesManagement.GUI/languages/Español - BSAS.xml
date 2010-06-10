@@ -1,31 +1,31 @@
-<Localizer language="en-US">
+<Localizer language="Español - BSAS" associatedCulture="es-AR">
   <String>
     <Original>...</Original>
     <Translated>...</Translated>
   </String>
   <String>
     <Original>About Territories Management</Original>
-    <Translated>About Territories Management</Translated>
+    <Translated>Acerca de Territories Management</Translated>
   </String>
   <String>
     <Original>Additional information</Original>
-    <Translated>Additional information</Translated>
+    <Translated>Información adicional</Translated>
   </String>
   <String>
     <Original>Address</Original>
-    <Translated>Address</Translated>
+    <Translated>Dirección</Translated>
   </String>
   <String>
     <Original>Address data</Original>
-    <Translated>Address data</Translated>
+    <Translated>Datos de la dirección</Translated>
   </String>
   <String>
     <Original>Addresses</Original>
-    <Translated>Addresses</Translated>
+    <Translated>Direcciones</Translated>
   </String>
   <String>
     <Original>Apply</Original>
-    <Translated>Apply</Translated>
+    <Translated>Aplicar</Translated>
   </String>
   <String>
     <Original>Area</Original>
@@ -33,111 +33,111 @@
   </String>
   <String>
     <Original>Autoselect</Original>
-    <Translated>Autoselect</Translated>
+    <Translated>Autoseleccionar</Translated>
   </String>
   <String>
     <Original>Begin</Original>
-    <Translated>Begin</Translated>
+    <Translated>Inicio</Translated>
   </String>
   <String>
     <Original>Between</Original>
-    <Translated>Between</Translated>
+    <Translated>Entre</Translated>
   </String>
   <String>
     <Original>Cancel</Original>
-    <Translated>Cancel</Translated>
+    <Translated>Cancelar</Translated>
   </String>
   <String>
     <Original>Cities</Original>
-    <Translated>Cities</Translated>
+    <Translated>Ciudades</Translated>
   </String>
   <String>
     <Original>City</Original>
-    <Translated>City</Translated>
+    <Translated>Ciudad</Translated>
   </String>
   <String>
     <Original>Clear area</Original>
-    <Translated>Clear area</Translated>
+    <Translated>Limpiar area</Translated>
   </String>
   <String>
     <Original>Configuration</Original>
-    <Translated>Configuration</Translated>
+    <Translated>Configuración</Translated>
   </String>
   <String>
     <Original>Configure</Original>
-    <Translated>Configure</Translated>
+    <Translated>Configurar</Translated>
   </String>
   <String>
     <Original>Configure import properties</Original>
-    <Translated>Configure import properties</Translated>
+    <Translated>Configurar propiedades de importación</Translated>
   </String>
   <String>
     <Original>Connection status:</Original>
-    <Translated>Connection status:</Translated>
+    <Translated>Estado de la conección:</Translated>
   </String>
   <String>
     <Original>Connection string</Original>
-    <Translated>Connection string</Translated>
+    <Translated>Cadena de conección</Translated>
   </String>
   <String>
     <Original>Copy (Google Maps)</Original>
-    <Translated>Copy (Google Maps)</Translated>
+    <Translated>Copiar (Google Maps)</Translated>
   </String>
   <String>
     <Original>Corner 1</Original>
-    <Translated>Corner 1</Translated>
+    <Translated>Esquina 1</Translated>
   </String>
   <String>
     <Original>Corner 2</Original>
-    <Translated>Corner 2</Translated>
+    <Translated>Esquina 2</Translated>
   </String>
   <String>
     <Original>Corners</Original>
-    <Translated>Corners</Translated>
+    <Translated>Esquinas</Translated>
   </String>
   <String>
     <Original>Cultures</Original>
-    <Translated>Cultures</Translated>
+    <Translated>Culturas</Translated>
   </String>
   <String>
     <Original>Custom field 1</Original>
-    <Translated>Custom field 1</Translated>
+    <Translated>Campo personalizado 1</Translated>
   </String>
   <String>
     <Original>Data</Original>
-    <Translated>Data</Translated>
+    <Translated>Datos</Translated>
   </String>
   <String>
     <Original>Data export</Original>
-    <Translated>Data export</Translated>
+    <Translated>Exportación de datos</Translated>
   </String>
   <String>
     <Original>Data import</Original>
-    <Translated>Data import</Translated>
+    <Translated>Importación de datos</Translated>
   </String>
   <String>
     <Original>Delete</Original>
-    <Translated>Delete</Translated>
+    <Translated>Borrar</Translated>
   </String>
   <String>
     <Original>Department</Original>
-    <Translated>Department</Translated>
+    <Translated>Partido</Translated>
   </String>
   <String>
     <Original>Departments</Original>
-    <Translated>Departments</Translated>
+    <Translated>Partidos</Translated>
   </String>
   <String>
     <Original>Description</Original>
-    <Translated>Description</Translated>
+    <Translated>Descripción</Translated>
   </String>
   <String>
     <Original>Edit</Original>
-    <Translated>Edit</Translated>
+    <Translated>Editar</Translated>
   </String>
   <String>
     <Original>End</Original>
-    <Translated>End</Translated>
+    <Translated>Fin</Translated>
   </String>
   <String>
     <Original>Error</Original>
@@ -149,47 +149,47 @@
   </String>
   <String>
     <Original>Export</Original>
-    <Translated>Export</Translated>
+    <Translated>Exportar</Translated>
   </String>
   <String>
     <Original>Export data</Original>
-    <Translated>Export data</Translated>
+    <Translated>Exportar datos</Translated>
   </String>
   <String>
     <Original>Export records</Original>
-    <Translated>Export records</Translated>
+    <Translated>Exportar registros</Translated>
   </String>
   <String>
     <Original>Export to excel file</Original>
-    <Translated>Export to excel file</Translated>
+    <Translated>Exportar a Excel</Translated>
   </String>
   <String>
     <Original>Export to Gmaps</Original>
-    <Translated>Export to Gmaps</Translated>
+    <Translated>Exportar a GMaps</Translated>
   </String>
   <String>
     <Original>External data</Original>
-    <Translated>External data</Translated>
+    <Translated>Datos externos</Translated>
   </String>
   <String>
     <Original>Filter by city name</Original>
-    <Translated>Filter by city name</Translated>
+    <Translated>Filtrar por ciudad</Translated>
   </String>
   <String>
     <Original>Filter by department</Original>
-    <Translated>Filter by department</Translated>
+    <Translated>Filtrar por partido</Translated>
   </String>
   <String>
     <Original>Filter by department name</Original>
-    <Translated>Filter by department name</Translated>
+    <Translated>Filtrar por ciudad</Translated>
   </String>
   <String>
     <Original>Filter by territory name</Original>
-    <Translated>Filter by territory name</Translated>
+    <Translated>Filtrar por territorio</Translated>
   </String>
   <String>
     <Original>Filtered</Original>
-    <Translated>Filtered</Translated>
+    <Translated>Filtrado</Translated>
   </String>
   <String>
     <Original>GEO</Original>
@@ -197,27 +197,27 @@
   </String>
   <String>
     <Original>Geo data has been imported.</Original>
-    <Translated>Geo data has been imported.</Translated>
+    <Translated>Los datos geográficos fueron importados.</Translated>
   </String>
   <String>
     <Original>Geo location</Original>
-    <Translated>Geo location</Translated>
+    <Translated>Geo localización.</Translated>
   </String>
   <String>
     <Original>Go</Original>
-    <Translated>Go</Translated>
+    <Translated>Ir</Translated>
   </String>
   <String>
     <Original>Has geoposition</Original>
-    <Translated>Has geoposition</Translated>
+    <Translated>Tiene geoposición</Translated>
   </String>
   <String>
     <Original>Help</Original>
-    <Translated>Help</Translated>
+    <Translated>Ayuda</Translated>
   </String>
   <String>
     <Original>Hide relations</Original>
-    <Translated>Hide relations</Translated>
+    <Translated>Ocultar relaciones</Translated>
   </String>
   <String>
     <Original>Id</Original>
@@ -225,23 +225,23 @@
   </String>
   <String>
     <Original>Import</Original>
-    <Translated>Import</Translated>
+    <Translated>Importar</Translated>
   </String>
   <String>
     <Original>Import from GeoRss file</Original>
-    <Translated>Import from GeoRss file</Translated>
+    <Translated>Importar desde GeoRSS</Translated>
   </String>
   <String>
     <Original>Import records</Original>
-    <Translated>Import records</Translated>
+    <Translated>Importar registros</Translated>
   </String>
   <String>
     <Original>Internal number</Original>
-    <Translated>Internal number</Translated>
+    <Translated>Número interno</Translated>
   </String>
   <String>
     <Original>Interoperability</Original>
-    <Translated>Interoperability</Translated>
+    <Translated>Interoperabilidad</Translated>
   </String>
   <String>
     <Original>Lat</Original>
@@ -249,7 +249,7 @@
   </String>
   <String>
     <Original>Latitude</Original>
-    <Translated>Latitude</Translated>
+    <Translated>Latitud</Translated>
   </String>
   <String>
     <Original>Lng</Original>
@@ -257,27 +257,27 @@
   </String>
   <String>
     <Original>Location</Original>
-    <Translated>Location</Translated>
+    <Translated>Ubicación</Translated>
   </String>
   <String>
     <Original>Longitude</Original>
-    <Translated>Longitude</Translated>
+    <Translated>Longitud</Translated>
   </String>
   <String>
     <Original>Map 1</Original>
-    <Translated>Map 1</Translated>
+    <Translated>Mapa 1</Translated>
   </String>
   <String>
     <Original>Map 2</Original>
-    <Translated>Map 2</Translated>
+    <Translated>Mapa 2</Translated>
   </String>
   <String>
     <Original>Map type</Original>
-    <Translated>Map type</Translated>
+    <Translated>Tipo de mapa</Translated>
   </String>
   <String>
     <Original>Maps</Original>
-    <Translated>Maps</Translated>
+    <Translated>Mapas</Translated>
   </String>
   <String>
     <Original>Menu</Original>
@@ -285,15 +285,15 @@
   </String>
   <String>
     <Original>Name</Original>
-    <Translated>Name</Translated>
+    <Translated>Nombre</Translated>
   </String>
   <String>
     <Original>New</Original>
-    <Translated>New</Translated>
+    <Translated>Nuevo</Translated>
   </String>
   <String>
     <Original>Number</Original>
-    <Translated>Number</Translated>
+    <Translated>Número</Translated>
   </String>
   <String>
     <Original>Ok</Original>
@@ -301,87 +301,83 @@
   </String>
   <String>
     <Original>OK. Last modification date: </Original>
-    <Translated>OK. Last modification date: </Translated>
+    <Translated>OK. Fecha de última mod:</Translated>
   </String>
   <String>
     <Original>Phone 1</Original>
-    <Translated>Phone 1</Translated>
+    <Translated>Teléfono 1</Translated>
   </String>
   <String>
     <Original>Phone 2</Original>
-    <Translated>Phone 2</Translated>
+    <Translated>Teléfono 2</Translated>
   </String>
   <String>
     <Original>Phone numbers</Original>
-    <Translated>Phone numbers</Translated>
+    <Translated>Teléfonos</Translated>
   </String>
   <String>
     <Original>Place</Original>
-    <Translated>Place</Translated>
+    <Translated>Lugar</Translated>
   </String>
   <String>
     <Original>Publisher</Original>
-    <Translated>Publisher</Translated>
+    <Translated>Publicador</Translated>
   </String>
   <String>
     <Original>Publishers</Original>
-    <Translated>Publishers</Translated>
+    <Translated>Publicadores</Translated>
   </String>
   <String>
     <Original>Region, Country</Original>
-    <Translated>Region, Country</Translated>
+    <Translated>Provincia, País</Translated>
   </String>
   <String>
     <Original>Reset</Original>
-    <Translated>Reset</Translated>
+    <Translated>Restablecer</Translated>
   </String>
   <String>
     <Original>Result</Original>
-    <Translated>Result</Translated>
+    <Translated>Resultado</Translated>
   </String>
   <String>
     <Original>Result:</Original>
-    <Translated>Result:</Translated>
+    <Translated>Resultado:</Translated>
   </String>
   <String>
     <Original>Save</Original>
-    <Translated>Save</Translated>
+    <Translated>Guardar</Translated>
   </String>
   <String>
     <Original>Search</Original>
-    <Translated>Search</Translated>
+    <Translated>Buscar</Translated>
   </String>
   <String>
     <Original>Select</Original>
-    <Translated>Select</Translated>
+    <Translated>Seleccionar</Translated>
   </String>
   <String>
     <Original>Select culture</Original>
-    <Translated>Select culture</Translated>
+    <Translated>Seleccionar cultura</Translated>
   </String>
   <String>
     <Original>Select map type</Original>
-    <Translated>Select map type</Translated>
+    <Translated>Seleccionar tipo de mapa</Translated>
   </String>
   <String>
     <Original>Select source and destination files.</Original>
-    <Translated>Select source and destination files.</Translated>
-  </String>
-  <String>
-    <Original>statusStrip1</Original>
-    <Translated>statusStrip1</Translated>
+    <Translated>Selecionar origen y destino.</Translated>
   </String>
   <String>
     <Original>Street</Original>
-    <Translated>Street</Translated>
+    <Translated>Calle</Translated>
   </String>
   <String>
     <Original>Street and Nº</Original>
-    <Translated>Street and Nº</Translated>
+    <Translated>Calle y altura</Translated>
   </String>
   <String>
     <Original>Territories</Original>
-    <Translated>Territories</Translated>
+    <Translated>Territorios</Translated>
   </String>
   <String>
     <Original>Territories Management</Original>
@@ -389,87 +385,87 @@
   </String>
   <String>
     <Original>Territory</Original>
-    <Translated>Territory</Translated>
+    <Translated>Territorio</Translated>
   </String>
   <String>
     <Original>The data is incomplete.</Original>
-    <Translated>The data is incomplete.</Translated>
+    <Translated>Los datos son incompletos.</Translated>
   </String>
   <String>
     <Original>The exportation has been successful.\n</Original>
-    <Translated>The exportation has been successful.\n</Translated>
+    <Translated>La exportación se ha realizado exitosamente.\n</Translated>
   </String>
   <String>
     <Original>The exportation has problems. Check the settings and see the log.\n</Original>
-    <Translated>The exportation has problems. Check the settings and see the log.\n</Translated>
+    <Translated>La exportación tuvo algunos problemas. Revise las configuraciones y el registro.\n</Translated>
   </String>
   <String>
     <Original>The importation has been successful.</Original>
-    <Translated>The importation has been successful.</Translated>
+    <Translated>La importación se ha realizado exitosamente.</Translated>
   </String>
   <String>
     <Original>The importation has problems. Check the settings and see the log.</Original>
-    <Translated>The importation has problems. Check the settings and see the log.</Translated>
+    <Translated>La importación tuvo algunos problemas. Revise las configuraciones y el registro.\n</Translated>
   </String>
   <String>
     <Original>The window is already open.</Original>
-    <Translated>The window is already open.</Translated>
+    <Translated>La ventana ya está abierta.</Translated>
   </String>
   <String>
     <Original>There is some unsaved data. Do you want to continue?</Original>
-    <Translated>There is some unsaved data. Do you want to continue?</Translated>
+    <Translated>Hay datos sin guardar. Desea continuar?</Translated>
   </String>
   <String>
     <Original>To Excel</Original>
-    <Translated>To Excel</Translated>
+    <Translated>A Excel</Translated>
   </String>
   <String>
     <Original>To GMap</Original>
-    <Translated>To GMap</Translated>
+    <Translated>A GMaps</Translated>
   </String>
   <String>
     <Original>To image</Original>
-    <Translated>To image</Translated>
+    <Translated>Imagen</Translated>
   </String>
   <String>
     <Original>Tools</Original>
-    <Translated>Tools</Translated>
+    <Translated>Herramientas</Translated>
   </String>
   <String>
     <Original>Tour Nº</Original>
-    <Translated>Tour Nº</Translated>
+    <Translated>Recorrido Nº</Translated>
   </String>
   <String>
     <Original>Tours</Original>
-    <Translated>Tours</Translated>
+    <Translated>Recorridos</Translated>
   </String>
   <String>
     <Original>Update</Original>
-    <Translated>Update</Translated>
+    <Translated>Guardar</Translated>
   </String>
   <String>
     <Original>View</Original>
-    <Translated>View</Translated>
+    <Translated>Ver</Translated>
   </String>
   <String>
     <Original>View map</Original>
-    <Translated>View map</Translated>
+    <Translated>Ver mapa</Translated>
   </String>
   <String>
     <Original>View relations</Original>
-    <Translated>View relations</Translated>
+    <Translated>Ver relaciones</Translated>
   </String>
   <String>
     <Original>You must complete at least one search criteria.</Original>
-    <Translated>You must complete at least one search criteria.</Translated>
+    <Translated>Debe completar al menos un criterio de búsqueda.</Translated>
   </String>
   <String>
     <Original>You must select a city</Original>
-    <Translated>You must select a city</Translated>
+    <Translated>Debe seleccionar una ciudad.</Translated>
   </String>
   <String>
     <Original>You must select a department</Original>
-    <Translated>You must select a department</Translated>
+    <Translated>Debe seleccionar un partido.</Translated>
   </String>
   <String>
     <Original>You must select at least one search criteria.</Original>
@@ -480,11 +476,11 @@
     <Translated>You must select at least one search field.</Translated>
   </String>
   <String>
-    <Original>You must select some address.</Original>
-    <Translated>You must select some address.</Translated>
+    <Original>You must select an address.</Original>
+    <Translated>Debe seleccionar una dirección.</Translated>
   </String>
   <String>
-    <Original>You must select some territory.</Original>
-    <Translated>You must select some territory.</Translated>
+    <Original>You must select a territory.</Original>
+    <Translated>Debe seleccionar un territorio.</Translated>
   </String>
 </Localizer>
