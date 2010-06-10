@@ -3,14 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Objects;
 using System.Linq;
-using System.Resources;
 using System.Windows.Forms;
 using GMap.NET;
 using GMap.NET.WindowsForms;
+using Localizer;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.Model;
-using Localizer;
-using System.Threading;
 
 namespace TerritoriesManagement.GUI
 {
@@ -19,17 +17,17 @@ namespace TerritoriesManagement.GUI
         static private bool opened = false;
         private Territories server = new Territories();
         private bool isDirty;
-        Config.Config config;
+        Config.Config config = new Config.Config();
 
         public frmTerritories()
         {
-            Globalization.SetCurrentLanguage(Thread.CurrentThread.CurrentCulture.IetfLanguageTag);
-
             if (opened)
                 throw new Exception(GetString("The window is already open."));
             else
                 opened = true;
             InitializeComponent();
+
+            Globalization.RefreshUI(this);
         }
 
         private string GetString(string text)
@@ -39,9 +37,6 @@ namespace TerritoriesManagement.GUI
 
         private void frmTerritories_Load(object sender, EventArgs e)
         {
-            config = new Config.Config();
-            config.LoadSavedConfig();
-
             string[] columns = { "Territory.Name" };
             string[] variables = { "name" };
             schName.SetProperties(columns, variables);

@@ -4,6 +4,7 @@ using GMap.NET;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.Model;
 using ZeqkTools.WindowsForms.Maps;
+using Localizer;
 
 namespace TerritoriesManagement.GUI
 {
@@ -66,16 +67,28 @@ namespace TerritoriesManagement.GUI
 
         public frmAddress(Addresses server)
         {
-            this.server = server;            
+            this.server = server;
+
+            config = new Config.Config();
+            config.LoadSavedConfig();
+
             InitializeComponent();
             ConfigureMenus();
+
+            Globalization.RefreshUI(this);
         }
 
         public frmAddress()
         {
             this.server = new Addresses();
+
+            config = new Config.Config();
+            config.LoadSavedConfig();
+
             InitializeComponent(); 
             ConfigureMenus();
+
+            Globalization.RefreshUI(this);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -118,9 +131,6 @@ namespace TerritoriesManagement.GUI
 
         private void frmAddress_Load(object sender, EventArgs e)
         {
-            config = new Config.Config();
-            config.LoadSavedConfig();
-
             isDirty = false;
         }
 

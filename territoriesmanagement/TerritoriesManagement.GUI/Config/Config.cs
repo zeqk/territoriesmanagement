@@ -10,7 +10,7 @@ namespace TerritoriesManagement.GUI.Config
     {
         private string configFile = AppDomain.CurrentDomain.BaseDirectory + "config.xml";
 
-        public string CultureTag;
+        public string Language;
 
         public string Place;
 
@@ -18,7 +18,7 @@ namespace TerritoriesManagement.GUI.Config
 
         public Config()
         {
-            CultureTag = "en-US";
+            Language = "English";
             MapType = GMap.NET.MapType.GoogleMap;
         }
 
@@ -64,7 +64,7 @@ namespace TerritoriesManagement.GUI.Config
 
         private void SetConfig(Config config)
         {
-            this.CultureTag = config.CultureTag;
+            this.Language = config.Language;
             this.MapType = config.MapType;
             this.Place = config.Place;
         }

@@ -3,12 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data.Objects;
 using System.Linq;
-using System.Resources;
 using System.Windows.Forms;
+using Localizer;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.Model;
-using Localizer;
-using System.Threading;
 
 namespace TerritoriesManagement.GUI
 {
@@ -16,12 +14,11 @@ namespace TerritoriesManagement.GUI
     {
         static private bool opened = false;
         private Cities server = new Cities();
-        
+
         private bool isDirty;
 
         public frmCities()
         {
-            Globalization.SetCurrentLanguage(Thread.CurrentThread.CurrentCulture.IetfLanguageTag);
             
             if (opened)
                 throw new Exception(GetString("The window is already open."));
@@ -30,7 +27,7 @@ namespace TerritoriesManagement.GUI
 
             InitializeComponent();
 
-            Globalization.RefreshUI();
+            Globalization.RefreshUI(this);
         }
 
         private void frmCities_Load(object sender, EventArgs e)
