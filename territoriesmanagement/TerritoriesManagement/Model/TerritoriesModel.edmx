@@ -480,7 +480,7 @@
             <PropertyRef Name="TourNumber" />
           </Key>
           <Property Name="IdTerritory" Type="Int32" Nullable="false" />
-          <Property Name="BeginDate" Type="DateTime" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
           <Property Name="EndDate" Type="DateTime" />
           <Property Name="TourNumber" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Publisher" Relationship="TerritoriesModel.TOURSKEY0" FromRole="Tours" ToRole="Publishers" />
@@ -681,7 +681,7 @@
             <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.Tour)">
               <MappingFragment StoreEntitySet="Tours">
                 <ScalarProperty Name="IdTerritory" ColumnName="IdTerritory" />
-                <ScalarProperty Name="BeginDate" ColumnName="BeginDate" />
+                <ScalarProperty Name="StartDate" ColumnName="BeginDate" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="TourNumber" ColumnName="TourNumber" />
               </MappingFragment>

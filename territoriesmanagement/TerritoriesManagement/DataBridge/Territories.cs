@@ -217,7 +217,7 @@ namespace TerritoriesManagement.DataBridge
                                  { 
                                      Id = tour.IdTerritory, 
                                      Tour = tour.TourNumber, 
-                                     BeginDate  = tour.BeginDate, 
+                                     StartDate  = tour.StartDate, 
                                      EndDate = tour.EndDate
                                  };
 
