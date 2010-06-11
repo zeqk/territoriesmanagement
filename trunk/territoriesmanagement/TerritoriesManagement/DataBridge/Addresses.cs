@@ -254,7 +254,7 @@ namespace TerritoriesManagement.DataBridge
             {
                 if (!rv)
                     message += Environment.NewLine;
-                message += GetString("Select some city.");
+                message += GetString("Select a city.");
                 rv = false;
             }
 

@@ -204,14 +204,14 @@ namespace TerritoriesManagement.DataBridge
                 if (!rv)
                     message += Environment.NewLine;
 
-                message += GetString("The city already exist. Correct and try again.");
+                message += GetString("The city already exists. Correct and try again.");
                 rv = false;
             }
             if (v.Department == null || v.Department.IdDepartment==0)
             {
                 if (!rv)
                     message += Environment.NewLine;
-                message += GetString("Select some department.");
+                message += GetString("Select a department.");
                 rv = false;
             }
             return rv;

@@ -189,7 +189,7 @@ namespace TerritoriesManagement.GUI
 
             dgvTours.Columns.Add("Id", GetString("Id"));
             dgvTours.Columns.Add("Number", GetString("Tour Nº"));
-            dgvTours.Columns.Add("BeginDate", GetString("Begin"));
+            dgvTours.Columns.Add("StartDate", GetString("Start"));
             dgvTours.Columns.Add("EndDate", GetString("End"));
             dgvTours.Columns.Add("blank", "");
 
@@ -197,8 +197,8 @@ namespace TerritoriesManagement.GUI
             dgvTours.Columns["Id"].DataPropertyName = "Id";
             dgvTours.Columns["Number"].Width = 100;
             dgvTours.Columns["Number"].DataPropertyName = "Number";
-            dgvTours.Columns["BeginDate"].Width = 150;
-            dgvTours.Columns["BeginDate"].DataPropertyName = "BeginDate";
+            dgvTours.Columns["StartDate"].Width = 150;
+            dgvTours.Columns["StartDate"].DataPropertyName = "StartDate";
             dgvTours.Columns["EndDate"].Width = 150;
             dgvTours.Columns["EndDate"].DataPropertyName = "EndDate";
             dgvTours.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;

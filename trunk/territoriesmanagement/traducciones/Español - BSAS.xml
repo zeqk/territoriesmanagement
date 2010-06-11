@@ -36,7 +36,7 @@
     <Translated>Autoseleccionar</Translated>
   </String>
   <String>
-    <Original>Begin</Original>
+    <Original>Start</Original>
     <Translated>Inicio</Translated>
   </String>
   <String>
@@ -482,5 +482,189 @@
   <String>
     <Original>You must select a territory.</Original>
     <Translated>Debe seleccionar un territorio.</Translated>
+  </String>
+  <String>
+    <Original>Enter the street.</Original>
+    <Translated>Ingrese la calle.</Translated>
+  </String>
+  <String>
+    <Original>Enter the number or the corner.</Original>
+    <Translated>Ingrese la altura o la esquina.</Translated>
+  </String>
+  <String>
+    <Original>Select a city.</Original>
+    <Translated>Seleccione una ciudad.</Translated>
+  </String>
+  <String>
+    <Original>(no territory)</Original>
+    <Translated>(sin territorio)</Translated>
+  </String>
+  <String>
+    <Original>Enter city name.</Original>
+    <Translated>Ingrese el nombre de la ciudad.</Translated>
+  </String>
+  <String>
+    <Original>The city already exists. Correct and try again.</Original>
+    <Translated>La ciudad ya existe. Corríjalo e intente nuevamente.</Translated>
+  </String>
+  <String>
+    <Original>Select a department.</Original>
+    <Translated>Seleccione un partido.</Translated>
+  </String>
+  <String>
+    <Original>Enter department name.</Original>
+    <Translated>Ingrese el nombre del partido.</Translated>
+  </String>
+  <String>
+    <Original>The department already exists. Correct and retrieve.</Original>
+    <Translated>El partido ya existe. Corríjalo e intente nuevamente.</Translated>
+  </String>
+  <String>
+    <Original>Enter territory name.</Original>
+    <Translated>Ingrese el nombre del territorio.</Translated>
+  </String>
+  <String>
+    <Original>The territory already exists. Correct and try again.</Original>
+    <Translated>El territorio ya existe. Corríjalo e intente nuevamente.</Translated>
+  </String>
+  <String>
+    <Original>Some departments have not been imported successfully.</Original>
+    <Translated>Algunos partidos no han sido importados exitosamente.</Translated>
+  </String>
+  <String>
+    <Original>No department has been imported.</Original>
+    <Translated>Ningún partido ha sido importado.</Translated>
+  </String>
+  <String>
+    <Original>Some cities have not been imported successfully.</Original>
+    <Translated>Algunas ciudades no han sido importadas exitosamente.</Translated>
+  </String>
+  <String>
+    <Original>No city has been imported.</Original>
+    <Translated>Ninguna ciudad ha sido importada.</Translated>
+  </String>
+  <String>
+    <Original>Some territories have not been imported successfully.</Original>
+    <Translated>Algunos territorios no han sido importados exitosamente.</Translated>
+  </String>
+  <String>
+    <Original>No territory has been imported.</Original>
+    <Translated>Ningún territorio ha sido importado.</Translated>
+  </String>
+  <String>
+    <Original>Some addresses have not been imported successfully.</Original>
+    <Translated>Algunas direcciones no han sido importadas exitosamente.</Translated>
+  </String>
+  <String>
+    <Original>No address has been imported.</Original>
+    <Translated>Ninguna dirección ha sido importada.</Translated>
+  </String>
+  <String>
+    <Original>IMPORT DEPARTMENTS ERRORS: </Original>
+    <Translated>ERRORES DE IMPORTACIÓN DE PARTIDOS: </Translated>
+  </String>
+  <String>
+    <Original>-Error: </Original>
+    <Translated>-Error: </Translated>
+  </String>
+  <String>
+    <Original>IMPORT CITIES ERRORS: </Original>
+    <Translated>ERRORES DE IMPORTACIÓN DE CIUDADES: </Translated>
+  </String>
+  <String>
+    <Original>IMPORT TERRITORIES ERRORS: </Original>
+    <Translated>ERRORES DE IMPORTACIÓN DE TERRITORIOS: </Translated>
+  </String>
+  <String>
+    <Original>IMPORT ADDRESSES ERRORS: </Original>
+    <Translated>ERRORES DE IMPORTACIÓN DE DIRECCIONES: </Translated>
+  </String>
+  <String>
+    <Original>  -Name is blank or null. </Original>
+    <Translated>  -El nombre está en blanco o es nulo.</Translated>
+  </String>
+  <String>
+    <Original>  -Already exists. </Original>
+    <Translated>  -Ya existe.</Translated>
+  </String>
+  <String>
+    <Original>  -There is no department.. </Original>
+    <Translated>  -No tiene partido. </Translated>
+  </String>
+  <String>
+    <Original>  -Department doesn't exist. </Original>
+    <Translated>  -El partido no existe.</Translated>
+  </String>
+  <String>
+    <Original>  -The street is blank or null. </Original>
+    <Translated>  -La calle está en blanco o es nula.</Translated>
+  </String>
+  <String>
+    <Original>  -There is no city.. </Original>
+    <Translated>  -No tiene ciudad. </Translated>
+  </String>
+  <String>
+    <Original>  -City doesn't exist. </Original>
+    <Translated>  -La ciudad no existe.</Translated>
+  </String>
+  <String>
+    <Original>{0} departments have been imported.</Original>
+    <Translated>{0} partidos han sido importados.</Translated>
+  </String>
+  <String>
+    <Original>{0} cities has been imported.</Original>
+    <Translated>{0} ciudades han sido importadas.</Translated>
+  </String>
+  <String>
+    <Original>{0} territories has been imported.</Original>
+    <Translated>{0} territorios han sido importados.</Translated>
+  </String>
+  <String>
+    <Original>{0} addresses has been imported.</Original>
+    <Translated>{0} direcciones han sido importadas.</Translated>
+  </String>
+  <String>
+    <Original>-Conversion error. (Row values: {0})</Original>
+    <Translated>-Error de conversión. (Valor de fila: {0})</Translated>
+  </String>
+  <String>
+    <Original>  -Name lenght exceeds the allowed length ({0}). </Original>
+    <Translated>  -El largo del nombre excede al largo permitido ({0}). </Translated>
+  </String>
+  <String>
+    <Original>-\"{0} {1}\" is invalid: </Original>
+    <Translated>-\"{0} {1}\" es inválido: </Translated>
+  </String>
+  <String>
+    <Original>  -Address data lenght exceeds the allowed length ({0}). </Original>
+    <Translated>  -El largo de los datos de la dirección excede al largo permitido ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Corners lenght exceeds the allowed length ({0}). </Original>
+    <Translated>  -El largo de las esquinas excede al largo permitido ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Custom fields lenght exceeds the allowed length ({0}). </Original>
+    <Translated>  -El largo de los campos personalizados excede al largo permitido ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Description lenght exceeds the allowed length ({0}). </Original>
+    <Translated>  -El largo de la descripción excede al largo permitido ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Maps lenght exceeds the allowed length ({0}). </Original>
+    <Translated>  -El largo del campo mapas excede al largo permitido ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Number lenght exceeds the allowed length ({0}). </Original>
+    <Translated>  -El largo del la altura excede al largo permitido ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Phone numbers lenght exceeds the allowed length ({0}). </Original>
+    <Translated>  -El largo de los teléfonos excede al largo permitido ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Street lenght exceeds the allowed length ({0}). </Original>
+    <Translated>  -El largo de la calle excede al largo permitido ({0}). </Translated>
   </String>
 </Localizer>

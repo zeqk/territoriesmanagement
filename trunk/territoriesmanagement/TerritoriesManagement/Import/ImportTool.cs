@@ -118,10 +118,10 @@ namespace TerritoriesManagement.Import
                         departmentsImported = count > 0;
                         if (departmentsImported)
                         {
-                            ImportMessage += Environment.NewLine + GetString("{0} departments has been imported.", count) + Environment.NewLine;
+                            ImportMessage += Environment.NewLine + GetString("{0} departments have been imported.", count) + Environment.NewLine;
                             if (ds.Tables[departments].Rows.Count>count)
                             {
-                                ImportMessage += GetString("Some departments has not been imported successfully.") +Environment.NewLine;
+                                ImportMessage += GetString("Some departments have not been imported successfully.") +Environment.NewLine;
                             }
                         }
                         else
@@ -139,7 +139,7 @@ namespace TerritoriesManagement.Import
                             ImportMessage += Environment.NewLine + GetString("{0} cities has been imported.", count) + Environment.NewLine;
                             if (ds.Tables[cities].Rows.Count > count)
                             {
-                                ImportMessage += Environment.NewLine + GetString("Some cities has not been imported successfully.") + Environment.NewLine;
+                                ImportMessage += Environment.NewLine + GetString("Some cities have not been imported successfully.") + Environment.NewLine;
                             }
                         }
                         else
@@ -157,7 +157,7 @@ namespace TerritoriesManagement.Import
                             ImportMessage += Environment.NewLine + GetString("{0} territories has been imported.", count) + Environment.NewLine;
                             if (ds.Tables[territories].Rows.Count > count)
                             {
-                                ImportMessage += Environment.NewLine + GetString("Some territories has not been imported successfully.") + Environment.NewLine;
+                                ImportMessage += Environment.NewLine + GetString("Some territories have not been imported successfully.") + Environment.NewLine;
                             }
                         }
                         else
@@ -175,7 +175,7 @@ namespace TerritoriesManagement.Import
                             ImportMessage += Environment.NewLine + GetString("{0} addresses has been imported.", count) + Environment.NewLine;
                             if (ds.Tables[addresses].Rows.Count > count)
                             {
-                                ImportMessage += GetString("Some addresses has not been imported successfully.") + Environment.NewLine;
+                                ImportMessage += GetString("Some addresses have not been imported successfully.") + Environment.NewLine;
                             }
                         }
                         else
@@ -779,7 +779,7 @@ namespace TerritoriesManagement.Import
             if (v.DepartmentReference.EntityKey == null ||
                 (int) v.DepartmentReference.EntityKey.EntityKeyValues[0].Value == 0 )
             {
-                msg += Environment.NewLine + GetString("  -There is not department. ");
+                msg += Environment.NewLine + GetString("  -Haven't department. ");
                 rv = false;
             }
             else
@@ -801,7 +801,7 @@ namespace TerritoriesManagement.Import
             //lenght validation
             if(v.Name.Length > 80)
             {
-                msg += Environment.NewLine + GetString("  -Name lenght exceeds the allowed length ({80}). ", 80);
+                msg += Environment.NewLine + GetString("  -Name lenght exceeds the allowed length ({0}). ", 80);
                 rv = false;
             }
 
@@ -819,19 +819,19 @@ namespace TerritoriesManagement.Import
             string msg = "";
             if (string.IsNullOrEmpty(v.Name))
             {
-                msg += Environment.NewLine + GetString("   -Name is blank or null. ");
+                msg += Environment.NewLine + GetString("  -Name is blank or null. ");
                 rv = false;
             }
             if (TerritoryExist(v))
             {
-                msg += Environment.NewLine + GetString("   -Already exists. ");
+                msg += Environment.NewLine + GetString("  -Already exists. ");
                 rv = false;
             }
 
             //lenght validation
             if (v.Name.Length > 80)
             {
-                msg += Environment.NewLine + GetString("   -Name lenght exceeds the allowed length ({0}). ", 80);
+                msg += Environment.NewLine + GetString("  -Name lenght exceeds the allowed length ({0}). ", 80);
                 rv = false;
             }
 
@@ -856,7 +856,7 @@ namespace TerritoriesManagement.Import
             if (v.CityReference.EntityKey==null ||
                 (int)v.CityReference.EntityKey.EntityKeyValues[0].Value==0)
             {
-                msg += Environment.NewLine + GetString("  -There is no city. ");
+                msg += Environment.NewLine + GetString("  -Haven't city. ");
                 rv = false;
             }
             else
