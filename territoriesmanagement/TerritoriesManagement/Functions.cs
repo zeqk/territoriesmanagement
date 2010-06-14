@@ -190,6 +190,7 @@ namespace TerritoriesManagement
             {
                 TerritoriesDataContext dm = new TerritoriesDataContext();
                 DateTime last = dm.autids_getLastModification().First();
+                dm.Dispose();
                 return last;
             }
             catch (Exception ex)

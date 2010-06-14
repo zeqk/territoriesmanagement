@@ -633,7 +633,7 @@ namespace TerritoriesManagement.Import
                     string columnName = _config.Addresses.Fields["Map2"];
                     a.Map2 = row[columnName].ToString();
                 }
-                //Address.Geoposition
+                //Address.Lat and Address.Lng
                 if (_config.Addresses.Fields.ContainsKey("Geoposition"))
                 {
                     string columnName = _config.Addresses.Fields["Geoposition"];
@@ -660,6 +660,26 @@ namespace TerritoriesManagement.Import
                         }
                     }
                 }
+
+
+                //Address.Lat
+                if (_config.Addresses.Fields.ContainsKey("Lat"))
+                {
+                    string columnName = _config.Addresses.Fields["Lat"];
+                    double lat = 0;
+                    if(double.TryParse(row[columnName].ToString(),NumberStyles.Any, new CultureInfo("en-US"),out lat))
+                        a.Lat = lat;
+                }
+
+                //Address.Lng
+                if (_config.Addresses.Fields.ContainsKey("Lng"))
+                {
+                    string columnName = _config.Addresses.Fields["Lng"];
+                    double lng = 0;
+                    if (double.TryParse(row[columnName].ToString(), NumberStyles.Any, new CultureInfo("en-US"), out lng))
+                        a.Lng = lng; ;
+                }
+
                 //Address.City
                 int idCity = 0;
                 if (_config.Addresses.Fields.ContainsKey("CityId") || _config.Addresses.DefaultFieldValues.ContainsKey("CityId"))
