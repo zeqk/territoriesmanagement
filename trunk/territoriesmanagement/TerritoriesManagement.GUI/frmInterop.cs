@@ -13,8 +13,6 @@ namespace TerritoriesManagement.GUI
 {
     public partial class frmInterop : Form
     {
-
-        GeoRssImportTool _geoRssImporter;
         ImportTool _importer;
         bool _isDirty;
         ImporterConfig.ImporterConfig _config;
@@ -24,7 +22,6 @@ namespace TerritoriesManagement.GUI
         {
 
             _rm = new ResourceManager(this.GetType());
-            _geoRssImporter = new GeoRssImportTool();
             _importer = new ImportTool();
             _config = new TerritoriesManagement.GUI.ImporterConfig.ImporterConfig();
             _isDirty = false;
@@ -79,10 +76,10 @@ namespace TerritoriesManagement.GUI
             else
                 MessageBox.Show(GetString("The importation has problems. Check the settings and see the log.") + Environment.NewLine + _importer.ImportMessage);
 
-            btnImport.Enabled = true;
+            btnImportFromExternal.Enabled = true;
         }
 
-        private void btnImport_Click(object sender, EventArgs e)
+        private void btnImportFromExternal_Click(object sender, EventArgs e)
         {
             SetConfig();
             try
@@ -94,7 +91,7 @@ namespace TerritoriesManagement.GUI
                 MessageBox.Show(ex.Message, GetString("Error"));
             }
 
-            btnImport.Enabled = false;
+            btnImportFromExternal.Enabled = false;
         }
 
         private void grdImportConfig_PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
@@ -293,43 +290,8 @@ namespace TerritoriesManagement.GUI
 
         #endregion
 
-        #region GeoRSS Import
-
-        private void btnSelectRssSource_Click(object sender, EventArgs e)
-        {
-            odfRssSource.ShowDialog();
-        }
-
-        private void odfRssSource_FileOk(object sender, CancelEventArgs e)
-        {
-            txtRssSource.Text = Path.GetFullPath(odfRssSource.FileName);
-        }
-
-        private void btnImportGeoRss_Click(object sender, EventArgs e)
-        {
-            if (txtRssSource.Text == "")
-            {
-                MessageBox.Show(GetString("Select source and destination files."));
-            }
-            else
-            {
-                try
-                {
-                    string importMessage = "";
-                    _geoRssImporter.ImportGeoRss(txtRssSource.Text, ref importMessage, false, false, true, false);
-                    MessageBox.Show(GetString("Geo data has been imported."));
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
-        }
-
-        #endregion            
-
         #region DataExport
-        private void btnExport_Click(object sender, EventArgs e)
+        private void btnExportToExternal_Click(object sender, EventArgs e)
         {
             bool exported = true;
             ExportTool tool = new ExportTool();
@@ -397,7 +359,7 @@ namespace TerritoriesManagement.GUI
             chkListDepartments.Enabled = rdoDepartments.Checked;
         }
 
-        private void btnSaveToExcel_Click(object sender, EventArgs e)
+        private void btnBrowse3_Click(object sender, EventArgs e)
         {
             sfdDestinationFile.Filter = "Excel files (*.xls)|*.xls";
             if(sfdDestinationFile.ShowDialog() == DialogResult.OK)
@@ -405,22 +367,6 @@ namespace TerritoriesManagement.GUI
         }
 
         #endregion
-
-        private void btnSaveToGMaps_Click(object sender, EventArgs e)
-        {
-            sfdGMaps.ShowDialog();
-        }
-
-        private void btnExportToGmaps_Click(object sender, EventArgs e)
-        {        
-            ExportTool tool = new ExportTool();
-            tool.ExportToGMap(txtXmlDestination.Text, "");
-        }
-
-        private void sfdGMaps_FileOk(object sender, CancelEventArgs e)
-        {
-            txtXmlDestination.Text = Path.GetFullPath(sfdGMaps.FileName);
-        }
 
         private void btnConfigureConnection_Click(object sender, EventArgs e)
         {
@@ -445,7 +391,7 @@ namespace TerritoriesManagement.GUI
         }
 
         #region ImportData
-        private void btnImportDataSelectFile_Click(object sender, EventArgs e)
+        private void btnBrowse1_Click(object sender, EventArgs e)
         {
             ofdSourceFile.Filter = "Territories management exchange file(*.tmx)|*.tmx";
             if (ofdSourceFile.ShowDialog() == DialogResult.OK)
@@ -457,17 +403,17 @@ namespace TerritoriesManagement.GUI
         private void btnImportData_Click(object sender, EventArgs e)
         {
             List<string> list = new List<string>();
-            if (chkImportDataDepartments.Checked)
+            if (chkDepartments.Checked)
                 list.Add("Department");
-            if (chkImportDataCities.Checked)
+            if (chkCities.Checked)
                 list.Add("City");
-            if (chkImportDataPublishers.Checked)
+            if (chkPublishers.Checked)
                 list.Add("Publisher");
-            if (chkImportDataTerritories.Checked)
+            if (chkTerritories.Checked)
                 list.Add("Territory");
-            if (chkImportDataTours.Checked)
+            if (chkTours.Checked)
                 list.Add("Tuor");
-            if (chkImportDataAddresses.Checked)
+            if (chkAddresses.Checked)
                 list.Add("Address");
 
             if (list.Count > 0)
@@ -477,7 +423,7 @@ namespace TerritoriesManagement.GUI
 
         #endregion
         #region Data exportation
-        private void btnDataExportSave_Click(object sender, EventArgs e)
+        private void btnBrowse2_Click(object sender, EventArgs e)
         {
             sfdDestinationFile.Filter = "Territories management exchange file(*.tmx)|*.tmx";
             if (sfdDestinationFile.ShowDialog() == DialogResult.OK)
@@ -487,17 +433,17 @@ namespace TerritoriesManagement.GUI
         private void btnExportData_Click(object sender, EventArgs e)
         {
             List<string> list = new List<string>();
-            if (chkDataExportDepartments.Checked)
+            if (chkDepartments.Checked)
                 list.Add("Department");
-            if (chkDataExportCities.Checked)
+            if (chkCities.Checked)
                 list.Add("City");
-            if (chkDataExportPublishers.Checked)
+            if (chkPublishers.Checked)
                 list.Add("Publisher");
-            if (chkDataExportTerritories.Checked)
+            if (chkTerritories.Checked)
                 list.Add("Territory");
-            if (chkDataExportTours.Checked)
+            if (chkTours.Checked)
                 list.Add("Tour");
-            if (chkDataExportAddresses.Checked)
+            if (chkAddresses.Checked)
                 list.Add("Address");
 
             if (list.Count > 0)

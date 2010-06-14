@@ -34,7 +34,6 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnToExcel = new System.Windows.Forms.Button();
-            this.btnToGMaps = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
@@ -96,7 +95,6 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
             this.panel1.Controls.Add(this.btnToExcel);
-            this.panel1.Controls.Add(this.btnToGMaps);
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.btnEdit);
             this.panel1.Controls.Add(this.btnNew);
@@ -117,19 +115,6 @@
             this.btnToExcel.Text = "To Excel";
             this.btnToExcel.UseVisualStyleBackColor = true;
             this.btnToExcel.Click += new System.EventHandler(this.btnToExcel_Click);
-            // 
-            // btnToGMaps
-            // 
-            this.btnToGMaps.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnToGMaps.AutoSize = true;
-            this.btnToGMaps.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnToGMaps.Location = new System.Drawing.Point(17, 294);
-            this.btnToGMaps.Name = "btnToGMaps";
-            this.btnToGMaps.Size = new System.Drawing.Size(65, 26);
-            this.btnToGMaps.TabIndex = 4;
-            this.btnToGMaps.Text = "To GMap";
-            this.btnToGMaps.UseVisualStyleBackColor = true;
-            this.btnToGMaps.Click += new System.EventHandler(this.btnToGMaps_Click);
             // 
             // btnDelete
             // 
@@ -368,7 +353,6 @@
             // sfdGMaps
             // 
             this.sfdGMaps.Filter = "xml files (*.xml)|*.xml";
-            this.sfdGMaps.FileOk += new System.ComponentModel.CancelEventHandler(this.sfdGMaps_FileOk);
             // 
             // sfdExcelDestiny
             // 
@@ -432,8 +416,6 @@
         private System.Windows.Forms.Label lblDepartment;
         private System.Windows.Forms.ContextMenuStrip ctxMenu;
         private System.Windows.Forms.ToolStripMenuItem copyGoogleMapsToolStripMenuItem;
-   
-        private System.Windows.Forms.Button btnToGMaps;
         private System.Windows.Forms.SaveFileDialog sfdGMaps;
         private System.Windows.Forms.Button btnToExcel;
         private System.Windows.Forms.SaveFileDialog sfdExcelDestiny;

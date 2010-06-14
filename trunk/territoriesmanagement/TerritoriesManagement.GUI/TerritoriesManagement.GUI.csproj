@@ -296,8 +296,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="languages\en-US.xml" />
-    <Content Include="languages\es-AR.xml" />
+    <Folder Include="languages\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

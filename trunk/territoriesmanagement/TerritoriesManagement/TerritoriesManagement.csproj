@@ -71,10 +71,6 @@
       <HintPath>..\libs\FirebirdSql.Data.FirebirdClient.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="GeoRSSLibrary, Version=1.0.5.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libs\GeoRSSLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="GMap.NET.Core, Version=1.5.0.1, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\GMap.NET.Core.dll</HintPath>
@@ -119,7 +115,6 @@
     <Compile Include="DataBridge\Addresses.cs" />
     <Compile Include="Export\ExportTool.cs" />
     <Compile Include="Functions.cs" />
-    <Compile Include="Import\GeoRssImportTool.cs" />
     <Compile Include="Import\ImporterConfig.cs" />
     <Compile Include="Import\ImportTable.cs" />
     <Compile Include="Import\ImportTool.cs" />

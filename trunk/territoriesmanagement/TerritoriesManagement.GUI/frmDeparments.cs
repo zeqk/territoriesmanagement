@@ -223,9 +223,15 @@ namespace TerritoriesManagement.GUI
                 {                    
                     v = this.server.Save(v);
 
+                    int index = dgvResult.SelectedRows[0].Index;
+                    int scrollIndex = dgvResult.FirstDisplayedScrollingRowIndex;
+
                     //traigo los datos
                     if (lblFiltered.Visible) Filter();
                     else ClearFilter();
+
+                    dgvResult.Rows[index].Selected = true;
+                    dgvResult.FirstDisplayedScrollingRowIndex = scrollIndex;
 
                     isDirty = false;
                     txtName.Focus();
@@ -272,8 +278,6 @@ namespace TerritoriesManagement.GUI
                     MessageBox.Show(GetString("You must complete at least one search criteria."));
 
                 dgvResult.ClearSelection();
-
-                ObjectToForm(v);
             }
             catch (Exception ex)
             {

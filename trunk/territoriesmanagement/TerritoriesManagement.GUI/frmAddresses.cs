@@ -105,8 +105,14 @@ namespace TerritoriesManagement.GUI
                         myForm.Address = v;
                         myForm.ShowDialog();
 
+                        int index = dgvResult.SelectedRows[0].Index;
+                        int scrollIndex = dgvResult.FirstDisplayedScrollingRowIndex;
+
                         if (lblFiltered.Visible) Search();
                         else GetAll();
+
+                        dgvResult.Rows[index].Selected = true;
+                        dgvResult.FirstDisplayedScrollingRowIndex = scrollIndex;
                     }
                     catch (Exception ex)
                     {
@@ -393,30 +399,6 @@ namespace TerritoriesManagement.GUI
                 Clipboard.SetText(text);
             }
         }
-        #region ToGMaps
-        private void btnToGMaps_Click(object sender, EventArgs e)
-        {
-            sfdGMaps.ShowDialog();
-            
-        }
-
-        private void sfdGMaps_FileOk(object sender, CancelEventArgs e)
-        {
-            List<ObjectParameter> parameters = new List<ObjectParameter>();
-            string strQuery = GetQuery(out parameters);
-
-            string path = Path.GetFullPath(sfdGMaps.FileName);
-            try
-            {
-                ExportTool tool = new ExportTool();
-                tool.ExportToGMap(path, strQuery, parameters.ToArray());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-        #endregion
 
         #region ToExcel
         private void btnToExcel_Click(object sender, EventArgs e)

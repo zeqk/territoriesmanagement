@@ -41,6 +41,10 @@ namespace TerritoriesManagement.GUI.ImporterConfig
 
         private Field _geoPosition;
 
+        private Field _lat;
+
+        private Field _lng;
+
         private Field _territoryName;
 
         private Field _territoryId;
@@ -160,6 +164,18 @@ namespace TerritoriesManagement.GUI.ImporterConfig
         {
             get { return _geoPosition; }
             set { _geoPosition = value; }
+        }
+
+        public Field Lat
+        {
+            get { return _lat; }
+            set { _lat = value; }
+        }
+
+        public Field Lng
+        {
+            get { return _lng; }
+            set { _lng = value; }
         }
 
         public Field TerritoryId
