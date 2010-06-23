@@ -188,6 +188,7 @@
     <Compile Include="frmTerritories.Designer.cs">
       <DependentUpon>frmTerritories.cs</DependentUpon>
     </Compile>
+    <Compile Include="Functions.cs" />
     <Compile Include="ImporterConfig\CitiesTable.cs" />
     <Compile Include="ImporterConfig\CitiesTableConverter.cs" />
     <Compile Include="ImporterConfig\AddressesTable.cs" />
@@ -199,6 +200,7 @@
     <Compile Include="ImporterConfig\ImporterConfig.cs" />
     <Compile Include="ImporterConfig\FieldConverter.cs" />
     <Compile Include="ImporterConfig\DepartmentsTableConverter.cs" />
+    <Compile Include="MapModeEnum.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmCities.resx">

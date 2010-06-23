@@ -21,9 +21,12 @@ namespace TerritoriesManagement.GUI
 
         bool isGettingAll = false;
 
+        int prevWidth;
+
         public frmAddresses()
         {
             InitializeComponent();
+            prevWidth = dgvResult.Width;
             Globalization.RefreshUI(this);
 
         }
@@ -209,6 +212,7 @@ namespace TerritoriesManagement.GUI
             dgvResult.Columns.Add("DepartmentName",GetString("Department"));
             dgvResult.Columns.Add("CityName", GetString("City"));
             dgvResult.Columns.Add("Territory", GetString("Territory"));
+            dgvResult.Columns.Add("InternalTerritoryNumber", GetString("Number"));
             dgvResult.Columns.Add("Address", GetString("Street and Nº"));
             dgvResult.Columns.Add("Corner1", GetString("Corner 1"));
             dgvResult.Columns.Add("Corner2", GetString("Corner 2"));
@@ -216,24 +220,25 @@ namespace TerritoriesManagement.GUI
             dgvResult.Columns.Add("HasGeoPosition", GetString("GEO"));
             dgvResult.Columns.Add("Lat", GetString("Lat"));
             dgvResult.Columns.Add("Lng", GetString("Lng"));
-            dgvResult.Columns.Add("InternalTerritoryNumber", GetString("Number"));
-            dgvResult.Columns.Add("blank", "");
+            //dgvResult.Columns.Add("blank", "");
 
             dgvResult.Columns["Id"].Visible = false;
             dgvResult.Columns["Id"].DataPropertyName = "Id";
             dgvResult.Columns["DepartmentName"].Width = 100;
             dgvResult.Columns["DepartmentName"].DataPropertyName = "DepartmentName";
-            dgvResult.Columns["CityName"].Width = 100;
+            dgvResult.Columns["CityName"].Width = 85;
             dgvResult.Columns["CityName"].DataPropertyName = "CityName";
-            dgvResult.Columns["Territory"].Width = 100;
+            dgvResult.Columns["Territory"].Width = 85;
             dgvResult.Columns["Territory"].DataPropertyName = "Territory";
+            dgvResult.Columns["InternalTerritoryNumber"].Width = 50;
+            dgvResult.Columns["InternalTerritoryNumber"].DataPropertyName = "InternalTerritoryNumber";
             dgvResult.Columns["Address"].Width = 100;
             dgvResult.Columns["Address"].DataPropertyName = "Address";
             dgvResult.Columns["Corner1"].Width = 100;
             dgvResult.Columns["Corner1"].DataPropertyName = "Corner1";
             dgvResult.Columns["Corner2"].Width = 100;
             dgvResult.Columns["Corner2"].DataPropertyName = "Corner2";
-            dgvResult.Columns["Description"].Width = 160;
+            dgvResult.Columns["Description"].Width = 150;
             dgvResult.Columns["Description"].DataPropertyName = "Description";
             dgvResult.Columns["HasGeoPosition"].Width = 40;
             dgvResult.Columns["HasGeoPosition"].DataPropertyName = "HasGeoPosition";
@@ -241,10 +246,8 @@ namespace TerritoriesManagement.GUI
             dgvResult.Columns["Lat"].DataPropertyName = "Lat";
             dgvResult.Columns["Lng"].Visible = false;
             dgvResult.Columns["Lng"].DataPropertyName = "Lng";
-            dgvResult.Columns["InternalTerritoryNumber"].Visible = false;
-            dgvResult.Columns["InternalTerritoryNumber"].DataPropertyName = "InternalTerritoryNumber";
 
-            dgvResult.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            //dgvResult.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dgvResult.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvResult.MultiSelect = true;
@@ -430,12 +433,10 @@ namespace TerritoriesManagement.GUI
         {
             if (dgvResult.SelectedRows.Count > 0)
             {
-                using (frmGeoPolygon myForm = new frmGeoPolygon())
-                {
-                
-                    
+                using (frmMap myForm = new frmMap())
+                {   
                     var selectedRows = dgvResult.SelectedRows;
-                    List<GMapMarker> marks = new List<GMapMarker>();
+                    List<GMapMarker> markers = new List<GMapMarker>();
                     for (int i = 0; i < selectedRows.Count; i++)
                     {
                         bool hasGeoPosition = (bool)selectedRows[i].Cells["HasGeoPosition"].Value;
@@ -453,37 +454,12 @@ namespace TerritoriesManagement.GUI
                                 marker.Tag = internalNumber.Value;
                             marker.ToolTipText = address;
                             marker.Icon = Properties.Resources.legendIcon;
-                            marks.Add(marker);
+                            markers.Add(marker);
                         }
                     }
-                    myForm.SecondaryMarkers = marks;
-                    myForm.AllowDrawPolygon = false;
-                    myForm.ShowDialog();
-                }
-            }
-        }
 
-        private void viewMapToolStripMenuItem_Click2(object sender, EventArgs e)
-        { //TODO: terminar
-            if (dgvResult.SelectedRows.Count > 0)
-            {
-                using (frmGeoPolygon myForm = new frmGeoPolygon())
-                {
-
-
-                    var selectedRows = dgvResult.SelectedRows;
-                    var addresses = from r in selectedRows.Cast<DataGridViewRow>()
-                                    where (bool)r.Cells["HasGeoposition"].Value
-                                    select new
-                                    {
-                                        Id = (int)r.Cells["Id"].Value,
-                                        Address = (string)r.Cells["Address"].Value,
-                                        InternalTerritoryNumber = (int?)r.Cells["InternalTerritoryNumber"].Value,
-                                        Lat = (double?)r.Cells["Lat"].Value,
-                                        Lng = (double?)r.Cells["Lng"].Value
-                                    };           
-
-                    myForm.AllowDrawPolygon = false;
+                    myForm.OtherMarkers = markers;
+                    myForm.MapMode = MapModeEnum.ReadOnly;
                     myForm.ShowDialog();
                 }
             }
@@ -511,6 +487,11 @@ namespace TerritoriesManagement.GUI
                 chklstCity.DataSource = cities;
 
             }
+        }
+
+        private void frmAddresses_ResizeEnd(object sender, EventArgs e)
+        {
+            GUIFunctions.dataGrid_Resize(dgvResult, ref prevWidth);
         }
         
     }

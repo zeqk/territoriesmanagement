@@ -383,6 +383,7 @@
             this.Name = "frmAddresses";
             this.Text = "Addresses";
             this.Load += new System.EventHandler(this.frmAddresses_Load);
+            this.ResizeEnd += new System.EventHandler(this.frmAddresses_ResizeEnd);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).EndInit();

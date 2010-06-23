@@ -344,7 +344,7 @@ namespace TerritoriesManagement.GUI
         {
             using (frmMap myForm = new frmMap())
             {
-                myForm.AllowDrawPolygon = true;
+                myForm.MapMode = MapModeEnum.EditArea;
                 myForm.Address = config.Place;
                 Territory t = FormToOject();
                 myForm.Object = t;
