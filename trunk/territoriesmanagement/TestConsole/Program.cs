@@ -38,6 +38,12 @@ namespace TestConsole
 
         }
 
+        static void probar()
+        {
+            string hola1 = "1234";
+            string hola2 = hola1.Substring(0, 5);
+        }
+
         static void getStatics()
         {
             Console.ReadKey();

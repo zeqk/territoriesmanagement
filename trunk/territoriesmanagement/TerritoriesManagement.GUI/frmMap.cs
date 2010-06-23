@@ -28,7 +28,10 @@ namespace TerritoriesManagement.GUI
 
         private MapType _mapType;
         private int _mapZoom;
-        private bool _allowDrawPolygon;                   
+        private MapModeEnum _mapMode;
+
+        private List<GMapPolygon> _otherPolygons;
+        private List<GMapMarker> _otherMarkers;
         
         #endregion
 
@@ -36,7 +39,7 @@ namespace TerritoriesManagement.GUI
 
         GMapPolygon currentPolygon;
         // markers
-        GMapMarker center;
+        GMapMarker centerMarker;
         GMapMarker currentMarker;
 
         // layers
@@ -78,6 +81,35 @@ namespace TerritoriesManagement.GUI
             set { txtAddress.Text = value; }
         }
 
+        public List<GMapPolygon> OtherPolygons
+        {
+            get 
+            {
+                List<GMapPolygon> rv = top.Polygons.ToList();
+                rv.Remove(currentPolygon);
+                return rv;
+            }
+            set
+            {
+                _otherPolygons = value;
+            }
+        }
+
+        public List<GMapMarker> OtherMarkers
+        {
+            get
+            {
+                List<GMapMarker> rv = top.Markers.ToList();
+                rv.Remove(currentMarker);
+                return rv;
+            }
+            set
+            {
+                _otherMarkers = value;
+            }
+        }
+
+
         public MapType MapType
         {
             get { return _mapType; }
@@ -90,10 +122,10 @@ namespace TerritoriesManagement.GUI
             set { _mapZoom = value; }
         }
 
-        public bool AllowDrawPolygon
+        public MapModeEnum MapMode
         {
-            get { return _allowDrawPolygon; }
-            set { _allowDrawPolygon = value; }
+            get { return _mapMode; }
+            set { _mapMode = value; }
         }
 	
         #endregion        
@@ -104,7 +136,9 @@ namespace TerritoriesManagement.GUI
             //contruct fields
             _mapType = MapType.GoogleMap;
             _mapZoom = 15;
+            _mapMode = MapModeEnum.ReadOnly;
 
+            //initializing
             currentPolygon = new GMapPolygon(new List<PointLatLng>(), "MyPolygon");
             currentMarker = new GMapMarkerGoogleRed(new PointLatLng());
 
@@ -113,56 +147,51 @@ namespace TerritoriesManagement.GUI
         #endregion
         private void frmGeoArea_Load(object sender, EventArgs e)
         {
-            ConfigureAdditionalData();
-            //Load comboboxes
+            ConfigureAdditionalData();            
+
+            //load comboboxes
             cboMapType.DataSource = Enum.GetValues(_mapType.GetType());
 
-            //Config map
+            //config map
             ConfigMap();
 
-            if (Object.GetType() == typeof(Territory))
-            {
-                string areaStr = (string)Functions.GetPropertyValue(Object, "Area");
-                if (areaStr != null)
-                {
-                    List<PointLatLng> auxPoints = Functions.StrPointsToPointsLatLng(areaStr.Split('\n'));
-                    currentPolygon.Points.AddRange(auxPoints);
+            //extract data from the Object property
+            ExtractObjectData();
 
-                    currentPolygon.Name = (string)Functions.GetPropertyValue(Object, "Name");
-                }
+            if (_otherMarkers != null)
+            {
+                foreach (GMapMarker item in _otherMarkers)
+                    top.Markers.Add(item);
             }
 
-            //get the center of the markers
-            PointLatLng? middle = null;
-            if (currentPolygon.Points.Count > 0)                
-                middle = ZeqkTools.Functions.CalculateMiddlePoint(currentPolygon);
-
-            //set the center of the map
-            if (middle.HasValue)
+            if (_otherPolygons != null)
             {
-                MainMap.CurrentPosition = middle.Value;
-                center = new GMapMarkerCross(MainMap.CurrentPosition);
-                top.Markers.Add(center);
-
-                // set current marker
-                if (!_allowDrawPolygon)
-                {
-                    currentMarker.Position = MainMap.CurrentPosition;
-                    top.Markers.Add(currentMarker);
-                }
+                foreach (GMapPolygon item in _otherPolygons)
+                    top.Polygons.Add(item);
             }
 
-            //config the polygon             
-            top.Polygons.Add(currentPolygon);
+            PointLatLng? center = null;
+            switch (_mapMode)
+            {
+                case MapModeEnum.EditPoint:
+                    center = GetMainMarkerCenter();
+                    if (center == null)
+                        center = GetOtherPolygonsAndMarkersCenter();
+                    break;
+                case MapModeEnum.EditArea:
+                    center = GetMainPolygonCenter();
+                    if (center == null)
+                        center = GetOtherPolygonsAndMarkersCenter();
+                    break;
+                case MapModeEnum.ReadOnly:
+                    center = GetOtherPolygonsAndMarkersCenter();
+                    break;
+                default:
+                    break;
+            }
 
-            if (_allowDrawPolygon)
-                MainMap.SetDrawingPolygon(currentPolygon);
-
-            if (center == null)
-                GoToAddress(Address);
-            
-            viewAddresses();
-
+            SetCenter(center);
+            //MainMap.ZoomAndCenterMarkers("top");
         }
 
         private void ConfigMap()
@@ -181,13 +210,16 @@ namespace TerritoriesManagement.GUI
 
             MainMap.CurrentPosition = new PointLatLng();
             MainMap.PolygonsEnabled = true;
-            MainMap.AllowDrawPolygon = _allowDrawPolygon;
+            if (_mapMode == MapModeEnum.EditArea)
+                MainMap.AllowDrawPolygon = true;
+            else
+                MainMap.AllowDrawPolygon = false;
 
             // map events
             MainMap.OnCurrentPositionChanged += new CurrentPositionChanged(MainMap_OnCurrentPositionChanged);
             MainMap.OnMapZoomChanged += new MapZoomChanged(this.MainMap_OnMapZoomChanged);
 
-            if (!_allowDrawPolygon)
+            if (_mapMode == MapModeEnum.EditArea)
             {
                 MainMap.MouseMove += new MouseEventHandler(MainMap_MouseMove);
                 MainMap.MouseDown += new MouseEventHandler(MainMap_MouseDown);
@@ -207,6 +239,31 @@ namespace TerritoriesManagement.GUI
             MainMap.ZoomAndCenterMarkers("top");
         }
 
+        private void SetCenter(PointLatLng? center)
+        {
+            if (center != null)
+            {
+                MainMap.CurrentPosition = center.Value;
+
+                if (centerMarker == null)
+                    centerMarker = new GMapMarkerCross(new PointLatLng());
+
+                centerMarker.Position = MainMap.CurrentPosition;
+                if (!top.Markers.Contains(centerMarker))
+                    top.Markers.Add(centerMarker);
+            }
+            else
+            {
+                GoToAddress(this.Address);
+                centerMarker.Position = MainMap.CurrentPosition;
+                if (!top.Markers.Contains(centerMarker))
+                    top.Markers.Add(centerMarker);
+            }
+
+            txtLat.Text = MainMap.CurrentPosition.Lat.ToString(CultureInfo.CurrentCulture);
+            txtLng.Text = MainMap.CurrentPosition.Lng.ToString(CultureInfo.CurrentCulture);
+        }
+
         private void GoToAddress(string keywordsToSearch)
         {
 
@@ -217,23 +274,41 @@ namespace TerritoriesManagement.GUI
             }
 
             // set current marker
-            if (!_allowDrawPolygon)
+            if (_mapMode == MapModeEnum.EditPoint)
             {
                 if (!top.Markers.Contains(currentMarker))
                     top.Markers.Add(currentMarker);
 
                 currentMarker.Position = MainMap.CurrentPosition;
-            }
-
-            if (center == null)
-                center = new GMapMarkerCross(new PointLatLng());
+            }            
             
-            center.Position = MainMap.CurrentPosition;
-            if(!top.Markers.Contains(center))
-                top.Markers.Add(center);
+        }
 
-            txtLat.Text = MainMap.CurrentPosition.Lat.ToString(CultureInfo.CurrentCulture);
-            txtLng.Text = MainMap.CurrentPosition.Lng.ToString(CultureInfo.CurrentCulture);
+        void ExtractObjectData()
+        {
+            if (Object != null)
+            {
+                if (Object is Territory || Object is Department || Object is City)
+                {
+                    string areaStr = (string)Functions.GetPropertyValue(Object, "Area");
+                    if (areaStr != null)
+                    {
+                        List<PointLatLng> auxPoints = Functions.StrPointsToPointsLatLng(areaStr.Split('\n'));
+                        currentPolygon.Points.AddRange(auxPoints);
+
+                        currentPolygon.Name = (string)Functions.GetPropertyValue(Object, "Name");
+                    }
+                }
+
+                if (Object is Address)
+                {
+                    Address a = (Address)Object;
+                    if (a.Lat.HasValue && a.Lng.HasValue)
+                    {
+                        currentMarker.Position = new PointLatLng(a.Lat.Value, a.Lng.Value);
+                    }
+                }
+            }
         }
 
         #region Map event methods
@@ -246,7 +321,7 @@ namespace TerritoriesManagement.GUI
         // current point changed
         void MainMap_OnCurrentPositionChanged(PointLatLng point)
         {
-            center.Position = point;
+            centerMarker.Position = point;
         }
 
         void MainMap_MouseMove(object sender, MouseEventArgs e)
@@ -283,6 +358,9 @@ namespace TerritoriesManagement.GUI
         }
         
         #endregion        
+
+        
+
 
         #region Controls events methods
 
@@ -329,6 +407,7 @@ namespace TerritoriesManagement.GUI
         private void btnGo_Click(object sender, EventArgs e)
         {
             GoToAddress(txtAddress.Text);
+            SetCenter(null); //Set center by MainMap.CurrentPosition
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -449,7 +528,7 @@ namespace TerritoriesManagement.GUI
             chklstTerritory.DataSource = territoryList;
             grpAddresses.Visible = false;
 
-            if (Object.GetType() == typeof(Territory))
+            if (Object != null && Object.GetType() == typeof(Territory))
             {
                 int id = (int)Functions.GetPropertyValue(Object,"IdTerritory");
                 if (id != 0)
@@ -696,7 +775,45 @@ namespace TerritoriesManagement.GUI
 
         #endregion
 
+        #region GetCenter methods
 
+        PointLatLng? GetMainPolygonCenter()
+        {
+            PointLatLng? center = null;
+
+            if(currentPolygon.Points.Count > 0)                
+                center = ZeqkTools.Functions.CalculateMiddlePoint(currentPolygon);
+
+            return center;            
+        }
+
+        PointLatLng? GetMainMarkerCenter()
+        {
+            PointLatLng? center = null;
+            if(currentMarker != null)
+                center = currentMarker.Position;
+            return center;
+        }
+
+        PointLatLng? GetOtherPolygonsAndMarkersCenter()
+        {
+            PointLatLng? center = null;
+
+            List<PointLatLng> centers = new List<PointLatLng>();
+
+            if (_otherPolygons != null && _otherPolygons.Count > 0)
+                centers.Add(ZeqkTools.Functions.CalculateMiddlePoint(_otherPolygons[0]));
+
+            if (_otherMarkers != null && _otherMarkers.Count > 0)
+                centers.Add(CalculateMiddlePoint(_otherMarkers));
+
+            if (centers.Count > 0)
+                center = ZeqkTools.Functions.CalculateMiddlePoint(centers);
+
+            return center;
+        }     
+
+        #endregion
 
 
 
