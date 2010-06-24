@@ -9,6 +9,7 @@ using GMap.NET.WindowsForms;
 using Localizer;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.Model;
+using System.Globalization;
 
 namespace TerritoriesManagement.GUI
 {
@@ -26,7 +27,7 @@ namespace TerritoriesManagement.GUI
             else
                 opened = true;
             InitializeComponent();
-
+            config.LoadSavedConfig();
             Globalization.RefreshUI(this);
         }
 
@@ -356,11 +357,12 @@ namespace TerritoriesManagement.GUI
                     GMapPolygon polygon = myForm.MainPolygon;
                     if (polygon != null)
                     {
+                        CultureInfo info = CultureInfo.GetCultureInfo("en-US");
                         foreach (PointLatLng item in polygon.Points)
                         {
                             if (!string.IsNullOrEmpty(area))
                                 area += Environment.NewLine;
-                            area += item.Lat + " " + item.Lng;
+                            area += item.Lat.ToString(info.NumberFormat) + " " + item.Lng.ToString(info.NumberFormat);
                         }
                         if (string.IsNullOrEmpty(area))
                             t.Area = null;
