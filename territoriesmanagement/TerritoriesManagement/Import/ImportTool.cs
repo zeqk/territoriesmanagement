@@ -770,10 +770,10 @@ namespace TerritoriesManagement.Import
                 rv = false;
             }
 
-            //lenght validation
+            //length validation
             if (v.Name.Length > 80)
             {
-                msg += Environment.NewLine + GetString("  -Name lenght exceeds the allowed length ({0}). ", 80);
+                msg += Environment.NewLine + GetString("  -Name length exceeds the allowed length ({0}). ", 80);
                 rv = false;
             }
 
@@ -818,10 +818,10 @@ namespace TerritoriesManagement.Import
                 }
             }
 
-            //lenght validation
+            //length validation
             if(v.Name.Length > 80)
             {
-                msg += Environment.NewLine + GetString("  -Name lenght exceeds the allowed length ({0}). ", 80);
+                msg += Environment.NewLine + GetString("  -Name length exceeds the allowed length ({0}). ", 80);
                 rv = false;
             }
 
@@ -848,10 +848,10 @@ namespace TerritoriesManagement.Import
                 rv = false;
             }
 
-            //lenght validation
+            //length validation
             if (v.Name.Length > 80)
             {
-                msg += Environment.NewLine + GetString("  -Name lenght exceeds the allowed length ({0}). ", 80);
+                msg += Environment.NewLine + GetString("  -Name length exceeds the allowed length ({0}). ", 80);
                 rv = false;
             }
 
@@ -898,53 +898,53 @@ namespace TerritoriesManagement.Import
             //length validation
             if (!string.IsNullOrEmpty(v.AddressData) && v.AddressData.Length > 50)
             {
-                msg += Environment.NewLine + GetString("  -Address data lenght exceeds the allowed length ({0}). ", 50);
+                msg += Environment.NewLine + GetString("  -Address data length exceeds the allowed length ({0}). ", 50);
                 rv = false;
             }
 
             if ((!string.IsNullOrEmpty(v.Corner1) && v.Corner1.Length > 80) ||
                 (!string.IsNullOrEmpty(v.Corner2) && v.Corner2.Length > 80))
             {
-                msg += Environment.NewLine + GetString("  -Corners lenght exceeds the allowed length ({0}). ", 80);
+                msg += Environment.NewLine + GetString("  -Corners length exceeds the allowed length ({0}). ", 80);
                 rv = false;
             }
 
             if((!string.IsNullOrEmpty(v.CustomField1) && v.CustomField1.Length > 200)
                 || (!string.IsNullOrEmpty(v.CustomField2) && v.CustomField2.Length > 200))
             {
-                msg += Environment.NewLine + GetString("  -Custom fields lenght exceeds the allowed length ({0}). ", 200);
+                msg += Environment.NewLine + GetString("  -Custom fields length exceeds the allowed length ({0}). ", 200);
                 rv = false;
             }
 
             if (!string.IsNullOrEmpty(v.Description) && v.Description.Length > 200)
             {
-                msg += Environment.NewLine + GetString("  -Description lenght exceeds the allowed length ({0}). ", 200);
+                msg += Environment.NewLine + GetString("  -Description length exceeds the allowed length ({0}). ", 200);
                 rv = false;
             }
 
             if ((!string.IsNullOrEmpty(v.Map1) && v.Map1.Length > 30) ||
                 (!string.IsNullOrEmpty(v.Map2) && v.Map2.Length > 30))
             {
-                msg += Environment.NewLine + GetString("  -Maps lenght exceeds the allowed length ({0}). ", 30);
+                msg += Environment.NewLine + GetString("  -Maps length exceeds the allowed length ({0}). ", 30);
                 rv = false;
             }
 
             if (!string.IsNullOrEmpty(v.Number) && v.Number.Length > 50)
             {
-                msg += Environment.NewLine + GetString("  -Number lenght exceeds the allowed length ({0}). ", 50);
+                msg += Environment.NewLine + GetString("  -Number length exceeds the allowed length ({0}). ", 50);
                 rv = false;
             }
 
             if ((!string.IsNullOrEmpty(v.Phone1) && v.Phone1.Length > 15) || 
                 (!string.IsNullOrEmpty(v.Phone2) && v.Phone2.Length > 15))
             {
-                msg += Environment.NewLine + GetString("  -Phone numbers lenght exceeds the allowed length ({0}). ", 15);
+                msg += Environment.NewLine + GetString("  -Phone numbers length exceeds the allowed length ({0}). ", 15);
                 rv = false;
             }
 
             if (v.Street.Length > 80)
             {
-                msg += Environment.NewLine + GetString("  -Street lenght exceeds the allowed length ({0}). ", 80);
+                msg += Environment.NewLine + GetString("  -Street length exceeds the allowed length ({0}). ", 80);
                 rv = false;
             }
             //length validation end

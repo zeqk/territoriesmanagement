@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.btnAddress = new System.Windows.Forms.Button();
             this.btnCities = new System.Windows.Forms.Button();
             this.btnDepartments = new System.Windows.Forms.Button();
@@ -48,16 +49,21 @@
             // 
             // btnAddress
             // 
+            this.btnAddress.Image = ((System.Drawing.Image)(resources.GetObject("btnAddress.Image")));
+            this.btnAddress.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnAddress.Location = new System.Drawing.Point(185, 64);
             this.btnAddress.Name = "btnAddress";
-            this.btnAddress.Size = new System.Drawing.Size(247, 75);
+            this.btnAddress.Size = new System.Drawing.Size(220, 75);
             this.btnAddress.TabIndex = 0;
             this.btnAddress.Text = "Address";
+            this.btnAddress.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAddress.UseVisualStyleBackColor = true;
             this.btnAddress.Click += new System.EventHandler(this.btnAddress_Click);
             // 
             // btnCities
             // 
+            this.btnCities.Image = ((System.Drawing.Image)(resources.GetObject("btnCities.Image")));
+            this.btnCities.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCities.Location = new System.Drawing.Point(16, 41);
             this.btnCities.Name = "btnCities";
             this.btnCities.Size = new System.Drawing.Size(138, 46);
@@ -68,6 +74,8 @@
             // 
             // btnDepartments
             // 
+            this.btnDepartments.Image = ((System.Drawing.Image)(resources.GetObject("btnDepartments.Image")));
+            this.btnDepartments.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDepartments.Location = new System.Drawing.Point(16, 93);
             this.btnDepartments.Name = "btnDepartments";
             this.btnDepartments.Size = new System.Drawing.Size(138, 46);
@@ -78,6 +86,8 @@
             // 
             // bntTerritories
             // 
+            this.bntTerritories.Image = ((System.Drawing.Image)(resources.GetObject("bntTerritories.Image")));
+            this.bntTerritories.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.bntTerritories.Location = new System.Drawing.Point(16, 145);
             this.bntTerritories.Name = "bntTerritories";
             this.bntTerritories.Size = new System.Drawing.Size(138, 46);
@@ -109,20 +119,22 @@
             // 
             // menuInteroperability
             // 
+            this.menuInteroperability.Image = ((System.Drawing.Image)(resources.GetObject("menuInteroperability.Image")));
             this.menuInteroperability.Name = "menuInteroperability";
-            this.menuInteroperability.Size = new System.Drawing.Size(146, 22);
+            this.menuInteroperability.Size = new System.Drawing.Size(152, 22);
             this.menuInteroperability.Text = "Interoperability";
             this.menuInteroperability.Click += new System.EventHandler(this.menuInteroperability_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(143, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // menuConfiguration
             // 
+            this.menuConfiguration.Image = ((System.Drawing.Image)(resources.GetObject("menuConfiguration.Image")));
             this.menuConfiguration.Name = "menuConfiguration";
-            this.menuConfiguration.Size = new System.Drawing.Size(146, 22);
+            this.menuConfiguration.Size = new System.Drawing.Size(152, 22);
             this.menuConfiguration.Text = "Configuration";
             this.menuConfiguration.Click += new System.EventHandler(this.menuConfiguration_Click);
             // 
@@ -136,6 +148,7 @@
             // 
             // menuAbout
             // 
+            this.menuAbout.Image = ((System.Drawing.Image)(resources.GetObject("menuAbout.Image")));
             this.menuAbout.Name = "menuAbout";
             this.menuAbout.Size = new System.Drawing.Size(220, 22);
             this.menuAbout.Text = "About Territories Management";
@@ -150,7 +163,6 @@
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(453, 22);
             this.statusStrip.TabIndex = 7;
-            this.statusStrip.Text = "";
             // 
             // lblConnectionStatus
             // 

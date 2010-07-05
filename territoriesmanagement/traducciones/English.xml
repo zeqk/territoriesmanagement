@@ -160,7 +160,7 @@
     <Translated>Export records</Translated>
   </String>
   <String>
-    <Original>Export to excel file</Original>
+    <Original>Export to excel spreadsheet</Original>
     <Translated>Export to excel file</Translated>
   </String>
   <String>
@@ -628,7 +628,7 @@
     <Translated>-Conversion error. (Row values: {0})</Translated>
   </String>
   <String>
-    <Original>  -Name lenght exceeds the allowed length ({0}). </Original>
+    <Original>  -Name length exceeds the allowed length ({0}). </Original>
     <Translated>  -Name lenght exceeds the allowed length ({0}). </Translated>
   </String>
   <String>
@@ -636,35 +636,35 @@
     <Translated>-\"{0} {1}\" is invalid: </Translated>
   </String>
   <String>
-    <Original>  -Address data lenght exceeds the allowed length ({0}). </Original>
+    <Original>  -Address data length exceeds the allowed length ({0}). </Original>
     <Translated>  -Address data lenght exceeds the allowed length ({0}). </Translated>
   </String>
   <String>
-    <Original>  -Corners lenght exceeds the allowed length ({0}). </Original>
+    <Original>  -Corners length exceeds the allowed length ({0}). </Original>
     <Translated>  -Corners lenght exceeds the allowed length ({0}). </Translated>
   </String>
   <String>
-    <Original>  -Custom fields lenght exceeds the allowed length ({0}). </Original>
+    <Original>  -Custom fields length exceeds the allowed length ({0}). </Original>
     <Translated>  -Custom fields lenght exceeds the allowed length ({0}). </Translated>
   </String>
   <String>
-    <Original>  -Description lenght exceeds the allowed length ({0}). </Original>
+    <Original>  -Description length exceeds the allowed length ({0}). </Original>
     <Translated>  -Description lenght exceeds the allowed length ({0}). </Translated>
   </String>
   <String>
-    <Original>  -Maps lenght exceeds the allowed length ({0}). </Original>
+    <Original>  -Maps length exceeds the allowed length ({0}). </Original>
     <Translated>  -Maps lenght exceeds the allowed length ({0}). </Translated>
   </String>
   <String>
-    <Original>  -Number lenght exceeds the allowed length ({0}). </Original>
+    <Original>  -Number length exceeds the allowed length ({0}). </Original>
     <Translated>  -Number lenght exceeds the allowed length ({0}). </Translated>
   </String>
   <String>
-    <Original>  -Phone numbers lenght exceeds the allowed length ({0}). </Original>
+    <Original>  -Phone numbers length exceeds the allowed length ({0}). </Original>
     <Translated>  -Phone numbers lenght exceeds the allowed length ({0}). </Translated>
   </String>
   <String>
-    <Original>  -Street lenght exceeds the allowed length ({0}). </Original>
+    <Original>  -Street length exceeds the allowed length ({0}). </Original>
     <Translated>  -Street lenght exceeds the allowed length ({0}). </Translated>
   </String>
 </Localizer>

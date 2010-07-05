@@ -160,7 +160,7 @@
     <Translated>Exportar registros</Translated>
   </String>
   <String>
-    <Original>Export to excel file</Original>
+    <Original>Export to excel spreadsheet</Original>
     <Translated>Exportar a Excel</Translated>
   </String>
   <String>
@@ -516,7 +516,7 @@
     <Translated>Ingrese el nombre del partido.</Translated>
   </String>
   <String>
-    <Original>The department already exists. Correct and retrieve.</Original>
+    <Original>The department already exists. Correct and try again.</Original>
     <Translated>El partido ya existe. Corríjalo e intente nuevamente.</Translated>
   </String>
   <String>
@@ -628,7 +628,7 @@
     <Translated>-Error de conversión. (Valor de fila: {0})</Translated>
   </String>
   <String>
-    <Original>  -Name lenght exceeds the allowed length ({0}). </Original>
+    <Original>  -Name length exceeds the allowed length ({0}). </Original>
     <Translated>  -El largo del nombre excede al largo permitido ({0}). </Translated>
   </String>
   <String>
@@ -636,35 +636,35 @@
     <Translated>-\"{0} {1}\" es inválido: </Translated>
   </String>
   <String>
-    <Original>  -Address data lenght exceeds the allowed length ({0}). </Original>
+    <Original>  -Address data length exceeds the allowed length ({0}). </Original>
     <Translated>  -El largo de los datos de la dirección excede al largo permitido ({0}). </Translated>
   </String>
   <String>
-    <Original>  -Corners lenght exceeds the allowed length ({0}). </Original>
+    <Original>  -Corners length exceeds the allowed length ({0}). </Original>
     <Translated>  -El largo de las esquinas excede al largo permitido ({0}). </Translated>
   </String>
   <String>
-    <Original>  -Custom fields lenght exceeds the allowed length ({0}). </Original>
+    <Original>  -Custom fields length exceeds the allowed length ({0}). </Original>
     <Translated>  -El largo de los campos personalizados excede al largo permitido ({0}). </Translated>
   </String>
   <String>
-    <Original>  -Description lenght exceeds the allowed length ({0}). </Original>
+    <Original>  -Description length exceeds the allowed length ({0}). </Original>
     <Translated>  -El largo de la descripción excede al largo permitido ({0}). </Translated>
   </String>
   <String>
-    <Original>  -Maps lenght exceeds the allowed length ({0}). </Original>
+    <Original>  -Maps length exceeds the allowed length ({0}). </Original>
     <Translated>  -El largo del campo mapas excede al largo permitido ({0}). </Translated>
   </String>
   <String>
-    <Original>  -Number lenght exceeds the allowed length ({0}). </Original>
+    <Original>  -Number length exceeds the allowed length ({0}). </Original>
     <Translated>  -El largo del la altura excede al largo permitido ({0}). </Translated>
   </String>
   <String>
-    <Original>  -Phone numbers lenght exceeds the allowed length ({0}). </Original>
+    <Original>  -Phone numbers length exceeds the allowed length ({0}). </Original>
     <Translated>  -El largo de los teléfonos excede al largo permitido ({0}). </Translated>
   </String>
   <String>
-    <Original>  -Street lenght exceeds the allowed length ({0}). </Original>
+    <Original>  -Street length exceeds the allowed length ({0}). </Original>
     <Translated>  -El largo de la calle excede al largo permitido ({0}). </Translated>
   </String>
 </Localizer>
