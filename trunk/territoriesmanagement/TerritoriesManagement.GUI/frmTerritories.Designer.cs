@@ -87,11 +87,14 @@
             // 
             // btnViewMap
             // 
-            this.btnViewMap.Location = new System.Drawing.Point(269, 72);
+            this.btnViewMap.Image = ((System.Drawing.Image)(resources.GetObject("btnViewMap.Image")));
+            this.btnViewMap.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnViewMap.Location = new System.Drawing.Point(260, 64);
             this.btnViewMap.Name = "btnViewMap";
-            this.btnViewMap.Size = new System.Drawing.Size(69, 23);
+            this.btnViewMap.Size = new System.Drawing.Size(78, 34);
             this.btnViewMap.TabIndex = 24;
             this.btnViewMap.Text = "View map";
+            this.btnViewMap.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnViewMap.UseVisualStyleBackColor = true;
             this.btnViewMap.Click += new System.EventHandler(this.btnViewMap_Click);
             // 
@@ -189,7 +192,7 @@
             this.txtName.Location = new System.Drawing.Point(22, 32);
             this.txtName.MaxLength = 80;
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(325, 20);
+            this.txtName.Size = new System.Drawing.Size(316, 20);
             this.txtName.TabIndex = 5;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 

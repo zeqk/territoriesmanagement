@@ -68,10 +68,9 @@
             // 
             this.btnAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAll.Image = ((System.Drawing.Image)(resources.GetObject("btnAll.Image")));
-            this.btnAll.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnAll.Location = new System.Drawing.Point(833, 65);
+            this.btnAll.Location = new System.Drawing.Point(833, 68);
             this.btnAll.Name = "btnAll";
-            this.btnAll.Size = new System.Drawing.Size(96, 37);
+            this.btnAll.Size = new System.Drawing.Size(96, 38);
             this.btnAll.TabIndex = 51;
             this.btnAll.UseVisualStyleBackColor = true;
             this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
@@ -80,10 +79,9 @@
             // 
             this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSearch.Location = new System.Drawing.Point(833, 10);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(96, 45);
+            this.btnSearch.Size = new System.Drawing.Size(96, 52);
             this.btnSearch.TabIndex = 50;
             this.btnSearch.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSearch.UseVisualStyleBackColor = true;
@@ -107,12 +105,15 @@
             // 
             this.btnToExcel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.btnToExcel.AutoSize = true;
+            this.btnToExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnToExcel.Image")));
+            this.btnToExcel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnToExcel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnToExcel.Location = new System.Drawing.Point(17, 262);
+            this.btnToExcel.Location = new System.Drawing.Point(9, 256);
             this.btnToExcel.Name = "btnToExcel";
-            this.btnToExcel.Size = new System.Drawing.Size(65, 26);
+            this.btnToExcel.Size = new System.Drawing.Size(81, 45);
             this.btnToExcel.TabIndex = 5;
             this.btnToExcel.Text = "To Excel";
+            this.btnToExcel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnToExcel.UseVisualStyleBackColor = true;
             this.btnToExcel.Click += new System.EventHandler(this.btnToExcel_Click);
             // 
@@ -122,9 +123,9 @@
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDelete.Location = new System.Drawing.Point(9, 89);
+            this.btnDelete.Location = new System.Drawing.Point(9, 105);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(81, 37);
+            this.btnDelete.Size = new System.Drawing.Size(81, 45);
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Text = "Delete";
             this.btnDelete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -135,9 +136,11 @@
             // 
             this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.Location = new System.Drawing.Point(9, 46);
+            this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
+            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnEdit.Location = new System.Drawing.Point(9, 54);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(81, 37);
+            this.btnEdit.Size = new System.Drawing.Size(81, 45);
             this.btnEdit.TabIndex = 1;
             this.btnEdit.Text = "Edit";
             this.btnEdit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -152,7 +155,7 @@
             this.btnNew.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnNew.Location = new System.Drawing.Point(9, 3);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(81, 37);
+            this.btnNew.Size = new System.Drawing.Size(81, 45);
             this.btnNew.TabIndex = 0;
             this.btnNew.Text = "New";
             this.btnNew.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -378,8 +381,8 @@
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.lblFiltered);
             this.Controls.Add(this.dgvResult);
-            this.Controls.Add(this.btnAll);
             this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.btnAll);
             this.Name = "frmAddresses";
             this.Text = "Addresses";
             this.Load += new System.EventHandler(this.frmAddresses_Load);

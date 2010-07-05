@@ -133,11 +133,12 @@
             // 
             // btnSearchGeoPos
             // 
+            this.btnSearchGeoPos.Image = ((System.Drawing.Image)(resources.GetObject("btnSearchGeoPos.Image")));
+            this.btnSearchGeoPos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearchGeoPos.Location = new System.Drawing.Point(259, 59);
             this.btnSearchGeoPos.Name = "btnSearchGeoPos";
             this.btnSearchGeoPos.Size = new System.Drawing.Size(29, 23);
             this.btnSearchGeoPos.TabIndex = 5;
-            this.btnSearchGeoPos.Text = "...";
             this.btnSearchGeoPos.UseVisualStyleBackColor = true;
             this.btnSearchGeoPos.Click += new System.EventHandler(this.btnSearchGeoPos_Click);
             // 

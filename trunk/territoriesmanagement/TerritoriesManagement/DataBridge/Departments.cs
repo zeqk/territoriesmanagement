@@ -161,7 +161,7 @@ namespace TerritoriesManagement.DataBridge
                 if (!rv)
                     message += Environment.NewLine;
 
-                message += GetString("The department already exists. Correct and retrieve.");
+                message += GetString("The department already exists. Correct and try again.");
                 rv = false;
             }
             return rv;

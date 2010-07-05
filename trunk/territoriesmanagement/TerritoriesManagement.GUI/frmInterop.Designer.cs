@@ -211,7 +211,7 @@
             this.grpExport.Size = new System.Drawing.Size(562, 383);
             this.grpExport.TabIndex = 17;
             this.grpExport.TabStop = false;
-            this.grpExport.Text = "Export to excel file";
+            this.grpExport.Text = "Export to excel spreadsheet";
             // 
             // rdoDepartments
             // 
