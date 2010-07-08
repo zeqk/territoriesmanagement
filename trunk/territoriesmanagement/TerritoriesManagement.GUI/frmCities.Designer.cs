@@ -42,6 +42,7 @@
             this.lblName = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.grdSearch = new System.Windows.Forms.GroupBox();
+            this.lblResultCount = new System.Windows.Forms.Label();
             this.lblFilterName = new System.Windows.Forms.Label();
             this.schName = new ZeqkTools.WindowsForms.Controls.Search();
             this.lblFilterDepartment = new System.Windows.Forms.Label();
@@ -184,6 +185,7 @@
             // 
             // grdSearch
             // 
+            this.grdSearch.Controls.Add(this.lblResultCount);
             this.grdSearch.Controls.Add(this.lblFilterName);
             this.grdSearch.Controls.Add(this.schName);
             this.grdSearch.Controls.Add(this.lblFilterDepartment);
@@ -199,6 +201,14 @@
             this.grdSearch.TabIndex = 1;
             this.grdSearch.TabStop = false;
             this.grdSearch.Text = "Search";
+            // 
+            // lblResultCount
+            // 
+            this.lblResultCount.AutoSize = true;
+            this.lblResultCount.Location = new System.Drawing.Point(56, 114);
+            this.lblResultCount.Name = "lblResultCount";
+            this.lblResultCount.Size = new System.Drawing.Size(0, 13);
+            this.lblResultCount.TabIndex = 60;
             // 
             // lblFilterName
             // 
@@ -413,5 +423,6 @@
         private System.Windows.Forms.BindingSource bsCity;
         private ZeqkTools.WindowsForms.Controls.Search schName;
         private System.Windows.Forms.Label lblFilterName;
+        private System.Windows.Forms.Label lblResultCount;
     }
 }
