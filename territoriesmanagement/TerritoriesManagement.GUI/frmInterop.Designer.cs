@@ -176,10 +176,10 @@
             // 
             // grdImportConfig
             // 
-            this.grdImportConfig.Location = new System.Drawing.Point(-4, 176);
+            this.grdImportConfig.Location = new System.Drawing.Point(3, 176);
             this.grdImportConfig.Name = "grdImportConfig";
             this.grdImportConfig.PropertySort = System.Windows.Forms.PropertySort.Categorized;
-            this.grdImportConfig.Size = new System.Drawing.Size(568, 225);
+            this.grdImportConfig.Size = new System.Drawing.Size(558, 225);
             this.grdImportConfig.TabIndex = 11;
             // 
             // tabExternalExport
@@ -329,7 +329,7 @@
             // 
             this.tabMain.Controls.Add(this.tabData);
             this.tabMain.Controls.Add(this.tabExternal);
-            this.tabMain.Location = new System.Drawing.Point(8, 11);
+            this.tabMain.Location = new System.Drawing.Point(12, 11);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
             this.tabMain.Size = new System.Drawing.Size(586, 449);

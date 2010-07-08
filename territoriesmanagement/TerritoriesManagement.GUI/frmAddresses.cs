@@ -226,35 +226,44 @@ namespace TerritoriesManagement.GUI
             dgvResult.Columns["Id"].DataPropertyName = "Id";
             dgvResult.Columns["DepartmentName"].MinimumWidth = 100;
             dgvResult.Columns["DepartmentName"].Width = 100;
+            dgvResult.Columns["DepartmentName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvResult.Columns["DepartmentName"].DataPropertyName = "DepartmentName";
             dgvResult.Columns["CityName"].MinimumWidth = 85;
             dgvResult.Columns["CityName"].Width = 85;
             dgvResult.Columns["CityName"].DataPropertyName = "CityName";
+            dgvResult.Columns["CityName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvResult.Columns["Territory"].MinimumWidth = 85;
             dgvResult.Columns["Territory"].DataPropertyName = "Territory";
+            dgvResult.Columns["Territory"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvResult.Columns["InternalTerritoryNumber"].MinimumWidth = 50;
             dgvResult.Columns["InternalTerritoryNumber"].Width = 50;
             dgvResult.Columns["InternalTerritoryNumber"].DataPropertyName = "InternalTerritoryNumber";
+            dgvResult.Columns["InternalTerritoryNumber"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dgvResult.Columns["InternalTerritoryNumber"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvResult.Columns["Address"].MinimumWidth = 100;
             dgvResult.Columns["Address"].Width = 100;
             dgvResult.Columns["Address"].DataPropertyName = "Address";
+            dgvResult.Columns["Address"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvResult.Columns["Corner1"].MinimumWidth = 100;
             dgvResult.Columns["Corner1"].Width = 100;
             dgvResult.Columns["Corner1"].DataPropertyName = "Corner1";
+            dgvResult.Columns["Corner1"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvResult.Columns["Corner2"].MinimumWidth = 100;
             dgvResult.Columns["Corner2"].Width = 100;
             dgvResult.Columns["Corner2"].DataPropertyName = "Corner2";
+            dgvResult.Columns["Corner2"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvResult.Columns["Description"].MinimumWidth = 150;
             dgvResult.Columns["Description"].Width = 150;
             dgvResult.Columns["Description"].DataPropertyName = "Description";
+            dgvResult.Columns["Description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dgvResult.Columns["HasGeoPosition"].MinimumWidth = 40;
             dgvResult.Columns["HasGeoPosition"].Width = 40;
             dgvResult.Columns["HasGeoPosition"].DataPropertyName = "HasGeoPosition";
+            dgvResult.Columns["HasGeoPosition"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             dgvResult.Columns["Lat"].Visible = false;
             dgvResult.Columns["Lat"].DataPropertyName = "Lat";
             dgvResult.Columns["Lng"].Visible = false;
             dgvResult.Columns["Lng"].DataPropertyName = "Lng";
-
             //dgvResult.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dgvResult.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -497,9 +506,10 @@ namespace TerritoriesManagement.GUI
             }
         }
 
-        private void frmAddresses_ResizeEnd(object sender, EventArgs e)
+        private void schStreet_KeyDown(object sender, KeyEventArgs e)
         {
-            GUIFunctions.dataGrid_Resize(dgvResult, ref prevWidth);
+            if (e.KeyCode == Keys.Enter)
+                Search();
         }
         
     }
