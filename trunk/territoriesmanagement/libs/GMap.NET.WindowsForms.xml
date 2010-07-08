@@ -4,16 +4,6 @@
         <name>GMap.NET.WindowsForms</name>
     </assembly>
     <members>
-        <member name="T:GMap.NET.WindowsForms.GMapRoute">
-            <summary>
-            GMap.NET route
-            </summary>
-        </member>
-        <member name="F:GMap.NET.WindowsForms.GMapRoute.Stroke">
-            <summary>
-            specifies how the outline is painted
-            </summary>
-        </member>
         <member name="T:GMap.NET.WindowsForms.WindowsFormsImage">
             <summary>
             image abstraction
@@ -24,130 +14,39 @@
             image abstraction proxy
             </summary>
         </member>
-        <member name="T:GMap.NET.TilePrefetcher">
-            <summary>
-            form helping to prefetch tiles on local db
-            </summary>
-        </member>
-        <member name="F:GMap.NET.TilePrefetcher.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:GMap.NET.TilePrefetcher.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:GMap.NET.TilePrefetcher.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="T:GMap.NET.WindowsForms.ToolTips.GMapBaloonToolTip">
-            <summary>
-            GMap.NET marker
-            </summary>
-        </member>
-        <member name="T:GMap.NET.WindowsForms.GMapToolTip">
-            <summary>
-            GMap.NET marker
-            </summary>
-        </member>
-        <member name="F:GMap.NET.WindowsForms.GMapToolTip.Format">
-            <summary>
-            string format
-            </summary>
-        </member>
-        <member name="F:GMap.NET.WindowsForms.GMapToolTip.Font">
-            <summary>
-            font
-            </summary>
-        </member>
-        <member name="F:GMap.NET.WindowsForms.GMapToolTip.Stroke">
-            <summary>
-            specifies how the outline is painted
-            </summary>
-        </member>
-        <member name="F:GMap.NET.WindowsForms.GMapToolTip.Fill">
-            <summary>
-            background color
-            </summary>
-        </member>
-        <member name="T:GMap.NET.WindowsForms.GMapOverlay">
-            <summary>
-            GMap.NET overlay
-            </summary>
-        </member>
-        <member name="F:GMap.NET.WindowsForms.GMapOverlay.IsVisibile">
-            <summary>
-            is overlay visible
-            </summary>
-        </member>
-        <member name="F:GMap.NET.WindowsForms.GMapOverlay.Id">
-            <summary>
-            overlay Id
-            </summary>
-        </member>
-        <member name="F:GMap.NET.WindowsForms.GMapOverlay.Markers">
-            <summary>
-            list of markers, should be thread safe
-            </summary>
-        </member>
-        <member name="F:GMap.NET.WindowsForms.GMapOverlay.Routes">
-            <summary>
-            list of routes, should be thread safe
-            </summary>
-        </member>
-        <member name="F:GMap.NET.WindowsForms.GMapOverlay.Polygons">
-            <summary>
-            list of polygons, should be thread safe
-            </summary>
-        </member>
-        <member name="M:GMap.NET.WindowsForms.GMapOverlay.DrawRoutes(System.Drawing.Graphics)">
-            <summary>
-            draw routes, override to draw custom
-            </summary>
-            <param name="g"></param>
-        </member>
-        <member name="M:GMap.NET.WindowsForms.GMapOverlay.DrawPolygons(System.Drawing.Graphics)">
-            <summary>
-            draw polygons, override to draw custom
-            </summary>
-            <param name="g"></param>
-        </member>
-        <member name="M:GMap.NET.WindowsForms.GMapOverlay.Render(System.Drawing.Graphics)">
-            <summary>
-            renders objects and routes
-            </summary>
-            <param name="g"></param>
-        </member>
-        <member name="T:GMap.NET.WindowsForms.ToolTips.GMapRoundedToolTip">
-            <summary>
-            GMap.NET marker
-            </summary>
-        </member>
-        <member name="T:System.Windows.Forms.Properties.Resources">
-            <summary>
-              A strongly-typed resource class, for looking up localized strings, etc.
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.Properties.Resources.ResourceManager">
-            <summary>
-              Returns the cached ResourceManager instance used by this class.
-            </summary>
-        </member>
-        <member name="P:System.Windows.Forms.Properties.Resources.Culture">
-            <summary>
-              Overrides the current thread's CurrentUICulture property for all
-              resource lookups using this strongly typed resource class.
-            </summary>
-        </member>
         <member name="T:GMap.NET.WindowsForms.GMapMarker">
             <summary>
             GMap.NET marker
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapMarker.Visible">
+            <summary>
+            is marker visible
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapMarker.DisableRegionCheck">
+            <summary>
+            if true, marker will be rendered even if it's outside current view
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapMarker.IsHitTestVisible">
+            <summary>
+            can maker receive input
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapMarker.LocalPosition">
+            <summary>
+            marker position in local coordinates, internal only, do not set it manualy
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapMarker.ToolTipPosition">
+            <summary>
+            ToolTip position in local coordinates
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapMarker.IsMouseOver">
+            <summary>
+            is mouse over marker
             </summary>
         </member>
         <member name="T:GMap.NET.WindowsForms.GMapPolygon">
@@ -163,6 +62,11 @@
         <member name="F:GMap.NET.WindowsForms.GMapPolygon.Fill">
             <summary>
             background color
+            </summary>
+        </member>
+        <member name="T:GMap.NET.WindowsForms.MarkerTooltipMode">
+            <summary>
+            modeof tooltip
             </summary>
         </member>
         <member name="T:GMap.NET.WindowsForms.GMapControl">
@@ -193,6 +97,11 @@
         <member name="F:GMap.NET.WindowsForms.GMapControl.SelectionPen">
             <summary>
             area selection pen
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapControl.SelectedAreaFill">
+            <summary>
+            background of selected area
             </summary>
         </member>
         <member name="F:GMap.NET.WindowsForms.GMapControl.EmptytileBrush">
@@ -242,7 +151,7 @@
             construct
             </summary>
         </member>
-        <member name="M:GMap.NET.WindowsForms.GMapControl.GMap_OnMapDrag">
+        <member name="M:GMap.NET.WindowsForms.GMapControl.Core_OnMapDrag">
             <summary>
             update objects when map is draged
             </summary>
@@ -332,6 +241,12 @@
             <param name="x"></param>
             <param name="y"></param>
         </member>
+        <member name="M:GMap.NET.WindowsForms.GMapControl.OnPaintEtc(System.Drawing.Graphics)">
+            <summary>
+            override, to render something more
+            </summary>
+            <param name="g"></param>
+        </member>
         <member name="M:GMap.NET.WindowsForms.GMapControl.ReloadMap">
             <summary>
             reloads the map
@@ -386,11 +301,6 @@
             occurs on mouse leaves marker area
             </summary>
         </member>
-        <member name="E:GMap.NET.WindowsForms.GMapControl.OnEmptyTileError">
-            <summary>
-            occurs on empty tile displayed
-            </summary>
-        </member>
         <member name="P:GMap.NET.WindowsForms.GMapControl.MaxZoom">
             <summary>
             max zoom
@@ -404,6 +314,16 @@
         <member name="P:GMap.NET.WindowsForms.GMapControl.MouseWheelZoomType">
             <summary>
             map zooming type for mouse wheel
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.RetryLoadTile">
+            <summary>
+            retry count to get tile 
+            </summary>
+        </member>
+        <member name="P:GMap.NET.WindowsForms.GMapControl.LevelsKeepInMemmory">
+            <summary>
+            how many levels of tiles are staying decompresed in memory
             </summary>
         </member>
         <member name="P:GMap.NET.WindowsForms.GMapControl.ShowTileGridLines">
@@ -444,11 +364,6 @@
         <member name="P:GMap.NET.WindowsForms.GMapControl.CurrentViewArea">
             <summary>
             gets current map view top/left coordinate, width in Lng, height in Lat
-            </summary>
-        </member>
-        <member name="P:GMap.NET.WindowsForms.GMapControl.TooltipTextPadding">
-            <summary>
-            for tooltip text padding
             </summary>
         </member>
         <member name="P:GMap.NET.WindowsForms.GMapControl.MapType">
@@ -521,9 +436,145 @@
             occures on map type changed
             </summary>
         </member>
-        <member name="T:GMap.NET.WindowsForms.MarkerTooltipMode">
+        <member name="E:GMap.NET.WindowsForms.GMapControl.OnEmptyTileError">
             <summary>
-            modeof tooltip
+            occurs on empty tile displayed
+            </summary>
+        </member>
+        <member name="T:GMap.NET.WindowsForms.GMapRoute">
+            <summary>
+            GMap.NET route
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapRoute.Stroke">
+            <summary>
+            specifies how the outline is painted
+            </summary>
+        </member>
+        <member name="T:GMap.NET.WindowsForms.ToolTips.GMapBaloonToolTip">
+            <summary>
+            GMap.NET marker
+            </summary>
+        </member>
+        <member name="T:GMap.NET.WindowsForms.GMapToolTip">
+            <summary>
+            GMap.NET marker
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapToolTip.Format">
+            <summary>
+            string format
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapToolTip.Font">
+            <summary>
+            font
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapToolTip.Stroke">
+            <summary>
+            specifies how the outline is painted
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapToolTip.Fill">
+            <summary>
+            background color
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapToolTip.TextPadding">
+            <summary>
+            text padding
+            </summary>
+        </member>
+        <member name="T:GMap.NET.WindowsForms.ToolTips.GMapRoundedToolTip">
+            <summary>
+            GMap.NET marker
+            </summary>
+        </member>
+        <member name="T:GMap.NET.TilePrefetcher">
+            <summary>
+            form helping to prefetch tiles on local db
+            </summary>
+        </member>
+        <member name="F:GMap.NET.TilePrefetcher.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:GMap.NET.TilePrefetcher.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:GMap.NET.TilePrefetcher.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:GMap.NET.WindowsForms.GMapOverlay">
+            <summary>
+            GMap.NET overlay
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapOverlay.IsVisibile">
+            <summary>
+            is overlay visible
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapOverlay.Id">
+            <summary>
+            overlay Id
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapOverlay.Markers">
+            <summary>
+            list of markers, should be thread safe
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapOverlay.Routes">
+            <summary>
+            list of routes, should be thread safe
+            </summary>
+        </member>
+        <member name="F:GMap.NET.WindowsForms.GMapOverlay.Polygons">
+            <summary>
+            list of polygons, should be thread safe
+            </summary>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapOverlay.DrawRoutes(System.Drawing.Graphics)">
+            <summary>
+            draw routes, override to draw custom
+            </summary>
+            <param name="g"></param>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapOverlay.DrawPolygons(System.Drawing.Graphics)">
+            <summary>
+            draw polygons, override to draw custom
+            </summary>
+            <param name="g"></param>
+        </member>
+        <member name="M:GMap.NET.WindowsForms.GMapOverlay.Render(System.Drawing.Graphics)">
+            <summary>
+            renders objects and routes
+            </summary>
+            <param name="g"></param>
+        </member>
+        <member name="T:System.Windows.Forms.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:System.Windows.Forms.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
             </summary>
         </member>
     </members>

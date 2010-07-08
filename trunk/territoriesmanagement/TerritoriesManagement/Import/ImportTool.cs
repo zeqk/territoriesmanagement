@@ -13,8 +13,7 @@ using System.Resources;
 using System.Reflection;
 using System.Xml;
 using System.Runtime.Serialization;
-using ZeqkTools.Data;
-using ZeqkTools.Query.Enumerators;
+using AltosTools.Data;
 using TerritoriesManagement.Model;
 
 

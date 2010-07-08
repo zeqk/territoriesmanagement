@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using ZeqkTools.Data;
-using ZeqkTools.Query.Enumerators;
+using AltosTools.Data;
 
 namespace TerritoriesManagement.Import
 {

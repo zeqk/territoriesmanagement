@@ -5,7 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using System.IO;
 using System.Xml.Serialization;
-using ZeqkTools.Data;
+using AltosTools.Data;
 
 namespace TerritoriesManagement.GUI.ImporterConfig
 {

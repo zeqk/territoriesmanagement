@@ -45,7 +45,7 @@
             this.grdSearch = new System.Windows.Forms.GroupBox();
             this.lblResultCount = new System.Windows.Forms.Label();
             this.lblFilterName = new System.Windows.Forms.Label();
-            this.schName = new ZeqkTools.WindowsForms.Controls.Search();
+            this.schName = new AltosTools.WindowsForms.Controls.Search();
             this.lblResult = new System.Windows.Forms.Label();
             this.lblFiltered = new System.Windows.Forms.Label();
             this.btnClearFilter = new System.Windows.Forms.Button();
@@ -235,7 +235,6 @@
             // 
             this.schName.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.schName.Columns = null;
-            this.schName.Criteria = ZeqkTools.Query.Enumerators.Criterias.Contains;
             this.schName.Location = new System.Drawing.Point(19, 32);
             this.schName.Name = "schName";
             this.schName.Parameters = null;
@@ -409,7 +408,7 @@
         protected System.Windows.Forms.DataGridView dgvAddresses;
         private System.Windows.Forms.TabPage tabTours;
         protected System.Windows.Forms.DataGridView dgvTours;
-        private ZeqkTools.WindowsForms.Controls.Search schName;
+        private AltosTools.WindowsForms.Controls.Search schName;
         private System.Windows.Forms.Label lblFilterName;
         private System.Windows.Forms.Label lblNumber;
         private System.Windows.Forms.MaskedTextBox txtNumber;

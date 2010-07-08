@@ -3,7 +3,7 @@ using System.Windows.Forms;
 using GMap.NET;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.Model;
-using ZeqkTools.WindowsForms.Maps;
+using AltosTools.WindowsForms.Maps;
 using Localizer;
 
 namespace TerritoriesManagement.GUI

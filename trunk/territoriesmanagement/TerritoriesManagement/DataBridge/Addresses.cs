@@ -183,7 +183,7 @@ namespace TerritoriesManagement.DataBridge
                                   Corner1 = a.Corner1,
                                   Corner2 = a.Corner2,
                                   Description = a.Description,
-                                  HasGeoposition = (a.Lat.HasValue && a.Lng.HasValue).ToString(),
+                                  HasGeoposition = (a.Lat.HasValue && a.Lng.HasValue),
                                   Lat = a.Lat,
                                   Lng = a.Lng
                               };

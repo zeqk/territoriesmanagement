@@ -7,7 +7,7 @@ using System.Resources;
 using System.Windows.Forms;
 using TerritoriesManagement.Export;
 using TerritoriesManagement.Import;
-using ZeqkTools.WindowsForms;
+using AltosTools.WindowsForms;
 
 namespace TerritoriesManagement.GUI
 {

@@ -11,7 +11,7 @@ using GMap.NET.WindowsForms.Markers;
 using Localizer;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.Export;
-using ZeqkTools.WindowsForms.Maps;
+using AltosTools.WindowsForms.Maps;
 
 namespace TerritoriesManagement.GUI
 {
@@ -221,7 +221,6 @@ namespace TerritoriesManagement.GUI
             dgvResult.Columns.Add("HasGeoPosition", GetString("GEO"));
             dgvResult.Columns.Add("Lat", GetString("Lat"));
             dgvResult.Columns.Add("Lng", GetString("Lng"));
-            //dgvResult.Columns.Add("blank", "");
 
             dgvResult.Columns["Id"].Visible = false;
             dgvResult.Columns["Id"].DataPropertyName = "Id";
@@ -265,7 +264,6 @@ namespace TerritoriesManagement.GUI
             dgvResult.Columns["Lat"].DataPropertyName = "Lat";
             dgvResult.Columns["Lng"].Visible = false;
             dgvResult.Columns["Lng"].DataPropertyName = "Lng";
-            //dgvResult.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dgvResult.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvResult.MultiSelect = true;
@@ -457,7 +455,7 @@ namespace TerritoriesManagement.GUI
                     List<GMapMarker> markers = new List<GMapMarker>();
                     for (int i = 0; i < selectedRows.Count; i++)
                     {
-                        bool hasGeoPosition = (bool)selectedRows[i].Cells["HasGeoPosition"].Value;
+                        bool hasGeoPosition = (bool)selectedRows[i].Cells["HasGeoposition"].Value;
                         if (hasGeoPosition)
                         {
                             double lat = (double)selectedRows[i].Cells["Lat"].Value;
