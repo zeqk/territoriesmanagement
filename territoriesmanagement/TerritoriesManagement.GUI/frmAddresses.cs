@@ -114,6 +114,7 @@ namespace TerritoriesManagement.GUI
                         if (lblFiltered.Visible) Search();
                         else GetAll();
 
+                        dgvResult.ClearSelection();
                         dgvResult.Rows[index].Selected = true;
                         dgvResult.FirstDisplayedScrollingRowIndex = scrollIndex;
                     }
