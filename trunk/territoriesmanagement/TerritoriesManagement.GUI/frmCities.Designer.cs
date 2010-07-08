@@ -44,7 +44,7 @@
             this.grdSearch = new System.Windows.Forms.GroupBox();
             this.lblResultCount = new System.Windows.Forms.Label();
             this.lblFilterName = new System.Windows.Forms.Label();
-            this.schName = new ZeqkTools.WindowsForms.Controls.Search();
+            this.schName = new AltosTools.WindowsForms.Controls.Search();
             this.lblFilterDepartment = new System.Windows.Forms.Label();
             this.cboFilterDepartment = new System.Windows.Forms.ComboBox();
             this.lblResult = new System.Windows.Forms.Label();
@@ -223,7 +223,6 @@
             // 
             this.schName.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.schName.Columns = null;
-            this.schName.Criteria = ZeqkTools.Query.Enumerators.Criterias.Contains;
             this.schName.Location = new System.Drawing.Point(19, 32);
             this.schName.Name = "schName";
             this.schName.Parameters = null;
@@ -421,7 +420,7 @@
         private System.Windows.Forms.Label lblFilterDepartment;
         private System.Windows.Forms.ComboBox cboFilterDepartment;
         private System.Windows.Forms.BindingSource bsCity;
-        private ZeqkTools.WindowsForms.Controls.Search schName;
+        private AltosTools.WindowsForms.Controls.Search schName;
         private System.Windows.Forms.Label lblFilterName;
         private System.Windows.Forms.Label lblResultCount;
     }
