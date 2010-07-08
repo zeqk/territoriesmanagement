@@ -149,17 +149,18 @@ namespace TerritoriesManagement.GUI
         }
 
 
-        private void LoadResult(string query)
+        private void LoadResult(string strQuery, params ObjectParameter[] parameters)
         {
             try
             {
-                dgvResult.DataSource = this.server.Search(query);
+                var result = this.server.Search(strQuery, parameters);
+                dgvResult.DataSource = result;
+                lblResultCount.Text = result.Count.ToString();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, GetString("Error"));
             }
-            lblFiltered.Visible = false;
         }
 
         private void ConfigGrids()
@@ -331,7 +332,7 @@ namespace TerritoriesManagement.GUI
 
                 if (!string.IsNullOrEmpty(strQuery))
                 {
-                    dgvResult.DataSource = this.server.Search(strQuery, parameters.ToArray<ObjectParameter>());
+                    LoadResult(strQuery, parameters.ToArray<ObjectParameter>());
                     lblFiltered.Visible = true;
                 }
                 else

@@ -40,6 +40,7 @@
             this.lblName = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.grdSearch = new System.Windows.Forms.GroupBox();
+            this.lblResultCount = new System.Windows.Forms.Label();
             this.lblFilterName = new System.Windows.Forms.Label();
             this.lblResult = new System.Windows.Forms.Label();
             this.lblFiltered = new System.Windows.Forms.Label();
@@ -155,6 +156,7 @@
             // 
             // grdSearch
             // 
+            this.grdSearch.Controls.Add(this.lblResultCount);
             this.grdSearch.Controls.Add(this.lblFilterName);
             this.grdSearch.Controls.Add(this.lblResult);
             this.grdSearch.Controls.Add(this.lblFiltered);
@@ -168,6 +170,14 @@
             this.grdSearch.TabIndex = 1;
             this.grdSearch.TabStop = false;
             this.grdSearch.Text = "Search";
+            // 
+            // lblResultCount
+            // 
+            this.lblResultCount.AutoSize = true;
+            this.lblResultCount.Location = new System.Drawing.Point(56, 71);
+            this.lblResultCount.Name = "lblResultCount";
+            this.lblResultCount.Size = new System.Drawing.Size(0, 13);
+            this.lblResultCount.TabIndex = 61;
             // 
             // lblFilterName
             // 
@@ -329,5 +339,6 @@
         private System.Windows.Forms.BindingSource bsDepartment;
         protected System.Windows.Forms.DataGridView dgvCities;
         private System.Windows.Forms.Label lblFilterName;
+        private System.Windows.Forms.Label lblResultCount;
     }
 }
