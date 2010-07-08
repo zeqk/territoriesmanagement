@@ -188,7 +188,6 @@
     <Compile Include="frmTerritories.Designer.cs">
       <DependentUpon>frmTerritories.cs</DependentUpon>
     </Compile>
-    <Compile Include="Functions.cs" />
     <Compile Include="ImporterConfig\CitiesTable.cs" />
     <Compile Include="ImporterConfig\CitiesTableConverter.cs" />
     <Compile Include="ImporterConfig\AddressesTable.cs" />

@@ -68,9 +68,9 @@
             // 
             this.btnAll.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAll.Image = ((System.Drawing.Image)(resources.GetObject("btnAll.Image")));
-            this.btnAll.Location = new System.Drawing.Point(833, 68);
+            this.btnAll.Location = new System.Drawing.Point(845, 68);
             this.btnAll.Name = "btnAll";
-            this.btnAll.Size = new System.Drawing.Size(96, 38);
+            this.btnAll.Size = new System.Drawing.Size(96, 45);
             this.btnAll.TabIndex = 51;
             this.btnAll.UseVisualStyleBackColor = true;
             this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
@@ -79,7 +79,7 @@
             // 
             this.btnSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
-            this.btnSearch.Location = new System.Drawing.Point(833, 10);
+            this.btnSearch.Location = new System.Drawing.Point(845, 10);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(96, 52);
             this.btnSearch.TabIndex = 50;
@@ -96,7 +96,7 @@
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.btnEdit);
             this.panel1.Controls.Add(this.btnNew);
-            this.panel1.Location = new System.Drawing.Point(839, 160);
+            this.panel1.Location = new System.Drawing.Point(851, 160);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(98, 357);
             this.panel1.TabIndex = 54;
@@ -166,7 +166,7 @@
             // 
             this.lblFiltered.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFiltered.AutoSize = true;
-            this.lblFiltered.Location = new System.Drawing.Point(792, 147);
+            this.lblFiltered.Location = new System.Drawing.Point(804, 147);
             this.lblFiltered.Name = "lblFiltered";
             this.lblFiltered.Size = new System.Drawing.Size(41, 13);
             this.lblFiltered.TabIndex = 57;
@@ -193,12 +193,14 @@
             this.dgvResult.Location = new System.Drawing.Point(2, 163);
             this.dgvResult.Name = "dgvResult";
             this.dgvResult.ReadOnly = true;
-            this.dgvResult.Size = new System.Drawing.Size(831, 354);
+            this.dgvResult.Size = new System.Drawing.Size(843, 354);
             this.dgvResult.TabIndex = 55;
             this.dgvResult.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvResult_MouseClick);
             // 
             // panel2
             // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.chklstDepartment);
             this.panel2.Controls.Add(this.chklstCity);
             this.panel2.Controls.Add(this.chklstTerritory);
@@ -212,7 +214,7 @@
             this.panel2.Controls.Add(this.lblDepartment);
             this.panel2.Location = new System.Drawing.Point(2, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(782, 139);
+            this.panel2.Size = new System.Drawing.Size(837, 139);
             this.panel2.TabIndex = 58;
             // 
             // chklstDepartment
@@ -294,6 +296,7 @@
             this.schStreet.Size = new System.Drawing.Size(360, 22);
             this.schStreet.TabIndex = 54;
             this.schStreet.VariableNames = null;
+            this.schStreet.KeyDown += new System.Windows.Forms.KeyEventHandler(this.schStreet_KeyDown);
             // 
             // lblTerritory
             // 
@@ -337,19 +340,19 @@
             this.copyGoogleMapsToolStripMenuItem,
             this.viewMapToolStripMenuItem});
             this.ctxMenu.Name = "ctxMenu";
-            this.ctxMenu.Size = new System.Drawing.Size(172, 48);
+            this.ctxMenu.Size = new System.Drawing.Size(184, 48);
             // 
             // copyGoogleMapsToolStripMenuItem
             // 
             this.copyGoogleMapsToolStripMenuItem.Name = "copyGoogleMapsToolStripMenuItem";
-            this.copyGoogleMapsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.copyGoogleMapsToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.copyGoogleMapsToolStripMenuItem.Text = "Copy (Google Maps)";
             this.copyGoogleMapsToolStripMenuItem.Click += new System.EventHandler(this.copyGoogleMapsToolStripMenuItem_Click);
             // 
             // viewMapToolStripMenuItem
             // 
             this.viewMapToolStripMenuItem.Name = "viewMapToolStripMenuItem";
-            this.viewMapToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.viewMapToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
             this.viewMapToolStripMenuItem.Text = "View map";
             this.viewMapToolStripMenuItem.Click += new System.EventHandler(this.viewMapToolStripMenuItem_Click);
             // 
@@ -374,7 +377,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(938, 524);
+            this.ClientSize = new System.Drawing.Size(950, 524);
             this.Controls.Add(this.lblResultCount);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -386,7 +389,6 @@
             this.Name = "frmAddresses";
             this.Text = "Addresses";
             this.Load += new System.EventHandler(this.frmAddresses_Load);
-            this.ResizeEnd += new System.EventHandler(this.frmAddresses_ResizeEnd);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).EndInit();
