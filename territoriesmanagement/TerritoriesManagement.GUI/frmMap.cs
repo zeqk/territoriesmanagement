@@ -11,7 +11,7 @@ using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using GMap.NET.WindowsForms.ToolTips;
-using ZeqkTools.WindowsForms.Maps;
+using AltosTools.WindowsForms.Maps;
 using System.Collections;
 using System.Data.Objects;
 using TerritoriesManagement.Model;
@@ -243,7 +243,7 @@ namespace TerritoriesManagement.GUI
                     {
                         if (top.Polygons.Count > 0 && top.Polygons[0].Points.Count > 0)
                         {
-                            MainMap.CurrentPosition = ZeqkTools.Functions.CalculateMiddlePoint(top.Polygons[0]);
+                            MainMap.CurrentPosition = AltosTools.Functions.CalculateMiddlePoint(top.Polygons[0]);
                             centered = true;
                         }
                     }
@@ -262,7 +262,7 @@ namespace TerritoriesManagement.GUI
                     if (!centered)
                     {
                         if (top.Polygons.Count > 0)
-                            center = ZeqkTools.Functions.CalculateMiddlePoint(top.Polygons[0]);
+                            center = AltosTools.Functions.CalculateMiddlePoint(top.Polygons[0]);
                     }
                 }
 
@@ -323,7 +323,9 @@ namespace TerritoriesManagement.GUI
                         auxPoints = Functions.StrPointsToPointsLatLng(areaStr.Split('\n'));
 
                     currentPolygon = new GMapPolygon(auxPoints, name);
-
+                    Pen pen = currentPolygon.Stroke;
+                    pen.Color = Color.FromArgb(155, Color.Red);
+                    currentPolygon.Stroke = pen;
                     MainMap.SetDrawingPolygon(currentPolygon);
                 }
 
@@ -461,7 +463,7 @@ namespace TerritoriesManagement.GUI
         {
             List<PointLatLng> points = marks.Select(m => m.Position).ToList();
 
-            PointLatLng point = ZeqkTools.Functions.CalculateMiddlePoint(points.ToList());
+            PointLatLng point = AltosTools.Functions.CalculateMiddlePoint(points.ToList());
 
             return point;
 
@@ -470,7 +472,7 @@ namespace TerritoriesManagement.GUI
         private PointLatLng CalculateMiddlePoint(List<PointLatLng> marks)
         {
 
-            PointLatLng point = ZeqkTools.Functions.CalculateMiddlePoint(marks);
+            PointLatLng point = AltosTools.Functions.CalculateMiddlePoint(marks);
 
             return point;
         }        
@@ -577,7 +579,8 @@ namespace TerritoriesManagement.GUI
         private void btnViewTerritories_Click(object sender, EventArgs e)
         {
             top.Polygons.Clear();
-            top.Polygons.Add(currentPolygon);
+            if(currentPolygon != null) //TODO: esta bien?
+                top.Polygons.Add(currentPolygon);
 
             IList territoriesToShow = GetTerritoriesToShow();
             if (territoriesToShow != null)
@@ -607,7 +610,7 @@ namespace TerritoriesManagement.GUI
             string queryStr = "";
 
             int currentId = 0;
-            if (Object.GetType() == typeof(Territory))
+            if (Object != null && Object is Territory)
                 currentId = (int)Functions.GetPropertyValue(Object, "IdTerritory");
 
             //chklstTerritory
@@ -672,7 +675,8 @@ namespace TerritoriesManagement.GUI
             IList addressesToShow = GetAddressToShow();
 
             top.Markers.Clear();
-            top.Markers.Add(currentMarker);
+            if(currentMarker != null) //TODO: esta bien?
+                top.Markers.Add(currentMarker);
 
             if (addressesToShow != null)
             {

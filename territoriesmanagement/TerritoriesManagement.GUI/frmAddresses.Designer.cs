@@ -41,13 +41,13 @@
             this.lblResult = new System.Windows.Forms.Label();
             this.dgvResult = new System.Windows.Forms.DataGridView();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.chklstDepartment = new ZeqkTools.WindowsForms.Controls.CheckedListComboBox(this.components);
-            this.chklstCity = new ZeqkTools.WindowsForms.Controls.CheckedListComboBox(this.components);
-            this.chklstTerritory = new ZeqkTools.WindowsForms.Controls.CheckedListComboBox(this.components);
+            this.chklstDepartment = new AltosTools.WindowsForms.Controls.CheckedListComboBox(this.components);
+            this.chklstCity = new AltosTools.WindowsForms.Controls.CheckedListComboBox(this.components);
+            this.chklstTerritory = new AltosTools.WindowsForms.Controls.CheckedListComboBox(this.components);
             this.chkDescription = new System.Windows.Forms.CheckBox();
             this.chkStreet = new System.Windows.Forms.CheckBox();
             this.chkCorners = new System.Windows.Forms.CheckBox();
-            this.schStreet = new ZeqkTools.WindowsForms.Controls.Search();
+            this.schStreet = new AltosTools.WindowsForms.Controls.Search();
             this.lblTerritory = new System.Windows.Forms.Label();
             this.lblAddress = new System.Windows.Forms.Label();
             this.lblCity = new System.Windows.Forms.Label();
@@ -288,7 +288,7 @@
             // 
             this.schStreet.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.schStreet.Columns = null;
-            this.schStreet.Criteria = ZeqkTools.Query.Enumerators.Criterias.Contains;
+            this.schStreet.Criteria = "Contains";
             this.schStreet.Location = new System.Drawing.Point(18, 22);
             this.schStreet.Name = "schStreet";
             this.schStreet.Parameters = null;
@@ -340,19 +340,20 @@
             this.copyGoogleMapsToolStripMenuItem,
             this.viewMapToolStripMenuItem});
             this.ctxMenu.Name = "ctxMenu";
-            this.ctxMenu.Size = new System.Drawing.Size(184, 48);
+            this.ctxMenu.Size = new System.Drawing.Size(172, 70);
             // 
             // copyGoogleMapsToolStripMenuItem
             // 
             this.copyGoogleMapsToolStripMenuItem.Name = "copyGoogleMapsToolStripMenuItem";
-            this.copyGoogleMapsToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.copyGoogleMapsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.copyGoogleMapsToolStripMenuItem.Text = "Copy (Google Maps)";
             this.copyGoogleMapsToolStripMenuItem.Click += new System.EventHandler(this.copyGoogleMapsToolStripMenuItem_Click);
             // 
             // viewMapToolStripMenuItem
             // 
+            this.viewMapToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("viewMapToolStripMenuItem.Image")));
             this.viewMapToolStripMenuItem.Name = "viewMapToolStripMenuItem";
-            this.viewMapToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.viewMapToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.viewMapToolStripMenuItem.Text = "View map";
             this.viewMapToolStripMenuItem.Click += new System.EventHandler(this.viewMapToolStripMenuItem_Click);
             // 
@@ -415,7 +416,7 @@
         private System.Windows.Forms.CheckBox chkDescription;
         private System.Windows.Forms.CheckBox chkStreet;
         private System.Windows.Forms.CheckBox chkCorners;
-        private ZeqkTools.WindowsForms.Controls.Search schStreet;
+        private AltosTools.WindowsForms.Controls.Search schStreet;
         private System.Windows.Forms.Label lblTerritory;
         private System.Windows.Forms.Label lblAddress;
         private System.Windows.Forms.Label lblCity;
@@ -427,9 +428,9 @@
         private System.Windows.Forms.SaveFileDialog sfdExcelDestiny;
         private System.Windows.Forms.ToolStripMenuItem viewMapToolStripMenuItem;
         private System.Windows.Forms.Label lblResultCount;
-        private ZeqkTools.WindowsForms.Controls.CheckedListComboBox chklstTerritory;
-        private ZeqkTools.WindowsForms.Controls.CheckedListComboBox chklstCity;
-        private ZeqkTools.WindowsForms.Controls.CheckedListComboBox chklstDepartment;
+        private AltosTools.WindowsForms.Controls.CheckedListComboBox chklstTerritory;
+        private AltosTools.WindowsForms.Controls.CheckedListComboBox chklstCity;
+        private AltosTools.WindowsForms.Controls.CheckedListComboBox chklstDepartment;
 
 
 

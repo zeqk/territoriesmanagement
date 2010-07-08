@@ -46,14 +46,14 @@
             this.lblTerritories = new System.Windows.Forms.Label();
             this.lblCities = new System.Windows.Forms.Label();
             this.lblDepartments = new System.Windows.Forms.Label();
-            this.chklstDepartment = new ZeqkTools.WindowsForms.Controls.CheckedListComboBox(this.components);
-            this.chklstCity = new ZeqkTools.WindowsForms.Controls.CheckedListComboBox(this.components);
-            this.chklstTerritory = new ZeqkTools.WindowsForms.Controls.CheckedListComboBox(this.components);
+            this.chklstDepartment = new AltosTools.WindowsForms.Controls.CheckedListComboBox(this.components);
+            this.chklstCity = new AltosTools.WindowsForms.Controls.CheckedListComboBox(this.components);
+            this.chklstTerritory = new AltosTools.WindowsForms.Controls.CheckedListComboBox(this.components);
             this.grpTerritories = new System.Windows.Forms.GroupBox();
             this.btnCancelTerritories = new System.Windows.Forms.Button();
             this.btnViewTerritories = new System.Windows.Forms.Button();
-            this.chklstTerritories = new ZeqkTools.WindowsForms.Controls.CheckedListComboBox(this.components);
-            this.MainMap = new ZeqkTools.WindowsForms.Maps.ExtendedGMapControl(this.components);
+            this.chklstTerritories = new AltosTools.WindowsForms.Controls.CheckedListComboBox(this.components);
+            this.MainMap = new AltosTools.WindowsForms.Maps.ExtendedGMapControl(this.components);
             this.tableMapActions = new System.Windows.Forms.TableLayoutPanel();
             this.btnToStaticMap = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
@@ -670,8 +670,8 @@
         private System.Windows.Forms.Button btnAddresses;
         private System.Windows.Forms.Panel panelMap;
         private System.Windows.Forms.GroupBox grpTerritories;
-        private ZeqkTools.WindowsForms.Maps.ExtendedGMapControl MainMap;
-        private ZeqkTools.WindowsForms.Controls.CheckedListComboBox chklstTerritories;
+        private AltosTools.WindowsForms.Maps.ExtendedGMapControl MainMap;
+        private AltosTools.WindowsForms.Controls.CheckedListComboBox chklstTerritories;
         private System.Windows.Forms.Button btnViewTerritories;
         private System.Windows.Forms.Button btnCancelTerritories;
         private System.Windows.Forms.GroupBox grpAddresses;
@@ -680,9 +680,9 @@
         private System.Windows.Forms.Label lblTerritories;
         private System.Windows.Forms.Label lblCities;
         private System.Windows.Forms.Label lblDepartments;
-        private ZeqkTools.WindowsForms.Controls.CheckedListComboBox chklstDepartment;
-        private ZeqkTools.WindowsForms.Controls.CheckedListComboBox chklstCity;
-        private ZeqkTools.WindowsForms.Controls.CheckedListComboBox chklstTerritory;
+        private AltosTools.WindowsForms.Controls.CheckedListComboBox chklstDepartment;
+        private AltosTools.WindowsForms.Controls.CheckedListComboBox chklstCity;
+        private AltosTools.WindowsForms.Controls.CheckedListComboBox chklstTerritory;
 
     }
 }

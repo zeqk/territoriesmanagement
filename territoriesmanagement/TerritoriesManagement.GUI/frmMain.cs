@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 using Localizer;
-using ZeqkTools.WindowsForms;
+using AltosTools.WindowsForms;
 
 namespace TerritoriesManagement.GUI
 {
