@@ -54,6 +54,7 @@
             this.lblDepartment = new System.Windows.Forms.Label();
             this.ctxMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyGoogleMapsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.viewMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sfdGMaps = new System.Windows.Forms.SaveFileDialog();
             this.sfdExcelDestiny = new System.Windows.Forms.SaveFileDialog();
@@ -254,7 +255,7 @@
             // chkDescription
             // 
             this.chkDescription.AutoSize = true;
-            this.chkDescription.Location = new System.Drawing.Point(518, 22);
+            this.chkDescription.Location = new System.Drawing.Point(545, 22);
             this.chkDescription.Name = "chkDescription";
             this.chkDescription.Size = new System.Drawing.Size(79, 17);
             this.chkDescription.TabIndex = 64;
@@ -276,7 +277,7 @@
             // chkCorners
             // 
             this.chkCorners.AutoSize = true;
-            this.chkCorners.Location = new System.Drawing.Point(459, 22);
+            this.chkCorners.Location = new System.Drawing.Point(468, 22);
             this.chkCorners.Name = "chkCorners";
             this.chkCorners.Size = new System.Drawing.Size(62, 17);
             this.chkCorners.TabIndex = 62;
@@ -338,22 +339,29 @@
             // 
             this.ctxMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyGoogleMapsToolStripMenuItem,
+            this.toolStripSeparator1,
             this.viewMapToolStripMenuItem});
             this.ctxMenu.Name = "ctxMenu";
-            this.ctxMenu.Size = new System.Drawing.Size(172, 70);
+            this.ctxMenu.Size = new System.Drawing.Size(127, 54);
             // 
             // copyGoogleMapsToolStripMenuItem
             // 
+            this.copyGoogleMapsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyGoogleMapsToolStripMenuItem.Image")));
             this.copyGoogleMapsToolStripMenuItem.Name = "copyGoogleMapsToolStripMenuItem";
-            this.copyGoogleMapsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.copyGoogleMapsToolStripMenuItem.Text = "Copy (Google Maps)";
+            this.copyGoogleMapsToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
+            this.copyGoogleMapsToolStripMenuItem.Text = "Copy";
             this.copyGoogleMapsToolStripMenuItem.Click += new System.EventHandler(this.copyGoogleMapsToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(123, 6);
             // 
             // viewMapToolStripMenuItem
             // 
             this.viewMapToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("viewMapToolStripMenuItem.Image")));
             this.viewMapToolStripMenuItem.Name = "viewMapToolStripMenuItem";
-            this.viewMapToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.viewMapToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.viewMapToolStripMenuItem.Text = "View map";
             this.viewMapToolStripMenuItem.Click += new System.EventHandler(this.viewMapToolStripMenuItem_Click);
             // 
@@ -431,6 +439,7 @@
         private AltosTools.WindowsForms.Controls.CheckedListComboBox chklstTerritory;
         private AltosTools.WindowsForms.Controls.CheckedListComboBox chklstCity;
         private AltosTools.WindowsForms.Controls.CheckedListComboBox chklstDepartment;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
 
 
 

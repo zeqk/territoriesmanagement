@@ -180,13 +180,12 @@ namespace TerritoriesManagement.GUI
             using (frmMap myForm = new frmMap())
             {
                 myForm.MapType = config.MapType;
-                myForm.Address = config.Place;
-
+                myForm.MapMode = MapModeEnum.EditPoint;
                 Address a = this.Address;
 
                 myForm.Object = a;
 
-                myForm.Address = a.Street + " " + a.Number + ", " + a.City.Name + ", " + GetDepartmentName();
+                myForm.Address = a.Street + " " + a.Number + ", " + a.City.Name + ", " + GetDepartmentName() + ", " + config.Place;
 
                 myForm.ShowDialog();
 
