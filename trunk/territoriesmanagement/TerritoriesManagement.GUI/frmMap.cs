@@ -332,11 +332,12 @@ namespace TerritoriesManagement.GUI
                 if (Object is Address)
                 {
                     Address a = (Address)Object;
+                    PointLatLng point = new PointLatLng(0,0);
                     if (a.Lat.HasValue && a.Lng.HasValue)
                     {
                         currentMarker = new GMapMarkerGoogleRed(new PointLatLng(a.Lat.Value, a.Lng.Value));
                         top.Markers.Add(currentMarker);
-                    }
+                    }                    
                 }
             }
         }

@@ -224,15 +224,25 @@ namespace TerritoriesManagement.GUI
                 {                    
                     v = this.server.Save(v);
 
-                    int index = dgvResult.SelectedRows[0].Index;
-                    int scrollIndex = dgvResult.FirstDisplayedScrollingRowIndex;
+                    int? index = null;
+                    int? scrollIndex = null;
+                    if (dgvResult.SelectedRows.Count > 0)
+                    {
+                        index = dgvResult.SelectedRows[0].Index;
+                        scrollIndex = dgvResult.FirstDisplayedScrollingRowIndex;
+                    }
 
                     //traigo los datos
                     if (lblFiltered.Visible) Filter();
                     else ClearFilter();
 
-                    dgvResult.Rows[index].Selected = true;
-                    dgvResult.FirstDisplayedScrollingRowIndex = scrollIndex;
+                    if (index.HasValue)
+                    {
+                        dgvResult.Rows[index.Value].Selected = true;
+                        dgvResult.FirstDisplayedScrollingRowIndex = scrollIndex.Value;
+                    }
+                    else
+                        New();
 
                     isDirty = false;
                     txtName.Focus();

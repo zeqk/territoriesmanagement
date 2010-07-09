@@ -1,7 +1,3 @@
 TODO:
 - logo
-- iconos
-- recursos
-- traductor de aplicaciones
-- grilla autoredimensionable
-- qe al guardar siga seleccionado el mismo item en la grilla
+- q la búsqueda no sea case sensitive (fijarse en el componente de AltosTools)
