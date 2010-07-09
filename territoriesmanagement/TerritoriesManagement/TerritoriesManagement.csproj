@@ -45,7 +45,7 @@
     <OutputPath>bin\x86\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
@@ -70,10 +70,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\AltosTools.dll</HintPath>
     </Reference>
-    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=2.5.1.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
+    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=2.5.2.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\FirebirdSql.Data.FirebirdClient.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="GMap.NET.Core, Version=1.5.0.1, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
@@ -133,7 +132,7 @@
     <Compile Include="Property.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="app.Config" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="Model\TerritoriesModel.edmx">
