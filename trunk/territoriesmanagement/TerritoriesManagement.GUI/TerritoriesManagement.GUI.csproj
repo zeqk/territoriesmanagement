@@ -61,7 +61,7 @@
     <OutputPath>..\bin\last release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
   </PropertyGroup>
@@ -86,11 +86,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\AltosTools.dll</HintPath>
     </Reference>
-    <Reference Include="AltosTools.Maps, Version=1.10.7.8, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="AltosTools.Maps, Version=1.10.7.9, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\AltosTools.Maps.dll</HintPath>
     </Reference>
-    <Reference Include="AltosTools.WindowsForms, Version=1.10.4.20, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="AltosTools.WindowsForms, Version=1.10.7.9, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\AltosTools.WindowsForms.dll</HintPath>
     </Reference>

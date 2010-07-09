@@ -327,6 +327,8 @@ namespace TerritoriesManagement.GUI
                     pen.Color = Color.FromArgb(155, Color.Red);
                     currentPolygon.Stroke = pen;
                     MainMap.SetDrawingPolygon(currentPolygon);
+
+                    viewAddresses();
                 }
 
                 if (Object is Address)
@@ -409,11 +411,15 @@ namespace TerritoriesManagement.GUI
 
         private void btnGenImage_Click(object sender, EventArgs e)
         {
-            //calculate the area to print
-            if (currentPolygon.Points.Count > 0)
-                MainMap.SelectedArea = CalculateRectangle(currentPolygon.Points);
-            else
-                //MainMap.SelectedArea = CalculateRectangle(_secondaryMarkers.Select(m => m.Position).ToList()); TODO: generar el rectangulo segun los poligonos secundarios
+
+            MainMap.SelectedArea = MainMap.CurrentViewArea;
+
+            if (_mapMode == MapModeEnum.EditArea)
+            {
+                if (currentPolygon.Points.Count > 2)
+                    MainMap.SelectedArea = CalculateRectangle(currentPolygon.Points);
+            }            
+            
 
             MainMap.SelectedArea = AddMargin(MainMap.SelectedArea);
 

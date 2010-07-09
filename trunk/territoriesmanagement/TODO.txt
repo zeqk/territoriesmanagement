@@ -1,3 +1,2 @@
 TODO:
 - logo
-- q la búsqueda no sea case sensitive (fijarse en el componente de AltosTools)
