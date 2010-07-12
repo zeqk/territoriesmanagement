@@ -328,7 +328,7 @@ namespace TerritoriesManagement.GUI
                     currentPolygon.Stroke = pen;
                     MainMap.SetDrawingPolygon(currentPolygon);
 
-                    viewAddresses();
+                    ViewAddresses();
                 }
 
                 if (Object is Address)
@@ -548,7 +548,6 @@ namespace TerritoriesManagement.GUI
             chklstTerritories.DisplayMember = "Name";
             chklstTerritories.ValueMember = "Id";
             chklstTerritories.DataSource = territoryList;
-            grpTerritories.Visible = false;
 
 
             
@@ -557,13 +556,9 @@ namespace TerritoriesManagement.GUI
             chklstDepartment.ValueMember = "Id";
             chklstDepartment.DataSource = departmentList;
 
-            chklstCity.DisplayMember = "Name";
-            chklstCity.ValueMember = "Id";
-
             chklstTerritory.DisplayMember = "Name";
             chklstTerritory.ValueMember = "Id";
             chklstTerritory.DataSource = territoryList;
-            grpAddresses.Visible = false;
 
             if (Object != null && Object.GetType() == typeof(Territory))
             {
@@ -578,15 +573,11 @@ namespace TerritoriesManagement.GUI
         }
 
         #region View territories
-        private void btnTerritories_Click(object sender, EventArgs e)
-        {
-            grpTerritories.Visible = true;
-        }
 
-        private void btnViewTerritories_Click(object sender, EventArgs e)
+        void ViewTerritories()
         {
             top.Polygons.Clear();
-            if(currentPolygon != null) //TODO: esta bien?
+            if (currentPolygon != null) //TODO: esta bien?
                 top.Polygons.Add(currentPolygon);
 
             IList territoriesToShow = GetTerritoriesToShow();
@@ -604,9 +595,6 @@ namespace TerritoriesManagement.GUI
                     }
                 }
             }
-
-            grpTerritories.Visible = false;
-            
         }
 
         private IList GetTerritoriesToShow()
@@ -659,25 +647,11 @@ namespace TerritoriesManagement.GUI
             return rv;
         }
 
-        private void btnCancelTerritories_Click(object sender, EventArgs e)
-        {
-            grpTerritories.Visible = false;
-        }
-
         #endregion
 
         #region View addresses
-        private void btnAddresses_Click(object sender, EventArgs e)
-        {
-            grpAddresses.Visible = true;
-        }
 
-        private void btnViewAddresses_Click(object sender, EventArgs e)
-        {
-            viewAddresses();
-        }
-
-        void viewAddresses()
+        void ViewAddresses()
         {
             IList addressesToShow = GetAddressToShow();
 
@@ -705,13 +679,6 @@ namespace TerritoriesManagement.GUI
                     }
                 }
             }
-
-            grpAddresses.Visible = false;
-        }
-
-        private void btnCancelAddresses_Click(object sender, EventArgs e)
-        {
-            grpAddresses.Visible = false;
         }
 
         private IList GetAddressToShow()
@@ -763,49 +730,25 @@ namespace TerritoriesManagement.GUI
                 if (!string.IsNullOrEmpty(auxQueryStr))
                     queryStr += "(" + auxQueryStr + ")";
             }
-
-            //chklstCity
-            if (chklstCity.CheckedItems.Count > 0)
+            //chklstDepartment
+            if (chklstDepartment.CheckedItems.Count > 0)
             {
                 if (auxParameters.Count > 0 || queryStr.Contains("IS NULL"))
                     queryStr += " AND ";
 
-                var cities = chklstCity.CheckedItemsValues;
+                var cities = chklstDepartment.CheckedItemsValues;
                 string auxQueryStr = "";
                 for (int i = 0; i < cities.Count; i++)
                 {
                     if (auxQueryStr != "")
                         auxQueryStr += " OR ";
 
-                    string varName = "IdCity" + i.ToString();
-                    auxQueryStr += "Address.City.IdCity = @" + varName;
+                    string varName = "IdDepartment" + i.ToString();
+                    auxQueryStr += "Address.City.Department.IdDepartment = @" + varName;
                     ObjectParameter param = new ObjectParameter(varName, cities[i]);
                     auxParameters.Add(param);
                 }
                 queryStr += "(" + auxQueryStr + ")";
-            }
-            else
-            {
-                //chklstDepartment
-                if (chklstDepartment.CheckedItems.Count > 0)
-                {
-                    if (auxParameters.Count > 0 || queryStr.Contains("IS NULL"))
-                        queryStr += " AND ";
-
-                    var cities = chklstDepartment.CheckedItemsValues;
-                    string auxQueryStr = "";
-                    for (int i = 0; i < cities.Count; i++)
-                    {
-                        if (auxQueryStr != "")
-                            auxQueryStr += " OR ";
-
-                        string varName = "IdDepartment" + i.ToString();
-                        auxQueryStr += "Address.City.Department.IdDepartment = @" + varName;
-                        ObjectParameter param = new ObjectParameter(varName, cities[i]);
-                        auxParameters.Add(param);
-                    }
-                    queryStr += "(" + auxQueryStr + ")";
-                }
             }
 
             parameters = auxParameters;
@@ -813,6 +756,12 @@ namespace TerritoriesManagement.GUI
         }
 
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ViewTerritories();
+            ViewAddresses();
+        }
 
     }
 }
