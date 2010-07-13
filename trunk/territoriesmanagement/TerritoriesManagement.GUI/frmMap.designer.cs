@@ -252,7 +252,6 @@
             // chklstTerritories
             // 
             this.chklstTerritories.CheckOnClick = true;
-            this.chklstTerritories.DataSource = this.chklstTerritories.Items;
             this.chklstTerritories.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chklstTerritories.FormattingEnabled = true;
             this.chklstTerritories.Location = new System.Drawing.Point(1, 25);
@@ -351,7 +350,6 @@
             // chklstTerritory
             // 
             this.chklstTerritory.CheckOnClick = true;
-            this.chklstTerritory.DataSource = this.chklstTerritory.Items;
             this.chklstTerritory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chklstTerritory.FormattingEnabled = true;
             this.chklstTerritory.Location = new System.Drawing.Point(1, 25);
@@ -399,7 +397,6 @@
             // chklstDepartment
             // 
             this.chklstDepartment.CheckOnClick = true;
-            this.chklstDepartment.DataSource = this.chklstDepartment.Items;
             this.chklstDepartment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chklstDepartment.FormattingEnabled = true;
             this.chklstDepartment.Location = new System.Drawing.Point(1, 25);
