@@ -70,6 +70,8 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             _map1 = new Field("MAPA1");
             _map2 = new Field("MAPA2");
             _geoPosition = new Field("GEOPOSICION");
+            _lat = new Field("LATITUD");
+            _lng = new Field("LONGITUD");
             _territoryName = new Field("TERRITORIO");
             _territoryId = new Field("IDTERRITORIO");
             _cityName = new Field("CIUDAD");

@@ -293,50 +293,55 @@ namespace TerritoriesManagement.GUI
         #region DataExport
         private void btnExportToExternal_Click(object sender, EventArgs e)
         {
-            bool exported = true;
-            ExportTool tool = new ExportTool();
-            try
+            sfdDestinationFile.Filter = "Excel files (*.xls)|*.xls";
+            if (sfdDestinationFile.ShowDialog() == DialogResult.OK)
             {
-                if (rdoAddresses.Checked)
+                string excelFile = Path.GetFullPath(sfdDestinationFile.FileName);
+                bool exported = true;
+                ExportTool tool = new ExportTool();
+                try
                 {
+                    if (rdoAddresses.Checked)
+                    {
 
-                    string[] properties = chkListAddresses.CheckedItems.Cast<string>().ToArray();
+                        string[] properties = chkListAddresses.CheckedItems.Cast<string>().ToArray();
 
-                    exported = tool.ExportToExcel(txtExcelDestination.Text, "Address", "Addresses", properties, "", null);
+                        exported = tool.ExportToExcel(excelFile, "Address", "Addresses", properties, "", null);
+                    }
+
+
+                    if (rdoTerritories.Checked)
+                    {
+                        string[] properties = chkListTerritories.CheckedItems.Cast<string>().ToArray();
+
+                        exported = tool.ExportToExcel(excelFile, "Territory", "Territories", properties, "", null);
+                    }
+
+                    if (rdoCities.Checked)
+                    {
+                        string[] properties = chkListCities.CheckedItems.Cast<string>().ToArray();
+
+                        exported = tool.ExportToExcel(excelFile, "City", "Cities", properties, "", null);
+                    }
+
+                    if (rdoDepartments.Checked)
+                    {
+                        string[] properties = chkListDepartments.CheckedItems.Cast<string>().ToArray();
+
+                        exported = tool.ExportToExcel(excelFile, "Department", "Departments", properties, "", null);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    exported = false;
                 }
 
 
-                if (rdoTerritories.Checked)
-                {
-                    string[] properties = chkListTerritories.CheckedItems.Cast<string>().ToArray();
-
-                    exported = tool.ExportToExcel(txtExcelDestination.Text, "Territory", "Territories", properties, "", null);
-                }
-
-                if (rdoCities.Checked)
-                {
-                    string[] properties = chkListCities.CheckedItems.Cast<string>().ToArray();
-
-                    exported = tool.ExportToExcel(txtExcelDestination.Text, "City", "Cities", properties, "", null);
-                }
-
-                if (rdoDepartments.Checked)
-                {
-                    string[] properties = chkListDepartments.CheckedItems.Cast<string>().ToArray();
-
-                    exported = tool.ExportToExcel(txtExcelDestination.Text, "Department", "Departments", properties, "", null);
-                }
+                if (exported)
+                    MessageBox.Show(GetString("The exportation has been successful.\n"));
+                else
+                    MessageBox.Show(GetString("The exportation has problems. Check the settings and see the log.\n"));
             }
-            catch (Exception ex)
-            {
-                exported = false;
-            }
-            
-
-            if (exported)
-                MessageBox.Show(GetString("The exportation has been successful.\n"));
-            else
-                MessageBox.Show(GetString("The exportation has problems. Check the settings and see the log.\n"));
         }
 
         private void LoadExportCheckList()
@@ -358,14 +363,6 @@ namespace TerritoriesManagement.GUI
             chkListTerritories.Enabled = rdoTerritories.Checked;
             chkListDepartments.Enabled = rdoDepartments.Checked;
         }
-
-        private void btnBrowse3_Click(object sender, EventArgs e)
-        {
-            sfdDestinationFile.Filter = "Excel files (*.xls)|*.xls";
-            if(sfdDestinationFile.ShowDialog() == DialogResult.OK)
-                txtExcelDestination.Text = Path.GetFullPath(sfdDestinationFile.FileName);
-        }
-
         #endregion
 
         private void btnConfigureConnection_Click(object sender, EventArgs e)
@@ -391,67 +388,60 @@ namespace TerritoriesManagement.GUI
         }
 
         #region ImportData
-        private void btnBrowse1_Click(object sender, EventArgs e)
-        {
-            ofdSourceFile.Filter = "Territories management exchange file(*.tmx)|*.tmx";
-            if (ofdSourceFile.ShowDialog() == DialogResult.OK)
-                txtImportDataFile.Text = Path.GetFullPath(ofdSourceFile.FileName);
-        }
-
-
 
         private void btnImportData_Click(object sender, EventArgs e)
         {
-            List<string> list = new List<string>();
-            if (chkDepartments.Checked)
-                list.Add("Department");
-            if (chkCities.Checked)
-                list.Add("City");
-            if (chkPublishers.Checked)
-                list.Add("Publisher");
-            if (chkTerritories.Checked)
-                list.Add("Territory");
-            if (chkTours.Checked)
-                list.Add("Tuor");
-            if (chkAddresses.Checked)
-                list.Add("Address");
+            ofdSourceFile.Filter = "Territories management exchange file(*.tmx)|*.tmx";
+            if (ofdSourceFile.ShowDialog() == DialogResult.OK)
+            {
+                string importFile = Path.GetFullPath(ofdSourceFile.FileName);
+                List<string> list = new List<string>();
+                if (chkDepartments.Checked)
+                    list.Add("Department");
+                if (chkCities.Checked)
+                    list.Add("City");
+                if (chkPublishers.Checked)
+                    list.Add("Publisher");
+                if (chkTerritories.Checked)
+                    list.Add("Territory");
+                if (chkTours.Checked)
+                    list.Add("Tuor");
+                if (chkAddresses.Checked)
+                    list.Add("Address");
 
-            if (list.Count > 0)
-                _importer.ImportExchangeData(txtImportDataFile.Text, list);
-            
+                if (list.Count > 0)
+                    _importer.ImportExchangeData(importFile, list);
+            }
         }
 
         #endregion
         #region Data exportation
-        private void btnBrowse2_Click(object sender, EventArgs e)
+        private void btnExportData_Click(object sender, EventArgs e)
         {
             sfdDestinationFile.Filter = "Territories management exchange file(*.tmx)|*.tmx";
             if (sfdDestinationFile.ShowDialog() == DialogResult.OK)
-                txtDataExportFile.Text = Path.GetFullPath(sfdDestinationFile.FileName);
-        }
-
-        private void btnExportData_Click(object sender, EventArgs e)
-        {
-            List<string> list = new List<string>();
-            if (chkDepartments.Checked)
-                list.Add("Department");
-            if (chkCities.Checked)
-                list.Add("City");
-            if (chkPublishers.Checked)
-                list.Add("Publisher");
-            if (chkTerritories.Checked)
-                list.Add("Territory");
-            if (chkTours.Checked)
-                list.Add("Tour");
-            if (chkAddresses.Checked)
-                list.Add("Address");
-
-            if (list.Count > 0)
             {
-                string path = txtDataExportFile.Text;
-                //string path = "C:\\hola.tmx";
-                ExportTool tool = new ExportTool();
-                tool.ExportData(path, list);
+                string exportFile = Path.GetFullPath(sfdDestinationFile.FileName);
+                List<string> list = new List<string>();
+                if (chkDepartments.Checked)
+                    list.Add("Department");
+                if (chkCities.Checked)
+                    list.Add("City");
+                if (chkPublishers.Checked)
+                    list.Add("Publisher");
+                if (chkTerritories.Checked)
+                    list.Add("Territory");
+                if (chkTours.Checked)
+                    list.Add("Tour");
+                if (chkAddresses.Checked)
+                    list.Add("Address");
+
+                if (list.Count > 0)
+                {
+                    string path = exportFile;
+                    ExportTool tool = new ExportTool();
+                    tool.ExportData(path, list);
+                }
             }
         }
         #endregion
