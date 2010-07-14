@@ -109,8 +109,9 @@ namespace TerritoriesManagement.GUI
             ab.AppVersion = Application.ProductVersion;
             ab.AppCopyright = "GNU GPL 2010  Zeqk";
             ab.AppMoreInfo = "Web site: http://sites.google.com/site/territoriesmanagement \n\n";
-            ab.AppMoreInfo += "This program uses GMap.NET (http://greatmaps.codeplex.com/) and ";            
+            ab.AppMoreInfo += "This program uses GMap.NET (http://greatmaps.codeplex.com/) and ";
             ab.AppMoreInfo += "DotNetFirebird (http://www.firebirdsql.org/dotnetfirebird/).\n\n";
+            ab.AppMoreInfo += "Icons by http://dryicons.com, http://pixel-mixer.com and http://fatcow.com\n\n";
             ab.AppMoreInfo += "This program is free software: you can redistribute it and/or modify ";
             ab.AppMoreInfo += "it under the terms of the GNU General Public License as published by ";
             ab.AppMoreInfo += "the Free Software Foundation, either version 3 of the License, or ";

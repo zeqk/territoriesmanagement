@@ -136,7 +136,6 @@
             // 
             this.panelAdData.AssociatedSplitter = this.splitter1;
             this.panelAdData.BackColor = System.Drawing.Color.Transparent;
-            this.panelAdData.CaptionFont = new System.Drawing.Font("Segoe UI", 11.75F, System.Drawing.FontStyle.Bold);
             this.panelAdData.CaptionHeight = 27;
             this.panelAdData.Controls.Add(this.splitContainer1);
             this.panelAdData.CustomColors.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(184)))), ((int)(((byte)(184)))));
@@ -215,7 +214,6 @@
             // 
             // xPanTerritories
             // 
-            this.xPanTerritories.CaptionFont = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
             this.xPanTerritories.Controls.Add(this.chklstTerritories);
             this.xPanTerritories.CustomColors.BackColor = System.Drawing.SystemColors.Control;
             this.xPanTerritories.CustomColors.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(184)))), ((int)(((byte)(184)))));
@@ -261,7 +259,6 @@
             // 
             // xPanderAdresses
             // 
-            this.xPanderAdresses.CaptionFont = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
             this.xPanderAdresses.Controls.Add(this.xPanderLstAddresses);
             this.xPanderAdresses.CustomColors.BackColor = System.Drawing.SystemColors.Control;
             this.xPanderAdresses.CustomColors.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(184)))), ((int)(((byte)(184)))));
@@ -313,7 +310,6 @@
             // 
             // xPanderAddressesByTerritory
             // 
-            this.xPanderAddressesByTerritory.CaptionFont = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
             this.xPanderAddressesByTerritory.Controls.Add(this.chklstTerritory);
             this.xPanderAddressesByTerritory.CustomColors.BackColor = System.Drawing.SystemColors.Control;
             this.xPanderAddressesByTerritory.CustomColors.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(184)))), ((int)(((byte)(184)))));
@@ -359,7 +355,6 @@
             // 
             // xPanderAddressesByDepartment
             // 
-            this.xPanderAddressesByDepartment.CaptionFont = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
             this.xPanderAddressesByDepartment.Controls.Add(this.chklstDepartment);
             this.xPanderAddressesByDepartment.CustomColors.BackColor = System.Drawing.SystemColors.Control;
             this.xPanderAddressesByDepartment.CustomColors.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(184)))), ((int)(((byte)(184)))));

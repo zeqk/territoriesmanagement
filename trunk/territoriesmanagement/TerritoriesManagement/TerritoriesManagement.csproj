@@ -78,7 +78,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\GMap.NET.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Localizer, Version=1.0.3789.28344, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="Localizer, Version=1.0.3845.22081, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\Localizer.dll</HintPath>
     </Reference>
