@@ -570,6 +570,8 @@ namespace TerritoriesManagement.GUI
                 }
             }
 
+            panelAdData.Expand = false;
+
         }
 
         #region View territories

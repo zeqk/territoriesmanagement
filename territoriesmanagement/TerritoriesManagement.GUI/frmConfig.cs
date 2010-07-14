@@ -66,7 +66,7 @@ namespace TerritoriesManagement.GUI
             cmbCulture.DataSource = cultures;
 
             if(cultures.Contains( _config.Language))
-                cmbCulture.SelectedText = _config.Language;
+                cmbCulture.SelectedItem = _config.Language;
 
             txtPlace.Text = _config.Place;
 
@@ -88,6 +88,8 @@ namespace TerritoriesManagement.GUI
             if (cmbCulture.SelectedValue != null)
             {
                 _config.Language = (string) cmbCulture.SelectedItem;
+                Globalization.SetCurrentLanguage(_config.Language);
+                Globalization.RefreshUI();
             }
 
             if (!string.IsNullOrEmpty(txtPlace.Text))
@@ -101,6 +103,12 @@ namespace TerritoriesManagement.GUI
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            btnApply.PerformClick();
             this.Close();
         }
     }

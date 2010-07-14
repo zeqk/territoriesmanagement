@@ -64,6 +64,7 @@
     <DebugType>none</DebugType>
     <PlatformTarget>x86</PlatformTarget>
     <ErrorReport>prompt</ErrorReport>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'x86 CPU|x86' ">
     <OutputPath>bin\x86\x86 CPU\</OutputPath>
@@ -90,7 +91,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\AltosTools.Maps.dll</HintPath>
     </Reference>
-    <Reference Include="AltosTools.WindowsForms, Version=1.10.7.11, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="AltosTools.WindowsForms, Version=1.10.7.12, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\AltosTools.WindowsForms.dll</HintPath>
     </Reference>
@@ -111,7 +112,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\GMap.NET.WindowsForms.dll</HintPath>
     </Reference>
-    <Reference Include="Localizer, Version=1.0.3813.24736, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="Localizer, Version=1.0.3845.22081, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\Localizer.dll</HintPath>
     </Reference>

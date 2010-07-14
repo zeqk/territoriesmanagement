@@ -55,7 +55,7 @@
             this.btnAddress.Name = "btnAddress";
             this.btnAddress.Size = new System.Drawing.Size(220, 75);
             this.btnAddress.TabIndex = 0;
-            this.btnAddress.Text = "Address";
+            this.btnAddress.Text = "Addresses";
             this.btnAddress.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAddress.UseVisualStyleBackColor = true;
             this.btnAddress.Click += new System.EventHandler(this.btnAddress_Click);
@@ -121,20 +121,20 @@
             // 
             this.menuInteroperability.Image = ((System.Drawing.Image)(resources.GetObject("menuInteroperability.Image")));
             this.menuInteroperability.Name = "menuInteroperability";
-            this.menuInteroperability.Size = new System.Drawing.Size(152, 22);
+            this.menuInteroperability.Size = new System.Drawing.Size(148, 22);
             this.menuInteroperability.Text = "Interoperability";
             this.menuInteroperability.Click += new System.EventHandler(this.menuInteroperability_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(145, 6);
             // 
             // menuConfiguration
             // 
             this.menuConfiguration.Image = ((System.Drawing.Image)(resources.GetObject("menuConfiguration.Image")));
             this.menuConfiguration.Name = "menuConfiguration";
-            this.menuConfiguration.Size = new System.Drawing.Size(152, 22);
+            this.menuConfiguration.Size = new System.Drawing.Size(148, 22);
             this.menuConfiguration.Text = "Configuration";
             this.menuConfiguration.Click += new System.EventHandler(this.menuConfiguration_Click);
             // 
