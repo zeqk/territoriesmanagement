@@ -1,0 +1,41 @@
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Territorios 2010 Lomas</title> 
+	 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAX-5aoaGoVlbQL8KKRbiYdxSszpMhjZn-vPu9iubHyDFt5ysUmBTql7mQ8MGMdHQym-2xqsrxQYce9w" type="text/javascript"></script>
+	<!--<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAQ3FcHgfEPKR8C0YPfsL48xSlijgElRe80ZJOm3JGkYhDwHBafRRWR9MibODg9-Ob99aiTLeAgPc-QA" type="text/javascript"></script>     -->
+     <script src="http://zeqk01.awardspace.com/terrs/geoxml.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+var gml;
+    function initialize() {	
+      if (GBrowserIsCompatible()) {	  		
+        var map = new GMap2(document.getElementById("map_canvas"));		
+		
+        map.setCenter(new GLatLng(-34.766190, -58.404789), 13);
+        map.setUIToDefault();
+		exml = new GeoXml("exml", map, "http://maps.google.com.ar/maps/ms?ie=UTF8&hl=es&msa=0&msid=102827756829887289015.0004897fded299ca3f3a2&vps=1&jsv=249b&output=nl", {sidebarid:"the_side_bar",iwwidth:130,sortbyname:true, polylabeloffset:new GSize(-20,0),polylabelopacity:50,allfoldersopen:true});
+		exml.parse();
+
+
+      }
+    }
+
+    </script>
+  </head>
+  <body onload="initialize()" onunload="GUnload()">
+  <table border=1>
+      <tr>
+        <td width = 150 valign="top" >
+           <div id="the_side_bar" style="width: 300px; height: 768px;overflow:auto"></div>
+
+        </td>
+        <td>
+           <div id="map_canvas" style="width: 1024px; height: 768px; "></div>
+        </td>
+      </tr>
+    </table>      
+  </body>
+</html>
