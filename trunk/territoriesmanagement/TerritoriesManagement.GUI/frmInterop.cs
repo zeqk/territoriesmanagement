@@ -305,8 +305,10 @@ namespace TerritoriesManagement.GUI
                     {
 
                         string[] properties = chkListAddresses.CheckedItems.Cast<string>().ToArray();
-
-                        exported = tool.ExportToExcel(excelFile, "Address", "Addresses", properties, "", null);
+                        if(txtExcelTemplate.Text == "")
+                            exported = tool.ExportToExcel(excelFile, "Address", "Addresses", properties, "", null);
+                        else
+                            exported = tool.ExportToExcel(txtExcelTemplate.Text, excelFile, "Address", "Addresses", properties, "", null);
                     }
 
 
@@ -445,6 +447,15 @@ namespace TerritoriesManagement.GUI
             }
         }
         #endregion
+
+        private void btnSelectTemplate_Click(object sender, EventArgs e)
+        {
+            ofdSourceFile.Filter = "XML Spreadsheet 2003(*.xml)|*.xml";
+            if (ofdSourceFile.ShowDialog() == DialogResult.OK)
+            {
+                txtExcelTemplate.Text = Path.GetFullPath(ofdSourceFile.FileName);
+            }
+        }
 
         
 

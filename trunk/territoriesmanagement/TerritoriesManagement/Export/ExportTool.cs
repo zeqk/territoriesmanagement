@@ -15,15 +15,18 @@ using System.Web.UI.WebControls;
 using System.Web.UI;
 using GMap.NET;
 using TerritoriesManagement.Model;
+using System.Xml.Linq;
 
 namespace TerritoriesManagement.Export
 {
     public class ExportTool
     {
+        int rowPosition = 0;
+
         /// <summary>
         /// Export a entity set to a excel file
         /// </summary>
-        /// <param name="path">Excel file path</param>
+        /// <param name="path">Excel spreadsheet path</param>
         /// <param name="entity">Entity name</param>
         /// <param name="entitySet">Entity set name</param>
         /// <param name="properties">Array of properties name</param>
@@ -62,6 +65,102 @@ namespace TerritoriesManagement.Export
             }
 
             return rv;
+        }
+
+        /// <summary>
+        /// Export a entity set to a excel spreadsheet form a template
+        /// </summary>
+        /// /<param name="template">Excel template path</param>
+        /// <param name="path">Excel spreadsheet path</param>
+        /// <param name="entity">Entity name</param>
+        /// <param name="entitySet">Entity set name</param>
+        /// <param name="properties">Array of properties name</param>
+        /// <param name="where">Query string</param>
+        /// <param name="parameters">Query parameters</param>
+        /// <returns></returns>
+        public bool ExportToExcel(string template, string path, string entity, string entitySet, string[] properties, string where, params ObjectParameter[] parameters)
+        {
+            bool rv = true;
+            try
+            {
+                TerritoriesDataContext dm = new TerritoriesDataContext();
+                IList entities = Functions.GetEntities(dm, entity, entitySet, where, parameters);
+
+                DataTable dataTable = RecordsToDataTable(entities, properties.ToList());
+                rowPosition = 0;
+
+                XDocument document = XDocument.Load(template, LoadOptions.None);
+                var workbook = (XElement)document.FirstNode.NextNode; //Workbook
+                var sheet = (XElement)workbook.FirstNode.NextNode.NextNode.NextNode; //Worksheet
+
+                var table = (XElement)sheet.FirstNode; // Table
+
+                XElement row = (XElement)table.FirstNode;
+                while (row != null)
+                {
+                    if (row.Name.LocalName == "Row")
+                    {
+                        XElement cell = (XElement)row.FirstNode;
+                        while (cell != null)
+                        {
+                            XElement cellData = (XElement)cell.FirstNode;
+                            if (cellData != null)
+                            {
+
+                                cellData = getCellData(cellData, dataTable);
+                            }
+                            cell = (XElement)cell.NextNode;
+                        }
+                    }
+                    row = (XElement)row.NextNode;
+                    rowPosition++;
+                }
+                document.Save(path);
+            }
+            catch (Exception ex)
+            {
+                rv = false;
+                throw ex;
+            }
+
+            return rv;
+        }
+
+        private XElement getCellData(XElement cellData, DataTable dataTable)
+        {
+            if(cellData.Value != "" && cellData.Value.Contains('{'))
+            {
+                string[] fields = cellData.Value.Split('+');
+                if (fields.Length > 0)
+                {
+                    string value = "";
+                    for (int i = 0; i < fields.Length; i++)
+                    {
+                        string field = fields[i];
+                        field = field.Trim();
+                        field = field.Trim('{', '}');
+                        field = field.Trim();
+                        try
+                        {
+                            var valueObj = dataTable.Rows[rowPosition][field];
+                            if (valueObj != null)
+                            {
+                                if (value != "")
+                                    value += " ";
+                                value += (string)valueObj;
+                            }
+                        }
+                        catch (Exception ex)
+                        {           
+                        }
+                        
+                    }
+                    cellData.SetValue(value);
+                }
+
+            }
+
+            return cellData;
         }
 
 

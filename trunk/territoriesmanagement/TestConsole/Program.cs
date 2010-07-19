@@ -16,7 +16,52 @@ namespace TestConsole
     {
         static void Main(string[] args)
         {
-            prueba3();
+            probarXmlDoc();
+        }
+
+
+        static void probarXmlDoc()
+        {
+            try
+            {
+
+                XDocument document = XDocument.Load(@"C:\Users\zeqk\Desktop\TERRS PARA IMPRIMIR\REGISTROS\registro.xml", LoadOptions.None);
+                var workbook = (XElement)document.FirstNode.NextNode; //Workbook
+                var sheet = (XElement)workbook.FirstNode.NextNode.NextNode.NextNode; //Worksheet
+
+                var table = (XElement)sheet.FirstNode; // Table
+                //int rowsCount = int.Parse(table.Attribute("ExpandedRowCount").Value);
+
+                XElement row = (XElement)table.FirstNode;
+                int count = 0;
+                while (row != null)
+                {
+                    if (row.Name.LocalName == "Row")
+                    {
+                        XElement cell = (XElement)row.FirstNode;
+                        while (cell != null)
+                        {
+                            XElement cellData = (XElement)cell.FirstNode;
+                            if (cellData != null)
+                            {
+                                if (cellData.Value == "(num)")
+                                {
+                                    cellData.SetValue(count.ToString());
+                                    count++;
+                                }
+                            }
+                            cell = (XElement)cell.NextNode;
+                        }
+                    }
+                    row = (XElement)row.NextNode;
+                }
+                document.Save(@"C:\Users\zeqk\Desktop\TERRS PARA IMPRIMIR\REGISTROS\registro2.xml");
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
         }
 
         static void WriteNames()
