@@ -63,6 +63,8 @@
             this.chkCities = new System.Windows.Forms.CheckBox();
             this.ofdSourceFile = new System.Windows.Forms.OpenFileDialog();
             this.sfdDestinationFile = new System.Windows.Forms.SaveFileDialog();
+            this.txtExcelTemplate = new System.Windows.Forms.TextBox();
+            this.btnSelectTemplate = new System.Windows.Forms.Button();
             this.tabExternal.SuspendLayout();
             this.tabImportPanel.SuspendLayout();
             this.tabExternalImport.SuspendLayout();
@@ -193,6 +195,8 @@
             // 
             // grpExport
             // 
+            this.grpExport.Controls.Add(this.btnSelectTemplate);
+            this.grpExport.Controls.Add(this.txtExcelTemplate);
             this.grpExport.Controls.Add(this.rdoDepartments);
             this.grpExport.Controls.Add(this.rdoTerritories);
             this.grpExport.Controls.Add(this.rdoCities);
@@ -300,7 +304,7 @@
             // btnExportToExternal
             // 
             this.btnExportToExternal.Image = ((System.Drawing.Image)(resources.GetObject("btnExportToExternal.Image")));
-            this.btnExportToExternal.Location = new System.Drawing.Point(110, 261);
+            this.btnExportToExternal.Location = new System.Drawing.Point(107, 283);
             this.btnExportToExternal.Name = "btnExportToExternal";
             this.btnExportToExternal.Size = new System.Drawing.Size(344, 68);
             this.btnExportToExternal.TabIndex = 13;
@@ -435,6 +439,24 @@
             // 
             this.ofdSourceFile.InitialDirectory = "C:\\\\";
             // 
+            // txtExcelTemplate
+            // 
+            this.txtExcelTemplate.Enabled = false;
+            this.txtExcelTemplate.Location = new System.Drawing.Point(15, 239);
+            this.txtExcelTemplate.Name = "txtExcelTemplate";
+            this.txtExcelTemplate.Size = new System.Drawing.Size(484, 20);
+            this.txtExcelTemplate.TabIndex = 22;
+            // 
+            // btnSelectTemplate
+            // 
+            this.btnSelectTemplate.Location = new System.Drawing.Point(505, 239);
+            this.btnSelectTemplate.Name = "btnSelectTemplate";
+            this.btnSelectTemplate.Size = new System.Drawing.Size(41, 23);
+            this.btnSelectTemplate.TabIndex = 23;
+            this.btnSelectTemplate.Text = "...";
+            this.btnSelectTemplate.UseVisualStyleBackColor = true;
+            this.btnSelectTemplate.Click += new System.EventHandler(this.btnSelectTemplate_Click);
+            // 
             // frmInterop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -498,5 +520,7 @@
         private System.Windows.Forms.CheckedListBox chkListCities;
         private System.Windows.Forms.CheckedListBox chkListAddresses;
         private System.Windows.Forms.Button btnExportToExternal;
+        private System.Windows.Forms.TextBox txtExcelTemplate;
+        private System.Windows.Forms.Button btnSelectTemplate;
     }
 }
