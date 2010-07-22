@@ -14,6 +14,7 @@ namespace TerritoriesManagement.GUI
         public frmMain()
         {
             InitializeComponent();
+            Map.Initiate();
         }
 
         private void btnAddress_Click(object sender, EventArgs e)
@@ -154,6 +155,11 @@ namespace TerritoriesManagement.GUI
 
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Map.Close();
         }
 
 

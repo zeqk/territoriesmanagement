@@ -191,6 +191,7 @@
             this.Name = "frmMain";
             this.Text = "Territories Management";
             this.Load += new System.EventHandler(this.frmMain_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.statusStrip.ResumeLayout(false);

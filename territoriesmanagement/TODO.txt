@@ -1,2 +1,4 @@
 TODO:
 - logo
+- hacer la configuracion de la importacion en otra ventana
+- hace la exportacion a excel desde template con parametros

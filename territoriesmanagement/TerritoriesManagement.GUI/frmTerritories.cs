@@ -354,37 +354,34 @@ namespace TerritoriesManagement.GUI
 
         private void btnViewMap_Click(object sender, EventArgs e)
         {
-            using (frmMap myForm = new frmMap())
+            Map.MapForm.MapMode = MapModeEnum.EditArea;
+            Map.MapForm.Address = config.Place;
+            Territory t = FormToOject();
+            Map.MapForm.Object = t;
+
+            if (Map.MapForm.ShowDialog() == DialogResult.OK)
             {
-                myForm.MapMode = MapModeEnum.EditArea;
-                myForm.Address = config.Place;
-                Territory t = FormToOject();
-                myForm.Object = t;
+                string area = "";
 
-                if (myForm.ShowDialog() == DialogResult.OK)
+                GMapPolygon polygon = Map.MapForm.MainPolygon;
+                if (polygon != null)
                 {
-                    string area = "";
-
-                    GMapPolygon polygon = myForm.MainPolygon;
-                    if (polygon != null)
+                    CultureInfo info = CultureInfo.GetCultureInfo("en-US");
+                    foreach (PointLatLng item in polygon.Points)
                     {
-                        CultureInfo info = CultureInfo.GetCultureInfo("en-US");
-                        foreach (PointLatLng item in polygon.Points)
-                        {
-                            if (!string.IsNullOrEmpty(area))
-                                area += Environment.NewLine;
-                            area += item.Lat.ToString(info.NumberFormat) + " " + item.Lng.ToString(info.NumberFormat);
-                        }
-                        if (string.IsNullOrEmpty(area))
-                            t.Area = null;
-                        else
-                            t.Area = area;
+                        if (!string.IsNullOrEmpty(area))
+                            area += Environment.NewLine;
+                        area += item.Lat.ToString(info.NumberFormat) + " " + item.Lng.ToString(info.NumberFormat);
                     }
-                    else
+                    if (string.IsNullOrEmpty(area))
                         t.Area = null;
-
-                    ObjectToForm(t);
+                    else
+                        t.Area = area;
                 }
+                else
+                    t.Area = null;
+
+                ObjectToForm(t);
             }
         }
 

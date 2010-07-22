@@ -449,35 +449,32 @@ namespace TerritoriesManagement.GUI
         {
             if (dgvResult.SelectedRows.Count > 0)
             {
-                using (frmMap myForm = new frmMap())
-                {   
-                    var selectedRows = dgvResult.SelectedRows;
-                    List<GMapMarker> markers = new List<GMapMarker>();
-                    for (int i = 0; i < selectedRows.Count; i++)
+                var selectedRows = dgvResult.SelectedRows;
+                List<GMapMarker> markers = new List<GMapMarker>();
+                for (int i = 0; i < selectedRows.Count; i++)
+                {
+                    bool hasGeoPosition = (bool)selectedRows[i].Cells["HasGeoposition"].Value;
+                    if (hasGeoPosition)
                     {
-                        bool hasGeoPosition = (bool)selectedRows[i].Cells["HasGeoposition"].Value;
-                        if (hasGeoPosition)
-                        {
-                            double lat = (double)selectedRows[i].Cells["Lat"].Value;
-                            double lng = (double)selectedRows[i].Cells["Lng"].Value;
-                            string address = selectedRows[i].Cells["Address"].Value.ToString();
+                        double lat = (double)selectedRows[i].Cells["Lat"].Value;
+                        double lng = (double)selectedRows[i].Cells["Lng"].Value;
+                        string address = selectedRows[i].Cells["Address"].Value.ToString();
 
-                            int? internalNumber = (int?)selectedRows[i].Cells["InternalTerritoryNumber"].Value;
+                        int? internalNumber = (int?)selectedRows[i].Cells["InternalTerritoryNumber"].Value;
 
-                            GMapMarkerCustom marker = new GMapMarkerCustom(new PointLatLng(lat, lng));
-                            marker.Size = new System.Drawing.Size(4, 4);
-                            if(internalNumber.HasValue)
-                                marker.Tag = internalNumber.Value;
-                            marker.ToolTipText = address;
-                            marker.Icon = Properties.Resources.legendIcon;
-                            markers.Add(marker);
-                        }
+                        GMapMarkerCustom marker = new GMapMarkerCustom(new PointLatLng(lat, lng));
+                        marker.Size = new System.Drawing.Size(4, 4);
+                        if(internalNumber.HasValue)
+                            marker.Tag = internalNumber.Value;
+                        marker.ToolTipText = address;
+                        marker.Icon = Properties.Resources.legendIcon;
+                        markers.Add(marker);
                     }
-
-                    myForm.OtherMarkers = markers;
-                    myForm.MapMode = MapModeEnum.ReadOnly;
-                    myForm.ShowDialog();
                 }
+
+                Map.MapForm.OtherMarkers = markers;
+                Map.MapForm.MapMode = MapModeEnum.ReadOnly;
+                Map.MapForm.ShowDialog();
             }
         }
 
