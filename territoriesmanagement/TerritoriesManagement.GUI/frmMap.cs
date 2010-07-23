@@ -317,10 +317,10 @@ namespace TerritoriesManagement.GUI
                 if (Object is Territory || Object is Department || Object is City)
                 {
                     List<PointLatLng> auxPoints = new List<PointLatLng>();
-                    string name = (string)Functions.GetPropertyValue(Object, "Name");
-                    string areaStr = (string)Functions.GetPropertyValue(Object, "Area");
+                    string name = (string)Helper.GetPropertyValue(Object, "Name");
+                    string areaStr = (string)Helper.GetPropertyValue(Object, "Area");
                     if (areaStr != null)
-                        auxPoints = Functions.StrPointsToPointsLatLng(areaStr.Split('\n'));
+                        auxPoints = Helper.StrPointsToPointsLatLng(areaStr.Split('\n'));
 
                     currentPolygon = new GMapPolygon(auxPoints, name);
                     Pen pen = currentPolygon.Stroke;
@@ -562,7 +562,7 @@ namespace TerritoriesManagement.GUI
 
             if (Object != null && Object.GetType() == typeof(Territory))
             {
-                int id = (int)Functions.GetPropertyValue(Object,"IdTerritory");
+                int id = (int)Helper.GetPropertyValue(Object,"IdTerritory");
                 if (id != 0)
                 {
                     chklstTerritories.Check(id, "Id");
@@ -587,11 +587,11 @@ namespace TerritoriesManagement.GUI
             {
                 foreach (var item in territoriesToShow)
                 {
-                    string areaStr = (string)Functions.GetPropertyValue(item, "Area");
+                    string areaStr = (string)Helper.GetPropertyValue(item, "Area");
                     if (areaStr != null)
                     {
-                        List<PointLatLng> vertices = Functions.StrPointsToPointsLatLng(areaStr.Split('\n'));
-                        string terrName = (string)Functions.GetPropertyValue(item, "Name");
+                        List<PointLatLng> vertices = Helper.StrPointsToPointsLatLng(areaStr.Split('\n'));
+                        string terrName = (string)Helper.GetPropertyValue(item, "Name");
                         GMapPolygon polygon = new GMapPolygon(vertices, terrName);
                         top.Polygons.Add(polygon);
                     }
@@ -608,7 +608,7 @@ namespace TerritoriesManagement.GUI
 
             int currentId = 0;
             if (Object != null && Object is Territory)
-                currentId = (int)Functions.GetPropertyValue(Object, "IdTerritory");
+                currentId = (int)Helper.GetPropertyValue(Object, "IdTerritory");
 
             //chklstTerritory
             if (chklstTerritories.CheckedItems.Count > 0)
@@ -665,15 +665,15 @@ namespace TerritoriesManagement.GUI
             {
                 foreach (var item in addressesToShow)
                 {
-                    double? lat = (double?)Functions.GetPropertyValue(item, "Lat");
-                    double? lng = (double?)Functions.GetPropertyValue(item, "Lng");
+                    double? lat = (double?)Helper.GetPropertyValue(item, "Lat");
+                    double? lng = (double?)Helper.GetPropertyValue(item, "Lng");
                     if (lat.HasValue && lng.HasValue)
                     {
                         GMapMarkerCustom marker = new GMapMarkerCustom(new PointLatLng(lat.Value, lng.Value));
-                        int? internalNumber = (int?)Functions.GetPropertyValue(item, "InternalTerritoryNumber");
+                        int? internalNumber = (int?)Helper.GetPropertyValue(item, "InternalTerritoryNumber");
                         if (internalNumber.HasValue)
                             marker.Tag = internalNumber.Value;
-                        marker.ToolTipText = Functions.GetPropertyValue(item, "Address").ToString();
+                        marker.ToolTipText = Helper.GetPropertyValue(item, "Address").ToString();
                         marker.Size = new System.Drawing.Size(4, 4);
                         marker.ToolTipMode = MarkerTooltipMode.OnMouseOver;
                         marker.Icon = Properties.Resources.legendIcon;

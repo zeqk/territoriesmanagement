@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Resources;
 using System.Windows.Forms;
+using TerritoriesManagement.Model;
 using TerritoriesManagement.Export;
 using TerritoriesManagement.Import;
 using AltosTools.WindowsForms;
@@ -50,11 +51,6 @@ namespace TerritoriesManagement.GUI
             grdImportConfig.SelectedObject = _config;
 
             LoadExportCheckList();
-
-            //Export.ExportTool tool = new TerritoriesManagement.Export.ExportTool();
-            //List<string> entities = new List<string>();
-            //entities.Add("Address");
-            //tool.ExportData("C:\\hola.tmx", entities);
             
         }
 
@@ -304,33 +300,33 @@ namespace TerritoriesManagement.GUI
                     if (rdoAddresses.Checked)
                     {
 
-                        string[] properties = chkListAddresses.CheckedItems.Cast<string>().ToArray();
+                        string[] properties = chkListAddresses.CheckedItems.Cast<Property>().Select(p => p.Name).ToArray();
                         if(txtExcelTemplate.Text == "")
-                            exported = tool.ExportToExcel(excelFile, "Address", "Addresses", properties, "", null);
+                            exported = tool.ExportToExcel<Address>(excelFile, properties, "", null);
                         else
-                            exported = tool.ExportToExcel(txtExcelTemplate.Text, excelFile, "Address", "Addresses", properties, "", null);
+                            exported = tool.ExportToExcel<Address>(txtExcelTemplate.Text, excelFile, properties, "", null);
                     }
 
 
                     if (rdoTerritories.Checked)
                     {
-                        string[] properties = chkListTerritories.CheckedItems.Cast<string>().ToArray();
+                        string[] properties = chkListTerritories.CheckedItems.Cast<Property>().Select(p => p.Name).ToArray();
 
-                        exported = tool.ExportToExcel(excelFile, "Territory", "Territories", properties, "", null);
+                        exported = tool.ExportToExcel<Territory>(excelFile, properties, "", null);
                     }
 
                     if (rdoCities.Checked)
                     {
-                        string[] properties = chkListCities.CheckedItems.Cast<string>().ToArray();
+                        string[] properties = chkListCities.CheckedItems.Cast<Property>().Select(p => p.Name).ToArray();
 
-                        exported = tool.ExportToExcel(excelFile, "City", "Cities", properties, "", null);
+                        exported = tool.ExportToExcel<City>(excelFile, properties, "", null);
                     }
 
                     if (rdoDepartments.Checked)
                     {
-                        string[] properties = chkListDepartments.CheckedItems.Cast<string>().ToArray();
+                        string[] properties = chkListDepartments.CheckedItems.Cast<Property>().Select(p => p.Name).ToArray();
 
-                        exported = tool.ExportToExcel(excelFile, "Department", "Departments", properties, "", null);
+                        exported = tool.ExportToExcel<Department>(excelFile, properties, "", null);
                     }
                 }
                 catch (Exception ex)
@@ -349,13 +345,17 @@ namespace TerritoriesManagement.GUI
         private void LoadExportCheckList()
         {
             //Export
-            chkListAddresses.Items.AddRange(Functions.GetPropertyStrListByTypeName("Address").ToArray());
-                        
-            chkListTerritories.Items.AddRange(Functions.GetPropertyStrListByTypeName("Territory").ToArray());
-                        
-            chkListCities.Items.AddRange(Functions.GetPropertyStrListByTypeName("City").ToArray());
-                        
-            chkListDepartments.Items.AddRange(Functions.GetPropertyStrListByTypeName("Department").ToArray());
+            chkListAddresses.DisplayMember = "Name";
+            chkListAddresses.Items.AddRange(Helper.GetPropertyListByType("Address").ToArray());
+
+            chkListTerritories.DisplayMember = "Name";
+            chkListTerritories.Items.AddRange(Helper.GetPropertyListByType("Territory").ToArray());
+
+            chkListCities.DisplayMember = "Name";
+            chkListCities.Items.AddRange(Helper.GetPropertyListByType("City").ToArray());
+
+            chkListDepartments.DisplayMember = "Name";
+            chkListDepartments.Items.AddRange(Helper.GetPropertyListByType("Department").ToArray());
         }
 
         private void rdo_CheckedChanged(object sender, EventArgs e)

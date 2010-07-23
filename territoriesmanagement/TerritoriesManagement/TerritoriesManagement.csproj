@@ -113,7 +113,7 @@
     </Compile>
     <Compile Include="DataBridge\Addresses.cs" />
     <Compile Include="Export\ExportTool.cs" />
-    <Compile Include="Functions.cs" />
+    <Compile Include="Helper.cs" />
     <Compile Include="Import\ImporterConfig.cs" />
     <Compile Include="Import\ImportTable.cs" />
     <Compile Include="Import\ImportTool.cs" />

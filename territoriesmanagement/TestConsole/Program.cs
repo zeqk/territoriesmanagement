@@ -16,7 +16,7 @@ namespace TestConsole
     {
         static void Main(string[] args)
         {
-            probarXmlDoc();
+            var list = Helper.GetPropertyListByType("City");
         }
 
 
