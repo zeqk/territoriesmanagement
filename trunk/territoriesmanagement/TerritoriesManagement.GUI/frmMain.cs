@@ -81,7 +81,7 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
-                DateTime lastModification = Functions.GetLastModDate();
+                DateTime lastModification = Helper.GetLastModDate();
                 CultureInfo info = CultureInfo.GetCultureInfo(Globalization.CurrentAssociatedCulture);
                 lblConnectionStatusValue.Text = GetString("OK. Last modification date: ") + lastModification.ToString(info.DateTimeFormat);
                 lblConnectionStatusValue.ForeColor = Color.Green;

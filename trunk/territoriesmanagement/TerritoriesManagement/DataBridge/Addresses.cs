@@ -378,7 +378,7 @@ namespace TerritoriesManagement.DataBridge
             {
                 if (t.Area != null && t.Area != "")
                 {
-                    List<PointLatLng> polygon = Functions.StrPointsToPointsLatLng(t.Area.Split('\n'));
+                    List<PointLatLng> polygon = Helper.StrPointsToPointsLatLng(t.Area.Split('\n'));
                     if (PointInPolygon(point, polygon.ToArray()))
                     {
                         rv = t;

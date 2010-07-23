@@ -1171,8 +1171,8 @@ namespace TerritoriesManagement.Import
 
                 foreach (var entityName in entityList)
                 {
-                    Type entityType = Functions.GetEntityTypeByEntityName(entityName);
-                    string entitySetName = Functions.GetEntitySetNameByEntityName(entityName);
+                    Type entityType = Helper.GetEntityTypeByEntityName(entityName);
+                    string entitySetName = Helper.GetEntitySetNameByEntityName(entityName);
                     string keyProperty = "Id" + entityName;
 
                     DataTable dt = ds.Tables[entitySetName];

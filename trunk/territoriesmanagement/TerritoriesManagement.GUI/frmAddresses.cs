@@ -12,6 +12,7 @@ using Localizer;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.Export;
 using AltosTools.WindowsForms.Maps;
+using TerritoriesManagement.Model;
 
 namespace TerritoriesManagement.GUI
 {
@@ -434,9 +435,8 @@ namespace TerritoriesManagement.GUI
             try
             {
                 Addresses address = new Addresses();
-                string[] properties = Functions.GetPropertyStrListByTypeName("Address").ToArray();
                 ExportTool tool = new ExportTool();
-                tool.ExportToExcel(path, "Address", "Addresses", properties, strQuery, parameters.ToArray());
+                tool.ExportToExcel<Address>(path, new string[0], strQuery, parameters.ToArray());
             }
             catch (Exception ex)
             {

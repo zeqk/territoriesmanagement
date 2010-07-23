@@ -33,13 +33,18 @@ namespace TerritoriesManagement.Export
         /// <param name="where">Query string</param>
         /// <param name="parameters">Query parameters</param>
         /// <returns></returns>
-        public bool ExportToExcel(string path,string entity,string entitySet, string[] properties, string where, params ObjectParameter[] parameters)
+        public bool ExportToExcel<TEntity>(string path, string[] properties, string where, params ObjectParameter[] parameters)
         {
             bool rv = true;
             try
             {
                 TerritoriesDataContext dm = new TerritoriesDataContext();
-                IList entities = Functions.GetEntities(dm, entity, entitySet, where, parameters);
+                IList entities = Helper.GetEntities<TEntity>(dm, where, parameters);
+
+                if (properties == null || properties.Length == 0)
+                {
+                    properties = Helper.GetPropertyListByType(typeof(TEntity)).Select(p => p.Name).ToArray();
+                }
 
                 DataTable table = RecordsToDataTable(entities, properties.ToList());
 
@@ -78,13 +83,18 @@ namespace TerritoriesManagement.Export
         /// <param name="where">Query string</param>
         /// <param name="parameters">Query parameters</param>
         /// <returns></returns>
-        public bool ExportToExcel(string template, string path, string entity, string entitySet, string[] properties, string where, params ObjectParameter[] parameters)
+        public bool ExportToExcel<TEntity>(string template, string path, string[] properties, string where, params ObjectParameter[] parameters)
         {
             bool rv = true;
             try
             {
                 TerritoriesDataContext dm = new TerritoriesDataContext();
-                IList entities = Functions.GetEntities(dm, entity, entitySet, where, parameters);
+                IList entities = Helper.GetEntities<TEntity>(dm, where, parameters);
+
+                if (properties == null || properties.Length == 0)
+                {
+                    properties = Helper.GetPropertyListByType(typeof(TEntity)).Select(p => p.Name).ToArray();
+                }
 
                 DataTable dataTable = RecordsToDataTable(entities, properties.ToList());
                 rowPosition = 0;
@@ -174,9 +184,27 @@ namespace TerritoriesManagement.Export
                 
                 foreach (var entityName in entityList)
                 {
-                    string entitySetName = Functions.GetEntitySetNameByEntityName(entityName);                    
-                    IList records = Functions.GetEntities(dm, entityName, entitySetName, "");
-                    List<Property> propLst = Functions.GetPropertyListByType(records[0].GetType());
+                    string entitySetName = Helper.GetEntitySetNameByEntityName(entityName);
+                    IList records = null;
+                    switch (entityName)
+                    {
+                        case "Department": records = Helper.GetEntities<Department>(dm, "");
+                            break;
+                        case "City": records = Helper.GetEntities<City>(dm, "");
+                            break;
+                        case "Territory": records = Helper.GetEntities<Territory>(dm, "");
+                            break;
+                        case "Address": records = Helper.GetEntities<Address>(dm, "");
+                            break;
+                        case "Tour": records = Helper.GetEntities<Tour>(dm, "");
+                            break;
+                        case "Publisher": records = Helper.GetEntities<Publisher>(dm, "");
+                            break;
+                        default:
+                            break;
+                    }
+
+                    List<Property> propLst = Helper.GetPropertyListByType(entityName);
                     DataTable dt = RecordsToDataTable(records, propLst);
                     dt.TableName = entitySetName;
                     ds.Tables.Add(dt);
@@ -198,10 +226,10 @@ namespace TerritoriesManagement.Export
             {
                 foreach (Property item in propLst)
                 {
-                    if (!Functions.IsNullableType(item.Type))
+                    if (!Helper.IsNullableType(item.Type))
                         dt.Columns.Add(item.Name,item.Type);
                     else
-                        dt.Columns.Add(item.Name, Functions.NullableToType(item.Type));
+                        dt.Columns.Add(item.Name, Helper.NullableToType(item.Type));
                 }
 
                 foreach (object item in records)
@@ -239,7 +267,7 @@ namespace TerritoriesManagement.Export
         {
             foreach (DataColumn column in row.Table.Columns)
             {
-                object value = Functions.GetPropertyValue(obj, column.ColumnName);
+                object value = Helper.GetPropertyValue(obj, column.ColumnName);
                 row.SetField(column, value);
             }
 
