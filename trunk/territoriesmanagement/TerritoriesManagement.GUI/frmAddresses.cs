@@ -472,6 +472,7 @@ namespace TerritoriesManagement.GUI
                     }
                 }
 
+                Map.MapForm.Clear();
                 Map.MapForm.OtherMarkers = markers;
                 Map.MapForm.MapMode = MapModeEnum.ReadOnly;
                 Map.MapForm.ShowDialog();

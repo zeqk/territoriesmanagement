@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace TerritoriesManagement.GUI
 {
@@ -11,8 +12,8 @@ namespace TerritoriesManagement.GUI
 
         static public void Initiate()
         {
-            MapForm = new frmMap();
-        }        
+            MapForm = new frmMap();            
+        }
 
         static public void Close()
         {

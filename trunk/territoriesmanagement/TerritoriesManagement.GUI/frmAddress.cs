@@ -177,6 +177,7 @@ namespace TerritoriesManagement.GUI
 
         private void btnSearchGeoPos_Click(object sender, EventArgs e)
         {
+            Map.MapForm.Clear();
             Map.MapForm.MapType = config.MapType;
             Map.MapForm.MapMode = MapModeEnum.EditPoint;
             Address a = this.Address;
