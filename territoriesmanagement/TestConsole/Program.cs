@@ -16,7 +16,10 @@ namespace TestConsole
     {
         static void Main(string[] args)
         {
-            var list = Helper.GetPropertyListByType("City");
+
+            Class2 objeto = new Class2();
+            Console.ReadKey();
+
         }
 
 

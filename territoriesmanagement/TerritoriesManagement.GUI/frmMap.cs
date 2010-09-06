@@ -23,6 +23,7 @@ namespace TerritoriesManagement.GUI
     {
 
         Addresses server = new Addresses();
+
         #region Fields
         public object Object;
 
@@ -145,13 +146,24 @@ namespace TerritoriesManagement.GUI
             InitializeComponent();
         }
         #endregion
+
+
+        public void Clear()
+        {
+            MainMap.Overlays.Clear();
+            _otherPolygons = null;
+            _otherPolygons = null;
+            Object = null;            
+        }
+
         private void frmGeoArea_Load(object sender, EventArgs e)
         {
-            ConfigureAdditionalData();            
+
+            ConfigureAdditionalData();
 
             //load comboboxes
             cboMapType.DataSource = Enum.GetValues(_mapType.GetType());
-
+            
             //config map
             ConfigMap();
 
@@ -248,7 +260,8 @@ namespace TerritoriesManagement.GUI
                         }
                     }
                 }
-                else
+
+                if (_mapMode == MapModeEnum.EditPoint)
                 {
                     if (currentMarker != null)
                     {
@@ -266,8 +279,8 @@ namespace TerritoriesManagement.GUI
                     }
                 }
 
-
-
+                if (_mapMode == MapModeEnum.ReadOnly)
+                    centered = MainMap.ZoomAndCenterMarkers("top");
 
                 if (centerMarker == null)
                     centerMarker = new GMapMarkerCross(new PointLatLng());
@@ -390,11 +403,8 @@ namespace TerritoriesManagement.GUI
             }
         }
         
-        #endregion        
-
+        #endregion                
         
-
-
         #region Controls events methods
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -527,16 +537,6 @@ namespace TerritoriesManagement.GUI
         
 
         #endregion
-
-        private void chklstTerritory_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void ConfigureAdditionalData()
         {
@@ -764,6 +764,8 @@ namespace TerritoriesManagement.GUI
             ViewTerritories();
             ViewAddresses();
         }
+
+        
 
     }
 }

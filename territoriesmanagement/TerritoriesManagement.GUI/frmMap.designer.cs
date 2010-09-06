@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMap));
             this.btnGenImage = new System.Windows.Forms.Button();
             this.sfdSaveScreen = new System.Windows.Forms.SaveFileDialog();
             this.tableBody = new System.Windows.Forms.TableLayoutPanel();
@@ -136,6 +137,7 @@
             // 
             this.panelAdData.AssociatedSplitter = this.splitter1;
             this.panelAdData.BackColor = System.Drawing.Color.Transparent;
+            this.panelAdData.CaptionFont = new System.Drawing.Font("Tahoma", 11F, System.Drawing.FontStyle.Bold);
             this.panelAdData.CaptionHeight = 27;
             this.panelAdData.Controls.Add(this.splitContainer1);
             this.panelAdData.CustomColors.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(184)))), ((int)(((byte)(184)))));
@@ -214,6 +216,7 @@
             // 
             // xPanTerritories
             // 
+            this.xPanTerritories.CaptionFont = new System.Drawing.Font("Tahoma", 7.25F, System.Drawing.FontStyle.Bold);
             this.xPanTerritories.Controls.Add(this.chklstTerritories);
             this.xPanTerritories.CustomColors.BackColor = System.Drawing.SystemColors.Control;
             this.xPanTerritories.CustomColors.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(184)))), ((int)(((byte)(184)))));
@@ -250,6 +253,7 @@
             // chklstTerritories
             // 
             this.chklstTerritories.CheckOnClick = true;
+            this.chklstTerritories.DataSource = ((System.Collections.ICollection)(resources.GetObject("chklstTerritories.DataSource")));
             this.chklstTerritories.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chklstTerritories.FormattingEnabled = true;
             this.chklstTerritories.Location = new System.Drawing.Point(1, 25);
@@ -259,6 +263,7 @@
             // 
             // xPanderAdresses
             // 
+            this.xPanderAdresses.CaptionFont = new System.Drawing.Font("Tahoma", 7.25F, System.Drawing.FontStyle.Bold);
             this.xPanderAdresses.Controls.Add(this.xPanderLstAddresses);
             this.xPanderAdresses.CustomColors.BackColor = System.Drawing.SystemColors.Control;
             this.xPanderAdresses.CustomColors.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(184)))), ((int)(((byte)(184)))));
@@ -310,6 +315,7 @@
             // 
             // xPanderAddressesByTerritory
             // 
+            this.xPanderAddressesByTerritory.CaptionFont = new System.Drawing.Font("Tahoma", 7.25F, System.Drawing.FontStyle.Bold);
             this.xPanderAddressesByTerritory.Controls.Add(this.chklstTerritory);
             this.xPanderAddressesByTerritory.CustomColors.BackColor = System.Drawing.SystemColors.Control;
             this.xPanderAddressesByTerritory.CustomColors.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(184)))), ((int)(((byte)(184)))));
@@ -346,6 +352,7 @@
             // chklstTerritory
             // 
             this.chklstTerritory.CheckOnClick = true;
+            this.chklstTerritory.DataSource = ((System.Collections.ICollection)(resources.GetObject("chklstTerritory.DataSource")));
             this.chklstTerritory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chklstTerritory.FormattingEnabled = true;
             this.chklstTerritory.Location = new System.Drawing.Point(1, 25);
@@ -355,6 +362,7 @@
             // 
             // xPanderAddressesByDepartment
             // 
+            this.xPanderAddressesByDepartment.CaptionFont = new System.Drawing.Font("Tahoma", 7.25F, System.Drawing.FontStyle.Bold);
             this.xPanderAddressesByDepartment.Controls.Add(this.chklstDepartment);
             this.xPanderAddressesByDepartment.CustomColors.BackColor = System.Drawing.SystemColors.Control;
             this.xPanderAddressesByDepartment.CustomColors.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(184)))), ((int)(((byte)(184)))), ((int)(((byte)(184)))));
@@ -392,6 +400,7 @@
             // chklstDepartment
             // 
             this.chklstDepartment.CheckOnClick = true;
+            this.chklstDepartment.DataSource = ((System.Collections.ICollection)(resources.GetObject("chklstDepartment.DataSource")));
             this.chklstDepartment.Dock = System.Windows.Forms.DockStyle.Fill;
             this.chklstDepartment.FormattingEnabled = true;
             this.chklstDepartment.Location = new System.Drawing.Point(1, 25);
