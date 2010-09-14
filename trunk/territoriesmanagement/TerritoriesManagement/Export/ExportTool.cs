@@ -1,21 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Data.EntityClient;
-using System.Data.Common;
 using System.Collections;
-using System.Drawing;
-using System.IO;
-using System.Globalization;
-using System.Data.Objects;
+using System.Collections.Generic;
 using System.Data;
-using System.Xml;
-using System.Web.UI.WebControls;
+using System.Data.Objects;
+using System.IO;
+using System.Linq;
 using System.Web.UI;
-using GMap.NET;
-using TerritoriesManagement.Model;
+using System.Web.UI.WebControls;
 using System.Xml.Linq;
+using TerritoriesManagement.Model;
 
 namespace TerritoriesManagement.Export
 {

@@ -177,23 +177,25 @@ namespace TerritoriesManagement.GUI
 
         private void btnSearchGeoPos_Click(object sender, EventArgs e)
         {
-            Map.MapForm.Clear();
-            Map.MapForm.MapType = config.MapType;
-            Map.MapForm.MapMode = MapModeEnum.EditPoint;
+            //Map.MapForm.Clear();
+
+            frmMap map = new frmMap();
+            map.MapType = config.MapType;
+            map.MapMode = MapModeEnum.EditPoint;
             Address a = this.Address;
 
-            Map.MapForm.Object = a;
+            map.Object = a;
 
-            Map.MapForm.Address = a.Street + " " + a.Number + ", " + a.City.Name + ", " + GetDepartmentName() + ", " + config.Place;
+            map.Address = a.Street + " " + a.Number + ", " + a.City.Name + ", " + GetDepartmentName() + ", " + config.Place;
 
-            Map.MapForm.ShowDialog();
+            map.ShowDialog();
 
-            if (Map.MapForm.DialogResult == DialogResult.OK)
+            if (map.DialogResult == DialogResult.OK)
             {
                 chkHaveGeoPos.Checked = true;
 
-                txtLat.Text = Map.MapForm.MainMarker.Position.Lat.ToString();
-                txtLon.Text = Map.MapForm.MainMarker.Position.Lng.ToString();
+                txtLat.Text = map.MainMarker.Position.Lat.ToString();
+                txtLon.Text = map.MainMarker.Position.Lng.ToString();
             }
         }
 

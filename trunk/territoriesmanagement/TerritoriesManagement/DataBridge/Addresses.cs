@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Data;
 using System.Data.EntityClient;
 using System.Data.Objects;
-using System.Data.Objects.DataClasses;
+using System.Linq;
 using System.Resources;
-using TerritoriesManagement.Model;
 using GMap.NET;
+using TerritoriesManagement.Model;
 
 namespace TerritoriesManagement.DataBridge
 {
@@ -356,7 +354,7 @@ namespace TerritoriesManagement.DataBridge
             {
                 var objectResults = _dm.territories_GetAll();
                 var results = from t in objectResults
-                              select new { Id = t.IdTerritory, Name = t.Number + " - " + t.Name };
+                              select new { Id = t.IdTerritory, Name = GetNumber(t.Number) + " - " + t.Name };
 
                 var rv = results.ToList();
                 rv.Add(new { Id = -1, Name = GetString("(no territory)") });
@@ -366,6 +364,18 @@ namespace TerritoriesManagement.DataBridge
             {
                 throw ex;
             }
+        }
+
+        string GetNumber(int? number)
+        {
+            string numberStr = "";
+
+            if (number.HasValue)
+            {
+                numberStr = number.Value.ToString().PadLeft(3, '0');
+            }
+
+            return numberStr;
         }
 
         public Territory FindTerritory(PointLatLng point)

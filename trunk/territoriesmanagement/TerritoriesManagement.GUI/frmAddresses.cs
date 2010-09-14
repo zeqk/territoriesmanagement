@@ -472,10 +472,10 @@ namespace TerritoriesManagement.GUI
                     }
                 }
 
-                Map.MapForm.Clear();
-                Map.MapForm.OtherMarkers = markers;
-                Map.MapForm.MapMode = MapModeEnum.ReadOnly;
-                Map.MapForm.ShowDialog();
+                frmMap map = new frmMap();
+                map.OtherMarkers = markers;
+                map.MapMode = MapModeEnum.ReadOnly;
+                map.ShowDialog();
             }
         }
 

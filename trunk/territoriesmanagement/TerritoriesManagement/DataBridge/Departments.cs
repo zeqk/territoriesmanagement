@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.ComponentModel;
-using System.Data;
 using System.Data.EntityClient;
-using System.Data.EntityModel;
 using System.Data.Objects;
 using System.Linq;
-using System.Text;
-using System.Resources;
 using TerritoriesManagement.Model;
 
 namespace TerritoriesManagement.DataBridge
@@ -18,8 +11,6 @@ namespace TerritoriesManagement.DataBridge
     {
         private TerritoriesDataContext _dm;
         private Func<TerritoriesDataContext, TerritoriesManagement.Model.Department, IQueryable<TerritoriesManagement.Model.Department>> _compiledSameDepartment;
-
-        ResourceManager _rm;
 
         #region Constructors
         public Departments()        

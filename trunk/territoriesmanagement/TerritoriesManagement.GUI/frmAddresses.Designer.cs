@@ -177,7 +177,7 @@
             // lblResult
             // 
             this.lblResult.AutoSize = true;
-            this.lblResult.Location = new System.Drawing.Point(2, 147);
+            this.lblResult.Location = new System.Drawing.Point(-1, 147);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(37, 13);
             this.lblResult.TabIndex = 56;
@@ -377,7 +377,7 @@
             // lblResultCount
             // 
             this.lblResultCount.AutoSize = true;
-            this.lblResultCount.Location = new System.Drawing.Point(46, 147);
+            this.lblResultCount.Location = new System.Drawing.Point(65, 147);
             this.lblResultCount.Name = "lblResultCount";
             this.lblResultCount.Size = new System.Drawing.Size(0, 13);
             this.lblResultCount.TabIndex = 59;
@@ -387,12 +387,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 524);
-            this.Controls.Add(this.lblResultCount);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.lblResult);
+            this.Controls.Add(this.lblResultCount);
             this.Controls.Add(this.lblFiltered);
             this.Controls.Add(this.dgvResult);
+            this.Controls.Add(this.lblResult);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnAll);
             this.Name = "frmAddresses";
