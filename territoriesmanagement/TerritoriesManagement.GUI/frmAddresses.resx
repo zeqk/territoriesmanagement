@@ -194,8 +194,8 @@
   <data name="btnToExcel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALCAAA
-        CwgBwL2l2gAABUVJREFUSEu1lXtQVFUcx4/oOCaKoCKvykEzH6DpZJYKkqNlOZJjKgI1aS918lVjyKSY
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBwAA
+        CwcBtnMLwAAABUVJREFUSEu1lXtQVFUcx4/oOCaKoCKvykEzH6DpZJYKkqNlOZJjKgI1aS918lVjyKSY
         YFOjBS1YiigCaii+E3V6yMN0MQEVdmFhH7DsQxzZ172Lgc409e137t1lltT8q535zO93fuf8vt9zzp17
         lwFg/yeSuCC4emG326KJTIfDvovI8cXpcOSIgrBL29z8VVFh4YCKigpWevZHdvxYCTtz+hRTq1W9eMDA
         5XINstk6qsgAJNwDCcOLKIhobFCj4EB+amVl5eMNSJD5MJ/yh4s7yYRwu0U0qFX4blcOTp44sfVcael/
@@ -223,8 +223,8 @@
   <data name="btnDelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALCAAA
-        CwgBwL2l2gAABWJJREFUSEu9lnlMk2ccx3/okmHmwVmOFugqrA4Rh4ywekTnNDoFB27GbcEDBRyCzqGo
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBwAA
+        CwcBtnMLwAAABWJJREFUSEu9lnlMk2ccx3/okmHmwVmOFugqrA4Rh4ywekTnNDoFB27GbcEDBRyCzqGo
         CFgNTovIUcSDOgWMooIHEgsyEy8Q8ZgXFCmUq/Si7duLogHX/Pa00eJfi/6hb/LNk/d4vp/n+/s9b94X
         EBE+pD6ouXXhHwegvFABb6S6dB7kJ0vcnwQF7Hzo5cwTr4mJ0pJr6l0ZoD5yEKTZe6HnYD5ICvOhtSAX
         WgVHoOW4APQSCZikUjD29tplT9AUGwNNa1bAvbhVcC8hFhp/XRZUw6LLhD407bUZYXzpgWzQcHeARnAY
@@ -253,8 +253,8 @@
   <data name="btnEdit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALCAAA
-        CwgBwL2l2gAABLZJREFUSEu1lnlsVGUUxS/tKJRSE1qkAxYkIIrUtkECIqYkYFErMdISgbqAVhZjKgRQ
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBwAA
+        CwcBtnMLwAAABLZJREFUSEu1lnlsVGUUxS/tKJRSE1qkAxYkIIrUtkECIqYkYFErMdISgbqAVhZjKgRQ
         VBblHyIYEcVATQgU4oJYFglRAVlkKbad2g7TbdbSmVKmy8zQ0mXmrcf7hrb2Far8wyS/zHtvvnfOved+
         72UIAN1L7qm4VniPgdLuprsFUhN58paklL5hzHNsSl0T+O3jSP+vn1Dg3FfUZjlIbVcOhNEbdHhIuQsg
         NVLz2T2TixcYW8vfjIdtSSxqN6Ycbf7lw+gbl3axwU/9GHQ2kvI/QGwhf71tRMGiRKcpMwbVy0fAvcqI
@@ -280,8 +280,8 @@
   <data name="btnNew.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALCAAA
-        CwgBwL2l2gAABVRJREFUSEu9lnlQU1cUxg9L1emgRFCwVMIALkSBFii2SEW07VTtSMcFZaxIXRgYrFQL
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBwAA
+        CwcBtnMLwAAABVRJREFUSEu9lnlQU1cUxg9L1emgRFCwVMIALkSBFii2SEW07VTtSMcFZaxIXRgYrFQL
         skmx1cgiRExdqiChDopSoVah4EJVoAoSAUkYk9BKIEAISUhilgKh9vS+KIl2+of9Q9/Mb857J/d+3/vu
         fS8JICK8TF6qOHXjr8ZAeq4ELJwBaWnJhPtBAQnNbzrmtC0O2igtOgnytN2gLDwB/UcOg+T7oyDKzQIB
         +xC05RyAlkO58NfoKIwNDz+HOUFzXDRQcHfEwr0v46jzKTUMz/ZKurOy2nv22a6DWSBPSQBlUSH0H2X/

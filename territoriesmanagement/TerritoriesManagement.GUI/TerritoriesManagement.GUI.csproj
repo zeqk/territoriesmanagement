@@ -87,7 +87,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\AltosTools.dll</HintPath>
     </Reference>
-    <Reference Include="AltosTools.Maps, Version=1.10.7.9, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="AltosTools.Maps, Version=1.10.8.22, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\AltosTools.Maps.dll</HintPath>
     </Reference>
@@ -208,7 +208,6 @@
     <Compile Include="ImporterConfig\ImporterConfig.cs" />
     <Compile Include="ImporterConfig\FieldConverter.cs" />
     <Compile Include="ImporterConfig\DepartmentsTableConverter.cs" />
-    <Compile Include="Map.cs" />
     <Compile Include="MapModeEnum.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

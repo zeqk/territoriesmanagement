@@ -1,18 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.ComponentModel;
 using System.Data;
 using System.Data.Objects;
-using System.Data.EntityClient;
-using System.IO;
 using System.Globalization;
-using System.ComponentModel;
-using System.Resources;
-using System.Reflection;
-using System.Xml;
-using System.Runtime.Serialization;
+using System.IO;
+using System.Linq;
 using AltosTools.Data;
 using TerritoriesManagement.Model;
 
@@ -43,9 +36,7 @@ namespace TerritoriesManagement.Import
 
         private Func<TerritoriesDataContext, TerritoriesManagement.Model.Department, IQueryable<TerritoriesManagement.Model.Department>> _compiledSameDepartment;
         private Func<TerritoriesDataContext, City, int,IQueryable<City>> _compiledSameCity;
-        private Func<TerritoriesDataContext, Territory, IQueryable<Territory>> _compiledSameTerritory;
-
-        ResourceManager _rm;
+        private Func<TerritoriesDataContext, Territory, IQueryable<Territory>> _compiledSameTerritory;        
 
         public ImportTool()
 	    {

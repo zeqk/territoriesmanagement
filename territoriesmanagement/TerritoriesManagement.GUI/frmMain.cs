@@ -14,7 +14,7 @@ namespace TerritoriesManagement.GUI
         public frmMain()
         {
             InitializeComponent();
-            Map.Initiate();
+            //Map.Initiate();
         }
 
         private void btnAddress_Click(object sender, EventArgs e)
@@ -159,7 +159,7 @@ namespace TerritoriesManagement.GUI
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Map.Close();
+            //Map.Close();
         }
 
 

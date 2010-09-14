@@ -354,16 +354,17 @@ namespace TerritoriesManagement.GUI
 
         private void btnViewMap_Click(object sender, EventArgs e)
         {
-            Map.MapForm.MapMode = MapModeEnum.EditArea;
-            Map.MapForm.Address = config.Place;
+            frmMap map = new frmMap();
+            map.MapMode = MapModeEnum.EditArea;
+            map.Address = config.Place;
             Territory t = FormToOject();
-            Map.MapForm.Object = t;
+            map.Object = t;
 
-            if (Map.MapForm.ShowDialog() == DialogResult.OK)
+            if (map.ShowDialog() == DialogResult.OK)
             {
                 string area = "";
 
-                GMapPolygon polygon = Map.MapForm.MainPolygon;
+                GMapPolygon polygon = map.MainPolygon;
                 if (polygon != null)
                 {
                     CultureInfo info = CultureInfo.GetCultureInfo("en-US");
