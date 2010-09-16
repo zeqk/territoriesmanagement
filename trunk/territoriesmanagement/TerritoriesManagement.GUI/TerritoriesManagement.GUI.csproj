@@ -208,6 +208,7 @@
     <Compile Include="ImporterConfig\ImporterConfig.cs" />
     <Compile Include="ImporterConfig\FieldConverter.cs" />
     <Compile Include="ImporterConfig\DepartmentsTableConverter.cs" />
+    <Compile Include="Map.cs" />
     <Compile Include="MapModeEnum.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

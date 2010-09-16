@@ -150,9 +150,14 @@ namespace TerritoriesManagement.GUI
 
         public void Clear()
         {
+            foreach (GMapOverlay overlay in MainMap.Overlays)
+            {
+                overlay.Markers.Clear();
+            }
+
             MainMap.Overlays.Clear();
             _otherPolygons = null;
-            _otherPolygons = null;
+            _otherMarkers = null;
             Object = null;            
         }
 
@@ -217,6 +222,13 @@ namespace TerritoriesManagement.GUI
                 MainMap.MouseDown += new MouseEventHandler(MainMap_MouseDown);
                 MainMap.MouseUp += new MouseEventHandler(MainMap_MouseUp);
             }
+            else
+            {
+                MainMap.MouseMove -= new MouseEventHandler(MainMap_MouseMove);
+                MainMap.MouseDown -= new MouseEventHandler(MainMap_MouseDown);
+                MainMap.MouseUp -= new MouseEventHandler(MainMap_MouseUp);
+            }
+
             // get zoom  
             trackBarZoom.Minimum = MainMap.MinZoom;
             trackBarZoom.Maximum = MainMap.MaxZoom;
@@ -340,7 +352,7 @@ namespace TerritoriesManagement.GUI
                     pen.Color = Color.FromArgb(155, Color.Red);
                     currentPolygon.Stroke = pen;
                     MainMap.SetDrawingPolygon(currentPolygon);
-
+                    
                     ViewAddresses();
                 }
 
@@ -579,7 +591,7 @@ namespace TerritoriesManagement.GUI
         void ViewTerritories()
         {
             top.Polygons.Clear();
-            if (currentPolygon != null) //TODO: esta bien?
+            if (_mapMode == MapModeEnum.EditArea && currentPolygon != null)
                 top.Polygons.Add(currentPolygon);
 
             IList territoriesToShow = GetTerritoriesToShow();
@@ -658,7 +670,8 @@ namespace TerritoriesManagement.GUI
             IList addressesToShow = GetAddressToShow();
 
             top.Markers.Clear();
-            if(currentMarker != null) //TODO: esta bien?
+
+            if(_mapMode == MapModeEnum.EditPoint && currentMarker != null)            
                 top.Markers.Add(currentMarker);
 
             if (addressesToShow != null)
