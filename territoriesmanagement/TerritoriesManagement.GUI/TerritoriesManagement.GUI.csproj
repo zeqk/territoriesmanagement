@@ -87,10 +87,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\AltosTools.dll</HintPath>
     </Reference>
-    <Reference Include="AltosTools.Maps, Version=1.10.8.22, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libs\AltosTools.Maps.dll</HintPath>
-    </Reference>
     <Reference Include="AltosTools.WindowsForms, Version=1.10.10.14, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\AltosTools.WindowsForms.dll</HintPath>
@@ -142,7 +138,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\Config.cs" />
+    <Compile Include="Configuration\Config.cs" />
     <Compile Include="frmCities.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -301,6 +297,10 @@
     <None Include="Resources\legend.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\zeqktools\AltosTools.Maps\AltosTools.Maps.csproj">
+      <Project>{802DF1EC-A9E4-474D-A683-A123308F36F2}</Project>
+      <Name>AltosTools.Maps</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TerritoriesManagement\TerritoriesManagement.csproj">
       <Project>{2AF8144A-682F-4B8E-A3CF-4FD77816AD78}</Project>
       <Name>TerritoriesManagement</Name>
