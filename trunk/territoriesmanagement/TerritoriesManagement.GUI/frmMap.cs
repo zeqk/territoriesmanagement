@@ -150,6 +150,8 @@ namespace TerritoriesManagement.GUI
 
         public void Clear()
         {
+            currentMarker = null;
+            currentPolygon = null;
             foreach (GMapOverlay overlay in MainMap.Overlays)
             {
                 overlay.Markers.Clear();

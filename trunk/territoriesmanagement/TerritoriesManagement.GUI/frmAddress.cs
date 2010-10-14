@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 using GMap.NET;
-using TerritoriesManagement.DataBridge;
-using TerritoriesManagement.Model;
-using AltosTools.WindowsForms.Maps;
 using Localizer;
+using TerritoriesManagement.DataBridge;
+using TerritoriesManagement.GUI.Configuration;
+using TerritoriesManagement.Model;
 
 namespace TerritoriesManagement.GUI
 {
@@ -13,7 +13,7 @@ namespace TerritoriesManagement.GUI
         private Addresses server;
         private bool isDirty;
         private bool hasntTerritory;
-        Config.Config config;
+        Configuration.Config config;
 
         public Address Address
         {
@@ -68,9 +68,7 @@ namespace TerritoriesManagement.GUI
         public frmAddress(Addresses server)
         {
             this.server = server;
-
-            config = new Config.Config();
-            config.LoadSavedConfig();
+            Config.LoadSavedConfig();
 
             InitializeComponent();
             ConfigureMenus();
@@ -82,8 +80,7 @@ namespace TerritoriesManagement.GUI
         {
             this.server = new Addresses();
 
-            config = new Config.Config();
-            config.LoadSavedConfig();
+            Config.LoadSavedConfig();
 
             InitializeComponent(); 
             ConfigureMenus();
@@ -178,13 +175,13 @@ namespace TerritoriesManagement.GUI
         private void btnSearchGeoPos_Click(object sender, EventArgs e)
         {
             Map.MapForm.Clear();
-            Map.MapForm.MapType = config.MapType;
+            Map.MapForm.MapType = Config.MapType;
             Map.MapForm.MapMode = MapModeEnum.EditPoint;
             Address a = this.Address;
 
             Map.MapForm.Object = a;
 
-            Map.MapForm.Address = a.Street + " " + a.Number + ", " + a.City.Name + ", " + GetDepartmentName() + ", " + config.Place;
+            Map.MapForm.Address = a.Street + " " + a.Number + ", " + a.City.Name + ", " + GetDepartmentName() + ", " + Config.Region;
 
             Map.MapForm.ShowDialog();
 

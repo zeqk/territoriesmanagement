@@ -2,15 +2,14 @@
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
-using Localizer;
 using AltosTools.WindowsForms;
+using Localizer;
+using TerritoriesManagement.GUI.Configuration;
 
 namespace TerritoriesManagement.GUI
 {
     public partial class frmMain : Form
     {
-        Config.Config config = new Config.Config();
-
         public frmMain()
         {
             InitializeComponent();
@@ -71,8 +70,8 @@ namespace TerritoriesManagement.GUI
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-            config.LoadSavedConfig();
-            Globalization.SetCurrentLanguage(config.Language);
+            Config.LoadSavedConfig();
+            Globalization.SetCurrentLanguage(Config.Language);
             Globalization.RefreshUI();
             TestConnection();
         }

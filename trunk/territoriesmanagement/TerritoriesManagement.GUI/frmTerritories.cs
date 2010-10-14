@@ -2,14 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Objects;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using GMap.NET;
 using GMap.NET.WindowsForms;
 using Localizer;
 using TerritoriesManagement.DataBridge;
+using TerritoriesManagement.GUI.Configuration;
 using TerritoriesManagement.Model;
-using System.Globalization;
 
 namespace TerritoriesManagement.GUI
 {
@@ -18,7 +19,7 @@ namespace TerritoriesManagement.GUI
         static private bool opened = false;
         private Territories server = new Territories();
         private bool isDirty;
-        Config.Config config = new Config.Config();
+        Configuration.Config config = new Configuration.Config();
 
         public frmTerritories()
         {
@@ -27,7 +28,6 @@ namespace TerritoriesManagement.GUI
             else
                 opened = true;
             InitializeComponent();
-            config.LoadSavedConfig();
             Globalization.RefreshUI(this);
         }
 
@@ -356,7 +356,7 @@ namespace TerritoriesManagement.GUI
         {
             Map.MapForm.Clear();
             Map.MapForm.MapMode = MapModeEnum.EditArea;
-            Map.MapForm.Address = config.Place;
+            Map.MapForm.Address = Config.DefaultPlace;
             Territory t = FormToOject();
             Map.MapForm.Object = t;
 

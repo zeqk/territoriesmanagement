@@ -3,24 +3,15 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using Localizer;
 using TerritoriesManagement.DataBridge;
+using TerritoriesManagement.GUI.Configuration;
 
 namespace TerritoriesManagement.GUI
 {
     public partial class frmConfig : Form
     {
-        private Config.Config _config;
-
-        public Config.Config Config
-        {
-            get { return _config; }
-            set { _config = value; }
-        }
-	
-
         public frmConfig()
         {
             InitializeComponent();
-            _config = new TerritoriesManagement.GUI.Config.Config();
         }
 
         private void btnReset_Click(object sender, EventArgs e)
@@ -57,48 +48,47 @@ namespace TerritoriesManagement.GUI
 
         private void frmConfig_Load(object sender, EventArgs e)
         {
-
-            _config.LoadSavedConfig();
-
             //cultures
             List<string> cultures = Globalization.LanguagesList;
 
             cmbCulture.DataSource = cultures;
+            if (cultures.Contains(Config.Language))
+                cmbCulture.SelectedItem = Config.Language;
 
-            if(cultures.Contains( _config.Language))
-                cmbCulture.SelectedItem = _config.Language;
-
-            txtPlace.Text = _config.Place;
+            txtPlace.Text = Config.Region;
 
 
             //maps
             cboMapType.DataSource = Enum.GetValues(typeof(GMap.NET.MapType));
-            cboMapType.SelectedItem = _config.MapType;
+            cboMapType.SelectedItem = Config.MapType;
         }
 
         private void btnApply_Click(object sender, EventArgs e)
         {
             ApplyCultureChange();
             ApplyMapsChange();
-            _config.SaveConfig();
+            Config.SaveConfig();
         }
 
         private void ApplyCultureChange()
         {
             if (cmbCulture.SelectedValue != null)
             {
-                _config.Language = (string) cmbCulture.SelectedItem;
-                Globalization.SetCurrentLanguage(_config.Language);
+                Config.Language = (string)cmbCulture.SelectedItem;
+                Globalization.SetCurrentLanguage(Config.Language);
                 Globalization.RefreshUI();
             }
 
             if (!string.IsNullOrEmpty(txtPlace.Text))
-                _config.Place = txtPlace.Text;
+                Config.Region = txtPlace.Text;
+
+            if (!string.IsNullOrEmpty(txtDefaultPlace.Text))
+                Config.DefaultPlace = txtDefaultPlace.Text;
         }
 
         private void ApplyMapsChange()
         {
-            _config.MapType = (GMap.NET.MapType)cboMapType.SelectedValue;
+            Config.MapType = (GMap.NET.MapType)cboMapType.SelectedValue;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
