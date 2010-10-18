@@ -315,6 +315,12 @@ namespace TerritoriesManagement.GUI
 
         }
 
+        private void schName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                Filter();
+        }
+
         
     }
 }
