@@ -388,5 +388,11 @@ namespace TerritoriesManagement.GUI
             return Globalization.GetString(text);            
         }
 
+        private void schName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                Filter();
+        }
+
     }
 }

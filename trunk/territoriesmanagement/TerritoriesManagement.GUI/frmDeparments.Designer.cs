@@ -72,7 +72,7 @@
             this.grpObject.Location = new System.Drawing.Point(383, 6);
             this.grpObject.Name = "grpObject";
             this.grpObject.Size = new System.Drawing.Size(362, 111);
-            this.grpObject.TabIndex = 0;
+            this.grpObject.TabIndex = 1;
             this.grpObject.TabStop = false;
             this.grpObject.Text = "Department";
             // 
@@ -83,7 +83,7 @@
             this.lblId.Location = new System.Drawing.Point(321, 3);
             this.lblId.Name = "lblId";
             this.lblId.Size = new System.Drawing.Size(0, 13);
-            this.lblId.TabIndex = 11;
+            this.lblId.TabIndex = 1;
             // 
             // bsDepartment
             // 
@@ -94,7 +94,7 @@
             this.btnRelations.Location = new System.Drawing.Point(271, 58);
             this.btnRelations.Name = "btnRelations";
             this.btnRelations.Size = new System.Drawing.Size(69, 38);
-            this.btnRelations.TabIndex = 10;
+            this.btnRelations.TabIndex = 6;
             this.btnRelations.Text = "View relations";
             this.btnRelations.UseVisualStyleBackColor = true;
             this.btnRelations.Click += new System.EventHandler(this.btnRelations_Click);
@@ -105,7 +105,7 @@
             this.btnDelete.Location = new System.Drawing.Point(188, 58);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(69, 38);
-            this.btnDelete.TabIndex = 9;
+            this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "Delete";
             this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -117,7 +117,7 @@
             this.btnSave.Location = new System.Drawing.Point(105, 58);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(69, 38);
-            this.btnSave.TabIndex = 8;
+            this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Save";
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnSave.UseVisualStyleBackColor = true;
@@ -129,7 +129,7 @@
             this.btnNew.Location = new System.Drawing.Point(22, 58);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(69, 38);
-            this.btnNew.TabIndex = 7;
+            this.btnNew.TabIndex = 3;
             this.btnNew.Text = "New";
             this.btnNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnNew.UseVisualStyleBackColor = true;
@@ -141,7 +141,7 @@
             this.lblName.Location = new System.Drawing.Point(19, 16);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(35, 13);
-            this.lblName.TabIndex = 6;
+            this.lblName.TabIndex = 0;
             this.lblName.Text = "Name";
             // 
             // txtName
@@ -151,7 +151,7 @@
             this.txtName.MaxLength = 80;
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(318, 20);
-            this.txtName.TabIndex = 5;
+            this.txtName.TabIndex = 2;
             this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // grdSearch
@@ -167,7 +167,7 @@
             this.grdSearch.Location = new System.Drawing.Point(12, 6);
             this.grdSearch.Name = "grdSearch";
             this.grdSearch.Size = new System.Drawing.Size(362, 361);
-            this.grdSearch.TabIndex = 1;
+            this.grdSearch.TabIndex = 0;
             this.grdSearch.TabStop = false;
             this.grdSearch.Text = "Search";
             // 
@@ -177,7 +177,7 @@
             this.lblResultCount.Location = new System.Drawing.Point(56, 71);
             this.lblResultCount.Name = "lblResultCount";
             this.lblResultCount.Size = new System.Drawing.Size(0, 13);
-            this.lblResultCount.TabIndex = 61;
+            this.lblResultCount.TabIndex = 5;
             // 
             // lblFilterName
             // 
@@ -185,7 +185,7 @@
             this.lblFilterName.Location = new System.Drawing.Point(16, 16);
             this.lblFilterName.Name = "lblFilterName";
             this.lblFilterName.Size = new System.Drawing.Size(128, 13);
-            this.lblFilterName.TabIndex = 19;
+            this.lblFilterName.TabIndex = 0;
             this.lblFilterName.Text = "Filter by department name";
             // 
             // lblResult
@@ -194,7 +194,7 @@
             this.lblResult.Location = new System.Drawing.Point(16, 71);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(40, 13);
-            this.lblResult.TabIndex = 13;
+            this.lblResult.TabIndex = 4;
             this.lblResult.Text = "Result:";
             // 
             // lblFiltered
@@ -204,20 +204,22 @@
             this.lblFiltered.Location = new System.Drawing.Point(303, 72);
             this.lblFiltered.Name = "lblFiltered";
             this.lblFiltered.Size = new System.Drawing.Size(41, 13);
-            this.lblFiltered.TabIndex = 12;
+            this.lblFiltered.TabIndex = 6;
             this.lblFiltered.Text = "Filtered";
             // 
             // schName
             // 
             this.schName.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.schName.Columns = null;
+            this.schName.Criteria = "Contains";
             this.schName.Location = new System.Drawing.Point(19, 32);
             this.schName.Name = "schName";
             this.schName.Parameters = null;
             this.schName.Query = null;
             this.schName.Size = new System.Drawing.Size(238, 22);
-            this.schName.TabIndex = 14;
+            this.schName.TabIndex = 1;
             this.schName.VariableNames = null;
+            this.schName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.schName_KeyDown);
             // 
             // btnClearFilter
             // 
@@ -225,7 +227,7 @@
             this.btnClearFilter.Location = new System.Drawing.Point(308, 28);
             this.btnClearFilter.Name = "btnClearFilter";
             this.btnClearFilter.Size = new System.Drawing.Size(36, 27);
-            this.btnClearFilter.TabIndex = 10;
+            this.btnClearFilter.TabIndex = 3;
             this.btnClearFilter.UseVisualStyleBackColor = true;
             this.btnClearFilter.Click += new System.EventHandler(this.btnClearFilter_Click);
             // 
@@ -240,7 +242,7 @@
             this.dgvResult.RowHeadersVisible = false;
             this.dgvResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvResult.Size = new System.Drawing.Size(325, 267);
-            this.dgvResult.TabIndex = 5;
+            this.dgvResult.TabIndex = 7;
             this.dgvResult.VirtualMode = true;
             this.dgvResult.SelectionChanged += new System.EventHandler(this.dgvResult_SelectionChanged);
             // 
@@ -250,7 +252,7 @@
             this.btnFilter.Location = new System.Drawing.Point(263, 28);
             this.btnFilter.Name = "btnFilter";
             this.btnFilter.Size = new System.Drawing.Size(36, 27);
-            this.btnFilter.TabIndex = 9;
+            this.btnFilter.TabIndex = 2;
             this.btnFilter.UseVisualStyleBackColor = true;
             this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
             // 
@@ -265,7 +267,7 @@
             this.dgvCities.ReadOnly = true;
             this.dgvCities.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCities.Size = new System.Drawing.Size(342, 206);
-            this.dgvCities.TabIndex = 6;
+            this.dgvCities.TabIndex = 0;
             this.dgvCities.VirtualMode = true;
             // 
             // tabPanel
@@ -275,7 +277,7 @@
             this.tabPanel.Name = "tabPanel";
             this.tabPanel.SelectedIndex = 0;
             this.tabPanel.Size = new System.Drawing.Size(362, 244);
-            this.tabPanel.TabIndex = 12;
+            this.tabPanel.TabIndex = 2;
             this.tabPanel.Visible = false;
             // 
             // tabCities

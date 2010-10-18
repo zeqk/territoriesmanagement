@@ -54,7 +54,7 @@
             this.btnAddress.Location = new System.Drawing.Point(185, 64);
             this.btnAddress.Name = "btnAddress";
             this.btnAddress.Size = new System.Drawing.Size(220, 75);
-            this.btnAddress.TabIndex = 0;
+            this.btnAddress.TabIndex = 4;
             this.btnAddress.Text = "Addresses";
             this.btnAddress.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAddress.UseVisualStyleBackColor = true;
@@ -104,7 +104,7 @@
             this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(453, 24);
-            this.menu.TabIndex = 6;
+            this.menu.TabIndex = 0;
             this.menu.Text = "Menu";
             // 
             // menuTools
@@ -162,7 +162,7 @@
             this.statusStrip.Location = new System.Drawing.Point(0, 202);
             this.statusStrip.Name = "statusStrip";
             this.statusStrip.Size = new System.Drawing.Size(453, 22);
-            this.statusStrip.TabIndex = 7;
+            this.statusStrip.TabIndex = 5;
             // 
             // lblConnectionStatus
             // 
