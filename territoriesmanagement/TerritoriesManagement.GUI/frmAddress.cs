@@ -5,6 +5,8 @@ using Localizer;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.GUI.Configuration;
 using TerritoriesManagement.Model;
+using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
 
 namespace TerritoriesManagement.GUI
 {
@@ -177,11 +179,12 @@ namespace TerritoriesManagement.GUI
             Map.MapForm.Clear();
             Map.MapForm.MapType = Config.MapType;
             Map.MapForm.MapMode = MapModeEnum.EditPoint;
-            Address a = this.Address;
+            
+            GMapMarker marker = GetMarker(this.Address.Lat, this.Address.Lng);
 
-            Map.MapForm.Object = a;
+            Map.MapForm.MainMarker = marker;
 
-            Map.MapForm.Address = a.Street + " " + a.Number + ", " + a.City.Name + ", " + GetDepartmentName() + ", " + Config.Region;
+            Map.MapForm.Address = this.Address.Street + " " + this.Address.Number + ", " + this.Address.City.Name + ", " + GetDepartmentName() + ", " + Config.Region;
 
             Map.MapForm.ShowDialog();
 
@@ -192,6 +195,14 @@ namespace TerritoriesManagement.GUI
                 txtLat.Text = Map.MapForm.MainMarker.Position.Lat.ToString();
                 txtLon.Text = Map.MapForm.MainMarker.Position.Lng.ToString();
             }
+        }
+
+        private GMapMarker GetMarker(double? lat, double? lng)
+        {            
+            GMapMarker marker = null;
+            if (lat.HasValue && lng.HasValue)
+                marker = new GMapMarkerGoogleRed(new PointLatLng(lat.Value, lng.Value));
+            return marker;
         }
 
         private string GetDepartmentName()

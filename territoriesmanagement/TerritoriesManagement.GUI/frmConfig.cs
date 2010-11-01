@@ -56,7 +56,7 @@ namespace TerritoriesManagement.GUI
                 cmbCulture.SelectedItem = Config.Language;
 
             txtPlace.Text = Config.Region;
-
+            txtDefaultPlace.Text = Config.DefaultPlace;
 
             //maps
             cboMapType.DataSource = Enum.GetValues(typeof(GMap.NET.MapType));
