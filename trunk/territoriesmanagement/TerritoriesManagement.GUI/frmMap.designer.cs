@@ -524,6 +524,7 @@
             // MainMap
             // 
             this.MainMap.AllowDrawPolygon = false;
+            this.MainMap.Bearing = 0F;
             this.MainMap.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.MainMap.CanDragMap = true;
             this.MainMap.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -537,11 +538,13 @@
             this.MainMap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
             this.MainMap.Name = "MainMap";
             this.MainMap.PolygonsEnabled = true;
+            this.MainMap.Position = ((GMap.NET.PointLatLng)(resources.GetObject("MainMap.Position")));
             this.MainMap.RetryLoadTile = 0;
             this.MainMap.RoutesEnabled = true;
             this.MainMap.ShowTileGridLines = false;
             this.MainMap.Size = new System.Drawing.Size(699, 476);
             this.MainMap.TabIndex = 32;
+            this.MainMap.VirtualSizeEnabled = false;
             this.MainMap.Zoom = 2;
             // 
             // tableMapActions

@@ -87,6 +87,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\AltosTools.dll</HintPath>
     </Reference>
+    <Reference Include="AltosTools.Maps, Version=1.10.8.22, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\AltosTools.Maps.dll</HintPath>
+    </Reference>
     <Reference Include="AltosTools.WindowsForms, Version=1.10.10.14, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\AltosTools.WindowsForms.dll</HintPath>
@@ -175,10 +179,22 @@
     <Compile Include="frmMap.designer.cs">
       <DependentUpon>frmMap.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmInterop.cs">
+    <Compile Include="ImporterConfig\Forms\frmEntitiesConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmInterop.Designer.cs">
+    <Compile Include="ImporterConfig\Forms\frmEntitiesConfig.Designer.cs">
+      <DependentUpon>frmEntitiesConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImporterConfig\Forms\frmTablesConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImporterConfig\Forms\frmTablesConfig.Designer.cs">
+      <DependentUpon>frmTablesConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImporterConfig\Forms\frmInterop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImporterConfig\Forms\frmInterop.Designer.cs">
       <DependentUpon>frmInterop.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
@@ -193,17 +209,17 @@
     <Compile Include="frmTerritories.Designer.cs">
       <DependentUpon>frmTerritories.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImporterConfig\CitiesTable.cs" />
-    <Compile Include="ImporterConfig\CitiesTableConverter.cs" />
-    <Compile Include="ImporterConfig\AddressesTable.cs" />
-    <Compile Include="ImporterConfig\AddressesTableConverter.cs" />
-    <Compile Include="ImporterConfig\TerritoriesTable.cs" />
-    <Compile Include="ImporterConfig\TerritoriesTableConverter.cs" />
-    <Compile Include="ImporterConfig\DepartmentsTable.cs" />
-    <Compile Include="ImporterConfig\Field.cs" />
-    <Compile Include="ImporterConfig\ImporterConfig.cs" />
-    <Compile Include="ImporterConfig\FieldConverter.cs" />
-    <Compile Include="ImporterConfig\DepartmentsTableConverter.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\CitiesTable.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\CitiesTableConverter.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\AddressesTable.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\AddressesTableConverter.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\TerritoriesTable.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\TerritoriesTableConverter.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\DepartmentsTable.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\Field.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\ImporterConfig.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\FieldConverter.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\DepartmentsTableConverter.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MapModeEnum.cs" />
     <Compile Include="Program.cs" />
@@ -227,7 +243,13 @@
     <EmbeddedResource Include="frmMap.resx">
       <DependentUpon>frmMap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmInterop.resx">
+    <EmbeddedResource Include="ImporterConfig\Forms\frmEntitiesConfig.resx">
+      <DependentUpon>frmEntitiesConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImporterConfig\Forms\frmTablesConfig.resx">
+      <DependentUpon>frmTablesConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImporterConfig\Forms\frmInterop.resx">
       <DependentUpon>frmInterop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
@@ -297,10 +319,6 @@
     <None Include="Resources\legend.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\zeqktools\AltosTools.Maps\AltosTools.Maps.csproj">
-      <Project>{802DF1EC-A9E4-474D-A683-A123308F36F2}</Project>
-      <Name>AltosTools.Maps</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TerritoriesManagement\TerritoriesManagement.csproj">
       <Project>{2AF8144A-682F-4B8E-A3CF-4FD77816AD78}</Project>
       <Name>TerritoriesManagement</Name>

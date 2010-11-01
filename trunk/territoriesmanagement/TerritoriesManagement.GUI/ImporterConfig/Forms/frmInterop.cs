@@ -2,21 +2,23 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Resources;
 using System.Windows.Forms;
-using TerritoriesManagement.Model;
+using AltosTools.WindowsForms;
 using TerritoriesManagement.Export;
 using TerritoriesManagement.Import;
-using AltosTools.WindowsForms;
+using TerritoriesManagement.Model;
 
-namespace TerritoriesManagement.GUI
+namespace TerritoriesManagement.GUI.ImporterConfig
 {
     public partial class frmInterop : Form
     {
+        string _dataExportEntityName = "";
+        string[] _dataExportEntityProperties = { };
+
         ImportTool _importer;
         bool _isDirty;
-        ImporterConfig.ImporterConfig _config;
+        ImporterConfig _config;
         ResourceManager _rm;
 
         public frmInterop()
@@ -24,7 +26,7 @@ namespace TerritoriesManagement.GUI
 
             _rm = new ResourceManager(this.GetType());
             _importer = new ImportTool();
-            _config = new TerritoriesManagement.GUI.ImporterConfig.ImporterConfig();
+            _config = new ImporterConfig();
             _isDirty = false;
             InitializeComponent();
 
@@ -42,19 +44,14 @@ namespace TerritoriesManagement.GUI
             _importer.bg.RunWorkerCompleted += new RunWorkerCompletedEventHandler(ImportCompleted);
             _importer.bg.ProgressChanged += new ProgressChangedEventHandler(ImportProgressChanged);
 
-            _config = new ImporterConfig.ImporterConfig();
+            _config = new ImporterConfig();
             _config.LoadConfig();
 
             txtConnectStr.Text = _config.ConnectionString;
             _importer.Config.ConnectionString = txtConnectStr.Text;
-            _importer.Config.Provider = _config.Provider;
-            grdImportConfig.SelectedObject = _config;
-
-            LoadExportCheckList();
+            _importer.Config.Provider = _config.Provider;            
             
-        }
-
-        
+        }        
 
         private void frmInterop_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -62,8 +59,6 @@ namespace TerritoriesManagement.GUI
         }
 
         #region DataImport
-
-
 
         private void ImportCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -297,36 +292,28 @@ namespace TerritoriesManagement.GUI
                 ExportTool tool = new ExportTool();
                 try
                 {
-                    if (rdoAddresses.Checked)
-                    {
-
-                        string[] properties = chkListAddresses.CheckedItems.Cast<Property>().Select(p => p.Name).ToArray();
-                        if(txtExcelTemplate.Text == "")
-                            exported = tool.ExportToExcel<Address>(excelFile, properties, "", null);
-                        else
-                            exported = tool.ExportToExcel<Address>(txtExcelTemplate.Text, excelFile, properties, "", null);
-                    }
-
-
-                    if (rdoTerritories.Checked)
-                    {
-                        string[] properties = chkListTerritories.CheckedItems.Cast<Property>().Select(p => p.Name).ToArray();
-
-                        exported = tool.ExportToExcel<Territory>(excelFile, properties, "", null);
-                    }
-
-                    if (rdoCities.Checked)
-                    {
-                        string[] properties = chkListCities.CheckedItems.Cast<Property>().Select(p => p.Name).ToArray();
-
-                        exported = tool.ExportToExcel<City>(excelFile, properties, "", null);
-                    }
-
-                    if (rdoDepartments.Checked)
-                    {
-                        string[] properties = chkListDepartments.CheckedItems.Cast<Property>().Select(p => p.Name).ToArray();
-
-                        exported = tool.ExportToExcel<Department>(excelFile, properties, "", null);
+                        if (_dataExportEntityName != "")
+                        {
+                            switch (_dataExportEntityName)
+                            {
+                                case "Address":
+                                    if (txtExcelTemplate.Text == "")
+                                        exported = tool.ExportToExcel<Address>(excelFile, _dataExportEntityProperties, "", null);
+                                    else
+                                        exported = tool.ExportToExcel<Address>(txtExcelTemplate.Text, excelFile, _dataExportEntityProperties, "", null);
+                                    break;
+                                case "Territory":
+                                    exported = tool.ExportToExcel<Territory>(excelFile, _dataExportEntityProperties, "", null);
+                                    break;
+                                case "City":
+                                    exported = tool.ExportToExcel<City>(excelFile, _dataExportEntityProperties, "", null);
+                                    break;
+                                case "Department":
+                                    exported = tool.ExportToExcel<Department>(excelFile, _dataExportEntityProperties, "", null);
+                                    break;
+                                default:
+                                    break;
+                            }
                     }
                 }
                 catch (Exception ex)
@@ -340,30 +327,6 @@ namespace TerritoriesManagement.GUI
                 else
                     MessageBox.Show(GetString("The exportation has problems. Check the settings and see the log.\n"));
             }
-        }
-
-        private void LoadExportCheckList()
-        {
-            //Export
-            chkListAddresses.DisplayMember = "Name";
-            chkListAddresses.Items.AddRange(Helper.GetPropertyListByType("Address").ToArray());
-
-            chkListTerritories.DisplayMember = "Name";
-            chkListTerritories.Items.AddRange(Helper.GetPropertyListByType("Territory").ToArray());
-
-            chkListCities.DisplayMember = "Name";
-            chkListCities.Items.AddRange(Helper.GetPropertyListByType("City").ToArray());
-
-            chkListDepartments.DisplayMember = "Name";
-            chkListDepartments.Items.AddRange(Helper.GetPropertyListByType("Department").ToArray());
-        }
-
-        private void rdo_CheckedChanged(object sender, EventArgs e)
-        {
-            chkListAddresses.Enabled = rdoAddresses.Checked;
-            chkListCities.Enabled = rdoCities.Checked;
-            chkListTerritories.Enabled = rdoTerritories.Checked;
-            chkListDepartments.Enabled = rdoDepartments.Checked;
         }
         #endregion
 
@@ -457,6 +420,32 @@ namespace TerritoriesManagement.GUI
             }
         }
 
+        private void prbDataImport_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnConfigTables_Click(object sender, EventArgs e)
+        {
+            using (frmTablesConfig myForm = new frmTablesConfig())
+            {
+                myForm.Config = _config;
+                if (myForm.ShowDialog() == DialogResult.OK)
+                    _config = myForm.Config;
+            }
+        }
+
+        private void btnConfigEntities_Click(object sender, EventArgs e)
+        {
+            using (frmEntitiesConfig myForm = new frmEntitiesConfig())
+            {
+                if (myForm.ShowDialog() == DialogResult.OK)
+                {
+                    _dataExportEntityName = myForm.EntityName;
+                    _dataExportEntityProperties = myForm.Properties;
+                }
+            }
+        }
         
 
 

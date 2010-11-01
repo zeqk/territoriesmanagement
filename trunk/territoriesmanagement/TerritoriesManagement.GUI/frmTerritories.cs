@@ -11,6 +11,7 @@ using Localizer;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.GUI.Configuration;
 using TerritoriesManagement.Model;
+using System.Drawing;
 
 namespace TerritoriesManagement.GUI
 {
@@ -358,13 +359,18 @@ namespace TerritoriesManagement.GUI
             Map.MapForm.MapMode = MapModeEnum.EditArea;
             Map.MapForm.Address = Config.DefaultPlace;
             Territory t = FormToOject();
-            Map.MapForm.Object = t;
+
+            GMapPolygon polygon = GetPolygon(t.Area);
+            polygon.Name = t.Name;
+
+            Map.MapForm.MainPolygon = polygon;
+            Map.MapForm.TerritoryId = t.IdTerritory;
 
             if (Map.MapForm.ShowDialog() == DialogResult.OK)
             {
                 string area = "";
 
-                GMapPolygon polygon = Map.MapForm.MainPolygon;
+                polygon = Map.MapForm.MainPolygon;
                 if (polygon != null)
                 {
                     CultureInfo info = CultureInfo.GetCultureInfo("en-US");
@@ -393,6 +399,20 @@ namespace TerritoriesManagement.GUI
         }
 
         
+
+        private GMapPolygon GetPolygon(string areaStr)
+        {
+            List<PointLatLng> auxPoints = new List<PointLatLng>();
+            if (areaStr != null)
+                auxPoints = Helper.StrPointsToPointsLatLng(areaStr.Split('\n'));
+
+            GMapPolygon polygon = new GMapPolygon(auxPoints,"");
+            Pen pen = polygon.Stroke;
+            pen.Color = Color.FromArgb(155, Color.Red);
+            polygon.Stroke = pen;
+
+            return polygon;
+        }
 
         
 

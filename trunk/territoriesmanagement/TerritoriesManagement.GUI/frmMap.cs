@@ -25,7 +25,8 @@ namespace TerritoriesManagement.GUI
         Addresses server = new Addresses();
 
         #region Fields
-        public object Object;
+        public int? TerritoryId = null;
+
 
         private MapType _mapType;
         private int _mapZoom;
@@ -58,8 +59,13 @@ namespace TerritoriesManagement.GUI
         {
             get 
             {                
-                return currentPolygon;            
+                return this.currentPolygon;            
             }
+            set
+            {
+                this.currentPolygon = value;
+            }
+
         }
 
         /// <summary>
@@ -70,6 +76,10 @@ namespace TerritoriesManagement.GUI
             get
             {
                 return currentMarker;
+            }
+            set
+            {
+                this.currentMarker = value;
             }
         }
 
@@ -139,10 +149,6 @@ namespace TerritoriesManagement.GUI
             _mapZoom = 15;
             _mapMode = MapModeEnum.ReadOnly;
 
-            ////initializing
-            //currentPolygon = new GMapPolygon(new List<PointLatLng>(), "MyPolygon");
-            //currentMarker = new GMapMarkerGoogleRed(new PointLatLng());
-
             InitializeComponent();
         }
         #endregion
@@ -159,8 +165,7 @@ namespace TerritoriesManagement.GUI
 
             MainMap.Overlays.Clear();
             _otherPolygons = null;
-            _otherMarkers = null;
-            Object = null;            
+            _otherMarkers = null;    
         }
 
         private void frmGeoArea_Load(object sender, EventArgs e)
@@ -175,7 +180,9 @@ namespace TerritoriesManagement.GUI
             ConfigMap();
 
             //extract data from the Object property
-            ExtractObjectData();
+            //ExtractObjectData();
+            //set the objects to edit
+            SetObjectToEdit();
 
             if (_otherMarkers != null)
             {
@@ -193,6 +200,27 @@ namespace TerritoriesManagement.GUI
                 GoToAddress(this.Address);
         }
 
+        void SetObjectToEdit()
+        {
+
+            if (_mapMode == MapModeEnum.EditPoint)
+            {
+                if (currentMarker != null)
+                    top.Markers.Add(currentMarker);
+            }
+
+            if (_mapMode == MapModeEnum.EditArea)
+            {
+                if (currentPolygon == null)
+                    currentPolygon = new GMapPolygon(new List<PointLatLng>(), "MyPolygon");
+
+                MainMap.SetDrawingPolygon(currentPolygon);
+                ViewAddresses();
+            }
+
+
+        }
+
         private void ConfigMap()
         {
             // config gmaps
@@ -207,7 +235,7 @@ namespace TerritoriesManagement.GUI
             MainMap.MinZoom = 5;
             MainMap.Zoom = _mapZoom;
 
-            MainMap.CurrentPosition = new PointLatLng();
+            MainMap.Position = new PointLatLng();
             MainMap.PolygonsEnabled = true;
             if (_mapMode == MapModeEnum.EditArea)
                 MainMap.AllowDrawPolygon = true;
@@ -248,12 +276,12 @@ namespace TerritoriesManagement.GUI
             bool centered = false;
             if (center != null)
             {
-                MainMap.CurrentPosition = center.Value;
+                MainMap.Position = center.Value;
 
                 if (centerMarker == null)
                     centerMarker = new GMapMarkerCross(new PointLatLng());
 
-                centerMarker.Position = MainMap.CurrentPosition;
+                centerMarker.Position = MainMap.Position;
                 if (!top.Markers.Contains(centerMarker))
                     top.Markers.Add(centerMarker);
 
@@ -269,7 +297,7 @@ namespace TerritoriesManagement.GUI
                     {
                         if (top.Polygons.Count > 0 && top.Polygons[0].Points.Count > 0)
                         {
-                            MainMap.CurrentPosition = AltosTools.Functions.CalculateMiddlePoint(top.Polygons[0]);
+                            MainMap.Position = AltosTools.Functions.CalculateMiddlePoint(top.Polygons[0]);
                             centered = true;
                         }
                     }
@@ -279,7 +307,7 @@ namespace TerritoriesManagement.GUI
                 {
                     if (currentMarker != null)
                     {
-                        MainMap.CurrentPosition = currentMarker.Position;
+                        MainMap.Position = currentMarker.Position;
                         centered = true;
                     }
 
@@ -299,13 +327,13 @@ namespace TerritoriesManagement.GUI
                 if (centerMarker == null)
                     centerMarker = new GMapMarkerCross(new PointLatLng());
 
-                centerMarker.Position = MainMap.CurrentPosition;
+                centerMarker.Position = MainMap.Position;
                 if (!top.Markers.Contains(centerMarker))
                     top.Markers.Add(centerMarker);
             }
 
-            txtLat.Text = MainMap.CurrentPosition.Lat.ToString(CultureInfo.CurrentCulture);
-            txtLng.Text = MainMap.CurrentPosition.Lng.ToString(CultureInfo.CurrentCulture);
+            txtLat.Text = MainMap.Position.Lat.ToString(CultureInfo.CurrentCulture);
+            txtLng.Text = MainMap.Position.Lng.ToString(CultureInfo.CurrentCulture);
 
             return centered;
         }
@@ -324,52 +352,52 @@ namespace TerritoriesManagement.GUI
             if (_mapMode == MapModeEnum.EditPoint)
             {
                 if (currentMarker != null)
-                    currentMarker.Position = MainMap.CurrentPosition;
+                    currentMarker.Position = MainMap.Position;
                 else
-                    currentMarker = new GMapMarkerGoogleRed(MainMap.CurrentPosition);
+                    currentMarker = new GMapMarkerGoogleRed(MainMap.Position);
 
                 if (!top.Markers.Contains(currentMarker))
                     top.Markers.Add(currentMarker);
                 
             }
 
-            SetCenter(MainMap.CurrentPosition);
+            SetCenter(MainMap.Position);
             
         }
 
-        void ExtractObjectData()
-        {
-            if (Object != null)
-            {
-                if (Object is Territory || Object is Department || Object is City)
-                {
-                    List<PointLatLng> auxPoints = new List<PointLatLng>();
-                    string name = (string)Helper.GetPropertyValue(Object, "Name");
-                    string areaStr = (string)Helper.GetPropertyValue(Object, "Area");
-                    if (areaStr != null)
-                        auxPoints = Helper.StrPointsToPointsLatLng(areaStr.Split('\n'));
+        //void ExtractObjectData()
+        //{
+        //    if (Object != null)
+        //    {
+        //        if (Object is Territory || Object is Department || Object is City)
+        //        {
+        //            List<PointLatLng> auxPoints = new List<PointLatLng>();
+        //            string name = (string)Helper.GetPropertyValue(Object, "Name");
+        //            string areaStr = (string)Helper.GetPropertyValue(Object, "Area");
+        //            if (areaStr != null)
+        //                auxPoints = Helper.StrPointsToPointsLatLng(areaStr.Split('\n'));
 
-                    currentPolygon = new GMapPolygon(auxPoints, name);
-                    Pen pen = currentPolygon.Stroke;
-                    pen.Color = Color.FromArgb(155, Color.Red);
-                    currentPolygon.Stroke = pen;
-                    MainMap.SetDrawingPolygon(currentPolygon);
+        //            currentPolygon = new GMapPolygon(auxPoints, name);
+        //            Pen pen = currentPolygon.Stroke;
+        //            pen.Color = Color.FromArgb(155, Color.Red);
+        //            currentPolygon.Stroke = pen;
+        //            MainMap.SetDrawingPolygon(currentPolygon);
                     
-                    ViewAddresses();
-                }
+        //            ViewAddresses();
+        //        }
 
-                if (Object is Address)
-                {
-                    Address a = (Address)Object;
-                    PointLatLng point = new PointLatLng(0,0);
-                    if (a.Lat.HasValue && a.Lng.HasValue)
-                    {
-                        currentMarker = new GMapMarkerGoogleRed(new PointLatLng(a.Lat.Value, a.Lng.Value));
-                        top.Markers.Add(currentMarker);
-                    }                    
-                }
-            }
-        }
+        //        if (Object is Address)
+        //        {
+        //            Address a = (Address)Object;
+        //            PointLatLng point = new PointLatLng(0,0);
+        //            if (a.Lat.HasValue && a.Lng.HasValue)
+        //            {
+        //                currentMarker = new GMapMarkerGoogleRed(new PointLatLng(a.Lat.Value, a.Lng.Value));
+        //                top.Markers.Add(currentMarker);
+        //            }                    
+        //        }
+        //    }
+        //}
 
         #region Map event methods
 
@@ -468,7 +496,7 @@ namespace TerritoriesManagement.GUI
         private void btnGo_Click(object sender, EventArgs e)
         {
             GoToAddress(txtAddress.Text);
-            SetCenter(null); //Set center by MainMap.CurrentPosition
+            SetCenter(null); //Set center by MainMap.Position
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -574,13 +602,12 @@ namespace TerritoriesManagement.GUI
             chklstTerritory.ValueMember = "Id";
             chklstTerritory.DataSource = territoryList;
 
-            if (Object != null && Object.GetType() == typeof(Territory))
+            if (TerritoryId.HasValue)
             {
-                int id = (int)Helper.GetPropertyValue(Object,"IdTerritory");
-                if (id != 0)
+                if (TerritoryId.Value != 0)
                 {
-                    chklstTerritories.Check(id, "Id");
-                    chklstTerritory.Check(id, "Id");
+                    chklstTerritories.Check(TerritoryId.Value, "Id");
+                    chklstTerritory.Check(TerritoryId.Value, "Id");
                 }
             }
 
@@ -621,8 +648,8 @@ namespace TerritoriesManagement.GUI
             string queryStr = "";
 
             int currentId = 0;
-            if (Object != null && Object is Territory)
-                currentId = (int)Helper.GetPropertyValue(Object, "IdTerritory");
+            if (TerritoryId.HasValue)
+                currentId = TerritoryId.Value;
 
             //chklstTerritory
             if (chklstTerritories.CheckedItems.Count > 0)

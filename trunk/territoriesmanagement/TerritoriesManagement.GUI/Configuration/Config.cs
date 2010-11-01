@@ -87,7 +87,7 @@ namespace TerritoriesManagement.GUI.Configuration
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message); //TODO MOSTRAR MENSAJE BIEN
                 LoadDefaultConfig();
             }            
         }
