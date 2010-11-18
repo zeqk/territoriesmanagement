@@ -16,7 +16,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
 
         #region Fields
 
-        private DataProviders _provider;
+        private DataProviders? _provider;
 
         private string _connectionString;
 
@@ -36,6 +36,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             _cities = new CitiesTable();
             _territories = new TerritoriesTable();
             _addresses = new AddressesTable();
+            _provider = null;
         }
 
         #region Properties
@@ -68,7 +69,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
         }
 
         [Category("Connection propeties"), ReadOnly(true), Browsable(false)]
-        public DataProviders Provider
+        public DataProviders? Provider
         {
             get { return _provider; }
             set { _provider = value; }

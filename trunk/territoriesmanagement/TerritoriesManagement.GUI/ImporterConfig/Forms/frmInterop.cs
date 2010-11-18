@@ -48,8 +48,8 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             _config.LoadConfig();
 
             txtConnectStr.Text = _config.ConnectionString;
-            _importer.Config.ConnectionString = txtConnectStr.Text;
-            _importer.Config.Provider = _config.Provider;            
+            //_importer.Config.ConnectionString = txtConnectStr.Text;
+            //_importer.Config.Provider = _config.Provider;            
             
         }        
 
@@ -99,10 +99,15 @@ namespace TerritoriesManagement.GUI.ImporterConfig
         {
             if (_isDirty)
             {
+                _importer.Config.ConnectionString = txtConnectStr.Text;
+                _importer.Config.Provider = _config.Provider; 
+
                 //Departments
                 if (_config.Departments.Import)
                 {
                     _importer.Config.Departments.TableName = _config.Departments.TableName;
+
+                    _importer.Config.Departments.Fields.Clear();
 
                     //Department.IdDepartment
                     if (_config.Departments.Id.Import)
@@ -120,9 +125,11 @@ namespace TerritoriesManagement.GUI.ImporterConfig
                 {
                     _importer.Config.Cities.TableName = _config.Cities.TableName;
 
+                    _importer.Config.Cities.Fields.Clear();
+
                     //City.IdCity
                     if (_config.Cities.Id.Import)
-                        _importer.Config.Cities.Fields.Add("IdCity", _config.Cities.Name.ColumnName);
+                        _importer.Config.Cities.Fields.Add("IdCity", _config.Cities.Id.ColumnName);
 
                     //City.Name
                     if (_config.Cities.Name.Import)
@@ -162,6 +169,8 @@ namespace TerritoriesManagement.GUI.ImporterConfig
                 {
                     _importer.Config.Territories.TableName = _config.Territories.TableName;
 
+                    _importer.Config.Territories.Fields.Clear();
+
                     //Territory.IdTerritory
                     if (_config.Territories.Id.Import)
                         _importer.Config.Territories.Fields.Add("IdTerritory", _config.Territories.Id.ColumnName);
@@ -184,6 +193,9 @@ namespace TerritoriesManagement.GUI.ImporterConfig
                 if (_config.Addresses.Import)
                 {
                     _importer.Config.Addresses.TableName = _config.Addresses.TableName;
+
+                    _importer.Config.Addresses.Fields.Clear();
+
                     //Address.IdAddress
                     if (_config.Addresses.Id.Import)
                         _importer.Config.Addresses.Fields.Add("IdAddress", _config.Addresses.Id.ColumnName);
@@ -431,7 +443,10 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             {
                 myForm.Config = _config;
                 if (myForm.ShowDialog() == DialogResult.OK)
+                {
                     _config = myForm.Config;
+                    _isDirty = true;
+                }
             }
         }
 

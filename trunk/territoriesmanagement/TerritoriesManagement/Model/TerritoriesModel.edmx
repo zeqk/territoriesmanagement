@@ -405,7 +405,40 @@
           <FunctionImport Name="addresses_DeleteAll" />
           <FunctionImport Name="cities_DeleteAll" />
           <FunctionImport Name="departments_DeleteAll" />
-          <FunctionImport Name="territories_DeleteAll" /></EntityContainer>
+          <FunctionImport Name="territories_DeleteAll" />
+          <FunctionImport Name="departments_AddWithPK" ReturnType="Collection(Int32)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="NAME" Mode="In" Type="String" />
+            <Parameter Name="AREA" Mode="In" Type="String" /></FunctionImport>
+          <FunctionImport Name="cities_AddWithPK" ReturnType="Collection(Int32)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="NAME" Mode="In" Type="String" />
+            <Parameter Name="IDDEPARTMENT" Mode="In" Type="Int32" />
+            <Parameter Name="AREA" Mode="In" Type="String" /></FunctionImport>
+          <FunctionImport Name="territories_AddWithPK" ReturnType="Collection(Int32)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="NAME" Mode="In" Type="String" />
+            <Parameter Name="NUMBER" Mode="In" Type="Int32" />
+            <Parameter Name="AREA" Mode="In" Type="String" /></FunctionImport>
+          <FunctionImport Name="addresses_AddWithPK" ReturnType="Collection(Int32)">
+            <Parameter Name="IDADDRESS" Mode="In" Type="Int32" />
+            <Parameter Name="STREET" Mode="In" Type="String" />
+            <Parameter Name="NUMBER" Mode="In" Type="String" />
+            <Parameter Name="ADDRESSDATA" Mode="In" Type="String" />
+            <Parameter Name="CORNER1" Mode="In" Type="String" />
+            <Parameter Name="CORNER2" Mode="In" Type="String" />
+            <Parameter Name="PHONE1" Mode="In" Type="String" />
+            <Parameter Name="PHONE2" Mode="In" Type="String" />
+            <Parameter Name="DESCRIPTION" Mode="In" Type="String" />
+            <Parameter Name="MAP1" Mode="In" Type="String" />
+            <Parameter Name="MAP2" Mode="In" Type="String" />
+            <Parameter Name="IDTERRITORY" Mode="In" Type="Int32" />
+            <Parameter Name="IDCITY" Mode="In" Type="Int32" />
+            <Parameter Name="CUSTOMFIELD1" Mode="In" Type="String" />
+            <Parameter Name="CUSTOMFIELD2" Mode="In" Type="String" />
+            <Parameter Name="LAT" Mode="In" Type="Double" />
+            <Parameter Name="LNG" Mode="In" Type="Double" />
+            <Parameter Name="INTERNALTERRITORYNUMBER" Mode="In" Type="Int32" /></FunctionImport></EntityContainer>
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="IdAddress" />
@@ -757,7 +790,11 @@
           <FunctionImportMapping FunctionImportName="addresses_DeleteAll" FunctionName="TerritoriesModel.Store.ADDRESSES_DELETEALL" />
           <FunctionImportMapping FunctionImportName="cities_DeleteAll" FunctionName="TerritoriesModel.Store.CITIES_DELETEALL" />
           <FunctionImportMapping FunctionImportName="departments_DeleteAll" FunctionName="TerritoriesModel.Store.DEPARTMENTS_DELETEALL" />
-          <FunctionImportMapping FunctionImportName="territories_DeleteAll" FunctionName="TerritoriesModel.Store.TERRITORIES_DELETEALL" /></EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="territories_DeleteAll" FunctionName="TerritoriesModel.Store.TERRITORIES_DELETEALL" />
+          <FunctionImportMapping FunctionImportName="departments_AddWithPK" FunctionName="TerritoriesModel.Store.DEPARTMENTS_ADDWITHPK" />
+          <FunctionImportMapping FunctionImportName="cities_AddWithPK" FunctionName="TerritoriesModel.Store.CITIES_ADDWITHPK" />
+          <FunctionImportMapping FunctionImportName="territories_AddWithPK" FunctionName="TerritoriesModel.Store.TERRITORIES_ADDWITHPK" />
+          <FunctionImportMapping FunctionImportName="addresses_AddWithPK" FunctionName="TerritoriesModel.Store.ADDRESSES_ADDWITHPK" /></EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
@@ -775,7 +812,7 @@
     </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram Name="TerritoriesDataContext" ZoomLevel="82">
+      <Diagram Name="TerritoriesDataContext" ZoomLevel="81">
         <EntityTypeShape EntityType="TerritoriesModel.Address" Width="2" PointX="2.125" PointY="0.875" Height="3.8931689453124987" IsExpanded="true" />
         <EntityTypeShape EntityType="TerritoriesModel.City" Width="1.5" PointX="3" PointY="5.625" Height="1.9210009765624996" IsExpanded="true" />
         <EntityTypeShape EntityType="TerritoriesModel.Department" Width="1.5" PointX="0.5" PointY="7.625" Height="1.7879850260416665" IsExpanded="true" />
