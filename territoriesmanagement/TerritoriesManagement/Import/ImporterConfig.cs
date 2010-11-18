@@ -10,7 +10,7 @@ namespace TerritoriesManagement.Import
     public class ImporterConfig
     {
         #region Fields
-        private DataProviders _provider;
+        private DataProviders? _provider;
         private string _connectionString;	
 
         private ImportTable _departments;
@@ -33,7 +33,7 @@ namespace TerritoriesManagement.Import
 
         #region Properties
 
-        public DataProviders Provider
+        public DataProviders? Provider
         {
             get { return _provider; }
             set { _provider = value; }

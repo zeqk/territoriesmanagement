@@ -109,9 +109,9 @@ namespace TerritoriesManagement.Import
                         if (departmentsImported)
                         {
                             ImportMessage += Environment.NewLine + GetString("{0} departments have been imported.", count) + Environment.NewLine;
-                            if (ds.Tables[departments].Rows.Count>count)
+                            if (ds.Tables[departments].Rows.Count > count)
                             {
-                                ImportMessage += GetString("Some departments have not been imported successfully.") +Environment.NewLine;
+                                ImportMessage += GetString("Some departments have not been imported successfully.") + Environment.NewLine;
                             }
                         }
                         else
@@ -159,7 +159,7 @@ namespace TerritoriesManagement.Import
                     if (ds.Tables[addresses] != null)
                     {
                         int count = AddAddresses(ds.Tables[addresses]);
-                        addressesImported =  count > 0;
+                        addressesImported = count > 0;
                         if (addressesImported)
                         {
                             ImportMessage += Environment.NewLine + GetString("{0} addresses has been imported.", count) + Environment.NewLine;
@@ -177,13 +177,18 @@ namespace TerritoriesManagement.Import
                 else
                     SuccessfulImport = false;
 
-                
+
             }
             catch (Exception ex)
-            {                
+            {
+                SuccessfulImport = false;
+                _log += "\nIMPORTATION ERROR: " + ex.Message;
                 throw ex;
             }
-            SaveLog();
+            finally
+            {
+                SaveLog();
+            }
         }
 
         private void CalculateProcess(DataSet ds)
@@ -432,7 +437,7 @@ namespace TerritoriesManagement.Import
                 }
                 //
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 rv = false;
                 int index = row.Table.Rows.IndexOf(row);
@@ -494,7 +499,7 @@ namespace TerritoriesManagement.Import
                 c.DepartmentReference.EntityKey = new EntityKey("TerritoriesDataContext.Departments", "IdDepartment", idDepartment);
                 //
 	        }
-	        catch (Exception)
+	        catch (Exception ex)
 	        {
         		rv = false;
                 int index = row.Table.Rows.IndexOf(row);
@@ -533,7 +538,7 @@ namespace TerritoriesManagement.Import
                         t.Number = int.Parse(_config.Territories.DefaultFieldValues["Number"].ToString());
                 //
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 rv = false;
                 int index = row.Table.Rows.IndexOf(row);
@@ -732,7 +737,7 @@ namespace TerritoriesManagement.Import
                     a.TerritoryReference.EntityKey = new EntityKey("TerritoriesDataContext.Territories", "IdTerritory", idTerritory);
                 //
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 rv = false;
                 int index = row.Table.Rows.IndexOf(row);

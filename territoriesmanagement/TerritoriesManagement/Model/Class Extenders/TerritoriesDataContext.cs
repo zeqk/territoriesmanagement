@@ -26,10 +26,10 @@ namespace TerritoriesManagement.Model
 
             try
             {
-                using(EntityConnection conn = new EntityConnection(this.Connection.ConnectionString))
+                using (EntityConnection conn = new EntityConnection(this.Connection.ConnectionString))
                 {
                     EntityCommand cmd = conn.CreateCommand();
-                    cmd.CommandText = string.Format("{0}.{1}",this.DefaultContainerName,"departments_AddWithPK");
+                    cmd.CommandText = string.Format("{0}.{1}", this.DefaultContainerName, "departments_AddWithPK");
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     EntityParameter idParam = new EntityParameter("id", DbType.Int32);
@@ -37,26 +37,25 @@ namespace TerritoriesManagement.Model
                     cmd.Parameters.Add(idParam);
 
                     EntityParameter nameParam = new EntityParameter("name", DbType.String);
-                    nameParam.Value = v.Name;                   
+                    nameParam.Value = v.Name;
                     cmd.Parameters.Add(nameParam);
 
-                    if (conn.State!= ConnectionState.Open)
-	                {
+                    EntityParameter areaParam = new EntityParameter("area", DbType.String);
+                    areaParam.Value = v.Area;
+                    cmd.Parameters.Add(areaParam);
+
+                    if (conn.State != ConnectionState.Open)
+                    {
                         conn.Open();
-	                }
+                    }
 
-
-                    var reader = cmd.ExecuteReader(CommandBehavior.SequentialAccess);
-                    while (reader.Read())
-	                {
-                        rv.Add((Int32)reader[0]);            	         
-	                }
+                    rv.Add((int)cmd.ExecuteScalar());
 
                     return rv;
                 }
             }
             catch (Exception ex)
-            {                
+            {
                 throw ex;
             }
         }
@@ -88,17 +87,16 @@ namespace TerritoriesManagement.Model
                     depParam.Value = ExtractDepartmentId(v);
                     cmd.Parameters.Add(depParam);
 
+                    EntityParameter areaParam = new EntityParameter("area", DbType.String);
+                    areaParam.Value = v.Area;
+                    cmd.Parameters.Add(areaParam);
+
                     if (conn.State != ConnectionState.Open)
                     {
                         conn.Open();
                     }
 
-
-                    var reader = cmd.ExecuteReader(CommandBehavior.SequentialAccess);
-                    while (reader.Read())
-                    {
-                        rv.Add((Int32)reader[0]);
-                    }
+                    rv.Add((int)cmd.ExecuteScalar());
 
                     return rv;
                 }
@@ -136,17 +134,16 @@ namespace TerritoriesManagement.Model
                     numParam.Value = v.Number;
                     cmd.Parameters.Add(numParam);
 
+                    EntityParameter areaParam = new EntityParameter("area", DbType.String);
+                    areaParam.Value = v.Area;
+                    cmd.Parameters.Add(areaParam);
+
                     if (conn.State != ConnectionState.Open)
                     {
                         conn.Open();
                     }
 
-
-                    var reader = cmd.ExecuteReader(CommandBehavior.SequentialAccess);
-                    while (reader.Read())
-                    {
-                        rv.Add((Int32)reader[0]);
-                    }
+                    rv.Add((int)cmd.ExecuteScalar());
 
                     return rv;
                 }
@@ -171,8 +168,9 @@ namespace TerritoriesManagement.Model
                     EntityCommand cmd = conn.CreateCommand();
                     cmd.CommandText = string.Format("{0}.{1}", this.DefaultContainerName, "addresses_AddWithPK");
                     cmd.CommandType = CommandType.StoredProcedure;
+                    
 
-                    EntityParameter aDataParam = new EntityParameter("addresData", DbType.String);
+                    EntityParameter aDataParam = new EntityParameter("addressData", DbType.String);
                     aDataParam.Value = v.AddressData;
                     cmd.Parameters.Add(aDataParam);
 
@@ -196,9 +194,21 @@ namespace TerritoriesManagement.Model
                     descParam.Value = v.Description;
                     cmd.Parameters.Add(descParam);
 
-                    EntityParameter idParam = new EntityParameter("id", DbType.Int32);
+                    EntityParameter idParam = new EntityParameter("idAddress", DbType.Int32);
                     idParam.Value = v.IdAddress;
                     cmd.Parameters.Add(idParam);
+
+                    EntityParameter internalNumberParam = new EntityParameter("internalTerritoryNumber", DbType.Int32);
+                    internalNumberParam.Value = v.InternalTerritoryNumber;
+                    cmd.Parameters.Add(internalNumberParam);
+
+                    EntityParameter latParam = new EntityParameter("lat", DbType.Double);
+                    latParam.Value = v.Lat;
+                    cmd.Parameters.Add(latParam);
+
+                    EntityParameter lngParam = new EntityParameter("lng", DbType.Double);
+                    lngParam.Value = v.Lng;
+                    cmd.Parameters.Add(lngParam);
 
                     EntityParameter map1Param = new EntityParameter("map1", DbType.String);
                     map1Param.Value = v.Map1;
@@ -208,7 +218,7 @@ namespace TerritoriesManagement.Model
                     map2Param.Value = v.Map2;
                     cmd.Parameters.Add(map2Param);
 
-                    EntityParameter numParam = new EntityParameter("number", DbType.Int32);
+                    EntityParameter numParam = new EntityParameter("number", DbType.String);
                     numParam.Value = v.Number;
                     cmd.Parameters.Add(numParam);
 
@@ -224,14 +234,6 @@ namespace TerritoriesManagement.Model
                     streetParam.Value = v.Street;
                     cmd.Parameters.Add(streetParam);
 
-                    EntityParameter latParam = new EntityParameter("lat", DbType.Double);
-                    latParam.Value = v.Lat;
-                    cmd.Parameters.Add(latParam);
-
-                    EntityParameter lngParam = new EntityParameter("lng", DbType.Double);
-                    lngParam.Value = v.Lng;
-                    cmd.Parameters.Add(lngParam);
-
                     EntityParameter cityParam = new EntityParameter("idCity", DbType.Int32);
                     cityParam.Value = ExtractCityId(v);
                     cmd.Parameters.Add(cityParam);
@@ -245,11 +247,7 @@ namespace TerritoriesManagement.Model
                         conn.Open();
                     }
 
-                    var reader = cmd.ExecuteReader(CommandBehavior.SequentialAccess);
-                    while (reader.Read())
-                    {
-                        rv.Add((Int32)reader[0]);
-                    }
+                    rv.Add((int)cmd.ExecuteScalar());
 
                     return rv;
                 }
