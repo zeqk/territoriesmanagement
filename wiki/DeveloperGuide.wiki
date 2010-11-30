@@ -3,8 +3,7 @@ To contribute to the TerritoriesManagement you should know at a minimum, the C# 
 
 *Getting started*
 
-* Get an IDE
-
+ * *Get an IDE*
 - Visual Studio (Full and paid option) http://www.microsoft.com/visualstudio/en-us
 
 - Visual Studio Express Editon (Free option) http://www.microsoft.com/express/
@@ -12,10 +11,11 @@ To contribute to the TerritoriesManagement you should know at a minimum, the C# 
 - SharpDevelop (Open source option) http://www.icsharpcode.net/opensource/sd/
 
 
-* Install a subversion client
+ * *Install a subversion client*
 - TortoiseSVN (Recommended) http://tortoisesvn.tigris.org/
 
-* In the SVN Repository view, add the following repository location: https://territoriesmanagement.googlecode.com/svn/trunk/
+ * *Get the source code*
+In the SVN Repository view, add the following repository location: https://territoriesmanagement.googlecode.com/svn/trunk/
 
 For obtain the related projects, checkout:
 
