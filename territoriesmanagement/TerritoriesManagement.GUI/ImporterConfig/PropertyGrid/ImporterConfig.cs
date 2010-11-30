@@ -128,6 +128,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
         private void SetConfig(ImporterConfig config)
         {
             this.ConnectionString = config.ConnectionString;
+            this.Provider = config.Provider;
             this.Departments = config.Departments;
             this.Cities = config.Cities;
             this.Territories = config.Territories;

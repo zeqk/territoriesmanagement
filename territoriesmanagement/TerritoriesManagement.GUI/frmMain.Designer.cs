@@ -38,6 +38,7 @@
             this.menuInteroperability = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
+            this.interopWizzardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
@@ -112,7 +113,8 @@
             this.menuTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuInteroperability,
             this.toolStripSeparator1,
-            this.menuConfiguration});
+            this.menuConfiguration,
+            this.interopWizzardToolStripMenuItem});
             this.menuTools.Name = "menuTools";
             this.menuTools.Size = new System.Drawing.Size(44, 20);
             this.menuTools.Text = "Tools";
@@ -121,22 +123,30 @@
             // 
             this.menuInteroperability.Image = ((System.Drawing.Image)(resources.GetObject("menuInteroperability.Image")));
             this.menuInteroperability.Name = "menuInteroperability";
-            this.menuInteroperability.Size = new System.Drawing.Size(148, 22);
+            this.menuInteroperability.Size = new System.Drawing.Size(152, 22);
             this.menuInteroperability.Text = "Interoperability";
             this.menuInteroperability.Click += new System.EventHandler(this.menuInteroperability_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(145, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // menuConfiguration
             // 
             this.menuConfiguration.Image = ((System.Drawing.Image)(resources.GetObject("menuConfiguration.Image")));
             this.menuConfiguration.Name = "menuConfiguration";
-            this.menuConfiguration.Size = new System.Drawing.Size(148, 22);
+            this.menuConfiguration.Size = new System.Drawing.Size(152, 22);
             this.menuConfiguration.Text = "Configuration";
             this.menuConfiguration.Click += new System.EventHandler(this.menuConfiguration_Click);
+            // 
+            // interopWizzardToolStripMenuItem
+            // 
+            this.interopWizzardToolStripMenuItem.Name = "interopWizzardToolStripMenuItem";
+            this.interopWizzardToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.interopWizzardToolStripMenuItem.Text = "Interop wizzard";
+            this.interopWizzardToolStripMenuItem.Visible = false;
+            this.interopWizzardToolStripMenuItem.Click += new System.EventHandler(this.interopWizzardToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -217,6 +227,7 @@
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel lblConnectionStatus;
         private System.Windows.Forms.ToolStripStatusLabel lblConnectionStatusValue;
+        private System.Windows.Forms.ToolStripMenuItem interopWizzardToolStripMenuItem;
 
     }
 }

@@ -30,7 +30,7 @@
         {
             this.tabConfigs = new System.Windows.Forms.TabControl();
             this.tabCultures = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblLanguage = new System.Windows.Forms.Label();
             this.lblDefaultPlace = new System.Windows.Forms.Label();
             this.txtDefaultPlace = new System.Windows.Forms.TextBox();
             this.cmbCulture = new System.Windows.Forms.ComboBox();
@@ -70,7 +70,7 @@
             // 
             // tabCultures
             // 
-            this.tabCultures.Controls.Add(this.label1);
+            this.tabCultures.Controls.Add(this.lblLanguage);
             this.tabCultures.Controls.Add(this.lblDefaultPlace);
             this.tabCultures.Controls.Add(this.txtDefaultPlace);
             this.tabCultures.Controls.Add(this.cmbCulture);
@@ -84,14 +84,14 @@
             this.tabCultures.Text = "Cultures";
             this.tabCultures.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // lblLanguage
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 120);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 13);
-            this.label1.TabIndex = 6;
-            this.label1.Text = "Default place";
+            this.lblLanguage.AutoSize = true;
+            this.lblLanguage.Location = new System.Drawing.Point(41, 120);
+            this.lblLanguage.Name = "lblLanguage";
+            this.lblLanguage.Size = new System.Drawing.Size(55, 13);
+            this.lblLanguage.TabIndex = 6;
+            this.lblLanguage.Text = "Language";
             // 
             // lblDefaultPlace
             // 
@@ -324,7 +324,7 @@
         private System.Windows.Forms.GroupBox grpMaps;
         private System.Windows.Forms.ComboBox cboMapType;
         private System.Windows.Forms.Button btnOk;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblLanguage;
         private System.Windows.Forms.Label lblDefaultPlace;
         private System.Windows.Forms.TextBox txtDefaultPlace;
         private System.Windows.Forms.Label lblPlace;

@@ -205,6 +205,9 @@ namespace TerritoriesManagement.GUI.ImporterConfig
                     //Address.Number
                     if (_config.Addresses.Number.Import)
                         _importer.Config.Addresses.Fields.Add("Number", _config.Addresses.Number.ColumnName);
+                    //Address.AddressData
+                    if (_config.Addresses.AddressData.Import)
+                        _importer.Config.Addresses.Fields.Add("AddressData", _config.Addresses.AddressData.ColumnName);
                     //Address.Corner1
                     if (_config.Addresses.Corner1.Import)
                         _importer.Config.Addresses.Fields.Add("Corner1", _config.Addresses.Corner1.ColumnName);

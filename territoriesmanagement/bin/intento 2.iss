@@ -1,14 +1,15 @@
 [ISPP]
 ; Por favor, no edite esta sección manualmente si no sabe lo que está haciendo.
 ; Please, don't edit this section manually if you don't know what are you doing.
-#define path "C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement\"
+#define path "C:\Documents and Settings\interaccionliuh\Mis documentos\Visual Studio 2008\Projects\territoriesmanagement/"
+#define ver "1.10.11.30"
 
 [Setup]
-OutputBaseFilename=tmsetup1.10.11.18
+OutputBaseFilename=tmsetup{#ver}
 OutputDir={#path}\bin
 AlwaysUsePersonalGroup=True
 AppName=Territories Management
-AppVerName=Territories Management 1.10.11.18
+AppVerName=Territories Management {#ver}
 AppPublisher=Zeqk
 AppPublisherURL=http://sites.google.com/site/territoriesmanagement/
 AppSupportURL=http://sites.google.com/site/territoriesmanagement/
@@ -19,10 +20,10 @@ EnableDirDoesntExistWarning=True
 AppCopyright=GNU GPL 2010 Zeqk
 RestartIfNeededByRun=False
 SignedUninstallerDir={#path}\bin
-VersionInfoVersion=1.10.11.18
+VersionInfoVersion={#ver}
 VersionInfoCompany=Zeqk
 VersionInfoCopyright=GNU GPL 2010 Zeqk
-VersionInfoProductVersion=1.10.11.01
+VersionInfoProductVersion={#ver}
 VersionInfoProductName=TerritoriesManagement
 Compression=lzma/max
 SolidCompression=yes

@@ -19,6 +19,8 @@ namespace TerritoriesManagement.GUI.ImporterConfig
 
         private Field _street;
 
+        private Field _addressData;
+
         private Field _number;
 
         private Field _corner1;
@@ -60,6 +62,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             _id = new Field("ID");
             _street = new Field("CALLE");
             _number = new Field("NUMERO");
+            _addressData = new Field("DATOS ADICIONALES");
             _corner1 = new Field("ESQUINA1");
             _corner2 = new Field("ESQUINA2");
             _description = new Field("DESCRIPCION");
@@ -106,6 +109,12 @@ namespace TerritoriesManagement.GUI.ImporterConfig
         {
             get { return _number; }
             set { _number = value; }
+        }
+
+        public Field AddressData
+        {
+            get { return _addressData; }
+            set { _addressData = value; }
         }
 
         public Field Corner1
