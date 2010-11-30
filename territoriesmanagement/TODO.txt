@@ -1,5 +1,8 @@
 TODO:
-
-- logo
-- hacer la configuracion de la importacion en otra ventana
+- logo (en proceso - Natalia)
 - hace la exportacion a excel desde template con parametros
+- que la importación y exportación de datos sea mediante un wizard
+- manual de instrucciones
+- solucionar problema de que no se pueden importar direcciones con el id
+- proceso de geoposicionamiento masivo
+- que al modificar un territorio indique las direcciones que quedaron afuera o adentro
