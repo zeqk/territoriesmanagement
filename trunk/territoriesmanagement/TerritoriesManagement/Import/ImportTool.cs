@@ -571,6 +571,12 @@ namespace TerritoriesManagement.Import
                     string columnName = _config.Addresses.Fields["Number"];
                     a.Number = row[columnName].ToString();
                 }
+                //Address.Street
+                if (_config.Addresses.Fields.ContainsKey("AddressData"))
+                {
+                    string addressDataColumn = _config.Addresses.Fields["AddressData"];
+                    a.AddressData = row[addressDataColumn].ToString();
+                }
                 //Address.Corner1
                 if (_config.Addresses.Fields.ContainsKey("Corner1"))
                 {
