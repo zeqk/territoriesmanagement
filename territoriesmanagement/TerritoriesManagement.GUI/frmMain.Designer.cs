@@ -145,7 +145,6 @@
             this.interopWizzardToolStripMenuItem.Name = "interopWizzardToolStripMenuItem";
             this.interopWizzardToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.interopWizzardToolStripMenuItem.Text = "Interop wizzard";
-            this.interopWizzardToolStripMenuItem.Visible = false;
             this.interopWizzardToolStripMenuItem.Click += new System.EventHandler(this.interopWizzardToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem

@@ -165,10 +165,7 @@ namespace TerritoriesManagement.GUI
 
         private void interopWizzardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //using (frmInteropWizzard myForm = new frmInteropWizzard())
-            //{
-            //    myForm.ShowDialog();
-            //}
+            TerritoriesManagement.GUI.Interop.InteropWizard.RunInteropWizard();
         }
 
 
