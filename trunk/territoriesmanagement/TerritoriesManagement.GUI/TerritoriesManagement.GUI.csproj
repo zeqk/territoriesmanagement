@@ -116,6 +116,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\Localizer.dll</HintPath>
     </Reference>
+    <Reference Include="Merlin, Version=1.0.2.0, Culture=neutral, PublicKeyToken=f91e8b0b46e989d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\Merlin.dll</HintPath>
+    </Reference>
+    <Reference Include="MerlinStepLibrary, Version=1.0.2.0, Culture=neutral, PublicKeyToken=f91e8b0b46e989d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\MerlinStepLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core">
@@ -209,6 +217,7 @@
     <Compile Include="frmTerritories.Designer.cs">
       <DependentUpon>frmTerritories.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interop\InteropWizard.cs" />
     <Compile Include="ImporterConfig\PropertyGrid\CitiesTable.cs" />
     <Compile Include="ImporterConfig\PropertyGrid\CitiesTableConverter.cs" />
     <Compile Include="ImporterConfig\PropertyGrid\AddressesTable.cs" />
@@ -217,9 +226,16 @@
     <Compile Include="ImporterConfig\PropertyGrid\TerritoriesTableConverter.cs" />
     <Compile Include="ImporterConfig\PropertyGrid\DepartmentsTable.cs" />
     <Compile Include="ImporterConfig\PropertyGrid\Field.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\ImporterConfig.cs" />
+    <Compile Include="ImporterConfig\ImporterConfig.cs" />
     <Compile Include="ImporterConfig\PropertyGrid\FieldConverter.cs" />
     <Compile Include="ImporterConfig\PropertyGrid\DepartmentsTableConverter.cs" />
+    <Compile Include="Interop\Steps\connectionStep.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Interop\Steps\connectionStep.Designer.cs">
+      <DependentUpon>connectionStep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interop\InteropConfig.cs" />
     <Compile Include="Map.cs" />
     <Compile Include="MapModeEnum.cs" />
     <Compile Include="Program.cs" />
@@ -257,6 +273,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTerritories.resx">
       <DependentUpon>frmTerritories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interop\Steps\connectionStep.resx">
+      <DependentUpon>connectionStep.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
