@@ -79,6 +79,19 @@ namespace TerritoriesManagement
             return rv[entityName];
         }
 
+        static public string GetEntityNameByEntitySetName(string entitySetName)
+        {
+            Dictionary<string, string> rv = new Dictionary<string, string>();
+            rv.Add("Departments", "Department");
+            rv.Add("Cities", "City");
+            rv.Add("Addresses", "Address");
+            rv.Add("Publishers", "Publisher");
+            rv.Add("Tours", "Tour");
+            rv.Add("Territories", "Territory");
+
+            return rv[entitySetName];
+        }
+
         static public Type GetEntityTypeByEntityName(string entityName)
         {
             return Type.GetType("TerritoriesManagement.Model." + entityName);

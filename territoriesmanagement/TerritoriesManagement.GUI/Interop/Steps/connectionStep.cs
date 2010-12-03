@@ -15,6 +15,7 @@ namespace TerritoriesManagement.GUI.Interop.Steps
         public connectionStep()
         {
             InitializeComponent();
+            txtConnectStr.Text = InteropConfig.GetInstance().ConnectionString;
         }
 
         private void btnConfigureConnection_Click(object sender, EventArgs e)
