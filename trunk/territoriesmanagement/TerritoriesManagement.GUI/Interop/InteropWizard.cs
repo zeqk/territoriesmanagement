@@ -13,32 +13,35 @@ namespace TerritoriesManagement.GUI.Interop
     {
         public static void RunInteropWizard()
         {
-            //Create a list of steps
-            List<IStep> steps = new List<IStep>();
-
+            List<string> entities = new List<string>();
+            entities.Add("Departments");
+            entities.Add("Cities");
+            entities.Add("Territories");
+            entities.Add("Addresses");
+            entities.Add("Publishers");
+            entities.Add("Tours");
 
             //Import step 1
-            TextBox txtImport = new TextBox();
-            txtImport.Text = "Probando importacion";
-            txtImport.Multiline = true;
-            var import1 = new TemplateStep(txtImport,10,"Import");
+            //List<IStep> importSteps = new List<IStep>();
+            var tableSelectionStep = new SelectionStep("Table selection", "Please select the table:", entities.ToArray());
 
+            TemplateStep propertySelectionStep;
 
-            //Export step 1
-            TextBox txtExport = new TextBox();
-            txtExport.Text = "Probando exportacion";
-            txtExport.Multiline = true;
-            var export1 = new TemplateStep(txtExport, 10, "Export");
+            //Import (External) step 1
+            List<IStep> externalImportSteps = new List<IStep>();
+            var importFromExternal1 = new TemplateStep(new connectionStep(),"Import (External)");
+            importFromExternal1.Subtitle = "Import from external source";
+            externalImportSteps.Add(importFromExternal1);
+            externalImportSteps.Add(tableSelectionStep);
+            //externalImportSteps.Add(new TemplateStep(new TextBox()));
 
-            //Import from external step 1
-            var importFromExternal1 = new TemplateStep(new connectionStep());
 
             //Step 2. Action selection
             List<string> actions = new List<string>();
             actions.Add("Import");
             actions.Add("Export");
-            actions.Add("Import from external source");
-            actions.Add("Export to external destiny");
+            actions.Add("Import (External)");
+            actions.Add("Export (External)");
 
             var initialStepSequence = new List<IStep>();
             var actionStep = new SelectionStep("Action selection", "Please select the action:",actions.ToArray());
@@ -54,21 +57,53 @@ namespace TerritoriesManagement.GUI.Interop
                 controller.DeleteAllAfterCurrent();
                 switch (actionStep.Selected as string)
                 {
-                    case "Import":
-                        controller.AddAfterCurrent(import1);
+                    case "Import":                        
+                        controller.AddAfterCurrent(tableSelectionStep);
                         break;
                     case "Export":
-                        controller.AddAfterCurrent(export1);
+                        controller.AddAfterCurrent(tableSelectionStep);
                         break;
-                    case "Import from external source":
+                    case "Import (External)":
                         InteropConfig.LoadConfig();
-                        controller.AddAfterCurrent(importFromExternal1);
+                        controller.AddAfterCurrent(externalImportSteps);
+                        break;
+                    case "Export (External)":
+                        controller.AddAfterCurrent(tableSelectionStep);
                         break;
                     default:
                         break;
                 }
                 return true;
             };
+
+            tableSelectionStep.NextHandler = () =>
+            {
+                controller.DeleteAllAfterCurrent();
+
+                if ((string)actionStep.Selected == "Import (External)")
+                {
+                    controller.AddAfterCurrent(new TemplateStep(new TextBox()));
+                }
+                else
+                {
+                    CheckedListBox entitiesListBox = new CheckedListBox();
+                    entitiesListBox.DisplayMember = "Name";
+                    string entitySetName = (string)tableSelectionStep.Selected;
+                    string entityName = Helper.GetEntityNameByEntitySetName(entitySetName);
+                    entitiesListBox.Items.AddRange(Helper.GetPropertyListByType(entityName).ToArray());
+
+                    propertySelectionStep = new TemplateStep(entitiesListBox, entitySetName);
+                    controller.AddAfterCurrent(propertySelectionStep);
+
+                    propertySelectionStep.NextHandler = () =>
+                    {
+                        return true;
+                    };
+                }
+                return true;
+            };
+
+            
 
             controller.StartWizard("Interop");
         }
