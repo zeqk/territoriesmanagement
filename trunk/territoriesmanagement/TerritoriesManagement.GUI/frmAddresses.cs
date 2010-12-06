@@ -471,11 +471,13 @@ namespace TerritoriesManagement.GUI
                         markers.Add(marker);
                     }
                 }
+
+                var map = frmMap.GetInstance();
                 
-                Map.MapForm.Clear();
-                Map.MapForm.OtherMarkers = markers;
-                Map.MapForm.MapMode = MapModeEnum.ReadOnly;
-                Map.MapForm.ShowDialog();
+                map.Clear();
+                map.OtherMarkers = markers;
+                map.MapMode = MapModeEnum.ReadOnly;
+                map.ShowDialog();
             }
         }
 

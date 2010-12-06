@@ -16,6 +16,7 @@ using System.Collections;
 using System.Data.Objects;
 using TerritoriesManagement.Model;
 using TerritoriesManagement.DataBridge;
+using System.Runtime.CompilerServices;
 
 namespace TerritoriesManagement.GUI
 {
@@ -23,6 +24,9 @@ namespace TerritoriesManagement.GUI
     {
 
         Addresses server = new Addresses();
+
+        private static frmMap Instance = null;
+        static readonly object padlock = new object();
 
         #region Fields
         public int? TerritoryId = null;
@@ -142,7 +146,7 @@ namespace TerritoriesManagement.GUI
         #endregion        
 
         #region Constructors
-        public frmMap()
+        private frmMap()
         {
             //contruct fields
             _mapType = MapType.GoogleMap;
@@ -150,12 +154,32 @@ namespace TerritoriesManagement.GUI
             _mapMode = MapModeEnum.ReadOnly;
 
             InitializeComponent();
+            
         }
         #endregion
+
+        [MethodImpl(MethodImplOptions.Synchronized)]
+        private static void CreateInstance()
+        {
+            lock (padlock)
+            {
+                if (Instance == null)
+                {
+                    Instance = new frmMap();
+                }
+            }
+        }
+
+        public static frmMap GetInstance()
+        {
+            if (Instance == null) CreateInstance();
+            return Instance;
+        }
 
 
         public void Clear()
         {
+            MainMap.SelectedArea = new RectLatLng();
             currentMarker = null;
             currentPolygon = null;
             foreach (GMapOverlay overlay in MainMap.Overlays)
@@ -365,40 +389,6 @@ namespace TerritoriesManagement.GUI
             
         }
 
-        //void ExtractObjectData()
-        //{
-        //    if (Object != null)
-        //    {
-        //        if (Object is Territory || Object is Department || Object is City)
-        //        {
-        //            List<PointLatLng> auxPoints = new List<PointLatLng>();
-        //            string name = (string)Helper.GetPropertyValue(Object, "Name");
-        //            string areaStr = (string)Helper.GetPropertyValue(Object, "Area");
-        //            if (areaStr != null)
-        //                auxPoints = Helper.StrPointsToPointsLatLng(areaStr.Split('\n'));
-
-        //            currentPolygon = new GMapPolygon(auxPoints, name);
-        //            Pen pen = currentPolygon.Stroke;
-        //            pen.Color = Color.FromArgb(155, Color.Red);
-        //            currentPolygon.Stroke = pen;
-        //            MainMap.SetDrawingPolygon(currentPolygon);
-                    
-        //            ViewAddresses();
-        //        }
-
-        //        if (Object is Address)
-        //        {
-        //            Address a = (Address)Object;
-        //            PointLatLng point = new PointLatLng(0,0);
-        //            if (a.Lat.HasValue && a.Lng.HasValue)
-        //            {
-        //                currentMarker = new GMapMarkerGoogleRed(new PointLatLng(a.Lat.Value, a.Lng.Value));
-        //                top.Markers.Add(currentMarker);
-        //            }                    
-        //        }
-        //    }
-        //}
-
         #region Map event methods
 
         private void MainMap_OnMapZoomChanged()
@@ -601,6 +591,10 @@ namespace TerritoriesManagement.GUI
             chklstTerritory.DisplayMember = "Name";
             chklstTerritory.ValueMember = "Id";
             chklstTerritory.DataSource = territoryList;
+
+            chklstDepartment.UncheckAllItems();
+            chklstTerritories.UncheckAllItems();
+            chklstTerritory.UncheckAllItems();
 
             if (TerritoryId.HasValue)
             {
@@ -805,6 +799,17 @@ namespace TerritoriesManagement.GUI
         {
             ViewTerritories();
             ViewAddresses();
+        }
+
+        private void frmMap_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            panelAdData.Expand = false;
+        }
+
+        private void panelAdData_ExpandClick(object sender, EventArgs e)
+        {            
+            if(((BSE.Windows.Forms.Panel)sender).Expand)
+                panelAdData.Width = 200;
         }
 
         

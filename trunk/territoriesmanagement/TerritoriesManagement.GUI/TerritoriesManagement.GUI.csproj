@@ -236,7 +236,6 @@
       <DependentUpon>connectionStep.cs</DependentUpon>
     </Compile>
     <Compile Include="Interop\InteropConfig.cs" />
-    <Compile Include="Map.cs" />
     <Compile Include="MapModeEnum.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

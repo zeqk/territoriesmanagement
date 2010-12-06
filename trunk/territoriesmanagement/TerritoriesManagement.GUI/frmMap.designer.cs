@@ -169,6 +169,7 @@
             this.panelAdData.ToolTipTextCloseIcon = null;
             this.panelAdData.ToolTipTextExpandIconPanelCollapsed = null;
             this.panelAdData.ToolTipTextExpandIconPanelExpanded = null;
+            this.panelAdData.ExpandClick += new System.EventHandler<System.EventArgs>(this.panelAdData_ExpandClick);
             // 
             // splitter1
             // 
@@ -544,7 +545,6 @@
             this.MainMap.ShowTileGridLines = false;
             this.MainMap.Size = new System.Drawing.Size(699, 476);
             this.MainMap.TabIndex = 32;
-            this.MainMap.VirtualSizeEnabled = false;
             this.MainMap.Zoom = 2;
             // 
             // tableMapActions
@@ -723,6 +723,7 @@
             this.Name = "frmMap";
             this.Text = "Area";
             this.Load += new System.EventHandler(this.frmGeoArea_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMap_FormClosing);
             this.panelAdData.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
