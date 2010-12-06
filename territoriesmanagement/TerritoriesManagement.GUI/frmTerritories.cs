@@ -355,22 +355,23 @@ namespace TerritoriesManagement.GUI
 
         private void btnViewMap_Click(object sender, EventArgs e)
         {
-            Map.MapForm.Clear();
-            Map.MapForm.MapMode = MapModeEnum.EditArea;
-            Map.MapForm.Address = Config.DefaultPlace;
+            var map = frmMap.GetInstance();
+            map.Clear();
+            map.MapMode = MapModeEnum.EditArea;
+            map.Address = Config.DefaultPlace;
             Territory t = FormToOject();
 
             GMapPolygon polygon = GetPolygon(t.Area);
             polygon.Name = t.Name;
 
-            Map.MapForm.MainPolygon = polygon;
-            Map.MapForm.TerritoryId = t.IdTerritory;
+            map.MainPolygon = polygon;
+            map.TerritoryId = t.IdTerritory;
 
-            if (Map.MapForm.ShowDialog() == DialogResult.OK)
+            if (map.ShowDialog() == DialogResult.OK)
             {
                 string area = "";
 
-                polygon = Map.MapForm.MainPolygon;
+                polygon = map.MainPolygon;
                 if (polygon != null)
                 {
                     CultureInfo info = CultureInfo.GetCultureInfo("en-US");

@@ -176,24 +176,25 @@ namespace TerritoriesManagement.GUI
 
         private void btnSearchGeoPos_Click(object sender, EventArgs e)
         {
-            Map.MapForm.Clear();
-            Map.MapForm.MapType = Config.MapType;
-            Map.MapForm.MapMode = MapModeEnum.EditPoint;
+            var map = frmMap.GetInstance();
+            map.Clear();
+            map.MapType = Config.MapType;
+            map.MapMode = MapModeEnum.EditPoint;
             
             GMapMarker marker = GetMarker(this.Address.Lat, this.Address.Lng);
 
-            Map.MapForm.MainMarker = marker;
+            map.MainMarker = marker;
 
-            Map.MapForm.Address = this.Address.Street + " " + this.Address.Number + ", " + this.Address.City.Name + ", " + GetDepartmentName() + ", " + Config.Region;
+            map.Address = this.Address.Street + " " + this.Address.Number + ", " + this.Address.City.Name + ", " + GetDepartmentName() + ", " + Config.Region;
 
-            Map.MapForm.ShowDialog();
+            map.ShowDialog();
 
-            if (Map.MapForm.DialogResult == DialogResult.OK)
+            if (map.DialogResult == DialogResult.OK)
             {
                 chkHaveGeoPos.Checked = true;
 
-                txtLat.Text = Map.MapForm.MainMarker.Position.Lat.ToString();
-                txtLon.Text = Map.MapForm.MainMarker.Position.Lng.ToString();
+                txtLat.Text = map.MainMarker.Position.Lat.ToString();
+                txtLon.Text = map.MainMarker.Position.Lng.ToString();
             }
         }
 

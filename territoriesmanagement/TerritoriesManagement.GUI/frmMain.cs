@@ -14,7 +14,6 @@ namespace TerritoriesManagement.GUI
         public frmMain()
         {
             InitializeComponent();
-            Map.Initiate();
         }
 
         private void btnAddress_Click(object sender, EventArgs e)
@@ -160,7 +159,7 @@ namespace TerritoriesManagement.GUI
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Map.Close();
+            //Map.Close(); hay q cerrar el mapa?
         }
 
         private void interopWizzardToolStripMenuItem_Click(object sender, EventArgs e)
