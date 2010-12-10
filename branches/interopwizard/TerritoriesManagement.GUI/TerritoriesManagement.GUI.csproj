@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C11B3B79-AD1B-46F6-8404-1B580E454972}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TerritoriesManagement.GUI</RootNamespace>
+    <AssemblyName>TerritoriesManagement.GUI</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <StartupObject>TerritoriesManagement.GUI.Program</StartupObject>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'x86 CPU|AnyCPU' ">
+    <OutputPath>bin\x86 CPU\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <OutputPath>..\bin\last release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>none</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'x86 CPU|x86' ">
+    <OutputPath>bin\x86\x86 CPU\</OutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'x86 CPU|x64' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\x86 CPU\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AltosTools, Version=1.10.7.8, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\AltosTools.dll</HintPath>
+    </Reference>
+    <Reference Include="AltosTools.Maps, Version=1.10.12.9, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\AltosTools.Maps.dll</HintPath>
+    </Reference>
+    <Reference Include="AltosTools.WindowsForms, Version=1.10.11.18, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\AltosTools.WindowsForms.dll</HintPath>
+    </Reference>
+    <Reference Include="BSE.Windows.Forms, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\BSE.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=2.5.1.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="GMap.NET.Core, Version=1.5.4.3, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\zeqktools\bin\GMap.NET.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="GMap.NET.WindowsForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\zeqktools\bin\GMap.NET.WindowsForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Localizer, Version=1.0.3845.22081, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\Localizer.dll</HintPath>
+    </Reference>
+    <Reference Include="Merlin, Version=1.0.2.0, Culture=neutral, PublicKeyToken=f91e8b0b46e989d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\Merlin.dll</HintPath>
+    </Reference>
+    <Reference Include="MerlinStepLibrary, Version=1.0.2.0, Culture=neutral, PublicKeyToken=f91e8b0b46e989d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\MerlinStepLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Entity">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.SQLite, Version=1.0.66.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Design" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\Config.cs" />
+    <Compile Include="frmCities.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCities.Designer.cs">
+      <DependentUpon>frmCities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConfig.Designer.cs">
+      <DependentUpon>frmConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmDeparments.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDeparments.Designer.cs">
+      <DependentUpon>frmDeparments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddress.Designer.cs">
+      <DependentUpon>frmAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddresses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddresses.Designer.cs">
+      <DependentUpon>frmAddresses.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMap.designer.cs">
+      <DependentUpon>frmMap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmAddressesStatistic.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddressesStatistic.Designer.cs">
+      <DependentUpon>frmAddressesStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImporterConfig\Forms\frmEntitiesConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImporterConfig\Forms\frmEntitiesConfig.Designer.cs">
+      <DependentUpon>frmEntitiesConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImporterConfig\Forms\frmTablesConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImporterConfig\Forms\frmTablesConfig.Designer.cs">
+      <DependentUpon>frmTablesConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImporterConfig\Forms\frmInterop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ImporterConfig\Forms\frmInterop.Designer.cs">
+      <DependentUpon>frmInterop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTerritories.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTerritories.Designer.cs">
+      <DependentUpon>frmTerritories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ImporterConfig\PropertyGrid\ITable.cs" />
+    <Compile Include="Interop\InteropWizard.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\CitiesTable.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\CitiesTableConverter.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\AddressesTable.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\AddressesTableConverter.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\TerritoriesTable.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\TerritoriesTableConverter.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\DepartmentsTable.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\Field.cs" />
+    <Compile Include="ImporterConfig\ImporterConfig.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\FieldConverter.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\DepartmentsTableConverter.cs" />
+    <Compile Include="Interop\Steps\connectionStep.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Interop\Steps\connectionStep.Designer.cs">
+      <DependentUpon>connectionStep.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interop\InteropConfig.cs" />
+    <Compile Include="Interop\TablesEnum.cs" />
+    <Compile Include="MapModeEnum.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmCities.resx">
+      <DependentUpon>frmCities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmConfig.resx">
+      <DependentUpon>frmConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddress.resx">
+      <DependentUpon>frmAddress.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddresses.resx">
+      <DependentUpon>frmAddresses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDeparments.resx">
+      <DependentUpon>frmDeparments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMap.resx">
+      <DependentUpon>frmMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAddressesStatistic.resx">
+      <DependentUpon>frmAddressesStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImporterConfig\Forms\frmEntitiesConfig.resx">
+      <DependentUpon>frmEntitiesConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImporterConfig\Forms\frmTablesConfig.resx">
+      <DependentUpon>frmTablesConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ImporterConfig\Forms\frmInterop.resx">
+      <DependentUpon>frmInterop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTerritories.resx">
+      <DependentUpon>frmTerritories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interop\Steps\connectionStep.resx">
+      <DependentUpon>connectionStep.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\DataSources\TerritoriesManagement.Model.Address.datasource" />
+    <None Include="Properties\DataSources\TerritoriesManagement.Model.City.datasource" />
+    <None Include="Properties\DataSources\TerritoriesManagement.Model.Department.datasource" />
+    <None Include="Properties\DataSources\TerritoriesManagement.Model.Territory.datasource" />
+    <None Include="Resources\legend.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TerritoriesManagement\TerritoriesManagement.csproj">
+      <Project>{2AF8144A-682F-4B8E-A3CF-4FD77816AD78}</Project>
+      <Name>TerritoriesManagement</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lightblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\orange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="languages\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

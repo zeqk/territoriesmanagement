@@ -1,0 +1,669 @@
+<Localizer language="Italiano" associatedCulture="it-IT">
+  <String>
+    <Original>About Territories Management</Original>
+    <Translated>Riguardo a Territories Management</Translated>
+  </String>
+  <String>
+    <Original>Additional information</Original>
+    <Translated>Altre informazioni</Translated>
+  </String>
+  <String>
+    <Original>Address</Original>
+    <Translated>Indirizzo</Translated>
+  </String>
+  <String>
+    <Original>Address data</Original>
+    <Translated>Dati Indirizzo</Translated>
+  </String>
+  <String>
+    <Original>Addresses</Original>
+    <Translated>Indirizzi</Translated>
+  </String>
+  <String>
+    <Original>Apply</Original>
+    <Translated>Applica</Translated>
+  </String>
+  <String>
+    <Original>Area</Original>
+    <Translated>Area</Translated>
+  </String>
+  <String>
+    <Original>Autoselect</Original>
+    <Translated>Autoseleziona</Translated>
+  </String>
+  <String>
+    <Original>Start</Original>
+    <Translated>Inizio</Translated>
+  </String>
+  <String>
+    <Original>Between</Original>
+    <Translated>Tra</Translated>
+  </String>
+  <String>
+    <Original>Cancel</Original>
+    <Translated>Annulla</Translated>
+  </String>
+  <String>
+    <Original>Cities</Original>
+    <Translated>Citta'</Translated>
+  </String>
+  <String>
+    <Original>City</Original>
+    <Translated>Citta'</Translated>
+  </String>
+  <String>
+    <Original>Clear area</Original>
+    <Translated>Pulisci area</Translated>
+  </String>
+  <String>
+    <Original>Configuration</Original>
+    <Translated>Configurazioni</Translated>
+  </String>
+  <String>
+    <Original>Configure</Original>
+    <Translated>Configura</Translated>
+  </String>
+  <String>
+    <Original>Configure import properties</Original>
+    <Translated>Configura impostazioni di importazione</Translated>
+  </String>
+  <String>
+    <Original>Connection status:</Original>
+    <Translated>Stato connessione:</Translated>
+  </String>
+  <String>
+    <Original>Connection string</Original>
+    <Translated>Stringa di Connessione</Translated>
+  </String>
+  <String>
+    <Original>Copy</Original>
+    <Translated>Copia</Translated>
+  </String>
+  <String>
+    <Original>Corner 1</Original>
+    <Translated>Angolo 1</Translated>
+  </String>
+  <String>
+    <Original>Corner 2</Original>
+    <Translated>Angolo 2</Translated>
+  </String>
+  <String>
+    <Original>Corners</Original>
+    <Translated>Angoli</Translated>
+  </String>
+  <String>
+    <Original>Cultures</Original>
+    <Translated>Cultures</Translated>
+  </String>
+  <String>
+    <Original>Custom field 1</Original>
+    <Translated>Campo personale 1</Translated>
+  </String>
+  <String>
+    <Original>Data</Original>
+    <Translated>Dati</Translated>
+  </String>
+  <String>
+    <Original>Data export</Original>
+    <Translated>Esporta dati</Translated>
+  </String>
+  <String>
+    <Original>Data import</Original>
+    <Translated>Importa dati</Translated>
+  </String>
+  <String>
+    <Original>Delete</Original>
+    <Translated>Elimina</Translated>
+  </String>
+  <String>
+    <Original>Department</Original>
+    <Translated>Provincia</Translated>
+  </String>
+  <String>
+    <Original>Departments</Original>
+    <Translated>Provincie</Translated>
+  </String>
+  <String>
+    <Original>Description</Original>
+    <Translated>Descrizione</Translated>
+  </String>
+  <String>
+    <Original>Edit</Original>
+    <Translated>Modifica</Translated>
+  </String>
+  <String>
+    <Original>End</Original>
+    <Translated>Fine</Translated>
+  </String>
+  <String>
+    <Original>Error</Original>
+    <Translated>Errore</Translated>
+  </String>
+  <String>
+    <Original>Error. </Original>
+    <Translated>Errore. </Translated>
+  </String>
+  <String>
+    <Original>Export</Original>
+    <Translated>Esporta</Translated>
+  </String>
+  <String>
+    <Original>Export data</Original>
+    <Translated>Esporta dati</Translated>
+  </String>
+  <String>
+    <Original>Export records</Original>
+    <Translated>Esporta dati</Translated>
+  </String>
+  <String>
+    <Original>Export to excel spreadsheet</Original>
+    <Translated>Esporta in file Excell</Translated>
+  </String>
+  <String>
+    <Original>Export to Gmaps</Original>
+    <Translated>Esporta a Gmaps</Translated>
+  </String>
+  <String>
+    <Original>External data</Original>
+    <Translated>Dati esterni</Translated>
+  </String>
+  <String>
+    <Original>Filter by city name</Original>
+    <Translated>Filtra per nome citta'</Translated>
+  </String>
+  <String>
+    <Original>Filter by department</Original>
+    <Translated>Filtra per provincia</Translated>
+  </String>
+  <String>
+    <Original>Filter by department name</Original>
+    <Translated>Filtra per nome provincia</Translated>
+  </String>
+  <String>
+    <Original>Filter by territory name</Original>
+    <Translated>Filtra per nome territorio</Translated>
+  </String>
+  <String>
+    <Original>Filtered</Original>
+    <Translated>Filtrato</Translated>
+  </String>
+  <String>
+    <Original>GEO</Original>
+    <Translated>GEO</Translated>
+  </String>
+  <String>
+    <Original>Geo data has been imported.</Original>
+    <Translated>i dati geo sono stati importati.</Translated>
+  </String>
+  <String>
+    <Original>Geo location</Original>
+    <Translated>Coordinate Geo</Translated>
+  </String>
+  <String>
+    <Original>Go</Original>
+    <Translated>Vai!</Translated>
+  </String>
+  <String>
+    <Original>Has geoposition</Original>
+    <Translated>Ha la Geoposizione</Translated>
+  </String>
+  <String>
+    <Original>Help</Original>
+    <Translated>Aiuto</Translated>
+  </String>
+  <String>
+    <Original>Hide relations</Original>
+    <Translated>Nascondi relazioni</Translated>
+  </String>
+  <String>
+    <Original>Id</Original>
+    <Translated>Id</Translated>
+  </String>
+  <String>
+    <Original>Import</Original>
+    <Translated>Importa</Translated>
+  </String>
+  <String>
+    <Original>Import from GeoRss file</Original>
+    <Translated>Importa da file GeoRss</Translated>
+  </String>
+  <String>
+    <Original>Import records</Original>
+    <Translated>Import dati</Translated>
+  </String>
+  <String>
+    <Original>Internal number</Original>
+    <Translated>Numero</Translated>
+  </String>
+  <String>
+    <Original>Interoperability</Original>
+    <Translated>Database</Translated>
+  </String>
+  <String>
+    <Original>Lat</Original>
+    <Translated>Lat</Translated>
+  </String>
+  <String>
+    <Original>Latitude</Original>
+    <Translated>Latitudine</Translated>
+  </String>
+  <String>
+    <Original>Lng</Original>
+    <Translated>Lng</Translated>
+  </String>
+  <String>
+    <Original>Location</Original>
+    <Translated>Locazione</Translated>
+  </String>
+  <String>
+    <Original>Longitude</Original>
+    <Translated>Longitudine</Translated>
+  </String>
+  <String>
+    <Original>Map 1</Original>
+    <Translated>Mappa 1</Translated>
+  </String>
+  <String>
+    <Original>Map 2</Original>
+    <Translated>Mappa 2</Translated>
+  </String>
+  <String>
+    <Original>Map type</Original>
+    <Translated>Tipo mappa</Translated>
+  </String>
+  <String>
+    <Original>Maps</Original>
+    <Translated>Mappe</Translated>
+  </String>
+  <String>
+    <Original>Menu</Original>
+    <Translated>Menu</Translated>
+  </String>
+  <String>
+    <Original>Name</Original>
+    <Translated>Nome</Translated>
+  </String>
+  <String>
+    <Original>New</Original>
+    <Translated>Nuovo</Translated>
+  </String>
+  <String>
+    <Original>Number</Original>
+    <Translated>Numero</Translated>
+  </String>
+  <String>
+    <Original>Ok</Original>
+    <Translated>Ok</Translated>
+  </String>
+  <String>
+    <Original>OK. Last modification date: </Original>
+    <Translated>OK. Data ultima modifica: </Translated>
+  </String>
+  <String>
+    <Original>Phone 1</Original>
+    <Translated>Telefono 1</Translated>
+  </String>
+  <String>
+    <Original>Phone 2</Original>
+    <Translated>Telefono 2</Translated>
+  </String>
+  <String>
+    <Original>Phone numbers</Original>
+    <Translated>Numeri telefonici</Translated>
+  </String>
+  <String>
+    <Original>Place</Original>
+    <Translated>Luogo</Translated>
+  </String>
+  <String>
+    <Original>Publisher</Original>
+    <Translated>Publisher</Translated>
+  </String>
+  <String>
+    <Original>Publishers</Original>
+    <Translated>Publishers</Translated>
+  </String>
+  <String>
+    <Original>Region, Country</Original>
+    <Translated>Stato, Paese</Translated>
+  </String>
+  <String>
+    <Original>Reset</Original>
+    <Translated>Resetta</Translated>
+  </String>
+  <String>
+    <Original>Result</Original>
+    <Translated>Risultato</Translated>
+  </String>
+  <String>
+    <Original>Result:</Original>
+    <Translated>Risultato:</Translated>
+  </String>
+  <String>
+    <Original>Save</Original>
+    <Translated>Salva</Translated>
+  </String>
+  <String>
+    <Original>Search</Original>
+    <Translated>Ricerca</Translated>
+  </String>
+  <String>
+    <Original>Select</Original>
+    <Translated>Seleziona</Translated>
+  </String>
+  <String>
+    <Original>Select culture</Original>
+    <Translated>Seleziona Lingua</Translated>
+  </String>
+  <String>
+    <Original>Select map type</Original>
+    <Translated>Seleziona tipo di mappa</Translated>
+  </String>
+  <String>
+    <Original>Select source and destination files.</Original>
+    <Translated>Seleziona origine e destinazione file.</Translated>
+  </String>
+  <String>
+    <Original>Street</Original>
+    <Translated>Via</Translated>
+  </String>
+  <String>
+    <Original>Street and Nº</Original>
+    <Translated>Via e nº</Translated>
+  </String>
+  <String>
+    <Original>Territories</Original>
+    <Translated>Territori</Translated>
+  </String>
+  <String>
+    <Original>Territories Management</Original>
+    <Translated>Territories Management</Translated>
+  </String>
+  <String>
+    <Original>Territory</Original>
+    <Translated>Territorio</Translated>
+  </String>
+  <String>
+    <Original>The data is incomplete.</Original>
+    <Translated>I dati non sono completi.</Translated>
+  </String>
+  <String>
+    <Original>The exportation has been successful.\n</Original>
+    <Translated>L'esportazione e' avvenuta con successo.\n</Translated>
+  </String>
+  <String>
+    <Original>The exportation has problems. Check the settings and see the log.\n</Original>
+    <Translated>Ci sono stati degli errori nell'esportazione. Controllare le impsotazioni e vedete il file di log.\n</Translated>
+  </String>
+  <String>
+    <Original>The importation has been successful.</Original>
+    <Translated>L'importazione e' avvenuta con successo.</Translated>
+  </String>
+  <String>
+    <Original>The importation has problems. Check the settings and see the log.</Original>
+    <Translated>Ci sono stati degli errori nell'importazione. Controllare le impsotazioni e vedete il file di log.</Translated>
+  </String>
+  <String>
+    <Original>The window is already open.</Original>
+    <Translated>La finestra e' gia' aperta.</Translated>
+  </String>
+  <String>
+    <Original>There is some unsaved data. Do you want to continue?</Original>
+    <Translated>Ci sono dei dati non salvati. Si desidera continuare?</Translated>
+  </String>
+  <String>
+    <Original>To Excel</Original>
+    <Translated>A Excel</Translated>
+  </String>
+  <String>
+    <Original>To GMap</Original>
+    <Translated>A GMap</Translated>
+  </String>
+  <String>
+    <Original>To image</Original>
+    <Translated>A immagine</Translated>
+  </String>
+  <String>
+    <Original>Tools</Original>
+    <Translated>Strumenti</Translated>
+  </String>
+  <String>
+    <Original>Tour Nº</Original>
+    <Translated>Tour Nº</Translated>
+  </String>
+  <String>
+    <Original>Tours</Original>
+    <Translated>Tours</Translated>
+  </String>
+  <String>
+    <Original>Update</Original>
+    <Translated>Aggiorna</Translated>
+  </String>
+  <String>
+    <Original>View</Original>
+    <Translated>Visualizza</Translated>
+  </String>
+  <String>
+    <Original>View map</Original>
+    <Translated>Visualizza mappa</Translated>
+  </String>
+  <String>
+    <Original>View relations</Original>
+    <Translated>Visualizza relazioni</Translated>
+  </String>
+  <String>
+    <Original>You must complete at least one search criteria.</Original>
+    <Translated>Devi inserire almeno un elemento da ricercare.</Translated>
+  </String>
+  <String>
+    <Original>You must select a city</Original>
+    <Translated>Devi selezionare una citta'</Translated>
+  </String>
+  <String>
+    <Original>You must select a department</Original>
+    <Translated>Devi selezionare una provincia</Translated>
+  </String>
+  <String>
+    <Original>You must select at least one search criteria.</Original>
+    <Translated>Devi inserire almeno un elemento da ricercare.</Translated>
+  </String>
+  <String>
+    <Original>You must select at least one search field.</Original>
+    <Translated>YDevi inserire almeno un elemento da ricercare.</Translated>
+  </String>
+  <String>
+    <Original>You must select an address.</Original>
+    <Translated>Devi selezionare un indirizzo</Translated>
+  </String>
+  <String>
+    <Original>You must select a territory.</Original>
+    <Translated>Devi selezionare un territorio</Translated>
+  </String>
+  <String>
+    <Original>Enter the street.</Original>
+    <Translated>Inserire la via.</Translated>
+  </String>
+  <String>
+    <Original>Enter the number or the corner.</Original>
+    <Translated>Inserire il numero dell'angolo.</Translated>
+  </String>
+  <String>
+    <Original>Select a city.</Original>
+    <Translated>Selezionare una citta'.</Translated>
+  </String>
+  <String>
+    <Original>(no territory)</Original>
+    <Translated>(nessun territorio)</Translated>
+  </String>
+  <String>
+    <Original>Enter city name.</Original>
+    <Translated>Inserire il nome della citta'.</Translated>
+  </String>
+  <String>
+    <Original>The city already exists. Correct and try again.</Original>
+    <Translated>La citt' esiste gia'. Correggere e riprovare.</Translated>
+  </String>
+  <String>
+    <Original>Select a department.</Original>
+    <Translated>Selezionare una provincia.</Translated>
+  </String>
+  <String>
+    <Original>Enter department name.</Original>
+    <Translated>Inserire il nome della provincia.</Translated>
+  </String>
+  <String>
+    <Original>The department already exists. Correct and retrieve.</Original>
+    <Translated>La provicnia esiste gia'. Correggere e riprovare.</Translated>
+  </String>
+  <String>
+    <Original>Enter territory name.</Original>
+    <Translated>Inserire il nome del territorio.</Translated>
+  </String>
+  <String>
+    <Original>The territory already exists. Correct and try again.</Original>
+    <Translated>Il territorio esiste gia'. Correggere e riprovare.</Translated>
+  </String>
+  <String>
+    <Original>Some departments have not been imported successfully.</Original>
+    <Translated>Qualche provincia non e' stata importata correttamente.</Translated>
+  </String>
+  <String>
+    <Original>No department has been imported.</Original>
+    <Translated>Non e' stata imprtata nessuna provincia</Translated>
+  </String>
+  <String>
+    <Original>Some cities have not been imported successfully.</Original>
+    <Translated>Qualche citta' non e' stata importata correttamente.</Translated>
+  </String>
+  <String>
+    <Original>No city has been imported.</Original>
+    <Translated>Non e' stata iportata nessuna citta'.</Translated>
+  </String>
+  <String>
+    <Original>Some territories have not been imported successfully.</Original>
+    <Translated>Qualche territorio non e' stato imprtata correttamente.</Translated>
+  </String>
+  <String>
+    <Original>No territory has been imported.</Original>
+    <Translated>NNon e' stato importato nessun territorio.</Translated>
+  </String>
+  <String>
+    <Original>Some addresses have not been imported successfully.</Original>
+    <Translated>Qualche indirizzo non e' stato importato correttamente.</Translated>
+  </String>
+  <String>
+    <Original>No address has been imported.</Original>
+    <Translated>Non e' stato importata nessun indirizzo.</Translated>
+  </String>
+  <String>
+    <Original>IMPORT DEPARTMENTS ERRORS: </Original>
+    <Translated>ERRORI IMPORTAZIONE PROVINCIE: </Translated>
+  </String>
+  <String>
+    <Original>-Error: </Original>
+    <Translated>-Errore: </Translated>
+  </String>
+  <String>
+    <Original>IMPORT CITIES ERRORS: </Original>
+    <Translated>ERRORI IMPORTAZIONE CITTA': </Translated>
+  </String>
+  <String>
+    <Original>IMPORT TERRITORIES ERRORS: </Original>
+    <Translated>ERRORI IMPORTAZIONE TERRITORI: </Translated>
+  </String>
+  <String>
+    <Original>IMPORT ADDRESSES ERRORS: </Original>
+    <Translated>ERRORI IMPORTAZIONE INDIRIZZI: </Translated>
+  </String>
+  <String>
+    <Original>  -Name is blank or null. </Original>
+    <Translated>  -Il nome e' vuoto. </Translated>
+  </String>
+  <String>
+    <Original>  -Already exists. </Original>
+    <Translated>  -Esiste gia'. </Translated>
+  </String>
+  <String>
+    <Original>  -There is no department.. </Original>
+    <Translated>  -Non c'e' nessuna provincia.. </Translated>
+  </String>
+  <String>
+    <Original>  -Department doesn't exist. </Original>
+    <Translated>  -La provincia non esiste. </Translated>
+  </String>
+  <String>
+    <Original>  -The street is blank or null. </Original>
+    <Translated>  -La via e' vuota. </Translated>
+  </String>
+  <String>
+    <Original>  -There is no city.. </Original>
+    <Translated>  -Non c'e' nessuna citta'.. </Translated>
+  </String>
+  <String>
+    <Original>  -City doesn't exist. </Original>
+    <Translated>  -La citta' non esiste. </Translated>
+  </String>
+  <String>
+    <Original>{0} departments have been imported.</Original>
+    <Translated>{0} provincie sono state importate.</Translated>
+  </String>
+  <String>
+    <Original>{0} cities has been imported.</Original>
+    <Translated>{0} citta' sono state importate.</Translated>
+  </String>
+  <String>
+    <Original>{0} territories has been imported.</Original>
+    <Translated>{0} territori sono stati importati.</Translated>
+  </String>
+  <String>
+    <Original>{0} addresses has been imported.</Original>
+    <Translated>{0} indirizzi sono stati importati.</Translated>
+  </String>
+  <String>
+    <Original>-Conversion error. (Row values: {0})</Original>
+    <Translated>-Errore conversione. (Row values: {0})</Translated>
+  </String>
+  <String>
+    <Original>  -Name length exceeds the allowed length ({0}). </Original>
+    <Translated>  -La lunghezza del nome supera quella consentita ({0}). </Translated>
+  </String>
+  <String>
+    <Original>-\"{0} {1}\" is invalid: </Original>
+    <Translated>-\"{0} {1}\" non e' vaildo: </Translated>
+  </String>
+  <String>
+    <Original>  -Address data length exceeds the allowed length ({0}). </Original>
+    <Translated>  -La lunghezza dell'indirizzo supera quella consentita ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Corners length exceeds the allowed length ({0}). </Original>
+    <Translated>  -La lunghezza degli angoli supera quella consentita ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Custom fields length exceeds the allowed length ({0}). </Original>
+    <Translated>  -La lunghezza dei campi personali supera quella consentita ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Description length exceeds the allowed length ({0}). </Original>
+    <Translated>  -La lunghezza della descrizione supera quella consentita ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Maps length exceeds the allowed length ({0}). </Original>
+    <Translated>  -La lunghezza della mappa supera quella consentita ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Number length exceeds the allowed length ({0}). </Original>
+    <Translated>  -La lunghezza del numero supera quella consentita ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Phone numbers length exceeds the allowed length ({0}). </Original>
+    <Translated>  -La lunghezza del telefono supera quella consentita ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Street length exceeds the allowed length ({0}). </Original>
+    <Translated>  -La lunghezza della via supera quella consentita ({0}). </Translated>
+  </String>
+</Localizer>
+
+
+
