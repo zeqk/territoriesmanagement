@@ -3,17 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+using TerritoriesManagement.GUI.Interop;
 
 namespace TerritoriesManagement.GUI.ImporterConfig
 {
     [Serializable]
-    [TypeConverter(typeof(CitiesTableConverter))]
-    public class CitiesTable : ITable
+    public class CitiesTable : ExternalTable
     {
         #region Fields
-        private bool _import;
-
-        private string _tableName;
 
         private Field _id;
 
@@ -35,17 +32,6 @@ namespace TerritoriesManagement.GUI.ImporterConfig
         }
 
         #region Properties
-        public string TableName
-        {
-            get { return _tableName; }
-            set { _tableName = value; }
-        }
-
-        public bool Import
-        {
-            get { return _import; }
-            set { _import = value; }
-        }
         
         public Field Id
         {

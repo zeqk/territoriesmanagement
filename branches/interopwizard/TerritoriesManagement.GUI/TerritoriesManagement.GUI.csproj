@@ -199,18 +199,6 @@
     <Compile Include="ImporterConfig\Forms\frmEntitiesConfig.Designer.cs">
       <DependentUpon>frmEntitiesConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImporterConfig\Forms\frmTablesConfig.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ImporterConfig\Forms\frmTablesConfig.Designer.cs">
-      <DependentUpon>frmTablesConfig.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ImporterConfig\Forms\frmInterop.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ImporterConfig\Forms\frmInterop.Designer.cs">
-      <DependentUpon>frmInterop.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -223,19 +211,10 @@
     <Compile Include="frmTerritories.Designer.cs">
       <DependentUpon>frmTerritories.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImporterConfig\PropertyGrid\ITable.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\Table.cs" />
     <Compile Include="Interop\InteropWizard.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\CitiesTable.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\CitiesTableConverter.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\AddressesTable.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\AddressesTableConverter.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\TerritoriesTable.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\TerritoriesTableConverter.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\DepartmentsTable.cs" />
     <Compile Include="ImporterConfig\PropertyGrid\Field.cs" />
-    <Compile Include="ImporterConfig\ImporterConfig.cs" />
     <Compile Include="ImporterConfig\PropertyGrid\FieldConverter.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\DepartmentsTableConverter.cs" />
     <Compile Include="Interop\Steps\connectionStep.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -243,7 +222,7 @@
       <DependentUpon>connectionStep.cs</DependentUpon>
     </Compile>
     <Compile Include="Interop\InteropConfig.cs" />
-    <Compile Include="Interop\TablesEnum.cs" />
+    <Compile Include="Interop\EntitiesEnum.cs" />
     <Compile Include="MapModeEnum.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -271,12 +250,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ImporterConfig\Forms\frmEntitiesConfig.resx">
       <DependentUpon>frmEntitiesConfig.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ImporterConfig\Forms\frmTablesConfig.resx">
-      <DependentUpon>frmTablesConfig.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ImporterConfig\Forms\frmInterop.resx">
-      <DependentUpon>frmInterop.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

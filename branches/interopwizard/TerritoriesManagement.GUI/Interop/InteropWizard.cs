@@ -6,6 +6,7 @@ using Merlin;
 using MerlinStepLibrary;
 using System.Windows.Forms;
 using TerritoriesManagement.GUI.Interop.Steps;
+using TerritoriesManagement.GUI.ImporterConfig;
 
 namespace TerritoriesManagement.GUI.Interop
 {
@@ -14,7 +15,7 @@ namespace TerritoriesManagement.GUI.Interop
         public static void RunInteropWizard()
         {
             string action = "";
-            TablesEnum table;
+            EntitiesEnum table;
             string file = "";
             
             List<string> actions = new List<string>();
@@ -33,7 +34,7 @@ namespace TerritoriesManagement.GUI.Interop
 
             //Select table step (Internal)
             CheckedListBox chkTables = new CheckedListBox();
-            chkTables.Items.AddRange(Enum.GetNames(typeof(TablesEnum)));
+            chkTables.Items.AddRange(Enum.GetNames(typeof(EntitiesEnum)));
             TemplateStep tableSelectionStep = new TemplateStep(chkTables);
 
             List<IStep> tableSelectionStepList = new List<IStep>();
@@ -41,7 +42,7 @@ namespace TerritoriesManagement.GUI.Interop
             tableSelectionStepList.Add(new TemplateStep(new TextBox()));
 
             //Chose table step (External)
-            SelectionStep chooseTableStep = new SelectionStep("Table selection", "Please select the table:", Enum.GetNames(typeof(TablesEnum)));
+            SelectionStep chooseTableStep = new SelectionStep("Table selection", "Please select the table:", Enum.GetNames(typeof(EntitiesEnum)));
             
             List<IStep> chooseTableStepList = new List<IStep>();
             chooseTableStepList.Add(chooseTableStep);
@@ -92,30 +93,19 @@ namespace TerritoriesManagement.GUI.Interop
                 {
                     InteropConfig.LoadConfig();
                     PropertyGrid propGrid = new PropertyGrid();
-                    table = (TablesEnum)Enum.Parse(typeof(TablesEnum), (string)chooseTableStep.Selected);
-                    switch (table)
+                    table = (EntitiesEnum)Enum.Parse(typeof(EntitiesEnum), (string)chooseTableStep.Selected);
+                    var tables = InteropConfig.GetInstance().Tables;
+                    foreach (ExternalTable item in tables)
                     {
-                        case TablesEnum.Departments:
-                            propGrid.SelectedObject = InteropConfig.GetInstance().Departments;
+                        if (item.RelatedEntitySet == table)
+                        {
+                            propGrid.SelectedObject = item;
                             break;
-                        case TablesEnum.Cities:
-                            propGrid.SelectedObject = InteropConfig.GetInstance().Departments;
-                            break;
-                        case TablesEnum.Territories:
-                            propGrid.SelectedObject = InteropConfig.GetInstance().Departments;
-                            break;
-                        case TablesEnum.Addresses:
-                            propGrid.SelectedObject = InteropConfig.GetInstance().Departments;
-                            break;
-                        case TablesEnum.Publishers:
-                            propGrid.SelectedObject = InteropConfig.GetInstance().Departments;
-                            break;
-                        case TablesEnum.Tours:
-                            propGrid.SelectedObject = InteropConfig.GetInstance().Departments;
-                            break;
-                        default:
-                            break;
+                        }
                     }
+
+                    TemplateStep configTableStep = new TemplateStep(propGrid);
+                    controller.AddAfterCurrent(configTableStep);
 
                 }
                 else
@@ -130,7 +120,15 @@ namespace TerritoriesManagement.GUI.Interop
 
             var result = controller.StartWizard("Interop");
 
+            if (result == WizardController.WizardResult.Finish)
+            {
 
+            }
+            else
+            {
+                if (action == "Import (External)")
+                    InteropConfig.SaveConfig();
+            }
 
 
 

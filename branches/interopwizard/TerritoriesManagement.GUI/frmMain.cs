@@ -147,8 +147,8 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
-                frmInterop myForm = new frmInterop();
-                myForm.Show();
+                //frmInterop myForm = new frmInterop();
+                //myForm.Show();
             }
             catch (Exception ex)
             {

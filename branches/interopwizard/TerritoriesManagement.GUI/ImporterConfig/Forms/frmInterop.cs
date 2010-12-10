@@ -8,6 +8,7 @@ using AltosTools.WindowsForms;
 using TerritoriesManagement.Export;
 using TerritoriesManagement.Import;
 using TerritoriesManagement.Model;
+using TerritoriesManagement.GUI.Interop;
 
 namespace TerritoriesManagement.GUI.ImporterConfig
 {
@@ -18,7 +19,6 @@ namespace TerritoriesManagement.GUI.ImporterConfig
 
         ImportTool _importer;
         bool _isDirty;
-        ImporterConfig _config;
         ResourceManager _rm;
 
         public frmInterop()
@@ -26,7 +26,6 @@ namespace TerritoriesManagement.GUI.ImporterConfig
 
             _rm = new ResourceManager(this.GetType());
             _importer = new ImportTool();
-            _config = new ImporterConfig();
             _isDirty = false;
             InitializeComponent();
 
@@ -105,7 +104,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
                 //Departments
                 if (_config.Departments.Import)
                 {
-                    _importer.Config.Departments.TableName = _config.Departments.TableName;
+                    _importer.Config.Departments.TableName = _config.Departments.ExternalTableName;
 
                     _importer.Config.Departments.Fields.Clear();
 
@@ -123,7 +122,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
                 //Cities
                 if (_config.Cities.Import)
                 {
-                    _importer.Config.Cities.TableName = _config.Cities.TableName;
+                    _importer.Config.Cities.TableName = _config.Cities.ExternalTableName;
 
                     _importer.Config.Cities.Fields.Clear();
 
@@ -167,7 +166,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
                 //Territories
                 if (_config.Territories.Import)
                 {
-                    _importer.Config.Territories.TableName = _config.Territories.TableName;
+                    _importer.Config.Territories.TableName = _config.Territories.ExternalTableName;
 
                     _importer.Config.Territories.Fields.Clear();
 
@@ -192,7 +191,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
                 //Addresses
                 if (_config.Addresses.Import)
                 {
-                    _importer.Config.Addresses.TableName = _config.Addresses.TableName;
+                    _importer.Config.Addresses.TableName = _config.Addresses.ExternalTableName;
 
                     _importer.Config.Addresses.Fields.Clear();
 
