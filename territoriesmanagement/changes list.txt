@@ -1,8 +1,0 @@
-Versions
-* 1.10.11.30 - 30/11/2010
- - Nuevas dlls: GMap.NET 1.5.4.3 Stable Version
- - Fix de error al configurar la cadena de conexión para importar datos. No seteaba el provedor guardado
- - Importación desde fuente externa: ahora también se puede importar el campo AddressData (Datos adicionales)
-
-* 1.10.11.18 - 18/11/2010
- - Arreglos en la importación desde fuentes externas
