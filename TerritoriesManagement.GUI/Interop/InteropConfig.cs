@@ -25,13 +25,14 @@ namespace TerritoriesManagement.GUI.Interop
 
         private string _connectionString;
 
-        private List<ITable> _tables;
+        private List<TerritoriesManagement.GUI.ImporterConfig.ExternalTable> _tables;
 
         #endregion
 
         private InteropConfig()
         {
-            _tables = new List<ITable>();
+            _tables = new List<ExternalTable>();
+
             _provider = null;
         }
 
@@ -57,7 +58,7 @@ namespace TerritoriesManagement.GUI.Interop
 
         #region Properties        
 
-        public List<ITable> Tables
+        public List<TerritoriesManagement.GUI.ImporterConfig.ExternalTable> Tables
         {
             get { return _tables; }
             set { _tables = value; }
@@ -108,9 +109,13 @@ namespace TerritoriesManagement.GUI.Interop
                     using (StreamReader sr = new StreamReader(path))
                     {
                         XmlSerializer ser = new XmlSerializer(typeof(InteropConfig));
-                        var aux = (InteropConfig)ser.Deserialize(sr); 
+                        var aux = (InteropConfig)ser.Deserialize(sr);
                         InteropConfig.GetInstance().SetConfig(aux);
                     }
+                }
+                else
+                {
+                    InteropConfig.GetInstance().SetDefaultConfig();
                 }
             }
             catch (Exception ex)
@@ -122,9 +127,21 @@ namespace TerritoriesManagement.GUI.Interop
 
         private void SetConfig(InteropConfig config)
         {
-            this.ConnectionString = config.ConnectionString;
-            this.Provider = config.Provider;
-            this.Tables = config.Tables;
+            _connectionString = config.ConnectionString;
+            _provider = config.Provider;
+            _tables = config.Tables;
+        }
+
+        private void SetDefaultConfig()
+        {
+            //Department
+            ExternalTable departmentTable = new ExternalTable();
+            departmentTable.ExternalTableName = "(TABLE NAME)";
+            departmentTable.RelatedEntitySet = EntitiesEnum.Departments;
+            departmentTable.Fields.Add(new Field("(COLUMN NAME)", "id"));
+            departmentTable.Fields.Add(new Field("(COLUMN NAME)", "name"));
+
+            _tables.Add(departmentTable);
         }
 
         #endregion
