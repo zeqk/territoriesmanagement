@@ -9,12 +9,21 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
 using TerritoriesManagement.Model;
+using System.ComponentModel;
 
 namespace TerritoriesManagement.Export
 {
     public class ExportTool
     {
+        public BackgroundWorker bg;
         int rowPosition = 0;
+
+        public ExportTool()
+        {
+            bg = new BackgroundWorker();
+            bg.WorkerSupportsCancellation = true;
+            bg.WorkerReportsProgress = true;
+        }
 
         /// <summary>
         /// Export a entity set to a excel file

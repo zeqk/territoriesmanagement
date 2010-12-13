@@ -10,6 +10,8 @@ using TerritoriesManagement.GUI.ImporterConfig;
 using TerritoriesManagement.Import;
 using System.ComponentModel;
 using TerritoriesManagement.GUI.Interop.Steps;
+using TerritoriesManagement.Export;
+using TerritoriesManagement.Model;
 
 namespace TerritoriesManagement.GUI.ImporterConfig
 {
@@ -17,104 +19,130 @@ namespace TerritoriesManagement.GUI.ImporterConfig
     {
         static ImportTool _importer;
         static InProgressControl inProgressControl = new InProgressControl();
-        static SetConnControl setConnControl = new SetConnControl();
-
-
-
 
         public static void RunInteropWizard()
         {
             string action = "";
             EntitiesEnum table = EntitiesEnum.Departments;
             string file = "";
+
+            string[] actions = new string[4];
+            actions[0] = "Import";
+            actions[1] = "Export";
+            actions[2] = "Import (External)";
+            actions[3] = "Export (External)";
             
-            List<string> actions = new List<string>();
-            actions.Add("Import");
-            actions.Add("Export");
-            actions.Add("Import (External)");
-            actions.Add("Export (External)");
-
-
             //Start step - Select action           
-            var actionStep = new SelectionStep("Action selection", "Please select the action:", actions.ToArray());
+            SelectionStep stepChooseAction = new SelectionStep("Action selection", "Please select the action:", actions);
 
-            var initialStepSequence = new List<IStep>();
-            initialStepSequence.Add(actionStep);
-            initialStepSequence.Add(new TemplateStep(new TextBox()));
+            //Final step - In progress            
+            TemplateStep stepInProgress = new TemplateStep(inProgressControl);
 
-            //Select table step (Internal)
+            #region Internal
+
+            //Select table step (Import and Export)
             CheckedListBox chkTables = new CheckedListBox();
             chkTables.Items.AddRange(Enum.GetNames(typeof(EntitiesEnum)));
-            TemplateStep tableSelectionStep = new TemplateStep(chkTables);            
+            TemplateStep stepSelectTable = new TemplateStep(chkTables);
 
-            //Chose table step (External)
-            SelectionStep chooseTableStep = new SelectionStep("Table selection", "Please select the table:", Enum.GetNames(typeof(EntitiesEnum)));
+            //Select source file step (Import)
+            FileSelectionStep stepSelectSource = new FileSelectionStep();            
+            //Select destiny file step (Export and External export)            
+            SelectDestinyStep stepSelectDestiny = new SelectDestinyStep();
 
-            //Configure connection step (External import)
-            TemplateStep configConnStep = new TemplateStep(setConnControl);
+            #endregion
 
-            //In progress step
-            TemplateStep inProgressStep = new TemplateStep(inProgressControl);
+            #region External
 
-            FileSelectionStep selectFileStep = new FileSelectionStep();
-            TemplateStep saveFileStep = new TemplateStep(new TextBox());
-                        
+            //Choose table step (Import and export)
+            SelectionStep stepChooseTable = new SelectionStep("Table selection", "Please select the table:", Enum.GetNames(typeof(EntitiesEnum)));
+            
+            //Set fields step (Import)
             PropertyGrid propGrid = new PropertyGrid();
-            TemplateStep configTableStep = new TemplateStep(propGrid);
+            TemplateStep stepSetFields = new TemplateStep(propGrid);
 
-            List<IStep> tableSelectionStepList = new List<IStep>();
-            tableSelectionStepList.Add(tableSelectionStep);
-            tableSelectionStepList.Add(new TemplateStep(new TextBox()));
+            //Set connection step (Import)
+            SetConnControl setConnControl = new SetConnControl();
+            TemplateStep stepSetConn = new TemplateStep(setConnControl);
 
-            List<IStep> chooseTableStepList = new List<IStep>();
-            chooseTableStepList.Add(chooseTableStep);
-            chooseTableStepList.Add(new TemplateStep(new TextBox()));
+            //Select fields step (Export)
+            CheckedListBox chkFields = new CheckedListBox();
+            chkFields.DisplayMember = "Name";
+            TemplateStep stepSelectFields = new TemplateStep(chkFields);
+
+            //Select destiny file step (Export and External export)
+            //line 46
 
 
-            WizardController controller = new WizardController(initialStepSequence);
+            List<IStep> stepsExternalImport = new List<IStep>();
+            stepsExternalImport.Add(stepSetFields);
+            stepsExternalImport.Add(stepSetConn);            
+            stepsExternalImport.Add(new TemplateStep(new TextBox()));
 
-            actionStep.NextHandler = () =>
+            List<IStep> stepsExternalExport = new List<IStep>();
+            stepsExternalExport.Add(stepSelectFields);
+            stepsExternalExport.Add(stepSelectDestiny);
+            stepsExternalExport.Add(new TemplateStep(new TextBox()));
+            #endregion 
+
+            
+            
+
+            List<IStep> stepsInitial = new List<IStep>();
+            stepsInitial.Add(stepChooseAction);
+            stepsInitial.Add(new TemplateStep(new TextBox()));
+
+            List<IStep> stepsSelectTables = new List<IStep>();
+            stepsSelectTables.Add(stepSelectTable);
+            stepsSelectTables.Add(new TemplateStep(new TextBox()));
+
+            List<IStep> stepsChooseTable = new List<IStep>();
+            stepsChooseTable.Add(stepChooseTable);
+            stepsChooseTable.Add(new TemplateStep(new TextBox()));
+
+
+            WizardController controller = new WizardController(stepsInitial);
+
+            stepChooseAction.NextHandler = () =>
             {
                 controller.DeleteAllAfterCurrent();
-                action = (string)actionStep.Selected;
+                action = (string)stepChooseAction.Selected;
+
                 if (!action.Contains("External")) //Internal
-                {
-                    controller.AddAfterCurrent(tableSelectionStepList);
-                }
+                    controller.AddAfterCurrent(stepsSelectTables);
                 else //External
-                {
-                    controller.AddAfterCurrent(chooseTableStepList);
-                }
+                    controller.AddAfterCurrent(stepsChooseTable);
 
                 return true;
             };
 
-
-            tableSelectionStep.NextHandler = () =>
+            //Internal
+            stepSelectTable.NextHandler = () =>
             {
                 controller.DeleteAllAfterCurrent();
+                List<IStep> stepsAux = new List<IStep>();
                 if (action == "Import")
-                {
-                    
-                    controller.AddAfterCurrent(selectFileStep);
-                }
+                    stepsAux.Add(stepSelectSource);
                 else
                 {
-                    
-                    controller.AddAfterCurrent(saveFileStep);
+                    stepSelectDestiny.Filter = "Territories management exchange file(*.tmx)|*.tmx";
+                    stepsAux.Add(stepSelectDestiny);
                 }
-
+                stepsAux.Add(new TemplateStep(new TextBox()));
+                controller.AddAfterCurrent(stepsAux);
 
                 return true;
             };
 
-            chooseTableStep.NextHandler = () =>
+            //External
+            stepChooseTable.NextHandler = () =>
             {
                 controller.DeleteAllAfterCurrent();
+
                 if (action == "Import (External)")
                 {
                     ImporterConfig.LoadConfig();
-                    table = (EntitiesEnum)Enum.Parse(typeof(EntitiesEnum), (string)chooseTableStep.Selected);
+                    table = (EntitiesEnum)Enum.Parse(typeof(EntitiesEnum), (string)stepChooseTable.Selected);
                     var tables = ImporterConfig.GetInstance().Tables;
                     foreach (ExternalTable item in tables)
                     {
@@ -123,29 +151,29 @@ namespace TerritoriesManagement.GUI.ImporterConfig
                             propGrid.SelectedObject = item;
                             break;
                         }
-                    } 
-                    List<IStep> externalImportList = new List<IStep>();
-                    externalImportList.Add(configTableStep);
-                    externalImportList.Add(configConnStep);
-                    externalImportList.Add(new TemplateStep(new TextBox()));
+                    }
 
-                    controller.AddAfterCurrent(externalImportList);
+                    controller.AddAfterCurrent(stepsExternalImport);
                 }
-                else
+                else //Export (External)
                 {
+                    string entity = Helper.GetEntityNameByEntitySetName(Enum.GetName(typeof(EntitiesEnum),table));
+                    IList<Property> props = Helper.GetPropertyListByType(entity);
+                    chkFields.Items.AddRange(props.ToArray());
 
+                    stepSelectDestiny.Filter = "Excel files (*.xls)|*.xls";
+                    controller.AddAfterCurrent(stepsExternalExport);
                 }
 
                 return true;
             };
 
             //External import final
-            configConnStep.NextHandler = () =>
+            stepSetConn.NextHandler = () =>
             {
                 controller.DeleteAllAfterCurrent();
                 //TODO: poner prev next y cancel en false
-                controller.AddAfterCurrent(inProgressStep);
-                
+                controller.AddAfterCurrent(stepInProgress);                
 
                 _importer = new ImportTool();
                 SetConfig(table);
@@ -153,6 +181,45 @@ namespace TerritoriesManagement.GUI.ImporterConfig
                 _importer.bg.ProgressChanged += new ProgressChangedEventHandler(ImportProgressChanged);
                 _importer.ImportData();                
 
+                return true;
+            };
+
+            //External export final
+            stepSelectDestiny.NextHandler = () =>
+            {
+                file = stepSelectDestiny.SelectedFullPath;
+                ExportTool exporter = new ExportTool();
+                if (action.Contains("External"))
+                {
+                    string[] props = chkFields.CheckedItems.Cast<Property>().Select(p => p.Name).ToArray();
+                    switch (table)
+                    {
+                        case EntitiesEnum.Departments:
+                            exporter.ExportToExcel<Department>(file, props, "");
+                            break;
+                        case EntitiesEnum.Cities:
+                            exporter.ExportToExcel<City>(file, props, "");
+                            break;
+                        case EntitiesEnum.Territories:
+                            exporter.ExportToExcel<Territory>(file, props, "");
+                            break;
+                        case EntitiesEnum.Addresses:
+                            exporter.ExportToExcel<Address>(file, props, "");
+                            break;
+                        case EntitiesEnum.Publishers:
+                            exporter.ExportToExcel<Publisher>(file, props, "");
+                            break;
+                        case EntitiesEnum.Tours:
+                            exporter.ExportToExcel<Tour>(file, props, "");
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+
+                }
                 return true;
             };
 
