@@ -211,18 +211,26 @@
     <Compile Include="frmTerritories.Designer.cs">
       <DependentUpon>frmTerritories.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImporterConfig\PropertyGrid\FieldCollection.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\FieldCollectionPropertyDescriptor.cs" />
     <Compile Include="ImporterConfig\PropertyGrid\Table.cs" />
+    <Compile Include="ImporterConfig\PropertyGrid\TypeConverter.cs" />
     <Compile Include="Interop\InteropWizard.cs" />
     <Compile Include="ImporterConfig\PropertyGrid\Field.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\FieldConverter.cs" />
-    <Compile Include="Interop\Steps\connectionStep.cs">
+    <Compile Include="Interop\Steps\SetConnControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Interop\Steps\connectionStep.Designer.cs">
-      <DependentUpon>connectionStep.cs</DependentUpon>
+    <Compile Include="Interop\Steps\SetConnControl.Designer.cs">
+      <DependentUpon>SetConnControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Interop\InteropConfig.cs" />
+    <Compile Include="ImporterConfig\InteropConfig.cs" />
     <Compile Include="Interop\EntitiesEnum.cs" />
+    <Compile Include="Interop\Steps\InProgressControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Interop\Steps\InProgressControl.Designer.cs">
+      <DependentUpon>InProgressControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="MapModeEnum.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -257,8 +265,11 @@
     <EmbeddedResource Include="frmTerritories.resx">
       <DependentUpon>frmTerritories.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Interop\Steps\connectionStep.resx">
-      <DependentUpon>connectionStep.cs</DependentUpon>
+    <EmbeddedResource Include="Interop\Steps\SetConnControl.resx">
+      <DependentUpon>SetConnControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interop\Steps\InProgressControl.resx">
+      <DependentUpon>InProgressControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

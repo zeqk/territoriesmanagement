@@ -1,5 +1,5 @@
 ﻿using System;
-using TerritoriesManagement.GUI.Interop;
+using TerritoriesManagement.GUI.ImporterConfig;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -12,6 +12,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
         private string _externalTableName;
 
         private List<Field> _fields;
+        //private FieldCollection _fieldList;
 
         private EntitiesEnum _relatedEntitySet;
 
@@ -31,6 +32,23 @@ namespace TerritoriesManagement.GUI.ImporterConfig
         {
             get { return _fields; }
             set { _fields = value; }
+        }
+
+
+        [System.Xml.Serialization.XmlIgnore]
+        [TypeConverter(typeof(FieldCollectionConverter))]        
+        public FieldCollection FieldList
+        {
+            get 
+            {
+                FieldCollection fieldList = new FieldCollection();
+                foreach (Field item in _fields)
+                {
+                    fieldList.Add(item);
+                }
+
+                return fieldList; 
+            }
         }
 
         [ReadOnly(true), Browsable(false)]

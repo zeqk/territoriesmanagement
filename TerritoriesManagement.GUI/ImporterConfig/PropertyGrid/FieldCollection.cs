@@ -5,43 +5,30 @@ using System.Collections;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 
-namespace PropertyGridSample
+namespace TerritoriesManagement.GUI.ImporterConfig
 {
 	/// <summary>
 	/// Type safe collection class for Employee objects. Extends the base class 
 	/// CollectionBase to inherit base collection functionality.
 	/// Implementation of ICustomTypeDescvriptor to provide customized type description.
 	/// </summary>
-	public class EmployeeCollection : CollectionBase, ICustomTypeDescriptor
+	public class FieldCollection : CollectionBase, ICustomTypeDescriptor
 	{
-		#region collection impl
-		
-		/// <summary>
-		/// Adds an employee object to the collection
-		/// </summary>
-		/// <param name="emp"></param>
-		public void Add( Employee emp )
+		#region collection impl		
+
+		public void Add( Field field )
 		{
-			this.List.Add( emp );
+            this.List.Add(field);
 		}
-		
-		/// <summary>
-		/// Removes an employee object from the collection
-		/// </summary>
-		/// <param name="emp"></param>
-		public void Remove( Employee emp )
+        public void Remove(Field field)
 		{
-			this.List.Remove( emp );
+            this.List.Remove(field);
 		}
-		
-		/// <summary>
-		/// Returns an employee object at index position.
-		/// </summary>
-		public Employee this[ int index ] 
+		public Field this[ int index ] 
 		{
 			get
 			{
-				return (Employee)this.List[index];
+                return (Field)this.List[index];
 			}
 		}
 
@@ -125,7 +112,7 @@ namespace PropertyGridSample
 			for( int i=0; i<this.List.Count; i++ )
 			{
 				// Create a property descriptor for the employee item and add to the property descriptor collection
-				EmployeeCollectionPropertyDescriptor pd = new EmployeeCollectionPropertyDescriptor(this,i);
+                FiedCollectionPropertyDescriptor pd = new FiedCollectionPropertyDescriptor(this, i);
 				pds.Add(pd);
 			}
 			// return the property descriptor collection

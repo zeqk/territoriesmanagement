@@ -1,6 +1,6 @@
-﻿namespace TerritoriesManagement.GUI.Interop.Steps
+﻿namespace TerritoriesManagement.GUI.ImporterConfig.Steps
 {
-    partial class connectionStep
+    partial class SetConnControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(connectionStep));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetConnControl));
             this.txtConnectStr = new System.Windows.Forms.TextBox();
             this.btnConfigureConnection = new System.Windows.Forms.Button();
             this.SuspendLayout();
