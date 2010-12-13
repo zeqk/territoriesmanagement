@@ -8,29 +8,29 @@ using System.Text;
 using System.Windows.Forms;
 using AltosTools.WindowsForms;
 
-namespace TerritoriesManagement.GUI.Interop.Steps
+namespace TerritoriesManagement.GUI.ImporterConfig.Steps
 {
-    public partial class connectionStep : UserControl
+    public partial class SetConnControl : UserControl
     {
-        public connectionStep()
+        public SetConnControl()
         {
             InitializeComponent();
-            txtConnectStr.Text = InteropConfig.GetInstance().ConnectionString;
+            txtConnectStr.Text = ImporterConfig.GetInstance().ConnectionString;
         }
 
         private void btnConfigureConnection_Click(object sender, EventArgs e)
         {
             using (ConnectionStringMaker myForm = new ConnectionStringMaker())
             {
-                myForm.ConnectionString = InteropConfig.GetInstance().ConnectionString;
-                myForm.DataProvider = InteropConfig.GetInstance().Provider;
+                myForm.ConnectionString = ImporterConfig.GetInstance().ConnectionString;
+                myForm.DataProvider = ImporterConfig.GetInstance().Provider;
 
                 myForm.ShowDialog();
                 if (myForm.DialogResult == DialogResult.OK)
                 {
                     txtConnectStr.Text = myForm.ConnectionString;
-                    InteropConfig.GetInstance().ConnectionString = txtConnectStr.Text;
-                    InteropConfig.GetInstance().Provider = myForm.DataProvider;
+                    ImporterConfig.GetInstance().ConnectionString = txtConnectStr.Text;
+                    ImporterConfig.GetInstance().Provider = myForm.DataProvider;
                 }
             }
         }

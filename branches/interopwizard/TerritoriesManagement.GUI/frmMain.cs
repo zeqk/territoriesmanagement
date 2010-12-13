@@ -164,7 +164,7 @@ namespace TerritoriesManagement.GUI
 
         private void interopWizzardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TerritoriesManagement.GUI.Interop.InteropWizard.RunInteropWizard();
+            TerritoriesManagement.GUI.ImporterConfig.InteropWizard.RunInteropWizard();
         }
 
 

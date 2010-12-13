@@ -99,9 +99,9 @@
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.btnEdit);
             this.panel1.Controls.Add(this.btnNew);
-            this.panel1.Location = new System.Drawing.Point(851, 160);
+            this.panel1.Location = new System.Drawing.Point(849, 160);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(98, 357);
+            this.panel1.Size = new System.Drawing.Size(100, 357);
             this.panel1.TabIndex = 7;
             // 
             // btnViewStatics
@@ -113,9 +113,9 @@
             this.btnViewStatics.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnViewStatics.Location = new System.Drawing.Point(9, 205);
             this.btnViewStatics.Name = "btnViewStatics";
-            this.btnViewStatics.Size = new System.Drawing.Size(81, 45);
+            this.btnViewStatics.Size = new System.Drawing.Size(83, 45);
             this.btnViewStatics.TabIndex = 4;
-            this.btnViewStatics.Text = "View statics";
+            this.btnViewStatics.Text = "View statistics";
             this.btnViewStatics.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnViewStatics.UseVisualStyleBackColor = true;
             this.btnViewStatics.Click += new System.EventHandler(this.btnViewStatics_Click);
@@ -129,7 +129,7 @@
             this.btnToExcel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.btnToExcel.Location = new System.Drawing.Point(9, 256);
             this.btnToExcel.Name = "btnToExcel";
-            this.btnToExcel.Size = new System.Drawing.Size(81, 45);
+            this.btnToExcel.Size = new System.Drawing.Size(83, 45);
             this.btnToExcel.TabIndex = 3;
             this.btnToExcel.Text = "To Excel";
             this.btnToExcel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -144,7 +144,7 @@
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnDelete.Location = new System.Drawing.Point(9, 105);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(81, 45);
+            this.btnDelete.Size = new System.Drawing.Size(83, 45);
             this.btnDelete.TabIndex = 2;
             this.btnDelete.Text = "Delete";
             this.btnDelete.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -159,7 +159,7 @@
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnEdit.Location = new System.Drawing.Point(9, 54);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(81, 45);
+            this.btnEdit.Size = new System.Drawing.Size(83, 45);
             this.btnEdit.TabIndex = 1;
             this.btnEdit.Text = "Edit";
             this.btnEdit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -174,7 +174,7 @@
             this.btnNew.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnNew.Location = new System.Drawing.Point(9, 3);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(81, 45);
+            this.btnNew.Size = new System.Drawing.Size(83, 45);
             this.btnNew.TabIndex = 0;
             this.btnNew.Text = "New";
             this.btnNew.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -360,26 +360,26 @@
             this.toolStripSeparator1,
             this.viewMapToolStripMenuItem});
             this.ctxMenu.Name = "ctxMenu";
-            this.ctxMenu.Size = new System.Drawing.Size(120, 54);
+            this.ctxMenu.Size = new System.Drawing.Size(127, 54);
             // 
             // copyGoogleMapsToolStripMenuItem
             // 
             this.copyGoogleMapsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyGoogleMapsToolStripMenuItem.Image")));
             this.copyGoogleMapsToolStripMenuItem.Name = "copyGoogleMapsToolStripMenuItem";
-            this.copyGoogleMapsToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.copyGoogleMapsToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.copyGoogleMapsToolStripMenuItem.Text = "Copy";
             this.copyGoogleMapsToolStripMenuItem.Click += new System.EventHandler(this.copyGoogleMapsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(116, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(123, 6);
             // 
             // viewMapToolStripMenuItem
             // 
             this.viewMapToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("viewMapToolStripMenuItem.Image")));
             this.viewMapToolStripMenuItem.Name = "viewMapToolStripMenuItem";
-            this.viewMapToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.viewMapToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.viewMapToolStripMenuItem.Text = "View map";
             this.viewMapToolStripMenuItem.Click += new System.EventHandler(this.viewMapToolStripMenuItem_Click);
             // 
