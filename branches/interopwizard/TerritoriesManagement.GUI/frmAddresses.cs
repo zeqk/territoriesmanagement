@@ -438,7 +438,7 @@ namespace TerritoriesManagement.GUI
             try
             {
                 ExportTool tool = new ExportTool();
-                tool.ExportToExcel<Address>(path, new string[0], strQuery, parameters.ToArray());
+                tool.ExportToExcel(path, "Address", new string[0], strQuery, parameters.ToArray());
             }
             catch (Exception ex)
             {

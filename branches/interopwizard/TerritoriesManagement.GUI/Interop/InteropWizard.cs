@@ -24,6 +24,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
         {
             string action = "";
             EntitiesEnum table = EntitiesEnum.Departments;
+            string entityName = "";
             string file = "";
 
             string[] actions = new string[4];
@@ -157,8 +158,8 @@ namespace TerritoriesManagement.GUI.ImporterConfig
                 }
                 else //Export (External)
                 {
-                    string entity = Helper.GetEntityNameByEntitySetName(Enum.GetName(typeof(EntitiesEnum),table));
-                    IList<Property> props = Helper.GetPropertyListByType(entity);
+                    entityName = Helper.GetEntityNameByEntitySetName(Enum.GetName(typeof(EntitiesEnum),table));
+                    IList<Property> props = Helper.GetPropertyListByType(entityName);
                     chkFields.Items.AddRange(props.ToArray());
 
                     stepSelectDestiny.Filter = "Excel files (*.xls)|*.xls";
@@ -192,29 +193,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
                 if (action.Contains("External"))
                 {
                     string[] props = chkFields.CheckedItems.Cast<Property>().Select(p => p.Name).ToArray();
-                    switch (table)
-                    {
-                        case EntitiesEnum.Departments:
-                            exporter.ExportToExcel<Department>(file, props, "");
-                            break;
-                        case EntitiesEnum.Cities:
-                            exporter.ExportToExcel<City>(file, props, "");
-                            break;
-                        case EntitiesEnum.Territories:
-                            exporter.ExportToExcel<Territory>(file, props, "");
-                            break;
-                        case EntitiesEnum.Addresses:
-                            exporter.ExportToExcel<Address>(file, props, "");
-                            break;
-                        case EntitiesEnum.Publishers:
-                            exporter.ExportToExcel<Publisher>(file, props, "");
-                            break;
-                        case EntitiesEnum.Tours:
-                            exporter.ExportToExcel<Tour>(file, props, "");
-                            break;
-                        default:
-                            break;
-                    }
+                    exporter.ExportToExcel(file, entityName, props, "");
                 }
                 else
                 {
