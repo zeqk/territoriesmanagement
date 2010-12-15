@@ -12,15 +12,15 @@ namespace TerritoriesManagement
 {
     public class Helper
     {
-        static public IList GetEntities<TEntity>(TerritoriesDataContext dm, string where, params ObjectParameter[] parameters)
+        static public IList GetEntities(TerritoriesDataContext dm,string entityName, string where, params ObjectParameter[] parameters)
         {
             IList rv = null;
-            string entity = typeof(TEntity).Name;
-            string entitySet = GetEntitySetNameByEntityName(entity);
+            string entitySet = GetEntitySetNameByEntityName(dm,entityName);
+            Type type = GetEntityTypeByEntityName(entityName);
 
-            List<string> relatedEntities = GetRelatedEntities(entity);
+            List<string> relatedEntities = GetRelatedEntities(entityName);
 
-            string strQuery = "SELECT VALUE " + entity + " FROM TerritoriesDataContext." + entitySet + " AS " + entity;
+            string strQuery = "SELECT VALUE " + entityName + " FROM TerritoriesDataContext." + entitySet + " AS " + entityName;
 
             if (where != "")
                 strQuery = strQuery + " WHERE " + where;
@@ -32,13 +32,14 @@ namespace TerritoriesManagement
 
             try
             {
-                var query = dm.CreateQuery<TEntity>(strQuery, parameters);
-
+                var query = dm.CreateQuery(entityName, strQuery, parameters);
+                
                 foreach (string relatedEntity in relatedEntities)
-                    query.Include(relatedEntity);
-
-                var res = query.Execute(MergeOption.AppendOnly);
-                rv = res.ToList();
+                    Include(ref query, relatedEntity);
+                
+                ObjectResult result =  query.Execute(MergeOption.AppendOnly);
+                
+                rv = (IList)ExecuteLinqMethod(result, "ToList", type);
             }
             catch (Exception ex)
             {
@@ -48,8 +49,37 @@ namespace TerritoriesManagement
 
             return rv;
 
-
         }
+
+        private static void Include(ref ObjectQuery query, string relatedEntity)
+        {
+            string[] parameters = { relatedEntity };
+            query.GetType().GetMethod("Include").Invoke(query, parameters);
+        }
+
+        public static object ExecuteMethod(object obj, string methodName, params object[] parameters)
+        {
+            return obj.GetType().GetMethod(methodName).Invoke(obj, parameters);
+        }
+
+        public static object ExecuteMethod(object obj, string methodName, Type genericType, params object[] parameters)
+        {
+            Type[] parametersTypes = new Type[parameters.Length];
+            for (int i = 0; i < parameters.Length; i++)
+                parametersTypes[i] = parameters[i].GetType();
+
+            MethodInfo method = obj.GetType().GetMethod(methodName, parametersTypes);
+            method = method.MakeGenericMethod(genericType);
+            return method.Invoke(obj, parameters);
+        }
+
+        public static object ExecuteLinqMethod(object obj, string methodName, Type genericType, params object[] parameters)
+        {
+            MethodInfo method = typeof(Enumerable).GetMethod(methodName);
+            method = method.MakeGenericMethod(genericType);
+            return method.Invoke(obj,null);
+        }
+
        
         static public List<string> GetRelatedEntities(string entityName)
         {
@@ -64,32 +94,42 @@ namespace TerritoriesManagement
             }   
 
             return entities;
-        }      
+        }    
 
-        static public string GetEntitySetNameByEntityName(string entityName)
+        static public string GetEntitySetNameByEntityName(ObjectContext context, string entityName)
         {
-            Dictionary<string, string> rv = new Dictionary<string, string>();
-            rv.Add("Department", "Departments");
-            rv.Add("City", "Cities");
-            rv.Add("Address", "Addresses");
-            rv.Add("Publisher", "Publishers");
-            rv.Add("Tour", "Tours");
-            rv.Add("Territory", "Territories");
+            string rv = null;
 
-            return rv[entityName];
+            PropertyInfo[] props = context.GetType().GetProperties();
+            foreach (PropertyInfo prop in props)
+            {
+                if (prop.PropertyType.Name == "ObjectQuery`1")
+                {
+                    if (prop.PropertyType.GetGenericArguments()[0].Name == entityName)
+                    {
+                        rv = prop.Name;
+                        break;
+                    }
+                }
+            }
+
+            return rv;
         }
 
         static public string GetEntityNameByEntitySetName(string entitySetName)
         {
-            Dictionary<string, string> rv = new Dictionary<string, string>();
-            rv.Add("Departments", "Department");
-            rv.Add("Cities", "City");
-            rv.Add("Addresses", "Address");
-            rv.Add("Publishers", "Publisher");
-            rv.Add("Tours", "Tour");
-            rv.Add("Territories", "Territory");
+            TerritoriesDataContext dm = new TerritoriesDataContext();
+            return GetEntityNameByEntitySetName(dm, entitySetName);
+        }
 
-            return rv[entitySetName];
+        static public string GetEntityNameByEntitySetName(ObjectContext context, string entitySetName)
+        {
+            string rv = null;
+            PropertyInfo entitySet = context.GetType().GetProperty(entitySetName);
+            if (entitySet != null)
+                if (entitySet.PropertyType.Name == "ObjectQuery`1")
+                    rv = entitySet.PropertyType.GetGenericArguments()[0].Name;
+            return rv;
         }
 
         static public Type GetEntityTypeByEntityName(string entityName)
