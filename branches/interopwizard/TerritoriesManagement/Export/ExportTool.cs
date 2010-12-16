@@ -18,12 +18,13 @@ namespace TerritoriesManagement.Export
         public BackgroundWorker bg;
         int rowPosition = 0;
         int tablesTotal = 0;
+        int tablesCount = 0;
 
         public ExportTool()
         {
             bg = new BackgroundWorker();
             bg.WorkerSupportsCancellation = true;
-            bg.WorkerReportsProgress = true;
+            bg.WorkerReportsProgress = true;            
         }
 
         /// <summary>
@@ -209,8 +210,7 @@ namespace TerritoriesManagement.Export
                 TerritoriesDataContext dm = new TerritoriesDataContext();
                 DataSet ds = new DataSet("TerritoriesManagementExchangeFile");
 
-                tablesTotal = entityList.Count;
-                int i = 0;
+                tablesTotal = entityList.Count;                
                 foreach (var entityName in entityList)
                 {
                     string entitySetName = Helper.GetEntitySetNameByEntityName(dm,entityName);
@@ -220,8 +220,8 @@ namespace TerritoriesManagement.Export
                     DataTable dt = RecordsToDataTable(records, propLst);
                     dt.TableName = entitySetName;
                     ds.Tables.Add(dt);
-                    i++;
-                    bg.ReportProgress(tablesTotal * i);
+                    tablesCount++;
+                    bg.ReportProgress((100 / tablesTotal) * tablesCount);
                 }
 
                 ds.WriteXml(path, XmlWriteMode.WriteSchema);
@@ -252,8 +252,9 @@ namespace TerritoriesManagement.Export
                     dt.NewRow();
                     dt.Rows.Add(ObjToDataRow(item, dt.NewRow()));
                     i++;
-
-                    bg.ReportProgress(((100 / tablesTotal) / records.Count) * i);
+                    int tableProgress = (100 / tablesTotal) * tablesCount;
+                    int recordProgress = ((100 / tablesTotal) / records.Count) * i;
+                    bg.ReportProgress(tableProgress + recordProgress);
                 }
             }
 

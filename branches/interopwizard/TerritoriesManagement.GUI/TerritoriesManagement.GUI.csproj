@@ -28,6 +28,7 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkSubset>Full</TargetFrameworkSubset>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -217,13 +218,13 @@
     <Compile Include="ImporterConfig\PropertyGrid\TypeConverter.cs" />
     <Compile Include="Interop\InteropWizard.cs" />
     <Compile Include="ImporterConfig\PropertyGrid\Field.cs" />
-    <Compile Include="Interop\Steps\SelectDestinyControl.cs">
+    <Compile Include="Interop\Steps\DestinySelectionStep.cs" />
+    <Compile Include="Interop\Steps\DestinySelectionStepUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Interop\Steps\SelectDestinyControl.Designer.cs">
-      <DependentUpon>SelectDestinyControl.cs</DependentUpon>
+    <Compile Include="Interop\Steps\DestinySelectionStepUI.Designer.cs">
+      <DependentUpon>DestinySelectionStepUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Interop\Steps\SelectDestinyStep.cs" />
     <Compile Include="Interop\Steps\SetConnControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -272,8 +273,8 @@
     <EmbeddedResource Include="frmTerritories.resx">
       <DependentUpon>frmTerritories.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Interop\Steps\SelectDestinyControl.resx">
-      <DependentUpon>SelectDestinyControl.cs</DependentUpon>
+    <EmbeddedResource Include="Interop\Steps\DestinySelectionStepUI.resx">
+      <DependentUpon>DestinySelectionStepUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Interop\Steps\SetConnControl.resx">
       <DependentUpon>SetConnControl.cs</DependentUpon>
@@ -367,6 +368,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\credits.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Short License EN.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="languages\" />

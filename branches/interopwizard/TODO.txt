@@ -6,3 +6,6 @@ TODO:
 - solucionar problema de que no se pueden importar direcciones con el id
 - proceso de geoposicionamiento masivo
 - que al modificar un territorio indique las direcciones que quedaron afuera o adentro
+- que el mapa se guarde cuando se aprieta OK (analizar)
+- que las estadísticas soporte menos de 1 km
+- que las estadísticas muestren íconos con la cant de direcciones
