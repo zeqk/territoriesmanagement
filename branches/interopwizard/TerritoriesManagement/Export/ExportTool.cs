@@ -17,6 +17,7 @@ namespace TerritoriesManagement.Export
     {        
         public BackgroundWorker bg;
         int rowPosition = 0;
+        int tablesTotal = 0;
 
         public ExportTool()
         {
@@ -207,7 +208,9 @@ namespace TerritoriesManagement.Export
             {
                 TerritoriesDataContext dm = new TerritoriesDataContext();
                 DataSet ds = new DataSet("TerritoriesManagementExchangeFile");
-                
+
+                tablesTotal = entityList.Count;
+                int i = 0;
                 foreach (var entityName in entityList)
                 {
                     string entitySetName = Helper.GetEntitySetNameByEntityName(dm,entityName);
@@ -217,9 +220,12 @@ namespace TerritoriesManagement.Export
                     DataTable dt = RecordsToDataTable(records, propLst);
                     dt.TableName = entitySetName;
                     ds.Tables.Add(dt);
+                    i++;
+                    bg.ReportProgress(tablesTotal * i);
                 }
 
                 ds.WriteXml(path, XmlWriteMode.WriteSchema);
+                bg.ReportProgress(100);
             }
             catch (Exception ex)
             {
@@ -230,7 +236,7 @@ namespace TerritoriesManagement.Export
         private DataTable RecordsToDataTable(IList records, List<Property> propLst)
         {
             DataTable dt = new DataTable();
-            
+            int i = 0;
             if (records.Count > 0)
             {
                 foreach (Property item in propLst)
@@ -245,6 +251,9 @@ namespace TerritoriesManagement.Export
                 {
                     dt.NewRow();
                     dt.Rows.Add(ObjToDataRow(item, dt.NewRow()));
+                    i++;
+
+                    bg.ReportProgress(((100 / tablesTotal) / records.Count) * i);
                 }
             }
 

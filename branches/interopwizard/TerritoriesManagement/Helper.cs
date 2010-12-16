@@ -73,13 +73,13 @@ namespace TerritoriesManagement
             return method.Invoke(obj, parameters);
         }
 
-        public static object ExecuteLinqMethod(object obj, string methodName, Type genericType, params object[] parameters)
-        {
+        public static object ExecuteLinqMethod(object obj, string methodName, Type genericType)
+        {            
             MethodInfo method = typeof(Enumerable).GetMethod(methodName);
             method = method.MakeGenericMethod(genericType);
-            return method.Invoke(obj,null);
+            
+            return method.Invoke(null,new object[]{obj} );
         }
-
        
         static public List<string> GetRelatedEntities(string entityName)
         {
@@ -89,7 +89,7 @@ namespace TerritoriesManagement
 
             foreach (PropertyInfo prop in props)
             {
-                if (prop.PropertyType.BaseType.FullName == "System.Data.Objects.DataClasses.EntityObject")
+                if (prop.PropertyType.BaseType == typeof(System.Data.Objects.DataClasses.EntityObject))
                     entities.Add(prop.Name);
             }   
 
@@ -194,7 +194,7 @@ namespace TerritoriesManagement
 
         static public List<Property> GetPropertyListByType(string typeName)
         {
-            Type type = Type.GetType("TerritoriesManagement.Model." + typeName);
+            Type type = GetEntityTypeByEntityName(typeName);
 
             return GetPropertyListByType(type);
 
@@ -227,6 +227,8 @@ namespace TerritoriesManagement
             }
         }
 
+        #region Maps methods
+
         static public PointLatLng? AddressToGeoPos(string address)
         {
             GeoCoderStatusCode status = GeoCoderStatusCode.Unknow;
@@ -236,7 +238,6 @@ namespace TerritoriesManagement
             return pos;
         }
 
-        #region Maps methods
         static public List<PointLatLng> StrPointsToPointsLatLng(string[] strPoints)
         {
             List<PointLatLng> points = new List<PointLatLng>();

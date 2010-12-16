@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
+using System.Windows.Forms;
 using Merlin;
 using MerlinStepLibrary;
-using System.Windows.Forms;
-using TerritoriesManagement.GUI.ImporterConfig.Steps;
-using TerritoriesManagement.GUI.ImporterConfig;
-using TerritoriesManagement.Import;
-using System.ComponentModel;
-using TerritoriesManagement.GUI.Interop.Steps;
 using TerritoriesManagement.Export;
-using TerritoriesManagement.Model;
+using TerritoriesManagement.GUI.ImporterConfig.Steps;
+using TerritoriesManagement.GUI.Interop.Steps;
+using TerritoriesManagement.Import;
+using System.Collections;
 
 namespace TerritoriesManagement.GUI.ImporterConfig
 {
@@ -43,6 +41,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
 
             //Select table step (Import and Export)
             CheckedListBox chkTables = new CheckedListBox();
+            chkTables.CheckOnClick = true;
             chkTables.Items.AddRange(Enum.GetNames(typeof(EntitiesEnum)));
             TemplateStep stepSelectTable = new TemplateStep(chkTables);
 
@@ -59,7 +58,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             SelectionStep stepChooseTable = new SelectionStep("Table selection", "Please select the table:", Enum.GetNames(typeof(EntitiesEnum)));
             
             //Set fields step (Import)
-            PropertyGrid propGrid = new PropertyGrid();
+            PropertyGrid propGrid = new PropertyGrid();            
             TemplateStep stepSetFields = new TemplateStep(propGrid);
 
             //Set connection step (Import)
@@ -69,6 +68,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             //Select fields step (Export)
             CheckedListBox chkFields = new CheckedListBox();
             chkFields.DisplayMember = "Name";
+            chkFields.CheckOnClick = true;
             TemplateStep stepSelectFields = new TemplateStep(chkFields);
 
             //Select destiny file step (Export and External export)
@@ -161,7 +161,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
                     entityName = Helper.GetEntityNameByEntitySetName(Enum.GetName(typeof(EntitiesEnum),table));
                     IList<Property> props = Helper.GetPropertyListByType(entityName);
                     chkFields.Items.AddRange(props.ToArray());
-
+                    stepSelectDestiny.Title = entityName;
                     stepSelectDestiny.Filter = "Excel files (*.xls)|*.xls";
                     controller.AddAfterCurrent(stepsExternalExport);
                 }
@@ -178,8 +178,8 @@ namespace TerritoriesManagement.GUI.ImporterConfig
 
                 _importer = new ImportTool();
                 SetConfig(table);
-                _importer.bg.RunWorkerCompleted += new RunWorkerCompletedEventHandler(ImportCompleted);
-                _importer.bg.ProgressChanged += new ProgressChangedEventHandler(ImportProgressChanged);
+                _importer.bg.RunWorkerCompleted += new RunWorkerCompletedEventHandler(ProcessCompleted);
+                _importer.bg.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
                 _importer.ImportData();                
 
                 return true;
@@ -188,16 +188,30 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             //External export final
             stepSelectDestiny.NextHandler = () =>
             {
+                controller.DeleteAllAfterCurrent();
+                //TODO: poner prev next y cancel en false
+                controller.AddAfterCurrent(stepInProgress); 
+
                 file = stepSelectDestiny.SelectedFullPath;
                 ExportTool exporter = new ExportTool();
+                exporter.bg.RunWorkerCompleted += new RunWorkerCompletedEventHandler(ProcessCompleted);
+                exporter.bg.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
                 if (action.Contains("External"))
                 {
                     string[] props = chkFields.CheckedItems.Cast<Property>().Select(p => p.Name).ToArray();
+
+
+
                     exporter.ExportToExcel(file, entityName, props, "");
                 }
                 else
                 {
-
+                    List<string> entityList = new List<string>();
+                    foreach (string item in chkTables.CheckedItems)
+                    {
+                        entityList.Add(Helper.GetEntityNameByEntitySetName(item)); 
+                    }
+                    exporter.ExportData(file,entityList,true);
                 }
                 return true;
             };
@@ -277,12 +291,12 @@ namespace TerritoriesManagement.GUI.ImporterConfig
 
         }
 
-        private static void ImportCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private static void ProcessCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (_importer.SuccessfulImport)
-                MessageBox.Show(GetString("The importation has been successful.") + Environment.NewLine + _importer.ImportMessage);
+                MessageBox.Show(GetString("The process has been successful.") + Environment.NewLine + _importer.ImportMessage);
             else
-                MessageBox.Show(GetString("The importation has problems. Check the settings and see the log.") + Environment.NewLine + _importer.ImportMessage);
+                MessageBox.Show(GetString("The process has problems. Check the settings and see the log.") + Environment.NewLine + _importer.ImportMessage);
 
             
         }
@@ -292,7 +306,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             return p;
         }
 
-        private static void ImportProgressChanged(object sender, ProgressChangedEventArgs e)
+        private static void ProgressChanged(object sender, ProgressChangedEventArgs e)
         {           
             inProgressControl.progressBar.Value = e.ProgressPercentage;            
         }
