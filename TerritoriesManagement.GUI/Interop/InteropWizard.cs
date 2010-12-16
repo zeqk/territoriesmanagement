@@ -16,7 +16,14 @@ namespace TerritoriesManagement.GUI.ImporterConfig
     static class InteropWizard
     {
         static ImportTool _importer;
-        static InProgressControl inProgressControl = new InProgressControl();
+        static bool completed = false;
+        static string log = "";
+
+        //Final step - In progress
+        static InProgressControl inProgressControl = new InProgressControl(); 
+        static TemplateStep stepInProgress = new TemplateStep(inProgressControl);
+
+        static TextBox txtLog = new TextBox();
 
         public static void RunInteropWizard()
         {
@@ -34,9 +41,14 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             //Start step - Select action           
             SelectionStep stepChooseAction = new SelectionStep("Action selection", "Please select the action:", actions);
 
-            //Final step - In progress            
-            TemplateStep stepInProgress = new TemplateStep(inProgressControl);
+            stepInProgress.AllowCancelStrategy = () => { return false; };
+            stepInProgress.AllowPreviousStrategy = () => { return false; };
+            stepInProgress.AllowNextStrategy = () => { return completed; };
 
+            //View log step
+            txtLog.Multiline = true;
+            TemplateStep stepViewLog = new TemplateStep(txtLog);
+ 
             #region Internal
 
             //Select table step (Import and Export)
@@ -48,7 +60,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             //Select source file step (Import)
             FileSelectionStep stepSelectSource = new FileSelectionStep();            
             //Select destiny file step (Export and External export)            
-            SelectDestinyStep stepSelectDestiny = new SelectDestinyStep();
+            DestinySelectionStep stepSelectDestiny = new DestinySelectionStep();
 
             #endregion
 
@@ -84,11 +96,8 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             stepsExternalExport.Add(stepSelectFields);
             stepsExternalExport.Add(stepSelectDestiny);
             stepsExternalExport.Add(new TemplateStep(new TextBox()));
-            #endregion 
-
+            #endregion             
             
-            
-
             List<IStep> stepsInitial = new List<IStep>();
             stepsInitial.Add(stepChooseAction);
             stepsInitial.Add(new TemplateStep(new TextBox()));
@@ -100,6 +109,10 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             List<IStep> stepsChooseTable = new List<IStep>();
             stepsChooseTable.Add(stepChooseTable);
             stepsChooseTable.Add(new TemplateStep(new TextBox()));
+
+            List<IStep> stepsFinals = new List<IStep>();
+            stepsFinals.Add(stepInProgress);
+            stepsFinals.Add(stepViewLog);
 
 
             WizardController controller = new WizardController(stepsInitial);
@@ -140,7 +153,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             {
                 controller.DeleteAllAfterCurrent();
 
-                if (action == "Import (External)")
+                if (action == "Import (External)") //Import (External)
                 {
                     ImporterConfig.LoadConfig();
                     table = (EntitiesEnum)Enum.Parse(typeof(EntitiesEnum), (string)stepChooseTable.Selected);
@@ -169,23 +182,24 @@ namespace TerritoriesManagement.GUI.ImporterConfig
                 return true;
             };
 
+
             //External import final
             stepSetConn.NextHandler = () =>
             {
                 controller.DeleteAllAfterCurrent();
-                //TODO: poner prev next y cancel en false
-                controller.AddAfterCurrent(stepInProgress);                
-
+                
+                controller.AddAfterCurrent(stepsFinals);                
+                
                 _importer = new ImportTool();
                 SetConfig(table);
-                _importer.bg.RunWorkerCompleted += new RunWorkerCompletedEventHandler(ProcessCompleted);
+                _importer.bg.RunWorkerCompleted += new RunWorkerCompletedEventHandler(ProcessCompleted);                
                 _importer.bg.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
                 _importer.ImportData();                
-
-                return true;
+                
+                return completed;
             };
 
-            //External export final
+            //Export final
             stepSelectDestiny.NextHandler = () =>
             {
                 controller.DeleteAllAfterCurrent();
@@ -196,15 +210,14 @@ namespace TerritoriesManagement.GUI.ImporterConfig
                 ExportTool exporter = new ExportTool();
                 exporter.bg.RunWorkerCompleted += new RunWorkerCompletedEventHandler(ProcessCompleted);
                 exporter.bg.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
-                if (action.Contains("External"))
+
+                if (action.Contains("External"))//External export final
                 {
                     string[] props = chkFields.CheckedItems.Cast<Property>().Select(p => p.Name).ToArray();
-
-
-
+                    
                     exporter.ExportToExcel(file, entityName, props, "");
                 }
-                else
+                else //Export final
                 {
                     List<string> entityList = new List<string>();
                     foreach (string item in chkTables.CheckedItems)
@@ -293,12 +306,10 @@ namespace TerritoriesManagement.GUI.ImporterConfig
 
         private static void ProcessCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if (_importer.SuccessfulImport)
-                MessageBox.Show(GetString("The process has been successful.") + Environment.NewLine + _importer.ImportMessage);
-            else
-                MessageBox.Show(GetString("The process has problems. Check the settings and see the log.") + Environment.NewLine + _importer.ImportMessage);
-
-            
+            MessageBox.Show("Proceso completado");
+            completed = true;
+            stepInProgress.StateUpdated();
+            txtLog.Text = log;            
         }
 
         private static string GetString(string p)
@@ -308,7 +319,8 @@ namespace TerritoriesManagement.GUI.ImporterConfig
 
         private static void ProgressChanged(object sender, ProgressChangedEventArgs e)
         {           
-            inProgressControl.progressBar.Value = e.ProgressPercentage;            
+            inProgressControl.progressBar.Value = e.ProgressPercentage;
+            
         }
     }
 }

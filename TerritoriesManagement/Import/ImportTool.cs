@@ -73,12 +73,6 @@ namespace TerritoriesManagement.Import
             set { _config = value; }
         }
 
-        public string Log
-        {
-            get { return _log; }
-            set { _log = value; }
-        }
-
 
         public void ImportData()
         {
@@ -135,7 +129,7 @@ namespace TerritoriesManagement.Import
                         else
                             ImportMessage += Environment.NewLine + GetString("No city has been imported.") + Environment.NewLine;
                     }
-
+                    
                     bool territoriesImported = true;
                     string territories = _config.Territories.TableName;
                     if (ds.Tables[territories] != null)
