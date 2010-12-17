@@ -73,6 +73,11 @@ namespace TerritoriesManagement.Import
             set { _config = value; }
         }
 
+        public string Log
+        {
+            get { return _log; }
+        }
+
 
         public void ImportData()
         {

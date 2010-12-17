@@ -1,6 +1,6 @@
 ﻿namespace TerritoriesManagement.GUI.Interop.Steps
 {
-    partial class InProgressControl
+    partial class InProgressUI
     {
         /// <summary> 
         /// Required designer variable.

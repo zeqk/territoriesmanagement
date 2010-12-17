@@ -9,9 +9,10 @@ using System.Windows.Forms;
 
 namespace TerritoriesManagement.GUI.Interop.Steps
 {
-    public partial class InProgressControl : UserControl
+    public partial class InProgressUI : UserControl
     {
-        public InProgressControl()
+
+        public InProgressUI()
         {
             InitializeComponent();
         }

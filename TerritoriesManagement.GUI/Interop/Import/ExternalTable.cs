@@ -1,9 +1,9 @@
 ﻿using System;
-using TerritoriesManagement.GUI.ImporterConfig;
+using TerritoriesManagement.GUI.Interop;
 using System.Collections.Generic;
 using System.ComponentModel;
 
-namespace TerritoriesManagement.GUI.ImporterConfig
+namespace TerritoriesManagement.GUI.Interop.Import
 {
     //http://www.codeproject.com/KB/tabs/customizingcollectiondata.aspx
     [Serializable]

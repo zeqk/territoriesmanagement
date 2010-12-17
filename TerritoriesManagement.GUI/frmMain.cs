@@ -5,7 +5,7 @@ using System.Windows.Forms;
 using AltosTools.WindowsForms;
 using Localizer;
 using TerritoriesManagement.GUI.Configuration;
-using TerritoriesManagement.GUI.ImporterConfig;
+using TerritoriesManagement.GUI.Interop;
 
 namespace TerritoriesManagement.GUI
 {
@@ -151,7 +151,7 @@ namespace TerritoriesManagement.GUI
 
         private void interopWizzardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            TerritoriesManagement.GUI.ImporterConfig.InteropWizard.RunInteropWizard();
+            TerritoriesManagement.GUI.Interop.InteropWizard.RunInteropWizard();
         }
 
 
