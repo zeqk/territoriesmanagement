@@ -1,0 +1,10 @@
+﻿Web site: http://sites.google.com/site/territoriesmanagement
+
+This program uses GMap.NET (http://greatmaps.codeplex.com/) and DotNetFirebird (http://www.firebirdsql.org/dotnetfirebird/).
+
+Icons by http://dryicons.com, http://pixel-mixer.com and http://fatcow.com
+
+Many thanks to the contributors:
+ - Natalio Ruiz, Argentina (Localizer library)
+ - Leica Florian, Italia (Italian translations)
+ - Deborah Bontti, Argentina (English translation)
