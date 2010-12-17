@@ -1,11 +1,8 @@
 using System;
-using System.Text;
-using System.Reflection;
 using System.Collections;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
 
-namespace TerritoriesManagement.GUI.ImporterConfig
+namespace TerritoriesManagement.GUI.Interop.Import
 {
 	/// <summary>
 	/// Type safe collection class for Employee objects. Extends the base class 

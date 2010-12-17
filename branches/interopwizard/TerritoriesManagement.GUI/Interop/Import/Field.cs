@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 
-namespace TerritoriesManagement.GUI.ImporterConfig
+namespace TerritoriesManagement.GUI.Interop.Import
 {
     [TypeConverter(typeof(FieldConverter))]
     public class Field

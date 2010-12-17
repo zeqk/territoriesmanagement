@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TerritoriesManagement.GUI.ImporterConfig
+namespace TerritoriesManagement.GUI.Interop
 {
     public enum EntitiesEnum
     {

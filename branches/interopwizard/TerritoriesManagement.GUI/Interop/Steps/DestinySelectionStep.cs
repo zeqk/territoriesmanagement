@@ -19,7 +19,7 @@ namespace TerritoriesManagement.GUI.Interop.Steps
         /// </summary>
         public DestinySelectionStep()
             : base()
-        {
+        {            
             ui = new DestinySelectionStepUI(()=>this.BrowseDialogTitle);
             this.UI = ui;
             ui.StateChangeEvent = (object sender, EventArgs args) => { this.StateUpdated(); };

@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel;
 
-namespace TerritoriesManagement.GUI.ImporterConfig
+namespace TerritoriesManagement.GUI.Interop.Import
 {
 	internal class FieldConverter : ExpandableObjectConverter
 	{

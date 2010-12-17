@@ -194,12 +194,6 @@
     <Compile Include="frmAddressesStatistic.Designer.cs">
       <DependentUpon>frmAddressesStatistic.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImporterConfig\Forms\frmEntitiesConfig.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ImporterConfig\Forms\frmEntitiesConfig.Designer.cs">
-      <DependentUpon>frmEntitiesConfig.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,12 +206,12 @@
     <Compile Include="frmTerritories.Designer.cs">
       <DependentUpon>frmTerritories.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImporterConfig\PropertyGrid\FieldCollection.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\FieldCollectionPropertyDescriptor.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\Table.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\TypeConverter.cs" />
+    <Compile Include="Interop\Import\FieldCollection.cs" />
+    <Compile Include="Interop\Import\FieldCollectionPropertyDescriptor.cs" />
+    <Compile Include="Interop\Import\ExternalTable.cs" />
+    <Compile Include="Interop\Import\TypeConverter.cs" />
     <Compile Include="Interop\InteropWizard.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\Field.cs" />
+    <Compile Include="Interop\Import\Field.cs" />
     <Compile Include="Interop\Steps\DestinySelectionStep.cs" />
     <Compile Include="Interop\Steps\DestinySelectionStepUI.cs">
       <SubType>UserControl</SubType>
@@ -225,19 +219,20 @@
     <Compile Include="Interop\Steps\DestinySelectionStepUI.Designer.cs">
       <DependentUpon>DestinySelectionStepUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Interop\Steps\SetConnControl.cs">
+    <Compile Include="Interop\Steps\SetConnStep.cs" />
+    <Compile Include="Interop\Steps\SetConnStepUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Interop\Steps\SetConnControl.Designer.cs">
-      <DependentUpon>SetConnControl.cs</DependentUpon>
+    <Compile Include="Interop\Steps\SetConnStepUI.Designer.cs">
+      <DependentUpon>SetConnStepUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImporterConfig\InteropConfig.cs" />
+    <Compile Include="Interop\ImportSettings.cs" />
     <Compile Include="Interop\EntitiesEnum.cs" />
-    <Compile Include="Interop\Steps\InProgressControl.cs">
+    <Compile Include="Interop\Steps\InProgressUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Interop\Steps\InProgressControl.Designer.cs">
-      <DependentUpon>InProgressControl.cs</DependentUpon>
+    <Compile Include="Interop\Steps\InProgressUI.Designer.cs">
+      <DependentUpon>InProgressUI.cs</DependentUpon>
     </Compile>
     <Compile Include="MapModeEnum.cs" />
     <Compile Include="Program.cs" />
@@ -264,9 +259,6 @@
     <EmbeddedResource Include="frmAddressesStatistic.resx">
       <DependentUpon>frmAddressesStatistic.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ImporterConfig\Forms\frmEntitiesConfig.resx">
-      <DependentUpon>frmEntitiesConfig.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -276,11 +268,11 @@
     <EmbeddedResource Include="Interop\Steps\DestinySelectionStepUI.resx">
       <DependentUpon>DestinySelectionStepUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Interop\Steps\SetConnControl.resx">
-      <DependentUpon>SetConnControl.cs</DependentUpon>
+    <EmbeddedResource Include="Interop\Steps\SetConnStepUI.resx">
+      <DependentUpon>SetConnStepUI.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Interop\Steps\InProgressControl.resx">
-      <DependentUpon>InProgressControl.cs</DependentUpon>
+    <EmbeddedResource Include="Interop\Steps\InProgressUI.resx">
+      <DependentUpon>InProgressUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

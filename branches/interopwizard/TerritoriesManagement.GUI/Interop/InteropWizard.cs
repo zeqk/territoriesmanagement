@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -6,28 +7,31 @@ using System.Windows.Forms;
 using Merlin;
 using MerlinStepLibrary;
 using TerritoriesManagement.Export;
-using TerritoriesManagement.GUI.ImporterConfig.Steps;
+using TerritoriesManagement.GUI.Interop.Import;
 using TerritoriesManagement.GUI.Interop.Steps;
 using TerritoriesManagement.Import;
-using System.Collections;
 
-namespace TerritoriesManagement.GUI.ImporterConfig
+namespace TerritoriesManagement.GUI.Interop
 {
     static class InteropWizard
     {
-        static ImportTool _importer;
         static bool completed = false;
-        static string log = "";
+        
+        delegate string StringRetriever();
+        static StringRetriever logRetriever;
 
         //Final step - In progress
-        static InProgressControl inProgressControl = new InProgressControl(); 
+        static InProgressUI inProgressControl = new InProgressUI(); 
         static TemplateStep stepInProgress = new TemplateStep(inProgressControl);
 
         static TextBox txtLog = new TextBox();
 
         public static void RunInteropWizard()
         {
-            string action = "";
+            ImportSettings.GetInstance().LoadConfig();
+
+            StringRetriever actionRetriever;
+            
             EntitiesEnum table = EntitiesEnum.Departments;
             string entityName = "";
             string file = "";
@@ -40,14 +44,21 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             
             //Start step - Select action           
             SelectionStep stepChooseAction = new SelectionStep("Action selection", "Please select the action:", actions);
+            actionRetriever = () => (string)stepChooseAction.Selected;
 
+            stepInProgress.Title = "Processing...";
             stepInProgress.AllowCancelStrategy = () => { return false; };
             stepInProgress.AllowPreviousStrategy = () => { return false; };
             stepInProgress.AllowNextStrategy = () => { return completed; };
 
             //View log step
             txtLog.Multiline = true;
+            txtLog.ScrollBars = ScrollBars.Vertical;
             TemplateStep stepViewLog = new TemplateStep(txtLog);
+            stepViewLog.Title = "Importation errors";
+            stepViewLog.AllowCancelStrategy = () => { return false; };
+            stepViewLog.AllowPreviousStrategy = () => { return false; };
+            stepViewLog.AllowNextStrategy = () => { return true; };
  
             #region Internal
 
@@ -74,8 +85,8 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             TemplateStep stepSetFields = new TemplateStep(propGrid);
 
             //Set connection step (Import)
-            SetConnControl setConnControl = new SetConnControl();
-            TemplateStep stepSetConn = new TemplateStep(setConnControl);
+            SetConnStep stepSetConn = new SetConnStep();
+            stepSetConn.Title = "Set connection";
 
             //Select fields step (Export)
             CheckedListBox chkFields = new CheckedListBox();
@@ -120,9 +131,9 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             stepChooseAction.NextHandler = () =>
             {
                 controller.DeleteAllAfterCurrent();
-                action = (string)stepChooseAction.Selected;
 
-                if (!action.Contains("External")) //Internal
+
+                if (!actionRetriever().Contains("External")) //Internal
                     controller.AddAfterCurrent(stepsSelectTables);
                 else //External
                     controller.AddAfterCurrent(stepsChooseTable);
@@ -135,7 +146,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             {
                 controller.DeleteAllAfterCurrent();
                 List<IStep> stepsAux = new List<IStep>();
-                if (action == "Import")
+                if (actionRetriever() == "Import")
                     stepsAux.Add(stepSelectSource);
                 else
                 {
@@ -153,11 +164,11 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             {
                 controller.DeleteAllAfterCurrent();
 
-                if (action == "Import (External)") //Import (External)
+                if (actionRetriever() == "Import (External)") //Import (External)
                 {
-                    ImporterConfig.LoadConfig();
+                    //load data for the stepSetFields
                     table = (EntitiesEnum)Enum.Parse(typeof(EntitiesEnum), (string)stepChooseTable.Selected);
-                    var tables = ImporterConfig.GetInstance().Tables;
+                    var tables = ImportSettings.GetInstance().Tables;
                     foreach (ExternalTable item in tables)
                     {
                         if (item.RelatedEntitySet == table)
@@ -166,6 +177,13 @@ namespace TerritoriesManagement.GUI.ImporterConfig
                             break;
                         }
                     }
+
+                    stepSetFields.Title = Enum.GetName(typeof(EntitiesEnum), table);
+
+
+                    //load data for stepSetConn
+                    stepSetConn.ConnectionString = ImportSettings.GetInstance().ConnectionString;
+                    stepSetConn.Provider = ImportSettings.GetInstance().Provider;
 
                     controller.AddAfterCurrent(stepsExternalImport);
                 }
@@ -186,32 +204,40 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             //External import final
             stepSetConn.NextHandler = () =>
             {
-                controller.DeleteAllAfterCurrent();
-                
-                controller.AddAfterCurrent(stepsFinals);                
-                
-                _importer = new ImportTool();
-                SetConfig(table);
-                _importer.bg.RunWorkerCompleted += new RunWorkerCompletedEventHandler(ProcessCompleted);                
-                _importer.bg.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
-                _importer.ImportData();                
-                
-                return completed;
+                controller.DeleteAllAfterCurrent();                
+                controller.AddAfterCurrent(stepsFinals);
+
+                ImportSettings.GetInstance().ConnectionString = stepSetConn.ConnectionString;
+                ImportSettings.GetInstance().Provider = stepSetConn.Provider;
+
+                ImportTool importer = new ImportTool();
+                SetConfig(ref importer, table);
+
+                importer.bg.RunWorkerCompleted += new RunWorkerCompletedEventHandler(ProcessCompleted);
+                importer.bg.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
+
+                logRetriever = () => importer.Log;
+                importer.ImportData();
+                return true;
             };
+
+            stepSetConn.AllowNextStrategy = () => 
+                !string.IsNullOrEmpty(stepSetConn.ConnectionString);
 
             //Export final
             stepSelectDestiny.NextHandler = () =>
             {
                 controller.DeleteAllAfterCurrent();
-                //TODO: poner prev next y cancel en false
                 controller.AddAfterCurrent(stepInProgress); 
 
                 file = stepSelectDestiny.SelectedFullPath;
+
                 ExportTool exporter = new ExportTool();
+
                 exporter.bg.RunWorkerCompleted += new RunWorkerCompletedEventHandler(ProcessCompleted);
                 exporter.bg.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
 
-                if (action.Contains("External"))//External export final
+                if (actionRetriever().Contains("External"))//External export final
                 {
                     string[] props = chkFields.CheckedItems.Cast<Property>().Select(p => p.Name).ToArray();
                     
@@ -229,12 +255,34 @@ namespace TerritoriesManagement.GUI.ImporterConfig
                 return true;
             };
 
+            stepSelectDestiny.AllowNextStrategy = () => !string.IsNullOrEmpty(stepSelectDestiny.SelectedFullPath);
+
+            //Import final
+            stepSelectSource.NextHandler = () =>
+            {
+                controller.DeleteAllAfterCurrent();
+                controller.AddAfterCurrent(stepInProgress);
+
+                file = stepSelectDestiny.SelectedFullPath;
+
+                List<string> entityList = new List<string>();
+                foreach (string item in chkTables.CheckedItems)
+                {
+                    entityList.Add(Helper.GetEntityNameByEntitySetName(item)); 
+                }
+
+                ImportTool importer = new ImportTool();
+                importer.ImportExchangeData(file, entityList);
+
+                return true;
+            };
+            stepSelectSource.AllowNextStrategy = () => !string.IsNullOrEmpty(stepSelectSource.SelectedFullPath);
 
             var result = controller.StartWizard("Interop");
 
             if (result == WizardController.WizardResult.Finish)
             {
-                switch (action)
+                switch (actionRetriever())
                 {
                     case "Import":
 
@@ -254,39 +302,43 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             }
             else
             {
-                if (action == "Import (External)")
-                    ImporterConfig.SaveConfig();
+                if (actionRetriever() == "Import (External)")
+                {
+                    ImportSettings.GetInstance().ConnectionString = stepSetConn.ConnectionString;
+                    ImportSettings.GetInstance().Provider = stepSetConn.Provider;
+                    ImportSettings.GetInstance().SaveConfig();
+                }
             }
 
         }
 
-        private static void SetConfig(EntitiesEnum entity)
+        private static void SetConfig(ref ImportTool importer, EntitiesEnum entity)
         {
-            var cfg = ImporterConfig.GetInstance();
-            _importer.Config.ConnectionString = cfg.ConnectionString;
-            _importer.Config.Provider = cfg.Provider;
+            var cfg = ImportSettings.GetInstance();
+            importer.Config.ConnectionString = cfg.ConnectionString;
+            importer.Config.Provider = cfg.Provider;
 
             ExternalTable table = cfg.Tables.Where(t => t.RelatedEntitySet == entity).First();
             
 
-            _importer.Config.Departments.Fields.Clear();
-            _importer.Config.Cities.Fields.Clear();
+            importer.Config.Departments.Fields.Clear();
+            importer.Config.Cities.Fields.Clear();
             switch (entity)
             {
                 case EntitiesEnum.Departments:
-                    _importer.Config.Departments.TableName = table.ExternalTableName;
+                    importer.Config.Departments.TableName = table.ExternalTableName;
                     foreach (Field item in table.Fields)
                     {
                         if(item.Import)
-                            _importer.Config.Departments.Fields.Add(item.RelatedProperty, item.ColumnName);
+                            importer.Config.Departments.Fields.Add(item.RelatedProperty, item.ColumnName);
                     }
                     break;
                 case EntitiesEnum.Cities:
-                    _importer.Config.Cities.TableName = table.ExternalTableName;
+                    importer.Config.Cities.TableName = table.ExternalTableName;
                     foreach (Field item in table.Fields)
                     {
                         if (item.Import)
-                            _importer.Config.Cities.Fields.Add(item.RelatedProperty, item.ColumnName);
+                            importer.Config.Cities.Fields.Add(item.RelatedProperty, item.ColumnName);
                     }
                     break;
                 case EntitiesEnum.Territories:
@@ -309,7 +361,7 @@ namespace TerritoriesManagement.GUI.ImporterConfig
             MessageBox.Show("Proceso completado");
             completed = true;
             stepInProgress.StateUpdated();
-            txtLog.Text = log;            
+            txtLog.Text = logRetriever();          
         }
 
         private static string GetString(string p)

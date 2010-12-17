@@ -2,17 +2,17 @@ using System;
 using System.Text;
 using System.ComponentModel;
 
-namespace PropertyGridSample
+namespace TerritoriesManagement.GUI.Interop.Import
 {
 	/// <summary>
 	/// Summary description for CollectionPropertyDescriptor.
 	/// </summary>
-	public class EmployeeCollectionPropertyDescriptor : PropertyDescriptor
+	public class FiedCollectionPropertyDescriptor : PropertyDescriptor
 	{
-		private EmployeeCollection collection = null;
+		private FieldCollection collection = null;
 		private int index = -1;
 
-		public EmployeeCollectionPropertyDescriptor(EmployeeCollection coll, int idx) : 
+        public FiedCollectionPropertyDescriptor(FieldCollection coll, int idx) : 
 			base( "#"+idx.ToString(), null )
 		{
 			this.collection = coll;
@@ -44,8 +44,13 @@ namespace PropertyGridSample
 		{
 			get 
 			{
-				Employee emp = this.collection[index]; 
-				return emp.FirstName + " " + emp.LastName;
+				Field field = this.collection[index];
+                string import = "";
+                if (field.Import)
+                    import = "Import";
+                else
+                    import = "Not import";
+                return field.RelatedProperty + " | " + import;
 			}
 		}
 
@@ -53,17 +58,9 @@ namespace PropertyGridSample
 		{
 			get
 			{
-				Employee emp = this.collection[index]; 
+				Field field = this.collection[index]; 
 				StringBuilder sb = new StringBuilder();
-				sb.Append(emp.LastName);
-				sb.Append(",");
-				sb.Append(emp.FirstName);
-				sb.Append(",");
-				sb.Append(emp.Age);
-				sb.Append(" years old, working for ");
-				sb.Append(emp.Department);
-				sb.Append(" as ");
-				sb.Append(emp.Role);
+                sb.Append("Description: " +field.RelatedProperty);
 			
 				return sb.ToString();
 			}
