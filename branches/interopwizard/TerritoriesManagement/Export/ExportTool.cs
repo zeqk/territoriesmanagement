@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.Data.Objects;
 using System.IO;
@@ -9,85 +10,72 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
 using TerritoriesManagement.Model;
-using System.ComponentModel;
 
 namespace TerritoriesManagement.Export
 {
     public class ExportTool
     {        
         public BackgroundWorker bg;
-        int rowPosition = 0;
+        int rowCounter = 0;
         int tablesTotal = 0;
-        int tablesCount = 0;
+        int tablesCounter = 0;
 
         public ExportTool()
         {
             bg = new BackgroundWorker();
             bg.WorkerSupportsCancellation = true;
-            bg.WorkerReportsProgress = true;            
+            bg.WorkerReportsProgress = true;
         }
+
+        #region Export to Excel
 
         /// <summary>
         /// Export a entity set to a excel file
         /// </summary>
         /// <param name="path">Excel spreadsheet path</param>
+        /// <param name="template">Excel template path</param>
         /// <param name="entity">Entity name</param>
-        /// <param name="entitySet">Entity set name</param>
         /// <param name="properties">Array of properties name</param>
         /// <param name="where">Query string</param>
+        /// <param name="aync">Execute in aync mode</param>
         /// <param name="parameters">Query parameters</param>
         /// <returns></returns>
-        public bool ExportToExcel(string path, string entityName, string[] properties, string where, params ObjectParameter[] parameters)
+        public void ExportToExcel(string path, string template, string entityName, string[] properties, string where, bool async, params ObjectParameter[] parameters)
         {
-            bool rv = true;
-            try
+            if (async)
             {
-                TerritoriesDataContext dm = new TerritoriesDataContext();
-                IList entities = Helper.GetEntities(dm,entityName, where, parameters);
+                Hashtable argument = new Hashtable();
+                argument.Add("path", path);
+                argument.Add("template", template);
+                argument.Add("entityName", entityName);
+                argument.Add("properties", properties);
+                argument.Add("where", where);
+                argument.Add("parameters", parameters);
 
-                if (properties == null || properties.Length == 0)
-                {
-                    properties = Helper.GetPropertyListByType(entityName).Select(p => p.Name).ToArray();
-                }
-
-                DataTable table = RecordsToDataTable(entities, properties.ToList());
-
-                DataGrid grid = new DataGrid();
-                grid.HeaderStyle.Font.Bold = true;
-                grid.DataSource = table;
-                grid.DataBind();
-
-                // render the DataGrid control to a file
-
-                using (StreamWriter sw = new StreamWriter(path))
-                {
-                    using (HtmlTextWriter hw = new HtmlTextWriter(sw))
-                    {
-                        grid.RenderControl(hw);
-                    }
-                }
+                bg.DoWork += new DoWorkEventHandler(bg_ExportToExcel);
+                bg.RunWorkerAsync(argument);
             }
-            catch (Exception ex)
+            else
             {
-                rv = false;
-                throw ex;
+                this.ExportToExcel(path, template, entityName, properties, where, parameters);
             }
-
-            return rv;
         }
 
-        /// <summary>
-        /// Export a entity set to a excel spreadsheet form a template
-        /// </summary>
-        /// /<param name="template">Excel template path</param>
-        /// <param name="path">Excel spreadsheet path</param>
-        /// <param name="entity">Entity name</param>
-        /// <param name="entitySet">Entity set name</param>
-        /// <param name="properties">Array of properties name</param>
-        /// <param name="where">Query string</param>
-        /// <param name="parameters">Query parameters</param>
-        /// <returns></returns>
-        public bool ExportToExcel(string template,string entityName, string path, string[] properties, string where, params ObjectParameter[] parameters)
+        private void bg_ExportToExcel(object sender, DoWorkEventArgs e)
+        {
+            Hashtable argument = (Hashtable)e.Argument;
+            string path = (string)argument["path"];
+            string template = (string)argument["template"];
+            string entityName = (string)argument["entityName"];
+            string[] properties =(string[])argument["properties"];
+            string where = (string)argument["where"];
+            ObjectParameter[] parameters = (ObjectParameter[])argument["parameters"];
+
+            this.ExportToExcel(path, template, entityName, properties, where, parameters);
+        }
+
+        
+        private bool ExportToExcel(string path, string template, string entityName, string[] properties, string where, params ObjectParameter[] parameters)
         {
             bool rv = true;
             try
@@ -100,36 +88,14 @@ namespace TerritoriesManagement.Export
                     properties = Helper.GetPropertyListByType(entityName).Select(p => p.Name).ToArray();
                 }
 
-                DataTable dataTable = RecordsToDataTable(entities, properties.ToList());
-                rowPosition = 0;
+                DataTable table = RecordsToDataTable(entities, properties.ToList());
 
-                XDocument document = XDocument.Load(template, LoadOptions.None);
-                var workbook = (XElement)document.FirstNode.NextNode; //Workbook
-                var sheet = (XElement)workbook.FirstNode.NextNode.NextNode.NextNode; //Worksheet
+                
 
-                var table = (XElement)sheet.FirstNode; // Table
-
-                XElement row = (XElement)table.FirstNode;
-                while (row != null)
-                {
-                    if (row.Name.LocalName == "Row")
-                    {
-                        XElement cell = (XElement)row.FirstNode;
-                        while (cell != null)
-                        {
-                            XElement cellData = (XElement)cell.FirstNode;
-                            if (cellData != null)
-                            {
-
-                                cellData = getCellData(cellData, dataTable);
-                            }
-                            cell = (XElement)cell.NextNode;
-                        }
-                    }
-                    row = (XElement)row.NextNode;
-                    rowPosition++;
-                }
-                document.Save(path);
+                if (template == null || template == "")
+                    WriteExcel(table, path);
+                else
+                    WriteExcel(table, path, template);
             }
             catch (Exception ex)
             {
@@ -139,6 +105,61 @@ namespace TerritoriesManagement.Export
 
             return rv;
         }
+
+        void WriteExcel(DataTable dt,string path)
+        {
+            DataGrid grid = new DataGrid();
+            grid.HeaderStyle.Font.Bold = true;
+            grid.DataSource = dt;
+            grid.DataBind();
+
+            // render the DataGrid control to a file
+
+            using (StreamWriter sw = new StreamWriter(path))
+            {
+                using (HtmlTextWriter hw = new HtmlTextWriter(sw))
+                {
+                    grid.RenderControl(hw);
+                }
+            }
+            bg.ReportProgress(100);
+        }
+
+        void WriteExcel(DataTable dt, string path, string template)
+        {
+            XDocument document = XDocument.Load(template, LoadOptions.None);
+            var workbook = (XElement)document.FirstNode.NextNode; //Workbook
+            var sheet = (XElement)workbook.FirstNode.NextNode.NextNode.NextNode; //Worksheet
+
+            var table = (XElement)sheet.FirstNode; // Table
+
+            XElement row = (XElement)table.FirstNode;
+
+            int rowsTotal = dt.Rows.Count;
+
+            while (row != null)
+            {
+                if (row.Name.LocalName == "Row")
+                {
+                    XElement cell = (XElement)row.FirstNode;
+                    while (cell != null)
+                    {
+                        XElement cellData = (XElement)cell.FirstNode;
+                        if (cellData != null)
+                        {
+
+                            cellData = getCellData(cellData, dt);
+                        }
+                        cell = (XElement)cell.NextNode;
+                    }
+                }
+                row = (XElement)row.NextNode;
+                rowCounter++;
+                bg.ReportProgress((100 / rowsTotal) * rowCounter);
+            }
+            bg.ReportProgress(100);
+            document.Save(path);
+        }        
 
         private XElement getCellData(XElement cellData, DataTable dataTable)
         {
@@ -156,7 +177,7 @@ namespace TerritoriesManagement.Export
                         field = field.Trim();
                         try
                         {
-                            var valueObj = dataTable.Rows[rowPosition][field];
+                            var valueObj = dataTable.Rows[rowCounter][field];
                             if (valueObj != null)
                             {
                                 if (value != "")
@@ -177,10 +198,11 @@ namespace TerritoriesManagement.Export
             return cellData;
         }
 
+        #endregion
 
-        #region ExportData
+        #region ExportToExchangeData
 
-        public void ExportData(string path, List<string> entityList, bool async)
+        public void ExportToExchangeData(string path, List<string> entityList, bool async)
         {
             if (async)
             {
@@ -188,22 +210,22 @@ namespace TerritoriesManagement.Export
                 argument.Add("path",path);
                 argument.Add("entityList",entityList);
 
-                bg.DoWork += new DoWorkEventHandler(bg_ExportData);
+                bg.DoWork += new DoWorkEventHandler(bg_ExportToExchangeData);
                 bg.RunWorkerAsync(argument);
             }
             else
             {
-                this.ExportData(path, entityList);
+                this.ExportToExchangeData(path, entityList);
             }
         }
 
-        private void bg_ExportData(object sender, DoWorkEventArgs e)
+        private void bg_ExportToExchangeData(object sender, DoWorkEventArgs e)
         {
             Hashtable argument = (Hashtable)e.Argument;
-            this.ExportData((string)argument["path"],(List<string>)argument["entityList"]);
+            this.ExportToExchangeData((string)argument["path"],(List<string>)argument["entityList"]);
         }
 
-        private void ExportData(string path, List<string> entityList)
+        private void ExportToExchangeData(string path, List<string> entityList)
         {
             try
             {
@@ -220,8 +242,8 @@ namespace TerritoriesManagement.Export
                     DataTable dt = RecordsToDataTable(records, propLst);
                     dt.TableName = entitySetName;
                     ds.Tables.Add(dt);
-                    tablesCount++;
-                    bg.ReportProgress((100 / tablesTotal) * tablesCount);
+                    tablesCounter++;
+                    bg.ReportProgress((100 / tablesTotal) * tablesCounter);
                 }
 
                 ds.WriteXml(path, XmlWriteMode.WriteSchema);
@@ -252,7 +274,7 @@ namespace TerritoriesManagement.Export
                     dt.NewRow();
                     dt.Rows.Add(ObjToDataRow(item, dt.NewRow()));
                     i++;
-                    int tableProgress = (100 / tablesTotal) * tablesCount;
+                    int tableProgress = (100 / tablesTotal) * tablesCounter;
                     int recordProgress = ((100 / tablesTotal) / records.Count) * i;
                     bg.ReportProgress(tableProgress + recordProgress);
                 }

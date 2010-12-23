@@ -18,7 +18,8 @@ namespace TerritoriesManagement.GUI.Interop
         static bool completed = false;
         
         delegate string StringRetriever();
-        static StringRetriever logRetriever;
+        static StringRetriever logRetriever; 
+        static StringRetriever actionRetriever;
 
         //Final step - In progress
         static InProgressUI inProgressControl = new InProgressUI(); 
@@ -30,7 +31,7 @@ namespace TerritoriesManagement.GUI.Interop
         {
             ImportSettings.GetInstance().LoadConfig();
 
-            StringRetriever actionRetriever;
+            
             
             EntitiesEnum table = EntitiesEnum.Departments;
             string entityName = "";
@@ -69,7 +70,8 @@ namespace TerritoriesManagement.GUI.Interop
             TemplateStep stepSelectTable = new TemplateStep(chkTables);
 
             //Select source file step (Import)
-            FileSelectionStep stepSelectSource = new FileSelectionStep();            
+            FileSelectionStep stepSelectSource = new FileSelectionStep();
+            stepSelectSource.Filter = "Territories management exchange file(*.tmx)|*.tmx";
             //Select destiny file step (Export and External export)            
             DestinySelectionStep stepSelectDestiny = new DestinySelectionStep();
 
@@ -217,7 +219,7 @@ namespace TerritoriesManagement.GUI.Interop
                 importer.bg.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
 
                 logRetriever = () => importer.Log;
-                importer.ImportData();
+                importer.ImportExternalData();
                 return true;
             };
 
@@ -250,7 +252,7 @@ namespace TerritoriesManagement.GUI.Interop
                     {
                         entityList.Add(Helper.GetEntityNameByEntitySetName(item)); 
                     }
-                    exporter.ExportData(file,entityList,true);
+                    exporter.ExportToExchangeData(file,entityList,true);
                 }
                 return true;
             };
@@ -263,16 +265,19 @@ namespace TerritoriesManagement.GUI.Interop
                 controller.DeleteAllAfterCurrent();
                 controller.AddAfterCurrent(stepInProgress);
 
-                file = stepSelectDestiny.SelectedFullPath;
+                file = stepSelectSource.SelectedFullPath;
 
-                List<string> entityList = new List<string>();
+                List<string> entitySetList = new List<string>();
                 foreach (string item in chkTables.CheckedItems)
                 {
-                    entityList.Add(Helper.GetEntityNameByEntitySetName(item)); 
+                    entitySetList.Add(item); 
                 }
 
                 ImportTool importer = new ImportTool();
-                importer.ImportExchangeData(file, entityList);
+                importer.bg.RunWorkerCompleted += new RunWorkerCompletedEventHandler(ProcessCompleted);
+                importer.bg.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
+                
+                importer.ImportExchangeData(file, entitySetList, true);
 
                 return true;
             };
@@ -361,7 +366,10 @@ namespace TerritoriesManagement.GUI.Interop
             MessageBox.Show("Proceso completado");
             completed = true;
             stepInProgress.StateUpdated();
-            txtLog.Text = logRetriever();          
+            //if(actionRetriever() == "Import (External)")
+            if(logRetriever != null)
+                txtLog.Text = logRetriever();
+            var hola = true;
         }
 
         private static string GetString(string p)

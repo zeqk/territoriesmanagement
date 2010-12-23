@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -49,7 +50,7 @@ namespace TerritoriesManagement.Import
             bg = new BackgroundWorker();
             bg.WorkerSupportsCancellation = true;
             bg.WorkerReportsProgress = true;
-            bg.DoWork += new DoWorkEventHandler(bg_DoWork);
+            
 	    }
 
 
@@ -78,13 +79,15 @@ namespace TerritoriesManagement.Import
             get { return _log; }
         }
 
+        #region Import External Data
 
-        public void ImportData()
+        public void ImportExternalData()
         {
+            bg.DoWork += new DoWorkEventHandler(bg_ImportExternalData);
             bg.RunWorkerAsync();
         }
 
-        void bg_DoWork(object sender, DoWorkEventArgs e)
+        void bg_ImportExternalData(object sender, DoWorkEventArgs e)
         {
             SuccessfulImport = true;
             SetConfig();
@@ -1159,10 +1162,36 @@ namespace TerritoriesManagement.Import
                 );
         }
 
-        #region Export data
-        public int ImportExchangeData(string path, List<string> entityList)
+        #endregion
+
+        #region Import Exchange Data
+
+        public void ImportExchangeData(string path, List<string> entityList, bool async)
         {
-            int count = 0;
+            if (async)
+            {
+                Hashtable argument = new Hashtable();
+                argument.Add("path", path);
+                argument.Add("entityList", entityList);
+
+                bg.DoWork += new DoWorkEventHandler(bg_ImportExchangeData);
+                bg.RunWorkerAsync(argument);
+            }
+            else
+            {
+                this.ImportExchangeData(path, entityList);
+            }
+
+        }
+
+        private void bg_ImportExchangeData(object sender, DoWorkEventArgs e)
+        {
+            Hashtable argument = (Hashtable)e.Argument;
+            this.ImportExchangeData((string)argument["path"], (List<string>)argument["entityList"]);
+        }
+
+        private void ImportExchangeData(string path, List<string> entitySetList)
+        {
             try
             {
                 PreCompileQueries();
@@ -1170,22 +1199,32 @@ namespace TerritoriesManagement.Import
                 DataSet ds = new DataSet();
                 ds.ReadXml(path);
 
-                foreach (var entityName in entityList)
-                {
+                int tablesTotal = entitySetList.Count;
+                int tablesCounter = 0;
+                foreach (var entitySetName in entitySetList)
+                {                    
+                    string entityName = Helper.GetEntityNameByEntitySetName(entitySetName);
                     Type entityType = Helper.GetEntityTypeByEntityName(entityName);
-                    string entitySetName = Helper.GetEntitySetNameByEntityName(_dm,entityName);
-                    string keyProperty = "Id" + entityName;
 
-                    DataTable dt = ds.Tables[entitySetName];
-
-                    foreach (DataRow row in dt.Rows)
+                    if(ds.Tables.Contains(entitySetName))
                     {
-                        object recordObj = DataRowToObject(row, entityType);
-                        _dm.AddObject(entitySetName, recordObj);
-                        count++;
+                        string keyProperty = "Id" + entityName;
+                        DataTable dt = ds.Tables[entitySetName];
+                        int rowCounter = 0;
+                        int rowsTotal = dt.Rows.Count;
+                        foreach (DataRow row in dt.Rows)
+                        {
+                            object recordObj = DataRowToObject(row, entityType);
+                            _dm.AddObject(entitySetName, recordObj);
+                            rowCounter++;
+                            bg.ReportProgress(((100 / tablesTotal) * tablesCounter) + ((100/rowsTotal) * rowCounter));
+                        }
                     }
-
+                    tablesCounter++;
+                    bg.ReportProgress((100 / tablesTotal) * tablesCounter);
                 }
+
+                bg.ReportProgress(100);
                 _dm.SaveChanges();               
             }
             catch (Exception ex)
@@ -1193,7 +1232,7 @@ namespace TerritoriesManagement.Import
                 throw ex;
             }
 
-            return count;
+            
         }
 
 
