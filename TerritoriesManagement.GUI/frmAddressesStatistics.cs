@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace TerritoriesManagement.GUI
 {
-    public partial class frmAddressesStatistic : Form
+    public partial class frmAddressesStatistics : Form
     {
-        public frmAddressesStatistic()
+        public frmAddressesStatistics()
         {
             InitializeComponent();
             txtDistance.Text = (1).ToString();

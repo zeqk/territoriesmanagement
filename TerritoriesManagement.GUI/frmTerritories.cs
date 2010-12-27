@@ -49,7 +49,12 @@ namespace TerritoriesManagement.GUI
 
         private void dgvResult_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvResult.SelectedRows.Count != 0)
+            bool ok = true;
+
+            if (this.isDirty)
+                ok = MessageBox.Show(GetString("There is some unsaved data. Do you want to continue?"), GetString("Message"), MessageBoxButtons.YesNo) == DialogResult.Yes;
+            
+            if (ok && dgvResult.SelectedRows.Count > 0)
             {
                 var v = server.Load((int)dgvResult.SelectedRows[0].Cells["Id"].Value);
                 ObjectToForm(v);

@@ -243,7 +243,7 @@ namespace TerritoriesManagement.GUI.Interop
                 {
                     string[] props = chkFields.CheckedItems.Cast<Property>().Select(p => p.Name).ToArray();
                     
-                    exporter.ExportToExcel(file, entityName, props, "");
+                    //exporter.ExportToExcel(file, entityName, props, "");
                 }
                 else //Export final
                 {
