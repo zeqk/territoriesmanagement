@@ -1,6 +1,6 @@
 ﻿namespace TerritoriesManagement.GUI
 {
-    partial class frmAddressesStatistic
+    partial class frmAddressesStatistics
     {
         /// <summary>
         /// Required designer variable.
@@ -37,7 +37,7 @@
             // txtDistance
             // 
             this.txtDistance.Location = new System.Drawing.Point(58, 29);
-            this.txtDistance.Mask = "999";
+            this.txtDistance.Mask = "999.00";
             this.txtDistance.Name = "txtDistance";
             this.txtDistance.PromptChar = ' ';
             this.txtDistance.Size = new System.Drawing.Size(87, 20);
@@ -71,7 +71,7 @@
             this.lblKm.TabIndex = 3;
             this.lblKm.Text = "km";
             // 
-            // frmAddressesStatics
+            // frmAddressesStatistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -80,7 +80,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.txtDistance);
-            this.Name = "frmAddressesStatics";
+            this.Name = "frmAddressesStatistics";
             this.Text = "Statics";
             this.ResumeLayout(false);
             this.PerformLayout();

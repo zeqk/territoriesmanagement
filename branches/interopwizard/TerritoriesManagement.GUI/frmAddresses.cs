@@ -62,7 +62,6 @@ namespace TerritoriesManagement.GUI
             chklstTerritory.DisplayMember = "Name";
             chklstTerritory.ValueMember = "Id";
             chklstTerritory.DataSource = territories;
-
         }
 
         private void btnAll_Click(object sender, EventArgs e)
@@ -403,6 +402,7 @@ namespace TerritoriesManagement.GUI
 
         private void dgvResult_MouseClick(object sender, MouseEventArgs e)
         {
+            
             if (e.Button == MouseButtons.Right)
             {
                 ctxMenu.Show(dgvResult, e.Location);
@@ -438,7 +438,7 @@ namespace TerritoriesManagement.GUI
             try
             {
                 ExportTool tool = new ExportTool();
-                tool.ExportToExcel(path, "Address", new string[0], strQuery, parameters.ToArray());
+                //tool.ExportToExcel(path, "Address", new string[0], strQuery, parameters.ToArray());
             }
             catch (Exception ex)
             {
@@ -513,11 +513,11 @@ namespace TerritoriesManagement.GUI
                 Search();
         }
 
-        private void btnViewStatics_Click(object sender, EventArgs e)
+        private void btnViewStatistics_Click(object sender, EventArgs e)
         {
             bool ok = false;
             double distance = 0;
-            using (frmAddressesStatistic myForm = new frmAddressesStatistic())
+            using (frmAddressesStatistics myForm = new frmAddressesStatistics())
             {
                 ok = (myForm.ShowDialog() == DialogResult.OK);
                 distance = myForm.Distance;
@@ -588,6 +588,20 @@ namespace TerritoriesManagement.GUI
                 
             }
         }
+
+        ////TODO. para seleccionar las columnas a ver
+        //private void dgvResult_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        //{
+        //    if (e.Button == MouseButtons.Left)
+        //    {
+        //        ctxHeaderMenu.Show(dgvResult, e.X, e.Y);
+        //    }
+        //}
+
+        //private void contextMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    ((ToolStripMenuItem)sender).Checked = !((ToolStripMenuItem)sender).Checked;
+        //}
         
     }
 }

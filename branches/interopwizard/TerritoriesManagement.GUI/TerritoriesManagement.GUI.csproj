@@ -188,11 +188,11 @@
     <Compile Include="frmMap.designer.cs">
       <DependentUpon>frmMap.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmAddressesStatistic.cs">
+    <Compile Include="frmAddressesStatistics.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAddressesStatistic.Designer.cs">
-      <DependentUpon>frmAddressesStatistic.cs</DependentUpon>
+    <Compile Include="frmAddressesStatistics.Designer.cs">
+      <DependentUpon>frmAddressesStatistics.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -256,8 +256,8 @@
     <EmbeddedResource Include="frmMap.resx">
       <DependentUpon>frmMap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmAddressesStatistic.resx">
-      <DependentUpon>frmAddressesStatistic.cs</DependentUpon>
+    <EmbeddedResource Include="frmAddressesStatistics.resx">
+      <DependentUpon>frmAddressesStatistics.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
