@@ -168,8 +168,7 @@ namespace TerritoriesManagement.GUI.Interop
 
                 if (actionRetriever() == "Import (External)") //Import (External)
                 {
-                    //load data for the stepSetFields
-                    table = (EntitiesEnum)Enum.Parse(typeof(EntitiesEnum), (string)stepChooseTable.Selected);
+                    //load data for the stepSetFields                    
                     var tables = ImportSettings.GetInstance().Tables;
                     foreach (ExternalTable item in tables)
                     {
@@ -193,6 +192,7 @@ namespace TerritoriesManagement.GUI.Interop
                 {
                     entityName = Helper.GetEntityNameByEntitySetName(Enum.GetName(typeof(EntitiesEnum),table));
                     IList<Property> props = Helper.GetPropertyListByType(entityName);
+                    chkFields.Items.Clear();
                     chkFields.Items.AddRange(props.ToArray());
                     stepSelectDestiny.Title = entityName;
                     stepSelectDestiny.Filter = "Excel files (*.xls)|*.xls";
@@ -242,8 +242,8 @@ namespace TerritoriesManagement.GUI.Interop
                 if (actionRetriever().Contains("External"))//External export final
                 {
                     string[] props = chkFields.CheckedItems.Cast<Property>().Select(p => p.Name).ToArray();
-                    
-                    //exporter.ExportToExcel(file, entityName, props, "");
+
+                    exporter.ExportToExcel(file,null,entityName,props,"",true);
                 }
                 else //Export final
                 {

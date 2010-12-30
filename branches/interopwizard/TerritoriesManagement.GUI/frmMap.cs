@@ -1,23 +1,17 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+using System.Data.Objects;
 using System.Globalization;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Windows.Forms;
+using AltosTools;
+using AltosTools.WindowsForms.Maps;
 using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
-using GMap.NET.WindowsForms.ToolTips;
-using AltosTools.WindowsForms.Maps;
-using System.Collections;
-using System.Data.Objects;
-using TerritoriesManagement.Model;
 using TerritoriesManagement.DataBridge;
-using System.Runtime.CompilerServices;
-using AltosTools;
 
 namespace TerritoriesManagement.GUI
 {
@@ -253,6 +247,8 @@ namespace TerritoriesManagement.GUI
             GMaps.Instance.UseGeocoderCache = true;
             GMaps.Instance.UsePlacemarkCache = true;
             GMaps.Instance.Mode = AccessMode.ServerAndCache;
+
+            cboMapType.SelectedItem = _mapType;
 
             // config map 
             MainMap.MapType = _mapType;
