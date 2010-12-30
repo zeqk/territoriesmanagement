@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using AltosTools.WindowsForms;
 using Localizer;
 using TerritoriesManagement.GUI.Configuration;
-using TerritoriesManagement.GUI.Interop;
 
 namespace TerritoriesManagement.GUI
 {
@@ -130,26 +129,7 @@ namespace TerritoriesManagement.GUI
             }
         }
 
-        private void menuInteroperability_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                //frmInterop myForm = new frmInterop();
-                //myForm.Show();
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            //Map.Close(); hay q cerrar el mapa?
-        }
-
-        private void interopWizzardToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuInteropWizard_Click(object sender, EventArgs e)
         {
             TerritoriesManagement.GUI.Interop.InteropWizard.RunInteropWizard();
         }

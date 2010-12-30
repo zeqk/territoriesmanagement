@@ -1,21 +1,19 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Objects;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using AltosTools;
 using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using Localizer;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.Export;
-using AltosTools.WindowsForms.Maps;
-using TerritoriesManagement.Model;
-using System.Collections;
-using AltosTools;
-using System.Drawing;
 
 namespace TerritoriesManagement.GUI
 {
@@ -438,7 +436,7 @@ namespace TerritoriesManagement.GUI
             try
             {
                 ExportTool tool = new ExportTool();
-                //tool.ExportToExcel(path, "Address", new string[0], strQuery, parameters.ToArray());
+                tool.ExportToExcel(path,null,"Address",new string[0],strQuery,false,parameters.ToArray());                
             }
             catch (Exception ex)
             {
@@ -512,6 +510,7 @@ namespace TerritoriesManagement.GUI
             if (e.KeyCode == Keys.Enter)
                 Search();
         }
+
 
         private void btnViewStatistics_Click(object sender, EventArgs e)
         {
