@@ -101,5 +101,20 @@ namespace TerritoriesManagement.GUI
             btnApply.PerformClick();
             this.Close();
         }
+
+        private void btnGeoLocateAll_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int count = new Addresses().GeoLocateAddresses(Config.Region);
+                MessageBox.Show(string.Format("{0} addresses were geolocated", count));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+
+        }
     }
 }

@@ -28,6 +28,7 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkSubset>Full</TargetFrameworkSubset>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -87,7 +88,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\AltosTools.dll</HintPath>
     </Reference>
-    <Reference Include="AltosTools.Maps, Version=1.10.8.22, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="AltosTools.Maps, Version=1.10.12.9, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\AltosTools.Maps.dll</HintPath>
     </Reference>
@@ -106,11 +107,11 @@
     </Reference>
     <Reference Include="GMap.NET.Core, Version=1.5.4.3, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libs\GMap.NET.Core.dll</HintPath>
+      <HintPath>..\..\zeqktools\bin\GMap.NET.Core.dll</HintPath>
     </Reference>
     <Reference Include="GMap.NET.WindowsForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\libs\GMap.NET.WindowsForms.dll</HintPath>
+      <HintPath>..\..\zeqktools\bin\GMap.NET.WindowsForms.dll</HintPath>
     </Reference>
     <Reference Include="Localizer, Version=1.0.3845.22081, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
@@ -187,23 +188,11 @@
     <Compile Include="frmMap.designer.cs">
       <DependentUpon>frmMap.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImporterConfig\Forms\frmEntitiesConfig.cs">
+    <Compile Include="frmAddressesStatistics.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ImporterConfig\Forms\frmEntitiesConfig.Designer.cs">
-      <DependentUpon>frmEntitiesConfig.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ImporterConfig\Forms\frmTablesConfig.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ImporterConfig\Forms\frmTablesConfig.Designer.cs">
-      <DependentUpon>frmTablesConfig.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ImporterConfig\Forms\frmInterop.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ImporterConfig\Forms\frmInterop.Designer.cs">
-      <DependentUpon>frmInterop.cs</DependentUpon>
+    <Compile Include="frmAddressesStatistics.Designer.cs">
+      <DependentUpon>frmAddressesStatistics.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -217,25 +206,34 @@
     <Compile Include="frmTerritories.Designer.cs">
       <DependentUpon>frmTerritories.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interop\Import\FieldCollection.cs" />
+    <Compile Include="Interop\Import\FieldCollectionPropertyDescriptor.cs" />
+    <Compile Include="Interop\Import\ExternalTable.cs" />
+    <Compile Include="Interop\Import\TypeConverter.cs" />
     <Compile Include="Interop\InteropWizard.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\CitiesTable.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\CitiesTableConverter.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\AddressesTable.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\AddressesTableConverter.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\TerritoriesTable.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\TerritoriesTableConverter.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\DepartmentsTable.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\Field.cs" />
-    <Compile Include="ImporterConfig\ImporterConfig.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\FieldConverter.cs" />
-    <Compile Include="ImporterConfig\PropertyGrid\DepartmentsTableConverter.cs" />
-    <Compile Include="Interop\Steps\connectionStep.cs">
+    <Compile Include="Interop\Import\Field.cs" />
+    <Compile Include="Interop\Steps\DestinySelectionStep.cs" />
+    <Compile Include="Interop\Steps\DestinySelectionStepUI.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Interop\Steps\connectionStep.Designer.cs">
-      <DependentUpon>connectionStep.cs</DependentUpon>
+    <Compile Include="Interop\Steps\DestinySelectionStepUI.Designer.cs">
+      <DependentUpon>DestinySelectionStepUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="Interop\InteropConfig.cs" />
+    <Compile Include="Interop\Steps\SetConnStep.cs" />
+    <Compile Include="Interop\Steps\SetConnStepUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Interop\Steps\SetConnStepUI.Designer.cs">
+      <DependentUpon>SetConnStepUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Interop\ImportSettings.cs" />
+    <Compile Include="Interop\EntitiesEnum.cs" />
+    <Compile Include="Interop\Steps\InProgressUI.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Interop\Steps\InProgressUI.Designer.cs">
+      <DependentUpon>InProgressUI.cs</DependentUpon>
+    </Compile>
     <Compile Include="MapModeEnum.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -258,14 +256,8 @@
     <EmbeddedResource Include="frmMap.resx">
       <DependentUpon>frmMap.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ImporterConfig\Forms\frmEntitiesConfig.resx">
-      <DependentUpon>frmEntitiesConfig.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ImporterConfig\Forms\frmTablesConfig.resx">
-      <DependentUpon>frmTablesConfig.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ImporterConfig\Forms\frmInterop.resx">
-      <DependentUpon>frmInterop.cs</DependentUpon>
+    <EmbeddedResource Include="frmAddressesStatistics.resx">
+      <DependentUpon>frmAddressesStatistics.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
@@ -273,8 +265,14 @@
     <EmbeddedResource Include="frmTerritories.resx">
       <DependentUpon>frmTerritories.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Interop\Steps\connectionStep.resx">
-      <DependentUpon>connectionStep.cs</DependentUpon>
+    <EmbeddedResource Include="Interop\Steps\DestinySelectionStepUI.resx">
+      <DependentUpon>DestinySelectionStepUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interop\Steps\SetConnStepUI.resx">
+      <DependentUpon>SetConnStepUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interop\Steps\InProgressUI.resx">
+      <DependentUpon>InProgressUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -343,7 +341,42 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="languages\" />
+    <None Include="Resources\blue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\green.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lightblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\orange.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\purple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\red.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\yellow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\credits.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Short License EN.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="languages\English.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="languages\Español - BSAS.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="languages\Italiano.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

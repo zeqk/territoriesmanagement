@@ -1,6 +1,6 @@
 ﻿namespace TerritoriesManagement.GUI.Interop.Steps
 {
-    partial class connectionStep
+    partial class SetConnStepUI
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(connectionStep));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SetConnStepUI));
             this.txtConnectStr = new System.Windows.Forms.TextBox();
             this.btnConfigureConnection = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -40,6 +40,7 @@
             this.txtConnectStr.Name = "txtConnectStr";
             this.txtConnectStr.Size = new System.Drawing.Size(289, 84);
             this.txtConnectStr.TabIndex = 16;
+            this.txtConnectStr.TextChanged += new System.EventHandler(this.txtConnectStr_TextChanged);
             // 
             // btnConfigureConnection
             // 
@@ -53,13 +54,13 @@
             this.btnConfigureConnection.UseVisualStyleBackColor = true;
             this.btnConfigureConnection.Click += new System.EventHandler(this.btnConfigureConnection_Click);
             // 
-            // connectionStep
+            // SetConnUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnConfigureConnection);
             this.Controls.Add(this.txtConnectStr);
-            this.Name = "connectionStep";
+            this.Name = "SetConnUI";
             this.Size = new System.Drawing.Size(343, 175);
             this.ResumeLayout(false);
             this.PerformLayout();

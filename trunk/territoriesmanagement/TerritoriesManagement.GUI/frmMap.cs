@@ -1,22 +1,17 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
+using System.Data.Objects;
 using System.Globalization;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Windows.Forms;
+using AltosTools;
+using AltosTools.WindowsForms.Maps;
 using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
-using GMap.NET.WindowsForms.ToolTips;
-using AltosTools.WindowsForms.Maps;
-using System.Collections;
-using System.Data.Objects;
-using TerritoriesManagement.Model;
 using TerritoriesManagement.DataBridge;
-using System.Runtime.CompilerServices;
 
 namespace TerritoriesManagement.GUI
 {
@@ -253,6 +248,8 @@ namespace TerritoriesManagement.GUI
             GMaps.Instance.UsePlacemarkCache = true;
             GMaps.Instance.Mode = AccessMode.ServerAndCache;
 
+            cboMapType.SelectedItem = _mapType;
+
             // config map 
             MainMap.MapType = _mapType;
             MainMap.MaxZoom = 20;
@@ -321,7 +318,7 @@ namespace TerritoriesManagement.GUI
                     {
                         if (top.Polygons.Count > 0 && top.Polygons[0].Points.Count > 0)
                         {
-                            MainMap.Position = AltosTools.Functions.CalculateMiddlePoint(top.Polygons[0]);
+                            MainMap.Position = GeoHelper.CalculateMiddlePoint(top.Polygons[0]);
                             centered = true;
                         }
                     }
@@ -341,7 +338,7 @@ namespace TerritoriesManagement.GUI
                     if (!centered)
                     {
                         if (top.Polygons.Count > 0)
-                            center = AltosTools.Functions.CalculateMiddlePoint(top.Polygons[0]);
+                            center = GeoHelper.CalculateMiddlePoint(top.Polygons[0]);
                     }
                 }
 
@@ -512,7 +509,7 @@ namespace TerritoriesManagement.GUI
         {
             List<PointLatLng> points = marks.Select(m => m.Position).ToList();
 
-            PointLatLng point = AltosTools.Functions.CalculateMiddlePoint(points.ToList());
+            PointLatLng point = GeoHelper.CalculateMiddlePoint(points.ToList());
 
             return point;
 
@@ -521,7 +518,7 @@ namespace TerritoriesManagement.GUI
         private PointLatLng CalculateMiddlePoint(List<PointLatLng> marks)
         {
 
-            PointLatLng point = AltosTools.Functions.CalculateMiddlePoint(marks);
+            PointLatLng point = GeoHelper.CalculateMiddlePoint(marks);
 
             return point;
         }        

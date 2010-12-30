@@ -155,8 +155,8 @@
   <data name="btnSearch.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALCwAA
-        CwsBbQSEtwAAB4dJREFUWEfFl3lQ1OcZx7WG2CudjiZjevzRadJp+k+nTTpOc5tkGkmnncbQmIS2k4zA
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALAwAA
+        CwMBSY6M0gAAB4dJREFUWEfFl3lQ1OcZx7WG2CudjiZjevzRadJp+k+nTTpOc5tkGkmnncbQmIS2k4zA
         Fih4jDMpsIKKqMACcggRIUXlPlxUUGC5EaEeiDGijRllyLJyuRx7srDst9/ntwtBB1jtP2XmM8/7e4/n
         +32f37EvywEs+7/+vb0pYNkSrOCYL8kil0g/gSfKdbZnXOYtlUcZk83ez4KdMokLAkRoY5gaH6mPIjSp
         HduyruCfR/TYmnEZoZo29udBxjlvQOYvJODJ9eAGmOhJ0vFe+A5sTuvELu1dJDRPIunsNJmCppW0uYk7
@@ -191,11 +191,28 @@
         JpX5IflRcHDws4w/II9Jzv8CCExasXy+MIgAAAAASUVORK5CYII=
 </value>
   </data>
+  <data name="btnViewStatistics.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALCwAA
+        CwsBbQSEtwAAAjxJREFUOE+lkMtPU0EYxaepLHunuvBRY1rfooaIMdF/wL1/gTtiDNRWDAnCAqlcXqK0
+        tRrdKCLYh6UPMCSGREMqbXQhLsRCbVBEXTTCLUUihJjjN2NtUq+snOSXc86X+U4mY3iYPgq2wckXFgyb
+        jCtsffU0W86FmMGwwi6fMZXf9iWt+LG2gpk1TwmRfSkrvCkTu5k8wTpH0kyNrLL2aIEBKIN5J2wY/mqW
+        xIs6/MUM74QVPc9PsrZolrVHftLy0r8LPIndiH82I/YHWhbZnbDBFQuy5kfY1ja0ZLkaLlhaHxcsuhf0
+        ju9BdN6MyCdOkM4L5bhB8/bosg5dQc+zvQh/5AjPmYsIz3Gd5hdvZRGY/A4/IdR5O0v7f/1B99h+hD5w
+        hGY5grPmku8e20cF79EZz6NrWENXXIOTCnUFHU8PwJ/lCGSVonKpYu6UBVqRvMy6AnX0IAYznFAwOENI
+        z6GOHqKFDDpiWgkHZV2B60kl+qc5oaA/LZRIK3CNVMLhy9AnaiUcvhnk1K1lsJbYYfRNKQRH31sF96VX
+        0BI7ggu0oEY0qEOLpIsyp+utWE+dlUzX28Aag1W4O2nCndcKqYA8aWOgCnbvNFyhBbSGFqXavWm8se9C
+        odeIJbdRetYwUA33+GaJR+oW6RsGjqHO8w5N9+ZKiPzy/E7kmiuQa6qQnl3qr4bvlUmHmIuFFv83yZXA
+        gszJczuQv0YvIIRn9Q+OYyNqPVOodf+mjnwdaaJmO14QQhM1VEDn1P/wC6iJZ2UAHTq1AAAAAElFTkSu
+        QmCC
+</value>
+  </data>
   <data name="btnToExcel.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBgAA
-        CwYBZDTpJAAABUhJREFUSEu1lXtQVFUcxw/oOCaKoCKvykEzH6DpZJYKkqNlOZJjKgI1aS918lVjyKSY
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK/gAA
+        Cv4B5iV4ZgAABUhJREFUSEu1lXtQVFUcxw/oOCaKoCKvykEzH6DpZJYKkqNlOZJjKgI1aS918lVjyKSY
         YFOjBS1YiigCaii+E3V6yMN0MQEVdmFhH7DsQxzZ172Lgc409e137t0lMM2/3JnP/H7nd87v+z3n3Nl7
         fQCwx/rjBoLg6oXdbosiMhwO+04iuydOhyNbFISd2qamrwoLCvqXl5ezkjM/smNHi9npUyeZWq3qBbvf
         wOVyDbTZ2ivJACTcDQnDiyiIaKhXI39/XkpFRcWjDUiQ9WAe5Q8Wd5IJ4XaLqFer8N3ObJw4fnzL2ZKS
@@ -224,8 +241,8 @@
   <data name="btnDelete.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBgAA
-        CwYBZDTpJAAABWVJREFUSEvVlWlQU1cYhj+0M8WpC2tYEiCN0FhELFKGxmW0to5WwYKtY9vBBQUsgtai
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK/gAA
+        Cv4B5iV4ZgAABWVJREFUSEvVlWlQU1cYhj+0M8WpC2tYEiCN0FhELFKGxmW0to5WwYKtY9vBBQUsgtai
         qAgYHayyyBLEBawSHEUFF2RMkDrjBiIudYMggbCFbCS52Qg6YDNfTzIa/NXRH/7onXnvmbuc9znv9507
         1wER4YMeVsCH1Ac1t1XHelJeqLJLdek8yE+Wuz8JCtj10Ms5W7w2JkpL7ql3Z4D6yEGQ5uyD3oOFICku
         hLaifGgrOwKtx8tAL5GASSoFY1+fXXZAc2wMNK9dCffiVsO9hFho+mV5kJBFlwl8aNprs8J40gM5oOHu
@@ -254,8 +271,8 @@
   <data name="btnEdit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBgAA
-        CwYBZDTpJAAABLhJREFUSEu1lntsU2UYxt9tVRhjJmzICg4kIIrMbUECImYk4FCRGGFEYF6GzgHGTAig
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK/gAA
+        Cv4B5iV4ZgAABLhJREFUSEu1lntsU2UYxt9tVRhjJmzICg4kIIrMbUECImYk4FCRGGFEYF6GzgHGTAig
         qFyUf4hgRBQzMCEwiBfEDZAQFZCLMIbbOrfS3Xoda8foLm3ZvT3Xx/eUba6DKf/Q5Jeec/qd53nf5/3O
         ScMA0D39aAb3kj5xpdNJdwukZnLlZiWXvaHPtW1NWe/77eMI76+fkO/CV9RhOkIdVw8HCabTW73S5aK7
         AVITtZzfP61kqb6t4s04WLJiULcl+XjLLx9G3by8hw1+GsSgu4mU/wFiK3kbLKMLMxLshrRo1KwaDeda
@@ -281,8 +298,8 @@
   <data name="btnNew.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBgAA
-        CwYBZDTpJAAABVdJREFUSEvVlWtQU2cQhpdL1emgRFCwVJIBvBAFWqDYIhXRtlO1Ix0vKGNF6oWBwUq1
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK/gAA
+        Cv4B5iV4ZgAABVdJREFUSEvVlWtQU2cQhpdL1emgRFCwVJIBvBAFWqDYIhXRtlO1Ix0vKGNF6oWBwUq1
         IDcpthq5CIgUtQpC6qAoFWoVCl6oClTBREASxiS0EkgghCQkMQkFQu32O6kk2ukP+8MfPTNv9pzN9+1z
         3t2cHCtEhJd6UICXqZda3NQd6kN2vuwZnQVZedmkB4H+8ZzXHbPblwZulpWcAkXqXlAVn4T+wqMg+fYY
         iHIyQVBwBNqzD0HrkRz4Y2wMxkdGnpMZwImNAkrcXTFw//NY6nxaHdOjo5rurKr1mnuu+3AmKJLjQVVS
@@ -345,9 +362,9 @@
 </value>
   </data>
   <metadata name="sfdGMaps.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>482, 17</value>
+    <value>239, 17</value>
   </metadata>
   <metadata name="sfdExcelDestiny.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>582, 17</value>
+    <value>339, 17</value>
   </metadata>
 </root>

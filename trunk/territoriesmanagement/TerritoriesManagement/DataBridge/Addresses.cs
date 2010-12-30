@@ -400,6 +400,37 @@ namespace TerritoriesManagement.DataBridge
             return rv;
         }
 
+        public int GeoLocateAddresses(string rootRegion)
+        {
+            try
+            {
+                int count = 0;
+                foreach (Address a in _dm.Addresses)
+                {
+                    if (!a.Lat.HasValue)
+                    {
+                        a.CityReference.Load();
+                        a.City.DepartmentReference.Load();
+                        string addressStr = a.Street + a.Number + ", " + a.City.Name + ", " + a.City.Department.Name + ", " + rootRegion;
+                        PointLatLng? pos = Helper.AddressToGeoPos(addressStr);
+                        if (pos.HasValue)
+                        {
+                            a.Lat = pos.Value.Lat;
+                            a.Lng = pos.Value.Lng;
+                        }
+                    }
+                    
+                }
+                count = _dm.SaveChanges();
+                return count;
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
+        }
+
         private bool PointInPolygon(PointLatLng p, PointLatLng[] poly)
         {
             PointLatLng p1, p2;

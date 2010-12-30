@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel;
 
-namespace TerritoriesManagement.GUI.ImporterConfig
+namespace TerritoriesManagement.GUI.Interop.Import
 {
     [TypeConverter(typeof(FieldConverter))]
     public class Field
@@ -15,6 +15,8 @@ namespace TerritoriesManagement.GUI.ImporterConfig
         private string _defaultValue;
 
         private bool _import;
+
+        private string _relatedProperty;
         #endregion
 
         #region Contructors
@@ -23,15 +25,17 @@ namespace TerritoriesManagement.GUI.ImporterConfig
 
         }
 
-        public Field(bool import, string columnName)
+        public Field(bool import, string columnName, string relatedProperty)
         {
             _import = import;
             _columnName = columnName;
+            _relatedProperty = relatedProperty;
         }
 
-        public Field(string columnName)
+        public Field(string columnName, string relatedProperty)
         {
             _columnName = columnName;
+            _relatedProperty = relatedProperty;
         }
         #endregion
 
@@ -53,6 +57,13 @@ namespace TerritoriesManagement.GUI.ImporterConfig
         {
             get { return _import; }
             set { _import = value; }
+        }
+
+        [ReadOnly(true)]
+        public string RelatedProperty
+        {
+            get { return _relatedProperty; }
+            set { _relatedProperty = value; }
         }
         #endregion
 

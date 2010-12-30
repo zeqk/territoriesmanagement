@@ -1,9 +1,5 @@
 <Localizer language="English" associatedCulture="en-US">
   <String>
-    <Original>...</Original>
-    <Translated>...</Translated>
-  </String>
-  <String>
     <Original>About Territories Management</Original>
     <Translated>About Territories Management</Translated>
   </String>
@@ -36,8 +32,8 @@
     <Translated>Autoselect</Translated>
   </String>
   <String>
-    <Original>Begin</Original>
-    <Translated>Begin</Translated>
+    <Original>Start</Original>
+    <Translated>Start</Translated>
   </String>
   <String>
     <Original>Between</Original>
@@ -80,8 +76,8 @@
     <Translated>Connection string</Translated>
   </String>
   <String>
-    <Original>Copy (Google Maps)</Original>
-    <Translated>Copy (Google Maps)</Translated>
+    <Original>Copy</Original>
+    <Translated>Copy</Translated>
   </String>
   <String>
     <Original>Corner 1</Original>
@@ -160,7 +156,7 @@
     <Translated>Export records</Translated>
   </String>
   <String>
-    <Original>Export to excel file</Original>
+    <Original>Export to excel spreadsheet</Original>
     <Translated>Export to excel file</Translated>
   </String>
   <String>
@@ -368,10 +364,6 @@
     <Translated>Select source and destination files.</Translated>
   </String>
   <String>
-    <Original>statusStrip1</Original>
-    <Translated>statusStrip1</Translated>
-  </String>
-  <String>
     <Original>Street</Original>
     <Translated>Street</Translated>
   </String>
@@ -480,11 +472,195 @@
     <Translated>You must select at least one search field.</Translated>
   </String>
   <String>
-    <Original>You must select some address.</Original>
+    <Original>You must select an address.</Original>
     <Translated>You must select some address.</Translated>
   </String>
   <String>
-    <Original>You must select some territory.</Original>
+    <Original>You must select a territory.</Original>
     <Translated>You must select some territory.</Translated>
+  </String>
+  <String>
+    <Original>Enter the street.</Original>
+    <Translated>Enter the street.</Translated>
+  </String>
+  <String>
+    <Original>Enter the number or the corner.</Original>
+    <Translated>Enter the number or the corner.</Translated>
+  </String>
+  <String>
+    <Original>Select a city.</Original>
+    <Translated>Select a city.</Translated>
+  </String>
+  <String>
+    <Original>(no territory)</Original>
+    <Translated>(no territory)</Translated>
+  </String>
+  <String>
+    <Original>Enter city name.</Original>
+    <Translated>Enter city name.</Translated>
+  </String>
+  <String>
+    <Original>The city already exists. Correct and try again.</Original>
+    <Translated>The city already exists. Correct and try again.</Translated>
+  </String>
+  <String>
+    <Original>Select a department.</Original>
+    <Translated>Select a department.</Translated>
+  </String>
+  <String>
+    <Original>Enter department name.</Original>
+    <Translated>Enter department name.</Translated>
+  </String>
+  <String>
+    <Original>The department already exists. Correct and retrieve.</Original>
+    <Translated>The department already exists. Correct and retrieve.</Translated>
+  </String>
+  <String>
+    <Original>Enter territory name.</Original>
+    <Translated>Enter territory name.</Translated>
+  </String>
+  <String>
+    <Original>The territory already exists. Correct and try again.</Original>
+    <Translated>The territory already exists. Correct and try again.</Translated>
+  </String>
+  <String>
+    <Original>Some departments have not been imported successfully.</Original>
+    <Translated>Some departments have not been imported successfully.</Translated>
+  </String>
+  <String>
+    <Original>No department has been imported.</Original>
+    <Translated>No department has been imported.</Translated>
+  </String>
+  <String>
+    <Original>Some cities have not been imported successfully.</Original>
+    <Translated>Some cities have not been imported successfully.</Translated>
+  </String>
+  <String>
+    <Original>No city has been imported.</Original>
+    <Translated>No city has been imported.</Translated>
+  </String>
+  <String>
+    <Original>Some territories have not been imported successfully.</Original>
+    <Translated>Some territories have not been imported successfully.</Translated>
+  </String>
+  <String>
+    <Original>No territory has been imported.</Original>
+    <Translated>No territory has been imported.</Translated>
+  </String>
+  <String>
+    <Original>Some addresses have not been imported successfully.</Original>
+    <Translated>Some addresses have not been imported successfully.</Translated>
+  </String>
+  <String>
+    <Original>No address has been imported.</Original>
+    <Translated>No address has been imported.</Translated>
+  </String>
+  <String>
+    <Original>IMPORT DEPARTMENTS ERRORS: </Original>
+    <Translated>IMPORT DEPARTMENTS ERRORS: </Translated>
+  </String>
+  <String>
+    <Original>-Error: </Original>
+    <Translated>-Error: </Translated>
+  </String>
+  <String>
+    <Original>IMPORT CITIES ERRORS: </Original>
+    <Translated>IMPORT CITIES ERRORS: </Translated>
+  </String>
+  <String>
+    <Original>IMPORT TERRITORIES ERRORS: </Original>
+    <Translated>IMPORT TERRITORIES ERRORS: </Translated>
+  </String>
+  <String>
+    <Original>IMPORT ADDRESSES ERRORS: </Original>
+    <Translated>IMPORT ADDRESSES ERRORS: </Translated>
+  </String>
+  <String>
+    <Original>  -Name is blank or null. </Original>
+    <Translated>  -Name is blank or null. </Translated>
+  </String>
+  <String>
+    <Original>  -Already exists. </Original>
+    <Translated>  -Already exists. </Translated>
+  </String>
+  <String>
+    <Original>  -There is no department.. </Original>
+    <Translated>  -There is no department.. </Translated>
+  </String>
+  <String>
+    <Original>  -Department doesn't exist. </Original>
+    <Translated>  -Department doesn't exist. </Translated>
+  </String>
+  <String>
+    <Original>  -The street is blank or null. </Original>
+    <Translated>  -The street is blank or null. </Translated>
+  </String>
+  <String>
+    <Original>  -There is no city.. </Original>
+    <Translated>  -There is no city. </Translated>
+  </String>
+  <String>
+    <Original>  -City doesn't exist. </Original>
+    <Translated>  -City doesn't exist. </Translated>
+  </String>
+  <String>
+    <Original>{0} departments have been imported.</Original>
+    <Translated>{0} departments have been imported.</Translated>
+  </String>
+  <String>
+    <Original>{0} cities has been imported.</Original>
+    <Translated>{0} cities have been imported.</Translated>
+  </String>
+  <String>
+    <Original>{0} territories has been imported.</Original>
+    <Translated>{0} territories have been imported.</Translated>
+  </String>
+  <String>
+    <Original>{0} addresses has been imported.</Original>
+    <Translated>{0} addresses have been imported.</Translated>
+  </String>
+  <String>
+    <Original>-Conversion error. (Row values: {0})</Original>
+    <Translated>-Conversion error. (Row values: {0})</Translated>
+  </String>
+  <String>
+    <Original>  -Name length exceeds the allowed length ({0}). </Original>
+    <Translated>  -Name lenght exceeds the allowed length ({0}). </Translated>
+  </String>
+  <String>
+    <Original>-\"{0} {1}\" is invalid: </Original>
+    <Translated>-\"{0} {1}\" is invalid: </Translated>
+  </String>
+  <String>
+    <Original>  -Address data length exceeds the allowed length ({0}). </Original>
+    <Translated>  -Address data lenght exceeds the allowed length ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Corners length exceeds the allowed length ({0}). </Original>
+    <Translated>  -Corners lenght exceeds the allowed length ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Custom fields length exceeds the allowed length ({0}). </Original>
+    <Translated>  -Custom fields lenght exceeds the allowed length ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Description length exceeds the allowed length ({0}). </Original>
+    <Translated>  -Description lenght exceeds the allowed length ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Maps length exceeds the allowed length ({0}). </Original>
+    <Translated>  -Maps lenght exceeds the allowed length ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Number length exceeds the allowed length ({0}). </Original>
+    <Translated>  -Number lenght exceeds the allowed length ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Phone numbers length exceeds the allowed length ({0}). </Original>
+    <Translated>  -Phone numbers lenght exceeds the allowed length ({0}). </Translated>
+  </String>
+  <String>
+    <Original>  -Street length exceeds the allowed length ({0}). </Original>
+    <Translated>  -Street lenght exceeds the allowed length ({0}). </Translated>
   </String>
 </Localizer>
