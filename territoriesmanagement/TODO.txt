@@ -1,8 +1,8 @@
 TODO:
 - logo (en proceso - Natalia)
-- hace la exportacion a excel desde template con parametros
-- que la importación y exportación de datos sea mediante un wizard
+- hacer la exportacion a excel desde template con parametros
 - manual de instrucciones
 - solucionar problema de que no se pueden importar direcciones con el id
-- proceso de geoposicionamiento masivo
 - que al modificar un territorio indique las direcciones que quedaron afuera o adentro
+- que el mapa se guarde cuando se aprieta OK (analizar)
+- que las estadísticas muestren íconos con la cant de direcciones

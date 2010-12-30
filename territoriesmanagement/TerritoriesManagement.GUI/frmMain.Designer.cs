@@ -35,10 +35,9 @@
             this.bntTerritories = new System.Windows.Forms.Button();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menuTools = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuInteroperability = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
-            this.interopWizzardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuInteropWizard = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
@@ -111,55 +110,47 @@
             // menuTools
             // 
             this.menuTools.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuInteroperability,
+            this.menuInteropWizard,
             this.toolStripSeparator1,
-            this.menuConfiguration,
-            this.interopWizzardToolStripMenuItem});
+            this.menuConfiguration});
             this.menuTools.Name = "menuTools";
-            this.menuTools.Size = new System.Drawing.Size(44, 20);
+            this.menuTools.Size = new System.Drawing.Size(48, 20);
             this.menuTools.Text = "Tools";
-            // 
-            // menuInteroperability
-            // 
-            this.menuInteroperability.Image = ((System.Drawing.Image)(resources.GetObject("menuInteroperability.Image")));
-            this.menuInteroperability.Name = "menuInteroperability";
-            this.menuInteroperability.Size = new System.Drawing.Size(152, 22);
-            this.menuInteroperability.Text = "Interoperability";
-            this.menuInteroperability.Click += new System.EventHandler(this.menuInteroperability_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(151, 6);
             // 
             // menuConfiguration
             // 
             this.menuConfiguration.Image = ((System.Drawing.Image)(resources.GetObject("menuConfiguration.Image")));
             this.menuConfiguration.Name = "menuConfiguration";
-            this.menuConfiguration.Size = new System.Drawing.Size(152, 22);
+            this.menuConfiguration.Size = new System.Drawing.Size(154, 22);
             this.menuConfiguration.Text = "Configuration";
             this.menuConfiguration.Click += new System.EventHandler(this.menuConfiguration_Click);
             // 
-            // interopWizzardToolStripMenuItem
+            // menuInteropWizard
             // 
-            this.interopWizzardToolStripMenuItem.Name = "interopWizzardToolStripMenuItem";
-            this.interopWizzardToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.interopWizzardToolStripMenuItem.Text = "Interop wizzard";
-            this.interopWizzardToolStripMenuItem.Click += new System.EventHandler(this.interopWizzardToolStripMenuItem_Click);
+            this.menuInteropWizard.Image = ((System.Drawing.Image)(resources.GetObject("menuInteropWizard.Image")));
+            this.menuInteropWizard.Name = "menuInteropWizard";
+            this.menuInteropWizard.Size = new System.Drawing.Size(154, 22);
+            this.menuInteropWizard.Text = "Interop wizzard";
+            this.menuInteropWizard.Click += new System.EventHandler(this.menuInteropWizard_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuAbout});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // menuAbout
             // 
             this.menuAbout.Image = ((System.Drawing.Image)(resources.GetObject("menuAbout.Image")));
             this.menuAbout.Name = "menuAbout";
-            this.menuAbout.Size = new System.Drawing.Size(220, 22);
+            this.menuAbout.Size = new System.Drawing.Size(237, 22);
             this.menuAbout.Text = "About Territories Management";
             this.menuAbout.Click += new System.EventHandler(this.menuAbout_Click);
             // 
@@ -176,7 +167,7 @@
             // lblConnectionStatus
             // 
             this.lblConnectionStatus.Name = "lblConnectionStatus";
-            this.lblConnectionStatus.Size = new System.Drawing.Size(98, 17);
+            this.lblConnectionStatus.Size = new System.Drawing.Size(106, 17);
             this.lblConnectionStatus.Text = "Connection status:";
             // 
             // lblConnectionStatusValue
@@ -200,7 +191,6 @@
             this.Name = "frmMain";
             this.Text = "Territories Management";
             this.Load += new System.EventHandler(this.frmMain_Load);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.statusStrip.ResumeLayout(false);
@@ -221,12 +211,11 @@
         private System.Windows.Forms.ToolStripMenuItem menuAbout;
         private System.Windows.Forms.ToolStripMenuItem menuTools;
         private System.Windows.Forms.ToolStripMenuItem menuConfiguration;
-        private System.Windows.Forms.ToolStripMenuItem menuInteroperability;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel lblConnectionStatus;
         private System.Windows.Forms.ToolStripStatusLabel lblConnectionStatusValue;
-        private System.Windows.Forms.ToolStripMenuItem interopWizzardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuInteropWizard;
 
     }
 }

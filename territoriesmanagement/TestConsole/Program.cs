@@ -16,10 +16,20 @@ namespace TestConsole
     {
         static void Main(string[] args)
         {
+            try
+            {
+                TerritoriesDataContext dm = new TerritoriesDataContext();
+                string hola = Helper.GetEntityNameByEntitySetName(dm, "Addresses");
+            }
+            catch (Exception ex)
+            {
 
-            Class2 objeto = new Class2();
+
+                Console.ReadKey();
+            }
+
+
             Console.ReadKey();
-
         }
 
 

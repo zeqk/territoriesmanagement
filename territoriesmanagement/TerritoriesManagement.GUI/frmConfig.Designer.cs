@@ -50,11 +50,14 @@
             this.btnApply = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
+            this.tabGeo = new System.Windows.Forms.TabPage();
+            this.btnGeoLocateAll = new System.Windows.Forms.Button();
             this.tabConfigs.SuspendLayout();
             this.tabCultures.SuspendLayout();
             this.tabMaps.SuspendLayout();
             this.grpMaps.SuspendLayout();
             this.tabData.SuspendLayout();
+            this.tabGeo.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabConfigs
@@ -62,6 +65,7 @@
             this.tabConfigs.Controls.Add(this.tabCultures);
             this.tabConfigs.Controls.Add(this.tabMaps);
             this.tabConfigs.Controls.Add(this.tabData);
+            this.tabConfigs.Controls.Add(this.tabGeo);
             this.tabConfigs.Location = new System.Drawing.Point(5, 12);
             this.tabConfigs.Name = "tabConfigs";
             this.tabConfigs.SelectedIndex = 0;
@@ -281,6 +285,27 @@
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
+            // tabGeo
+            // 
+            this.tabGeo.Controls.Add(this.btnGeoLocateAll);
+            this.tabGeo.Location = new System.Drawing.Point(4, 22);
+            this.tabGeo.Name = "tabGeo";
+            this.tabGeo.Padding = new System.Windows.Forms.Padding(3);
+            this.tabGeo.Size = new System.Drawing.Size(233, 180);
+            this.tabGeo.TabIndex = 3;
+            this.tabGeo.Text = "Geo";
+            this.tabGeo.UseVisualStyleBackColor = true;
+            // 
+            // btnGeoLocateAll
+            // 
+            this.btnGeoLocateAll.Location = new System.Drawing.Point(33, 33);
+            this.btnGeoLocateAll.Name = "btnGeoLocateAll";
+            this.btnGeoLocateAll.Size = new System.Drawing.Size(164, 27);
+            this.btnGeoLocateAll.TabIndex = 0;
+            this.btnGeoLocateAll.Text = "Geolocate all addresses";
+            this.btnGeoLocateAll.UseVisualStyleBackColor = true;
+            this.btnGeoLocateAll.Click += new System.EventHandler(this.btnGeoLocateAll_Click);
+            // 
             // frmConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -301,6 +326,7 @@
             this.grpMaps.ResumeLayout(false);
             this.tabData.ResumeLayout(false);
             this.tabData.PerformLayout();
+            this.tabGeo.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -329,6 +355,8 @@
         private System.Windows.Forms.TextBox txtDefaultPlace;
         private System.Windows.Forms.Label lblPlace;
         private System.Windows.Forms.TextBox txtPlace;
+        private System.Windows.Forms.TabPage tabGeo;
+        private System.Windows.Forms.Button btnGeoLocateAll;
 
 
     }

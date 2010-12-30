@@ -1,18 +1,19 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data.Objects;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using AltosTools;
 using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using Localizer;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.Export;
-using AltosTools.WindowsForms.Maps;
-using TerritoriesManagement.Model;
 
 namespace TerritoriesManagement.GUI
 {
@@ -59,7 +60,6 @@ namespace TerritoriesManagement.GUI
             chklstTerritory.DisplayMember = "Name";
             chklstTerritory.ValueMember = "Id";
             chklstTerritory.DataSource = territories;
-
         }
 
         private void btnAll_Click(object sender, EventArgs e)
@@ -400,6 +400,7 @@ namespace TerritoriesManagement.GUI
 
         private void dgvResult_MouseClick(object sender, MouseEventArgs e)
         {
+            
             if (e.Button == MouseButtons.Right)
             {
                 ctxMenu.Show(dgvResult, e.Location);
@@ -434,9 +435,8 @@ namespace TerritoriesManagement.GUI
 
             try
             {
-                Addresses address = new Addresses();
                 ExportTool tool = new ExportTool();
-                tool.ExportToExcel<Address>(path, new string[0], strQuery, parameters.ToArray());
+                tool.ExportToExcel(path,null,"Address",new string[0],strQuery,false,parameters.ToArray());                
             }
             catch (Exception ex)
             {
@@ -510,6 +510,97 @@ namespace TerritoriesManagement.GUI
             if (e.KeyCode == Keys.Enter)
                 Search();
         }
+
+
+        private void btnViewStatistics_Click(object sender, EventArgs e)
+        {
+            bool ok = false;
+            double distance = 0;
+            using (frmAddressesStatistics myForm = new frmAddressesStatistics())
+            {
+                ok = (myForm.ShowDialog() == DialogResult.OK);
+                distance = myForm.Distance;
+            }
+
+            
+            if (ok  && dgvResult.Rows.Count > 0)
+            {
+                var rows = dgvResult.Rows;
+                List<GMapMarker> markers = new List<GMapMarker>();
+
+                List<PointLatLng> points = new List<PointLatLng>();
+
+                for (int i = 0; i < rows.Count; i++)
+                {
+                    bool hasGeoPosition = (bool)rows[i].Cells["HasGeoposition"].Value;
+                    if (hasGeoPosition)
+                    {
+                        double lat = (double)rows[i].Cells["Lat"].Value;
+                        double lng = (double)rows[i].Cells["Lng"].Value;                       
+
+                        points.Add(new PointLatLng(lat, lng));
+                    }
+                }
+
+                IList clusterdPoints = GeoHelper.GetClusteredPoints(points, distance);
+
+                foreach (List<PointLatLng> cluster in clusterdPoints)
+                {
+
+
+                    PointLatLng clusterCenter = GeoHelper.CalculateMiddlePoint(cluster);
+
+                    GMapMarkerCustom marker = new GMapMarkerCustom(clusterCenter);
+                    marker.Size = new System.Drawing.Size(10, 10);
+                    marker.ToolTipText = cluster.Count.ToString();
+
+                    Bitmap icon = Properties.Resources.yellow; //1
+                    if (cluster.Count > 1 && cluster.Count <= 10)
+                        icon = Properties.Resources.green;
+                    else if (cluster.Count > 10 && cluster.Count <= 50)
+                    {
+                        icon = Properties.Resources.lightblue;
+                    }
+                    else if (cluster.Count > 50 && cluster.Count <= 100)
+                    {
+                        icon = Properties.Resources.blue;
+                    }
+                    else if (cluster.Count > 100 && cluster.Count <= 200)
+                    {
+                        icon = Properties.Resources.purple;
+                    }
+                    else if (cluster.Count > 200)
+                    {
+                        icon = Properties.Resources.red;
+                    }
+                    marker.Icon = icon;
+                    
+                    //marker.Offset = new Point(10,34);
+                    markers.Add(marker);                    
+                }
+
+                var map = frmMap.GetInstance();                
+                map.Clear();
+                map.OtherMarkers = markers;
+                map.MapMode = MapModeEnum.ReadOnly;
+                map.ShowDialog();
+                
+            }
+        }
+
+        ////TODO. para seleccionar las columnas a ver
+        //private void dgvResult_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        //{
+        //    if (e.Button == MouseButtons.Left)
+        //    {
+        //        ctxHeaderMenu.Show(dgvResult, e.X, e.Y);
+        //    }
+        //}
+
+        //private void contextMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    ((ToolStripMenuItem)sender).Checked = !((ToolStripMenuItem)sender).Checked;
+        //}
         
     }
 }

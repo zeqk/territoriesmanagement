@@ -5,7 +5,6 @@ using System.Windows.Forms;
 using AltosTools.WindowsForms;
 using Localizer;
 using TerritoriesManagement.GUI.Configuration;
-using TerritoriesManagement.GUI.ImporterConfig;
 
 namespace TerritoriesManagement.GUI
 {
@@ -102,29 +101,16 @@ namespace TerritoriesManagement.GUI
 
         private void menuAbout_Click(object sender, EventArgs e)
         {
+            
             AboutBox ab = new AboutBox();
             ab.Text = "About Territories Management " + Application.ProductVersion;
             ab.AppTitle = "Territories Management";
             ab.AppDescription = "A program for organizing special territories";
             ab.AppVersion = Application.ProductVersion;
             ab.AppCopyright = "GNU GPL 2010  Zeqk";
-            ab.AppMoreInfo = "Web site: http://sites.google.com/site/territoriesmanagement \n\n";
-            ab.AppMoreInfo += "This program uses GMap.NET (http://greatmaps.codeplex.com/) and ";
-            ab.AppMoreInfo += "DotNetFirebird (http://www.firebirdsql.org/dotnetfirebird/).\n\n";
-            ab.AppMoreInfo += "Icons by http://dryicons.com, http://pixel-mixer.com and http://fatcow.com\n\n";
-            ab.AppMoreInfo += "Many thanks to the contributors:\n - Natalio Ruiz, Argentina (Localizer library)\n - Leica Florian, Italia (Italian translations)\n - Deborah Bontti, Argentina (English translation)\n\n";
-            ab.AppMoreInfo += "This program is free software: you can redistribute it and/or modify ";
-            ab.AppMoreInfo += "it under the terms of the GNU General Public License as published by ";
-            ab.AppMoreInfo += "the Free Software Foundation, either version 3 of the License, or ";
-            ab.AppMoreInfo += "(at your option) any later version.\n\n";
-
-            ab.AppMoreInfo += "This program is distributed in the hope that it will be useful, ";
-            ab.AppMoreInfo += "but WITHOUT ANY WARRANTY; without even the implied warranty of ";
-            ab.AppMoreInfo += "MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the ";
-            ab.AppMoreInfo += "GNU General Public License for more details.\n\n";
-
-            ab.AppMoreInfo += "You should have received a copy of the GNU General Public License ";
-            ab.AppMoreInfo += "along with this program.  If not, see <http://www.gnu.org/licenses/>.";
+            ab.AppMoreInfo = Properties.Resources.credits;
+            ab.AppMoreInfo += "\n\n";
+            ab.AppMoreInfo += Properties.Resources.Short_License_EN;
             
             ab.AppDetailsButton = false;
             ab.ShowDialog(this);
@@ -143,26 +129,7 @@ namespace TerritoriesManagement.GUI
             }
         }
 
-        private void menuInteroperability_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                frmInterop myForm = new frmInterop();
-                myForm.Show();
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            //Map.Close(); hay q cerrar el mapa?
-        }
-
-        private void interopWizzardToolStripMenuItem_Click(object sender, EventArgs e)
+        private void menuInteropWizard_Click(object sender, EventArgs e)
         {
             TerritoriesManagement.GUI.Interop.InteropWizard.RunInteropWizard();
         }

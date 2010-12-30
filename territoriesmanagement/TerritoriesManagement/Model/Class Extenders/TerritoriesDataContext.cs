@@ -15,7 +15,7 @@ namespace TerritoriesManagement.Model
 {
     public partial class TerritoriesDataContext
     {
-        #region entities_AddWIthPK
+        #region entities_AddWithPK
 
         /// <summary>
         /// There are no comments for TerritoriesModel.departments_AddWithPK in the schema.
@@ -584,6 +584,15 @@ namespace TerritoriesManagement.Model
             {
                 throw ex;
             }
+        }
+
+        public ObjectQuery CreateQuery(string entityName, string strQuery, ObjectParameter[] parameters)
+        {
+            ObjectQuery rv = null;
+            Type entityType = Helper.GetEntityTypeByEntityName(entityName);
+            rv = (ObjectQuery)Helper.ExecuteMethod(this, "CreateQuery", entityType, strQuery, parameters);
+
+            return rv;
         }
 
     }

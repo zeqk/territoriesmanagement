@@ -1,4 +1,13 @@
 Versions
+* 1.5.101231 Beta - 31/12/2010
+ - Procesos de importación y exportación de datos en modo wizard
+ - Corección de bug en el abm de Cities, Departments y Territories: cuando se selecciona un otro item, no avisaba si había datos no guardados
+ -
+
+* 1.10.12.09 - 09/12/2010
+ - Nueva funcion (en desarrollo) de ver estadísticas de direcciones
+ - Geoposicionamiento masivo de direcciones
+
 * 1.10.11.30 - 30/11/2010
  - Nuevas dlls: GMap.NET 1.5.4.3 Stable Version
  - Fix de error al configurar la cadena de conexión para importar datos. No seteaba el provedor guardado
