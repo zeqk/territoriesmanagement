@@ -92,7 +92,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\AltosTools.Maps.dll</HintPath>
     </Reference>
-    <Reference Include="AltosTools.WindowsForms, Version=1.10.11.18, Culture=neutral, processorArchitecture=x86">
+    <Reference Include="AltosTools.WindowsForms, Version=1.11.1.20, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\AltosTools.WindowsForms.dll</HintPath>
     </Reference>

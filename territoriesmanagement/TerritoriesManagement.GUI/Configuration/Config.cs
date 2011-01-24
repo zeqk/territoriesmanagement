@@ -33,7 +33,7 @@ namespace TerritoriesManagement.GUI.Configuration
         static public void SaveConfig(string path)
         {
             XmlDocument doc = new XmlDocument();
-            XmlNode configNode = doc.CreateElement("Configuration");
+            XmlNode configNode = doc.CreateElement("Config");
 
             XmlNode languageNode = doc.CreateElement("Language");
             languageNode.InnerText = Language;
@@ -70,7 +70,7 @@ namespace TerritoriesManagement.GUI.Configuration
                     XmlDocument doc = new XmlDocument();
                     doc.Load(path);
 
-                    XmlNode configNode = doc.SelectSingleNode("Configuration");
+                    XmlNode configNode = doc.SelectSingleNode("Config");
 
                     XmlNode languageNode = configNode.SelectSingleNode("Language");
                     XmlNode mapTypeNode = configNode.SelectSingleNode("MapType");
