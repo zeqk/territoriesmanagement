@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Zeqk")]
 [assembly: AssemblyProduct("TerritoriesManagement")]
-[assembly: AssemblyCopyright("GNU GPL 2010  Zeqk")]
+[assembly: AssemblyCopyright("GNU GPL 2011  Zeqk")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.5.10.1231")]
-[assembly: AssemblyFileVersion("1.5.10.1231")]
+[assembly: AssemblyVersion("1.5.11.0123")]
+[assembly: AssemblyFileVersion("1.5.11.0123")]
