@@ -14,12 +14,11 @@ namespace TerritoriesManagement.GUI
         public frmAddressesStatistics()
         {
             InitializeComponent();
-            txtDistance.Text = (1).ToString();
         }       
 
-        public int Distance
+        public double Distance
         {
-            get { return int.Parse(txtDistance.Text); }
+            get { return double.Parse(txtDistance.Text); }
         }
 	
 
