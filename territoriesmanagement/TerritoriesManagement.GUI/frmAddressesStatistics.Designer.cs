@@ -42,6 +42,7 @@
             this.txtDistance.PromptChar = ' ';
             this.txtDistance.Size = new System.Drawing.Size(87, 20);
             this.txtDistance.TabIndex = 0;
+            this.txtDistance.Text = "00100";
             // 
             // btnView
             // 
@@ -81,7 +82,7 @@
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.txtDistance);
             this.Name = "frmAddressesStatistics";
-            this.Text = "Statics";
+            this.Text = "Statics (Beta)";
             this.ResumeLayout(false);
             this.PerformLayout();
 

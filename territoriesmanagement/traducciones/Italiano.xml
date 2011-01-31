@@ -28,6 +28,22 @@
     <Translated>Area</Translated>
   </String>
   <String>
+    <Original>Are you sure you want to delete this city?</Original>
+    <Translated>Are you sure you want to delete this city?</Translated>
+  </String>
+  <String>
+    <Original>Are you sure you want to delete this department?</Original>
+    <Translated>Are you sure you want to delete this department?</Translated>
+  </String>
+  <String>
+    <Original>Are you sure you want to delete this territory?</Original>
+    <Translated>Are you sure you want to delete this territory?</Translated>
+  </String>
+  <String>
+    <Original>Are you sure you want to delete these {0} addresses?</Original>
+    <Translated>Are you sure you want to delete these {0} addresses?</Translated>
+  </String>
+  <String>
     <Original>Autoselect</Original>
     <Translated>Autoseleziona</Translated>
   </String>

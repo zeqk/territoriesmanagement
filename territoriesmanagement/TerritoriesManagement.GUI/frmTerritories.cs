@@ -49,19 +49,20 @@ namespace TerritoriesManagement.GUI
 
         private void dgvResult_SelectionChanged(object sender, EventArgs e)
         {
-            bool ok = true;
-
-            if (this.isDirty)
-                ok = MessageBox.Show(GetString("There is some unsaved data. Do you want to continue?"), GetString("Message"), MessageBoxButtons.YesNo) == DialogResult.Yes;
-            
-            if (ok && dgvResult.SelectedRows.Count > 0)
+            if (dgvResult.SelectedRows.Count != 0)
             {
-                var v = server.Load((int)dgvResult.SelectedRows[0].Cells["Id"].Value);
-                ObjectToForm(v);
-                if (tabPanel.Visible)
-                    LoadRelations(v);
+                bool ok = true;
+                if (this.isDirty)
+                    ok = MessageBox.Show(GetString("There is some unsaved data. Do you want to continue?"), GetString("Message"), MessageBoxButtons.YesNo) == DialogResult.Yes;
 
-                this.isDirty = false;
+                if (ok)
+                {
+                    var v = server.Load((int)dgvResult.SelectedRows[0].Cells["Id"].Value);
+                    ObjectToForm(v);
+                    if (tabPanel.Visible)
+                        LoadRelations(v);
+                    this.isDirty = false;
+                }
             }
         }
 
@@ -85,12 +86,15 @@ namespace TerritoriesManagement.GUI
             var v = FormToOject();
             try
             {
-                this.server.Delete(v.IdTerritory);
+                if (MessageBox.Show(GetString("Are you sure you want to delete this territory?"), "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    this.server.Delete(v.IdTerritory);
 
-                if (lblFiltered.Visible) Filter();
-                else ClearFilter();
+                    if (lblFiltered.Visible) Filter();
+                    else ClearFilter();
 
-                ClearData();
+                    ClearData();
+                }
             }
             catch (Exception ex)
             {
@@ -258,6 +262,7 @@ namespace TerritoriesManagement.GUI
                 try
                 {
                     v = server.Save(v);
+                    isDirty = false;
 
                     int? index = null;
                     int? scrollIndex = null;
@@ -279,7 +284,6 @@ namespace TerritoriesManagement.GUI
                     else
                         New();
 
-                    isDirty = false;
                     txtName.Focus();
                 }
                 catch (Exception ex)

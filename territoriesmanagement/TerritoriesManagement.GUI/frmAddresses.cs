@@ -33,10 +33,10 @@ namespace TerritoriesManagement.GUI
 
         }
 
-        private string GetString(string text)
+        private string GetString(string text,params object[] args)
         {
-            Localizer.Globalization.GetString(text);            
-            return text;
+            string rv = Localizer.Globalization.GetString(text);            
+            return string.Format(rv,args);
         }
 
         private void frmAddresses_Load(object sender, EventArgs e)
@@ -168,22 +168,25 @@ namespace TerritoriesManagement.GUI
         {
             if (dgvResult.SelectedRows.Count > 0)
             {
-                try
+                if (MessageBox.Show(GetString("Are you sure you want to delete these {0} addresses?", dgvResult.SelectedRows.Count), "", MessageBoxButtons.OKCancel) == DialogResult.OK)
                 {
-                    for (int i = 0; i < dgvResult.SelectedRows.Count; i++)
+                    try
                     {
-                        int idAddress = (int)dgvResult.SelectedRows[i].Cells["Id"].Value;
+                        for (int i = 0; i < dgvResult.SelectedRows.Count; i++)
+                        {
+                            int idAddress = (int)dgvResult.SelectedRows[i].Cells["Id"].Value;
 
-                        server.Delete(idAddress);                       
+                            server.Delete(idAddress);
+                        }
+
+                        if (lblFiltered.Visible) Search();
+                        else GetAll();
                     }
 
-                    if (lblFiltered.Visible) Search();
-                    else GetAll();
-	            }
-                
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message, GetString("Error"));
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, GetString("Error"));
+                    }
                 }
             }
             else
