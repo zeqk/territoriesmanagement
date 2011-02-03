@@ -82,7 +82,7 @@
             this.Controls.Add(this.btnView);
             this.Controls.Add(this.txtDistance);
             this.Name = "frmAddressesStatistics";
-            this.Text = "Statics (Beta)";
+            this.Text = "Statistics (Beta)";
             this.ResumeLayout(false);
             this.PerformLayout();
 

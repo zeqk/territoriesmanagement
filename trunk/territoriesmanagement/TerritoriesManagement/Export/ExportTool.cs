@@ -255,6 +255,11 @@ namespace TerritoriesManagement.Export
             }
         }
 
+        private void ExportToExchangeData(string path, string entity, bool includeReferences, string where, params ObjectParameter[] parameters)
+        {
+
+        }
+
         private DataTable RecordsToDataTable(IList records, List<Property> propLst)
         {
             DataTable dt = new DataTable();
