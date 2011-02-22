@@ -1,4 +1,10 @@
-Versions
+Versiones
+* 1.5.110221 Beta - 21/02/2011
+ - Corregido problema en el mapa
+ - Correción del error q había cuando se guardaba, decía q había datos no guardados
+ - Al querer eliminar, pide confirmación
+ - Al generar la imagen desde el formulario de direcciones, no imprime los números
+
 * 1.5.101231 Beta - 31/12/2010
  - Procesos de importación y exportación de datos en modo wizard
  - Corección de bug en el abm de Cities, Departments y Territories: cuando se selecciona un otro item, no avisaba si había datos no guardados
