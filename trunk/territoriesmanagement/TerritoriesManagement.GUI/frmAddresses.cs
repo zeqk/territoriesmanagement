@@ -463,12 +463,12 @@ namespace TerritoriesManagement.GUI
                         double lng = (double)selectedRows[i].Cells["Lng"].Value;
                         string address = selectedRows[i].Cells["Address"].Value.ToString();
 
-                        int? internalNumber = (int?)selectedRows[i].Cells["InternalTerritoryNumber"].Value;
+                        //int? internalNumber = (int?)selectedRows[i].Cells["InternalTerritoryNumber"].Value;
 
                         GMapMarkerCustom marker = new GMapMarkerCustom(new PointLatLng(lat, lng));
                         marker.Size = new System.Drawing.Size(4, 4);
-                        if(internalNumber.HasValue)
-                            marker.Tag = internalNumber.Value;
+                        //if(internalNumber.HasValue)
+                        //    marker.Tag = internalNumber.Value;
                         marker.ToolTipText = address;
                         marker.Icon = Properties.Resources.legendIcon;
                         markers.Add(marker);
