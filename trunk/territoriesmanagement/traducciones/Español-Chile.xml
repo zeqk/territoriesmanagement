@@ -61,11 +61,11 @@
   </String>
   <String>
     <Original>Cities</Original>
-    <Translated>Ciudades</Translated>
+    <Translated>Comunas</Translated>
   </String>
   <String>
     <Original>City</Original>
-    <Translated>Ciudad</Translated>
+    <Translated>Comuna</Translated>
   </String>
   <String>
     <Original>Clear area</Original>
@@ -133,11 +133,11 @@
   </String>
   <String>
     <Original>Department</Original>
-    <Translated>Partido</Translated>
+    <Translated>Región</Translated>
   </String>
   <String>
     <Original>Departments</Original>
-    <Translated>Partidos</Translated>
+    <Translated>Regiones</Translated>
   </String>
   <String>
     <Original>Description</Original>
@@ -541,7 +541,7 @@
   </String>
   <String>
     <Original>Some departments have not been imported successfully.</Original>
-    <Translated>Algunos partidos no han sido importados exitosamente.</Translated>
+    <Translated>Algunas regiones no han sido importados exitosamente.</Translated>
   </String>
   <String>
     <Original>No department has been imported.</Original>
@@ -573,7 +573,7 @@
   </String>
   <String>
     <Original>IMPORT DEPARTMENTS ERRORS: </Original>
-    <Translated>ERRORES DE IMPORTACIÓN DE PARTIDOS: </Translated>
+    <Translated>ERRORES DE IMPORTACIÓN DE REGIONES: </Translated>
   </String>
   <String>
     <Original>-Error: </Original>
@@ -581,7 +581,7 @@
   </String>
   <String>
     <Original>IMPORT CITIES ERRORS: </Original>
-    <Translated>ERRORES DE IMPORTACIÓN DE CIUDADES: </Translated>
+    <Translated>ERRORES DE IMPORTACIÓN DE COMUNAS: </Translated>
   </String>
   <String>
     <Original>IMPORT TERRITORIES ERRORS: </Original>
