@@ -107,11 +107,11 @@
     </Reference>
     <Reference Include="GMap.NET.Core, Version=1.5.4.3, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\zeqktools\bin\GMap.NET.Core.dll</HintPath>
+      <HintPath>..\libs\GMap.NET.Core.dll</HintPath>
     </Reference>
     <Reference Include="GMap.NET.WindowsForms, Version=1.0.0.0, Culture=neutral, PublicKeyToken=b85b9027b614afef, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\zeqktools\bin\GMap.NET.WindowsForms.dll</HintPath>
+      <HintPath>..\libs\GMap.NET.WindowsForms.dll</HintPath>
     </Reference>
     <Reference Include="Localizer, Version=1.0.3845.22081, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
