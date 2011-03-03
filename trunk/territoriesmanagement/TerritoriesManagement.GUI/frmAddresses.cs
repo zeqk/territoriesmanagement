@@ -223,6 +223,7 @@ namespace TerritoriesManagement.GUI
             dgvResult.Columns.Add("Corner2", GetString("Corner 2"));
             dgvResult.Columns.Add("Description", GetString("Description"));
             dgvResult.Columns.Add("HasGeoPosition", GetString("GEO"));
+            dgvResult.Columns.Add("Mark", GetString("Mark"));
             dgvResult.Columns.Add("Lat", GetString("Lat"));
             dgvResult.Columns.Add("Lng", GetString("Lng"));
 
@@ -264,6 +265,8 @@ namespace TerritoriesManagement.GUI
             dgvResult.Columns["HasGeoPosition"].Width = 40;
             dgvResult.Columns["HasGeoPosition"].DataPropertyName = "HasGeoPosition";
             dgvResult.Columns["HasGeoPosition"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dgvResult.Columns["Mark"].Visible = false;
+            dgvResult.Columns["Mark"].DataPropertyName = "Mark";
             dgvResult.Columns["Lat"].Visible = false;
             dgvResult.Columns["Lat"].DataPropertyName = "Lat";
             dgvResult.Columns["Lng"].Visible = false;
@@ -414,13 +417,33 @@ namespace TerritoriesManagement.GUI
         {
             if (dgvResult.SelectedRows.Count!=0)
             {
-                DataGridViewRow row = dgvResult.SelectedRows[0];
+                DataGridViewRow row = dgvResult.SelectedRows[0];                
 
                 string text = row.Cells["Address"].Value.ToString() + ", " + 
                     row.Cells["CityName"].Value.ToString() + ", " + 
                     row.Cells["DepartmentName"].Value.ToString();
 
                 Clipboard.SetText(text);
+            }
+        }
+
+
+
+        private void markToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgvResult.SelectedRows.Count > 0)
+            {
+                if (MessageBox.Show(GetString("Are you sure you want to mark these {0} addresses?", dgvResult.SelectedRows.Count), "", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                {
+                    int[] ids = new int[dgvResult.SelectedRows.Count];
+                    for (int i = 0; i < dgvResult.SelectedRows.Count; i++)
+			        {
+        			    int id = (int)dgvResult.SelectedRows[i].Cells["Id"].Value;
+                        ids[i] = id;
+			        }
+
+                    server.MarkAddresses(ids); //TODO: probar marcador
+                }
             }
         }
 
@@ -588,6 +611,18 @@ namespace TerritoriesManagement.GUI
                 map.MapMode = MapModeEnum.ReadOnly;
                 map.ShowDialog();
                 
+            }
+        }
+
+        private void dgvResult_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            // If the column being formatted is the column named 'Status' ..
+            if (e.ColumnIndex == 1)
+            {
+                if ((bool)this.dgvResult.Rows[e.RowIndex].Cells["Mark"].Value == true)
+                {
+                      dgvResult.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
+                }
             }
         }
 

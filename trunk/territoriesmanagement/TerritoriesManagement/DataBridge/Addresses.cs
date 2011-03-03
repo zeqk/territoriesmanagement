@@ -182,6 +182,7 @@ namespace TerritoriesManagement.DataBridge
                                   Corner2 = a.Corner2,
                                   Description = a.Description,
                                   HasGeoposition = (a.Lat.HasValue && a.Lng.HasValue),
+                                  Mark = (a.CustomField2 != null),
                                   Lat = a.Lat,
                                   Lng = a.Lng
                               };
@@ -397,6 +398,32 @@ namespace TerritoriesManagement.DataBridge
                 }
             }
 
+            return rv;
+        }
+
+
+        public bool MarkAddresses(int[] ids)
+        {
+            bool rv = true;
+            try
+            {                
+                var res = from a in _dm.Addresses
+                          where ids.Contains(a.IdAddress)
+                          select a;
+
+                foreach (Address item in res)
+                {
+                    item.CustomField2 = "true";
+                }
+
+                _dm.AcceptAllChanges();
+                _dm.SaveChanges();
+            }
+            catch (Exception ex)
+            {                
+                rv = false;
+            }
+            
             return rv;
         }
 
