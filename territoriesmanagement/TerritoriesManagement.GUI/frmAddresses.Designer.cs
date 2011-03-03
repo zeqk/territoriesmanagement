@@ -60,6 +60,7 @@
             this.sfdGMaps = new System.Windows.Forms.SaveFileDialog();
             this.sfdExcelDestiny = new System.Windows.Forms.SaveFileDialog();
             this.lblResultCount = new System.Windows.Forms.Label();
+            this.markToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).BeginInit();
             this.panel2.SuspendLayout();
@@ -215,6 +216,7 @@
             this.dgvResult.Size = new System.Drawing.Size(843, 354);
             this.dgvResult.TabIndex = 6;
             this.dgvResult.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvResult_MouseClick);
+            this.dgvResult.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvResult_CellFormatting);
             // 
             // panel2
             // 
@@ -357,10 +359,11 @@
             // 
             this.ctxMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyGoogleMapsToolStripMenuItem,
+            this.markToolStripMenuItem,
             this.toolStripSeparator1,
             this.viewMapToolStripMenuItem});
             this.ctxMenu.Name = "ctxMenu";
-            this.ctxMenu.Size = new System.Drawing.Size(120, 54);
+            this.ctxMenu.Size = new System.Drawing.Size(153, 98);
             // 
             // copyGoogleMapsToolStripMenuItem
             // 
@@ -399,6 +402,13 @@
             this.lblResultCount.Name = "lblResultCount";
             this.lblResultCount.Size = new System.Drawing.Size(0, 13);
             this.lblResultCount.TabIndex = 4;
+            // 
+            // markToolStripMenuItem
+            // 
+            this.markToolStripMenuItem.Name = "markToolStripMenuItem";
+            this.markToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.markToolStripMenuItem.Text = "Mark";
+            this.markToolStripMenuItem.Click += new System.EventHandler(this.markToolStripMenuItem_Click);
             // 
             // frmAddresses
             // 
@@ -459,6 +469,7 @@
         private AltosTools.WindowsForms.Controls.CheckedListComboBox chklstDepartment;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Button btnViewStatistics;
+        private System.Windows.Forms.ToolStripMenuItem markToolStripMenuItem;
 
 
 
