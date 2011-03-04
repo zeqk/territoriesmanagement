@@ -402,22 +402,25 @@ namespace TerritoriesManagement.DataBridge
         }
 
 
-        public bool MarkAddresses(int[] ids)
+        public bool MarkAddresses(string ids, bool mark)
         {
             bool rv = true;
             try
             {                
-                var res = from a in _dm.Addresses
-                          where ids.Contains(a.IdAddress)
-                          select a;
+                string strQuery = "SELECT VALUE Address FROM TerritoriesDataContext.Addresses AS Address"
+                    + " WHERE Address.IdAddress IN {{{0}}}";
 
-                foreach (Address item in res)
+                List<Address> addresses = _dm.CreateQuery<Address>(string.Format(strQuery,ids)).ToList();
+                foreach (Address item in addresses)
                 {
-                    item.CustomField2 = "true";
-                }
-
-                _dm.AcceptAllChanges();
+                    if (mark)
+                        item.CustomField2 = "MARK";
+                    else
+                        item.CustomField2 = null;
+                }                
                 _dm.SaveChanges();
+                _dm.AcceptAllChanges();
+                
             }
             catch (Exception ex)
             {                

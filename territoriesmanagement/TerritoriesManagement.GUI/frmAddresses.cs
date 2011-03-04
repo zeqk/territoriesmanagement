@@ -14,6 +14,7 @@ using GMap.NET.WindowsForms.Markers;
 using Localizer;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.Export;
+using System.Text;
 
 namespace TerritoriesManagement.GUI
 {
@@ -81,10 +82,11 @@ namespace TerritoriesManagement.GUI
                     var address = server.NewObject();
                     myForm.Address = address;
 
-                    myForm.ShowDialog();
-
-                    if (lblFiltered.Visible) Search();
-                    else GetAll();
+                    if (myForm.ShowDialog() == DialogResult.OK)
+                    {
+                        if (lblFiltered.Visible) Search();
+                        else GetAll();
+                    }
 
                 }
                 catch (Exception ex)
@@ -107,17 +109,19 @@ namespace TerritoriesManagement.GUI
                     try
                     {
                         myForm.Address = v;
-                        myForm.ShowDialog();
+                        if (myForm.ShowDialog() == DialogResult.OK)
+                        {
 
-                        int index = dgvResult.SelectedRows[0].Index;
-                        int scrollIndex = dgvResult.FirstDisplayedScrollingRowIndex;
+                            int index = dgvResult.SelectedRows[0].Index;
+                            int scrollIndex = dgvResult.FirstDisplayedScrollingRowIndex;
 
-                        if (lblFiltered.Visible) Search();
-                        else GetAll();
+                            if (lblFiltered.Visible) Search();
+                            else GetAll();
 
-                        dgvResult.ClearSelection();
-                        dgvResult.Rows[index].Selected = true;
-                        dgvResult.FirstDisplayedScrollingRowIndex = scrollIndex;
+                            dgvResult.ClearSelection();
+                            dgvResult.Rows[index].Selected = true;
+                            dgvResult.FirstDisplayedScrollingRowIndex = scrollIndex;
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -194,20 +198,33 @@ namespace TerritoriesManagement.GUI
 
         }
 
-        private void LoadResult(string query)
+        private void LoadResult(string query, params ObjectParameter[] parameters)
         {
+            System.Diagnostics.Stopwatch watch = new System.Diagnostics.Stopwatch();
+            watch.Start();
             try
             {
-                var addresses = this.server.Search(query);
+                var addresses = this.server.Search(query,parameters);
                 dgvResult.DataSource = addresses;
-                lblResultCount.Text = addresses.Count.ToString();
+                lblResultCount.Text = addresses.Count.ToString();                
+                lblFiltered.Visible = (query != "");
                 dgvResult.ClearSelection();
+
+                //foreach (DataGridViewRow row in this.dgvResult.Rows)
+                //{
+                //    if ((bool)row.Cells["Mark"].Value == true)
+                //    {
+                //        row.DefaultCellStyle.BackColor = Color.LightGray;
+                //    }
+                //}
+                watch.Stop();
+                var tiempo = watch.Elapsed.TotalSeconds;
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, GetString("Error"));
             }
-            lblFiltered.Visible = false;
         }
 
         private void ConfigGrids()
@@ -299,10 +316,11 @@ namespace TerritoriesManagement.GUI
                 string strQuery = GetQuery(out parameters);
                 if (!string.IsNullOrEmpty(strQuery))
                 {
-                    var addresses = this.server.Search(strQuery, parameters.ToArray<ObjectParameter>());
-                    dgvResult.DataSource = addresses;
-                    lblResultCount.Text = addresses.Count.ToString();
-                    lblFiltered.Visible = true;
+                    this.LoadResult(strQuery, parameters.ToArray());
+                    //var addresses = this.server.Search(strQuery, parameters.ToArray<ObjectParameter>());
+                    //dgvResult.DataSource = addresses;
+                    //lblResultCount.Text = addresses.Count.ToString();
+                    //lblFiltered.Visible = true;
                 }
                 else
                     MessageBox.Show(GetString("You must select at least one search criteria."));
@@ -433,17 +451,56 @@ namespace TerritoriesManagement.GUI
         {
             if (dgvResult.SelectedRows.Count > 0)
             {
-                if (MessageBox.Show(GetString("Are you sure you want to mark these {0} addresses?", dgvResult.SelectedRows.Count), "", MessageBoxButtons.OKCancel) == DialogResult.OK)
-                {
-                    int[] ids = new int[dgvResult.SelectedRows.Count];
-                    for (int i = 0; i < dgvResult.SelectedRows.Count; i++)
-			        {
-        			    int id = (int)dgvResult.SelectedRows[i].Cells["Id"].Value;
-                        ids[i] = id;
-			        }
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < dgvResult.SelectedRows.Count; i++)
+		        {
+                    //dgvResult.SelectedRows[i].DefaultCellStyle.BackColor = Color.LightGray;
+    			    int id = (int)dgvResult.SelectedRows[i].Cells["Id"].Value;
+                    sb.Append(id + ", ");
+		        }
+                string ids = sb.ToString();
+                ids = ids.Remove(ids.Length - 2);
 
-                    server.MarkAddresses(ids); //TODO: probar marcador
+                server.MarkAddresses(ids,true);
+
+                int index = dgvResult.SelectedRows[0].Index;
+                int scrollIndex = dgvResult.FirstDisplayedScrollingRowIndex;
+
+                if (lblFiltered.Visible) Search();
+                else GetAll();
+
+                dgvResult.ClearSelection();
+                dgvResult.Rows[index].Selected = true;
+                dgvResult.FirstDisplayedScrollingRowIndex = scrollIndex;
+            }
+        }
+
+
+
+        private void unMarkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgvResult.SelectedRows.Count > 0)
+            {
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < dgvResult.SelectedRows.Count; i++)
+                {
+                    int id = (int)dgvResult.SelectedRows[i].Cells["Id"].Value;
+                    sb.Append(id + ", ");
                 }
+                string ids = sb.ToString();
+                ids = ids.Remove(ids.Length - 2);
+
+                server.MarkAddresses(ids, false);
+
+                int index = dgvResult.SelectedRows[0].Index;
+                int scrollIndex = dgvResult.FirstDisplayedScrollingRowIndex;
+
+                if (lblFiltered.Visible) Search();
+                else GetAll();
+
+                dgvResult.ClearSelection();
+                dgvResult.Rows[index].Selected = true;
+                dgvResult.FirstDisplayedScrollingRowIndex = scrollIndex;
             }
         }
 
@@ -615,13 +672,12 @@ namespace TerritoriesManagement.GUI
         }
 
         private void dgvResult_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            // If the column being formatted is the column named 'Status' ..
+        {             
             if (e.ColumnIndex == 1)
             {
                 if ((bool)this.dgvResult.Rows[e.RowIndex].Cells["Mark"].Value == true)
                 {
-                      dgvResult.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.Yellow;
+                    dgvResult.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGray;
                 }
             }
         }

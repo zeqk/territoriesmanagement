@@ -55,12 +55,14 @@
             this.lblDepartment = new System.Windows.Forms.Label();
             this.ctxMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyGoogleMapsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.markToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.viewMapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sfdGMaps = new System.Windows.Forms.SaveFileDialog();
             this.sfdExcelDestiny = new System.Windows.Forms.SaveFileDialog();
             this.lblResultCount = new System.Windows.Forms.Label();
-            this.markToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.unMarkToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).BeginInit();
             this.panel2.SuspendLayout();
@@ -359,30 +361,39 @@
             // 
             this.ctxMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyGoogleMapsToolStripMenuItem,
-            this.markToolStripMenuItem,
             this.toolStripSeparator1,
+            this.markToolStripMenuItem,
+            this.unMarkToolStripMenuItem,
+            this.toolStripSeparator2,
             this.viewMapToolStripMenuItem});
             this.ctxMenu.Name = "ctxMenu";
-            this.ctxMenu.Size = new System.Drawing.Size(153, 98);
+            this.ctxMenu.Size = new System.Drawing.Size(153, 126);
             // 
             // copyGoogleMapsToolStripMenuItem
             // 
             this.copyGoogleMapsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyGoogleMapsToolStripMenuItem.Image")));
             this.copyGoogleMapsToolStripMenuItem.Name = "copyGoogleMapsToolStripMenuItem";
-            this.copyGoogleMapsToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.copyGoogleMapsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.copyGoogleMapsToolStripMenuItem.Text = "Copy";
             this.copyGoogleMapsToolStripMenuItem.Click += new System.EventHandler(this.copyGoogleMapsToolStripMenuItem_Click);
+            // 
+            // markToolStripMenuItem
+            // 
+            this.markToolStripMenuItem.Name = "markToolStripMenuItem";
+            this.markToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.markToolStripMenuItem.Text = "Mark";
+            this.markToolStripMenuItem.Click += new System.EventHandler(this.markToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(116, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // viewMapToolStripMenuItem
             // 
             this.viewMapToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("viewMapToolStripMenuItem.Image")));
             this.viewMapToolStripMenuItem.Name = "viewMapToolStripMenuItem";
-            this.viewMapToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
+            this.viewMapToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.viewMapToolStripMenuItem.Text = "View map";
             this.viewMapToolStripMenuItem.Click += new System.EventHandler(this.viewMapToolStripMenuItem_Click);
             // 
@@ -403,12 +414,17 @@
             this.lblResultCount.Size = new System.Drawing.Size(0, 13);
             this.lblResultCount.TabIndex = 4;
             // 
-            // markToolStripMenuItem
+            // toolStripSeparator2
             // 
-            this.markToolStripMenuItem.Name = "markToolStripMenuItem";
-            this.markToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.markToolStripMenuItem.Text = "Mark";
-            this.markToolStripMenuItem.Click += new System.EventHandler(this.markToolStripMenuItem_Click);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // unMarkToolStripMenuItem
+            // 
+            this.unMarkToolStripMenuItem.Name = "unMarkToolStripMenuItem";
+            this.unMarkToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.unMarkToolStripMenuItem.Text = "Unmark";
+            this.unMarkToolStripMenuItem.Click += new System.EventHandler(this.unMarkToolStripMenuItem_Click);
             // 
             // frmAddresses
             // 
@@ -470,6 +486,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.Button btnViewStatistics;
         private System.Windows.Forms.ToolStripMenuItem markToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem unMarkToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
 
 
 
