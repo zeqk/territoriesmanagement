@@ -292,6 +292,14 @@
     <Translated>Maps</Translated>
   </String>
   <String>
+    <Original>Mark</Original>
+    <Translated>Mark</Translated>
+  </String>
+   <String>
+    <Original>Marked</Original>
+    <Translated>Marked</Translated>
+  </String>
+  <String>
     <Original>Menu</Original>
     <Translated>Menu</Translated>
   </String>
@@ -450,6 +458,10 @@
   <String>
     <Original>Tours</Original>
     <Translated>Tours</Translated>
+  </String>
+   <String>
+    <Original>Unmark</Original>
+    <Translated>Unmark</Translated>
   </String>
   <String>
     <Original>Update</Original>

@@ -155,8 +155,8 @@
   <data name="btnSearch.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALAAAA
-        CwAB5DetvwAAB4dJREFUWEfFl3lQ1OcZx7WG2CudjiZjevzRadJp+k+nTTpOc5tkGkmnncbQmIS2k4zA
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAAK/gAA
+        Cv4B5iV4ZgAAB4dJREFUWEfFl3lQ1OcZx7WG2CudjiZjevzRadJp+k+nTTpOc5tkGkmnncbQmIS2k4zA
         Fih4jDMpsIKKqMACcggRIUXlPlxUUGC5EaEeiDGijRllyLJyuRx7srDst9/ntwtBB1jtP2XmM8/7e4/n
         +32f37EvywEs+7/+vb0pYNkSrOCYL8kil0g/gSfKdbZnXOYtlUcZk83ez4KdMokLAkRoY5gaH6mPIjSp
         HduyruCfR/TYmnEZoZo29udBxjlvQOYvJODJ9eAGmOhJ0vFe+A5sTuvELu1dJDRPIunsNJmCppW0uYk7
@@ -194,8 +194,8 @@
   <data name="btnViewStatistics.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALCAAA
-        CwgBwL2l2gAAAjxJREFUOE+lkMtPU0EYxaepLHunuvBRY1rfooaIMdF/wL1/gTtiDNRWDAnCAqlcXqK0
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAAlwSFlzAAALBgAA
+        CwYBZDTpJAAAAjxJREFUOE+lkMtPU0EYxaepLHunuvBRY1rfooaIMdF/wL1/gTtiDNRWDAnCAqlcXqK0
         tRrdKCLYh6UPMCSGREMqbXQhLsRCbVBEXTTCLUUihJjjN2NtUq+snOSXc86X+U4mY3iYPgq2wckXFgyb
         jCtsffU0W86FmMGwwi6fMZXf9iWt+LG2gpk1TwmRfSkrvCkTu5k8wTpH0kyNrLL2aIEBKIN5J2wY/mqW
         xIs6/MUM74QVPc9PsrZolrVHftLy0r8LPIndiH82I/YHWhbZnbDBFQuy5kfY1ja0ZLkaLlhaHxcsuhf0
@@ -326,7 +326,7 @@
 </value>
   </data>
   <metadata name="ctxMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+    <value>17, 21</value>
   </metadata>
   <data name="copyGoogleMapsToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
