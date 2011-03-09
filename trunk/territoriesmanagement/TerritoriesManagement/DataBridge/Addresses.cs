@@ -182,7 +182,7 @@ namespace TerritoriesManagement.DataBridge
                                   Corner2 = a.Corner2,
                                   Description = a.Description,
                                   HasGeoposition = (a.Lat.HasValue && a.Lng.HasValue),
-                                  Mark = (a.CustomField2 != null),
+                                  Mark = a.CustomField2,
                                   Lat = a.Lat,
                                   Lng = a.Lng
                               };
@@ -414,7 +414,7 @@ namespace TerritoriesManagement.DataBridge
                 foreach (Address item in addresses)
                 {
                     if (mark)
-                        item.CustomField2 = "MARK";
+                        item.CustomField2 = System.Drawing.Color.LightGray.Name;
                     else
                         item.CustomField2 = null;
                 }                

@@ -302,6 +302,7 @@ namespace TerritoriesManagement.GUI
             chklstCity.DataSource = this.server.GetCities();
             chklstCity.CheckAllItems();
             chklstTerritory.CheckAllItems();
+            chkMarked.Checked = false;
             LoadResult("");
             lblFiltered.Visible = false;
             isGettingAll = false;
@@ -418,6 +419,13 @@ namespace TerritoriesManagement.GUI
                 queryStr += "(" + auxQueryStr + ")";
             }
 
+            if (chkMarked.Checked)
+            {
+                if (auxParameters.Count > 0)
+                    queryStr += " AND ";
+                queryStr += " Address.CustomField2 IS NOT NULL";
+            }
+
             parameters = auxParameters;
             return queryStr;
         }
@@ -499,8 +507,11 @@ namespace TerritoriesManagement.GUI
                 else GetAll();
 
                 dgvResult.ClearSelection();
-                dgvResult.Rows[index].Selected = true;
-                dgvResult.FirstDisplayedScrollingRowIndex = scrollIndex;
+
+                if((dgvResult.Rows.Count - 1) > index)
+                    dgvResult.Rows[index].Selected = true;
+                if ((dgvResult.Rows.Count - 1) > scrollIndex)
+                    dgvResult.FirstDisplayedScrollingRowIndex = scrollIndex;
             }
         }
 
@@ -675,9 +686,12 @@ namespace TerritoriesManagement.GUI
         {             
             if (e.ColumnIndex == 1)
             {
-                if ((bool)this.dgvResult.Rows[e.RowIndex].Cells["Mark"].Value == true)
+                string value = (string)this.dgvResult.Rows[e.RowIndex].Cells["Mark"].Value;                
+                if(value != null)
                 {
-                    dgvResult.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.LightGray;
+                    Color color = Color.FromName(value);
+                    if(color.A != 0 && color.B != 0 && color.G != 0 && color.R != 0)
+                        this.dgvResult.Rows[e.RowIndex].DefaultCellStyle.BackColor = color;
                 }
             }
         }
