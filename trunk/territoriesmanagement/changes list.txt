@@ -1,4 +1,8 @@
 Versiones
+* 1.5.110310 Beta - 10/03/2011
+ - Sistema de marcación de direcciones
+ - Idioma "Español - Chile" incluido
+
 * 1.5.110221 Beta - 21/02/2011
  - Corregido problema en el mapa
  - Correción del error q había cuando se guardaba, decía q había datos no guardados
