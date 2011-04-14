@@ -20,7 +20,7 @@ namespace TerritoriesManagement
 
             List<string> relatedEntities = GetRelatedEntities(entityName);
 
-            string strQuery = "SELECT VALUE " + entityName + " FROM TerritoriesDataContext." + entitySet + " AS " + entityName;
+            string strQuery = string.Format("SELECT VALUE {0} FROM TerritoriesDataContext.{1} AS {0}", entityName, entitySet);
 
             if (where != "")
                 strQuery = strQuery + " WHERE " + where;
@@ -54,7 +54,7 @@ namespace TerritoriesManagement
         private static void Include(ref ObjectQuery query, string relatedEntity)
         {
             string[] parameters = { relatedEntity };
-            query.GetType().GetMethod("Include").Invoke(query, parameters);
+            query = (ObjectQuery)query.GetType().GetMethod("Include").Invoke(query, parameters);
         }
 
         public static object ExecuteMethod(object obj, string methodName, params object[] parameters)
