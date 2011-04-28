@@ -1,0 +1,847 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TerritoriesModel.Store" Alias="Self" Provider="FirebirdSql.Data.FirebirdClient" ProviderManifestToken="2.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2006/04/edm/ssdl">
+        <EntityContainer Name="TerritoriesModelStoreContainer">
+          <EntitySet Name="Addresses" EntityType="TerritoriesModel.Store.Addresses" store:Type="Tables" Schema="Firebird" />
+          <EntitySet Name="Cities" EntityType="TerritoriesModel.Store.Cities" store:Type="Tables" Schema="Firebird" />
+          <EntitySet Name="Departments" EntityType="TerritoriesModel.Store.Departments" store:Type="Tables" Schema="Firebird" />
+          <EntitySet Name="Publishers" EntityType="TerritoriesModel.Store.Publishers" store:Type="Tables" Schema="Firebird" />
+          <EntitySet Name="Territories" EntityType="TerritoriesModel.Store.Territories" store:Type="Tables" Schema="Firebird" />
+          <EntitySet Name="Tours" EntityType="TerritoriesModel.Store.Tours" store:Type="Tables" Schema="Firebird" />
+          <AssociationSet Name="ADDRESSESKEY0" Association="TerritoriesModel.Store.ADDRESSESKEY0">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="ADDRESSESKEY1" Association="TerritoriesModel.Store.ADDRESSESKEY1">
+            <End Role="Territories" EntitySet="Territories" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="CITIESKEY0" Association="TerritoriesModel.Store.CITIESKEY0">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="PUBLISHERSKEY0" Association="TerritoriesModel.Store.PUBLISHERSKEY0">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Publishers" EntitySet="Publishers" />
+          </AssociationSet>
+          <AssociationSet Name="TOURSKEY0" Association="TerritoriesModel.Store.TOURSKEY0">
+            <End Role="Publishers" EntitySet="Publishers" />
+            <End Role="Tours" EntitySet="Tours" />
+          </AssociationSet>
+          <AssociationSet Name="TOURSKEY1" Association="TerritoriesModel.Store.TOURSKEY1">
+            <End Role="Territories" EntitySet="Territories" />
+            <End Role="Tours" EntitySet="Tours" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="IdAddress" />
+          </Key>
+          <Property Name="IdAddress" Type="int" Nullable="false" />
+          <Property Name="Street" Type="varchar" Nullable="false" MaxLength="80" />
+          <Property Name="Number" Type="varchar" MaxLength="50" />
+          <Property Name="Corner1" Type="varchar" MaxLength="80" />
+          <Property Name="Corner2" Type="varchar" MaxLength="80" />
+          <Property Name="Phone1" Type="varchar" MaxLength="15" />
+          <Property Name="Phone2" Type="varchar" MaxLength="15" />
+          <Property Name="Description" Type="varchar" MaxLength="200" />
+          <Property Name="Map1" Type="varchar" MaxLength="15" />
+          <Property Name="Map2" Type="varchar" MaxLength="15" />
+          <Property Name="IdTerritory" Type="int" />
+          <Property Name="IdCity" Type="int" Nullable="false" />
+          <Property Name="AddressData" Type="varchar" MaxLength="50" />
+          <Property Name="CustomField1" Type="varchar" MaxLength="200" />
+          <Property Name="CustomField2" Type="varchar" MaxLength="200" />
+          <Property Name="Lat" Type="double" />
+          <Property Name="Lng" Type="double" />
+          <Property Name="InternalTerritoryNumber" Type="int" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="IdCity" />
+          </Key>
+          <Property Name="IdCity" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="80" />
+          <Property Name="IdDepartment" Type="int" Nullable="false" />
+          <Property Name="Area" Type="clob" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="IdDepartment" />
+          </Key>
+          <Property Name="IdDepartment" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="80" />
+          <Property Name="Area" Type="clob" />
+        </EntityType>
+        <EntityType Name="Publishers">
+          <Key>
+            <PropertyRef Name="IdPublisher" />
+          </Key>
+          <Property Name="IdPublisher" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="80" />
+          <Property Name="Address" Type="clob" />
+          <Property Name="IdCity" Type="int" />
+          <Property Name="Notes" Type="clob" Nullable="false" />
+          <Property Name="Phone1" Type="varchar" MaxLength="30" />
+          <Property Name="Phone2" Type="varchar" MaxLength="30" />
+          <Property Name="Zip" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Territories">
+          <Key>
+            <PropertyRef Name="IdTerritory" />
+          </Key>
+          <Property Name="IdTerritory" Type="int" Nullable="false" />
+          <Property Name="Number" Type="int" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="80" />
+          <Property Name="Area" Type="clob" />
+        </EntityType>
+        <EntityType Name="Tours">
+          <Key>
+            <PropertyRef Name="IdTerritory" />
+            <PropertyRef Name="TourNumber" />
+          </Key>
+          <Property Name="IdTerritory" Type="int" Nullable="false" />
+          <Property Name="BeginDate" Type="timestamp" Nullable="false" />
+          <Property Name="EndDate" Type="timestamp" />
+          <Property Name="TourNumber" Type="int" Nullable="false" />
+          <Property Name="IdPublisher" Type="int" />
+        </EntityType>
+        <Association Name="ADDRESSESKEY0">
+          <End Role="Cities" Type="TerritoriesModel.Store.Cities" Multiplicity="1" />
+          <End Role="Addresses" Type="TerritoriesModel.Store.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="IdCity" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="IdCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ADDRESSESKEY1">
+          <End Role="Territories" Type="TerritoriesModel.Store.Territories" Multiplicity="0..1" />
+          <End Role="Addresses" Type="TerritoriesModel.Store.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Territories">
+              <PropertyRef Name="IdTerritory" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="IdTerritory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CITIESKEY0">
+          <End Role="Departments" Type="TerritoriesModel.Store.Departments" Multiplicity="1" />
+          <End Role="Cities" Type="TerritoriesModel.Store.Cities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="IdDepartment" />
+            </Principal>
+            <Dependent Role="Cities">
+              <PropertyRef Name="IdDepartment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PUBLISHERSKEY0">
+          <End Role="Cities" Type="TerritoriesModel.Store.Cities" Multiplicity="0..1" />
+          <End Role="Publishers" Type="TerritoriesModel.Store.Publishers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="IdCity" />
+            </Principal>
+            <Dependent Role="Publishers">
+              <PropertyRef Name="IdCity" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TOURSKEY0">
+          <End Role="Publishers" Type="TerritoriesModel.Store.Publishers" Multiplicity="0..1" />
+          <End Role="Tours" Type="TerritoriesModel.Store.Tours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Publishers">
+              <PropertyRef Name="IdPublisher" />
+            </Principal>
+            <Dependent Role="Tours">
+              <PropertyRef Name="IdPublisher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TOURSKEY1">
+          <End Role="Territories" Type="TerritoriesModel.Store.Territories" Multiplicity="1" />
+          <End Role="Tours" Type="TerritoriesModel.Store.Tours" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Territories">
+              <PropertyRef Name="IdTerritory" />
+            </Principal>
+            <Dependent Role="Tours">
+              <PropertyRef Name="IdTerritory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ADDRESSES_ADD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="STREET" Type="varchar" Mode="In" />
+          <Parameter Name="NUMBER" Type="varchar" Mode="In" />
+          <Parameter Name="ADDRESSDATA" Type="varchar" Mode="In" />
+          <Parameter Name="CORNER1" Type="varchar" Mode="In" />
+          <Parameter Name="CORNER2" Type="varchar" Mode="In" />
+          <Parameter Name="PHONE1" Type="varchar" Mode="In" />
+          <Parameter Name="PHONE2" Type="varchar" Mode="In" />
+          <Parameter Name="DESCRIPTION" Type="varchar" Mode="In" />
+          <Parameter Name="MAP1" Type="varchar" Mode="In" />
+          <Parameter Name="MAP2" Type="varchar" Mode="In" />
+          <Parameter Name="IDTERRITORY" Type="int" Mode="In" />
+          <Parameter Name="IDCITY" Type="int" Mode="In" />
+          <Parameter Name="CUSTOMFIELD1" Type="varchar" Mode="In" />
+          <Parameter Name="CUSTOMFIELD2" Type="varchar" Mode="In" />
+          <Parameter Name="LAT" Type="double" Mode="In" />
+          <Parameter Name="LNG" Type="double" Mode="In" />
+          <Parameter Name="INTERNALTERRITORYNUMBER" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ADDRESSES_ADDWITHPK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="IDADDRESS" Type="int" Mode="In" />
+          <Parameter Name="STREET" Type="varchar" Mode="In" />
+          <Parameter Name="NUMBER" Type="varchar" Mode="In" />
+          <Parameter Name="ADDRESSDATA" Type="varchar" Mode="In" />
+          <Parameter Name="CORNER1" Type="varchar" Mode="In" />
+          <Parameter Name="CORNER2" Type="varchar" Mode="In" />
+          <Parameter Name="PHONE1" Type="varchar" Mode="In" />
+          <Parameter Name="PHONE2" Type="varchar" Mode="In" />
+          <Parameter Name="DESCRIPTION" Type="varchar" Mode="In" />
+          <Parameter Name="MAP1" Type="varchar" Mode="In" />
+          <Parameter Name="MAP2" Type="varchar" Mode="In" />
+          <Parameter Name="IDTERRITORY" Type="int" Mode="In" />
+          <Parameter Name="IDCITY" Type="int" Mode="In" />
+          <Parameter Name="CUSTOMFIELD1" Type="varchar" Mode="In" />
+          <Parameter Name="CUSTOMFIELD2" Type="varchar" Mode="In" />
+          <Parameter Name="LAT" Type="double" Mode="In" />
+          <Parameter Name="LNG" Type="double" Mode="In" />
+          <Parameter Name="INTERNALTERRITORYNUMBER" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ADDRESSES_DELETEALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird"/>        
+        <Function Name="ADDRESSES_DELETEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="IDCITY" Type="int" Mode="In" />
+          <Parameter Name="IDTERRITORY" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ADDRESSES_GETALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird"/>
+        <Function Name="ADDRESSES_GETBYCITY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="CITY" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ADDRESSES_GETBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ADDRESSES_RESETID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="NEWID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ADDRESSES_UPDATEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="IDADDRESS" Type="int" Mode="In" />
+          <Parameter Name="STREET" Type="varchar" Mode="In" />
+          <Parameter Name="NUMBER" Type="varchar" Mode="In" />
+          <Parameter Name="ADDRESSDATA" Type="varchar" Mode="In" />
+          <Parameter Name="CORNER1" Type="varchar" Mode="In" />
+          <Parameter Name="CORNER2" Type="varchar" Mode="In" />
+          <Parameter Name="PHONE1" Type="varchar" Mode="In" />
+          <Parameter Name="PHONE2" Type="varchar" Mode="In" />
+          <Parameter Name="DESCRIPTION" Type="varchar" Mode="In" />
+          <Parameter Name="MAP1" Type="varchar" Mode="In" />
+          <Parameter Name="MAP2" Type="varchar" Mode="In" />
+          <Parameter Name="IDTERRITORY" Type="int" Mode="In" />
+          <Parameter Name="IDCITY" Type="int" Mode="In" />
+          <Parameter Name="CUSTOMFIELD1" Type="varchar" Mode="In" />
+          <Parameter Name="CUSTOMFIELD2" Type="varchar" Mode="In" />
+          <Parameter Name="LAT" Type="double" Mode="In" />
+          <Parameter Name="LNG" Type="double" Mode="In" />
+          <Parameter Name="INTERNALTERRITORYNUMBER" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CITIES_ADD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="NAME" Type="varchar" Mode="In" />          
+          <Parameter Name="IDDEPARTMENT" Type="int" Mode="In" />
+          <Parameter Name="AREA" Type="clob" Mode="In" />
+        </Function>
+        <Function Name="CITIES_ADDWITHPK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="NAME" Type="varchar" Mode="In" />
+          <Parameter Name="IDDEPARTMENT" Type="int" Mode="In" />
+          <Parameter Name="AREA" Type="clob" Mode="In" />
+        </Function>
+        <Function Name="CITIES_DELETEALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird"/>          
+        <Function Name="CITIES_DELETEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="IDDEPARTMENT" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CITIES_GETALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird"/>
+        <Function Name="CITIES_GETBYDEPARTMENT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="DEPARTMENT" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CITIES_GETBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CITIES_RESETID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="NEWID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="CITIES_UPDATEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="NAME" Type="varchar" Mode="In" />
+          <Parameter Name="AREA" Type="clob" Mode="In" />
+          <Parameter Name="IDDEPARTMENT" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DEPARTMENTS_ADD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="NAME" Type="varchar" Mode="In" />          
+          <Parameter Name="AREA" Type="clob" Mode="In" />
+        </Function>
+        <Function Name="DEPARTMENTS_ADDWITHPK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="NAME" Type="varchar" Mode="In" />
+          <Parameter Name="AREA" Type="clob" Mode="In" />
+        </Function>
+        <Function Name="DEPARTMENTS_DELETEALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird"/>         
+        
+        <Function Name="DEPARTMENTS_DELETEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DEPARTMENTS_GETALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird"/>          
+        <Function Name="DEPARTMENTS_GETBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DEPARTMENTS_RESETID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="NEWID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="DEPARTMENTS_UPDATEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="NAME" Type="varchar" Mode="In" />
+          <Parameter Name="AREA" Type="clob" Mode="In" />
+        </Function>
+        <Function Name="PUBLISHERS_GETBYCITY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird"/>          
+        <Function Name="TERRITORIES_ADD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="NAME" Type="varchar" Mode="In" />          
+          <Parameter Name="NUMBER" Type="int" Mode="In" />
+          <Parameter Name="AREA" Type="clob" Mode="In" />
+        </Function>
+        <Function Name="TERRITORIES_ADDWITHPK" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="NAME" Type="varchar" Mode="In" />
+          <Parameter Name="NUMBER" Type="int" Mode="In" />
+          <Parameter Name="AREA" Type="clob" Mode="In" />
+        </Function>
+        <Function Name="TERRITORIES_DELETEALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird"/>          
+        <Function Name="TERRITORIES_DELETEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TERRITORIES_GETALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird"/>          
+        <Function Name="TERRITORIES_GETBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TERRITORIES_RESETID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="NEWID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="TERRITORIES_UPDATEBYID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Firebird">
+          <Parameter Name="ID" Type="int" Mode="In" />
+          <Parameter Name="NAME" Type="varchar" Mode="In" />
+          <Parameter Name="NUMBER" Type="int" Mode="In" />
+          <Parameter Name="AREA" Type="clob" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TerritoriesModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+        <EntityContainer Name="TerritoriesDataContext">
+          <EntitySet Name="Addresses" EntityType="TerritoriesModel.Address" />
+          <EntitySet Name="Cities" EntityType="TerritoriesModel.City" />
+          <EntitySet Name="Departments" EntityType="TerritoriesModel.Department" />
+          <EntitySet Name="Publishers" EntityType="TerritoriesModel.Publisher" />
+          <EntitySet Name="Territories" EntityType="TerritoriesModel.Territory" />
+          <EntitySet Name="Tours" EntityType="TerritoriesModel.Tour" />
+          <AssociationSet Name="ADDRESSESKEY0" Association="TerritoriesModel.ADDRESSESKEY0">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="ADDRESSESKEY1" Association="TerritoriesModel.ADDRESSESKEY1">
+            <End Role="Territories" EntitySet="Territories" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="CITIESKEY0" Association="TerritoriesModel.CITIESKEY0">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Cities" EntitySet="Cities" />
+          </AssociationSet>
+          <AssociationSet Name="PUBLISHERSKEY0" Association="TerritoriesModel.PUBLISHERSKEY0">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Publishers" EntitySet="Publishers" />
+          </AssociationSet>
+          <AssociationSet Name="TOURSKEY0" Association="TerritoriesModel.TOURSKEY0">
+            <End Role="Publishers" EntitySet="Publishers" />
+            <End Role="Tours" EntitySet="Tours" />
+          </AssociationSet>
+          <AssociationSet Name="TOURSKEY1" Association="TerritoriesModel.TOURSKEY1">
+            <End Role="Territories" EntitySet="Territories" />
+            <End Role="Tours" EntitySet="Tours" />
+          </AssociationSet>
+          <FunctionImport Name="addresses_GetAll" EntitySet="Addresses" ReturnType="Collection(TerritoriesModel.Address)" />
+          <FunctionImport Name="addresses_GetByCity" EntitySet="Addresses" ReturnType="Collection(TerritoriesModel.Address)">
+            <Parameter Name="CITY" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="addresses_GetById" EntitySet="Addresses" ReturnType="Collection(TerritoriesModel.Address)">
+            <Parameter Name="ID" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="cities_GetAll" EntitySet="Cities" ReturnType="Collection(TerritoriesModel.City)" />
+          <FunctionImport Name="cities_GetByDepartment" EntitySet="Cities" ReturnType="Collection(TerritoriesModel.City)">
+            <Parameter Name="DEPARTMENT" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="cities_GetById" EntitySet="Cities" ReturnType="Collection(TerritoriesModel.City)">
+            <Parameter Name="ID" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="departments_GetAll" EntitySet="Departments" ReturnType="Collection(TerritoriesModel.Department)" />
+          <FunctionImport Name="departments_GetById" EntitySet="Departments" ReturnType="Collection(TerritoriesModel.Department)">
+            <Parameter Name="ID" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="publishers_GetByCity" EntitySet="Publishers" ReturnType="Collection(TerritoriesModel.Publisher)" />
+          <FunctionImport Name="territories_GetAll" EntitySet="Territories" ReturnType="Collection(TerritoriesModel.Territory)" />
+          <FunctionImport Name="territories_GetById" EntitySet="Territories" ReturnType="Collection(TerritoriesModel.Territory)">
+            <Parameter Name="ID" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="addresses_ResetId" ReturnType="Collection(Int32)">
+            <Parameter Name="NEWID" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="cities_ResetId" ReturnType="Collection(Int32)">
+            <Parameter Name="NEWID" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="departments_ResetId" ReturnType="Collection(Int32)">
+            <Parameter Name="NEWID" Mode="In" Type="Int32" /></FunctionImport>
+          <FunctionImport Name="addresses_DeleteAll" />
+          <FunctionImport Name="cities_DeleteAll" />
+          <FunctionImport Name="departments_DeleteAll" />
+          <FunctionImport Name="territories_DeleteAll" />
+          <FunctionImport Name="departments_AddWithPK" ReturnType="Collection(Int32)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="NAME" Mode="In" Type="String" />
+            <Parameter Name="AREA" Mode="In" Type="String" /></FunctionImport>
+          <FunctionImport Name="cities_AddWithPK" ReturnType="Collection(Int32)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="NAME" Mode="In" Type="String" />
+            <Parameter Name="IDDEPARTMENT" Mode="In" Type="Int32" />
+            <Parameter Name="AREA" Mode="In" Type="String" /></FunctionImport>
+          <FunctionImport Name="territories_AddWithPK" ReturnType="Collection(Int32)">
+            <Parameter Name="ID" Mode="In" Type="Int32" />
+            <Parameter Name="NAME" Mode="In" Type="String" />
+            <Parameter Name="NUMBER" Mode="In" Type="Int32" />
+            <Parameter Name="AREA" Mode="In" Type="String" /></FunctionImport>
+          <FunctionImport Name="addresses_AddWithPK" ReturnType="Collection(Int32)">
+            <Parameter Name="IDADDRESS" Mode="In" Type="Int32" />
+            <Parameter Name="STREET" Mode="In" Type="String" />
+            <Parameter Name="NUMBER" Mode="In" Type="String" />
+            <Parameter Name="ADDRESSDATA" Mode="In" Type="String" />
+            <Parameter Name="CORNER1" Mode="In" Type="String" />
+            <Parameter Name="CORNER2" Mode="In" Type="String" />
+            <Parameter Name="PHONE1" Mode="In" Type="String" />
+            <Parameter Name="PHONE2" Mode="In" Type="String" />
+            <Parameter Name="DESCRIPTION" Mode="In" Type="String" />
+            <Parameter Name="MAP1" Mode="In" Type="String" />
+            <Parameter Name="MAP2" Mode="In" Type="String" />
+            <Parameter Name="IDTERRITORY" Mode="In" Type="Int32" />
+            <Parameter Name="IDCITY" Mode="In" Type="Int32" />
+            <Parameter Name="CUSTOMFIELD1" Mode="In" Type="String" />
+            <Parameter Name="CUSTOMFIELD2" Mode="In" Type="String" />
+            <Parameter Name="LAT" Mode="In" Type="Double" />
+            <Parameter Name="LNG" Mode="In" Type="Double" />
+            <Parameter Name="INTERNALTERRITORYNUMBER" Mode="In" Type="Int32" /></FunctionImport></EntityContainer>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="IdAddress" />
+          </Key>
+          <Property Name="IdAddress" Type="Int32" Nullable="false" />
+          <Property Name="Street" Type="String" Nullable="false" MaxLength="80" Unicode="true" FixedLength="false" />
+          <Property Name="Number" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Corner1" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+          <Property Name="Corner2" Type="String" MaxLength="80" Unicode="true" FixedLength="false" />
+          <Property Name="Phone1" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="Phone2" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Map1" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="Map2" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Name="AddressData" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="CustomField1" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="CustomField2" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Lat" Type="Double" />
+          <Property Name="Lng" Type="Double" />
+          <Property Name="InternalTerritoryNumber" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="City" Relationship="TerritoriesModel.ADDRESSESKEY0" FromRole="Addresses" ToRole="Cities" />
+          <NavigationProperty Name="Territory" Relationship="TerritoriesModel.ADDRESSESKEY1" FromRole="Addresses" ToRole="Territories" />
+          </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="IdCity" />
+          </Key>
+          <Property Name="IdCity" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="80" Unicode="true" FixedLength="false" />
+          <Property Name="Area" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Addresses" Relationship="TerritoriesModel.ADDRESSESKEY0" FromRole="Cities" ToRole="Addresses" />
+          <NavigationProperty Name="Department" Relationship="TerritoriesModel.CITIESKEY0" FromRole="Cities" ToRole="Departments" />
+          <NavigationProperty Name="Publishers" Relationship="TerritoriesModel.PUBLISHERSKEY0" FromRole="Cities" ToRole="Publishers" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="IdDepartment" />
+          </Key>
+          <Property Name="IdDepartment" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="80" Unicode="true" FixedLength="false" />
+          <Property Name="Area" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Cities" Relationship="TerritoriesModel.CITIESKEY0" FromRole="Departments" ToRole="Cities" />
+        </EntityType>
+        <EntityType Name="Publisher">
+          <Key>
+            <PropertyRef Name="IdPublisher" />
+          </Key>
+          <Property Name="IdPublisher" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="80" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Notes" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Phone1" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Phone2" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
+          <Property Name="Zip" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="City" Relationship="TerritoriesModel.PUBLISHERSKEY0" FromRole="Publishers" ToRole="Cities" />
+          <NavigationProperty Name="Tours" Relationship="TerritoriesModel.TOURSKEY0" FromRole="Publishers" ToRole="Tours" />
+        </EntityType>
+        <EntityType Name="Territory">
+          <Key>
+            <PropertyRef Name="IdTerritory" />
+          </Key>
+          <Property Name="IdTerritory" Type="Int32" Nullable="false" />
+          <Property Name="Number" Type="Int32" Nullable="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="80" Unicode="true" FixedLength="false" />
+          <Property Name="Area" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Addresses" Relationship="TerritoriesModel.ADDRESSESKEY1" FromRole="Territories" ToRole="Addresses" />
+          <NavigationProperty Name="Tours" Relationship="TerritoriesModel.TOURSKEY1" FromRole="Territories" ToRole="Tours" />
+        </EntityType>
+        <EntityType Name="Tour">
+          <Key>
+            <PropertyRef Name="IdTerritory" />
+            <PropertyRef Name="TourNumber" />
+          </Key>
+          <Property Name="IdTerritory" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" />
+          <Property Name="EndDate" Type="DateTime" />
+          <Property Name="TourNumber" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Publisher" Relationship="TerritoriesModel.TOURSKEY0" FromRole="Tours" ToRole="Publishers" />
+          <NavigationProperty Name="Territory" Relationship="TerritoriesModel.TOURSKEY1" FromRole="Tours" ToRole="Territories" />
+        </EntityType>
+        <Association Name="ADDRESSESKEY0">
+          <End Role="Cities" Type="TerritoriesModel.City" Multiplicity="1" />
+          <End Role="Addresses" Type="TerritoriesModel.Address" Multiplicity="*" />
+        </Association>
+        <Association Name="ADDRESSESKEY1">
+          <End Role="Territories" Type="TerritoriesModel.Territory" Multiplicity="0..1" />
+          <End Role="Addresses" Type="TerritoriesModel.Address" Multiplicity="*" />
+        </Association>
+        <Association Name="CITIESKEY0">
+          <End Role="Departments" Type="TerritoriesModel.Department" Multiplicity="1" />
+          <End Role="Cities" Type="TerritoriesModel.City" Multiplicity="*" />
+        </Association>
+        <Association Name="PUBLISHERSKEY0">
+          <End Role="Cities" Type="TerritoriesModel.City" Multiplicity="0..1" />
+          <End Role="Publishers" Type="TerritoriesModel.Publisher" Multiplicity="*" />
+        </Association>
+        <Association Name="TOURSKEY0">
+          <End Role="Publishers" Type="TerritoriesModel.Publisher" Multiplicity="0..1" />
+          <End Role="Tours" Type="TerritoriesModel.Tour" Multiplicity="*" />
+        </Association>
+        <Association Name="TOURSKEY1">
+          <End Role="Territories" Type="TerritoriesModel.Territory" Multiplicity="1" />
+          <End Role="Tours" Type="TerritoriesModel.Tour" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Territories">
+              <PropertyRef Name="IdTerritory" />
+            </Principal>
+            <Dependent Role="Tours">
+              <PropertyRef Name="IdTerritory" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="urn:schemas-microsoft-com:windows:storage:mapping:CS">
+        <EntityContainerMapping StorageEntityContainer="TerritoriesModelStoreContainer" CdmEntityContainer="TerritoriesDataContext">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.Address)">
+              <MappingFragment StoreEntitySet="Addresses">
+                <ScalarProperty Name="InternalTerritoryNumber" ColumnName="InternalTerritoryNumber" />
+                <ScalarProperty Name="IdAddress" ColumnName="IdAddress" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Corner1" ColumnName="Corner1" />
+                <ScalarProperty Name="Corner2" ColumnName="Corner2" />
+                <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Map1" ColumnName="Map1" />
+                <ScalarProperty Name="Map2" ColumnName="Map2" />
+                <ScalarProperty Name="AddressData" ColumnName="AddressData" />
+                <ScalarProperty Name="CustomField1" ColumnName="CustomField1" />
+                <ScalarProperty Name="CustomField2" ColumnName="CustomField2" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Lng" ColumnName="Lng" />                
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="TerritoriesModel.Address">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="TerritoriesModel.Store.ADDRESSES_ADD">
+                  <AssociationEnd AssociationSet="ADDRESSESKEY0" From="Addresses" To="Cities">
+                    <ScalarProperty Name="IdCity" ParameterName="IDCITY" /></AssociationEnd>
+                  <AssociationEnd AssociationSet="ADDRESSESKEY1" From="Addresses" To="Territories">
+                    <ScalarProperty Name="IdTerritory" ParameterName="IDTERRITORY" /></AssociationEnd>
+                  <ScalarProperty Name="InternalTerritoryNumber" ParameterName="INTERNALTERRITORYNUMBER" />
+                  <ScalarProperty Name="Lng" ParameterName="LNG" />
+                  <ScalarProperty Name="Lat" ParameterName="LAT" />
+                  <ScalarProperty Name="CustomField2" ParameterName="CUSTOMFIELD2" />
+                  <ScalarProperty Name="CustomField1" ParameterName="CUSTOMFIELD1" />
+                  <ScalarProperty Name="Map2" ParameterName="MAP2" />
+                  <ScalarProperty Name="Map1" ParameterName="MAP1" />
+                  <ScalarProperty Name="Description" ParameterName="DESCRIPTION" />
+                  <ScalarProperty Name="Phone2" ParameterName="PHONE2" />
+                  <ScalarProperty Name="Phone1" ParameterName="PHONE1" />
+                  <ScalarProperty Name="Corner2" ParameterName="CORNER2" />
+                  <ScalarProperty Name="Corner1" ParameterName="CORNER1" />
+                  <ScalarProperty Name="AddressData" ParameterName="ADDRESSDATA" />
+                  <ScalarProperty Name="Number" ParameterName="NUMBER" />
+                  <ScalarProperty Name="Street" ParameterName="STREET" />
+                  <ResultBinding Name="IdAddress" ColumnName="NEWID" /></InsertFunction>
+                <UpdateFunction FunctionName="TerritoriesModel.Store.ADDRESSES_UPDATEBYID">
+                  <AssociationEnd AssociationSet="ADDRESSESKEY0" From="Addresses" To="Cities">
+                    <ScalarProperty Name="IdCity" ParameterName="IDCITY" Version="Current" /></AssociationEnd>
+                  <AssociationEnd AssociationSet="ADDRESSESKEY1" From="Addresses" To="Territories">
+                    <ScalarProperty Name="IdTerritory" ParameterName="IDTERRITORY" Version="Current" /></AssociationEnd>
+                  <ScalarProperty Name="InternalTerritoryNumber" ParameterName="INTERNALTERRITORYNUMBER" Version="Current" />
+                  <ScalarProperty Name="Lng" ParameterName="LNG" Version="Current" />
+                  <ScalarProperty Name="Lat" ParameterName="LAT" Version="Current" />
+                  <ScalarProperty Name="CustomField2" ParameterName="CUSTOMFIELD2" Version="Current" />
+                  <ScalarProperty Name="CustomField1" ParameterName="CUSTOMFIELD1" Version="Current" />
+                  <ScalarProperty Name="Map2" ParameterName="MAP2" Version="Current" />
+                  <ScalarProperty Name="Map1" ParameterName="MAP1" Version="Current" />
+                  <ScalarProperty Name="Description" ParameterName="DESCRIPTION" Version="Current" />
+                  <ScalarProperty Name="Phone2" ParameterName="PHONE2" Version="Current" />
+                  <ScalarProperty Name="Phone1" ParameterName="PHONE1" Version="Current" />
+                  <ScalarProperty Name="Corner2" ParameterName="CORNER2" Version="Current" />
+                  <ScalarProperty Name="Corner1" ParameterName="CORNER1" Version="Current" />
+                  <ScalarProperty Name="AddressData" ParameterName="ADDRESSDATA" Version="Current" />
+                  <ScalarProperty Name="Number" ParameterName="NUMBER" Version="Current" />
+                  <ScalarProperty Name="Street" ParameterName="STREET" Version="Current" />
+                  <ScalarProperty Name="IdAddress" ParameterName="IDADDRESS" Version="Original" /></UpdateFunction>
+                <DeleteFunction FunctionName="TerritoriesModel.Store.ADDRESSES_DELETEBYID" >
+                  <AssociationEnd AssociationSet="ADDRESSESKEY1" From="Addresses" To="Territories">
+                    <ScalarProperty Name="IdTerritory" ParameterName="IDTERRITORY" /></AssociationEnd>
+                  <AssociationEnd AssociationSet="ADDRESSESKEY0" From="Addresses" To="Cities">
+                    <ScalarProperty Name="IdCity" ParameterName="IDCITY" /></AssociationEnd>
+                  <ScalarProperty Name="IdAddress" ParameterName="ID" /></DeleteFunction></ModificationFunctionMapping></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.City)">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="TerritoriesModel.City">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="TerritoriesModel.Store.CITIES_ADD">
+                  <AssociationEnd AssociationSet="CITIESKEY0" From="Cities" To="Departments">
+                    <ScalarProperty Name="IdDepartment" ParameterName="IDDEPARTMENT" /></AssociationEnd>
+                  <ScalarProperty Name="Area" ParameterName="AREA" />
+                  <ScalarProperty Name="Name" ParameterName="NAME" />
+                  <ResultBinding Name="IdCity" ColumnName="NEWID" /></InsertFunction>
+                <UpdateFunction FunctionName="TerritoriesModel.Store.CITIES_UPDATEBYID">
+                  <AssociationEnd AssociationSet="CITIESKEY0" From="Cities" To="Departments">
+                    <ScalarProperty Name="IdDepartment" ParameterName="IDDEPARTMENT" Version="Current" /></AssociationEnd>
+                  <ScalarProperty Name="IdCity" ParameterName="ID" Version="Original" />
+                  <ScalarProperty Name="Area" ParameterName="AREA" Version="Current" />
+                  <ScalarProperty Name="Name" ParameterName="NAME" Version="Current" /></UpdateFunction>
+                <DeleteFunction FunctionName="TerritoriesModel.Store.CITIES_DELETEBYID" >
+                  <AssociationEnd AssociationSet="CITIESKEY0" From="Cities" To="Departments">
+                    <ScalarProperty Name="IdDepartment" ParameterName="IDDEPARTMENT" /></AssociationEnd>
+                  <ScalarProperty Name="IdCity" ParameterName="ID" /></DeleteFunction></ModificationFunctionMapping></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.Department)">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="IdDepartment" ColumnName="IdDepartment" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="TerritoriesModel.Department">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="TerritoriesModel.Store.DEPARTMENTS_ADD">
+                  <ScalarProperty Name="Area" ParameterName="AREA" />
+                  <ScalarProperty Name="Name" ParameterName="NAME" />
+                  <ResultBinding Name="IdDepartment" ColumnName="NEWID" /></InsertFunction>
+                <UpdateFunction FunctionName="TerritoriesModel.Store.DEPARTMENTS_UPDATEBYID">
+                  <ScalarProperty Name="IdDepartment" ParameterName="ID" Version="Original" />
+                  <ScalarProperty Name="Area" ParameterName="AREA" Version="Current" />
+                  <ScalarProperty Name="Name" ParameterName="NAME" Version="Current" /></UpdateFunction>
+                <DeleteFunction FunctionName="TerritoriesModel.Store.DEPARTMENTS_DELETEBYID" >
+                  <ScalarProperty Name="IdDepartment" ParameterName="ID" /></DeleteFunction></ModificationFunctionMapping></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Publishers">
+            <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.Publisher)">
+              <MappingFragment StoreEntitySet="Publishers">
+                <ScalarProperty Name="IdPublisher" ColumnName="IdPublisher" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="Phone1" ColumnName="Phone1" />
+                <ScalarProperty Name="Phone2" ColumnName="Phone2" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Territories">
+            <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.Territory)">
+              <MappingFragment StoreEntitySet="Territories">
+                <ScalarProperty Name="IdTerritory" ColumnName="IdTerritory" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="TerritoriesModel.Territory">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="TerritoriesModel.Store.TERRITORIES_ADD">
+                  <ScalarProperty Name="Area" ParameterName="AREA" />
+                  <ScalarProperty Name="Number" ParameterName="NUMBER" />
+                  <ScalarProperty Name="Name" ParameterName="NAME" />
+                  <ResultBinding Name="IdTerritory" ColumnName="NEWID" /></InsertFunction>
+                <UpdateFunction FunctionName="TerritoriesModel.Store.TERRITORIES_UPDATEBYID">
+                  <ScalarProperty Name="IdTerritory" ParameterName="ID" Version="Original" />
+                  <ScalarProperty Name="Area" ParameterName="AREA" Version="Current" />
+                  <ScalarProperty Name="Number" ParameterName="NUMBER" Version="Current" />
+                  <ScalarProperty Name="Name" ParameterName="NAME" Version="Current" /></UpdateFunction>
+                <DeleteFunction FunctionName="TerritoriesModel.Store.TERRITORIES_DELETEBYID" >
+                  <ScalarProperty Name="IdTerritory" ParameterName="ID" /></DeleteFunction></ModificationFunctionMapping></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Tours">
+            <EntityTypeMapping TypeName="IsTypeOf(TerritoriesModel.Tour)">
+              <MappingFragment StoreEntitySet="Tours">
+                <ScalarProperty Name="IdTerritory" ColumnName="IdTerritory" />
+                <ScalarProperty Name="StartDate" ColumnName="BeginDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="TourNumber" ColumnName="TourNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ADDRESSESKEY0" TypeName="TerritoriesModel.ADDRESSESKEY0" StoreEntitySet="Addresses">
+            <EndProperty Name="Cities">
+              <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+            </EndProperty>
+            <EndProperty Name="Addresses">
+              <ScalarProperty Name="IdAddress" ColumnName="IdAddress" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ADDRESSESKEY1" TypeName="TerritoriesModel.ADDRESSESKEY1" StoreEntitySet="Addresses">
+            <EndProperty Name="Territories">
+              <ScalarProperty Name="IdTerritory" ColumnName="IdTerritory" />
+            </EndProperty>
+            <EndProperty Name="Addresses">
+              <ScalarProperty Name="IdAddress" ColumnName="IdAddress" />
+            </EndProperty>
+            <Condition ColumnName="IdTerritory" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="CITIESKEY0" TypeName="TerritoriesModel.CITIESKEY0" StoreEntitySet="Cities">
+            <EndProperty Name="Departments">
+              <ScalarProperty Name="IdDepartment" ColumnName="IdDepartment" />
+            </EndProperty>
+            <EndProperty Name="Cities">
+              <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="PUBLISHERSKEY0" TypeName="TerritoriesModel.PUBLISHERSKEY0" StoreEntitySet="Publishers">
+            <EndProperty Name="Cities">
+              <ScalarProperty Name="IdCity" ColumnName="IdCity" />
+            </EndProperty>
+            <EndProperty Name="Publishers">
+              <ScalarProperty Name="IdPublisher" ColumnName="IdPublisher" />
+            </EndProperty>
+            <Condition ColumnName="IdCity" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TOURSKEY0" TypeName="TerritoriesModel.TOURSKEY0" StoreEntitySet="Tours">
+            <EndProperty Name="Publishers">
+              <ScalarProperty Name="IdPublisher" ColumnName="IdPublisher" />
+            </EndProperty>
+            <EndProperty Name="Tours">
+              <ScalarProperty Name="IdTerritory" ColumnName="IdTerritory" />
+              <ScalarProperty Name="TourNumber" ColumnName="TourNumber" />
+            </EndProperty>
+            <Condition ColumnName="IdPublisher" IsNull="false" />
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="TOURSKEY1" TypeName="TerritoriesModel.TOURSKEY1" StoreEntitySet="Tours">
+            <EndProperty Name="Territories">
+              <ScalarProperty Name="IdTerritory" ColumnName="IdTerritory" />
+            </EndProperty>
+            <EndProperty Name="Tours">
+              <ScalarProperty Name="IdTerritory" ColumnName="IdTerritory" />
+              <ScalarProperty Name="TourNumber" ColumnName="TourNumber" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="addresses_GetAll" FunctionName="TerritoriesModel.Store.ADDRESSES_GETALL" />
+          <FunctionImportMapping FunctionImportName="addresses_GetByCity" FunctionName="TerritoriesModel.Store.ADDRESSES_GETBYCITY" />
+          <FunctionImportMapping FunctionImportName="addresses_GetById" FunctionName="TerritoriesModel.Store.ADDRESSES_GETBYID" />
+          <FunctionImportMapping FunctionImportName="cities_GetAll" FunctionName="TerritoriesModel.Store.CITIES_GETALL" />
+          <FunctionImportMapping FunctionImportName="cities_GetByDepartment" FunctionName="TerritoriesModel.Store.CITIES_GETBYDEPARTMENT" />
+          <FunctionImportMapping FunctionImportName="cities_GetById" FunctionName="TerritoriesModel.Store.CITIES_GETBYID" />
+          <FunctionImportMapping FunctionImportName="departments_GetAll" FunctionName="TerritoriesModel.Store.DEPARTMENTS_GETALL" />
+          <FunctionImportMapping FunctionImportName="departments_GetById" FunctionName="TerritoriesModel.Store.DEPARTMENTS_GETBYID" />
+          <FunctionImportMapping FunctionImportName="publishers_GetByCity" FunctionName="TerritoriesModel.Store.PUBLISHERS_GETBYCITY" />
+          <FunctionImportMapping FunctionImportName="territories_GetAll" FunctionName="TerritoriesModel.Store.TERRITORIES_GETALL" />
+          <FunctionImportMapping FunctionImportName="territories_GetById" FunctionName="TerritoriesModel.Store.TERRITORIES_GETBYID" />
+          <FunctionImportMapping FunctionImportName="addresses_ResetId" FunctionName="TerritoriesModel.Store.ADDRESSES_RESETID" />
+          <FunctionImportMapping FunctionImportName="cities_ResetId" FunctionName="TerritoriesModel.Store.CITIES_RESETID" />
+          <FunctionImportMapping FunctionImportName="departments_ResetId" FunctionName="TerritoriesModel.Store.DEPARTMENTS_RESETID" />
+          <FunctionImportMapping FunctionImportName="addresses_DeleteAll" FunctionName="TerritoriesModel.Store.ADDRESSES_DELETEALL" />
+          <FunctionImportMapping FunctionImportName="cities_DeleteAll" FunctionName="TerritoriesModel.Store.CITIES_DELETEALL" />
+          <FunctionImportMapping FunctionImportName="departments_DeleteAll" FunctionName="TerritoriesModel.Store.DEPARTMENTS_DELETEALL" />
+          <FunctionImportMapping FunctionImportName="territories_DeleteAll" FunctionName="TerritoriesModel.Store.TERRITORIES_DELETEALL" />
+          <FunctionImportMapping FunctionImportName="departments_AddWithPK" FunctionName="TerritoriesModel.Store.DEPARTMENTS_ADDWITHPK" />
+          <FunctionImportMapping FunctionImportName="cities_AddWithPK" FunctionName="TerritoriesModel.Store.CITIES_ADDWITHPK" />
+          <FunctionImportMapping FunctionImportName="territories_AddWithPK" FunctionName="TerritoriesModel.Store.TERRITORIES_ADDWITHPK" />
+          <FunctionImportMapping FunctionImportName="addresses_AddWithPK" FunctionName="TerritoriesModel.Store.ADDRESSES_ADDWITHPK" /></EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram Name="TerritoriesDataContext" ZoomLevel="81">
+        <EntityTypeShape EntityType="TerritoriesModel.Address" Width="2" PointX="2.125" PointY="0.875" Height="3.8931689453124987" IsExpanded="true" />
+        <EntityTypeShape EntityType="TerritoriesModel.City" Width="1.5" PointX="3" PointY="5.625" Height="1.9210009765624996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TerritoriesModel.Department" Width="1.5" PointX="0.5" PointY="7.625" Height="1.7879850260416665" IsExpanded="true" />
+        <EntityTypeShape EntityType="TerritoriesModel.Publisher" Width="1.5" PointX="6.875" PointY="5.125" Height="2.7494921874999996" IsExpanded="true" />
+        <EntityTypeShape EntityType="TerritoriesModel.Territory" Width="1.5" PointX="5.125" PointY="1.625" Height="1.9210009765625005" IsExpanded="true" />
+        <EntityTypeShape EntityType="TerritoriesModel.Tour" Width="1.5" PointX="9.125" PointY="5.375" Height="2.1725878906249996" IsExpanded="true" />
+        <AssociationConnector Association="TerritoriesModel.ADDRESSESKEY0" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.5625" PointY="5.625" />
+          <ConnectorPoint PointX="3.5625" PointY="4.7681689453124987" />
+          </AssociationConnector>
+        <AssociationConnector Association="TerritoriesModel.ADDRESSESKEY1" ManuallyRouted="false">
+          <ConnectorPoint PointX="5.125" PointY="2.5855004882812502" />
+          <ConnectorPoint PointX="4.125" PointY="2.5855004882812502" />
+          </AssociationConnector>
+        <AssociationConnector Association="TerritoriesModel.CITIESKEY0" ManuallyRouted="false">
+          <ConnectorPoint PointX="2" PointY="8.605286958333334" />
+          <ConnectorPoint PointX="3.75" PointY="8.605286958333334" />
+          <ConnectorPoint PointX="3.75" PointY="7.797587890625" /></AssociationConnector>
+        <AssociationConnector Association="TerritoriesModel.PUBLISHERSKEY0" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="6.7112939453125" />
+          <ConnectorPoint PointX="6.875" PointY="6.7112939453125" />
+          </AssociationConnector>
+        <AssociationConnector Association="TerritoriesModel.TOURSKEY0" ManuallyRouted="false">
+          <ConnectorPoint PointX="8.375" PointY="6.4612939453125" />
+          <ConnectorPoint PointX="9.125" PointY="6.4612939453125" /></AssociationConnector>
+        <AssociationConnector Association="TerritoriesModel.TOURSKEY1" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.625" PointY="2.7112939453125" />
+          <ConnectorPoint PointX="9.875" PointY="2.7112939453125" />
+          <ConnectorPoint PointX="9.875" PointY="5.375" />
+          </AssociationConnector></Diagram></edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
