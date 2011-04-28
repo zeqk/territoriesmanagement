@@ -152,7 +152,7 @@ namespace TerritoriesManagement.GUI.Interop
             //Territory
             ExternalTable territoryTable = new ExternalTable();
             territoryTable.ExternalTableName = "(TABLE NAME)";
-            territoryTable.RelatedEntitySet = EntitiesEnum.Cities;
+            territoryTable.RelatedEntitySet = EntitiesEnum.Territories;
             territoryTable.Fields.Add(new Field("(COLUMN NAME)", "Id"));
             territoryTable.Fields.Add(new Field("(COLUMN NAME)", "Name"));
             territoryTable.Fields.Add(new Field("(COLUMN NAME)", "Number"));
@@ -160,7 +160,7 @@ namespace TerritoriesManagement.GUI.Interop
             //Address
             ExternalTable addressTable = new ExternalTable();
             addressTable.ExternalTableName = "(TABLE NAME)";
-            addressTable.RelatedEntitySet = EntitiesEnum.Cities;
+            addressTable.RelatedEntitySet = EntitiesEnum.Addresses;
             addressTable.Fields.Add(new Field("(COLUMN NAME)", "Id"));
             addressTable.Fields.Add(new Field("(COLUMN NAME)", "Street"));
             addressTable.Fields.Add(new Field("(COLUMN NAME)", "AddressData"));
@@ -183,6 +183,7 @@ namespace TerritoriesManagement.GUI.Interop
             _tables.Add(departmentTable);
             _tables.Add(cityTable);
             _tables.Add(territoryTable);
+            _tables.Add(addressTable);
         }
 
         #endregion

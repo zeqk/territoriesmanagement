@@ -18,8 +18,11 @@ namespace TerritoriesManagement.GUI.Interop
         static bool completed = false;
         
         delegate string StringRetriever();
+        delegate EntitiesEnum EntityRetriever();
+
         static StringRetriever logRetriever; 
         static StringRetriever actionRetriever;
+        static EntityRetriever tableRetriever;
 
         //Final step - In progress
         static InProgressUI inProgressControl = new InProgressUI(); 
@@ -31,9 +34,6 @@ namespace TerritoriesManagement.GUI.Interop
         {
             ImportSettings.GetInstance().LoadConfig();
 
-            
-            
-            EntitiesEnum table = EntitiesEnum.Departments;
             string entityName = "";
             string file = "";
 
@@ -78,10 +78,11 @@ namespace TerritoriesManagement.GUI.Interop
             #endregion
 
             #region External
-
+            
             //Choose table step (Import and export)
             SelectionStep stepChooseTable = new SelectionStep("Table selection", "Please select the table:", Enum.GetNames(typeof(EntitiesEnum)));
-            
+            tableRetriever = () => (EntitiesEnum)Enum.Parse(typeof(EntitiesEnum),(string)stepChooseTable.Selected);
+
             //Set fields step (Import)
             PropertyGrid propGrid = new PropertyGrid();            
             TemplateStep stepSetFields = new TemplateStep(propGrid);
@@ -165,21 +166,21 @@ namespace TerritoriesManagement.GUI.Interop
             stepChooseTable.NextHandler = () =>
             {
                 controller.DeleteAllAfterCurrent();
-
+                
                 if (actionRetriever() == "Import (External)") //Import (External)
                 {
                     //load data for the stepSetFields                    
                     var tables = ImportSettings.GetInstance().Tables;
                     foreach (ExternalTable item in tables)
                     {
-                        if (item.RelatedEntitySet == table)
+                        if (item.RelatedEntitySet == tableRetriever())
                         {
                             propGrid.SelectedObject = item;
                             break;
                         }
                     }
 
-                    stepSetFields.Title = Enum.GetName(typeof(EntitiesEnum), table);
+                    stepSetFields.Title = Enum.GetName(typeof(EntitiesEnum), tableRetriever());
 
 
                     //load data for stepSetConn
@@ -190,7 +191,7 @@ namespace TerritoriesManagement.GUI.Interop
                 }
                 else //Export (External)
                 {
-                    entityName = Helper.GetEntityNameByEntitySetName(Enum.GetName(typeof(EntitiesEnum),table));
+                    entityName = Helper.GetEntityNameByEntitySetName(Enum.GetName(typeof(EntitiesEnum), tableRetriever()));
                     IList<Property> props = Helper.GetPropertyListByType(entityName);
                     chkFields.Items.Clear();
                     chkFields.Items.AddRange(props.ToArray());
@@ -213,7 +214,7 @@ namespace TerritoriesManagement.GUI.Interop
                 ImportSettings.GetInstance().Provider = stepSetConn.Provider;
 
                 ImportTool importer = new ImportTool();
-                SetConfig(ref importer, table);
+                SetConfig(ref importer, tableRetriever());
 
                 importer.bg.RunWorkerCompleted += new RunWorkerCompletedEventHandler(ProcessCompleted);
                 importer.bg.ProgressChanged += new ProgressChangedEventHandler(ProgressChanged);
