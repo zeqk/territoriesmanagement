@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:georss="http://www.georss.org/georss" xmlns:gml="http://www.opengis.net/gml">
+<channel>
+  <link>http://maps.google.com</link>
+  <title>Tests</title>
+  <description><![CDATA[mapas de pruebas]]></description>
+  <item>
+    <guid isPermaLink="false">00046ebeb50abb48ada9e</guid>
+    <pubDate>Wed, 15 Jul 2009 13:41:07 +0000</pubDate>
+    <title>Linea 1</title>
+    <description><![CDATA[]]></description>
+    <author>zeqk.net</author>
+    <gml:LineString>
+      <gml:posList>
+        -34.621189 -58.409206
+        -34.627831 -58.408649
+      </gml:posList>
+    </gml:LineString>
+  </item>
+  <item>
+    <guid isPermaLink="false">00046ebeb50af2348f9ec</guid>
+    <pubDate>Wed, 15 Jul 2009 13:41:07 +0000</pubDate>
+    <title>Linea 2</title>
+    <description><![CDATA[]]></description>
+    <author>zeqk.net</author>
+    <gml:LineString>
+      <gml:posList>
+        -34.623203 -58.407104
+        -34.622498 -58.402725
+        -34.626064 -58.401695
+      </gml:posList>
+    </gml:LineString>
+  </item>
+  <item>
+    <guid isPermaLink="false">00046ebeb698ca53cded0</guid>
+    <pubDate>Wed, 15 Jul 2009 13:41:33 +0000</pubDate>
+    <title>Poligono 1</title>
+    <description><![CDATA[]]></description>
+    <author>zeqk.net</author>
+    <gml:Polygon>
+      <gml:exterior>
+        <gml:LinearRing>
+          <gml:posList>
+            -34.616741 -58.412727
+            -34.619427 -58.412727
+            -34.619850 -58.416676
+            -34.617413 -58.416973
+            -34.617092 -58.414314
+            -34.616634 -58.414272
+            -34.616741 -58.412727
+          </gml:posList>
+        </gml:LinearRing>
+      </gml:exterior>
+    </gml:Polygon>
+  </item>
+  <item>
+    <guid isPermaLink="false">00046ebeb69928c020aa0</guid>
+    <pubDate>Wed, 15 Jul 2009 13:41:33 +0000</pubDate>
+    <title>Punto 1</title>
+    <description><![CDATA[]]></description>
+    <author>zeqk.net</author>
+    <georss:point>
+      -34.616646 -58.406967
+    </georss:point>
+    <georss:elev>0.000000</georss:elev>
+  </item>
+  <item>
+    <guid isPermaLink="false">00046ec131ace0b932218</guid>
+    <pubDate>Wed, 15 Jul 2009 16:39:07 +0000</pubDate>
+    <title>Direccion 4</title>
+    <description><![CDATA[<div dir="ltr">4</div>]]></description>
+    <author>zeqk.net</author>
+    <georss:point>
+      -34.607990 -58.420830
+    </georss:point>
+    <georss:elev>0.000000</georss:elev>
+  </item>
+  <item>
+    <guid isPermaLink="false">00046ec131b180d9baf91</guid>
+    <pubDate>Wed, 15 Jul 2009 16:39:08 +0000</pubDate>
+    <title>Direcion 5</title>
+    <description><![CDATA[<div dir="ltr">5</div>]]></description>
+    <author>zeqk.net</author>
+    <georss:point>
+      -34.608345 -58.409199
+    </georss:point>
+    <georss:elev>0.000000</georss:elev>
+  </item>
+  <item>
+    <guid isPermaLink="false">00046ec13551ed8a3e49b</guid>
+    <pubDate>Wed, 15 Jul 2009 16:40:09 +0000</pubDate>
+    <title>Direccion 6</title>
+    <description><![CDATA[<div dir="ltr">6</div>]]></description>
+    <author>zeqk.net</author>
+    <georss:point>
+      46.073231 -92.812500
+    </georss:point>
+    <georss:elev>0.000000</georss:elev>
+  </item>
+  <item>
+    <guid isPermaLink="false">00046ec135542b0be3c3e</guid>
+    <pubDate>Wed, 15 Jul 2009 16:40:09 +0000</pubDate>
+    <title>Territorio 35</title>
+    <description><![CDATA[]]></description>
+    <author>zeqk.net</author>
+    <gml:Polygon>
+      <gml:exterior>
+        <gml:LinearRing>
+          <gml:posList>
+            -34.597702 -58.423325
+            -34.608654 -58.424786
+            -34.611443 -58.424526
+            -34.612785 -58.423626
+            -34.611443 -58.421139
+            -34.610844 -58.416203
+            -34.610313 -58.408520
+            -34.610172 -58.405945
+            -34.607628 -58.406204
+            -34.604591 -58.405560
+            -34.598408 -58.403801
+            -34.598057 -58.404613
+            -34.597702 -58.423325
+          </gml:posList>
+        </gml:LinearRing>
+      </gml:exterior>
+    </gml:Polygon>
+  </item>
+  <item>
+    <guid isPermaLink="false">00046ec1f7c51d917e3c7</guid>
+    <pubDate>Wed, 15 Jul 2009 17:34:31 +0000</pubDate>
+    <title>Direccion 189</title>
+    <description><![CDATA[<div dir="ltr">189</div>]]></description>
+    <author>zeqk.net</author>
+    <georss:point>
+      -34.605026 -58.400661
+    </georss:point>
+    <georss:elev>0.000000</georss:elev>
+  </item>
+  <item>
+    <guid isPermaLink="false">00046ec303e0af8782419</guid>
+    <pubDate>Wed, 15 Jul 2009 18:49:29 +0000</pubDate>
+    <title>Territorio 1.1</title>
+    <description><![CDATA[<div dir="ltr">35<br>territory</div>]]></description>
+    <author>zeqk.net</author>
+    <gml:Polygon>
+      <gml:exterior>
+        <gml:LinearRing>
+          <gml:posList>
+            6.066271 12.033691
+            3.175619 11.022948
+            4.271916 17.395020
+            6.066271 12.033691
+          </gml:posList>
+        </gml:LinearRing>
+      </gml:exterior>
+    </gml:Polygon>
+  </item>
+</channel>
+</rss>
