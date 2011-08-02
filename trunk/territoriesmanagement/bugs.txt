@@ -1,1 +1,3 @@
 BUGS
+- cuando se filtran las ciudades, se selecciona el primer item
+- cuando se importa incluyendo el id, despues da un error al querer generar los ids

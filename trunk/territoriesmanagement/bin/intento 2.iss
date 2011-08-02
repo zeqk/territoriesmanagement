@@ -1,8 +1,8 @@
 [ISPP]
 ; Por favor, no edite esta sección manualmente si no sabe lo que está haciendo.
 ; Please, don't edit this section manually if you don't know what are you doing.
-#define path "D:\documentos\zeqk\Visual Studio 2008\Projects\territoriesmanagement"
-#define ver "1.11.0221"
+#define path "D:\documentos\zeqk\My windows docs\Visual Studio 2008\Projects\territoriesmanagement"
+#define ver "1.5.11.0801"
 
 [Setup]
 OutputBaseFilename=tmsetup{#ver}

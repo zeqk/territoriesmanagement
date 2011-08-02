@@ -18,8 +18,7 @@ namespace TestConsole
         {
             try
             {
-                TerritoriesDataContext dm = new TerritoriesDataContext();
-                string hola = Helper.GetEntityNameByEntitySetName(dm, "Addresses");
+                getStatics();
             }
             catch (Exception ex)
             {
@@ -104,7 +103,6 @@ namespace TestConsole
 
         static void getStatics()
         {
-            Console.ReadKey();
             TerritoriesDataContext dm = new TerritoriesDataContext();
 
             int tiene = 0;
@@ -132,7 +130,6 @@ namespace TestConsole
             {
                 Console.WriteLine(item);
             }
-            Console.ReadKey();
         }
 
         #region rss
