@@ -132,9 +132,6 @@
     <Compile Include="Property.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.Config" />
-  </ItemGroup>
-  <ItemGroup>
     <EntityDeploy Include="Model\TerritoriesModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TerritoriesModel.Designer.cs</LastGenOutput>

@@ -1,4 +1,4 @@
-<Localizer language="Español - BSAS" associatedCulture="es-AR">
+<Localizer language="Español - Argentina" associatedCulture="es-AR">
   <String>
     <Original>About Territories Management</Original>
     <Translated>Acerca de Territories Management</Translated>
@@ -28,6 +28,22 @@
     <Translated>Area</Translated>
   </String>
   <String>
+    <Original>Are you sure you want to delete this city?</Original>
+    <Translated>¿Está seguro que desea eliminar esta ciudad?</Translated>
+  </String>
+  <String>
+    <Original>Are you sure you want to delete this department?</Original>
+    <Translated>¿Está seguro que desea eliminar este departamento?</Translated>
+  </String>
+  <String>
+    <Original>Are you sure you want to delete this territory?</Original>
+    <Translated>¿Está seguro que desea eliminar este territorio?</Translated>
+  </String>
+  <String>
+    <Original>Are you sure you want to delete these {0} addresses?</Original>
+    <Translated>¿Está seguro que desea eliminar estas {0} direcciones?</Translated>
+  </String>
+  <String>
     <Original>Autoselect</Original>
     <Translated>Autoseleccionar</Translated>
   </String>
@@ -50,6 +66,10 @@
   <String>
     <Original>City</Original>
     <Translated>Ciudad</Translated>
+  </String>
+  <String>
+    <Original>Clear</Original>
+    <Translated>Limpiar</Translated>
   </String>
   <String>
     <Original>Clear area</Original>
@@ -117,11 +137,11 @@
   </String>
   <String>
     <Original>Department</Original>
-    <Translated>Partido</Translated>
+    <Translated>Departamento</Translated>
   </String>
   <String>
     <Original>Departments</Original>
-    <Translated>Partidos</Translated>
+    <Translated>Departamentos</Translated>
   </String>
   <String>
     <Original>Description</Original>
@@ -173,11 +193,11 @@
   </String>
   <String>
     <Original>Filter by department</Original>
-    <Translated>Filtrar por partido</Translated>
+    <Translated>Filtrar por departamento</Translated>
   </String>
   <String>
     <Original>Filter by department name</Original>
-    <Translated>Filtrar por ciudad</Translated>
+    <Translated>Filtrar por departamento</Translated>
   </String>
   <String>
     <Original>Filter by territory name</Original>
@@ -197,7 +217,7 @@
   </String>
   <String>
     <Original>Geo location</Original>
-    <Translated>Geo localización.</Translated>
+    <Translated>Geo localización</Translated>
   </String>
   <String>
     <Original>Go</Original>
@@ -274,6 +294,14 @@
   <String>
     <Original>Maps</Original>
     <Translated>Mapas</Translated>
+  </String>
+  <String>
+    <Original>Mark</Original>
+    <Translated>Marcar</Translated>
+  </String>
+   <String>
+    <Original>Marked</Original>
+    <Translated>Marcado</Translated>
   </String>
   <String>
     <Original>Menu</Original>
@@ -435,6 +463,10 @@
     <Original>Tours</Original>
     <Translated>Recorridos</Translated>
   </String>
+   <String>
+    <Original>Unmark</Original>
+    <Translated>Desmarcar</Translated>
+  </String>
   <String>
     <Original>Update</Original>
     <Translated>Guardar</Translated>
@@ -461,7 +493,7 @@
   </String>
   <String>
     <Original>You must select a department</Original>
-    <Translated>Debe seleccionar un partido.</Translated>
+    <Translated>Debe seleccionar un departamento</Translated>
   </String>
   <String>
     <Original>You must select at least one search criteria.</Original>
@@ -505,15 +537,15 @@
   </String>
   <String>
     <Original>Select a department.</Original>
-    <Translated>Seleccione un partido.</Translated>
+    <Translated>Seleccione un departamento.</Translated>
   </String>
   <String>
     <Original>Enter department name.</Original>
-    <Translated>Ingrese el nombre del partido.</Translated>
+    <Translated>Ingrese el nombre del departamento.</Translated>
   </String>
   <String>
     <Original>The department already exists. Correct and try again.</Original>
-    <Translated>El partido ya existe. Corríjalo e intente nuevamente.</Translated>
+    <Translated>El departamento ya existe. Corríjalo e intente nuevamente.</Translated>
   </String>
   <String>
     <Original>Enter territory name.</Original>
@@ -525,11 +557,11 @@
   </String>
   <String>
     <Original>Some departments have not been imported successfully.</Original>
-    <Translated>Algunos partidos no han sido importados exitosamente.</Translated>
+    <Translated>Algunos departamentos no han sido importados exitosamente.</Translated>
   </String>
   <String>
     <Original>No department has been imported.</Original>
-    <Translated>Ningún partido ha sido importado.</Translated>
+    <Translated>Ningún departamento ha sido importado.</Translated>
   </String>
   <String>
     <Original>Some cities have not been imported successfully.</Original>
@@ -557,7 +589,7 @@
   </String>
   <String>
     <Original>IMPORT DEPARTMENTS ERRORS: </Original>
-    <Translated>ERRORES DE IMPORTACIÓN DE PARTIDOS: </Translated>
+    <Translated>ERRORES DE IMPORTACIÓN DE DEPARTAMENTOS: </Translated>
   </String>
   <String>
     <Original>-Error: </Original>
@@ -585,11 +617,11 @@
   </String>
   <String>
     <Original>  -There is no department.. </Original>
-    <Translated>  -No tiene partido. </Translated>
+    <Translated>  -No tiene departamento. </Translated>
   </String>
   <String>
     <Original>  -Department doesn't exist. </Original>
-    <Translated>  -El partido no existe.</Translated>
+    <Translated>  -El departamento no existe.</Translated>
   </String>
   <String>
     <Original>  -The street is blank or null. </Original>
@@ -605,7 +637,7 @@
   </String>
   <String>
     <Original>{0} departments have been imported.</Original>
-    <Translated>{0} partidos han sido importados.</Translated>
+    <Translated>{0} departamentos han sido importados.</Translated>
   </String>
   <String>
     <Original>{0} cities has been imported.</Original>

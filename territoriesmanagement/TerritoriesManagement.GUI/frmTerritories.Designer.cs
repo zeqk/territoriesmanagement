@@ -173,7 +173,7 @@
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(69, 38);
             this.btnNew.TabIndex = 6;
-            this.btnNew.Text = "New";
+            this.btnNew.Text = "Clear";
             this.btnNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.btnNew_Click);

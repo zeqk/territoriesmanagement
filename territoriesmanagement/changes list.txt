@@ -1,4 +1,13 @@
 Versiones
+* 1.5.110801 Beta - 01/08/2011
+ - Boton "Nuevo" de los formularios cambiado a "Limpiar"
+ - Traducciones actualizadas
+ - Nueva traducción Español-Argentina para las provincias que no sean Buenos Aires
+
+* 1.5.110509 Beta - 09/05/2011
+ - Fix. Cuando generaba un reporte de excel de las direcciones no incluía el territorio ni la ciudad
+ - FIX. Importación externa
+
 * 1.5.110310 Beta - 10/03/2011
  - Sistema de marcación de direcciones
  - Idioma "Español - Chile" incluido

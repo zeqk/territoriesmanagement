@@ -1,4 +1,4 @@
-<Localizer language="Español - Chile" associatedCulture="es-CL">
+<Localizer language="Español - Argentina" associatedCulture="es-AR">
   <String>
     <Original>About Territories Management</Original>
     <Translated>Acerca de Territories Management</Translated>
@@ -29,11 +29,11 @@
   </String>
   <String>
     <Original>Are you sure you want to delete this city?</Original>
-    <Translated>¿Está seguro que desea eliminar esta comuna?</Translated>
+    <Translated>¿Está seguro que desea eliminar esta ciudad?</Translated>
   </String>
   <String>
     <Original>Are you sure you want to delete this department?</Original>
-    <Translated>¿Está seguro que desea eliminar esta región?</Translated>
+    <Translated>¿Está seguro que desea eliminar este departamento?</Translated>
   </String>
   <String>
     <Original>Are you sure you want to delete this territory?</Original>
@@ -61,11 +61,11 @@
   </String>
   <String>
     <Original>Cities</Original>
-    <Translated>Comunas</Translated>
+    <Translated>Ciudades</Translated>
   </String>
   <String>
     <Original>City</Original>
-    <Translated>Comuna</Translated>
+    <Translated>Ciudad</Translated>
   </String>
   <String>
     <Original>Clear</Original>
@@ -137,11 +137,11 @@
   </String>
   <String>
     <Original>Department</Original>
-    <Translated>Región</Translated>
+    <Translated>Departamento</Translated>
   </String>
   <String>
     <Original>Departments</Original>
-    <Translated>Regiones</Translated>
+    <Translated>Departamentos</Translated>
   </String>
   <String>
     <Original>Description</Original>
@@ -189,15 +189,15 @@
   </String>
   <String>
     <Original>Filter by city name</Original>
-    <Translated>Filtrar por comuna</Translated>
+    <Translated>Filtrar por ciudad</Translated>
   </String>
   <String>
     <Original>Filter by department</Original>
-    <Translated>Filtrar por región</Translated>
+    <Translated>Filtrar por departamento</Translated>
   </String>
   <String>
     <Original>Filter by department name</Original>
-    <Translated>Filtrar por región</Translated>
+    <Translated>Filtrar por departamento</Translated>
   </String>
   <String>
     <Original>Filter by territory name</Original>
@@ -489,11 +489,11 @@
   </String>
   <String>
     <Original>You must select a city</Original>
-    <Translated>Debe seleccionar una comuna.</Translated>
+    <Translated>Debe seleccionar una ciudad.</Translated>
   </String>
   <String>
     <Original>You must select a department</Original>
-    <Translated>Debe seleccionar una región.</Translated>
+    <Translated>Debe seleccionar un departamento</Translated>
   </String>
   <String>
     <Original>You must select at least one search criteria.</Original>
@@ -521,7 +521,7 @@
   </String>
   <String>
     <Original>Select a city.</Original>
-    <Translated>Seleccione una comuna.</Translated>
+    <Translated>Seleccione una ciudad.</Translated>
   </String>
   <String>
     <Original>(no territory)</Original>
@@ -529,23 +529,23 @@
   </String>
   <String>
     <Original>Enter city name.</Original>
-    <Translated>Ingrese el nombre de la comuna.</Translated>
+    <Translated>Ingrese el nombre de la ciudad.</Translated>
   </String>
   <String>
     <Original>The city already exists. Correct and try again.</Original>
-    <Translated>La comuna ya existe. Corríjalo e intente nuevamente.</Translated>
+    <Translated>La ciudad ya existe. Corríjalo e intente nuevamente.</Translated>
   </String>
   <String>
     <Original>Select a department.</Original>
-    <Translated>Seleccione una región.</Translated>
+    <Translated>Seleccione un departamento.</Translated>
   </String>
   <String>
     <Original>Enter department name.</Original>
-    <Translated>Ingrese el nombre de la región.</Translated>
+    <Translated>Ingrese el nombre del departamento.</Translated>
   </String>
   <String>
     <Original>The department already exists. Correct and try again.</Original>
-    <Translated>La región ya existe. Corríjalo e intente nuevamente.</Translated>
+    <Translated>El departamento ya existe. Corríjalo e intente nuevamente.</Translated>
   </String>
   <String>
     <Original>Enter territory name.</Original>
@@ -557,19 +557,19 @@
   </String>
   <String>
     <Original>Some departments have not been imported successfully.</Original>
-    <Translated>Algunas regiones no han sido importados exitosamente.</Translated>
+    <Translated>Algunos departamentos no han sido importados exitosamente.</Translated>
   </String>
   <String>
     <Original>No department has been imported.</Original>
-    <Translated>Ninguna región ha sido importado.</Translated>
+    <Translated>Ningún departamento ha sido importado.</Translated>
   </String>
   <String>
     <Original>Some cities have not been imported successfully.</Original>
-    <Translated>Algunas comunas no han sido importadas exitosamente.</Translated>
+    <Translated>Algunas ciudades no han sido importadas exitosamente.</Translated>
   </String>
   <String>
     <Original>No city has been imported.</Original>
-    <Translated>Ninguna comuna ha sido importada.</Translated>
+    <Translated>Ninguna ciudad ha sido importada.</Translated>
   </String>
   <String>
     <Original>Some territories have not been imported successfully.</Original>
@@ -589,7 +589,7 @@
   </String>
   <String>
     <Original>IMPORT DEPARTMENTS ERRORS: </Original>
-    <Translated>ERRORES DE IMPORTACIÓN DE REGIONES: </Translated>
+    <Translated>ERRORES DE IMPORTACIÓN DE DEPARTAMENTOS: </Translated>
   </String>
   <String>
     <Original>-Error: </Original>
@@ -597,7 +597,7 @@
   </String>
   <String>
     <Original>IMPORT CITIES ERRORS: </Original>
-    <Translated>ERRORES DE IMPORTACIÓN DE COMUNAS: </Translated>
+    <Translated>ERRORES DE IMPORTACIÓN DE CIUDADES: </Translated>
   </String>
   <String>
     <Original>IMPORT TERRITORIES ERRORS: </Original>
@@ -617,11 +617,11 @@
   </String>
   <String>
     <Original>  -There is no department.. </Original>
-    <Translated>  -No tiene región. </Translated>
+    <Translated>  -No tiene departamento. </Translated>
   </String>
   <String>
     <Original>  -Department doesn't exist. </Original>
-    <Translated>  -La región no existe.</Translated>
+    <Translated>  -El departamento no existe.</Translated>
   </String>
   <String>
     <Original>  -The street is blank or null. </Original>
@@ -629,19 +629,19 @@
   </String>
   <String>
     <Original>  -There is no city.. </Original>
-    <Translated>  -No tiene comuna. </Translated>
+    <Translated>  -No tiene ciudad. </Translated>
   </String>
   <String>
     <Original>  -City doesn't exist. </Original>
-    <Translated>  -La comuna no existe.</Translated>
+    <Translated>  -La ciudad no existe.</Translated>
   </String>
   <String>
     <Original>{0} departments have been imported.</Original>
-    <Translated>{0} regiones han sido importados.</Translated>
+    <Translated>{0} departamentos han sido importados.</Translated>
   </String>
   <String>
     <Original>{0} cities has been imported.</Original>
-    <Translated>{0} comunas han sido importadas.</Translated>
+    <Translated>{0} ciudades han sido importadas.</Translated>
   </String>
   <String>
     <Original>{0} territories has been imported.</Original>
