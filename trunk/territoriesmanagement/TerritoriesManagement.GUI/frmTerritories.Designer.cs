@@ -56,6 +56,7 @@
             this.dgvAddresses = new System.Windows.Forms.DataGridView();
             this.tabTours = new System.Windows.Forms.TabPage();
             this.dgvTours = new System.Windows.Forms.DataGridView();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.grpObject.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).BeginInit();
             this.grdSearch.SuspendLayout();
@@ -69,6 +70,7 @@
             // 
             // grpObject
             // 
+            this.grpObject.Controls.Add(this.btnPrint);
             this.grpObject.Controls.Add(this.btnViewMap);
             this.grpObject.Controls.Add(this.txtNumber);
             this.grpObject.Controls.Add(this.lblNumber);
@@ -134,9 +136,9 @@
             // 
             // btnRelations
             // 
-            this.btnRelations.Location = new System.Drawing.Point(269, 106);
+            this.btnRelations.Location = new System.Drawing.Point(215, 106);
             this.btnRelations.Name = "btnRelations";
-            this.btnRelations.Size = new System.Drawing.Size(69, 38);
+            this.btnRelations.Size = new System.Drawing.Size(55, 38);
             this.btnRelations.TabIndex = 9;
             this.btnRelations.Text = "View relations";
             this.btnRelations.UseVisualStyleBackColor = true;
@@ -145,9 +147,9 @@
             // btnDelete
             // 
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(186, 106);
+            this.btnDelete.Location = new System.Drawing.Point(150, 106);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(69, 38);
+            this.btnDelete.Size = new System.Drawing.Size(55, 38);
             this.btnDelete.TabIndex = 8;
             this.btnDelete.Text = "Delete";
             this.btnDelete.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -157,9 +159,9 @@
             // btnSave
             // 
             this.btnSave.Image = ((System.Drawing.Image)(resources.GetObject("btnSave.Image")));
-            this.btnSave.Location = new System.Drawing.Point(103, 106);
+            this.btnSave.Location = new System.Drawing.Point(85, 106);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(69, 38);
+            this.btnSave.Size = new System.Drawing.Size(55, 38);
             this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Update";
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -171,7 +173,7 @@
             this.btnNew.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.Image")));
             this.btnNew.Location = new System.Drawing.Point(20, 106);
             this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(69, 38);
+            this.btnNew.Size = new System.Drawing.Size(55, 38);
             this.btnNew.TabIndex = 6;
             this.btnNew.Text = "Clear";
             this.btnNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
@@ -360,6 +362,16 @@
             this.dgvTours.TabIndex = 7;
             this.dgvTours.VirtualMode = true;
             // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(280, 106);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(55, 38);
+            this.btnPrint.TabIndex = 10;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // frmTerritories
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -417,5 +429,6 @@
         private System.Windows.Forms.BindingSource bsTerritory;
         private System.Windows.Forms.Button btnViewMap;
         private System.Windows.Forms.Label lblResultCount;
+        private System.Windows.Forms.Button btnPrint;
     }
 }

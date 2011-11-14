@@ -15,6 +15,7 @@ using Localizer;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.Export;
 using System.Text;
+using TerritoriesManagement.Model;
 
 namespace TerritoriesManagement.GUI
 {
@@ -530,7 +531,7 @@ namespace TerritoriesManagement.GUI
             try
             {
                 ExportTool tool = new ExportTool();
-                tool.ExportToExcel(path,null,"Address",new string[0],strQuery,false,parameters.ToArray());                
+                tool.ExportToExcel(path,null,typeof(Address).Name,new string[0],strQuery,false,parameters.ToArray());                
             }
             catch (Exception ex)
             {
