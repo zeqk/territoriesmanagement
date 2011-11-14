@@ -12,6 +12,7 @@ using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.GUI.Configuration;
 using TerritoriesManagement.Model;
 using System.Drawing;
+using TerritoriesManagement.Export;
 
 namespace TerritoriesManagement.GUI
 {
@@ -422,6 +423,23 @@ namespace TerritoriesManagement.GUI
             polygon.Stroke = pen;
 
             return polygon;
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            frmSelectTemplate myForm = new frmSelectTemplate();
+            if (myForm.ShowDialog() == DialogResult.OK)
+            {
+                string templatePath = myForm.TemplatePath;
+
+                string[] addressProps = Helper.GetPropertyListByType(typeof(Address)).Select(p => p.Name).ToArray();
+
+                ExportTool tool = new ExportTool();
+                tool.ExportToExcel("C://prueba.xls",templatePath,typeof(Address).Name,addressProps,"Territory.TerritoryId ==",false,1);
+            }
+                    
+
+            }
         }
 
         
