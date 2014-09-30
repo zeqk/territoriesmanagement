@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using GMap.NET;
+using GMap.NET.MapProviders;
 using TerritoriesManagement.Model;
 
 namespace TerritoriesManagement
@@ -231,8 +232,12 @@ namespace TerritoriesManagement
 
         static public PointLatLng? AddressToGeoPos(string address)
         {
-            GeoCoderStatusCode status = GeoCoderStatusCode.Unknow;
-            PointLatLng? pos = GMaps.Instance.GetLatLngFromGeocoder(address, out status);
+            GeoCoderStatusCode status;
+            Placemark myPlacemark = new Placemark();
+            myPlacemark.StreetNumber = address;
+
+            PointLatLng? pos = GoogleMapProvider.Instance.GetPoint(myPlacemark, out status);
+
             if (status != GeoCoderStatusCode.G_GEO_SUCCESS)
                 pos = null;
             return pos;

@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerritoriesManagement", "TerritoriesManagement\TerritoriesManagement.csproj", "{2AF8144A-682F-4B8E-A3CF-4FD77816AD78}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TerritoriesManagement.GUI", "TerritoriesManagement.GUI\TerritoriesManagement.GUI.csproj", "{C11B3B79-AD1B-46F6-8404-1B580E454972}"

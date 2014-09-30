@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 using GMap.NET;
+using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
 using Localizer;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.GUI.Configuration;
 using TerritoriesManagement.Model;
-using GMap.NET.WindowsForms;
-using GMap.NET.WindowsForms.Markers;
 
 namespace TerritoriesManagement.GUI
 {
@@ -178,7 +178,7 @@ namespace TerritoriesManagement.GUI
         {
             var map = frmMap.GetInstance();
             map.Clear();
-            map.MapType = Config.MapType;
+            map.MapProvider = Config.MapProvider;
             map.MapMode = MapModeEnum.EditPoint;
             
             GMapMarker marker = GetMarker(this.Address.Lat, this.Address.Lng);
@@ -202,7 +202,7 @@ namespace TerritoriesManagement.GUI
         {            
             GMapMarker marker = null;
             if (lat.HasValue && lng.HasValue)
-                marker = new GMapMarkerGoogleRed(new PointLatLng(lat.Value, lng.Value));
+                marker = new GMarkerGoogle(new PointLatLng(lat.Value, lng.Value), GMarkerGoogleType.red);
             return marker;
         }
 

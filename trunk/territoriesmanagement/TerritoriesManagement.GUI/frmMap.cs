@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using AltosTools;
 using AltosTools.WindowsForms.Maps;
 using GMap.NET;
+using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using TerritoriesManagement.DataBridge;
@@ -27,7 +28,7 @@ namespace TerritoriesManagement.GUI
         public int? TerritoryId = null;
 
 
-        private MapType _mapType;
+        private GMapProvider _mapProvider;
         private int _mapZoom;
         private MapModeEnum _mapMode;
 
@@ -40,7 +41,6 @@ namespace TerritoriesManagement.GUI
 
         GMapPolygon currentPolygon;
         // markers
-        GMapMarker centerMarker;
         GMapMarker currentMarker;
 
         // layers
@@ -120,10 +120,10 @@ namespace TerritoriesManagement.GUI
         }
 
 
-        public MapType MapType
+        public GMapProvider MapProvider
         {
-            get { return _mapType; }
-            set { _mapType = value; }
+            get { return _mapProvider; }
+            set { _mapProvider = value; }
         }
 
         public int MapZoom
@@ -144,7 +144,7 @@ namespace TerritoriesManagement.GUI
         private frmMap()
         {
             //contruct fields
-            _mapType = MapType.GoogleMap;
+            _mapProvider = GMapProviders.GoogleMap;
             _mapZoom = 15;
             _mapMode = MapModeEnum.ReadOnly;
 
@@ -193,7 +193,8 @@ namespace TerritoriesManagement.GUI
             ConfigureAdditionalData();
 
             //load comboboxes
-            cboMapType.DataSource = Enum.GetValues(_mapType.GetType());
+            cboMapType.DataSource = GMapProviders.List;
+            cboMapType.DisplayMember = "Name";
             
             //config map
             ConfigMap();
@@ -248,10 +249,10 @@ namespace TerritoriesManagement.GUI
             GMaps.Instance.UsePlacemarkCache = true;
             GMaps.Instance.Mode = AccessMode.ServerAndCache;
 
-            cboMapType.SelectedItem = _mapType;
+            cboMapType.SelectedItem = _mapProvider;
 
             // config map 
-            MainMap.MapType = _mapType;
+            MainMap.MapProvider = _mapProvider;
             MainMap.MaxZoom = 20;
             MainMap.MinZoom = 5;
             MainMap.Zoom = _mapZoom;
@@ -264,7 +265,6 @@ namespace TerritoriesManagement.GUI
                 MainMap.AllowDrawPolygon = false;
 
             // map events
-            MainMap.OnCurrentPositionChanged += new CurrentPositionChanged(MainMap_OnCurrentPositionChanged);
             MainMap.OnMapZoomChanged += new MapZoomChanged(this.MainMap_OnMapZoomChanged);
 
             if (_mapMode == MapModeEnum.EditPoint)
@@ -287,7 +287,7 @@ namespace TerritoriesManagement.GUI
 
             // add custom layers  
             {
-                top = new GMapOverlay(MainMap, "top");
+                top = new GMapOverlay("top");
                 MainMap.Overlays.Add(top);
             }
         }
@@ -298,14 +298,6 @@ namespace TerritoriesManagement.GUI
             if (center != null)
             {
                 MainMap.Position = center.Value;
-
-                if (centerMarker == null)
-                    centerMarker = new GMapMarkerCross(new PointLatLng());
-
-                centerMarker.Position = MainMap.Position;
-                if (!top.Markers.Contains(centerMarker))
-                    top.Markers.Add(centerMarker);
-
                 centered = true;
             }
             else
@@ -344,13 +336,6 @@ namespace TerritoriesManagement.GUI
 
                 if (_mapMode == MapModeEnum.ReadOnly)
                     centered = MainMap.ZoomAndCenterMarkers("top");
-
-                if (centerMarker == null)
-                    centerMarker = new GMapMarkerCross(new PointLatLng());
-
-                centerMarker.Position = MainMap.Position;
-                if (!top.Markers.Contains(centerMarker))
-                    top.Markers.Add(centerMarker);
             }
 
             txtLat.Text = MainMap.Position.Lat.ToString(CultureInfo.CurrentCulture);
@@ -362,7 +347,7 @@ namespace TerritoriesManagement.GUI
         private void GoToAddress(string keywordsToSearch)
         {
 
-            GeoCoderStatusCode status = MainMap.SetCurrentPositionByKeywords(keywordsToSearch);
+            GeoCoderStatusCode status = MainMap.SetPositionByKeywords(keywordsToSearch);
             if (status != GeoCoderStatusCode.G_GEO_SUCCESS)
             {
                 MessageBox.Show("Google Maps Geocoder can't find: '" + txtAddress.Text + "', reason: " + status.ToString(), "GMap.NET", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -375,7 +360,7 @@ namespace TerritoriesManagement.GUI
                 if (currentMarker != null)
                     currentMarker.Position = MainMap.Position;
                 else
-                    currentMarker = new GMapMarkerGoogleRed(MainMap.Position);
+                    currentMarker = new GMarkerGoogle(MainMap.Position, GMarkerGoogleType.red);
 
                 if (!top.Markers.Contains(currentMarker))
                     top.Markers.Add(currentMarker);
@@ -391,12 +376,6 @@ namespace TerritoriesManagement.GUI
         private void MainMap_OnMapZoomChanged()
         {
             trackBarZoom.Value = Convert.ToInt32(MainMap.Zoom);
-        }
-
-        // current point changed
-        void MainMap_OnCurrentPositionChanged(PointLatLng point)
-        {
-            centerMarker.Position = point;
         }
 
         void MainMap_MouseMove(object sender, MouseEventArgs e)
@@ -450,8 +429,7 @@ namespace TerritoriesManagement.GUI
 
         private void btnGenImage_Click(object sender, EventArgs e)
         {
-
-            MainMap.SelectedArea = MainMap.CurrentViewArea;
+            MainMap.SelectedArea = MainMap.ViewArea;
 
             if (_mapMode == MapModeEnum.EditArea)
             {
@@ -477,7 +455,7 @@ namespace TerritoriesManagement.GUI
 
         private void cboMapType_SelectedValueChanged(object sender, EventArgs e)
         {
-            MainMap.MapType = (MapType)cboMapType.SelectedValue;
+            MainMap.MapProvider = (GMapProvider)cboMapType.SelectedItem;
         }
 
         private void btnGo_Click(object sender, EventArgs e)
