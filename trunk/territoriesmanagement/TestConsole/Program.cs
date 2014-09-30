@@ -9,6 +9,12 @@ using GMap.NET;
 using System.Globalization;
 using System.Xml.Linq;
 using System.Xml;
+using System.IO;
+using NPOI.HSSF.UserModel;
+using NPOI.SS.UserModel;
+using NPOI.HPSF;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace TestConsole
 {
@@ -30,6 +36,87 @@ namespace TestConsole
 
             Console.ReadKey();
         }
+
+
+        #region NPOI
+        static void ProbarNPOI()
+        {
+            var hssfworkbook = InitializeWorkbook();
+
+            ISheet sheet1 = hssfworkbook.GetSheet("Sheet1");
+            //create cell on rows, since rows do already exist,it's not necessary to create rows again.
+            ///sheet1.GetRow(0).GetCell(0).StringCellValue;
+            sheet1.GetRow(1).GetCell(1).SetCellValue(200200);
+            sheet1.GetRow(2).GetCell(1).SetCellValue(300);
+            sheet1.GetRow(3).GetCell(1).SetCellValue(500050);
+            sheet1.GetRow(4).GetCell(1).SetCellValue(8000);
+            sheet1.GetRow(5).GetCell(1).SetCellValue(110);
+            sheet1.GetRow(6).GetCell(1).SetCellValue(100);
+            sheet1.GetRow(7).GetCell(1).SetCellValue(200);
+            sheet1.GetRow(8).GetCell(1).SetCellValue(210);
+            sheet1.GetRow(9).GetCell(1).SetCellValue(2300);
+            sheet1.GetRow(10).GetCell(1).SetCellValue(240);
+            sheet1.GetRow(11).GetCell(1).SetCellValue(180123);
+            sheet1.GetRow(12).GetCell(1).SetCellValue(150);
+            var myRow = sheet1.GetRow(1);
+            
+            for (int i = 0; i <= sheet1.LastRowNum; i++)
+            {
+                var row = sheet1.GetRow(i);
+                for (int x = 0; x <= row.LastCellNum; x++)
+                {
+                    var cell = row.GetCell(x);
+
+                    if (cell.StringCellValue.Contains("@"))
+                    {
+                        var value = Regex.Match(cell.StringCellValue, @"\@*.?\ ", RegexOptions.Compiled).Value;
+#warning terminar
+                    }
+
+                    if (Regex.IsMatch(cell.StringCellValue, @"\{(*.?)\}"))
+                    {
+
+                    }
+                }
+                
+            }
+
+            //Force excel to recalculate all the formula while open
+            sheet1.ForceFormulaRecalculation = true;
+        }
+
+        static bool IsRecordRow(IRow row)
+        {
+            var rv = false;
+
+            if (row.Cells.Count(c => Regex.IsMatch(c.StringCellValue, @"\{(*.?)\}")) > 0)
+                rv = true;
+
+            return rv;
+        }
+
+        static HSSFWorkbook InitializeWorkbook()
+        {
+            //read the template via FileStream, it is suggested to use FileAccess.Read to prevent file lock.
+            //book1.xls is an Excel-2007-generated file, so some new unknown BIFF records are added. 
+            FileStream file = new FileStream(@"template/book1.xls", FileMode.Open, FileAccess.Read);
+
+            HSSFWorkbook hssfworkbook = new HSSFWorkbook(file);
+
+            //create a entry of DocumentSummaryInformation
+            DocumentSummaryInformation dsi = PropertySetFactory.CreateDocumentSummaryInformation();
+            dsi.Company = "NPOI Team";
+            hssfworkbook.DocumentSummaryInformation = dsi;
+
+            //create a entry of SummaryInformation
+            SummaryInformation si = PropertySetFactory.CreateSummaryInformation();
+            si.Subject = "NPOI SDK Example";
+            hssfworkbook.SummaryInformation = si;
+
+            return hssfworkbook;
+        }
+
+        #endregion
 
 
         static void probarXmlDoc()
