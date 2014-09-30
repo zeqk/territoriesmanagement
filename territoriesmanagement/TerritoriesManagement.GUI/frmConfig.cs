@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
+using GMap.NET.MapProviders;
 using Localizer;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.GUI.Configuration;
@@ -59,8 +60,9 @@ namespace TerritoriesManagement.GUI
             txtDefaultPlace.Text = Config.DefaultPlace;
 
             //maps
-            cboMapType.DataSource = Enum.GetValues(typeof(GMap.NET.MapType));
-            cboMapType.SelectedItem = Config.MapType;
+            cboMapType.DataSource = GMapProviders.List;
+            cboMapType.DisplayMember = "Name";
+            cboMapType.SelectedItem = Config.MapProvider;
         }
 
         private void btnApply_Click(object sender, EventArgs e)
@@ -88,7 +90,7 @@ namespace TerritoriesManagement.GUI
 
         private void ApplyMapsChange()
         {
-            Config.MapType = (GMap.NET.MapType)cboMapType.SelectedValue;
+            Config.MapProvider = (GMapProvider)cboMapType.SelectedItem;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Data.Objects;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
@@ -9,10 +10,9 @@ using GMap.NET;
 using GMap.NET.WindowsForms;
 using Localizer;
 using TerritoriesManagement.DataBridge;
+using TerritoriesManagement.Export;
 using TerritoriesManagement.GUI.Configuration;
 using TerritoriesManagement.Model;
-using System.Drawing;
-using TerritoriesManagement.Export;
 
 namespace TerritoriesManagement.GUI
 {
@@ -435,13 +435,9 @@ namespace TerritoriesManagement.GUI
                 string[] addressProps = Helper.GetPropertyListByType(typeof(Address)).Select(p => p.Name).ToArray();
 
                 ExportTool tool = new ExportTool();
-                tool.ExportToExcel("C://prueba.xls",templatePath,typeof(Address).Name,addressProps,"Territory.TerritoryId ==",false,1);
-            }
-                    
-
+                //tool.ExportToExcel("C://prueba.xls",templatePath,typeof(Address).Name,addressProps,"Territory.TerritoryId ==",false,1);
             }
         }
-
         
 
     }

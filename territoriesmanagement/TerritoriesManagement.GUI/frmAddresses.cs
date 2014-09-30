@@ -240,8 +240,10 @@ namespace TerritoriesManagement.GUI
             dgvResult.Columns.Add("Corner1", GetString("Corner 1"));
             dgvResult.Columns.Add("Corner2", GetString("Corner 2"));
             dgvResult.Columns.Add("Description", GetString("Description"));
-            dgvResult.Columns.Add("HasGeoPosition", GetString("GEO"));
-            dgvResult.Columns.Add("Mark", GetString("Mark"));
+            dgvResult.Columns.Add(new DataGridViewCheckBoxColumn());
+            dgvResult.Columns[9].Name = "HasGeoPosition";
+            dgvResult.Columns[9].HeaderText = GetString("GEO");
+            dgvResult.Columns.Add("Mark", GetString("Mark"));            
             dgvResult.Columns.Add("Lat", GetString("Lat"));
             dgvResult.Columns.Add("Lng", GetString("Lng"));
 

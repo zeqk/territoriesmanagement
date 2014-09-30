@@ -144,13 +144,13 @@
         CAkCAAAAAAAAAAAAAAAQAgAAAAAAAAAL
 </value>
   </data>
-  <data name="MainMap.Position" mimetype="application/x-microsoft.net.object.binary.base64">
+  <!--<data name="MainMap.Position" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFBHTWFwLk5FVC5Db3JlLCBWZXJzaW9uPTEuNS40LjMsIEN1bHR1
         cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjg1YjkwMjdiNjE0YWZlZgUBAAAAFEdNYXAuTkVULlBv
         aW50TGF0TG5nAgAAAANsYXQDbG5nAAAGBgIAAAAAAAAAAAAAAAAAAAAAAAAACw==
 </value>
-  </data>
+  </data>-->
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>25</value>
   </metadata>

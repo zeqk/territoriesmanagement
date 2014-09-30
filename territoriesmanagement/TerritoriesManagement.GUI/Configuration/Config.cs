@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO;
-using System.Text;
-using System.Xml;
 using System.Windows.Forms;
+using System.Xml;
+using GMap.NET.MapProviders;
 
 namespace TerritoriesManagement.GUI.Configuration
 {
@@ -17,12 +17,12 @@ namespace TerritoriesManagement.GUI.Configuration
 
         static public string DefaultPlace;
 
-        static public GMap.NET.MapType MapType;
+        static public GMapProvider MapProvider;
 
         public Config()
         {
             Language = "English";
-            MapType = GMap.NET.MapType.GoogleMap;
+            MapProvider = GMapProviders.GoogleMap;
         }
 
         static public void SaveConfig()
@@ -38,7 +38,7 @@ namespace TerritoriesManagement.GUI.Configuration
             XmlNode languageNode = doc.CreateElement("Language");
             languageNode.InnerText = Language;
             XmlNode mapTypeNode = doc.CreateElement("MapType");
-            mapTypeNode.InnerText = MapType.ToString();
+            mapTypeNode.InnerText = MapProvider.ToString();
             XmlNode regionNode = doc.CreateElement("Region");
             regionNode.InnerText = Region;
             XmlNode defaultPlace = doc.CreateElement("DefaultPlace");
@@ -78,7 +78,7 @@ namespace TerritoriesManagement.GUI.Configuration
                     XmlNode defaultPlaceNode = configNode.SelectSingleNode("DefaultPlace");
 
                     Language = languageNode.InnerText;
-                    MapType = (GMap.NET.MapType)Enum.Parse(typeof(GMap.NET.MapType), mapTypeNode.InnerText, true);
+                    MapProvider = GMapProviders.List.Find(p => p.Name == mapTypeNode.InnerText);
                     Region = regionNode.InnerText;
                     DefaultPlace = defaultPlaceNode.InnerText;
                 }
@@ -95,7 +95,7 @@ namespace TerritoriesManagement.GUI.Configuration
         static private void LoadDefaultConfig()
         {
             Language = "English";
-            MapType = GMap.NET.MapType.GoogleMap;            
+            MapProvider = GMapProviders.GoogleMap;          
         }
 	
     }

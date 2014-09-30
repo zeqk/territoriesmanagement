@@ -532,14 +532,13 @@
             this.MainMap.GrayScaleMode = false;
             this.MainMap.LevelsKeepInMemmory = 5;
             this.MainMap.Location = new System.Drawing.Point(0, 0);
-            this.MainMap.MapType = GMap.NET.MapType.GoogleMap;
+            this.MainMap.MapProvider = GMap.NET.MapProviders.GMapProviders.GoogleMap;
             this.MainMap.MarkersEnabled = true;
             this.MainMap.MaxZoom = 2;
             this.MainMap.MinZoom = 2;
             this.MainMap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
             this.MainMap.Name = "MainMap";
             this.MainMap.PolygonsEnabled = true;
-            this.MainMap.Position = ((GMap.NET.PointLatLng)(resources.GetObject("MainMap.Position")));
             this.MainMap.RetryLoadTile = 0;
             this.MainMap.RoutesEnabled = true;
             this.MainMap.ShowTileGridLines = false;

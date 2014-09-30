@@ -1,4 +1,7 @@
 Versiones
+* 1.6 01 29/09/2014
+- Actualizado para que funcione con GMap.NET 1.7.0.0
+
 * 1.5.110801 Beta - 01/08/2011
  - Boton "Nuevo" de los formularios cambiado a "Limpiar"
  - Traducciones actualizadas

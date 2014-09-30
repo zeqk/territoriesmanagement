@@ -107,7 +107,7 @@ namespace TerritoriesManagement.GUI
             ab.AppTitle = "Territories Management";
             ab.AppDescription = "A program for organizing special territories";
             ab.AppVersion = Application.ProductVersion;
-            ab.AppCopyright = "GNU GPL 2010  Zeqk";
+            ab.AppCopyright = "GNU GPL 2014 Zeqk";
             ab.AppMoreInfo = Properties.Resources.credits;
             ab.AppMoreInfo += "\n\n";
             ab.AppMoreInfo += Properties.Resources.Short_License_EN;
