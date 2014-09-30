@@ -1,4 +1,4 @@
-﻿Web site: http://sites.google.com/site/territoriesmanagement
+﻿Web site: https://code.google.com/p/territoriesmanagement/
 
 This program uses GMap.NET (http://greatmaps.codeplex.com/), DotNetFirebird (http://www.firebirdsql.org/dotnetfirebird/), and Merlin Wizard Framework (http://http://merlin.codeplex.com/).
 
