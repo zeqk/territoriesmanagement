@@ -68,7 +68,7 @@ namespace TerritoriesManagement.GUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Web site: http://sites.google.com/site/territoriesmanagement
+        ///   Looks up a localized string similar to Web site: https://code.google.com/p/territoriesmanagement/
         ///
         ///This program uses GMap.NET (http://greatmaps.codeplex.com/), DotNetFirebird (http://www.firebirdsql.org/dotnetfirebird/), and Merlin Wizard Framework (http://http://merlin.codeplex.com/).
         ///
@@ -77,7 +77,7 @@ namespace TerritoriesManagement.GUI.Properties {
         ///Many thanks to the contributors:
         /// - Natalio Ruiz, Argentina (Localizer library)
         /// - Leica Florian, Italia (Italian translations)
-        /// - Deborah Bontti, Argentina (English translatio [rest of string was truncated]&quot;;.
+        /// - Deborah Bontti, Argentina (English translation).
         /// </summary>
         internal static string credits {
             get {
