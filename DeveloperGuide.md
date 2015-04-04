@@ -1,0 +1,28 @@
+To contribute to the TerritoriesManagement you should know at a minimum, the C# programming language.
+
+**Getting started**
+
+  * **Get an IDE**
+- Visual Studio (Full and paid option) http://www.microsoft.com/visualstudio/en-us
+
+- Visual Studio Express Editon (Free option) http://www.microsoft.com/express/
+
+- SharpDevelop (Open source option) http://www.icsharpcode.net/opensource/sd/
+
+
+  * **Install a subversion client**
+- TortoiseSVN (Recommended) http://tortoisesvn.tigris.org/
+
+  * **Get the source code**
+In the SVN Repository view, add the following repository location: https://territoriesmanagement.googlecode.com/svn/trunk/
+
+For obtain the related projects, checkout:
+
+For AltosTools Project
+https://zeqktools.googlecode.com/svn/trunk/zeqktools
+
+For Localizer Project
+https://zeqktools.googlecode.com/svn/trunk/localizer
+
+For GeoRSS Library Project
+https://zeqktools.googlecode.com/svn/georsslibrary
