@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<Territories>
+  <Territory>
+    <Number>1</Number>
+    <Geoarea>-34.8000961514457 -58.349461555481
+-34.8045362542093 -58.3457708358765
+-34.8043953022418 -58.3451700210571
+-34.8080952115056 -58.342080116272
+-34.8009066642385 -58.3287978172302
+-34.800043291639 -58.3332824707031
+-34.8005542683512 -58.3335399627686
+-34.7982988990012 -58.3446550369263
+-34.7993737311529 -58.3465218544006
+-34.799127049603 -58.3475303649902
+-34.8000961514457 -58.349461555481</Geoarea>
+    <Label>TERRITORY 1</Label>
+    <Houses>
+      <HouseAddress>
+        <Address>ALCORTA 100, CLAYPOLE, ALMIRANTE BROWN, Buenos Aires, Argentina</Address>
+        <Street>ALCORTA</Street>
+        <Note>1th Floor
+ESQ: DEAN FUNES, 
+TEL: 421008888
+DESCRIPCION: MARKET</Note>
+        <Geoposition>
+          <Lat>-34.804023742675781</Lat>
+          <Lng>-58.3406867980957</Lng>
+        </Geoposition>
+        <Label>1</Label>
+      </HouseAddress>
+      <HouseAddress>
+        <Address>17 DE OCTUBRE 200, CLAYPOLE, ALMIRANTE BROWN, Buenos Aires, Argentina</Address>
+        <Street>17 DE OCTUBRE</Street>
+        <Note>
+ESQ: SANZ, 
+TEL: 
+DESCRIPCION: MARKET</Note>
+        <Geoposition>
+          <Lat>-34.799495697021484</Lat>
+          <Lng>-58.3428955078125</Lng>
+        </Geoposition>
+        <Label>2</Label>
+      </HouseAddress>
+    </Houses>
+  </Territory>
+</Territories>
