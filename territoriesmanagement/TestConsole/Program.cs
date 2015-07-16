@@ -1,20 +1,14 @@
-﻿using System;
+﻿using SharpKml.Base;
+using SharpKml.Dom;
+using SharpKml.Engine;
+using System;
 using System.Collections.Generic;
-using System.Collections;
-using System.Text;
-using System.Data.Entity;
-using TerritoriesManagement.Model;
-using TerritoriesManagement;
-using GMap.NET;
 using System.Globalization;
-using System.Xml.Linq;
-using System.Xml;
 using System.IO;
-using NPOI.HSSF.UserModel;
-using NPOI.SS.UserModel;
-using NPOI.HPSF;
-using System.Linq;
-using System.Text.RegularExpressions;
+using System.Text;
+using System.Xml;
+using System.Xml.Linq;
+using TerritoriesManagement.Model;
 
 namespace TestConsole
 {
@@ -24,7 +18,7 @@ namespace TestConsole
         {
             try
             {
-                getStatics();
+                ExportToKml();
             }
             catch (Exception ex)
             {
@@ -38,86 +32,232 @@ namespace TestConsole
         }
 
 
-        #region NPOI
-        static void ProbarNPOI()
+        static void ExportToXml()
         {
-            var hssfworkbook = InitializeWorkbook();
-
-            ISheet sheet1 = hssfworkbook.GetSheet("Sheet1");
-            //create cell on rows, since rows do already exist,it's not necessary to create rows again.
-            ///sheet1.GetRow(0).GetCell(0).StringCellValue;
-            sheet1.GetRow(1).GetCell(1).SetCellValue(200200);
-            sheet1.GetRow(2).GetCell(1).SetCellValue(300);
-            sheet1.GetRow(3).GetCell(1).SetCellValue(500050);
-            sheet1.GetRow(4).GetCell(1).SetCellValue(8000);
-            sheet1.GetRow(5).GetCell(1).SetCellValue(110);
-            sheet1.GetRow(6).GetCell(1).SetCellValue(100);
-            sheet1.GetRow(7).GetCell(1).SetCellValue(200);
-            sheet1.GetRow(8).GetCell(1).SetCellValue(210);
-            sheet1.GetRow(9).GetCell(1).SetCellValue(2300);
-            sheet1.GetRow(10).GetCell(1).SetCellValue(240);
-            sheet1.GetRow(11).GetCell(1).SetCellValue(180123);
-            sheet1.GetRow(12).GetCell(1).SetCellValue(150);
-            var myRow = sheet1.GetRow(1);
-            
-            for (int i = 0; i <= sheet1.LastRowNum; i++)
+            try
             {
-                var row = sheet1.GetRow(i);
-                for (int x = 0; x <= row.LastCellNum; x++)
-                {
-                    var cell = row.GetCell(x);
 
-                    if (cell.StringCellValue.Contains("@"))
+                Console.ReadKey();
+                var dm = new TerritoriesDataContext();
+
+                var territories = dm.Territories;
+
+                XDocument doc = new XDocument(new XDeclaration("1.0", "utf-8", "yes"));
+                var xTerritories = new XElement("Territories");
+
+                foreach (var t in territories)
+                {
+                    XElement xt = new XElement("Territory");
+                    xt.Add(new XElement("Number", t.Number));
+                    xt.Add(new XElement("Geoarea", t.Area));
+                    xt.Add(new XElement("Label", t.Name));
+                    t.Addresses.Load();
+
+                    var xHouses = new XElement("Houses");
+
+                    foreach (var a in t.Addresses)
                     {
-                        var value = Regex.Match(cell.StringCellValue, @"\@*.?\ ", RegexOptions.Compiled).Value;
-#warning terminar
+                        XElement xa = new XElement("HouseAddress");
+                        a.CityReference.Load();
+                        a.City.DepartmentReference.Load();
+                        
+                        string address = a.Street + " " + a.Number + ", " + a.City.Name + ", " + a.City.Department.Name + ", Buenos Aires, Argentina";
+                        xa.Add(new XElement("Address", address));
+                        xa.Add(new XElement("Street", a.Street));
+                        var note = a.AddressData + Environment.NewLine
+                            + "ESQ: " + a.Corner1 + ", " + a.Corner2 + Environment.NewLine
+                            + "TEL: " + a.Phone1 + (!string.IsNullOrEmpty(a.Phone2) ? " / " + a.Phone2 : string.Empty) + Environment.NewLine
+                            + "DESCRIPCION: " + a.Description;
+                        xa.Add(new XElement("Note", note));
+                        xa.Add(new XElement("Geoposition", new XElement("Lat", a.Lat), new XElement("Lng", a.Lng)));
+                        xa.Add(new XElement("Label", (a.InternalTerritoryNumber.HasValue ? a.InternalTerritoryNumber.Value.ToString() : string.Empty)));
+
+                        xHouses.Add(xa);
                     }
 
-                    if (Regex.IsMatch(cell.StringCellValue, @"\{(*.?)\}"))
-                    {
+                    xt.Add(xHouses);
 
+                    xTerritories.Add(xt);
+                }
+
+                doc.Add(xTerritories);
+
+                doc.Save("C:\\Users\\zeqk\\Desktop\\territories.xml");
+
+                Console.ReadKey();
+
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
+        }
+
+        static void ExportToCVS()
+        {
+            try
+            {
+                TerritoriesManagement.Model.TerritoriesDataContext dm = new TerritoriesManagement.Model.TerritoriesDataContext();
+
+                var addresses = dm.Addresses;
+
+                var sb = new StringBuilder();
+                sb.AppendLine("HouseMarkerId;CongregationFk;TerritoryFk;Address;Number;StreetName;City;County;PostalCode;State;CountryCode;LatLng;Notes;_cdate;_mdate;_creatorFk;_modifierFk");
+
+                var ci = CultureInfo.GetCultureInfo("en");
+                
+                var i = 1;
+                foreach (var a in addresses)
+                {
+                    if (a.Lng.HasValue && a.Lng.HasValue)
+                    {
+                        a.CityReference.Load();
+                        a.City.DepartmentReference.Load();
+
+                        var houseMarkerId = i.ToString(); ;
+                        var congregationFk = "1275";
+                        var territoryFk = "66702";                        
+                        string address = a.Street + " " + a.Number + ", " + a.City.Name + ", " + a.City.Department.Name + ", Buenos Aires, Argentina";
+                        var number = a.Number;
+                        var streetName = a.Street;
+                        var city = a.City.Name;
+                        string county = "NULL";
+                        var postalCode = "";
+                        var state = "Buenos Aires";
+                        var countryCode = "AR";
+                        var latLng = "{\"\"lat\"\":" + a.Lat.Value.ToString(ci.NumberFormat) + ",\"\"lng\"\":" + a.Lng.Value.ToString(ci.NumberFormat) + "}";
+                        var note = address
+                           + a.AddressData + " | "
+                           + "ESQ: " + a.Corner1 + ", " + a.Corner2 + " | "
+                           + "TEL: " + a.Phone1 + (!string.IsNullOrEmpty(a.Phone2) ? " / " + a.Phone2 : string.Empty) + " | "
+                           + "DESCRIPCION: " + (!string.IsNullOrEmpty(a.Description) ? a.Description.Trim('\n') : string.Empty);
+                        var creationDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+                        var modDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm");
+                        var creatorFk = "11031";
+                        var modificatorFk = "11031";
+
+                        var line = new string[] { houseMarkerId, congregationFk, territoryFk, address, number, streetName, city, county, postalCode, state, countryCode, latLng, note, creationDate, modDate, creatorFk, modificatorFk };
+                        sb.AppendLine(string.Join(";", line));
+                        
+                        i++;
                     }
                 }
-                
+
+
+
+                File.WriteAllText("C:\\Users\\zeqk\\Desktop\\myHouseMarkers.cvs", sb.ToString()); 
+
+
+
+                Console.ReadKey();
+
             }
+            catch (Exception ex)
+            {
 
-            //Force excel to recalculate all the formula while open
-            sheet1.ForceFormulaRecalculation = true;
+                throw ex;
+            }
         }
 
-        static bool IsRecordRow(IRow row)
+
+        static void ExportToKml()
         {
-            var rv = false;
+            try
+            {
 
-            if (row.Cells.Count(c => Regex.IsMatch(c.StringCellValue, @"\{(*.?)\}")) > 0)
-                rv = true;
+                Console.ReadKey();
+                TerritoriesManagement.Model.TerritoriesDataContext dm = new TerritoriesManagement.Model.TerritoriesDataContext();
 
-            return rv;
+                var addresses = dm.Addresses;
+
+                Document doc = new Document();
+                var i = 0;
+                foreach (var a in addresses)
+                {
+                    if (a.Lng.HasValue && a.Lng.HasValue)
+                    {
+                        a.CityReference.Load();
+                        a.City.DepartmentReference.Load();
+                        string address = a.Street + " " + a.Number + ", " + a.City.Name + ", " + a.City.Department.Name + ", Buenos Aires, Argentina";
+
+                        var point = new Point();
+                        point.Coordinate = new Vector(a.Lat.Value, a.Lng.Value);
+
+                        // This is the Element we are going to save to the Kml file.
+                        var placemark = new Placemark();
+                        placemark.Geometry = point;
+                        placemark.Name = a.IdAddress.ToString();
+                        placemark.Address = address;
+                        placemark.Description = new Description();
+                        placemark.Description.Text = address;
+
+                        doc.AddFeature(placemark);
+                        i++;
+                    }
+                }
+
+                
+
+                // This allows us to save and Element easily.
+                KmlFile kml = KmlFile.Create(doc, false);
+                using (var stream = System.IO.File.OpenWrite("C:\\Users\\zeqk\\Desktop\\territories.kml"))
+                {
+                    kml.Save(stream);
+                }
+                               
+
+
+                Console.ReadKey();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
-        static HSSFWorkbook InitializeWorkbook()
+        static void ImportXML()
         {
-            //read the template via FileStream, it is suggested to use FileAccess.Read to prevent file lock.
-            //book1.xls is an Excel-2007-generated file, so some new unknown BIFF records are added. 
-            FileStream file = new FileStream(@"template/book1.xls", FileMode.Open, FileAccess.Read);
-
-            HSSFWorkbook hssfworkbook = new HSSFWorkbook(file);
-
-            //create a entry of DocumentSummaryInformation
-            DocumentSummaryInformation dsi = PropertySetFactory.CreateDocumentSummaryInformation();
-            dsi.Company = "NPOI Team";
-            hssfworkbook.DocumentSummaryInformation = dsi;
-
-            //create a entry of SummaryInformation
-            SummaryInformation si = PropertySetFactory.CreateSummaryInformation();
-            si.Subject = "NPOI SDK Example";
-            hssfworkbook.SummaryInformation = si;
-
-            return hssfworkbook;
+            var stream = File.OpenRead("C:\\Users\\zeqk\\Desktop\\territories.xml");
+            ImportXML(stream);
         }
+        static void ImportXML(Stream stream)
+        {
+            try
+            {
+                using(var reader = XmlReader.Create(stream))
+	            {
+                    var doc = XDocument.Load(reader);
+                    var territories = doc.Element("Territories").Elements();
+                    foreach (var t in territories)
+                    {
+                        var label = t.Element("Label").Value;
+                        var nuimber = t.Element("Number").Value;
+                        var area = t.Element("Geoarea").Value;
+                        var houses = t.Element("Houses").Elements();
+                        //do something
 
-        #endregion
+                        foreach (var h in houses)
+                        {
+                            var address = h.Element("Address").Value;
+                            var street = h.Element("Street").Value;
+                            var note = h.Element("Note").Value;
+                            var lat = h.Element("Geoposition").Element("Lat").Value;
+                            var lng = h.Element("Geoposition").Element("Lng").Value;
+                            var hlabel = h.Element("Label").Value;
+                            //do something
+                        }
+                    }
+	            }    
 
+            }
+            catch (Exception ex)
+            {                
+                throw ex;
+            }
+        }
 
         static void probarXmlDoc()
         {
@@ -165,17 +305,18 @@ namespace TestConsole
 
         static void WriteNames()
         {
+
             Console.ReadKey();
-            TerritoriesDataContext dm = new TerritoriesDataContext();
+            var dm = new TerritoriesManagement.Model.TerritoriesDataContext();
 
             var territories = dm.Territories;
 
-            foreach (Territory t in territories)
+            foreach (var t in territories)
             {
                 t.Name = t.Name.Substring(8);
                 Console.WriteLine(t.Name);
                 dm.ApplyPropertyChanges("Territories", t);
-                
+
             }
             dm.SaveChanges();
             Console.ReadKey();
@@ -190,7 +331,7 @@ namespace TestConsole
 
         static void getStatics()
         {
-            TerritoriesDataContext dm = new TerritoriesDataContext();
+            var dm = new TerritoriesManagement.Model.TerritoriesDataContext();
 
             int tiene = 0;
             int noTiene = 0;
@@ -198,7 +339,7 @@ namespace TestConsole
             var territories = dm.Territories;
             List<string> terrs = new List<string>();
 
-            foreach (Territory t in territories)
+            foreach (var t in territories)
             {
                 t.Addresses.Load();
                 if (t.Addresses.Count > 0)
@@ -250,7 +391,7 @@ namespace TestConsole
 
         static void  prueba2()
         {
-            TerritoriesManagement.Model.TerritoriesDataContext dm = new TerritoriesDataContext();
+            var dm = new TerritoriesManagement.Model.TerritoriesDataContext();
 
             var territories = dm.Territories;
 
@@ -280,7 +421,7 @@ namespace TestConsole
             channelNode.AppendChild(channelLink);
             channelNode.AppendChild(channelTitle);
 
-            foreach (Territory t in territories)
+            foreach (var t in territories)
             {
                 if (t.Area != null)
                 {
@@ -331,7 +472,7 @@ namespace TestConsole
         static void prueba3()
         {
 
-            TerritoriesDataContext dm = new TerritoriesDataContext();
+            var dm = new TerritoriesManagement.Model.TerritoriesDataContext();
             var territories = dm.Territories;
 
             XNamespace nsGeorss = "http://www.georss.org/georss";
