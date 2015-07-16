@@ -1,5 +1,7 @@
 static void ImportXML(Stream stream)
 {
+	//the stream, is the XML File stream
+	//XML File example: https://github.com/zeqk/territoriesmanagement/blob/master/territoriesmanagement/exportToTH/territories_example.xml
 	try
 	{
 		using(var reader = XmlReader.Create(stream))
