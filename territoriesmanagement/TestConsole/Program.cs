@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Net;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
@@ -18,7 +19,8 @@ namespace TestConsole
         {
             try
             {
-                ExportToKml();
+                Console.ReadKey();
+                BackupTerritoryHelper();
             }
             catch (Exception ex)
             {
@@ -32,12 +34,139 @@ namespace TestConsole
         }
 
 
+        static void BackupTerritoryHelper()
+        {
+            try
+            {
+
+                CookieContainer cookies = new CookieContainer();
+
+                //LOGIN
+
+                Login("zeqk.net%40gmail.com", "", ref cookies);
+
+                //GET TERRITORIES
+                var congregationId = "1275";
+                var terrs = GetTerritories(congregationId, ref cookies);
+
+                //var markers = GetHouseMarkers(congregationId, cookies);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        static void Login(string user, string password, ref CookieContainer cookies)
+        {
+            string postData = string.Format("Email=" + user + "&Password=" + password + "&PersistLogin=false");
+            byte[] postBytes = Encoding.UTF8.GetBytes(postData);
+
+            HttpWebRequest loginReq = (HttpWebRequest)HttpWebRequest.Create("https://territoryhelper.com/es");
+            loginReq.UserAgent = "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36";
+            loginReq.KeepAlive = true;
+
+            loginReq.CookieContainer = cookies;
+            loginReq.Headers.Add("Accept-Encoding", "gzip, deflate");
+            loginReq.Headers.Add("Accept-Language", "en-us,en;q=0.5");
+            loginReq.Method = "POST";
+            loginReq.Host = "territoryhelper.com";
+            loginReq.Referer = "https://territoryhelper.com/es";
+            loginReq.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8";
+
+            loginReq.ContentType = "application/x-www-form-urlencoded";
+            loginReq.ContentLength = postBytes.Length;
+
+            //getting the request stream and posting data
+            StreamWriter requestwriter = new StreamWriter(loginReq.GetRequestStream(), System.Text.Encoding.ASCII);
+            requestwriter.Write(postData);
+            requestwriter.Close();
+
+            var firstResponse = loginReq.GetResponse();
+            using (var sr = new StreamReader(firstResponse.GetResponseStream()))
+            {
+                var hola = sr.ReadToEnd();
+            }
+        }
+
+        static string GetTerritories(string congregationId, ref CookieContainer cookies)
+        {
+            var postData = "{congregationId: \"1275\"}";
+            var postBytes = Encoding.UTF8.GetBytes(postData);
+
+            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("https://territoryhelper.com/es/Territory/GetTerritories/");
+            req.UserAgent = "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36";
+            req.KeepAlive = true;
+            req.Headers.Add("X-Requested-With", "XMLHttpRequest");
+            req.Headers.Add("Accept-Encoding", "gzip, deflate");
+            req.Headers.Add("Accept-Language", "en-us,en;q=0.5");
+            req.Host = "territoryhelper.com";
+            req.Method = "POST";
+            req.Referer = "https://territoryhelper.com/es/Territory/";
+            req.Accept = "application/json, text/javascript, */*; q=0.01";
+
+            req.CookieContainer = cookies;
+            req.ContentType = "application/json; charset=UTF-8";
+            req.ContentLength = postBytes.Length;
+
+
+            //getting the request stream and posting data
+            var writer = new StreamWriter(req.GetRequestStream(), System.Text.Encoding.ASCII);
+            writer.Write(postData);
+            writer.Close();
+
+            var response = req.GetResponse();
+            string rv = null;
+            using (var sr = new StreamReader(response.GetResponseStream()))
+            {
+                rv = sr.ReadToEnd();
+            }
+
+            return rv;
+        }
+
+
+        static string GetHouseMarkers(string congregationId, ref CookieContainer cookies)
+        {
+            var postData = "{\"congregationId\":\"" + congregationId +"\",\"territoryId\":null}";
+            var postBytes = Encoding.UTF8.GetBytes(postData);
+
+            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("https://territoryhelper.com/es/HouseMarker/GetHouseMarkers/");
+            req.UserAgent = "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36";
+            req.KeepAlive = true;
+            req.Headers.Add("X-Requested-With", "XMLHttpRequest");
+            req.Headers.Add("Accept-Encoding", "gzip, deflate");
+            req.Headers.Add("Accept-Language", "en-us,en;q=0.5");
+            req.Host = "territoryhelper.com";
+            req.Method = "POST";
+            req.Referer = "https://territoryhelper.com/es/Territory/";
+            req.Accept = "application/json, text/javascript, */*; q=0.01";
+
+            req.CookieContainer = cookies;
+            req.ContentType = "application/json; charset=UTF-8";
+            req.ContentLength = postBytes.Length;
+
+
+            //getting the request stream and posting data
+            var getTerritoriesWriter = new StreamWriter(req.GetRequestStream(), System.Text.Encoding.ASCII);
+            getTerritoriesWriter.Write(postData);
+            getTerritoriesWriter.Close();
+
+            var response = req.GetResponse();
+            string rv = null;
+            using (var sr = new StreamReader(response.GetResponseStream()))
+            {
+                rv = sr.ReadToEnd();
+            }
+
+            return rv;
+        }
+
         static void ExportToXml()
         {
             try
             {
 
-                Console.ReadKey();
                 var dm = new TerritoriesDataContext();
 
                 var territories = dm.Territories;
