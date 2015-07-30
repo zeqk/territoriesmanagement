@@ -74,7 +74,24 @@ namespace TerritoriesManagement.Export
             this.ExportToExcel(path, template, entityName, properties, where, parameters);
         }
 
-        
+        public bool ExportToExcel(string path, IList entities, string[] properties)
+        {
+            bool rv = false;
+            try
+            {
+                DataTable table = RecordsToDataTable(entities, properties.ToList());
+
+                WriteExcel(table, path);
+                rv = true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return rv;
+        }
+
         private bool ExportToExcel(string path, string template, string entityName, string[] properties, string where, params ObjectParameter[] parameters)
         {
             bool rv = true;

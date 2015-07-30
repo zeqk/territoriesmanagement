@@ -427,15 +427,65 @@ namespace TerritoriesManagement.GUI
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            frmSelectTemplate myForm = new frmSelectTemplate();
+            var myForm = new SaveFileDialog();
+            myForm.Filter = "Excel files (*.xls)|*.xls";
             if (myForm.ShowDialog() == DialogResult.OK)
             {
-                string templatePath = myForm.TemplatePath;
+                string templatePath = myForm.FileName;
 
                 string[] addressProps = Helper.GetPropertyListByType(typeof(Address)).Select(p => p.Name).ToArray();
 
-                ExportTool tool = new ExportTool();
-                //tool.ExportToExcel("C://prueba.xls",templatePath,typeof(Address).Name,addressProps,"Territory.TerritoryId ==",false,1);
+                var territory = FormToOject();
+                territory.Addresses.Load();
+                var addresses = territory.Addresses.ToList();
+                var properties = new string[] { "", "" };
+
+                Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
+
+                if (xlApp == null)
+                {
+                    MessageBox.Show("Excel is not properly installed!!");
+                    return;
+                }
+
+
+                Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
+                Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
+                object misValue = System.Reflection.Missing.Value;
+
+                xlWorkBook = xlApp.Workbooks.Add(misValue);
+                xlWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+                xlWorkSheet.Range["A1"].Value = "hola";
+                xlWorkSheet.Cells[1, 1] = "Sheet 1 content";
+
+                xlWorkBook.SaveAs("d:\\csharp-Excel.xls", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+                xlWorkBook.Close(true, misValue, misValue);
+                xlApp.Quit();
+
+                releaseObject(xlWorkSheet);
+                releaseObject(xlWorkBook);
+                releaseObject(xlApp);
+
+                MessageBox.Show("Excel file created , you can find the file d:\\csharp-Excel.xls");
+            }
+        }
+
+
+        private void releaseObject(object obj)
+        {
+            try
+            {
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+                obj = null;
+            }
+            catch (Exception ex)
+            {
+                obj = null;
+                MessageBox.Show("Exception Occured while releasing object " + ex.ToString());
+            }
+            finally
+            {
+                GC.Collect();
             }
         }
         

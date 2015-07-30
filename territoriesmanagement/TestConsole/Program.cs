@@ -1,14 +1,18 @@
-﻿using SharpKml.Base;
+﻿using GMap.NET;
+using SharpKml.Base;
 using SharpKml.Dom;
 using SharpKml.Engine;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Xml;
 using System.Xml.Linq;
+using TerritoriesManagement;
+using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.Model;
 
 namespace TestConsole
@@ -20,7 +24,7 @@ namespace TestConsole
             try
             {
                 Console.ReadKey();
-                BackupTerritoryHelper();
+                ImportNewTerritories();
             }
             catch (Exception ex)
             {
@@ -314,7 +318,7 @@ namespace TestConsole
                         point.Coordinate = new Vector(a.Lat.Value, a.Lng.Value);
 
                         // This is the Element we are going to save to the Kml file.
-                        var placemark = new Placemark();
+                        var placemark = new SharpKml.Dom.Placemark();
                         placemark.Geometry = point;
                         placemark.Name = a.IdAddress.ToString();
                         placemark.Address = address;
@@ -333,6 +337,7 @@ namespace TestConsole
                 using (var stream = System.IO.File.OpenWrite("C:\\Users\\zeqk\\Desktop\\territories.kml"))
                 {
                     kml.Save(stream);
+                    
                 }
                                
 
@@ -346,7 +351,153 @@ namespace TestConsole
                 throw ex;
             }
         }
+        #region Import new territories from KML
 
+        static void ImportNewTerritories()
+        {
+            RemoveOldTerritories();
+            ImportTerritoriesFromKml();
+            SetNewTerritories();
+            RenumInternalTerritoryNumber();
+        }
+
+        static void RemoveOldTerritories()
+        {
+            try
+            {
+                Console.WriteLine("Eliminando territorios viejos...");
+                 TerritoriesManagement.Model.TerritoriesDataContext dm = new TerritoriesManagement.Model.TerritoriesDataContext();
+                foreach (var item in dm.Addresses)
+                {
+                    item.Territory = null;
+                    item.InternalTerritoryNumber = null;
+                }
+                dm.SaveChanges();
+                dm.territories_DeleteAll();
+                dm.SaveChanges();
+                Console.WriteLine("Territorios viejos eliminados");
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
+        }
+
+        static void SetNewTerritories()
+        {
+            try
+            {
+                Console.WriteLine("Asignando nuevos territorios");
+                TerritoriesManagement.Model.TerritoriesDataContext dm = new TerritoriesManagement.Model.TerritoriesDataContext();
+                var server = new Addresses();
+                foreach (var item in dm.Addresses)
+                {
+                    if (item.Lat.HasValue && item.Lng.HasValue)
+                    {
+                        PointLatLng point = new PointLatLng(item.Lat.Value, item.Lng.Value);
+                        foreach (Territory t in dm.Territories)
+                        {
+                            if (t.Area != null && t.Area != "")
+                            {
+                                List<PointLatLng> polygon = Helper.StrPointsToPointsLatLng(t.Area.Split('\n'));
+                                if (server.PointInPolygon(point, polygon.ToArray()))
+                                {
+                                    item.Territory = t;
+                                    break; 
+                                }
+                            }
+                        }
+                    }
+                }
+                dm.SaveChanges();
+                Console.WriteLine("Nuevos territorios asignados");
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        static void RenumInternalTerritoryNumber()
+        {
+            try
+            {
+                Console.WriteLine("Renumerando direcciones...");
+
+                TerritoriesManagement.Model.TerritoriesDataContext dm = new TerritoriesManagement.Model.TerritoriesDataContext();
+                
+                foreach (var item in dm.Territories)
+                {
+                    item.Addresses.Load();
+                    var addresses = item.Addresses.Where(a => a.Lat.HasValue && a.Lng.HasValue)
+                        .OrderByDescending(a => a.Lat.Value).ThenBy(a => a.Lng.Value).ToList();
+
+                    var i = 1;
+                    foreach (var a in addresses)
+                    {
+                        a.InternalTerritoryNumber = i;
+                        i++;
+                    }
+                }
+                dm.SaveChanges();
+
+                Console.WriteLine("Direcciones renumeradas");
+             }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        static void ImportTerritoriesFromKml()
+        {
+            try
+            {
+                Console.WriteLine("Importando territorios de KML...");
+                KmlFile file = null;
+                using (var stream = System.IO.File.OpenRead("C:\\Users\\zeqk\\Desktop\\territories.kml"))
+                {
+                    file = KmlFile.Load(stream);
+
+                }
+
+                TerritoriesManagement.Model.TerritoriesDataContext dm = new TerritoriesManagement.Model.TerritoriesDataContext();
+                var format = CultureInfo.GetCultureInfo("en-US").NumberFormat;
+
+                Kml kml = file.Root as Kml;
+                if (kml != null)
+                {
+                    foreach (var placemark in kml.Flatten().OfType<SharpKml.Dom.Placemark>())
+                    {
+                        var polygon = placemark.Flatten().OfType<Polygon>().FirstOrDefault();
+                        if(polygon != null)
+                        {
+                            var boundary = polygon.OuterBoundary.LinearRing.Coordinates.Select(r => r.Latitude.ToString(format) + " " + r.Longitude.ToString(format)).ToArray();
+                            var area = string.Join(Environment.NewLine, boundary);
+                            var territory = new Territory
+                            {
+                                Name = placemark.Name,
+                                Area = area
+                            };
+                            dm.AddToTerritories(territory);
+                        }
+                    }
+                }
+                dm.SaveChanges();
+
+                Console.WriteLine("Territorios nuevos importados");
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+        #endregion
         static void ImportXML()
         {
             var stream = File.OpenRead("C:\\Users\\zeqk\\Desktop\\territories.xml");

@@ -461,7 +461,7 @@ namespace TerritoriesManagement.DataBridge
             }
         }
 
-        private bool PointInPolygon(PointLatLng p, PointLatLng[] poly)
+        public bool PointInPolygon(PointLatLng p, PointLatLng[] poly)
         {
             PointLatLng p1, p2;
 
