@@ -1,16 +1,19 @@
-﻿using System;
+﻿using GMap.NET;
+using GMap.NET.WindowsForms;
+using Localizer;
+using Microsoft.Reporting.WinForms;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.Objects;
 using System.Drawing;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
-using GMap.NET;
-using GMap.NET.WindowsForms;
-using Localizer;
 using TerritoriesManagement.DataBridge;
-using TerritoriesManagement.Export;
 using TerritoriesManagement.GUI.Configuration;
 using TerritoriesManagement.Model;
 
@@ -427,65 +430,65 @@ namespace TerritoriesManagement.GUI
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            var myForm = new SaveFileDialog();
-            myForm.Filter = "Excel files (*.xls)|*.xls";
-            if (myForm.ShowDialog() == DialogResult.OK)
-            {
-                string templatePath = myForm.FileName;
-
-                string[] addressProps = Helper.GetPropertyListByType(typeof(Address)).Select(p => p.Name).ToArray();
-
-                var territory = FormToOject();
-                territory.Addresses.Load();
-                var addresses = territory.Addresses.ToList();
-                var properties = new string[] { "", "" };
-
-                Microsoft.Office.Interop.Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
-
-                if (xlApp == null)
-                {
-                    MessageBox.Show("Excel is not properly installed!!");
-                    return;
-                }
-
-
-                Microsoft.Office.Interop.Excel.Workbook xlWorkBook;
-                Microsoft.Office.Interop.Excel.Worksheet xlWorkSheet;
-                object misValue = System.Reflection.Missing.Value;
-
-                xlWorkBook = xlApp.Workbooks.Add(misValue);
-                xlWorkSheet = (Microsoft.Office.Interop.Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-                xlWorkSheet.Range["A1"].Value = "hola";
-                xlWorkSheet.Cells[1, 1] = "Sheet 1 content";
-
-                xlWorkBook.SaveAs("d:\\csharp-Excel.xls", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-                xlWorkBook.Close(true, misValue, misValue);
-                xlApp.Quit();
-
-                releaseObject(xlWorkSheet);
-                releaseObject(xlWorkBook);
-                releaseObject(xlApp);
-
-                MessageBox.Show("Excel file created , you can find the file d:\\csharp-Excel.xls");
-            }
-        }
-
-
-        private void releaseObject(object obj)
-        {
             try
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
-                obj = null;
+                var myForm = new SaveFileDialog();
+                myForm.Filter = "PDF Files (*.pdf)|*.pdf";
+                if (myForm.ShowDialog() == DialogResult.OK)
+                {
+
+                    var territory = this.FormToOject();
+
+                    var parameters = new List<ReportParameter>();
+                    parameters.Add(new ReportParameter("TerritoryName", territory.Name));
+                    
+                    this.print(myForm.FileName, "PDF", "TerritoriesManagement.dll", "TerritoriesManagement.Reports.Territory.rdlc", "AddressesDataSet", territory.Addresses, parameters);
+
+                    MessageBox.Show("El archivo " + myForm.FileName + " se genero exitosamente");
+                }
             }
             catch (Exception ex)
             {
-                obj = null;
-                MessageBox.Show("Exception Occured while releasing object " + ex.ToString());
+                MessageBox.Show(ex.Message);
             }
-            finally
+            
+        }
+
+
+        void print(string filePath, string format, string assembblyFile, string reportPath, string sourceName, IEnumerable records, IList<ReportParameter> parameters)
+        {
+            try
             {
-                GC.Collect();
+                Assembly assembly = Assembly.LoadFrom(assembblyFile);
+                Stream stream = assembly.GetManifestResourceStream(reportPath);
+
+                LocalReport report = new LocalReport();
+                report.LoadReportDefinition(stream);
+
+                report.DataSources.Add(new ReportDataSource(sourceName, records));
+
+                foreach (var item in parameters)
+                {
+                    report.SetParameters(item);    
+                }
+
+                Warning[] warnings;
+                string[] streamids;
+                string mimeType;
+                string encoding;
+                string filenameExtension;
+
+                byte[] bytes = report.Render(format, null, out mimeType, out encoding, out filenameExtension, out streamids, out warnings);
+
+                using (FileStream fs = new FileStream(filePath, FileMode.Create))
+                {
+                    fs.Write(bytes, 0, bytes.Length);
+                }
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
             }
         }
         
