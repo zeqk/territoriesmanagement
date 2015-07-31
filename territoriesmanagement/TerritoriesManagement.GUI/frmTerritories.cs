@@ -1,5 +1,8 @@
 ﻿using GMap.NET;
+using GMap.NET.MapProviders;
+using GMap.NET.ObjectModel;
 using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
 using Localizer;
 using Microsoft.Reporting.WinForms;
 using System;
@@ -8,6 +11,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Objects;
 using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -432,20 +437,32 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
-                var myForm = new SaveFileDialog();
-                myForm.Filter = "PDF Files (*.pdf)|*.pdf";
-                if (myForm.ShowDialog() == DialogResult.OK)
+
+                var territory = this.FormToOject();
+
+                if (territory.IdTerritory != 0)
                 {
+                    var myForm = new SaveFileDialog();
+                    myForm.Filter = "PDF Files (*.pdf)|*.pdf";
+                    var territoryName = (territory.Number.HasValue ? territory.Number.Value.ToString() + " - " : string.Empty) + territory.Name;
+                    myForm.FileName = territoryName;
+                    if (myForm.ShowDialog() == DialogResult.OK)
+                    {
+                        var image = generateTerritoryImage(territory);
 
-                    var territory = this.FormToOject();
+                        var imageBase64 = this.ConvertImageStreamToBase64(image);
 
-                    var parameters = new List<ReportParameter>();
-                    parameters.Add(new ReportParameter("TerritoryName", territory.Name));
-                    
-                    this.print(myForm.FileName, "PDF", "TerritoriesManagement.dll", "TerritoriesManagement.Reports.Territory.rdlc", "AddressesDataSet", territory.Addresses, parameters);
+                        var parameters = new List<ReportParameter>();
+                        parameters.Add(new ReportParameter("TerritoryName", territoryName));
+                        parameters.Add(new ReportParameter("Map", imageBase64));
 
-                    MessageBox.Show("El archivo " + myForm.FileName + " se genero exitosamente");
+                        this.print(myForm.FileName, "PDF", "TerritoriesManagement.dll", "TerritoriesManagement.Reports.Territory.rdlc", "AddressesDataSet", territory.Addresses.OrderBy(a => a.InternalTerritoryNumber), parameters);
+
+                        MessageBox.Show("El archivo " + myForm.FileName + " se genero exitosamente");
+                    }
                 }
+                else
+                    MessageBox.Show("Debe seleccionar un territorio");
             }
             catch (Exception ex)
             {
@@ -491,6 +508,247 @@ namespace TerritoriesManagement.GUI
                 throw ex;
             }
         }
+
+        private string ConvertImageStreamToBase64(MemoryStream stream)
+        {
+            byte[] imageArray;
+            imageArray = stream.ToArray();
+            //imageArray = new byte[stream.Length];
+            //stream.Read(imageArray, 0, Convert.ToInt32(stream.Length));
+
+            return Convert.ToBase64String(imageArray);
+        }
+
+        MemoryStream generateTerritoryImage(Territory territory)
+        {
+
+            var polygon = this.GetPolygon(territory.Area);
+
+            var area = this.CalculateRectangle(polygon.Points);
+            //area = this.AddMargin(area);
+
+            var polygons = new List<GMapPolygon>();
+            polygons.Add(polygon);
+
+            var markers = new List<GMapMarker>();
+
+            foreach (var item in territory.Addresses)
+            {
+
+                if (item.Lat.HasValue && item.Lng.HasValue)
+                {
+                    GMapMarkerCustom marker = new GMapMarkerCustom(new PointLatLng(item.Lat.Value, item.Lng.Value));
+                    
+                    if (item.InternalTerritoryNumber.HasValue)
+                        marker.Tag = item.InternalTerritoryNumber.Value;                    
+                    marker.Size = new System.Drawing.Size(4, 4);                    
+                    markers.Add(marker);
+                }
+            }
+
+            var rv = this.generateImage(area, 15, GMapProviders.GoogleMap, markers, polygons);
+
+            return rv;
+        }
+        
+
+        private RectLatLng CalculateRectangle(IList<PointLatLng> points)
+        {
+            RectLatLng rect = new RectLatLng();
+
+            if (points.Count > 1)
+            {
+                double maxLat = points.Max(p => p.Lat);
+                double minLat = points.Min(p => p.Lat);
+
+                double maxLng = points.Max(p => p.Lng);
+                double minLng = points.Min(p => p.Lng);
+
+                double widthLat = maxLat - minLat;
+                double heightLng = maxLng - minLng;
+
+                rect = new RectLatLng(maxLat, minLng, heightLng, widthLat);
+
+            }
+            else
+            {
+                if (points.Count > 0)
+                {
+                    SizeLatLng size = new SizeLatLng(0.005, 0.009);
+                    PointLatLng point = new PointLatLng(points[0].Lat + 0.0025, points[0].Lng - 0.0045);
+                    rect = new RectLatLng(point, size);
+
+                }
+            }
+            return rect;
+        }
+
+        private RectLatLng AddMargin(RectLatLng rect)
+        {
+            rect.LocationTopLeft = new PointLatLng(rect.LocationTopLeft.Lat + 0.0009, rect.LocationTopLeft.Lng - 0.002);
+            rect.HeightLat = rect.HeightLat + 0.0018;
+            rect.WidthLng = rect.WidthLng + 0.004;
+
+            return rect;
+        }
+
+        MemoryStream generateImage(RectLatLng area, int zoom, GMapProvider type, IList<GMapMarker> markers, IList<GMapPolygon> polygons)
+        {
+            MemoryStream rv = null;
+            if (!area.IsEmpty)
+            {
+
+                // current area
+                GPoint topLeftPx = type.Projection.FromLatLngToPixel(area.LocationTopLeft, zoom);
+                GPoint rightButtomPx = type.Projection.FromLatLngToPixel(area.Bottom, area.Right, zoom);
+                GPoint pxDelta = new GPoint(rightButtomPx.X - topLeftPx.X, rightButtomPx.Y - topLeftPx.Y);
+                GMap.NET.GSize maxOfTiles = type.Projection.GetTileMatrixMaxXY(zoom);
+
+                int padding = 22;
+                {
+                    using (Bitmap bmp = new Bitmap((int)(pxDelta.X + padding * 2), (int)(pxDelta.Y + padding * 2)))
+                    {
+                        using (Graphics gfx = Graphics.FromImage(bmp))
+                        {
+                            gfx.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                            gfx.SmoothingMode = SmoothingMode.HighQuality;
+
+                            int i = 0;
+                            List<GPoint> tileArea = new List<GPoint>();
+                            // get tiles & combine into one
+                            lock (tileArea)
+                            {
+                                tileArea.Clear();
+                                tileArea.AddRange(type.Projection.GetAreaTileList(area, zoom, 1));
+                                tileArea.TrimExcess();
+
+                                foreach (var p in tileArea)
+                                {
+
+                                    foreach (var tp in type.Overlays)
+                                    {
+                                        Exception ex;
+                                        GMapImage tile;
+
+                                        // tile number inversion(BottomLeft -> TopLeft) for pergo maps
+                                        if (tp.InvertedAxisY)
+                                        {
+                                            tile = GMaps.Instance.GetImageFrom(tp, new GPoint(p.X, maxOfTiles.Height - p.Y), zoom, out ex) as GMapImage;
+                                        }
+                                        else // ok
+                                        {
+                                            tile = GMaps.Instance.GetImageFrom(tp, p, zoom, out ex) as GMapImage;
+                                        }
+
+                                        if (tile != null)
+                                        {
+                                            using (tile)
+                                            {
+                                                long x = p.X * type.Projection.TileSize.Width - topLeftPx.X + padding;
+                                                long y = p.Y * type.Projection.TileSize.Width - topLeftPx.Y + padding;
+                                                {
+                                                    gfx.DrawImage(tile.Img, x, y, type.Projection.TileSize.Width, type.Projection.TileSize.Height);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+                            // draw polygons
+                            {
+                                foreach (GMapPolygon polygon in polygons)
+                                {
+                                    if (polygon.IsVisible)
+                                    {
+                                        using (GraphicsPath rp = new GraphicsPath())
+                                        {
+                                            for (int j = 0; j < polygon.Points.Count; j++)
+                                            {
+                                                var pr = polygon.Points[j];
+                                                GPoint px = type.Projection.FromLatLngToPixel(pr.Lat, pr.Lng, zoom);
+
+                                                px.Offset(padding, padding);
+                                                px.Offset(-topLeftPx.X, -topLeftPx.Y);
+
+                                                GPoint p2 = px;
+
+                                                if (j == 0)
+                                                {
+                                                    rp.AddLine(p2.X, p2.Y, p2.X, p2.Y);
+                                                }
+                                                else
+                                                {
+                                                    System.Drawing.PointF p = rp.GetLastPoint();
+                                                    rp.AddLine(p.X, p.Y, p2.X, p2.Y);
+                                                }
+                                            }
+
+                                            Color color = Color.FromArgb(95, polygon.Stroke.Color);
+                                            Pen pen = new Pen(color, 4);
+                                            pen.DashStyle = DashStyle.Custom;
+
+                                            if (rp.PointCount > 0)
+                                            {
+                                                rp.CloseFigure();
+
+                                                gfx.DrawPolygon(pen, rp.PathPoints);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+
+
+                            //draw marks
+                            foreach (var marker in markers)
+                            {
+
+                                var pr = marker.Position;
+                                GPoint px = type.Projection.FromLatLngToPixel(pr.Lat, pr.Lng, zoom);
+
+                                px.Offset(padding, padding);
+                                px.Offset(-topLeftPx.X, -topLeftPx.Y);
+                                px.Offset(marker.Offset.X, marker.Offset.Y);
+
+                                IntPtr iconHandle1 = TerritoriesManagement.GUI.Properties.Resources.legendIcon.GetHicon();
+                                if (marker.GetType().GetProperty("Icon") != null)
+                                {
+                                    Bitmap bitmap = (Bitmap)marker.GetType().GetProperty("Icon", typeof(Bitmap)).GetValue(marker, null);
+                                    if(bitmap != null) iconHandle1 = bitmap.GetHicon();
+                                }
+
+                                Icon icon1 = Icon.FromHandle(iconHandle1);
+                                var x = Convert.ToInt32(px.X);
+                                var y = Convert.ToInt32(px.Y);
+                                gfx.DrawIcon(icon1, x - (icon1.Size.Width / 2), y - (icon1.Size.Height / 2));
+                                Font font = new Font(FontFamily.GenericSansSerif, 12);
+
+                                string infoTag = "";
+                                if (marker.Tag != null)
+                                    infoTag = marker.Tag.ToString();
+
+                                gfx.DrawString(infoTag, font, Brushes.Red, x + 10, y - 10);
+                            }
+
+                        }
+
+                        if(bmp.Height > bmp.Width)
+                            bmp.RotateFlip(RotateFlipType.Rotate90FlipNone);
+
+                        var ms = new System.IO.MemoryStream();
+                        bmp.Save(ms, ImageFormat.Png);
+
+                        rv = ms;
+                        
+                    }
+                }
+            }
+
+            return rv;
+        }
+
+        
         
 
     }

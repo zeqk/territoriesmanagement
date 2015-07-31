@@ -21,9 +21,9 @@
         </Paragraphs>
         <rd:DefaultName>Textbox1</rd:DefaultName>
         <Top>0.28787cm</Top>
-        <Left>0.52599cm</Left>
+        <Left>0.27063cm</Left>
         <Height>1.04069cm</Height>
-        <Width>6.25709cm</Width>
+        <Width>14.2437cm</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -38,13 +38,13 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.70625cm</Width>
+              <Width>1.89922cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>6.41583cm</Width>
+              <Width>6.6088cm</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>5.54271cm</Width>
+              <Width>5.73568cm</Width>
             </TablixColumn>
           </TablixColumns>
           <TablixRows>
@@ -62,6 +62,7 @@
                             <TextRun>
                               <Value>Número</Value>
                               <Style>
+                                <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -94,6 +95,7 @@
                             <TextRun>
                               <Value>Dirección</Value>
                               <Style>
+                                <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -126,6 +128,7 @@
                             <TextRun>
                               <Value>Esquina</Value>
                               <Style>
+                                <FontSize>11pt</FontSize>
                                 <FontWeight>Bold</FontWeight>
                               </Style>
                             </TextRun>
@@ -162,7 +165,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!InternalTerritoryNumber.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>11pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -192,7 +197,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Street.Value &amp; " " &amp; Fields!Number.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>11pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -222,7 +229,9 @@
                           <TextRuns>
                             <TextRun>
                               <Value>=Fields!Corner1.Value</Value>
-                              <Style />
+                              <Style>
+                                <FontSize>11pt</FontSize>
+                              </Style>
                             </TextRun>
                           </TextRuns>
                           <Style />
@@ -264,10 +273,10 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>AddressesDataSet</DataSetName>
-        <Top>1.50495cm</Top>
-        <Left>0.52599cm</Left>
+        <Top>10.95058cm</Top>
+        <Left>0.27063cm</Left>
         <Height>1.2cm</Height>
-        <Width>13.66479cm</Width>
+        <Width>14.2437cm</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -275,18 +284,39 @@
           </Border>
         </Style>
       </Tablix>
+      <Image Name="Map">
+        <Source>Database</Source>
+        <Value>=System.Convert.FromBase64String(Parameters!Map.Value)</Value>
+        <MIMEType>image/png</MIMEType>
+        <Sizing>FitProportional</Sizing>
+        <Top>1.50495cm</Top>
+        <Left>0.27063cm</Left>
+        <Height>8.32625cm</Height>
+        <Width>14.2437cm</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+            <Width>1.25pt</Width>
+          </Border>
+        </Style>
+      </Image>
     </ReportItems>
-    <Height>2in</Height>
-    <Style />
+    <Height>13.98854cm</Height>
+    <Style>
+      <Border>
+        <Style>None</Style>
+      </Border>
+    </Style>
   </Body>
-  <Width>7.22209in</Width>
+  <Width>14.85cm</Width>
   <Page>
-    <PageHeight>29.7cm</PageHeight>
-    <PageWidth>21cm</PageWidth>
-    <LeftMargin>2cm</LeftMargin>
-    <RightMargin>2cm</RightMargin>
-    <TopMargin>2cm</TopMargin>
-    <BottomMargin>2cm</BottomMargin>
+    <PageHeight>21cm</PageHeight>
+    <PageWidth>14.85cm</PageWidth>
+    <LeftMargin>0cm</LeftMargin>
+    <RightMargin>0cm</RightMargin>
+    <TopMargin>0cm</TopMargin>
+    <BottomMargin>0cm</BottomMargin>
     <ColumnSpacing>0.13cm</ColumnSpacing>
     <Style />
   </Page>
@@ -389,6 +419,10 @@
   </DataSets>
   <ReportParameters>
     <ReportParameter Name="TerritoryName">
+      <DataType>String</DataType>
+      <Prompt>ReportParameter1</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Map">
       <DataType>String</DataType>
       <Prompt>ReportParameter1</Prompt>
     </ReportParameter>
