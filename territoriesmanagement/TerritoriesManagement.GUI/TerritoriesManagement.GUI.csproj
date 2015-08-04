@@ -373,10 +373,6 @@
     <None Include="Resources\legend.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\altostools\zeqktools\AltosTools.Maps\AltosTools.Maps.csproj">
-      <Project>{802df1ec-a9e4-474d-a683-a123308f36f2}</Project>
-      <Name>AltosTools.Maps</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TerritoriesManagement\TerritoriesManagement.csproj">
       <Project>{2AF8144A-682F-4B8E-A3CF-4FD77816AD78}</Project>
       <Name>TerritoriesManagement</Name>

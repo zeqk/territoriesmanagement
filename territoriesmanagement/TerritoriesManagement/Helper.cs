@@ -270,6 +270,45 @@ namespace TerritoriesManagement
 
             return points;
         }
+
+		static public bool PointInPolygon(PointLatLng point, PointLatLng[] polygon)
+		{
+			PointLatLng p1, p2;
+
+			bool inside = false;
+
+			if (polygon.Length < 3)
+			{
+				return inside;
+			}
+
+			PointLatLng oldPoint = new PointLatLng(polygon[polygon.Length - 1].Lat, polygon[polygon.Length - 1].Lng);
+
+			for (int i = 0; i < polygon.Length; i++)
+			{
+				PointLatLng newPoint = new PointLatLng(polygon[i].Lat, polygon[i].Lng);
+				if (newPoint.Lat > oldPoint.Lat)
+				{
+					p1 = oldPoint;
+					p2 = newPoint;
+				}
+				else
+				{
+					p1 = newPoint;
+					p2 = oldPoint;
+				}
+
+				if ((newPoint.Lat < point.Lat) == (point.Lat <= oldPoint.Lat)
+					&& (point.Lng - p1.Lng) * (p2.Lat - p1.Lat)
+					 < (p2.Lng - p1.Lng) * (point.Lat - p1.Lat))
+				{
+					inside = !inside;
+				}
+				oldPoint = newPoint;
+			}
+
+			return inside;
+		}
         #endregion
     }
 

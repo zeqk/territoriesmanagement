@@ -110,6 +110,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\Localizer.dll</HintPath>
     </Reference>
+    <Reference Include="SharpKml">
+      <HintPath>..\libs\SharpKml.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -147,6 +150,7 @@
     <Compile Include="Import\ImportTool.cs" />
     <Compile Include="DataBridge\Departments.cs" />
     <Compile Include="DataBridge\IDataBridge.cs" />
+    <Compile Include="KML\KMLHelper.cs" />
     <Compile Include="Model\Class Extenders\TerritoriesDataContext.cs">
       <SubType>Code</SubType>
     </Compile>

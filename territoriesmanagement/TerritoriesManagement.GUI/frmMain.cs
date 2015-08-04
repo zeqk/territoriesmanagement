@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using AltosTools.WindowsForms;
 using Localizer;
 using TerritoriesManagement.GUI.Configuration;
+using TerritoriesManagement.KML;
 
 namespace TerritoriesManagement.GUI
 {
@@ -133,6 +134,29 @@ namespace TerritoriesManagement.GUI
         {
             TerritoriesManagement.GUI.Interop.InteropWizard.RunInteropWizard();
         }
+
+		private void menuImportKML_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				Cursor.Current = Cursors.WaitCursor;
+				var myForm = new SaveFileDialog();
+                myForm.Filter = "KML Files (*.kml)|*.kml";
+				if (myForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+				{
+					KMLHelper.ImportNewTerritories(myForm.FileName);
+				}
+				MessageBox.Show("Los territorios se importaron exitosamente");
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+			finally
+			{
+				Cursor.Current = Cursors.Arrow;
+			}
+		}
 
 
     }
