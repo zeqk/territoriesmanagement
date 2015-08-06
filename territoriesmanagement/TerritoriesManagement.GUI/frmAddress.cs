@@ -15,7 +15,6 @@ namespace TerritoriesManagement.GUI
         private Addresses server;
         private bool isDirty;
         private bool hasntTerritory;
-        Configuration.Config config;
 
         public Address Address
         {

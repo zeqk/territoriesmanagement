@@ -108,7 +108,7 @@ namespace TerritoriesManagement.GUI
             ab.AppTitle = "Territories Management";
             ab.AppDescription = "A program for organizing special territories";
             ab.AppVersion = Application.ProductVersion;
-            ab.AppCopyright = "GNU GPL 2014 Zeqk";
+            ab.AppCopyright = "GNU GPL 2015 Zeqk";
             ab.AppMoreInfo = Properties.Resources.credits;
             ab.AppMoreInfo += "\n\n";
             ab.AppMoreInfo += Properties.Resources.Short_License_EN;
@@ -145,8 +145,8 @@ namespace TerritoriesManagement.GUI
 				if (myForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 				{
 					KMLHelper.ImportNewTerritories(myForm.FileName);
+                    MessageBox.Show("Los territorios se importaron exitosamente");
 				}
-				MessageBox.Show("Los territorios se importaron exitosamente");
 			}
 			catch (Exception ex)
 			{

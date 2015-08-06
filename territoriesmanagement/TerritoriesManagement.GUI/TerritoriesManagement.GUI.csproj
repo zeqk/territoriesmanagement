@@ -111,6 +111,10 @@
     <Reference Include="AltosTools">
       <HintPath>..\libs\AltosTools.dll</HintPath>
     </Reference>
+    <Reference Include="AltosTools.Maps, Version=1.14.9.29, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libs\AltosTools.Maps.dll</HintPath>
+    </Reference>
     <Reference Include="AltosTools.WindowsForms">
       <HintPath>..\libs\AltosTools.WindowsForms.dll</HintPath>
     </Reference>
