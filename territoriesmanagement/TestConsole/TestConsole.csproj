@@ -104,9 +104,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\GMap.NET.Core.dll</HintPath>
     </Reference>
-    <Reference Include="SharpKml, Version=2.0.3.0, Culture=neutral, PublicKeyToken=9bb853c026a5c0ac, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\territoriesmanagementg\territoriesmanagement\libs\SharpKml.dll</HintPath>
+    <Reference Include="SharpKml">
+      <HintPath>..\libs\SharpKml.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">

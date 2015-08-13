@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTerritories));
             this.grpObject = new System.Windows.Forms.GroupBox();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.btnViewMap = new System.Windows.Forms.Button();
             this.txtNumber = new System.Windows.Forms.MaskedTextBox();
             this.bsTerritory = new System.Windows.Forms.BindingSource(this.components);
@@ -56,7 +57,7 @@
             this.dgvAddresses = new System.Windows.Forms.DataGridView();
             this.tabTours = new System.Windows.Forms.TabPage();
             this.dgvTours = new System.Windows.Forms.DataGridView();
-            this.btnPrint = new System.Windows.Forms.Button();
+            this.btnPrintList = new System.Windows.Forms.Button();
             this.grpObject.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).BeginInit();
             this.grdSearch.SuspendLayout();
@@ -87,6 +88,16 @@
             this.grpObject.TabIndex = 1;
             this.grpObject.TabStop = false;
             this.grpObject.Text = "Territory";
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Location = new System.Drawing.Point(280, 106);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(55, 38);
+            this.btnPrint.TabIndex = 10;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnViewMap
             // 
@@ -201,6 +212,7 @@
             // 
             // grdSearch
             // 
+            this.grdSearch.Controls.Add(this.btnPrintList);
             this.grdSearch.Controls.Add(this.lblResultCount);
             this.grdSearch.Controls.Add(this.lblFilterName);
             this.grdSearch.Controls.Add(this.schName);
@@ -286,7 +298,7 @@
             this.dgvResult.ReadOnly = true;
             this.dgvResult.RowHeadersVisible = false;
             this.dgvResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvResult.Size = new System.Drawing.Size(325, 312);
+            this.dgvResult.Size = new System.Drawing.Size(325, 286);
             this.dgvResult.TabIndex = 7;
             this.dgvResult.VirtualMode = true;
             this.dgvResult.SelectionChanged += new System.EventHandler(this.dgvResult_SelectionChanged);
@@ -362,15 +374,15 @@
             this.dgvTours.TabIndex = 7;
             this.dgvTours.VirtualMode = true;
             // 
-            // btnPrint
+            // btnPrintList
             // 
-            this.btnPrint.Location = new System.Drawing.Point(280, 106);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(55, 38);
-            this.btnPrint.TabIndex = 10;
-            this.btnPrint.Text = "Print";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            this.btnPrintList.Location = new System.Drawing.Point(300, 374);
+            this.btnPrintList.Name = "btnPrintList";
+            this.btnPrintList.Size = new System.Drawing.Size(44, 30);
+            this.btnPrintList.TabIndex = 11;
+            this.btnPrintList.Text = "Print";
+            this.btnPrintList.UseVisualStyleBackColor = true;
+            this.btnPrintList.Click += new System.EventHandler(this.btnPrintList_Click);
             // 
             // frmTerritories
             // 
@@ -383,9 +395,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmTerritories";
             this.Text = "Territories";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmTerritories_FormClosed_1);
             this.Load += new System.EventHandler(this.frmTerritories_Load);
             this.Shown += new System.EventHandler(this.frmTerritories_Shown);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmTerritories_FormClosed_1);
             this.grpObject.ResumeLayout(false);
             this.grpObject.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).EndInit();
@@ -430,5 +442,6 @@
         private System.Windows.Forms.Button btnViewMap;
         private System.Windows.Forms.Label lblResultCount;
         private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.Button btnPrintList;
     }
 }

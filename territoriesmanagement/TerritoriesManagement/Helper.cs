@@ -309,6 +309,42 @@ namespace TerritoriesManagement
 
 			return inside;
 		}
+
+
+
+        public static RectLatLng CalculateRectangle(IList<PointLatLng> points)
+        {
+            RectLatLng rect = new RectLatLng();
+
+            if (points.Count > 1)
+            {
+                double maxLat = points.Max(p => p.Lat);
+                double minLat = points.Min(p => p.Lat);
+
+                double maxLng = points.Max(p => p.Lng);
+                double minLng = points.Min(p => p.Lng);
+
+                double widthLat = maxLat - minLat;
+                double heightLng = maxLng - minLng;
+
+                rect = new RectLatLng(maxLat, minLng, heightLng, widthLat);
+
+            }
+            else
+            {
+                if (points.Count > 0)
+                {
+                    SizeLatLng size = new SizeLatLng(0.005, 0.009);
+                    PointLatLng point = new PointLatLng(points[0].Lat + 0.0025, points[0].Lng - 0.0045);
+                    rect = new RectLatLng(point, size);
+
+                }
+            }
+            return rect;
+        }
+
+
+        
         #endregion
     }
 

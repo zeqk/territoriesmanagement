@@ -345,7 +345,7 @@ namespace TerritoriesManagement.Model
             {
                 throw ex;
             }
-        }   
+        }
 
         /// <summary>
         /// There are no comments for TerritoriesModel.cities_DeleteAll in the schema.
@@ -397,7 +397,7 @@ namespace TerritoriesManagement.Model
                         conn.Open();
                     }
 
-                    int count = (int) cmd.ExecuteScalar();
+                    int count = (int)cmd.ExecuteScalar();
 
                 }
             }

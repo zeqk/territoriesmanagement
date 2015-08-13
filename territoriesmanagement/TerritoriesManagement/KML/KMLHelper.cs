@@ -35,6 +35,7 @@ namespace TerritoriesManagement.KML
 			}
 			dm.SaveChanges();
 			dm.territories_DeleteAll();
+            dm.territories_ResetId(0);
 			dm.SaveChanges();
 		}
 

@@ -140,7 +140,7 @@ namespace TerritoriesManagement.GUI
 			try
 			{
 				Cursor.Current = Cursors.WaitCursor;
-				var myForm = new SaveFileDialog();
+				var myForm = new OpenFileDialog();
                 myForm.Filter = "KML Files (*.kml)|*.kml";
 				if (myForm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
 				{
