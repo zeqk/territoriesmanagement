@@ -31,6 +31,8 @@
             this.chklstTerritories = new System.Windows.Forms.CheckedListBox();
             this.chkHasAddresses = new System.Windows.Forms.CheckBox();
             this.btnPrint = new System.Windows.Forms.Button();
+            this.chkImages = new System.Windows.Forms.CheckBox();
+            this.chkSingleFile = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // chklstTerritories
@@ -68,11 +70,37 @@
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
+            // chkImages
+            // 
+            this.chkImages.AutoSize = true;
+            this.chkImages.Location = new System.Drawing.Point(503, 21);
+            this.chkImages.Name = "chkImages";
+            this.chkImages.Size = new System.Drawing.Size(60, 17);
+            this.chkImages.TabIndex = 3;
+            this.chkImages.Text = "Images";
+            this.chkImages.UseVisualStyleBackColor = true;
+            this.chkImages.Visible = false;
+            // 
+            // chkSingleFile
+            // 
+            this.chkSingleFile.AutoSize = true;
+            this.chkSingleFile.Checked = true;
+            this.chkSingleFile.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkSingleFile.Location = new System.Drawing.Point(398, 21);
+            this.chkSingleFile.Name = "chkSingleFile";
+            this.chkSingleFile.Size = new System.Drawing.Size(71, 17);
+            this.chkSingleFile.TabIndex = 4;
+            this.chkSingleFile.Text = "Single file";
+            this.chkSingleFile.UseVisualStyleBackColor = true;
+            this.chkSingleFile.CheckedChanged += new System.EventHandler(this.chkSingleFile_CheckedChanged);
+            // 
             // frmTerritoriesPrinting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(707, 453);
+            this.Controls.Add(this.chkSingleFile);
+            this.Controls.Add(this.chkImages);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.chkHasAddresses);
             this.Controls.Add(this.chklstTerritories);
@@ -89,5 +117,7 @@
         private System.Windows.Forms.CheckedListBox chklstTerritories;
         private System.Windows.Forms.CheckBox chkHasAddresses;
         private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.CheckBox chkImages;
+        private System.Windows.Forms.CheckBox chkSingleFile;
     }
 }

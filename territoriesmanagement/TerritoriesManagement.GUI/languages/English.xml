@@ -699,4 +699,20 @@
     <Original>Print</Original>
     <Translated>Print</Translated>
   </String>
+  <String>
+    <Original>Import territories from KML</Original>
+    <Translated>Import territories from KML</Translated>
+  </String>
+  <String>
+    <Original>Territories printing</Original>
+    <Translated>Territories printing</Translated>
+  </String>
+  <String>
+    <Original>Single file</Original>
+    <Translated>Single file</Translated>
+  </String>
+  <String>
+    <Original>Images</Original>
+    <Translated>Images</Translated>
+  </String>
 </Localizer>

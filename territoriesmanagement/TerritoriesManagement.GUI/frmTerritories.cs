@@ -433,9 +433,9 @@ namespace TerritoriesManagement.GUI
                     myForm.FileName = territoryName;
                     if (myForm.ShowDialog() == DialogResult.OK)
                     {
-                        ReportsHelper.GenerateTerritoryReport(territory, myForm.FileName);
+                        ReportsHelper.GenerateTerritoryReport(territory, myForm.FileName, ReportFormats.PDF);
 
-                        MessageBox.Show("El archivo " + myForm.FileName + " se genero exitosamente");
+                        MessageBox.Show("El archivo " + myForm.FileName + " se generó exitosamente");
                     }
                 }
                 else

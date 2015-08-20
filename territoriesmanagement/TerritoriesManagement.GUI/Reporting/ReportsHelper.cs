@@ -7,40 +7,63 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.GUI.Maps;
 using TerritoriesManagement.Model;
 
 namespace TerritoriesManagement.Reporting
 {
+    public class ReportFormats
+    {
+        public static readonly string PDF = "PDF";
+        public static readonly string Excel = "Excel";
+        public static readonly string Word = "Word";
+        public static readonly string Image = "Image";
+    }
+
     static public class ReportsHelper
     {
 
-        public static void GenerateMultipleTerritoriesReport(IList<int> ids, string fileName)
+        public static void GenerateMultipleTerritoriesReport(IList<int> ids, string path, bool singleFile, bool image)
         {
             if (ids.Count > 0)
             {
-                var tempFolder = Path.Combine(Path.GetTempPath(), "TerritoriesManagement");
-                if (Directory.Exists(tempFolder))
-                    Directory.Delete(tempFolder, true);
-                Directory.CreateDirectory(tempFolder);
+                
+                var folder = path;
+                if (singleFile)
+                {
+                    var tempFolder = Path.Combine(Path.GetTempPath(), "TerritoriesManagement");
+                    if (Directory.Exists(tempFolder))
+                        Directory.Delete(tempFolder, true);
+                    Directory.CreateDirectory(tempFolder);
+                    folder = tempFolder;
+                }
+                var extension = ".pdf";
+                var format = ReportFormats.PDF;
+                if (image)
+                {
+                    extension = ".jpg";
+                    format = ReportFormats.Image;
+                }
 
                 var bridge = new Territories();
                 var territories = bridge.SearchByIds(ids);
                 var files = new List<string>();
+
                 foreach (var t in territories)
                 {
-                    var file = Path.Combine(tempFolder, t.IdTerritory.ToString() + ".pdf");
-                    GenerateTerritoryReport(t, file);
+                    var name = (t.Number.HasValue ? t.Number.Value.ToString() : string.Empty) + t.Name;
+                    var file = Path.Combine(folder, name + extension);
+                    GenerateTerritoryReport(t, file, format);
                     files.Add(file);
                 }
 
-                MergePdfsToSingle(files, fileName);
+                if(singleFile)
+                    MergePdfsToSingle(files, path);
             }
         }
 
-        public static void GenerateTerritoryReport(Territory territory, string fileName)
+        public static void GenerateTerritoryReport(Territory territory, string fileName, string format)
         {
             var image = MapsHelper.GenerateTerritoryImage(territory);
             var territoryName = (territory.Number.HasValue ? territory.Number.Value.ToString() + " - " : string.Empty) + territory.Name;
@@ -50,21 +73,21 @@ namespace TerritoriesManagement.Reporting
             parameters.Add(new ReportParameter("TerritoryName", territoryName));
             parameters.Add(new ReportParameter("Map", imageBase64));
 
-            ReportsHelper.GenerateReport(fileName, "PDF", "TerritoriesManagement.dll", "TerritoriesManagement.Reports.Territory.rdlc", "AddressesDataSet", territory.Addresses.OrderBy(a => a.InternalTerritoryNumber), parameters);
+            ReportsHelper.GenerateReport(fileName, format, "TerritoriesManagement.dll", "TerritoriesManagement.Reports.Territory.rdlc", "AddressesDataSet", territory.Addresses.OrderBy(a => a.InternalTerritoryNumber), parameters);
         }
 
         public static void GenerateTerritoriesListReport(IList<TerritoryItem1> territories, string fileName)
         {
             var parameters = new List<ReportParameter>();
 
-            ReportsHelper.GenerateReport(fileName, "EXCEL", "TerritoriesManagement.dll", "TerritoriesManagement.Reports.TerritoriesList.rdlc", "TerritoryItem1DS", territories, parameters);
+            ReportsHelper.GenerateReport(fileName, ReportFormats.Excel, "TerritoriesManagement.dll", "TerritoriesManagement.Reports.TerritoriesList.rdlc", "TerritoryItem1DS", territories, parameters);
         }
 
         public static void GenerateAddressesListReport(IList<AddressItem1> addresses, string fileName)
         {
             var parameters = new List<ReportParameter>();
 
-            ReportsHelper.GenerateReport(fileName, "EXCEL", "TerritoriesManagement.dll", "TerritoriesManagement.Reports.Addresses.rdlc", "AddressItem1DS", addresses, parameters);
+            ReportsHelper.GenerateReport(fileName, ReportFormats.Excel, "TerritoriesManagement.dll", "TerritoriesManagement.Reports.Addresses.rdlc", "AddressItem1DS", addresses, parameters);
         }
 
         static string ConvertImageStreamToBase64(MemoryStream stream)
@@ -97,6 +120,7 @@ namespace TerritoriesManagement.Reporting
                 string mimeType;
                 string encoding;
                 string filenameExtension;
+
 
                 byte[] bytes = report.Render(format, null, out mimeType, out encoding, out filenameExtension, out streamids, out warnings);
 
@@ -140,23 +164,16 @@ namespace TerritoriesManagement.Reporting
                     var page = writer.GetImportedPage(reader, 1);
 
                     if (!IsOdd(i))
+                    {
                         cb.AddTemplate(page, 0, 0);
+                        cb.MoveTo(document.PageSize.Width / 2, 0);
+                        cb.LineTo(document.PageSize.Width / 2, document.PageSize.Height);
+                        cb.Stroke();
+                    }
                     else
                         cb.AddTemplate(page, reader.GetPageSize(1).Width, 0);
                     i++;
                 }
-
-                
-                
-                
-
-                
-
-                //var page2 = writer.GetImportedPage(reader2, 1);
-
-                
-                ////play around to find the exact location for the next pdf
-                //cb.AddTemplate(page2, 0, 300);
             }
             catch (Exception e) { throw e; }
             finally { document.Close(); }

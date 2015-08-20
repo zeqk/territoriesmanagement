@@ -1,11 +1,6 @@
 ﻿using Localizer;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.Reporting;
@@ -31,6 +26,9 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
+                this.chkSingleFile.Checked = true;
+                this.chkImages.Checked = false;
+                this.chkImages.Visible = false;
                 this.LoadTerritories();
             }
             catch (Exception ex)
@@ -41,6 +39,7 @@ namespace TerritoriesManagement.GUI
 
         void LoadTerritories()
         {
+            this.chklstTerritories.Items.Clear();
             var bridge = new Territories();
             var list = bridge.SearchSimpleObject(string.Empty, this.chkHasAddresses.Checked);
             this.chklstTerritories.Items.AddRange(list.ToArray());            
@@ -50,18 +49,26 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
-                var myForm = new SaveFileDialog();
-                myForm.Filter = "PDF Files (*.pdf)|*.pdf";                
-                myForm.FileName = DateTime.Today.ToString("yyyy.MM.dd dddd") + ".pdf";
-                if (myForm.ShowDialog() == DialogResult.OK)
+                if (chkSingleFile.Checked)
                 {
-                    var items = this.chklstTerritories.CheckedItems.OfType<SimpleObject>().ToList();
+                    var myForm = new SaveFileDialog();
+                    myForm.Filter = "PDF Files (*.pdf)|*.pdf";
+                    myForm.FileName = DateTime.Today.ToString("yyyy.MM.dd dddd") + ".pdf";
+                    if (myForm.ShowDialog() == DialogResult.OK)
+                    {
+                        generateTerritoriesReports(myForm.FileName, true, false);
+                        MessageBox.Show("El archivo " + myForm.FileName + " se generó exitosamente");
+                    }
+                }
+                else
+                {
+                    var myForm = new FolderBrowserDialog();
+                    if(myForm.ShowDialog() == DialogResult.OK)
+                    {
+                        generateTerritoriesReports(myForm.SelectedPath, false, this.chkImages.Checked);
+                        MessageBox.Show("Los archivos se generaron exitosamente en la carpeta " + myForm.SelectedPath);
+                    }
 
-                    var ids = items.Select(i => Convert.ToInt32(i.Value)).ToList();
-
-                    ReportsHelper.GenerateMultipleTerritoriesReport(ids, myForm.FileName);
-
-                    MessageBox.Show("El archivo " + myForm.FileName + " se generó exitosamente");
                 }
 
             }
@@ -72,9 +79,31 @@ namespace TerritoriesManagement.GUI
 
         }
 
+        void generateTerritoriesReports(string path, bool singleFile, bool images)
+        {
+            var items = this.chklstTerritories.CheckedItems.OfType<SimpleObject>().ToList();
+
+            var ids = items.Select(i => Convert.ToInt32(i.Value)).ToList();
+
+            ReportsHelper.GenerateMultipleTerritoriesReport(ids, path, singleFile, images);
+        }
+
         private void chkHasAddresses_CheckedChanged(object sender, EventArgs e)
         {
             this.LoadTerritories();
+        }
+
+        private void chkSingleFile_CheckedChanged(object sender, EventArgs e)
+        {
+            if(this.chkSingleFile.Checked)
+            {
+                this.chkImages.Visible = false;
+                this.chkImages.Checked = false;
+            }
+            else
+            {
+                this.chkImages.Visible = true;
+            }
         }
     }
 }

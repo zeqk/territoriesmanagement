@@ -39,12 +39,12 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
             this.menuImportKML = new System.Windows.Forms.ToolStripMenuItem();
+            this.printTerritoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.lblConnectionStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblConnectionStatusValue = new System.Windows.Forms.ToolStripStatusLabel();
-            this.printTerritoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -149,6 +149,13 @@
             this.menuImportKML.Text = "Import territories from KML";
             this.menuImportKML.Click += new System.EventHandler(this.menuImportKML_Click);
             // 
+            // printTerritoriesToolStripMenuItem
+            // 
+            this.printTerritoriesToolStripMenuItem.Name = "printTerritoriesToolStripMenuItem";
+            this.printTerritoriesToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.printTerritoriesToolStripMenuItem.Text = "Territories printing";
+            this.printTerritoriesToolStripMenuItem.Click += new System.EventHandler(this.printTerritoriesToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -185,13 +192,6 @@
             // 
             this.lblConnectionStatusValue.Name = "lblConnectionStatusValue";
             this.lblConnectionStatusValue.Size = new System.Drawing.Size(0, 17);
-            // 
-            // printTerritoriesToolStripMenuItem
-            // 
-            this.printTerritoriesToolStripMenuItem.Name = "printTerritoriesToolStripMenuItem";
-            this.printTerritoriesToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.printTerritoriesToolStripMenuItem.Text = "Print territories";
-            this.printTerritoriesToolStripMenuItem.Click += new System.EventHandler(this.printTerritoriesToolStripMenuItem_Click);
             // 
             // frmMain
             // 

@@ -248,7 +248,8 @@ namespace TerritoriesManagement.DataBridge
         public IList<Territory> SearchByIds(IList<int> ids)
         {
             _dm.Territories.MergeOption = MergeOption.NoTracking;
-            var rv = _dm.Territories.Where(t => ids.Contains(t.IdTerritory)).ToList();
+            var rv = _dm.Territories.Include("Addresses").Where(t => ids.Contains(t.IdTerritory)).OrderBy(t => t.Number).ThenBy(t => t.Name).ToList();
+            
             return rv;
         }
 

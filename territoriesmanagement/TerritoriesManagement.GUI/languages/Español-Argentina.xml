@@ -699,4 +699,20 @@
     <Original>Print</Original>
     <Translated>Imprimir</Translated>
   </String>
+  <String>
+    <Original>Import territories from KML</Original>
+    <Translated>Importar territorios desde KML</Translated>
+  </String>
+  <String>
+    <Original>Territories printing</Original>
+    <Translated>Impresión de territorios</Translated>
+  </String>
+  <String>
+    <Original>Single file</Original>
+    <Translated>Solo un archivo</Translated>
+  </String>
+  <String>
+    <Original>Images</Original>
+    <Translated>Imágenes</Translated>
+  </String>
 </Localizer>
