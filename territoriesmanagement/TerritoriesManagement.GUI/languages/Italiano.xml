@@ -695,6 +695,10 @@
     <Original>  -Street length exceeds the allowed length ({0}). </Original>
     <Translated>  -La lunghezza della via supera quella consentita ({0}). </Translated>
   </String>
+  <String>
+    <Original>Print</Original>
+    <Translated>Stampare</Translated>
+  </String>
 </Localizer>
 
 

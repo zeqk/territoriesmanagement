@@ -695,4 +695,8 @@
     <Original>  -Street length exceeds the allowed length ({0}). </Original>
     <Translated>  -El largo de la calle excede al largo permitido ({0}). </Translated>
   </String>
+  <String>
+    <Original>Print</Original>
+    <Translated>Imprimir</Translated>
+  </String>
 </Localizer>

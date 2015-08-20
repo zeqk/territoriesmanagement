@@ -143,6 +143,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="DataBridge\Addresses.cs" />
+    <Compile Include="DataBridge\SimpleObject.cs" />
     <Compile Include="Export\ExportTool.cs" />
     <Compile Include="Helper.cs" />
     <Compile Include="Import\ImporterConfig.cs" />
@@ -187,9 +188,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Reports\Addresses.rdlc" />
+    <EmbeddedResource Include="Reports\TerritoriesList.rdlc" />
     <EmbeddedResource Include="Reports\Territory.rdlc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Properties\DataSources\TerritoriesManagement.DataBridge.AddressItem1.datasource" />
+    <None Include="Properties\DataSources\TerritoriesManagement.DataBridge.TerritoryItem1.datasource" />
     <None Include="Properties\DataSources\TerritoriesManagement.Model.Address.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

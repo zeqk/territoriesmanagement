@@ -16,6 +16,7 @@ using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.Export;
 using System.Text;
 using TerritoriesManagement.Model;
+using TerritoriesManagement.Reporting;
 
 namespace TerritoriesManagement.GUI
 {
@@ -243,7 +244,7 @@ namespace TerritoriesManagement.GUI
             dgvResult.Columns.Add(new DataGridViewCheckBoxColumn());
             dgvResult.Columns[9].Name = "HasGeoPosition";
             dgvResult.Columns[9].HeaderText = GetString("GEO");
-            dgvResult.Columns.Add("Mark", GetString("Mark"));            
+            dgvResult.Columns.Add("Marked", GetString("Marked"));            
             dgvResult.Columns.Add("Lat", GetString("Lat"));
             dgvResult.Columns.Add("Lng", GetString("Lng"));
 
@@ -285,8 +286,8 @@ namespace TerritoriesManagement.GUI
             dgvResult.Columns["HasGeoPosition"].Width = 40;
             dgvResult.Columns["HasGeoPosition"].DataPropertyName = "HasGeoPosition";
             dgvResult.Columns["HasGeoPosition"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dgvResult.Columns["Mark"].Visible = false;
-            dgvResult.Columns["Mark"].DataPropertyName = "Mark";
+            dgvResult.Columns["Marked"].Visible = false;
+            dgvResult.Columns["Marked"].DataPropertyName = "Marked";
             dgvResult.Columns["Lat"].Visible = false;
             dgvResult.Columns["Lat"].DataPropertyName = "Lat";
             dgvResult.Columns["Lng"].Visible = false;
@@ -532,8 +533,10 @@ namespace TerritoriesManagement.GUI
 
             try
             {
-                ExportTool tool = new ExportTool();
-                tool.ExportToExcel(path,null,typeof(Address).Name,new string[0],strQuery,false,parameters.ToArray());                
+                var list = (IList<AddressItem1>)dgvResult.DataSource;
+                ReportsHelper.GenerateAddressesListReport(list, path);
+
+                MessageBox.Show("El archivo " + path + " se generó exitosamente");
             }
             catch (Exception ex)
             {
@@ -689,7 +692,7 @@ namespace TerritoriesManagement.GUI
         {             
             if (e.ColumnIndex == 1)
             {
-                string value = (string)this.dgvResult.Rows[e.RowIndex].Cells["Mark"].Value;                
+                string value = (string)this.dgvResult.Rows[e.RowIndex].Cells["Marked"].Value;                
                 if(value != null)
                 {
                     Color color = Color.FromName(value);

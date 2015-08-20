@@ -11,6 +11,24 @@ using TerritoriesManagement.Model;
 
 namespace TerritoriesManagement.DataBridge
 {
+
+    public class AddressItem1
+    {
+        public int Id { get; set; }
+        public string DepartmentName { get; set; }
+        public string CityName { get; set; }
+        public string Territory { get; set; }
+        public int? InternalTerritoryNumber { get; set; }
+        public string Address { get; set; }
+        public string Corner1 { get; set; }
+        public string Corner2 { get; set; }
+        public string Description { get; set; }
+        public bool HasGeoposition { get; set; }
+        public string Marked { get; set; }
+        public double? Lat { get; set; }
+        public double? Lng { get; set; }
+    }
+
     public class Addresses : IDataBridge<Address>
     {
         private TerritoriesDataContext _dm;
@@ -155,6 +173,8 @@ namespace TerritoriesManagement.DataBridge
             }
         }
 
+
+
         public IList Search(string strCriteria, params ObjectParameter[] parameters)
         {
             try
@@ -170,7 +190,7 @@ namespace TerritoriesManagement.DataBridge
                 //var results1 = objectResults.ToList();
                 var results = from a in objectResults
                               orderby a.Street, a.City.Name
-                              select new
+                              select new AddressItem1
                               {
                                   Id = a.IdAddress,
                                   DepartmentName = a.City.Department.Name,
@@ -182,7 +202,7 @@ namespace TerritoriesManagement.DataBridge
                                   Corner2 = a.Corner2,
                                   Description = a.Description,
                                   HasGeoposition = (a.Lat.HasValue && a.Lng.HasValue),
-                                  Mark = a.CustomField2,
+                                  Marked = a.CustomField2,
                                   Lat = a.Lat,
                                   Lng = a.Lng
                               };
@@ -195,12 +215,13 @@ namespace TerritoriesManagement.DataBridge
             }
         }
 
+
         private string GetTerritoryStr(Territory t)
         {
             string rv = "";
 
             if (t != null)
-                rv = t.Number + " - " + t.Name;
+                rv = (t.Number.HasValue ? t.Number.Value + " - " : string.Empty) + t.Name;
 
             return rv;
         }

@@ -1,22 +1,12 @@
 ﻿using GMap.NET;
-using GMap.NET.MapProviders;
-using GMap.NET.ObjectModel;
 using GMap.NET.WindowsForms;
-using GMap.NET.WindowsForms.Markers;
 using Localizer;
-using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Objects;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
 using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Windows.Forms;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.GUI.Configuration;
@@ -50,9 +40,6 @@ namespace TerritoriesManagement.GUI
 
         private void frmTerritories_Load(object sender, EventArgs e)
         {
-            string[] columns = { "Territory.Name" };
-            string[] variables = { "name" };
-            schName.SetProperties(columns, variables);
             ConfigGrids();
 
             ClearFilter();
@@ -163,7 +150,21 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
-                var result = this.server.Search(strQuery, parameters.ToArray<ObjectParameter>());
+                var result = this.server.Search(strQuery, parameters);
+                dgvResult.DataSource = result;
+                lblResultCount.Text = result.Count.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, GetString("Error"));
+            }
+        }
+
+        private void LoadResult(string name, bool hasAddresses)
+        {
+            try
+            {
+                var result = this.server.SearchItem1(name, hasAddresses);
                 dgvResult.DataSource = result;
                 lblResultCount.Text = result.Count.ToString();
             }
@@ -178,6 +179,7 @@ namespace TerritoriesManagement.GUI
             dgvResult.Columns.Add("Id", GetString("Id"));
             dgvResult.Columns.Add("Name", GetString("Territory"));
             dgvResult.Columns.Add("Number", GetString("Number"));
+            dgvResult.Columns.Add("AddressesCount", GetString("Addresses"));
             dgvResult.Columns.Add("Area", GetString("Area"));
             dgvResult.Columns.Add("blank", "");
 
@@ -185,8 +187,12 @@ namespace TerritoriesManagement.GUI
             dgvResult.Columns["Id"].DataPropertyName = "Id";
             dgvResult.Columns["Name"].Width = 150;
             dgvResult.Columns["Name"].DataPropertyName = "Name";
-            dgvResult.Columns["Number"].Width = 100;
+            dgvResult.Columns["Number"].Width = 50;
             dgvResult.Columns["Number"].DataPropertyName = "Number";
+            dgvResult.Columns["Number"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dgvResult.Columns["AddressesCount"].Width = 80;
+            dgvResult.Columns["AddressesCount"].DataPropertyName = "AddressesCount";
+            dgvResult.Columns["AddressesCount"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dgvResult.Columns["Area"].DataPropertyName = "Area";
             dgvResult.Columns["Area"].Visible = false;
             dgvResult.Columns["blank"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -318,22 +324,10 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
-                schName.MakeQuery();
-                List<ObjectParameter> parameters = new List<ObjectParameter>();
-                string strQuery = "";
 
-                if (!schName.IsClean())
+                if (!string.IsNullOrEmpty(this.txtFilterName.Text) || this.chkHasAddresses.Checked)
                 {
-                    strQuery = schName.Query;
-                    schName.Parameters.ForEach(delegate(ObjectParameter param)
-                    {
-                        parameters.Add(param);
-                    });
-                }
-
-                if (!string.IsNullOrEmpty(strQuery))
-                {
-                    LoadResult(strQuery, parameters.ToArray<ObjectParameter>());
+                    LoadResult(this.txtFilterName.Text, this.chkHasAddresses.Checked);
                     lblFiltered.Visible = true;
                 }
                 else
@@ -352,8 +346,9 @@ namespace TerritoriesManagement.GUI
 
         private void ClearFilter()
         {
-            schName.Clear();
-            LoadResult("");
+            this.txtFilterName.Clear();
+            this.chkHasAddresses.Checked = false;
+            LoadResult("", false);
             lblFiltered.Visible = false;
             dgvResult.ClearSelection();
         }        
@@ -459,7 +454,24 @@ namespace TerritoriesManagement.GUI
         
         private void btnPrintList_Click(object sender, EventArgs e)
         {
+            try
+            {
+                var myForm = new SaveFileDialog();
+                myForm.Filter = "Excel files (*.xls)|*.xls";                
+                myForm.FileName = "territories.xls";
+                if (myForm.ShowDialog() == DialogResult.OK)
+                {
 
+                    var list = (IList<TerritoryItem1>)dgvResult.DataSource;
+                    ReportsHelper.GenerateTerritoriesListReport(list, myForm.FileName);
+
+                    MessageBox.Show("El archivo " + myForm.FileName + " se genero exitosamente");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         

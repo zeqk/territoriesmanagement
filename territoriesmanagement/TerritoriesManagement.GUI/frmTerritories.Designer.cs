@@ -34,7 +34,6 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnViewMap = new System.Windows.Forms.Button();
             this.txtNumber = new System.Windows.Forms.MaskedTextBox();
-            this.bsTerritory = new System.Windows.Forms.BindingSource(this.components);
             this.lblNumber = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
             this.btnRelations = new System.Windows.Forms.Button();
@@ -44,9 +43,11 @@
             this.lblName = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.grdSearch = new System.Windows.Forms.GroupBox();
+            this.txtFilterName = new System.Windows.Forms.TextBox();
+            this.chkHasAddresses = new System.Windows.Forms.CheckBox();
+            this.btnPrintList = new System.Windows.Forms.Button();
             this.lblResultCount = new System.Windows.Forms.Label();
             this.lblFilterName = new System.Windows.Forms.Label();
-            this.schName = new AltosTools.WindowsForms.Controls.Search();
             this.lblResult = new System.Windows.Forms.Label();
             this.lblFiltered = new System.Windows.Forms.Label();
             this.btnClearFilter = new System.Windows.Forms.Button();
@@ -57,9 +58,8 @@
             this.dgvAddresses = new System.Windows.Forms.DataGridView();
             this.tabTours = new System.Windows.Forms.TabPage();
             this.dgvTours = new System.Windows.Forms.DataGridView();
-            this.btnPrintList = new System.Windows.Forms.Button();
+            this.bsTerritory = new System.Windows.Forms.BindingSource(this.components);
             this.grpObject.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).BeginInit();
             this.grdSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).BeginInit();
             this.tabPanel.SuspendLayout();
@@ -67,6 +67,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddresses)).BeginInit();
             this.tabTours.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTours)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).BeginInit();
             this.SuspendLayout();
             // 
             // grpObject
@@ -122,10 +123,6 @@
             this.txtNumber.Size = new System.Drawing.Size(100, 20);
             this.txtNumber.TabIndex = 4;
             this.txtNumber.ValidatingType = typeof(int);
-            // 
-            // bsTerritory
-            // 
-            this.bsTerritory.DataSource = typeof(TerritoriesManagement.Model.Territory);
             // 
             // lblNumber
             // 
@@ -212,10 +209,11 @@
             // 
             // grdSearch
             // 
+            this.grdSearch.Controls.Add(this.txtFilterName);
+            this.grdSearch.Controls.Add(this.chkHasAddresses);
             this.grdSearch.Controls.Add(this.btnPrintList);
             this.grdSearch.Controls.Add(this.lblResultCount);
             this.grdSearch.Controls.Add(this.lblFilterName);
-            this.grdSearch.Controls.Add(this.schName);
             this.grdSearch.Controls.Add(this.lblResult);
             this.grdSearch.Controls.Add(this.lblFiltered);
             this.grdSearch.Controls.Add(this.btnClearFilter);
@@ -228,10 +226,37 @@
             this.grdSearch.TabStop = false;
             this.grdSearch.Text = "Search";
             // 
+            // txtFilterName
+            // 
+            this.txtFilterName.Location = new System.Drawing.Point(19, 32);
+            this.txtFilterName.Name = "txtFilterName";
+            this.txtFilterName.Size = new System.Drawing.Size(229, 20);
+            this.txtFilterName.TabIndex = 13;
+            // 
+            // chkHasAddresses
+            // 
+            this.chkHasAddresses.AutoSize = true;
+            this.chkHasAddresses.Location = new System.Drawing.Point(19, 64);
+            this.chkHasAddresses.Name = "chkHasAddresses";
+            this.chkHasAddresses.Size = new System.Drawing.Size(75, 17);
+            this.chkHasAddresses.TabIndex = 12;
+            this.chkHasAddresses.Text = "Addresses";
+            this.chkHasAddresses.UseVisualStyleBackColor = true;
+            // 
+            // btnPrintList
+            // 
+            this.btnPrintList.Location = new System.Drawing.Point(263, 378);
+            this.btnPrintList.Name = "btnPrintList";
+            this.btnPrintList.Size = new System.Drawing.Size(81, 24);
+            this.btnPrintList.TabIndex = 11;
+            this.btnPrintList.Text = "Excel";
+            this.btnPrintList.UseVisualStyleBackColor = true;
+            this.btnPrintList.Click += new System.EventHandler(this.btnPrintList_Click);
+            // 
             // lblResultCount
             // 
             this.lblResultCount.AutoSize = true;
-            this.lblResultCount.Location = new System.Drawing.Point(56, 71);
+            this.lblResultCount.Location = new System.Drawing.Point(56, 90);
             this.lblResultCount.Name = "lblResultCount";
             this.lblResultCount.Size = new System.Drawing.Size(0, 13);
             this.lblResultCount.TabIndex = 5;
@@ -245,24 +270,10 @@
             this.lblFilterName.TabIndex = 0;
             this.lblFilterName.Text = "Filter by territory name";
             // 
-            // schName
-            // 
-            this.schName.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.schName.Columns = null;
-            this.schName.Criteria = "Contains";
-            this.schName.Location = new System.Drawing.Point(19, 32);
-            this.schName.Name = "schName";
-            this.schName.Parameters = null;
-            this.schName.Query = null;
-            this.schName.Size = new System.Drawing.Size(238, 22);
-            this.schName.TabIndex = 1;
-            this.schName.VariableNames = null;
-            this.schName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.schName_KeyDown);
-            // 
             // lblResult
             // 
             this.lblResult.AutoSize = true;
-            this.lblResult.Location = new System.Drawing.Point(16, 71);
+            this.lblResult.Location = new System.Drawing.Point(16, 90);
             this.lblResult.Name = "lblResult";
             this.lblResult.Size = new System.Drawing.Size(40, 13);
             this.lblResult.TabIndex = 4;
@@ -272,7 +283,7 @@
             // 
             this.lblFiltered.AutoSize = true;
             this.lblFiltered.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.lblFiltered.Location = new System.Drawing.Point(303, 72);
+            this.lblFiltered.Location = new System.Drawing.Point(303, 90);
             this.lblFiltered.Name = "lblFiltered";
             this.lblFiltered.Size = new System.Drawing.Size(41, 13);
             this.lblFiltered.TabIndex = 6;
@@ -293,12 +304,12 @@
             this.dgvResult.AllowUserToAddRows = false;
             this.dgvResult.AllowUserToDeleteRows = false;
             this.dgvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvResult.Location = new System.Drawing.Point(19, 86);
+            this.dgvResult.Location = new System.Drawing.Point(19, 106);
             this.dgvResult.Name = "dgvResult";
             this.dgvResult.ReadOnly = true;
             this.dgvResult.RowHeadersVisible = false;
             this.dgvResult.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvResult.Size = new System.Drawing.Size(325, 286);
+            this.dgvResult.Size = new System.Drawing.Size(325, 266);
             this.dgvResult.TabIndex = 7;
             this.dgvResult.VirtualMode = true;
             this.dgvResult.SelectionChanged += new System.EventHandler(this.dgvResult_SelectionChanged);
@@ -374,15 +385,9 @@
             this.dgvTours.TabIndex = 7;
             this.dgvTours.VirtualMode = true;
             // 
-            // btnPrintList
+            // bsTerritory
             // 
-            this.btnPrintList.Location = new System.Drawing.Point(300, 374);
-            this.btnPrintList.Name = "btnPrintList";
-            this.btnPrintList.Size = new System.Drawing.Size(44, 30);
-            this.btnPrintList.TabIndex = 11;
-            this.btnPrintList.Text = "Print";
-            this.btnPrintList.UseVisualStyleBackColor = true;
-            this.btnPrintList.Click += new System.EventHandler(this.btnPrintList_Click);
+            this.bsTerritory.DataSource = typeof(TerritoriesManagement.Model.Territory);
             // 
             // frmTerritories
             // 
@@ -400,7 +405,6 @@
             this.Shown += new System.EventHandler(this.frmTerritories_Shown);
             this.grpObject.ResumeLayout(false);
             this.grpObject.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).EndInit();
             this.grdSearch.ResumeLayout(false);
             this.grdSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).EndInit();
@@ -409,6 +413,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddresses)).EndInit();
             this.tabTours.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTours)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -434,7 +439,6 @@
         protected System.Windows.Forms.DataGridView dgvAddresses;
         private System.Windows.Forms.TabPage tabTours;
         protected System.Windows.Forms.DataGridView dgvTours;
-        private AltosTools.WindowsForms.Controls.Search schName;
         private System.Windows.Forms.Label lblFilterName;
         private System.Windows.Forms.Label lblNumber;
         private System.Windows.Forms.MaskedTextBox txtNumber;
@@ -443,5 +447,7 @@
         private System.Windows.Forms.Label lblResultCount;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnPrintList;
+        private System.Windows.Forms.CheckBox chkHasAddresses;
+        private System.Windows.Forms.TextBox txtFilterName;
     }
 }

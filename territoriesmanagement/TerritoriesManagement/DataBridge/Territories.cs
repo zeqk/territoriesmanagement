@@ -10,11 +10,34 @@ using System.Collections;
 using System.Resources;
 using TerritoriesManagement.Model;
 using GMap.NET;
+using System.Linq.Expressions;
 
 namespace TerritoriesManagement.DataBridge
 {
+    #region classes
+
+    public class TerritoryItem1
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int? Number { get; set; }
+        public string Area { get; set; }
+        public int AddressesCount { get; set; }
+    }
+
+    public class TerritoryItem2
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
+    #endregion
+
     public class Territories : IDataBridge<Territory>
     {
+
+        
+
         private TerritoriesDataContext _dm;
         private Func<TerritoriesDataContext, int, IQueryable<Territory>> _compileLoadTerritory;
         private Func<TerritoriesDataContext, Territory, IQueryable<Territory>> _compileSameTerritory;
@@ -136,13 +159,97 @@ namespace TerritoriesManagement.DataBridge
                 objectResults = query.Execute(MergeOption.AppendOnly);
                 var results = from t in objectResults
                               orderby t.Name, t.Number
-                              select new { Id = t.IdTerritory, Name = t.Name, Number = t.Number, Area = t.Area };
+                              select new TerritoryItem1
+                                {
+                                    Id = t.IdTerritory,
+                                    Name = t.Name,
+                                    Number = t.Number,
+                                    Area = t.Area,
+                                    AddressesCount = t.Addresses.Count
+                                };
                 return results.ToList();
             }
             catch (Exception e)
             {
                 throw e;
             }
+        }
+
+        public IList<TerritoryItem1> SearchItem1(string name, bool hasAddresses)
+        {
+            try
+            {
+                Expression<Func<Territory,bool>> whereExp = null;
+                if(hasAddresses)
+                    whereExp = t => t.Name.ToUpper().Contains(name.ToUpper()) && t.Addresses.Count > 0;
+                else
+                    whereExp = t => t.Name.ToUpper().Contains(name.ToUpper());
+
+                var rv = _dm.Territories.Where(whereExp)
+                    .OrderBy(t => t.Number).ThenBy(t => t.Name)
+                    .Select(t => 
+                        new TerritoryItem1
+                        { 
+                            Id = t.IdTerritory, 
+                            Name = t.Name, 
+                            Number = t.Number, 
+                            Area = t.Area, 
+                            AddressesCount = t.Addresses.Count 
+                        }
+                        ).ToList();
+
+                return rv;
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public IList<SimpleObject> SearchSimpleObject(string name, bool hasAddresses)
+        {
+            try
+            {
+                Expression<Func<Territory, bool>> whereExp = null;
+                if (hasAddresses)
+                    whereExp = t => t.Name.ToUpper().Contains(name.ToUpper()) && t.Addresses.Count > 0;
+                else
+                    whereExp = t => t.Name.ToUpper().Contains(name.ToUpper());
+
+                var list = _dm.Territories.Where(whereExp)
+                    .OrderBy(t => t.Number).ThenBy(t => t.Name)
+                    .Select(t =>
+                        new 
+                        {
+                            t.IdTerritory,
+                            t.Number,
+                            t.Name
+                        }
+                        ).ToList();
+                var rv = list.Select(o =>
+                        new SimpleObject
+                        {
+                            Value = o.IdTerritory.ToString(),
+                            Text = (o.Number.HasValue ? o.Number.Value + " - " : string.Empty) + o.Name
+                        }
+                    ).ToList();
+
+
+                return rv;
+
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public IList<Territory> SearchByIds(IList<int> ids)
+        {
+            _dm.Territories.MergeOption = MergeOption.NoTracking;
+            var rv = _dm.Territories.Where(t => ids.Contains(t.IdTerritory)).ToList();
+            return rv;
         }
 
         public Territory NewObject()

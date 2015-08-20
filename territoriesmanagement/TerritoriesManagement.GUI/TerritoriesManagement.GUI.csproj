@@ -136,6 +136,9 @@
     <Reference Include="GMap.NET.WindowsForms">
       <HintPath>..\libs\GMap.NET.WindowsForms.dll</HintPath>
     </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\libs\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Localizer, Version=1.0.3845.22081, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libs\Localizer.dll</HintPath>
@@ -243,6 +246,12 @@
     <Compile Include="frmTerritories.Designer.cs">
       <DependentUpon>frmTerritories.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTerritoriesPrinting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTerritoriesPrinting.Designer.cs">
+      <DependentUpon>frmTerritoriesPrinting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Interop\Import\FieldCollection.cs" />
     <Compile Include="Interop\Import\FieldCollectionPropertyDescriptor.cs" />
     <Compile Include="Interop\Import\ExternalTable.cs" />
@@ -307,6 +316,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTerritories.resx">
       <DependentUpon>frmTerritories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTerritoriesPrinting.resx">
+      <DependentUpon>frmTerritoriesPrinting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Interop\Steps\DestinySelectionStepUI.resx">
       <DependentUpon>DestinySelectionStepUI.cs</DependentUpon>
