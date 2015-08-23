@@ -32,8 +32,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTerritories));
             this.grpObject = new System.Windows.Forms.GroupBox();
             this.btnPrint = new System.Windows.Forms.Button();
-            this.btnViewMap = new System.Windows.Forms.Button();
+            this.btnEditMap = new System.Windows.Forms.Button();
             this.txtNumber = new System.Windows.Forms.MaskedTextBox();
+            this.bsTerritory = new System.Windows.Forms.BindingSource(this.components);
             this.lblNumber = new System.Windows.Forms.Label();
             this.lblId = new System.Windows.Forms.Label();
             this.btnRelations = new System.Windows.Forms.Button();
@@ -43,6 +44,8 @@
             this.lblName = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.grdSearch = new System.Windows.Forms.GroupBox();
+            this.btnPrintTerritoryCards = new System.Windows.Forms.Button();
+            this.btnExportToKml = new System.Windows.Forms.Button();
             this.txtFilterName = new System.Windows.Forms.TextBox();
             this.chkHasAddresses = new System.Windows.Forms.CheckBox();
             this.btnPrintList = new System.Windows.Forms.Button();
@@ -58,8 +61,8 @@
             this.dgvAddresses = new System.Windows.Forms.DataGridView();
             this.tabTours = new System.Windows.Forms.TabPage();
             this.dgvTours = new System.Windows.Forms.DataGridView();
-            this.bsTerritory = new System.Windows.Forms.BindingSource(this.components);
             this.grpObject.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).BeginInit();
             this.grdSearch.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).BeginInit();
             this.tabPanel.SuspendLayout();
@@ -67,13 +70,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddresses)).BeginInit();
             this.tabTours.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTours)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).BeginInit();
             this.SuspendLayout();
             // 
             // grpObject
             // 
             this.grpObject.Controls.Add(this.btnPrint);
-            this.grpObject.Controls.Add(this.btnViewMap);
+            this.grpObject.Controls.Add(this.btnEditMap);
             this.grpObject.Controls.Add(this.txtNumber);
             this.grpObject.Controls.Add(this.lblNumber);
             this.grpObject.Controls.Add(this.lblId);
@@ -92,7 +94,7 @@
             // 
             // btnPrint
             // 
-            this.btnPrint.Location = new System.Drawing.Point(280, 106);
+            this.btnPrint.Location = new System.Drawing.Point(283, 106);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(55, 38);
             this.btnPrint.TabIndex = 10;
@@ -100,18 +102,18 @@
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
-            // btnViewMap
+            // btnEditMap
             // 
-            this.btnViewMap.Image = ((System.Drawing.Image)(resources.GetObject("btnViewMap.Image")));
-            this.btnViewMap.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnViewMap.Location = new System.Drawing.Point(260, 64);
-            this.btnViewMap.Name = "btnViewMap";
-            this.btnViewMap.Size = new System.Drawing.Size(78, 34);
-            this.btnViewMap.TabIndex = 5;
-            this.btnViewMap.Text = "View map";
-            this.btnViewMap.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnViewMap.UseVisualStyleBackColor = true;
-            this.btnViewMap.Click += new System.EventHandler(this.btnViewMap_Click);
+            this.btnEditMap.Image = ((System.Drawing.Image)(resources.GetObject("btnEditMap.Image")));
+            this.btnEditMap.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEditMap.Location = new System.Drawing.Point(260, 64);
+            this.btnEditMap.Name = "btnEditMap";
+            this.btnEditMap.Size = new System.Drawing.Size(78, 34);
+            this.btnEditMap.TabIndex = 5;
+            this.btnEditMap.Text = "Edit map";
+            this.btnEditMap.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEditMap.UseVisualStyleBackColor = true;
+            this.btnEditMap.Click += new System.EventHandler(this.btnEditMap_Click);
             // 
             // txtNumber
             // 
@@ -123,6 +125,10 @@
             this.txtNumber.Size = new System.Drawing.Size(100, 20);
             this.txtNumber.TabIndex = 4;
             this.txtNumber.ValidatingType = typeof(int);
+            // 
+            // bsTerritory
+            // 
+            this.bsTerritory.DataSource = typeof(TerritoriesManagement.Model.Territory);
             // 
             // lblNumber
             // 
@@ -209,6 +215,8 @@
             // 
             // grdSearch
             // 
+            this.grdSearch.Controls.Add(this.btnPrintTerritoryCards);
+            this.grdSearch.Controls.Add(this.btnExportToKml);
             this.grdSearch.Controls.Add(this.txtFilterName);
             this.grdSearch.Controls.Add(this.chkHasAddresses);
             this.grdSearch.Controls.Add(this.btnPrintList);
@@ -225,6 +233,26 @@
             this.grdSearch.TabIndex = 0;
             this.grdSearch.TabStop = false;
             this.grdSearch.Text = "Search";
+            // 
+            // btnPrintTerritoryCards
+            // 
+            this.btnPrintTerritoryCards.Location = new System.Drawing.Point(19, 378);
+            this.btnPrintTerritoryCards.Name = "btnPrintTerritoryCards";
+            this.btnPrintTerritoryCards.Size = new System.Drawing.Size(151, 24);
+            this.btnPrintTerritoryCards.TabIndex = 15;
+            this.btnPrintTerritoryCards.Text = "Cards";
+            this.btnPrintTerritoryCards.UseVisualStyleBackColor = true;
+            this.btnPrintTerritoryCards.Click += new System.EventHandler(this.btnPrintTerritoryCards_Click);
+            // 
+            // btnExportToKml
+            // 
+            this.btnExportToKml.Location = new System.Drawing.Point(176, 378);
+            this.btnExportToKml.Name = "btnExportToKml";
+            this.btnExportToKml.Size = new System.Drawing.Size(81, 24);
+            this.btnExportToKml.TabIndex = 14;
+            this.btnExportToKml.Text = "KML";
+            this.btnExportToKml.UseVisualStyleBackColor = true;
+            this.btnExportToKml.Click += new System.EventHandler(this.btnExportToKml_Click);
             // 
             // txtFilterName
             // 
@@ -256,7 +284,7 @@
             // lblResultCount
             // 
             this.lblResultCount.AutoSize = true;
-            this.lblResultCount.Location = new System.Drawing.Point(56, 90);
+            this.lblResultCount.Location = new System.Drawing.Point(70, 90);
             this.lblResultCount.Name = "lblResultCount";
             this.lblResultCount.Size = new System.Drawing.Size(0, 13);
             this.lblResultCount.TabIndex = 5;
@@ -385,10 +413,6 @@
             this.dgvTours.TabIndex = 7;
             this.dgvTours.VirtualMode = true;
             // 
-            // bsTerritory
-            // 
-            this.bsTerritory.DataSource = typeof(TerritoriesManagement.Model.Territory);
-            // 
             // frmTerritories
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -405,6 +429,7 @@
             this.Shown += new System.EventHandler(this.frmTerritories_Shown);
             this.grpObject.ResumeLayout(false);
             this.grpObject.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).EndInit();
             this.grdSearch.ResumeLayout(false);
             this.grdSearch.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResult)).EndInit();
@@ -413,7 +438,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvAddresses)).EndInit();
             this.tabTours.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTours)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bsTerritory)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -443,11 +467,13 @@
         private System.Windows.Forms.Label lblNumber;
         private System.Windows.Forms.MaskedTextBox txtNumber;
         private System.Windows.Forms.BindingSource bsTerritory;
-        private System.Windows.Forms.Button btnViewMap;
+        private System.Windows.Forms.Button btnEditMap;
         private System.Windows.Forms.Label lblResultCount;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnPrintList;
         private System.Windows.Forms.CheckBox chkHasAddresses;
         private System.Windows.Forms.TextBox txtFilterName;
+        private System.Windows.Forms.Button btnExportToKml;
+        private System.Windows.Forms.Button btnPrintTerritoryCards;
     }
 }

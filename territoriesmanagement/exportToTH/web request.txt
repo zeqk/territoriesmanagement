@@ -1,0 +1,92 @@
+GET Territories
+POST /es/Territory/GetTerritories/ HTTP/1.1
+Host: territoryhelper.com
+Connection: keep-alive
+Content-Length: 25
+X-NewRelic-ID: XAcEU19XGwIBUldRAAIG
+Origin: https://territoryhelper.com
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36
+Content-Type: application/json; charset=UTF-8
+Accept: application/json, text/javascript, */*; q=0.01
+X-Requested-With: XMLHttpRequest
+Referer: https://territoryhelper.com/es/Territories
+Accept-Encoding: gzip, deflate
+Accept-Language: es-419,es;q=0.8,en;q=0.6,zh-CN;q=0.4,zh;q=0.2
+Cookie: ASP.NET_SessionId=xsofxpvjge02oz1sdaghzpbn; _gat=1; _ga=GA1.1.199220153.1432871077
+
+curl "https://territoryhelper.com/es/Territory/GetTerritories/" -H "Cookie: ASP.NET_SessionId=xsofxpvjge02oz1sdaghzpbn; _gat=1; _ga=GA1.1.199220153.1432871077" -H "X-NewRelic-ID: XAcEU19XGwIBUldRAAIG" -H "Origin: https://territoryhelper.com" -H "Accept-Encoding: gzip, deflate" -H "Accept-Language: es-419,es;q=0.8,en;q=0.6,zh-CN;q=0.4,zh;q=0.2" -H "User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36" -H "Content-Type: application/json; charset=UTF-8" -H "Accept: application/json, text/javascript, */*; q=0.01" -H "Referer: https://territoryhelper.com/es/Territories" -H "X-Requested-With: XMLHttpRequest" -H "Connection: keep-alive" --data-binary "{""congregationId"":""1275""}" --compressed
+
+
+
+GetHouseMarkers
+
+POST /es/HouseMarker/GetHouseMarkers/ HTTP/1.1
+Host: territoryhelper.com
+Connection: keep-alive
+Content-Length: 44
+X-NewRelic-ID: XAcEU19XGwIBUldRAAIG
+Origin: https://territoryhelper.com
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36
+Content-Type: application/json; charset=UTF-8
+Accept: application/json, text/javascript, */*; q=0.01
+X-Requested-With: XMLHttpRequest
+Referer: https://territoryhelper.com/es/Territories
+Accept-Encoding: gzip, deflate
+Accept-Language: es-419,es;q=0.8,en;q=0.6,zh-CN;q=0.4,zh;q=0.2
+Cookie: ASP.NET_SessionId=xsofxpvjge02oz1sdaghzpbn; _gat=1; _ga=GA1.1.199220153.1432871077
+
+
+curl "https://territoryhelper.com/es/HouseMarker/GetHouseMarkers/" -H "Cookie: ASP.NET_SessionId=xsofxpvjge02oz1sdaghzpbn; _gat=1; _ga=GA1.1.199220153.1432871077" -H "X-NewRelic-ID: XAcEU19XGwIBUldRAAIG" -H "Origin: https://territoryhelper.com" -H "Accept-Encoding: gzip, deflate" -H "Accept-Language: es-419,es;q=0.8,en;q=0.6,zh-CN;q=0.4,zh;q=0.2" -H "User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36" -H "Content-Type: application/json; charset=UTF-8" -H "Accept: application/json, text/javascript, */*; q=0.01" -H "Referer: https://territoryhelper.com/es/Territories" -H "X-Requested-With: XMLHttpRequest" -H "Connection: keep-alive" --data-binary "{""congregationId"":""1275"",""territoryId"":null}" --compressed
+
+DELETE
+POST /es/HouseMarker/Delete/ HTTP/1.1
+Host: territoryhelper.com
+Connection: keep-alive
+Content-Length: 24
+X-NewRelic-ID: XAcEU19XGwIBUldRAAIG
+Origin: https://territoryhelper.com
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36
+Content-Type: application/json; charset=UTF-8
+Accept: */*
+X-Requested-With: XMLHttpRequest
+Referer: https://territoryhelper.com/es/Territories
+Accept-Encoding: gzip, deflate
+Accept-Language: es-419,es;q=0.8,en;q=0.6,zh-CN;q=0.4,zh;q=0.2
+Cookie: ASP.NET_SessionId=xsofxpvjge02oz1sdaghzpbn; _ga=GA1.1.199220153.1432871077; _gat=1
+
+curl "https://territoryhelper.com/es/HouseMarker/Delete/" -H "Cookie: ASP.NET_SessionId=xsofxpvjge02oz1sdaghzpbn; _ga=GA1.1.199220153.1432871077; _gat=1" -H "X-NewRelic-ID: XAcEU19XGwIBUldRAAIG" -H "Origin: https://territoryhelper.com" -H "Accept-Encoding: gzip, deflate" -H "Accept-Language: es-419,es;q=0.8,en;q=0.6,zh-CN;q=0.4,zh;q=0.2" -H "User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36" -H "Content-Type: application/json; charset=UTF-8" -H "Accept: */*" -H "Referer: https://territoryhelper.com/es/Territories" -H "X-Requested-With: XMLHttpRequest" -H "Connection: keep-alive" --data-binary "{""houseMarkerId"":111175}" --compressed
+
+
+LOGIN
+REQUEST:
+
+POST /es/Login HTTP/1.1
+Host: territoryhelper.com
+Connection: keep-alive
+Content-Length: 97
+Cache-Control: max-age=0
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8
+Origin: https://territoryhelper.com
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.155 Safari/537.36
+Content-Type: application/x-www-form-urlencoded
+Referer: https://territoryhelper.com/es/Login
+Accept-Encoding: gzip, deflate
+Accept-Language: es-419,es;q=0.8,en;q=0.6,zh-CN;q=0.4,zh;q=0.2
+Cookie: ASP.NET_SessionId=xsofxpvjge02oz1sdaghzpbn; _gat=1; _ga=GA1.1.199220153.1432871077
+
+
+RESPONSE
+HTTP/1.1 302 Found
+Cache-Control: private
+Content-Type: text/html; charset=utf-8
+Location: /es/Dashboard/Index
+Server: Microsoft-IIS/8.5
+X-AspNetMvc-Version: 5.2
+X-AspNet-Version: 4.0.30319
+Set-Cookie: tkmail=9lwvFNMpwlc4IfR7P1wmck+024A5xcE0ssgBR2VkRrU=; expires=Sun, 21-Aug-2016 03:12:45 GMT; path=/
+X-Powered-By: ASP.NET
+Date: Fri, 21 Aug 2015 03:12:45 GMT
+Content-Length: 14177
+
+

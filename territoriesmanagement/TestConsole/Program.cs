@@ -1,4 +1,5 @@
 ﻿using GMap.NET;
+using Newtonsoft.Json;
 using SharpKml.Base;
 using SharpKml.Dom;
 using SharpKml.Engine;
@@ -24,7 +25,7 @@ namespace TestConsole
             try
             {
                 Console.ReadKey();
-                ImportNewTerritories();
+                TerritoryHelperDeleteHouseMarkers();
             }
             catch (Exception ex)
             {
@@ -44,7 +45,7 @@ namespace TestConsole
             {
 
                 CookieContainer cookies = new CookieContainer();
-
+                
                 //LOGIN
 
                 Login("zeqk.net%40gmail.com", "", ref cookies);
@@ -61,12 +62,35 @@ namespace TestConsole
             }
         }
 
+        static void TerritoryHelperDeleteHouseMarkers()
+        {
+            try
+            {
+
+                CookieContainer cookies = new CookieContainer();
+
+                //LOGIN
+
+                Login("zeqk.net%40gmail.com", "", ref cookies);
+
+                //GET TERRITORIES
+                var congregationId = "1275";
+                var markers = GetHouseMarkers(congregationId, ref cookies);
+
+                DeleteHouseMarkers(markers, ref cookies);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         static void Login(string user, string password, ref CookieContainer cookies)
         {
             string postData = string.Format("Email=" + user + "&Password=" + password + "&PersistLogin=false");
             byte[] postBytes = Encoding.UTF8.GetBytes(postData);
 
-            HttpWebRequest loginReq = (HttpWebRequest)HttpWebRequest.Create("https://territoryhelper.com/es");
+            HttpWebRequest loginReq = (HttpWebRequest)HttpWebRequest.Create("https://territoryhelper.com/es/Login");
             loginReq.UserAgent = "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36";
             loginReq.KeepAlive = true;
 
@@ -130,7 +154,7 @@ namespace TestConsole
         }
 
 
-        static string GetHouseMarkers(string congregationId, ref CookieContainer cookies)
+        static Dictionary<string, string>[] GetHouseMarkers(string congregationId, ref CookieContainer cookies)
         {
             var postData = "{\"congregationId\":\"" + congregationId +"\",\"territoryId\":null}";
             var postBytes = Encoding.UTF8.GetBytes(postData);
@@ -143,7 +167,7 @@ namespace TestConsole
             req.Headers.Add("Accept-Language", "en-us,en;q=0.5");
             req.Host = "territoryhelper.com";
             req.Method = "POST";
-            req.Referer = "https://territoryhelper.com/es/Territory/";
+            req.Referer = "https://territoryhelper.com/es/Territories";
             req.Accept = "application/json, text/javascript, */*; q=0.01";
 
             req.CookieContainer = cookies;
@@ -162,8 +186,49 @@ namespace TestConsole
             {
                 rv = sr.ReadToEnd();
             }
+            Dictionary<string, string>[] houseMarkers = JsonConvert.DeserializeObject<Dictionary<string, string>[]>(rv);
+            return houseMarkers;
+        }
 
-            return rv;
+        static void DeleteHouseMarkers(Dictionary<string, string>[] houseMarkers, ref CookieContainer cookies)
+        {
+            
+
+            foreach (var item in houseMarkers)
+            {
+                var postData = "{\"houseMarkerId\":111734}";
+                var postBytes = Encoding.UTF8.GetBytes(postData);
+
+                HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("https://territoryhelper.com/es/HouseMarker/Delete/");
+                req.UserAgent = "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36";
+                req.KeepAlive = true;
+                req.Headers.Add("X-Requested-With", "XMLHttpRequest");
+                req.Headers.Add("Accept-Encoding", "gzip, deflate");
+                req.Headers.Add("Accept-Language", "en-us,en;q=0.5");
+                req.Host = "territoryhelper.com";
+                req.Method = "POST";
+                req.Referer = "https://territoryhelper.com/es/Territories";
+                req.Accept = "application/json, text/javascript, */*; q=0.01";
+
+                req.CookieContainer = cookies;
+                req.ContentType = "application/json; charset=UTF-8";
+                req.ContentLength = postBytes.Length;
+
+
+                //getting the request stream and posting data
+                var writer = new StreamWriter(req.GetRequestStream(), System.Text.Encoding.ASCII);
+                writer.Write(postData);
+                writer.Close();
+
+                var response = req.GetResponse();
+                string rv = null;
+                using (var sr = new StreamReader(response.GetResponseStream()))
+                {
+                    rv = sr.ReadToEnd();
+                }
+                Console.WriteLine("Direccion eliminada " + item["Id"]);
+            }
+
         }
 
         static void ExportToXml()

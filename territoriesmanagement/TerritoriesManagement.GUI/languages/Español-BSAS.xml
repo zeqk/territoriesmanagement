@@ -715,4 +715,12 @@
     <Original>Images</Original>
     <Translated>Imágenes</Translated>
   </String>
+  <String>
+    <Original>Edit map</Original>
+    <Translated>Editar mapa</Translated>
+  </String>
+  <String>
+    <Original>Cards</Original>
+    <Translated>Tarjetas</Translated>
+  </String>
 </Localizer>

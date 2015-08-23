@@ -160,15 +160,7 @@ namespace TerritoriesManagement.GUI
 
         private void printTerritoriesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                var myForm = new frmTerritoriesPrinting();
-                myForm.ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+           
         }
 
 

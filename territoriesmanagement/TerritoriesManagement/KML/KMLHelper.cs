@@ -1,4 +1,5 @@
 ﻿using GMap.NET;
+using SharpKml.Base;
 using SharpKml.Dom;
 using SharpKml.Engine;
 using System;
@@ -128,5 +129,61 @@ namespace TerritoriesManagement.KML
 		}
 		#endregion
 
+
+        public static void ExportTerritoriesToKml(IList<TerritoryItem1> territories, string fileName)
+        {
+            try
+            {
+                Document doc = new Document();
+                var i = 0;
+                foreach (var t in territories)
+                {
+                    if (!string.IsNullOrEmpty(t.Area))
+                    {
+
+
+                        var polygon = new Polygon();
+                        polygon.OuterBoundary = new OuterBoundary();
+                        polygon.OuterBoundary.LinearRing = new LinearRing();
+                        polygon.OuterBoundary.LinearRing.Coordinates = new CoordinateCollection();
+
+                        var points = Helper.StrPointsToPointsLatLng(t.Area.Split('\n'));
+
+                        foreach (var p in points)
+                        {
+                            polygon.OuterBoundary.LinearRing.Coordinates.Add(new Vector() { Latitude = p.Lat, Longitude = p.Lng });
+                        }
+
+                        
+
+                        // This is the Element we are going to save to the Kml file.
+                        var placemark = new SharpKml.Dom.Placemark();
+                        placemark.Geometry = polygon;
+                        placemark.Name = (t.Number.HasValue ? t.Number.Value.ToString() + " - " : string.Empty) + t.Name;
+                        placemark.Description = new Description();
+                        placemark.Description.Text = t.Number.HasValue ? t.Number.Value.ToString() + " - " : string.Empty;
+
+                        doc.AddFeature(placemark);
+                        i++;
+                    }
+                }
+
+
+
+                // This allows us to save and Element easily.
+                KmlFile kml = KmlFile.Create(doc, false);
+                using (var stream = System.IO.File.OpenWrite(fileName))
+                {
+                    kml.Save(stream);
+
+                }
+                
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
 	}
 }

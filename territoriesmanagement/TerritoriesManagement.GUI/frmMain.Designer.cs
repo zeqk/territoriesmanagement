@@ -39,7 +39,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.menuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
             this.menuImportKML = new System.Windows.Forms.ToolStripMenuItem();
-            this.printTerritoriesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
@@ -115,8 +114,7 @@
             this.menuInteropWizard,
             this.toolStripSeparator1,
             this.menuConfiguration,
-            this.menuImportKML,
-            this.printTerritoriesToolStripMenuItem});
+            this.menuImportKML});
             this.menuTools.Name = "menuTools";
             this.menuTools.Size = new System.Drawing.Size(48, 20);
             this.menuTools.Text = "Tools";
@@ -148,13 +146,6 @@
             this.menuImportKML.Size = new System.Drawing.Size(219, 22);
             this.menuImportKML.Text = "Import territories from KML";
             this.menuImportKML.Click += new System.EventHandler(this.menuImportKML_Click);
-            // 
-            // printTerritoriesToolStripMenuItem
-            // 
-            this.printTerritoriesToolStripMenuItem.Name = "printTerritoriesToolStripMenuItem";
-            this.printTerritoriesToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.printTerritoriesToolStripMenuItem.Text = "Territories printing";
-            this.printTerritoriesToolStripMenuItem.Click += new System.EventHandler(this.printTerritoriesToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -236,7 +227,6 @@
         private System.Windows.Forms.ToolStripStatusLabel lblConnectionStatusValue;
         private System.Windows.Forms.ToolStripMenuItem menuInteropWizard;
         private System.Windows.Forms.ToolStripMenuItem menuImportKML;
-        private System.Windows.Forms.ToolStripMenuItem printTerritoriesToolStripMenuItem;
 
     }
 }

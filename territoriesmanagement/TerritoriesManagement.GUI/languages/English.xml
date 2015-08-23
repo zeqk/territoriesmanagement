@@ -715,4 +715,12 @@
     <Original>Images</Original>
     <Translated>Images</Translated>
   </String>
+ <String>
+    <Original>Edit map</Original>
+    <Translated>Edit map</Translated>
+  </String>
+<String>
+    <Original>Cards</Original>
+    <Translated>Cards</Translated>
+  </String>
 </Localizer>
