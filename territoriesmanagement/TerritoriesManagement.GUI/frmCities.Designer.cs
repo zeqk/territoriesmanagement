@@ -378,9 +378,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmCities";
             this.Text = "Cities";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmCities_FormClosed);
             this.Load += new System.EventHandler(this.frmCities_Load);
             this.Shown += new System.EventHandler(this.frmCities_Shown);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmCities_FormClosed);
             this.grpObject.ResumeLayout(false);
             this.grpObject.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsCity)).EndInit();

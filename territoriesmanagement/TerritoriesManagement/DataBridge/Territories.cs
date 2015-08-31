@@ -175,15 +175,18 @@ namespace TerritoriesManagement.DataBridge
             }
         }
 
-        public IList<TerritoryItem1> SearchItem1(string name, bool hasAddresses)
+        public IList<Territory> Search(Expression<Func<Territory,bool>> where)
+        {
+            _dm.Territories.MergeOption = MergeOption.NoTracking;
+            _dm.Addresses.MergeOption = MergeOption.NoTracking;
+            var rv = _dm.Territories.Include("Addresses").Where(where).ToList();
+            return rv;
+        }
+
+        public IList<TerritoryItem1> SearchItem1(Expression<Func<Territory,bool>> whereExp)
         {
             try
             {
-                Expression<Func<Territory,bool>> whereExp = null;
-                if(hasAddresses)
-                    whereExp = t => t.Name.ToUpper().Contains(name.ToUpper()) && t.Addresses.Count > 0;
-                else
-                    whereExp = t => t.Name.ToUpper().Contains(name.ToUpper());
 
                 var rv = _dm.Territories.Where(whereExp)
                     .OrderBy(t => t.Number).ThenBy(t => t.Name)
@@ -207,15 +210,15 @@ namespace TerritoriesManagement.DataBridge
             }
         }
 
-        public IList<SimpleObject> SearchSimpleObject(string name, bool hasAddresses)
+        public IList<SimpleObject> SearchSimpleObject(Expression<Func<Territory, bool>> whereExp)
         {
             try
             {
-                Expression<Func<Territory, bool>> whereExp = null;
-                if (hasAddresses)
-                    whereExp = t => t.Name.ToUpper().Contains(name.ToUpper()) && t.Addresses.Count > 0;
-                else
-                    whereExp = t => t.Name.ToUpper().Contains(name.ToUpper());
+                //Expression<Func<Territory, bool>> whereExp = null;
+                //if (hasAddresses)
+                //    whereExp = t => t.Name.ToUpper().Contains(name.ToUpper()) && t.Addresses.Count > 0;
+                //else
+                //    whereExp = t => t.Name.ToUpper().Contains(name.ToUpper());
 
                 var list = _dm.Territories.Where(whereExp)
                     .OrderBy(t => t.Number).ThenBy(t => t.Name)
@@ -243,14 +246,6 @@ namespace TerritoriesManagement.DataBridge
             {
                 throw e;
             }
-        }
-
-        public IList<Territory> SearchByIds(IList<int> ids)
-        {
-            _dm.Territories.MergeOption = MergeOption.NoTracking;
-            var rv = _dm.Territories.Include("Addresses").Where(t => ids.Contains(t.IdTerritory)).OrderBy(t => t.Number).ThenBy(t => t.Name).ToList();
-            
-            return rv;
         }
 
         public Territory NewObject()

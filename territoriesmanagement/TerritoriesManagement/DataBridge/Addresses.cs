@@ -86,7 +86,9 @@ namespace TerritoriesManagement.DataBridge
             try
             {
                 int idCity = v.City.IdCity;
-                int idTerritory = v.Territory.IdTerritory;
+                int idTerritory = 0;
+                if (v.Territory != null)
+                    idTerritory = v.Territory.IdTerritory;
 
                 v.City = null;
                 v.Territory = null;

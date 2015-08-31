@@ -63,6 +63,16 @@ namespace TerritoriesManagement.GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _16x16_google_earth {
+            get {
+                object obj = ResourceManager.GetObject("16x16 google_earth", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blue {
             get {
                 object obj = ResourceManager.GetObject("blue", resourceCulture);
@@ -124,6 +134,16 @@ namespace TerritoriesManagement.GUI.Properties {
         internal static System.Drawing.Bitmap orange {
             get {
                 object obj = ResourceManager.GetObject("orange", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap printer {
+            get {
+                object obj = ResourceManager.GetObject("printer", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

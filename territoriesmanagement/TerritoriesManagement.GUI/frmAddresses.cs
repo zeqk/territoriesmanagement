@@ -282,10 +282,8 @@ namespace TerritoriesManagement.GUI
             dgvResult.Columns["Description"].Width = 150;
             dgvResult.Columns["Description"].DataPropertyName = "Description";
             dgvResult.Columns["Description"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dgvResult.Columns["HasGeoPosition"].MinimumWidth = 40;
-            dgvResult.Columns["HasGeoPosition"].Width = 40;
             dgvResult.Columns["HasGeoPosition"].DataPropertyName = "HasGeoPosition";
-            dgvResult.Columns["HasGeoPosition"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+            dgvResult.Columns["HasGeoPosition"].Visible = false;
             dgvResult.Columns["Marked"].Visible = false;
             dgvResult.Columns["Marked"].DataPropertyName = "Marked";
             dgvResult.Columns["Lat"].Visible = false;

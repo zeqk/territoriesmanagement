@@ -142,6 +142,7 @@
             // 
             // menuImportKML
             // 
+            this.menuImportKML.Image = global::TerritoriesManagement.GUI.Properties.Resources._16x16_google_earth;
             this.menuImportKML.Name = "menuImportKML";
             this.menuImportKML.Size = new System.Drawing.Size(219, 22);
             this.menuImportKML.Text = "Import territories from KML";

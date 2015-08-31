@@ -3,15 +3,12 @@ using GMap.NET.WindowsForms;
 using Localizer;
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Data.Objects;
 using System.Globalization;
-using System.Linq;
 using System.Windows.Forms;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.GUI.Configuration;
 using TerritoriesManagement.GUI.Maps;
-using TerritoriesManagement.KML;
 using TerritoriesManagement.Model;
 using TerritoriesManagement.Reporting;
 
@@ -165,7 +162,7 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
-                var result = this.server.SearchItem1(name, hasAddresses);
+                var result = this.server.SearchItem1(t => t.Name.Contains(name));
                 dgvResult.DataSource = result;
                 lblResultCount.Text = result.Count.ToString();
             }
@@ -451,29 +448,6 @@ namespace TerritoriesManagement.GUI
 
         
 
-        
-        
-        private void btnPrintList_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var myForm = new SaveFileDialog();
-                myForm.Filter = "Excel files (*.xls)|*.xls";
-                myForm.FileName = DateTime.Today.ToString("yyyy.MM.dd") + " Territories.xml";
-                if (myForm.ShowDialog() == DialogResult.OK)
-                {
-
-                    var list = (IList<TerritoryItem1>)dgvResult.DataSource;
-                    ReportsHelper.GenerateTerritoriesListReport(list, myForm.FileName);
-
-                    MessageBox.Show("El archivo " + myForm.FileName + " se generó exitosamente");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
 
         private void btnPrintTerritoryCards_Click(object sender, EventArgs e)
         {
@@ -482,28 +456,6 @@ namespace TerritoriesManagement.GUI
                 using (var myForm = new frmTerritoriesPrinting())
                 {
                     myForm.ShowDialog();
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void btnExportToKml_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                var myForm = new SaveFileDialog();
-                myForm.Filter = "KML files (*.kml)|*.kml";
-                myForm.FileName = DateTime.Today.ToString("yyyy.MM.dd") + " Territories.kml";
-                if (myForm.ShowDialog() == DialogResult.OK)
-                {
-
-                    var list = (IList<TerritoryItem1>)dgvResult.DataSource;
-                    KMLHelper.ExportTerritoriesToKml(list, myForm.FileName);
-
-                    MessageBox.Show("El archivo " + myForm.FileName + " se generó exitosamente");
                 }
             }
             catch (Exception ex)

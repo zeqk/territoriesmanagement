@@ -1,9 +1,9 @@
-﻿using System;
-using System.Windows.Forms;
-using GMap.NET;
+﻿using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
 using Localizer;
+using System;
+using System.Windows.Forms;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.GUI.Configuration;
 using TerritoriesManagement.Model;
@@ -14,15 +14,36 @@ namespace TerritoriesManagement.GUI
     {
         private Addresses server;
         private bool isDirty;
-        private bool hasntTerritory;
+        private string customField2;
 
         public Address Address
         {
             get 
             {
-                Address rv = (Address)bsAddress.DataSource;
+                Address rv = new Address();
+                rv.IdAddress = int.Parse(this.txtId.Text);
+                rv.AddressData = this.txtAddressData.Text;
+                rv.Corner1 = this.txtCorner1.Text;
+                rv.Corner2 = this.txtCorner2.Text;
+                rv.CustomField1 = this.txtField1.Text;
+                rv.CustomField2 = this.customField2;
+                rv.Description = this.txtDescription.Text;
+                rv.InternalTerritoryNumber = !string.IsNullOrEmpty(this.txtInternalNumber.Text) ? (int?)int.Parse(this.txtInternalNumber.Text) : null;
+                rv.Map1 = this.txtMap1.Text;
+                rv.Map2 = this.txtMap2.Text;
+                rv.Number = this.txtNumber.Text;
+                rv.Phone1 = this.txtPhone1.Text;
+                rv.Phone2 = this.txtPhone2.Text;
+                rv.Street = this.txtStreet.Text;
+                
 
-                if (hasntTerritory && cboTerritory.SelectedItem != null)
+                if (cboCity.SelectedItem != null)
+                {
+                    rv.City = new City();
+                    rv.City.IdCity = (int)cboCity.SelectedValue;
+                }
+
+                if (cboTerritory.SelectedItem != null)
                 {
                     rv.Territory = new Territory();
                     rv.Territory.IdTerritory = (int)cboTerritory.SelectedValue;
@@ -33,28 +54,57 @@ namespace TerritoriesManagement.GUI
                     rv.Lat = null;
                     rv.Lng = null;
                 }
+                else
+                {
+                    rv.Lat = !string.IsNullOrEmpty(this.txtLat.Text) ? (double?)double.Parse(this.txtLat.Text) : null;
+                    rv.Lng = !string.IsNullOrEmpty(this.txtLon.Text) ? (double?)double.Parse(this.txtLon.Text) : null;
+                }
 
                 return rv;
             }
             set 
-            {   
-                bsAddress.DataSource = value;
+            {
+                this.txtId.Text = value.IdAddress.ToString();
+                this.txtAddressData.Text = value.AddressData;
+                this.txtCorner1.Text = value.Corner1;
+                this.txtCorner2.Text = value.Corner2;
+                this.txtField1.Text = value.CustomField1;
+                this.customField2 = value.CustomField2;
+                this.txtDescription.Text = value.Description;
+                this.txtInternalNumber.Text = value.InternalTerritoryNumber.HasValue ? value.InternalTerritoryNumber.Value.ToString() : string.Empty;
+                this.txtMap1.Text = value.Map1;
+                this.txtMap2.Text = value.Map2;
+                this.txtNumber.Text = value.Number;
+                this.txtPhone1.Text = value.Phone1;
+                this.txtPhone2.Text = value.Phone2;
+                this.txtStreet.Text = value.Street;
 
                 if (value.City != null && value.City.Department != null)
-                    cboDepartment.SelectedValue = value.City.Department.IdDepartment;
-                else
-                    cboDepartment.SelectedItem = null;
-
-                if (value.Territory == null)
                 {
-                    //cboTerritory.SelectedItem = null;
-                    hasntTerritory = true;
+                    cboDepartment.SelectedValue = value.City.Department.IdDepartment;
+                    cboCity.SelectedValue = value.City.IdCity;
                 }
                 else
-                    hasntTerritory = false;
+                {
+                    cboDepartment.SelectedItem = null;
+                    cboCity.SelectedItem = null;
+                }
 
+                if (value.Territory != null && value.Territory != null)
+                {
+                    cboTerritory.SelectedValue = value.Territory.IdTerritory;
+                }
+                else
+                {
+                    cboTerritory.SelectedItem = null;
+                }
+
+                this.txtLat.Text = value.Lat.HasValue ? value.Lat.ToString() : string.Empty;
+                this.txtLon.Text = value.Lng.HasValue ? value.Lat.ToString() : string.Empty;
                 if (value.Lat != null && value.Lng != null)
+                {                    
                     chkHaveGeoPos.Checked = true;
+                }
                 else
                 {
                     chkHaveGeoPos.Checked = false;

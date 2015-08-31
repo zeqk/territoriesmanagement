@@ -95,8 +95,8 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoSize = true;
             this.panel1.Controls.Add(this.btnViewStatistics);
             this.panel1.Controls.Add(this.btnToExcel);
@@ -142,8 +142,8 @@
             // 
             // btnDelete
             // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnDelete.Location = new System.Drawing.Point(9, 105);
@@ -157,8 +157,8 @@
             // 
             // btnEdit
             // 
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnEdit.Image = ((System.Drawing.Image)(resources.GetObject("btnEdit.Image")));
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnEdit.Location = new System.Drawing.Point(9, 54);
@@ -172,8 +172,8 @@
             // 
             // btnNew
             // 
-            this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNew.Image = ((System.Drawing.Image)(resources.GetObject("btnNew.Image")));
             this.btnNew.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnNew.Location = new System.Drawing.Point(9, 3);
@@ -209,22 +209,22 @@
             // 
             this.dgvResult.AllowUserToAddRows = false;
             this.dgvResult.AllowUserToDeleteRows = false;
-            this.dgvResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvResult.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvResult.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvResult.Location = new System.Drawing.Point(2, 163);
             this.dgvResult.Name = "dgvResult";
             this.dgvResult.ReadOnly = true;
             this.dgvResult.Size = new System.Drawing.Size(843, 354);
             this.dgvResult.TabIndex = 6;
-            this.dgvResult.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvResult_MouseClick);
             this.dgvResult.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvResult_CellFormatting);
+            this.dgvResult.MouseClick += new System.Windows.Forms.MouseEventHandler(this.dgvResult_MouseClick);
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.Controls.Add(this.chkMarked);
             this.panel2.Controls.Add(this.chklstDepartment);
             this.panel2.Controls.Add(this.chklstCity);
@@ -380,46 +380,46 @@
             this.toolStripSeparator2,
             this.viewMapToolStripMenuItem});
             this.ctxMenu.Name = "ctxMenu";
-            this.ctxMenu.Size = new System.Drawing.Size(120, 104);
+            this.ctxMenu.Size = new System.Drawing.Size(127, 104);
             // 
             // copyGoogleMapsToolStripMenuItem
             // 
             this.copyGoogleMapsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("copyGoogleMapsToolStripMenuItem.Image")));
             this.copyGoogleMapsToolStripMenuItem.Name = "copyGoogleMapsToolStripMenuItem";
-            this.copyGoogleMapsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.copyGoogleMapsToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.copyGoogleMapsToolStripMenuItem.Text = "Copy";
             this.copyGoogleMapsToolStripMenuItem.Click += new System.EventHandler(this.copyGoogleMapsToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(123, 6);
             // 
             // markToolStripMenuItem
             // 
             this.markToolStripMenuItem.BackColor = System.Drawing.SystemColors.Control;
             this.markToolStripMenuItem.Name = "markToolStripMenuItem";
-            this.markToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.markToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.markToolStripMenuItem.Text = "Mark";
             this.markToolStripMenuItem.Click += new System.EventHandler(this.markToolStripMenuItem_Click);
             // 
             // unMarkToolStripMenuItem
             // 
             this.unMarkToolStripMenuItem.Name = "unMarkToolStripMenuItem";
-            this.unMarkToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.unMarkToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.unMarkToolStripMenuItem.Text = "Unmark";
             this.unMarkToolStripMenuItem.Click += new System.EventHandler(this.unMarkToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(123, 6);
             // 
             // viewMapToolStripMenuItem
             // 
             this.viewMapToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("viewMapToolStripMenuItem.Image")));
             this.viewMapToolStripMenuItem.Name = "viewMapToolStripMenuItem";
-            this.viewMapToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.viewMapToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.viewMapToolStripMenuItem.Text = "View map";
             this.viewMapToolStripMenuItem.Click += new System.EventHandler(this.viewMapToolStripMenuItem_Click);
             // 

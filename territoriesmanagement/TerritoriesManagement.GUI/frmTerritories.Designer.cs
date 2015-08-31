@@ -45,10 +45,8 @@
             this.txtName = new System.Windows.Forms.TextBox();
             this.grdSearch = new System.Windows.Forms.GroupBox();
             this.btnPrintTerritoryCards = new System.Windows.Forms.Button();
-            this.btnExportToKml = new System.Windows.Forms.Button();
             this.txtFilterName = new System.Windows.Forms.TextBox();
             this.chkHasAddresses = new System.Windows.Forms.CheckBox();
-            this.btnPrintList = new System.Windows.Forms.Button();
             this.lblResultCount = new System.Windows.Forms.Label();
             this.lblFilterName = new System.Windows.Forms.Label();
             this.lblResult = new System.Windows.Forms.Label();
@@ -94,11 +92,14 @@
             // 
             // btnPrint
             // 
+            this.btnPrint.Image = global::TerritoriesManagement.GUI.Properties.Resources.printer;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnPrint.Location = new System.Drawing.Point(283, 106);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(55, 38);
             this.btnPrint.TabIndex = 10;
             this.btnPrint.Text = "Print";
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
@@ -106,9 +107,9 @@
             // 
             this.btnEditMap.Image = ((System.Drawing.Image)(resources.GetObject("btnEditMap.Image")));
             this.btnEditMap.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditMap.Location = new System.Drawing.Point(260, 64);
+            this.btnEditMap.Location = new System.Drawing.Point(242, 64);
             this.btnEditMap.Name = "btnEditMap";
-            this.btnEditMap.Size = new System.Drawing.Size(78, 34);
+            this.btnEditMap.Size = new System.Drawing.Size(96, 34);
             this.btnEditMap.TabIndex = 5;
             this.btnEditMap.Text = "Edit map";
             this.btnEditMap.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -216,10 +217,8 @@
             // grdSearch
             // 
             this.grdSearch.Controls.Add(this.btnPrintTerritoryCards);
-            this.grdSearch.Controls.Add(this.btnExportToKml);
             this.grdSearch.Controls.Add(this.txtFilterName);
             this.grdSearch.Controls.Add(this.chkHasAddresses);
-            this.grdSearch.Controls.Add(this.btnPrintList);
             this.grdSearch.Controls.Add(this.lblResultCount);
             this.grdSearch.Controls.Add(this.lblFilterName);
             this.grdSearch.Controls.Add(this.lblResult);
@@ -236,23 +235,15 @@
             // 
             // btnPrintTerritoryCards
             // 
+            this.btnPrintTerritoryCards.Image = global::TerritoriesManagement.GUI.Properties.Resources.printer;
+            this.btnPrintTerritoryCards.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPrintTerritoryCards.Location = new System.Drawing.Point(19, 378);
             this.btnPrintTerritoryCards.Name = "btnPrintTerritoryCards";
-            this.btnPrintTerritoryCards.Size = new System.Drawing.Size(151, 24);
+            this.btnPrintTerritoryCards.Size = new System.Drawing.Size(100, 24);
             this.btnPrintTerritoryCards.TabIndex = 15;
             this.btnPrintTerritoryCards.Text = "Cards";
             this.btnPrintTerritoryCards.UseVisualStyleBackColor = true;
             this.btnPrintTerritoryCards.Click += new System.EventHandler(this.btnPrintTerritoryCards_Click);
-            // 
-            // btnExportToKml
-            // 
-            this.btnExportToKml.Location = new System.Drawing.Point(176, 378);
-            this.btnExportToKml.Name = "btnExportToKml";
-            this.btnExportToKml.Size = new System.Drawing.Size(81, 24);
-            this.btnExportToKml.TabIndex = 14;
-            this.btnExportToKml.Text = "KML";
-            this.btnExportToKml.UseVisualStyleBackColor = true;
-            this.btnExportToKml.Click += new System.EventHandler(this.btnExportToKml_Click);
             // 
             // txtFilterName
             // 
@@ -270,16 +261,6 @@
             this.chkHasAddresses.TabIndex = 12;
             this.chkHasAddresses.Text = "Addresses";
             this.chkHasAddresses.UseVisualStyleBackColor = true;
-            // 
-            // btnPrintList
-            // 
-            this.btnPrintList.Location = new System.Drawing.Point(263, 378);
-            this.btnPrintList.Name = "btnPrintList";
-            this.btnPrintList.Size = new System.Drawing.Size(81, 24);
-            this.btnPrintList.TabIndex = 11;
-            this.btnPrintList.Text = "Excel";
-            this.btnPrintList.UseVisualStyleBackColor = true;
-            this.btnPrintList.Click += new System.EventHandler(this.btnPrintList_Click);
             // 
             // lblResultCount
             // 
@@ -470,10 +451,8 @@
         private System.Windows.Forms.Button btnEditMap;
         private System.Windows.Forms.Label lblResultCount;
         private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.Button btnPrintList;
         private System.Windows.Forms.CheckBox chkHasAddresses;
         private System.Windows.Forms.TextBox txtFilterName;
-        private System.Windows.Forms.Button btnExportToKml;
         private System.Windows.Forms.Button btnPrintTerritoryCards;
     }
 }

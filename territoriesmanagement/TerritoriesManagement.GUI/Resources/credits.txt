@@ -1,6 +1,6 @@
 ﻿Web site: https://code.google.com/p/territoriesmanagement/
 
-This program uses GMap.NET (http://greatmaps.codeplex.com/), DotNetFirebird (http://www.firebirdsql.org/dotnetfirebird/), and Merlin Wizard Framework (http://http://merlin.codeplex.com/).
+This program uses GMap.NET (http://greatmaps.codeplex.com/), DotNetFirebird (http://www.firebirdsql.org/dotnetfirebird/), iTextSharp (http://http://itextpdf.com/), SharpKML (http://http://sharpkml.codeplex.com/) and Merlin Wizard Framework (http://http://merlin.codeplex.com/).
 
 Icons by http://dryicons.com, http://pixel-mixer.com and http://fatcow.com
 

@@ -28,11 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddress));
             this.grpMaps = new System.Windows.Forms.GroupBox();
             this.txtId = new System.Windows.Forms.TextBox();
-            this.bsAddress = new System.Windows.Forms.BindingSource(this.components);
             this.grpGeoLocation = new System.Windows.Forms.GroupBox();
             this.btnSearchGeoPos = new System.Windows.Forms.Button();
             this.chkHaveGeoPos = new System.Windows.Forms.CheckBox();
@@ -77,7 +75,6 @@
             this.cboTerritory = new System.Windows.Forms.ComboBox();
             this.grpAdditional = new System.Windows.Forms.GroupBox();
             this.grpMaps.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAddress)).BeginInit();
             this.grpGeoLocation.SuspendLayout();
             this.grpPhones.SuspendLayout();
             this.grpUbication.SuspendLayout();
@@ -102,7 +99,6 @@
             // 
             // txtId
             // 
-            this.txtId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "IdAddress", true));
             this.txtId.Location = new System.Drawing.Point(249, 0);
             this.txtId.MaxLength = 50;
             this.txtId.Name = "txtId";
@@ -110,11 +106,6 @@
             this.txtId.Size = new System.Drawing.Size(100, 20);
             this.txtId.TabIndex = 0;
             this.txtId.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // bsAddress
-            // 
-            this.bsAddress.DataSource = typeof(TerritoriesManagement.Model.Address);
-            this.bsAddress.CurrentItemChanged += new System.EventHandler(this.HasChanges);
             // 
             // grpGeoLocation
             // 
@@ -173,7 +164,6 @@
             // 
             // txtLon
             // 
-            this.txtLon.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Lng", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtLon.Location = new System.Drawing.Point(23, 80);
             this.txtLon.Name = "txtLon";
             this.txtLon.Size = new System.Drawing.Size(217, 20);
@@ -182,7 +172,6 @@
             // 
             // txtLat
             // 
-            this.txtLat.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Lat", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtLat.Location = new System.Drawing.Point(23, 40);
             this.txtLat.Name = "txtLat";
             this.txtLat.Size = new System.Drawing.Size(217, 20);
@@ -200,12 +189,12 @@
             // 
             // txtMap2
             // 
-            this.txtMap2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Map2", true));
             this.txtMap2.Location = new System.Drawing.Point(26, 81);
             this.txtMap2.MaxLength = 30;
             this.txtMap2.Name = "txtMap2";
             this.txtMap2.Size = new System.Drawing.Size(304, 20);
             this.txtMap2.TabIndex = 4;
+            this.txtMap2.TextChanged += new System.EventHandler(this.HasChanges);
             // 
             // lblMap1
             // 
@@ -218,12 +207,12 @@
             // 
             // txtMap1
             // 
-            this.txtMap1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Map1", true));
             this.txtMap1.Location = new System.Drawing.Point(26, 37);
             this.txtMap1.MaxLength = 30;
             this.txtMap1.Name = "txtMap1";
             this.txtMap1.Size = new System.Drawing.Size(304, 20);
             this.txtMap1.TabIndex = 2;
+            this.txtMap1.TextChanged += new System.EventHandler(this.HasChanges);
             // 
             // lblDescription
             // 
@@ -236,13 +225,13 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Description", true));
             this.txtDescription.Location = new System.Drawing.Point(18, 36);
             this.txtDescription.MaxLength = 200;
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(316, 135);
             this.txtDescription.TabIndex = 1;
+            this.txtDescription.TextChanged += new System.EventHandler(this.HasChanges);
             // 
             // grpPhones
             // 
@@ -277,21 +266,21 @@
             // 
             // txtPhone2
             // 
-            this.txtPhone2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Phone2", true));
             this.txtPhone2.Location = new System.Drawing.Point(26, 83);
             this.txtPhone2.MaxLength = 15;
             this.txtPhone2.Name = "txtPhone2";
             this.txtPhone2.Size = new System.Drawing.Size(304, 20);
             this.txtPhone2.TabIndex = 3;
+            this.txtPhone2.TextChanged += new System.EventHandler(this.HasChanges);
             // 
             // txtPhone1
             // 
-            this.txtPhone1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Phone1", true));
             this.txtPhone1.Location = new System.Drawing.Point(26, 39);
             this.txtPhone1.MaxLength = 15;
             this.txtPhone1.Name = "txtPhone1";
             this.txtPhone1.Size = new System.Drawing.Size(304, 20);
             this.txtPhone1.TabIndex = 1;
+            this.txtPhone1.TextChanged += new System.EventHandler(this.HasChanges);
             // 
             // btnSave
             // 
@@ -353,12 +342,12 @@
             // 
             // txtAddressData
             // 
-            this.txtAddressData.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "AddressData", true));
             this.txtAddressData.Location = new System.Drawing.Point(137, 163);
             this.txtAddressData.MaxLength = 50;
             this.txtAddressData.Name = "txtAddressData";
             this.txtAddressData.Size = new System.Drawing.Size(197, 20);
             this.txtAddressData.TabIndex = 9;
+            this.txtAddressData.TextChanged += new System.EventHandler(this.HasChanges);
             // 
             // lblNumber
             // 
@@ -416,35 +405,33 @@
             // 
             // txtCorner2
             // 
-            this.txtCorner2.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Corner2", true));
             this.txtCorner2.Location = new System.Drawing.Point(18, 251);
             this.txtCorner2.MaxLength = 80;
             this.txtCorner2.Name = "txtCorner2";
             this.txtCorner2.Size = new System.Drawing.Size(316, 20);
             this.txtCorner2.TabIndex = 13;
+            this.txtCorner2.TextChanged += new System.EventHandler(this.HasChanges);
             // 
             // txtCorner1
             // 
-            this.txtCorner1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Corner1", true));
             this.txtCorner1.Location = new System.Drawing.Point(18, 208);
             this.txtCorner1.MaxLength = 80;
             this.txtCorner1.Name = "txtCorner1";
             this.txtCorner1.Size = new System.Drawing.Size(316, 20);
             this.txtCorner1.TabIndex = 11;
+            this.txtCorner1.TextChanged += new System.EventHandler(this.HasChanges);
             // 
             // txtNumber
             // 
-            this.txtNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Number", true));
             this.txtNumber.Location = new System.Drawing.Point(18, 163);
             this.txtNumber.MaxLength = 50;
             this.txtNumber.Name = "txtNumber";
             this.txtNumber.Size = new System.Drawing.Size(100, 20);
             this.txtNumber.TabIndex = 7;
+            this.txtNumber.TextChanged += new System.EventHandler(this.HasChanges);
             // 
             // cboCity
             // 
-            this.cboCity.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsAddress, "City.IdCity", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cboCity.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "City.Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cboCity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCity.FormattingEnabled = true;
             this.cboCity.Location = new System.Drawing.Point(18, 78);
@@ -466,22 +453,22 @@
             // 
             // txtStreet
             // 
-            this.txtStreet.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Street", true));
             this.txtStreet.Location = new System.Drawing.Point(18, 122);
             this.txtStreet.MaxLength = 80;
             this.txtStreet.Name = "txtStreet";
             this.txtStreet.Size = new System.Drawing.Size(316, 20);
             this.txtStreet.TabIndex = 5;
+            this.txtStreet.TextChanged += new System.EventHandler(this.HasChanges);
             // 
             // txtField1
             // 
-            this.txtField1.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "CustomField1", true));
             this.txtField1.Location = new System.Drawing.Point(18, 197);
             this.txtField1.MaxLength = 200;
             this.txtField1.Multiline = true;
             this.txtField1.Name = "txtField1";
             this.txtField1.Size = new System.Drawing.Size(316, 43);
             this.txtField1.TabIndex = 3;
+            this.txtField1.TextChanged += new System.EventHandler(this.HasChanges);
             // 
             // lblField1
             // 
@@ -507,7 +494,6 @@
             // 
             // txtInternalNumber
             // 
-            this.txtInternalNumber.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "InternalTerritoryNumber", true, System.Windows.Forms.DataSourceUpdateMode.OnValidation, null, "N0"));
             this.txtInternalNumber.Location = new System.Drawing.Point(26, 74);
             this.txtInternalNumber.Mask = "99999";
             this.txtInternalNumber.Name = "txtInternalNumber";
@@ -515,6 +501,7 @@
             this.txtInternalNumber.Size = new System.Drawing.Size(121, 20);
             this.txtInternalNumber.TabIndex = 24;
             this.txtInternalNumber.ValidatingType = typeof(int);
+            this.txtInternalNumber.TextChanged += new System.EventHandler(this.HasChanges);
             // 
             // lblInternalNumber
             // 
@@ -539,8 +526,6 @@
             // 
             // cboTerritory
             // 
-            this.cboTerritory.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bsAddress, "Territory.IdTerritory", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.cboTerritory.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bsAddress, "Territory.Name", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.cboTerritory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboTerritory.FormattingEnabled = true;
             this.cboTerritory.Location = new System.Drawing.Point(26, 29);
@@ -580,7 +565,6 @@
             this.Load += new System.EventHandler(this.frmAddress_Load);
             this.grpMaps.ResumeLayout(false);
             this.grpMaps.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bsAddress)).EndInit();
             this.grpGeoLocation.ResumeLayout(false);
             this.grpGeoLocation.PerformLayout();
             this.grpPhones.ResumeLayout(false);
@@ -616,7 +600,6 @@
         private System.Windows.Forms.TextBox txtPhone1;
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.BindingSource bsAddress;
         private System.Windows.Forms.GroupBox grpUbication;
         private System.Windows.Forms.Label lblAddressData;
         private System.Windows.Forms.TextBox txtAddressData;

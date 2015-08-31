@@ -77,7 +77,13 @@ namespace TestConsole
                 var congregationId = "1275";
                 var markers = GetHouseMarkers(congregationId, ref cookies);
 
-                DeleteHouseMarkers(markers, ref cookies);
+                CookieContainer cookies2 = new CookieContainer();
+
+                //LOGIN
+
+                Login("zeqk.net%40gmail.com", "", ref cookies2);
+
+                DeleteHouseMarkers(markers, ref cookies2);
             }
             catch (Exception ex)
             {
@@ -87,7 +93,7 @@ namespace TestConsole
 
         static void Login(string user, string password, ref CookieContainer cookies)
         {
-            string postData = string.Format("Email=" + user + "&Password=" + password + "&PersistLogin=false");
+            string postData = string.Format("Email=" + user + "&Password=" + password + "&PersistLogin=true");
             byte[] postBytes = Encoding.UTF8.GetBytes(postData);
 
             HttpWebRequest loginReq = (HttpWebRequest)HttpWebRequest.Create("https://territoryhelper.com/es/Login");
@@ -196,7 +202,7 @@ namespace TestConsole
 
             foreach (var item in houseMarkers)
             {
-                var postData = "{\"houseMarkerId\":111734}";
+                var postData = "{\"houseMarkerId\":" +  item["Id"] + "}";
                 var postBytes = Encoding.UTF8.GetBytes(postData);
 
                 HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create("https://territoryhelper.com/es/HouseMarker/Delete/");
@@ -209,7 +215,7 @@ namespace TestConsole
                 req.Method = "POST";
                 req.Referer = "https://territoryhelper.com/es/Territories";
                 req.Accept = "application/json, text/javascript, */*; q=0.01";
-
+                
                 req.CookieContainer = cookies;
                 req.ContentType = "application/json; charset=UTF-8";
                 req.ContentLength = postBytes.Length;

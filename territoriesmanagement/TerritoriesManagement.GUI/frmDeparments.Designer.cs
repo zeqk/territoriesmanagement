@@ -302,9 +302,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmDepartments";
             this.Text = "Departments";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmDepartments_FormClosed);
             this.Load += new System.EventHandler(this.frmDepartments_Load);
             this.Shown += new System.EventHandler(this.frmDepartments_Shown);
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmDepartments_FormClosed);
             this.grpObject.ResumeLayout(false);
             this.grpObject.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bsDepartment)).EndInit();

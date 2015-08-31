@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
 using TerritoriesManagement.DataBridge;
 using TerritoriesManagement.GUI.Maps;
@@ -24,9 +25,12 @@ namespace TerritoriesManagement.Reporting
     static public class ReportsHelper
     {
 
-        public static void GenerateMultipleTerritoriesReport(IList<int> ids, string path, bool singleFile, bool image)
+        public static void GenerateMultipleTerritoriesReport(Expression<Func<Territory,bool>> whereExp, string path, bool singleFile, bool image)
         {
-            if (ids.Count > 0)
+            var bridge = new Territories();
+            var territories = bridge.Search(whereExp);
+
+            if (territories.Count > 0)
             {
                 
                 var folder = path;
@@ -46,8 +50,7 @@ namespace TerritoriesManagement.Reporting
                     format = ReportFormats.Image;
                 }
 
-                var bridge = new Territories();
-                var territories = bridge.SearchByIds(ids);
+                
                 var files = new List<string>();
 
                 foreach (var t in territories)
@@ -76,8 +79,12 @@ namespace TerritoriesManagement.Reporting
             ReportsHelper.GenerateReport(fileName, format, "TerritoriesManagement.dll", "TerritoriesManagement.Reports.Territory.rdlc", "AddressesDataSet", territory.Addresses.OrderBy(a => a.InternalTerritoryNumber), parameters);
         }
 
-        public static void GenerateTerritoriesListReport(IList<TerritoryItem1> territories, string fileName)
+        public static void GenerateTerritoriesListReport(Expression<Func<Territory,bool>> exp, string fileName)
         {
+
+            var bridge = new Territories();
+            var territories = bridge.SearchItem1(exp);
+
             var parameters = new List<ReportParameter>();
 
             ReportsHelper.GenerateReport(fileName, ReportFormats.Excel, "TerritoriesManagement.dll", "TerritoriesManagement.Reports.TerritoriesList.rdlc", "TerritoryItem1DS", territories, parameters);
