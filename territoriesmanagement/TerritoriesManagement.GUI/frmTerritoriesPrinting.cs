@@ -5,6 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Windows.Forms;
 using TerritoriesManagement.DataBridge;
+using TerritoriesManagement.GUI.Maps;
 using TerritoriesManagement.KML;
 using TerritoriesManagement.Model;
 using TerritoriesManagement.Reporting;
@@ -134,9 +135,10 @@ namespace TerritoriesManagement.GUI
             switch (type)
             {
                 case FileTypes.Imagen:
+					ReportsHelper.GenerateTerritoriesImage(whereExp, path);
+					break;
                 case FileTypes.PDF:
-                    var imagen = type == FileTypes.Imagen;
-                    ReportsHelper.GenerateMultipleTerritoriesReport(whereExp, path, singleFile, imagen);
+                    ReportsHelper.GenerateMultipleTerritoriesReport(whereExp, path, singleFile);
                     break;
                 case FileTypes.Excel:
                     ReportsHelper.GenerateTerritoriesListReport(whereExp, path);
@@ -198,7 +200,7 @@ namespace TerritoriesManagement.GUI
                 var type = (FileTypes)Enum.Parse(typeof(FileTypes),cboReportType.SelectedValue.ToString());
 
                 chkSingleFile.Checked = false;
-                if (type == FileTypes.PDF || type == FileTypes.KML)
+				if (type == FileTypes.PDF || type == FileTypes.KML || type == FileTypes.Imagen)
                 {
                     chkSingleFile.Visible = true;
                 }

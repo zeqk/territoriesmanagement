@@ -4,6 +4,8 @@ using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
@@ -25,7 +27,7 @@ namespace TerritoriesManagement.Reporting
     static public class ReportsHelper
     {
 
-        public static void GenerateMultipleTerritoriesReport(Expression<Func<Territory,bool>> whereExp, string path, bool singleFile, bool image)
+        public static void GenerateMultipleTerritoriesReport(Expression<Func<Territory,bool>> whereExp, string path, bool singleFile)
         {
             var bridge = new Territories();
             var territories = bridge.Search(whereExp);
@@ -44,12 +46,6 @@ namespace TerritoriesManagement.Reporting
                 }
                 var extension = ".pdf";
                 var format = ReportFormats.PDF;
-                if (image)
-                {
-                    extension = ".jpg";
-                    format = ReportFormats.Image;
-                }
-
                 
                 var files = new List<string>();
 
@@ -65,6 +61,22 @@ namespace TerritoriesManagement.Reporting
                     MergePdfsToSingle(files, path);
             }
         }
+
+		public static bool GenerateTerritoriesImage(Expression<Func<Territory, bool>> whereExp, string path)
+		{
+			var rv = false;
+
+			var bridge = new Territories();
+			var territories = bridge.Search(whereExp);
+
+			var stream = MapsHelper.GenerateTerritoriesImage(territories);
+			
+			var img = Bitmap.FromStream(stream);
+
+			img.Save(path, ImageFormat.Png);
+
+			return rv;
+		}
 
         public static void GenerateTerritoryReport(Territory territory, string fileName, string format)
         {
