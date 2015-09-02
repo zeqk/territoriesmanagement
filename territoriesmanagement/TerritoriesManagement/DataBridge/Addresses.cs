@@ -489,6 +489,8 @@ namespace TerritoriesManagement.DataBridge
             return Helper.PointInPolygon(point,polygon);
         }
 
+		
+
         private void PreCompileQueries()
         {
 

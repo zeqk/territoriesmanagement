@@ -257,9 +257,18 @@ namespace TerritoriesManagement.DataBridge
         public void DeleteAll()
         {
             try
-            {                
+            {
+				TerritoriesDataContext dm = new TerritoriesDataContext();
+				foreach (var item in dm.Addresses)
+				{
+					item.Territory = null;
+					item.InternalTerritoryNumber = null;
+				}
+				dm.SaveChanges();
+
                 _dm.territories_DeleteAll();
-                _dm.territories_ResetId(0);
+				_dm.territories_ResetId(0);
+				dm.SaveChanges();
                     
             }
             catch (Exception ex)
@@ -334,6 +343,79 @@ namespace TerritoriesManagement.DataBridge
                 throw ex;
             }
         }
+
+		public void AsignTerritoriesToAddresses()
+		{
+			foreach (var item in _dm.Addresses)
+			{
+				if (item.Lat.HasValue && item.Lng.HasValue)
+				{
+					PointLatLng point = new PointLatLng(item.Lat.Value, item.Lng.Value);
+					foreach (Territory t in _dm.Territories)
+					{
+						if (t.Area != null && t.Area != "")
+						{
+							List<PointLatLng> polygon = Helper.StrPointsToPointsLatLng(t.Area.Split('\n'));
+							if (Helper.PointInPolygon(point, polygon.ToArray()))
+							{
+								item.Territory = t;
+								break;
+							}
+						}
+					}
+				}
+			}
+			_dm.SaveChanges();
+		}
+
+		public void RenumInternalTerritoryNumber()
+		{
+
+			foreach (var item in _dm.Territories)
+			{
+				item.Addresses.Load();
+				var addresses = item.Addresses.Where(a => a.Lat.HasValue && a.Lng.HasValue)
+					.OrderByDescending(a => a.Lat.Value).ThenBy(a => a.Lng.Value).ToList();
+
+				var i = 1;
+				foreach (var a in addresses)
+				{
+					a.InternalTerritoryNumber = i;
+					i++;
+				}
+			}
+			_dm.SaveChanges();
+		}
+
+
+		public void RenumberTerritories()
+		{
+			IDictionary<Territory, PointLatLng> centersByTerritories = new Dictionary<Territory, PointLatLng>();
+			foreach (var t in _dm.Territories)
+			{
+				if (!string.IsNullOrEmpty(t.Area))
+				{
+					List<PointLatLng> polygon = Helper.StrPointsToPointsLatLng(t.Area.Split('\n'));
+
+					var center = Helper.CalculateCenter(polygon);
+					centersByTerritories.Add(t, center);
+				}				
+			}
+
+			var territories = centersByTerritories
+									.OrderByDescending(d => d.Value.Lat)
+									.ThenBy(d => d.Value.Lng)
+									.Select(d => d.Key).ToList();
+			var i = 1;
+			foreach (var t in territories)
+			{
+				t.Number = i;
+				i++;
+			}
+
+			_dm.SaveChanges();
+		}
+
 
         private void PreCompileQueries()
         {

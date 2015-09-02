@@ -1,5 +1,4 @@
-﻿using GMap.NET;
-using SharpKml.Base;
+﻿using SharpKml.Base;
 using SharpKml.Dom;
 using SharpKml.Engine;
 using System;
@@ -21,79 +20,18 @@ namespace TerritoriesManagement.KML
 
 		public static void ImportNewTerritories(string kmlFile)
 		{
-			RemoveOldTerritories();
+			var bridge = new Territories();
+
+			bridge.DeleteAll();
+
 			ImportTerritoriesFromKml(kmlFile);
-			SetNewTerritories();
-			RenumInternalTerritoryNumber();
+
+			bridge.AsignTerritoriesToAddresses();
+			bridge.RenumInternalTerritoryNumber();
 		}
 
-		static void RemoveOldTerritories()
-		{
-			TerritoriesDataContext dm = new TerritoriesDataContext();
-			foreach (var item in dm.Addresses)
-			{
-				item.Territory = null;
-				item.InternalTerritoryNumber = null;
-			}
-			dm.SaveChanges();
-			dm.territories_DeleteAll();
-            dm.territories_ResetId(0);
-			dm.SaveChanges();
-		}
 
-		static void SetNewTerritories()
-		{
-			TerritoriesDataContext dm = new TerritoriesDataContext();
-			
-			foreach (var item in dm.Addresses)
-			{
-				if (item.Lat.HasValue && item.Lng.HasValue)
-				{
-					PointLatLng point = new PointLatLng(item.Lat.Value, item.Lng.Value);
-					foreach (Territory t in dm.Territories)
-					{
-						if (t.Area != null && t.Area != "")
-						{
-							List<PointLatLng> polygon = Helper.StrPointsToPointsLatLng(t.Area.Split('\n'));
-							if (Helper.PointInPolygon(point, polygon.ToArray()))
-							{
-								item.Territory = t;
-								break;
-							}
-						}
-					}
-				}
-			}
-			dm.SaveChanges();
-		}
-
-		static void RenumInternalTerritoryNumber()
-		{
-			try
-			{
-				TerritoriesDataContext dm = new TerritoriesDataContext();
-
-				foreach (var item in dm.Territories)
-				{
-					item.Addresses.Load();
-					var addresses = item.Addresses.Where(a => a.Lat.HasValue && a.Lng.HasValue)
-						.OrderByDescending(a => a.Lat.Value).ThenBy(a => a.Lng.Value).ToList();
-
-					var i = 1;
-					foreach (var a in addresses)
-					{
-						a.InternalTerritoryNumber = i;
-						i++;
-					}
-				}
-				dm.SaveChanges();
-			}
-			catch (Exception ex)
-			{
-
-				throw ex;
-			}
-		}
+		
 
 		static void ImportTerritoriesFromKml(string kmlFile)
 		{
