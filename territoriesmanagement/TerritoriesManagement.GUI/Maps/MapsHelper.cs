@@ -8,14 +8,36 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
 using TerritoriesManagement.Model;
 
 namespace TerritoriesManagement.GUI.Maps
 {
     public static class MapsHelper
     {
+
+
+		public static MemoryStream GenerateTerritoriesImage(IList<Territory> territories)
+		{
+
+			var markers = new List<GMapMarker>();
+			var polygons = new List<GMapPolygon>();
+			var points = new List<PointLatLng>();
+
+			foreach (var t in territories)
+			{
+				var polygon = GetPolygon(t.Area);
+				polygon.Tag = t.Number.HasValue ? t.Number.Value.ToString() : null;
+				polygons.Add(polygon);
+				points.AddRange(polygon.Points);
+				
+			}
+
+			var area = Helper.CalculateRectangle(points);
+
+			var rv = MapsHelper.GenerateImageStream(area, 12, GMapProviders.GoogleMap, markers, polygons);
+
+			return rv;
+		}
 
         public static MemoryStream GenerateTerritoryImage(Territory territory)
         {
@@ -154,6 +176,8 @@ namespace TerritoriesManagement.GUI.Maps
                                                 }
                                             }
 
+											
+
                                             Color color = Color.FromArgb(95, polygon.Stroke.Color);
                                             Pen pen = new Pen(color, 4);
                                             pen.DashStyle = DashStyle.Custom;
@@ -164,6 +188,23 @@ namespace TerritoriesManagement.GUI.Maps
 
                                                 gfx.DrawPolygon(pen, rp.PathPoints);
                                             }
+											
+											if (polygon.Tag != null)
+											{
+												var center = Helper.CalculateCenter(polygon.Points);
+												GPoint pxCenter = type.Projection.FromLatLngToPixel(center.Lat, center.Lng, zoom);
+												pxCenter.Offset(padding, padding);
+												
+												//pxCenter.Offset(-topLeftPx.X, -topLeftPx.Y);
+
+												var x = Convert.ToInt32(pxCenter.X);
+												var y = Convert.ToInt32(pxCenter.Y);
+
+												Font font = new Font(FontFamily.GenericSansSerif, 20);
+												
+												var infoTag = polygon.Tag.ToString();
+												gfx.DrawString(infoTag, font, Brushes.Red, x, y);
+											}
                                         }
                                     }
                                 }
@@ -192,13 +233,13 @@ namespace TerritoriesManagement.GUI.Maps
                                 var x = Convert.ToInt32(px.X);
                                 var y = Convert.ToInt32(px.Y);
                                 gfx.DrawIcon(icon1, x - (icon1.Size.Width / 2), y - (icon1.Size.Height / 2));
-                                Font font = new Font(FontFamily.GenericSansSerif, 12);
-
-                                string infoTag = "";
-                                if (marker.Tag != null)
-                                    infoTag = marker.Tag.ToString();
-
-                                gfx.DrawString(infoTag, font, Brushes.Red, x + 10, y - 10);
+                                								                               
+								if (marker.Tag != null)
+								{
+									var infoTag = marker.Tag.ToString();
+									Font font = new Font(FontFamily.GenericSansSerif, 12);
+									gfx.DrawString(infoTag, font, Brushes.Red, x + 10, y - 10);
+								}
                             }
 
                         }

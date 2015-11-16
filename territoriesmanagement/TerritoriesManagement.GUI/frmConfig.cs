@@ -118,5 +118,18 @@ namespace TerritoriesManagement.GUI
             
 
         }
+
+		private void btnRenumberTerritories_Click(object sender, EventArgs e)
+		{
+			try
+			{
+				var bridge = new Territories();
+				bridge.RenumberTerritories();
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message);
+			}
+		}
     }
 }
