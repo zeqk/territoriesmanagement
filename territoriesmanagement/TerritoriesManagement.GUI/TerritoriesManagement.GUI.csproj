@@ -246,11 +246,11 @@
     <Compile Include="frmTerritories.Designer.cs">
       <DependentUpon>frmTerritories.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTerritoriesPrinting.cs">
+    <Compile Include="frmTerritoriesExportation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmTerritoriesPrinting.Designer.cs">
-      <DependentUpon>frmTerritoriesPrinting.cs</DependentUpon>
+    <Compile Include="frmTerritoriesExportation.Designer.cs">
+      <DependentUpon>frmTerritoriesExportation.cs</DependentUpon>
     </Compile>
     <Compile Include="Interop\Import\FieldCollection.cs" />
     <Compile Include="Interop\Import\FieldCollectionPropertyDescriptor.cs" />
@@ -317,8 +317,8 @@
     <EmbeddedResource Include="frmTerritories.resx">
       <DependentUpon>frmTerritories.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmTerritoriesPrinting.resx">
-      <DependentUpon>frmTerritoriesPrinting.cs</DependentUpon>
+    <EmbeddedResource Include="frmTerritoriesExportation.resx">
+      <DependentUpon>frmTerritoriesExportation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Interop\Steps\DestinySelectionStepUI.resx">
       <DependentUpon>DestinySelectionStepUI.cs</DependentUpon>

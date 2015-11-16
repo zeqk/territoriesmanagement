@@ -25,7 +25,9 @@ namespace TestConsole
             try
             {
                 Console.ReadKey();
-                TerritoryHelperDeleteHouseMarkers();
+                //TerritoriesManagement.KML.KMLHelper.RenumInternalTerritoryNumber();
+                TerritoriesManagement.KML.KMLHelper.ExportTerritoriesToKml(t => true, "C:\\Users\\zeqk\\Desktop\\territories.xml", true);
+                //ExportAddressesToKml();
             }
             catch (Exception ex)
             {
@@ -38,6 +40,30 @@ namespace TestConsole
             Console.ReadKey();
         }
 
+
+        static void NumberByAlphabeticOrder()
+        {
+            try
+            {
+                var dm = new TerritoriesDataContext();
+
+                var territories = dm.Territories.OrderBy(t => t.Name);
+                var i = 1;
+                foreach (var t in territories)
+                {
+                    t.Number = i;
+                    i++;
+                }
+
+
+                dm.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
+        }
 
         static void BackupTerritoryHelper()
         {
@@ -364,8 +390,7 @@ namespace TestConsole
             }
         }
 
-
-        static void ExportToKml()
+        static void ExportAddressesToKml()
         {
             try
             {
@@ -405,7 +430,7 @@ namespace TestConsole
 
                 // This allows us to save and Element easily.
                 KmlFile kml = KmlFile.Create(doc, false);
-                using (var stream = System.IO.File.OpenWrite("C:\\Users\\zeqk\\Desktop\\territories.kml"))
+                using (var stream = System.IO.File.OpenWrite("C:\\Users\\zeqk\\Desktop\\addresses.kml"))
                 {
                     kml.Save(stream);
                     

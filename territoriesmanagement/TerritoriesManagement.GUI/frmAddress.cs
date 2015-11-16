@@ -100,7 +100,7 @@ namespace TerritoriesManagement.GUI
                 }
 
                 this.txtLat.Text = value.Lat.HasValue ? value.Lat.ToString() : string.Empty;
-                this.txtLon.Text = value.Lng.HasValue ? value.Lat.ToString() : string.Empty;
+                this.txtLon.Text = value.Lng.HasValue ? value.Lng.ToString() : string.Empty;
                 if (value.Lat != null && value.Lng != null)
                 {                    
                     chkHaveGeoPos.Checked = true;

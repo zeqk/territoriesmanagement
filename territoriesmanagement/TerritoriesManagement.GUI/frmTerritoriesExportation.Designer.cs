@@ -1,6 +1,6 @@
 ﻿namespace TerritoriesManagement.GUI
 {
-    partial class frmTerritoriesPrinting
+    partial class frmTerritoriesExportation
     {
         /// <summary>
         /// Required designer variable.
@@ -30,6 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.chklstTerritories = new System.Windows.Forms.CheckedListBox();
+            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemSelectAll = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemDeselectAll = new System.Windows.Forms.ToolStripMenuItem();
             this.btnPrint = new System.Windows.Forms.Button();
             this.chkSingleFile = new System.Windows.Forms.CheckBox();
             this.cboReportType = new System.Windows.Forms.ComboBox();
@@ -37,11 +40,8 @@
             this.rdoFilterAll = new System.Windows.Forms.RadioButton();
             this.rdoFilterWithoutAddresses = new System.Windows.Forms.RadioButton();
             this.rdoFilterWithAddresses = new System.Windows.Forms.RadioButton();
-            this.contextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItemSelectAll = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItemDeselectAll = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupFilter.SuspendLayout();
             this.contextMenuStrip.SuspendLayout();
+            this.groupFilter.SuspendLayout();
             this.SuspendLayout();
             // 
             // chklstTerritories
@@ -56,8 +56,30 @@
             this.chklstTerritories.Location = new System.Drawing.Point(12, 68);
             this.chklstTerritories.MultiColumn = true;
             this.chklstTerritories.Name = "chklstTerritories";
-            this.chklstTerritories.Size = new System.Drawing.Size(798, 349);
+            this.chklstTerritories.Size = new System.Drawing.Size(798, 379);
             this.chklstTerritories.TabIndex = 0;
+            // 
+            // contextMenuStrip
+            // 
+            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemSelectAll,
+            this.toolStripMenuItemDeselectAll});
+            this.contextMenuStrip.Name = "contextMenuStrip1";
+            this.contextMenuStrip.Size = new System.Drawing.Size(128, 48);
+            // 
+            // toolStripMenuItemSelectAll
+            // 
+            this.toolStripMenuItemSelectAll.Name = "toolStripMenuItemSelectAll";
+            this.toolStripMenuItemSelectAll.Size = new System.Drawing.Size(127, 22);
+            this.toolStripMenuItemSelectAll.Text = "Select all";
+            this.toolStripMenuItemSelectAll.Click += new System.EventHandler(this.toolStripMenuItemSelectAll_Click);
+            // 
+            // toolStripMenuItemDeselectAll
+            // 
+            this.toolStripMenuItemDeselectAll.Name = "toolStripMenuItemDeselectAll";
+            this.toolStripMenuItemDeselectAll.Size = new System.Drawing.Size(127, 22);
+            this.toolStripMenuItemDeselectAll.Text = "Deslect all";
+            this.toolStripMenuItemDeselectAll.Click += new System.EventHandler(this.toolStripMenuItemDeselectAll_Click);
             // 
             // btnPrint
             // 
@@ -137,29 +159,7 @@
             this.rdoFilterWithAddresses.UseVisualStyleBackColor = true;
             this.rdoFilterWithAddresses.CheckedChanged += new System.EventHandler(this.rdoFilterWithAddresses_CheckedChanged);
             // 
-            // contextMenuStrip
-            // 
-            this.contextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItemSelectAll,
-            this.toolStripMenuItemDeselectAll});
-            this.contextMenuStrip.Name = "contextMenuStrip1";
-            this.contextMenuStrip.Size = new System.Drawing.Size(128, 48);
-            // 
-            // toolStripMenuItemSelectAll
-            // 
-            this.toolStripMenuItemSelectAll.Name = "toolStripMenuItemSelectAll";
-            this.toolStripMenuItemSelectAll.Size = new System.Drawing.Size(127, 22);
-            this.toolStripMenuItemSelectAll.Text = "Select all";
-            this.toolStripMenuItemSelectAll.Click += new System.EventHandler(this.toolStripMenuItemSelectAll_Click);
-            // 
-            // toolStripMenuItemDeselectAll
-            // 
-            this.toolStripMenuItemDeselectAll.Name = "toolStripMenuItemDeselectAll";
-            this.toolStripMenuItemDeselectAll.Size = new System.Drawing.Size(127, 22);
-            this.toolStripMenuItemDeselectAll.Text = "Deslect all";
-            this.toolStripMenuItemDeselectAll.Click += new System.EventHandler(this.toolStripMenuItemDeselectAll_Click);
-            // 
-            // frmTerritoriesPrinting
+            // frmTerritoriesExportation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -169,12 +169,12 @@
             this.Controls.Add(this.chkSingleFile);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.chklstTerritories);
-            this.Name = "frmTerritoriesPrinting";
-            this.Text = "Territories printing";
+            this.Name = "frmTerritoriesExportation";
+            this.Text = "Territories exportation";
             this.Load += new System.EventHandler(this.frmTerritoriesPrinting_Load);
+            this.contextMenuStrip.ResumeLayout(false);
             this.groupFilter.ResumeLayout(false);
             this.groupFilter.PerformLayout();
-            this.contextMenuStrip.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

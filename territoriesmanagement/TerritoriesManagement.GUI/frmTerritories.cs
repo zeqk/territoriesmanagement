@@ -453,7 +453,7 @@ namespace TerritoriesManagement.GUI
         {
             try
             {
-                using (var myForm = new frmTerritoriesPrinting())
+                using (var myForm = new frmTerritoriesExportation())
                 {
                     myForm.ShowDialog();
                 }

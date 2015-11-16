@@ -11,7 +11,7 @@ using TerritoriesManagement.Reporting;
 
 namespace TerritoriesManagement.GUI
 {
-    public partial class frmTerritoriesPrinting : Form
+    public partial class frmTerritoriesExportation : Form
     {
 
         enum FileTypes
@@ -22,7 +22,7 @@ namespace TerritoriesManagement.GUI
             KML
         }
 
-        public frmTerritoriesPrinting()
+        public frmTerritoriesExportation()
         {
             InitializeComponent();
             this.chklstTerritories.DisplayMember = "Text";
@@ -107,11 +107,13 @@ namespace TerritoriesManagement.GUI
 
                 if (goOn)
                 {
-                    this.exportTerritories(path, type, chkSingleFile.Checked);
-                    if (chkSingleFile.Checked)
-                        MessageBox.Show("El archivo " + path + " se generó exitosamente");
-                    else
-                        MessageBox.Show("Los archivos se generaron exitosamente en la carpeta " + path);
+                    if (this.exportTerritories(path, type, chkSingleFile.Checked))
+                    {
+                        if (chkSingleFile.Checked)
+                            MessageBox.Show("El archivo " + path + " se generó exitosamente");
+                        else
+                            MessageBox.Show("Los archivos se generaron exitosamente en la carpeta " + path);
+                    }
                 }
 
             }
@@ -124,30 +126,37 @@ namespace TerritoriesManagement.GUI
 
        
 
-        void exportTerritories(string path, FileTypes type, bool singleFile)
+        bool exportTerritories(string path, FileTypes type, bool singleFile)
         {
+            var rv = false;
             var items = this.chklstTerritories.CheckedItems.OfType<SimpleObject>().ToList();
 
-            var ids = items.Select(i => Convert.ToInt32(i.Value)).ToList();
-            Expression<Func<Territory, bool>> whereExp = t => ids.Contains(t.IdTerritory);
-                        
-            switch (type)
+            if (items.Count > 0)
             {
-                case FileTypes.Imagen:
-                case FileTypes.PDF:
-                    var imagen = type == FileTypes.Imagen;
-                    ReportsHelper.GenerateMultipleTerritoriesReport(whereExp, path, singleFile, imagen);
-                    break;
-                case FileTypes.Excel:
-                    ReportsHelper.GenerateTerritoriesListReport(whereExp, path);
-                    break;
-                case FileTypes.KML:
-                    KMLHelper.ExportTerritoriesToKml(whereExp, path, singleFile);
-                    break;
-                default:
-                    break;
-            }
+                var ids = items.Select(i => Convert.ToInt32(i.Value)).ToList();
+                Expression<Func<Territory, bool>> whereExp = t => ids.Contains(t.IdTerritory);
 
+                switch (type)
+                {
+                    case FileTypes.Imagen:
+                    case FileTypes.PDF:
+                        var imagen = type == FileTypes.Imagen;
+                        ReportsHelper.GenerateMultipleTerritoriesReport(whereExp, path, singleFile, imagen);
+                        break;
+                    case FileTypes.Excel:
+                        ReportsHelper.GenerateTerritoriesListReport(whereExp, path);
+                        break;
+                    case FileTypes.KML:
+                        KMLHelper.ExportTerritoriesToKml(whereExp, path, singleFile);
+                        break;
+                    default:
+                        break;
+                }
+                rv = true;
+            }
+            else
+                MessageBox.Show("Debe seleccionar algún territorio");
+            return rv;
             
         }
 

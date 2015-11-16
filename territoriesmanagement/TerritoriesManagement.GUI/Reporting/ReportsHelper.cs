@@ -55,7 +55,7 @@ namespace TerritoriesManagement.Reporting
 
                 foreach (var t in territories)
                 {
-                    var name = (t.Number.HasValue ? t.Number.Value.ToString() : string.Empty) + t.Name;
+                    var name = (t.Number.HasValue ? t.Number.Value.ToString() : string.Empty) + " - " + t.Name;
                     var file = Path.Combine(folder, name + extension);
                     GenerateTerritoryReport(t, file, format);
                     files.Add(file);
