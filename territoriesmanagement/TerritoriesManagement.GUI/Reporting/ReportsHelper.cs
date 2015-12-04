@@ -4,6 +4,8 @@ using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
@@ -25,7 +27,7 @@ namespace TerritoriesManagement.Reporting
     static public class ReportsHelper
     {
 
-        public static void GenerateMultipleTerritoriesReport(Expression<Func<Territory,bool>> whereExp, string path, bool singleFile, bool image)
+        public static void GenerateMultipleTerritoriesReport(Expression<Func<Territory,bool>> whereExp, string path, bool singleFile)
         {
             var bridge = new Territories();
             var territories = bridge.Search(whereExp);
@@ -44,12 +46,6 @@ namespace TerritoriesManagement.Reporting
                 }
                 var extension = ".pdf";
                 var format = ReportFormats.PDF;
-                if (image)
-                {
-                    extension = ".jpg";
-                    format = ReportFormats.Image;
-                }
-
                 
                 var files = new List<string>();
 
@@ -65,6 +61,31 @@ namespace TerritoriesManagement.Reporting
                     MergePdfsToSingle(files, path);
             }
         }
+
+		public static bool GenerateTerritoriesImages(Expression<Func<Territory, bool>> whereExp, string path, bool singleFile)
+		{
+			var rv = false;
+            var bridge = new Territories();
+            var territories = bridge.Search(whereExp);
+            if (!singleFile)
+            {
+                foreach (var territory in territories)
+                {
+                    var name = (territory.Number.HasValue ? territory.Number.Value.ToString() : string.Empty) + " - " + territory.Name;
+                    var file = Path.Combine(path, name + ".png");
+
+                    GenerateTerritoryReport(territory, file, ReportFormats.Image);
+                }
+            }
+            else
+            {
+                var ms = MapsHelper.GenerateTerritoriesImage(territories);
+                var bmp = new Bitmap(ms);
+                bmp.Save(path, System.Drawing.Imaging.ImageFormat.Png);
+            }
+
+			return rv;
+		}
 
         public static void GenerateTerritoryReport(Territory territory, string fileName, string format)
         {
@@ -105,11 +126,13 @@ namespace TerritoriesManagement.Reporting
             return Convert.ToBase64String(imageArray);
         }
 
-        public static void GenerateReport(string filePath, string format, string assembblyFile, string reportPath, string sourceName, IEnumerable records, IList<ReportParameter> parameters)
+        
+
+        public static void GenerateReport(string filePath, string format, string assemblyFile, string reportPath, string sourceName, IEnumerable records, IList<ReportParameter> parameters)
         {
             try
             {
-                Assembly assembly = Assembly.LoadFrom(assembblyFile);
+                Assembly assembly = Assembly.LoadFrom(assemblyFile);
                 Stream stream = assembly.GetManifestResourceStream(reportPath);
 
                 LocalReport report = new LocalReport();
@@ -131,9 +154,21 @@ namespace TerritoriesManagement.Reporting
 
                 byte[] bytes = report.Render(format, null, out mimeType, out encoding, out filenameExtension, out streamids, out warnings);
 
-                using (FileStream fs = new FileStream(filePath, FileMode.Create))
+                if (format.ToUpper() != "IMAGE")
                 {
-                    fs.Write(bytes, 0, bytes.Length);
+
+                    using (FileStream fs = new FileStream(filePath, FileMode.Create))
+                    {
+                        fs.Write(bytes, 0, bytes.Length);
+                    }
+                }
+                else
+                {                    
+                    using (var ms = new MemoryStream(bytes))
+                    {
+                        var bmp = new Bitmap(ms);
+                        bmp.Save(filePath, System.Drawing.Imaging.ImageFormat.Png);
+                    }
                 }
             }
             catch (Exception ex)

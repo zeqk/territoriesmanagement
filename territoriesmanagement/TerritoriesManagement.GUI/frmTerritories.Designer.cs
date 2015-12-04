@@ -44,7 +44,6 @@
             this.lblName = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
             this.grdSearch = new System.Windows.Forms.GroupBox();
-            this.btnPrintTerritoryCards = new System.Windows.Forms.Button();
             this.txtFilterName = new System.Windows.Forms.TextBox();
             this.chkHasAddresses = new System.Windows.Forms.CheckBox();
             this.lblResultCount = new System.Windows.Forms.Label();
@@ -216,7 +215,6 @@
             // 
             // grdSearch
             // 
-            this.grdSearch.Controls.Add(this.btnPrintTerritoryCards);
             this.grdSearch.Controls.Add(this.txtFilterName);
             this.grdSearch.Controls.Add(this.chkHasAddresses);
             this.grdSearch.Controls.Add(this.lblResultCount);
@@ -232,18 +230,6 @@
             this.grdSearch.TabIndex = 0;
             this.grdSearch.TabStop = false;
             this.grdSearch.Text = "Search";
-            // 
-            // btnPrintTerritoryCards
-            // 
-            this.btnPrintTerritoryCards.Image = global::TerritoriesManagement.GUI.Properties.Resources.printer;
-            this.btnPrintTerritoryCards.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrintTerritoryCards.Location = new System.Drawing.Point(19, 378);
-            this.btnPrintTerritoryCards.Name = "btnPrintTerritoryCards";
-            this.btnPrintTerritoryCards.Size = new System.Drawing.Size(100, 24);
-            this.btnPrintTerritoryCards.TabIndex = 15;
-            this.btnPrintTerritoryCards.Text = "Cards";
-            this.btnPrintTerritoryCards.UseVisualStyleBackColor = true;
-            this.btnPrintTerritoryCards.Click += new System.EventHandler(this.btnPrintTerritoryCards_Click);
             // 
             // txtFilterName
             // 
@@ -453,6 +439,5 @@
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.CheckBox chkHasAddresses;
         private System.Windows.Forms.TextBox txtFilterName;
-        private System.Windows.Forms.Button btnPrintTerritoryCards;
     }
 }

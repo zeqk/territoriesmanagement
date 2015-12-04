@@ -1,5 +1,4 @@
-﻿using GMap.NET;
-using SharpKml.Base;
+﻿using SharpKml.Base;
 using SharpKml.Dom;
 using SharpKml.Engine;
 using System;
@@ -21,79 +20,18 @@ namespace TerritoriesManagement.KML
 
 		public static void ImportNewTerritories(string kmlFile)
 		{
-			RemoveOldTerritories();
+			var bridge = new Territories();
+
+			bridge.DeleteAll();
+
 			ImportTerritoriesFromKml(kmlFile);
-			SetNewTerritories();
-			RenumInternalTerritoryNumber();
+
+			bridge.AsignTerritoriesToAddresses();
+			bridge.RenumInternalTerritoryNumber();
 		}
 
-		static void RemoveOldTerritories()
-		{
-			TerritoriesDataContext dm = new TerritoriesDataContext();
-			foreach (var item in dm.Addresses)
-			{
-				item.Territory = null;
-				item.InternalTerritoryNumber = null;
-			}
-			dm.SaveChanges();
-			dm.territories_DeleteAll();
-            dm.territories_ResetId(0);
-			dm.SaveChanges();
-		}
 
-		public static void SetNewTerritories()
-		{
-			TerritoriesDataContext dm = new TerritoriesDataContext();
-			
-			foreach (var item in dm.Addresses)
-			{
-				if (item.Lat.HasValue && item.Lng.HasValue)
-				{
-					PointLatLng point = new PointLatLng(item.Lat.Value, item.Lng.Value);
-					foreach (Territory t in dm.Territories)
-					{
-						if (t.Area != null && t.Area != "")
-						{
-							List<PointLatLng> polygon = Helper.StrPointsToPointsLatLng(t.Area.Split('\n'));
-							if (Helper.PointInPolygon(point, polygon.ToArray()))
-							{
-								item.Territory = t;
-								break;
-							}
-						}
-					}
-				}
-			}
-			dm.SaveChanges();
-		}
-
-		public static void RenumInternalTerritoryNumber()
-		{
-			try
-			{
-				TerritoriesDataContext dm = new TerritoriesDataContext();
-
-				foreach (var item in dm.Territories)
-				{
-					item.Addresses.Load();
-					var addresses = item.Addresses.Where(a => a.Lat.HasValue && a.Lng.HasValue)
-						.OrderByDescending(a => a.Lat.Value).ThenBy(a => a.Lng.Value).ToList();
-
-					var i = 1;
-					foreach (var a in addresses)
-					{
-						a.InternalTerritoryNumber = i;
-						i++;
-					}
-				}
-				dm.SaveChanges();
-			}
-			catch (Exception ex)
-			{
-
-				throw ex;
-			}
-		}
+		
 
 		static void ImportTerritoriesFromKml(string kmlFile)
 		{
@@ -117,25 +55,9 @@ namespace TerritoriesManagement.KML
 					{
 						var boundary = polygon.OuterBoundary.LinearRing.Coordinates.Select(r => r.Latitude.ToString(format) + " " + r.Longitude.ToString(format)).ToArray();
 						var area = string.Join(Environment.NewLine, boundary);
-
-                        var name = placemark.Name;
-                        int? number = null;
-                        var numberAndName = name.Split('-');
-
-                        if (numberAndName.Length > 1)
-                        {
-                            int aux;
-                            if (int.TryParse(numberAndName[0], out aux))
-                                number = aux;
-
-                            name = numberAndName[1].Trim();
-                        }
-                        
-
 						var territory = new Territory
 						{
-							Name = name,
-                            Number = number,
+							Name = placemark.Name,
 							Area = area
 						};
 						dm.AddToTerritories(territory);
@@ -153,7 +75,6 @@ namespace TerritoriesManagement.KML
             {
                 var bridge = new Territories();
                 var territories = bridge.Search(whereExp);
-                var dm = new TerritoriesDataContext();
 
                 if (singleFile)
                 {
@@ -161,7 +82,7 @@ namespace TerritoriesManagement.KML
 
                     foreach (var t in territories)
                     {
-                        var placemarks = TerritoryToPlacemarks(t,false);
+                        var placemarks = TerritoryToPlacemarks(t);
                         foreach (var p in placemarks)
                         {
                             doc.AddFeature(p);
@@ -181,14 +102,9 @@ namespace TerritoriesManagement.KML
                 }
                 else
                 {
-                    var maxNumber = dm.Territories.Where(t => t.Number.HasValue).Max(t => t.Number);
-                    int charCount = 0;
-                    if (maxNumber.HasValue)
-                        charCount = maxNumber.ToString().Length;
-
-                    foreach (var t in territories)
+                    foreach (var t in territories) 
                     {
-                        var name = (t.Number.HasValue ? t.Number.Value.ToString().PadLeft(charCount, '0') + " - " : string.Empty) + t.Name;
+                        var name = (t.Number.HasValue ? t.Number.Value.ToString() : string.Empty) + t.Name;
                         var file = Path.Combine(path, name + ".kml");
                         ExportTerritoryToKml(t, file);
                     }
@@ -209,7 +125,7 @@ namespace TerritoriesManagement.KML
                 var bridge = new Territories();
 
                 Document doc = new Document();
-                var placemarks = TerritoryToPlacemarks(territory, true);
+                var placemarks = TerritoryToPlacemarks(territory);
                 foreach (var p in placemarks)
                 {
                     doc.AddFeature(p);
@@ -234,7 +150,7 @@ namespace TerritoriesManagement.KML
             }
         }
 
-        static IList<SharpKml.Dom.Placemark> TerritoryToPlacemarks(Territory t, bool includeAddresses)
+        static IList<SharpKml.Dom.Placemark> TerritoryToPlacemarks(Territory t)
         {
             var rv = new List<SharpKml.Dom.Placemark>();
 
@@ -270,34 +186,31 @@ namespace TerritoriesManagement.KML
                 rv.Add(placemark);
             }
 
-            if (includeAddresses)
+            if(!t.Addresses.IsLoaded)
+                t.Addresses.Load();
+
+            foreach (var a in t.Addresses)
             {
-                if (!t.Addresses.IsLoaded)
-                    t.Addresses.Load();
-
-                foreach (var a in t.Addresses)
+                if (a.Lng.HasValue && a.Lng.HasValue)
                 {
-                    if (a.Lng.HasValue && a.Lng.HasValue)
-                    {
-                        a.CityReference.Load();
-                        a.City.DepartmentReference.Load();
-                        string address = a.Street + " " + a.Number;
-                        string fullAddress = address + ", " + a.City.Name + ", " + a.City.Department.Name + Environment.NewLine
-                            + (!string.IsNullOrEmpty(a.Corner1) ? " Entre: " + a.Corner1 + (!string.IsNullOrEmpty(a.Corner2) ? " y " + a.Corner2 : string.Empty) : string.Empty);
+                    a.CityReference.Load();
+                    a.City.DepartmentReference.Load();
+                    string address = a.Street + " " + a.Number;
+                    string fullAddress = address + ", " + a.City.Name + ", " + a.City.Department.Name + Environment.NewLine
+                        + (!string.IsNullOrEmpty(a.Corner1) ? " Entre: " + a.Corner1 + (!string.IsNullOrEmpty(a.Corner2) ? " y " + a.Corner2 : string.Empty) : string.Empty);
 
 
-                        var point = new Point();
-                        point.Coordinate = new Vector(a.Lat.Value, a.Lng.Value);
+                    var point = new Point();
+                    point.Coordinate = new Vector(a.Lat.Value, a.Lng.Value);
+                    
+                    var placemark = new SharpKml.Dom.Placemark();
+                    placemark.Geometry = point;
+                    placemark.Name = (a.InternalTerritoryNumber.HasValue ? a.InternalTerritoryNumber.Value.ToString() + " - " : string.Empty) + address;
+                    placemark.Address = address;
+                    placemark.Description = new Description();
+                    placemark.Description.Text = fullAddress;
 
-                        var placemark = new SharpKml.Dom.Placemark();
-                        placemark.Geometry = point;
-                        placemark.Name = (a.InternalTerritoryNumber.HasValue ? a.InternalTerritoryNumber.Value.ToString() + " - " : string.Empty) + address;
-                        placemark.Address = address;
-                        placemark.Description = new Description();
-                        placemark.Description.Text = fullAddress;
-
-                        rv.Add(placemark);
-                    }
+                    rv.Add(placemark);
                 }
             }
 

@@ -44,6 +44,7 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.lblConnectionStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblConnectionStatusValue = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnPrintTerritoryCards = new System.Windows.Forms.Button();
             this.menu.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -185,11 +186,24 @@
             this.lblConnectionStatusValue.Name = "lblConnectionStatusValue";
             this.lblConnectionStatusValue.Size = new System.Drawing.Size(0, 17);
             // 
+            // btnPrintTerritoryCards
+            // 
+            this.btnPrintTerritoryCards.Image = global::TerritoriesManagement.GUI.Properties.Resources.printer;
+            this.btnPrintTerritoryCards.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrintTerritoryCards.Location = new System.Drawing.Point(185, 145);
+            this.btnPrintTerritoryCards.Name = "btnPrintTerritoryCards";
+            this.btnPrintTerritoryCards.Size = new System.Drawing.Size(100, 24);
+            this.btnPrintTerritoryCards.TabIndex = 16;
+            this.btnPrintTerritoryCards.Text = "Cards";
+            this.btnPrintTerritoryCards.UseVisualStyleBackColor = true;
+            this.btnPrintTerritoryCards.Click += new System.EventHandler(this.btnPrintTerritoryCards_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(453, 224);
+            this.Controls.Add(this.btnPrintTerritoryCards);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.bntTerritories);
             this.Controls.Add(this.btnDepartments);
@@ -228,6 +242,7 @@
         private System.Windows.Forms.ToolStripStatusLabel lblConnectionStatusValue;
         private System.Windows.Forms.ToolStripMenuItem menuInteropWizard;
         private System.Windows.Forms.ToolStripMenuItem menuImportKML;
+        private System.Windows.Forms.Button btnPrintTerritoryCards;
 
     }
 }

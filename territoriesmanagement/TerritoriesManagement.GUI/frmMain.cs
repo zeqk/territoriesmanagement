@@ -164,5 +164,21 @@ namespace TerritoriesManagement.GUI
         }
 
 
+        private void btnPrintTerritoryCards_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (var myForm = new frmTerritoriesExportation())
+                {
+                    myForm.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+
     }
 }

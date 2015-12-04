@@ -83,13 +83,28 @@ namespace TerritoriesManagement.GUI
                 var path = string.Empty;
                 if (chkSingleFile.Checked)
                 {
-                    var filter = "PDF Files (*.pdf)|*.pdf";
-                    var extension = ".pdf";
-                    if(type == FileTypes.KML)
+                    string filter = "";
+                    string extension = "";
+                    switch (type)
                     {
-                        filter = "KML Files (*.kml)|*.kml";
-                        extension = ".kml";
+                        case FileTypes.Imagen:
+                            filter = "PNG Files (*.png)|*.png";
+                            extension = ".png";
+                            break;
+                        case FileTypes.PDF:
+                            filter = "PDF Files (*.pdf)|*.pdf";
+                            extension = ".pdf";
+                            break;
+                        case FileTypes.Excel:
+                            break;
+                        case FileTypes.KML:
+                            filter = "KML Files (*.kml)|*.kml";
+                            extension = ".kml";
+                            break;
+                        default:
+                            break;
                     }
+
 
                     var myForm = new SaveFileDialog();
                     myForm.Filter = filter;
@@ -139,9 +154,10 @@ namespace TerritoriesManagement.GUI
                 switch (type)
                 {
                     case FileTypes.Imagen:
-                    case FileTypes.PDF:
-                        var imagen = type == FileTypes.Imagen;
-                        ReportsHelper.GenerateMultipleTerritoriesReport(whereExp, path, singleFile, imagen);
+                        ReportsHelper.GenerateTerritoriesImages(whereExp, path, singleFile);
+                        break;
+                    case FileTypes.PDF:                        
+                        ReportsHelper.GenerateMultipleTerritoriesReport(whereExp, path, singleFile);
                         break;
                     case FileTypes.Excel:
                         ReportsHelper.GenerateTerritoriesListReport(whereExp, path);
@@ -207,7 +223,7 @@ namespace TerritoriesManagement.GUI
                 var type = (FileTypes)Enum.Parse(typeof(FileTypes),cboReportType.SelectedValue.ToString());
 
                 chkSingleFile.Checked = false;
-                if (type == FileTypes.PDF || type == FileTypes.KML)
+                if (type == FileTypes.PDF || type == FileTypes.KML || type == FileTypes.Imagen)
                 {
                     chkSingleFile.Visible = true;
                 }

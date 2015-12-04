@@ -14,30 +14,29 @@ namespace TerritoriesManagement.GUI.Maps
 {
     public static class MapsHelper
     {
+        
+        public static MemoryStream GenerateTerritoriesImage(IList<Territory> territories)
+        {
 
+            var markers = new List<GMapMarker>();
+            var polygons = new List<GMapPolygon>();
+            var points = new List<PointLatLng>();
 
-		public static MemoryStream GenerateTerritoriesImage(IList<Territory> territories)
-		{
+            foreach (var t in territories)
+            {
+                var polygon = GetPolygon(t.Area);
+                polygon.Tag = t.Number.HasValue ? t.Number.Value.ToString() : null;
+                polygons.Add(polygon);
+                points.AddRange(polygon.Points);
 
-			var markers = new List<GMapMarker>();
-			var polygons = new List<GMapPolygon>();
-			var points = new List<PointLatLng>();
+            }
 
-			foreach (var t in territories)
-			{
-				var polygon = GetPolygon(t.Area);
-				polygon.Tag = t.Number.HasValue ? t.Number.Value.ToString() : null;
-				polygons.Add(polygon);
-				points.AddRange(polygon.Points);
-				
-			}
+            var area = Helper.CalculateRectangle(points);
 
-			var area = Helper.CalculateRectangle(points);
+            var rv = MapsHelper.GenerateImageStream(area, 12, GMapProviders.GoogleMap, markers, polygons);
 
-			var rv = MapsHelper.GenerateImageStream(area, 12, GMapProviders.GoogleMap, markers, polygons);
-
-			return rv;
-		}
+            return rv;
+        }
 
         public static MemoryStream GenerateTerritoryImage(Territory territory)
         {
